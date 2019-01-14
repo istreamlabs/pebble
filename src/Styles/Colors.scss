@@ -1,0 +1,94 @@
+// Colors 
+$brand-orange: #F04E23;
+  
+$neutral-100: #FAFBFB;
+$neutral-200: #F4F6F8;
+$neutral-300: #DFE3E8;
+$neutral-400: #C5CDD5;
+$neutral-500: #929EAB;
+$neutral-600: #647481;
+$neutral-700: #464F5B;
+$neutral-800: #222B36;
+
+$blue-lighter: #EEF5FF;
+$blue-light: #B6D2F7;
+$blue: #2F80ED;
+$blue-dark: #1C4D90;
+$blue-darker: #0D2648;
+
+$yellow-lighter: #FEF9EB;
+$yellow-light: #FFE39C;
+$yellow: #FBC029;
+$yellow-dark: #A67F19;
+$yellow-darker: #5A4009;
+
+$green-lighter: #EBFEED;
+$green-light: #C3F3C9;
+$green: #50B25A;
+$green-dark: #33773A;
+$green-darker: #1B3E1F;
+
+$red-lighter: #FDE9E8;
+$red-light: #FED0CB;
+$red: #DE3618;
+$red-dark: #A42710;
+$red-darker: #370C04;
+
+$indigo-lighter: #EEEAFD;
+$indigo-light: #AD9BF8;
+$indigo: #5823F0;
+$indigo-dark: #451BBC;
+$indigo-darker: #270F6C;
+
+
+/* legacy gray colors. most likely these shouldn't be used. use the neutrals instead */
+$gray-100: #f4f4f4;
+$gray-200: #eee;
+$gray-300: #ccc;
+$gray-400: #aaa;
+$gray-500: #999;
+$gray-600: #777;
+$gray-700: #555;
+$gray-800: #333;
+$gray-900: #111;
+
+$black: #000;
+$near-black: #111111;
+$dark-gray:#333333;
+$mid-gray:#555555;
+$gray: #777777;
+$silver: #999999;
+$light-silver: #aaaaaa;
+$moon-gray: #cccccc;
+$light-gray: #eeeeee;
+$near-white: #f4f4f4;
+$white: #fff;
+
+$transparent:transparent;
+
+$black-90: rgba(0,0,0,.9);
+$black-80: rgba(0,0,0,.8);
+$black-70: rgba(0,0,0,.7);
+$black-60: rgba(0,0,0,.6);
+$black-50: rgba(0,0,0,.5);
+$black-40: rgba(0,0,0,.4);
+$black-30: rgba(0,0,0,.3);
+$black-20: rgba(0,0,0,.2);
+$black-10: rgba(0,0,0,.1);
+$black-05: rgba(0,0,0,.05);
+$black-025: rgba(0,0,0,.025);
+$black-0125: rgba(0,0,0,.0125);
+
+$white-90: rgba(255,255,255,.9);
+$white-80: rgba(255,255,255,.8);
+$white-70: rgba(255,255,255,.7);
+$white-60: rgba(255,255,255,.6);
+$white-50: rgba(255,255,255,.5);
+$white-40: rgba(255,255,255,.4);
+$white-30: rgba(255,255,255,.3);
+$white-20: rgba(255,255,255,.2);
+$white-10: rgba(255,255,255,.1);
+$white-05: rgba(255,255,255,.05);
+$white-025: rgba(255,255,255,.025);
+$white-0125: rgba(255,255,255,.0125);
+  
