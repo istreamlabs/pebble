@@ -20,12 +20,20 @@
     "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.7.0"
   },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.3"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "lint": "eslint src/Components/**/*.js"
   },
   "eslintConfig": {
     "extends": "airbnb",
@@ -111,10 +119,18 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.3"
+  "jest": {
+    "collectCoverageFrom": [
+      "src/Components/**/*.{js,jsx,mjs}",
+      "!**/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 95,
+        "functions": 95,
+        "lines": 95,
+        "statements": 95
+      }
+    }
   }
 }

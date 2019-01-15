@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  webpackConfig: require('./node_modules/react-scripts/config/webpack.config.js'),
+  webpackConfig: require('react-scripts/config/webpack.config.js'),
   components: [
     'src/components/**/[A-Z]*.js'
   ],
@@ -41,4 +41,4 @@ module.exports = {
       ]
     }
   ]
-}
+};
