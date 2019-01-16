@@ -34,8 +34,28 @@ module.exports = {
       sectionDepth: 2,
       sections: [
         {
+          name: 'Border Radius',
+          content: 'src/Styleguide/Docs/Border-radius.md',
+          exampleMode: 'hide'
+        },
+        {
           name: 'Colors',
           content: 'src/Styleguide/Docs/Colors.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Shadow',
+          content: 'src/Styleguide/Docs/Shadow.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Spacing',
+          content: 'src/Styleguide/Docs/Spacing.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Typography',
+          content: 'src/Styleguide/Docs/Typography.md',
           exampleMode: 'hide'
         }
       ]
