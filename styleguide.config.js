@@ -36,18 +36,18 @@ module.exports = {
       sectionDepth: 2
     },
     {
-      name: 'Design',
+      name: 'Design Tokens',
       content: 'src/Styleguide/Docs/Design.md',
       sectionDepth: 2,
       sections: [
         {
           name: 'Border Radius',
-          content: 'src/Styleguide/Docs/Border-radius.md',
+          content: 'src/Styleguide/Docs/Border.md',
           exampleMode: 'hide'
         },
         {
           name: 'Colors',
-          content: 'src/Styleguide/Docs/Colors.md',
+          content: 'src/Styleguide/Docs/Color.md',
           exampleMode: 'hide'
         },
         {
