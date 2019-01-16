@@ -10,7 +10,11 @@ export default class ColorSwatch extends React.PureComponent {
       height
     } = this.props;
     return (
-      <div style={{ display: 'inline-block' }}>
+      <div style={{
+          display: 'inline-block',
+          marginBottom: '32px'
+        }}
+      >
         <div
           style={{
             width: `${width}px`,
