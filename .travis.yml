@@ -18,6 +18,7 @@ deploy:
     secret_access_key: $DEVELOPMENT_AWS_SECRET
     local_dir: styleguide
     bucket: "pebble-dev"
+    skip_cleanup: true
     region: "us-west-2"
     on:
       branch: master
