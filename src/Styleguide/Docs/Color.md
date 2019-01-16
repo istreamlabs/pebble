@@ -9,7 +9,7 @@ Brand colors are to be used sparingly.
 <ColorSwatch name="$white" value="#FFFFFF" />
 ```
 
-## UI Neutrals
+## Neutrals
 
 Neutral colors are used for text, backgrounds, lines and borders.
 
@@ -25,6 +25,8 @@ Neutral colors are used for text, backgrounds, lines and borders.
 ```
 
 ## UI Colors
+
+Used for for buttons, alert messages, form elements.
 
 #### Blue
 ```js noeditor
