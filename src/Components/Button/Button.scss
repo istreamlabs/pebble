@@ -1,3 +1,11 @@
+@import '../../Styles/foundation';
+
 .btn {
-    padding: 20px;
+    padding: $spacing-3;
+    background: $blue;
+    color: $white;
+
+    &:hover {
+      background: $blue-darker;
+    }
 }
