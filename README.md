@@ -1,4 +1,6 @@
-# Pebble: iStremplanet's Design System
+# Pebble
+
+iStreamPlanet's Design System
 
 ## Install
 
