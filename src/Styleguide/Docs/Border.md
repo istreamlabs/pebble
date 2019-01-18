@@ -1,0 +1,92 @@
+Use radius tokens to create rounded corners.
+
+<table>
+    <thead>
+        <tr>
+            <th>token</th>
+            <th>value</th>
+            <th>release</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$border-radius-none</td>
+            <td>0</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-1</td>
+            <td>.125rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-2</td>
+            <td>.25rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-3</td>
+            <td>.5rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-4</td>
+            <td>.75rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-5</td>
+            <td>1rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-circle</td>
+            <td>100%</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-radius-pill</td>
+            <td>9999px</td>
+            <td>1.0.0</td>
+        </tr>
+    </tbody>
+</table>
+
+# Border Width
+
+<table>
+    <thead>
+        <tr>
+            <th>token</th>
+            <th>value</th>
+            <th>release</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>$border-width-1</td>
+            <td>.125rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-width-2</td>
+            <td>.25rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-width-3</td>
+            <td>.5rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-width-4</td>
+            <td>1rem</td>
+            <td>1.0.0</td>
+        </tr>
+        <tr>
+            <td>$border-width-5</td>
+            <td>2rem</td>
+            <td>1.0.0</td>
+        </tr>
+    </tbody>
+</table>

@@ -36,13 +36,43 @@ module.exports = {
       sectionDepth: 2
     },
     {
-      name: 'Design',
+      name: 'Design Tokens',
       content: 'src/Styleguide/Docs/Design.md',
       sectionDepth: 2,
       sections: [
         {
-          name: 'Colors',
-          content: 'src/Styleguide/Docs/Colors.md',
+          name: 'Border',
+          content: 'src/Styleguide/Docs/Border.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Color',
+          content: 'src/Styleguide/Docs/Color.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Media Query',
+          content: 'src/Styleguide/Docs/Mediaquery.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Shadow',
+          content: 'src/Styleguide/Docs/Shadow.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Sizing',
+          content: 'src/Styleguide/Docs/Sizing.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Spacing',
+          content: 'src/Styleguide/Docs/Spacing.md',
+          exampleMode: 'hide'
+        },
+        {
+          name: 'Typography',
+          content: 'src/Styleguide/Docs/Typography.md',
           exampleMode: 'hide'
         }
       ]
