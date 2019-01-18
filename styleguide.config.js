@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  title: 'Pebble',
   webpackConfig: require('react-scripts/config/webpack.config.js'),
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
     webpackConfig.output = {
@@ -12,6 +13,9 @@ module.exports = {
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
     return `import { ${name} } from '@istreamplanet/pebble';`;
+  },
+  styleguideComponents: {
+    ToolbarButtonRenderer: path.join(__dirname, 'src/Styleguide/ToolbarButtonRenderer')
   },
   components: [
     'src/components/**/[A-Z]*.js'
