@@ -14,6 +14,21 @@ module.exports = {
     const name = path.basename(componentPath, '.js');
     return `import { ${name} } from '@istreamplanet/pebble';`;
   },
+  template: {
+    head: {
+      links: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css?family=Lato:300,400,700'
+        }
+      ]
+    }
+  },
+  theme: {
+    fontFamily: {
+      base: '"lato", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+    }
+  },
   styleguideComponents: {
     ToolbarButtonRenderer: path.join(__dirname, 'src/Styleguide/ToolbarButtonRenderer')
   },
