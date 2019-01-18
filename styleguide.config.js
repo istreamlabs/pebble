@@ -9,6 +9,10 @@ module.exports = {
     };
     return webpackConfig;
   },
+  getComponentPathLine(componentPath) {
+    const name = path.basename(componentPath, '.js');
+    return `import { ${name} } from '@istreamplanet/pebble';`;
+  },
   components: [
     'src/components/**/[A-Z]*.js'
   ],

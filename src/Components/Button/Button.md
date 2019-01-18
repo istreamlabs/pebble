@@ -1,8 +1,3 @@
-
-```js static
-import { Button } from '@istreamplanet/pebble';
-```
-
 ## Rendering
 
 ### Default
