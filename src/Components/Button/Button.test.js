@@ -159,5 +159,4 @@ describe('Button', () => {
       expect(button.find('button').prop('aria-pressed')).toBeTruthy();
     });
   });
-
 });
