@@ -1,11 +1,149 @@
 @import '../../Styles/foundation';
 
 .btn {
-    padding: $spacing-3;
-    background: $blue;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  padding: $spacing-2 $spacing-3;
+  position: relative;
+  background: $white;
+  color: $neutral-600;
+  line-height: $line-height-solid;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: $font-size-5;
+  border: 1px solid $neutral-400;
+  border-radius: $border-radius-2;
+  font-family: $sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition-duration: .1s;
+  transition-timing-function: ease-in;
+  transition-property: background, border, box-shadow;
+
+  &:focus,
+  &:hover,
+  &:active {
+    border-color: $neutral-500;
+    color: $neutral-700;
+  }
+
+  &:disabled {
+    transition: none;
+    color: $neutral-400;
+    cursor: not-allowed;
+    border-color: $neutral-300;
+    box-shadow: none;
+  }
+}
+
+.btn-fullwidth {
+  width: 100%;
+}
+
+.btn-lg {
+  font-size: $font-size-4;
+  padding: $spacing-3 $spacing-4;
+}
+
+.btn-sm {
+  font-size: $font-size-7;
+  padding: $spacing-1 $spacing-2;
+  border-radius: $border-radius-2;
+}
+
+.btn--primary {
+  background: $blue;
+  color: $white;
+  border-color: $blue;
+
+  &:focus,
+  &:hover,
+  &:active {
     color: $white;
+    background: $blue-dark;
+    border-color: $blue-dark;
+  }
+
+  &:disabled {
+    color: $white;
+    border-color: $blue-light;
+    background-color: $blue-light;
+
 
     &:hover {
-      background: $blue-darker;
+      background-color: $blue-light;
+      border-color: $blue-light;
     }
+  }
+
+  .btn-loading-spinner {
+    color: $white;
+  }
+}
+
+.btn--danger {
+  color: $red;
+  border-color: $red-light;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $red-dark;
+    border-color: $red;
+  }
+
+  &:disabled {
+    border-color: $red-light;
+    color: $red-light;
+  }
+}
+
+.btn--primary-danger {
+  background: $red;
+  color: $white;
+
+  &:focus,
+  &:hover,
+  &:active {
+    color: $white;
+    background: $red-dark;
+    border-color: $red-dark;
+  }
+
+  &:disabled {
+    color: $white;
+    background-color: $red-light;
+
+    &:hover {
+      background-color: $red-light;
+      border-color: $red-light;
+    }
+  }
+}
+
+.btn-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+.btn--loading {
+  &,
+  &:hover,
+  &:disabled {
+    color: transparent;
+  }
+}
+
+.btn-loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -.5rem;
+  margin-left: -.5rem;
+  color: $neutral-500;
 }
