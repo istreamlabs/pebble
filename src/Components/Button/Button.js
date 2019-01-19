@@ -34,15 +34,11 @@ const Button = (
     'btn--loading': loading,
     'btn-lg': size === 'large',
     'btn-sm': size === 'small',
-    'btn--primary-danger': primary && danger,
     'btn--primary': primary,
     'btn--danger': danger,
     'btn-fullwidth': fullWidth,
+    'btn--primary-danger': primary && danger,
   });
-
-  const childMarkup = children ? (
-    <span>{children}</span>
-  ) : null;
 
   // TO DO: replace with actual Icon component spinner
   const spinnerSVGMarkup = loading ? (
@@ -62,7 +58,7 @@ const Button = (
   const content = (
     <span className="btn-content">
       {spinnerSVGMarkup}
-      {childMarkup}
+      {children}
     </span>
   );
 
@@ -142,7 +138,7 @@ Button.propTypes = {
    */
   danger: PropTypes.bool,
   /**
-   * Specify the button take up the full width of its parent container
+   * Button takes up the full width of its parent container
    */
   fullWidth: PropTypes.bool,
   /**
