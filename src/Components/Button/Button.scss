@@ -52,7 +52,7 @@
   border-radius: $border-radius-2;
 }
 
-.btn--primary {
+.btn-primary {
   background: $blue;
   color: $white;
   border-color: $blue;
@@ -82,7 +82,7 @@
   }
 }
 
-.btn--danger {
+.btn-danger {
   color: $red;
   border-color: $red-light;
 
@@ -99,7 +99,7 @@
   }
 }
 
-.btn--primary-danger {
+.btn-primary.btn-danger {
   background: $red;
   color: $white;
 
@@ -131,7 +131,7 @@
   min-height: 1px;
 }
 
-.btn--loading {
+.btn-loading {
   &,
   &:hover,
   &:disabled {

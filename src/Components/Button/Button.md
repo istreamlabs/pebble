@@ -12,9 +12,12 @@
 ### Sizes
 
 ```js
-<Button size="small">small</Button>
-<Button>medium</Button>
-<Button size="large">large</Button>
+import Size from '../Utils/Size';
+<div>
+    <Button size={Size.SMALL}>small</Button>
+    <Button>medium</Button>
+    <Button size={Size.LARGE}>large</Button>
+</div>
 ```
 
 ### Additional ClassNames
