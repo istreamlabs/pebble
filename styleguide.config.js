@@ -54,8 +54,8 @@ module.exports = {
       base: '#464F5B',
       light: '#647481',
       lightest: '#929EAB',
-      link: '#2F80ED',
-      linkHover: '#1C4D90',
+      link: '#1C4D90',
+      linkHover: '#0D2648',
       focus: 'rgba(22, 115, 177, 0.25)',
       border: 'rgba(0,0,0,.05)',
       name: '#690',
@@ -64,7 +64,7 @@ module.exports = {
       baseBackground: '#fff',
       codeBackground: '#FAFBFB',
       sidebarBackground: '#FAFBFB',
-      ribbonBackground: '#e90',
+      ribbonBackground: '#F04E23',
       ribbonText: '#fff',
       // Based on default Prism theme
       codeComment: '#6d6d6d',
@@ -77,7 +77,9 @@ module.exports = {
       codeKeyword: '#1673b1',
       codeFunction: '#DD4A68',
       codeVariable: '#e90',
-    }
+    },
+    borderRadius: 4,
+    maxWidth: 960,
   },
   styleguideComponents: {
     ToolbarButtonRenderer: path.join(__dirname, 'src/Styleguide/ToolbarButtonRenderer')
@@ -150,5 +152,9 @@ module.exports = {
         }
       ]
     }
-  ]
+  ],
+  ribbon: {
+    url: 'https://github.com/iStreamPlanet/pebble',
+    text: 'GitHub Repo'
+  }
 };
