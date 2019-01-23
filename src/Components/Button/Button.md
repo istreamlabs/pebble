@@ -9,21 +9,20 @@
 
 ```js
 <div class="styleguide__buttons">
-    <Button>default</Button>
-    <Button primary>primary</Button>
-    <Button danger>danger</Button>
-    <Button primary danger>primary danger</Button>
+  <Button>default</Button>
+  <Button primary>primary</Button>
+  <Button danger>danger</Button>
+  <Button primary danger>primary danger</Button>
 </div>
 ```
 
 ### Size
 
 ```js
-const Size = require('../Utils/Size').default;
 <div class="styleguide__buttons">
-    <Button size={Size.SMALL}>small</Button>
-    <Button>medium</Button>
-    <Button size={Size.LARGE}>large</Button>
+  <Button size="small">small</Button>
+  <Button>medium</Button>
+  <Button size="large">large</Button>
 </div>
 ```
 
@@ -41,10 +40,10 @@ Use for actions that aren’t currently available. The surrounding interface sho
 
 ```js
 <div class="styleguide__buttons">
-    <Button disabled>default</Button>
-    <Button disabled primary>primary</Button>
-    <Button disabled danger>danger</Button>
-    <Button disabled primary danger>primary danger</Button>
+  <Button disabled>default</Button>
+  <Button disabled primary>primary</Button>
+  <Button disabled danger>danger</Button>
+  <Button disabled primary danger>primary danger</Button>
 </div>
 ```
 
@@ -55,10 +54,10 @@ Use when a button has been pressed and the associated action is in progress.
 ```js
 
 <div class="styleguide__buttons">
-    <Button loading>my button</Button>
-    <Button loading primary>my button</Button>
-    <Button loading danger>my button</Button>
-    <Button loading primary danger>my button</Button>
+  <Button loading>my button</Button>
+  <Button loading primary>my button</Button>
+  <Button loading danger>my button</Button>
+  <Button loading primary danger>my button</Button>
 </div>
 ```
 

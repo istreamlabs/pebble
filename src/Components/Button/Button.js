@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Size from '../Utils/Size';
+import { caseInsensativeStringCompare } from '../../Utils';
 
 import './Button.scss';
+
 
 // see https://github.com/yannickcr/eslint-plugin-react/issues/1555
 // eslint-disable-next-line react/button-has-type
@@ -33,8 +34,8 @@ const Button = (
 
   const classes = classNames('btn', className, {
     'btn-loading': loading,
-    'btn-lg': size === Size.LARGE,
-    'btn-sm': size === Size.SMALL,
+    'btn-lg': caseInsensativeStringCompare(size, 'large'),
+    'btn-sm': caseInsensativeStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
     'btn-fullwidth': fullWidth,
@@ -86,7 +87,7 @@ const Button = (
 
 Button.defaultProps = {
   type: 'button',
-  size: Size.MEDIUM,
+  size: 'medium',
   disabled: false,
 };
 
@@ -126,7 +127,7 @@ Button.propTypes = {
   /**
    * Changes the size of the button, giving it more or less padding and font size
    */
-  size: PropTypes.oneOf([Size.SMALL, Size.MEDIUM, Size.LARGE]),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Make the button have more visual weight to identify the primary call to action
    */
