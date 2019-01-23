@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/iStreamPlanet/pebble.svg?token=ob5GGxyPdck69sbiTyH4&branch=master)](https://travis-ci.com/iStreamPlanet/pebble)
+
 # Pebble
 
 iStreamPlanet's Design System
