@@ -68,6 +68,5 @@ Use for buttons placed in a narrow column.
 
 ```js
 <Button fullWidth primary>full width</Button>
-<Button fullWidth primary>full width</Button>
 
 ```
