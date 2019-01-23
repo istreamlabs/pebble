@@ -5,6 +5,9 @@ const spaceFactor = 16;
 module.exports = {
   title: 'Pebble',
   webpackConfig: require('react-scripts/config/webpack.config.js'),
+  require: [
+    path.join(__dirname, 'src/Styleguide/styles.css')
+  ],
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
     webpackConfig.output = {
       ...webpackConfig.output,
@@ -22,6 +25,10 @@ module.exports = {
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css?family=Lato:300,400,700'
+        },
+        {
+          rel: 'stylesheet',
+          href: 'src/Styleguide/styles.css'
         }
       ]
     }
