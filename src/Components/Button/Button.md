@@ -1,19 +1,26 @@
-## Rendering
+### Buttons are used as triggers for actions. They are used in forms, toolbars, modal dialogs and as stand-alone action triggers.
 
-### Default
+### Types
+
+* Default buttons are most commonly used
+* Primary buttons highlight the most important action in the experience
+* Don't use more than one primary button in a section/screen
+* Danger buttons indicate a destructive action, and usually trigger a confirmation before the action is completed
 
 ```js
-<Button>my button</Button>
-<Button primary>my button</Button>
-<Button danger>my button</Button>
-<Button primary danger>my button</Button>
+<div class="styleguide__buttons">
+    <Button>default</Button>
+    <Button primary>primary</Button>
+    <Button danger>danger</Button>
+    <Button primary danger>primary danger</Button>
+</div>
 ```
 
-### Sizes
+### Size
 
 ```js
-import Size from '../Utils/Size';
-<div>
+const Size = require('../Utils/Size').default;
+<div class="styleguide__buttons">
     <Button size={Size.SMALL}>small</Button>
     <Button>medium</Button>
     <Button size={Size.LARGE}>large</Button>
@@ -22,30 +29,45 @@ import Size from '../Utils/Size';
 
 ### Additional ClassNames
 
+Pass a `className` containing custom css to apply them in addition to the default button styles.
+
 ```js
-<Button className="myClass">My Button</Button>
+<Button className="myCustomClass">my button</Button>
 ```
 
 ### Disabled
 
+Use for actions that aren’t currently available. The surrounding interface should make it clear why the button is disabled and what needs to be done to enable it.
+
 ```js
-<Button disabled>my button</Button>
-<Button disabled primary>my button</Button>
-<Button disabled danger>my button</Button>
-<Button disabled primary danger>my button</Button>
+<div class="styleguide__buttons">
+    <Button disabled>default</Button>
+    <Button disabled primary>primary</Button>
+    <Button disabled danger>danger</Button>
+    <Button disabled primary danger>primary danger</Button>
+</div>
 ```
 
 ### Loading
 
+Use when a button has been pressed and the associated action is in progress.
+
 ```js
-<Button loading>my button</Button>
-<Button loading primary>my button</Button>
-<Button loading danger>my button</Button>
-<Button loading primary danger>my button</Button>
+
+<div class="styleguide__buttons">
+    <Button loading>my button</Button>
+    <Button loading primary>my button</Button>
+    <Button loading danger>my button</Button>
+    <Button loading primary danger>my button</Button>
+</div>
 ```
 
 ### Full Width
 
+Use for buttons placed in a narrow column.
+
 ```js
-<Button fullWidth primary>full width button</Button>
+<Button fullWidth primary>full width</Button>
+<Button fullWidth primary>full width</Button>
+
 ```
