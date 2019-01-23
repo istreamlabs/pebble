@@ -1,5 +1,7 @@
 const path = require('path');
 
+const spaceFactor = 16;
+
 module.exports = {
   title: 'Pebble',
   webpackConfig: require('react-scripts/config/webpack.config.js'),
@@ -25,8 +27,56 @@ module.exports = {
     }
   },
   theme: {
+    space: [
+      spaceFactor / 4, // 4
+      spaceFactor / 2, // 8
+      spaceFactor, // 16
+      spaceFactor * 1.5, // 24
+      spaceFactor * 2, // 32
+      spaceFactor * 4, // 64
+      spaceFactor * 8, // 128
+    ],
     fontFamily: {
       base: '"lato", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+    },
+    fontSize: {
+      base: 14,
+      text: 16,
+      small: 12,
+      h1: 48,
+      h2: 36,
+      h3: 24,
+      h4: 20,
+      h5: 16,
+      h6: 14,
+    },
+    color: {
+      base: '#464F5B',
+      light: '#647481',
+      lightest: '#929EAB',
+      link: '#2F80ED',
+      linkHover: '#1C4D90',
+      focus: 'rgba(22, 115, 177, 0.25)',
+      border: 'rgba(0,0,0,.05)',
+      name: '#690',
+      type: '#905',
+      error: '#c00',
+      baseBackground: '#fff',
+      codeBackground: '#FAFBFB',
+      sidebarBackground: '#FAFBFB',
+      ribbonBackground: '#e90',
+      ribbonText: '#fff',
+      // Based on default Prism theme
+      codeComment: '#6d6d6d',
+      codePunctuation: '#999',
+      codeProperty: '#905',
+      codeDeleted: '#905',
+      codeString: '#690',
+      codeInserted: '#690',
+      codeOperator: '#9a6e3a',
+      codeKeyword: '#1673b1',
+      codeFunction: '#DD4A68',
+      codeVariable: '#e90',
     }
   },
   styleguideComponents: {
