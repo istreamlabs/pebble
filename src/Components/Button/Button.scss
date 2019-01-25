@@ -97,6 +97,10 @@
     border-color: $red-light;
     color: $red-light;
   }
+
+  .btn-loading-spinner {
+    color: $red-light;
+  }
 }
 
 .btn-primary.btn-danger {
@@ -119,6 +123,10 @@
       background-color: $red-light;
       border-color: $red-light;
     }
+  }
+
+  .btn-loading-spinner {
+    color: $white;
   }
 }
 
