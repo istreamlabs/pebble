@@ -110,16 +110,8 @@ module.exports = {
       usageMode: 'expand',
     },
     {
-      name: 'Components',
-      content: 'src/Styleguide/Docs/Components.md',
-      components: 'src/Components/*/*.js',
-      exampleMode: 'expand',
-      usageMode: 'expand',
-      sectionDepth: 2
-    },
-    {
-      name: 'Design Tokens',
-      content: 'src/Styleguide/Docs/Design.md',
+      name: 'Styles',
+      content: 'src/Styleguide/Docs/Styles.md',
       sectionDepth: 2,
       sections: [
         {
@@ -156,8 +148,21 @@ module.exports = {
           name: 'Typography',
           content: 'src/Styleguide/Docs/Typography.md',
           exampleMode: 'hide'
+        },
+        {
+          name: 'CSS Reset',
+          content: 'src/Styleguide/Docs/Reset.md',
+          exampleMode: 'hide'
         }
       ]
+    },
+    {
+      name: 'Components',
+      content: 'src/Styleguide/Docs/Components.md',
+      components: 'src/Components/*/*.js',
+      exampleMode: 'expand',
+      usageMode: 'expand',
+      sectionDepth: 2
     }
   ],
   ribbon: {
