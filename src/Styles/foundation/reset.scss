@@ -1,0 +1,40 @@
+@import 'colors';
+@import 'typography';
+
+html {
+  font-size: 16px;
+  position: relative;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: $neutral-100;
+  color: $neutral-600;
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+input, textarea, select {
+  font-family: $sans-serif;
+}
