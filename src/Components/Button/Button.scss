@@ -133,6 +133,7 @@
 
 .btn-loading,
 .btn-loading.btn-primary.btn-danger {
+  cursor: wait !important;
   &,
   &:hover,
   &:disabled {
