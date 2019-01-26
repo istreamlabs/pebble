@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Button from '../Button/Button';
 import ButtonGroup from './ButtonGroup';
 
@@ -44,7 +44,7 @@ describe('Button', () => {
   });
 
   it('applies size to child button', () => {
-    const buttonGroup = mount(
+    const buttonGroup = shallow(
       <ButtonGroup size="large">
         <Button>button 1</Button>
       </ButtonGroup>

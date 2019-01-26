@@ -21,33 +21,26 @@ const ButtonGroup = (
 
   return (
     <div className={classes}>
-      {React.Children.map(children, (child) => {
-        return (
-          <div className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}>
-            {size
-              ? React.cloneElement(child, { size })
-              : child}
-          </div>
-        );
-      })}
+      {React.Children.map(children, child => (
+        <div className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}>
+          {size ? React.cloneElement(child, { size }) : child}
+        </div>
+      ))}
     </div>
   );
 };
 
 ButtonGroup.propTypes = {
   /**
-   * Additional ClassNames to add to button
+   * Additional ClassNames to add to button group
    */
   className: PropTypes.string,
   /**
-   * Contents of the button
+   * Contents of the group
    */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   /**
-   * Button takes up the full width of its parent container
+   * Takes up the full width of its parent container
    */
   fullWidth: PropTypes.bool,
   /**
