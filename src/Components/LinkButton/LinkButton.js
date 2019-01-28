@@ -40,7 +40,7 @@ const LinkButton = (
     // Render an `<a>` so toggling disabled/enabled state changes only the
     // `href` attribute instead of replacing the whole element.
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a id={id} className={classes} aria-label={accessibilityLabel}>
+    <a id={id} className={classes} aria-label={accessibilityLabel} aria-disabled={disabled}>
       {content}
     </a>
   ) : (
