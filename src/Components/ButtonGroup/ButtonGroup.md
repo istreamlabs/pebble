@@ -1,15 +1,16 @@
 ### Button Group
 
-Display related buttons in a horizontal row to help with spacing between buttons.
+Display related [Buttons](/#/Components/Button) or [LinkButtons](/#/Components/LinkButton) in a horizontal row to help with spacing between buttons.
 
 * Only group buttons that have a relationship
-* Be judicious in the number of buttons within a button group
+* Be judicious in the number of items in a button group
 
 ```js
 
 <ButtonGroup>
   <Button primary>publish</Button>
   <Button>cancel</Button>
+  <LinkButton href="#">LinkButton</LinkButton>
 </ButtonGroup>
 ```
 
@@ -35,6 +36,7 @@ Display related buttons in a horizontal toolbar.
   <Button>status</Button>
   <Button>genre</Button>
   <Button>rating</Button>
+  <LinkButton href="#">LinkButton</LinkButton>
   <Button disabled>disabled</Button>
   <Button primary danger>delete</Button>
 </ButtonGroup>
