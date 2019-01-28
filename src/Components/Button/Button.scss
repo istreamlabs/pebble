@@ -121,6 +121,7 @@
   &:disabled {
     color: $white;
     background-color: $red-light;
+    border-color: $red-light;
 
     &:hover {
       background-color: $red-light;
