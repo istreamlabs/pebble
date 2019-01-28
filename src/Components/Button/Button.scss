@@ -26,6 +26,7 @@
     color: $neutral-700;
   }
 
+  &.disabled,
   &:disabled {
     transition: none;
     color: $neutral-400;
@@ -63,6 +64,7 @@
     border-color: $blue-dark;
   }
 
+  &.disabled,
   &:disabled {
     color: $white;
     border-color: $blue-light;
@@ -91,6 +93,7 @@
     border-color: $red;
   }
 
+  &.disabled,
   &:disabled {
     border-color: $red-light;
     color: $red-light;
@@ -114,9 +117,11 @@
     border-color: $red-dark;
   }
 
+  &.disabled,
   &:disabled {
     color: $white;
     background-color: $red-light;
+    border-color: $red-light;
 
     &:hover {
       background-color: $red-light;
@@ -143,6 +148,7 @@
   cursor: wait !important;
   &,
   &:hover,
+  &.disabled,
   &:disabled {
     color: transparent;
   }
