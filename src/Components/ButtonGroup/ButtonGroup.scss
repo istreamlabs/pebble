@@ -1,0 +1,55 @@
+@import '../../Styles/foundation';
+
+.btn-group {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.btn-group-item:not(:last-child) {
+  margin-right: $spacing-2;
+}
+
+.btn-toolbar {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.btn-toolbar-item {
+  margin-right: -1px;
+
+  .btn {
+    &:hover {
+      z-index: 1;
+    }
+  }
+
+  &:not(:last-child) {
+    .btn {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &:not(:first-child) {
+    .btn {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+.btn-group-fullwidth {
+  width: 100%;
+  display: flex;
+
+  .btn-group-item,
+  .btn-toolbar-item {
+    flex: 1;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

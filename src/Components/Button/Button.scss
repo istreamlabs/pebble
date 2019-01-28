@@ -107,6 +107,7 @@
 .btn-primary.btn-danger {
   background: $red;
   color: $white;
+  border-color: $red;
 
   &:focus,
   &:hover,
