@@ -1,0 +1,133 @@
+@import '../../Styles/foundation';
+
+$MD_WIDTH: 130px;
+$LG_WIDTH: 230px;
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  justify-content: space-between;
+  transition: width 0.2s ease-out, transform 0.2s ease-out;
+  width: 100%;
+  height: 100%;
+
+  @include respond-above(sm) {
+    width: $MD_WIDTH;
+  }
+
+  @include respond-above(md) {
+    width: $LG_WIDTH;
+  }
+}
+
+.main-menu-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu-item-container {
+  position: relative;
+
+  &.active {
+    .main-menu-item {
+      background: $neutral-200;
+    }
+
+    .sub-menu-items {
+      display: block;
+    }
+  }
+}
+
+.main-menu-item {
+  background: transparent;
+  border: none;
+  font-size: $font-size-5;
+  border-bottom: 1px solid $neutral-300;
+  color: $neutral-700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: $spacing-3 $spacing-4;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+
+  &:focus {
+    background: $neutral-200;
+    outline: 0;
+  }
+
+  &:hover:not(.selected) {
+    background: $neutral-200;
+  }
+
+  // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
+  > * {
+    pointer-events: none;
+  }
+  
+  @include respond-above(sm) {
+    font-size: $font-size-6;
+    justify-content: center;
+    padding-bottom: $spacing-4;
+    padding-top: $spacing-4;
+  }
+
+  @include respond-above(md) {
+    font-size: $font-size-5;
+    justify-content: flex-start;
+  }
+}
+
+.main-menu-top {
+  margin-bottom: $spacing-6;
+}
+
+.sub-menu-items {
+  border-bottom: 1px solid $neutral-300;
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include respond-between(sm, md) {
+    background: $white;
+    border-bottom: none;
+    box-shadow: $box-shadow-1;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 160px;
+    padding: 0;
+  }
+
+  @include respond-above(md) {
+    border-bottom: 1px solid $neutral-300;
+    position: relative;
+    left: 0;
+    width: 100%;
+    box-shadow: none;
+    background: transparent;
+  }
+}
+
+.sub-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-height: 2.25rem;
+  padding: $spacing-2 $spacing-4;
+  color: $neutral-700;
+  font-size: $font-size-6;
+  transition: all .2s ease-out;
+
+  &:hover {
+    background-color: $neutral-200;
+  }
+
+}

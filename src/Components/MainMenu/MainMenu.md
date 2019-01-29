@@ -1,0 +1,6 @@
+### MainMenu
+
+```js
+
+<MainMenu />
+```
