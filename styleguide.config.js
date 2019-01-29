@@ -68,9 +68,9 @@ module.exports = {
       name: '#690',
       type: '#905',
       error: '#c00',
-      baseBackground: '#fff',
-      codeBackground: '#FAFBFB',
-      sidebarBackground: '#FAFBFB',
+      baseBackground: '#FAFBFB',
+      codeBackground: '#F4F6F8',
+      sidebarBackground: '#ffffff',
       ribbonBackground: '#F04E23',
       ribbonText: '#fff',
       // Based on default Prism theme
