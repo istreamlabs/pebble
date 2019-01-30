@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import MainMenuItem from './MainMenuItem/MainMenuItem';
+
 import './MainMenu.scss';
 
 class MainMenu extends React.Component {
@@ -50,37 +52,14 @@ class MainMenu extends React.Component {
       <nav className={classes}>
         <div className="main-menu-top">
           <ul className="main-menu-items">
-            { items.items.map((navItems, key) => {
-              const itemClasses = classNames('main-menu-item-container', {
-                selected: key === selectedIndex,
-                active: key === activeIndex
-              });
-
-              return (
-                <li className={itemClasses}>
-                  {navItems.subItems && navItems.subItems.length ? (
-                    <>
-                      <button type="button" className="main-menu-item" onClick={() => this.handleClick(key)}>
-                        <div>{navItems.label}</div>
-                        <div className="main-menu-item-collapse">{key === selectedIndex || key === activeIndex ? 'open' : 'closed'}</div>
-                      </button>
-                      <ul className="sub-menu-items">
-                        {
-                          navItems.subItems.map(subItem => (
-                            <li><a href={subItem.href} className="sub-menu-item">{subItem.label}</a></li>
-                          ))
-                        }
-                      </ul>
-                    </>
-                  ) : (
-                    <a href="/#" className="main-menu-item">
-                      <div>{navItems.label}</div>
-                    </a>
-                  )}
-                </li>
-              );
-            })
-            }
+            { items.items.map((navItems, key) => (
+              <MainMenuItem
+                item={navItems}
+                isActive={key === activeIndex}
+                isSelected={key === selectedIndex}
+                handleClick={() => this.handleClick(key)}
+              />
+            ))}
           </ul>
         </div>
         <div className="main-menu-bottom">

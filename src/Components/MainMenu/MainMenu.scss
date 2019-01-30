@@ -14,7 +14,7 @@ $NAV_ITEM_HOVER: $neutral-200;
   justify-content: space-between;
   transition: width 0.2s ease-out, transform 0.2s ease-out;
   width: 100%;
-  height: 650px;
+  height: 100%;
 
   @include respond-above(sm) {
     width: $MD_WIDTH;
@@ -25,82 +25,10 @@ $NAV_ITEM_HOVER: $neutral-200;
   }
 }
 
-.main-menu-top {
-  overflow-y: auto;
-}
-
 .main-menu-items {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.main-menu-item-container {
-  position: relative;
-
-  &.active {
-
-    .main-menu-item {
-      background: $NAV_ITEM_HOVER;
-    }
-
-    .sub-menu-items {
-      display: block;
-    }
-  }
-
-  &.selected {
-    .main-menu-item {
-      background: $NAV_ITEM_HOVER;
-      box-shadow: inset 5px 0 0 $brand-orange;
-    }
-
-    .sub-menu-items {
-      display: block;
-    }
-  }
-}
-
-.main-menu-item {
-  background: transparent;
-  border: none;
-  font-size: $font-size-5;
-  border-bottom: 1px solid $NAV_BORDER_COLOR;
-  color: $neutral-700;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0;
-  padding: $spacing-3 $spacing-6;
-  position: relative;
-  text-decoration: none;
-  width: 100%;
-
-  &:focus {
-    background: $NAV_ITEM_HOVER;
-    outline: 0;
-  }
-
-  &:hover {
-    background: $NAV_ITEM_HOVER;
-  }
-
-  // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
-  > * {
-    pointer-events: none;
-  }
-  
-  @include respond-between(sm, md) {
-    font-size: $font-size-6;
-    justify-content: center;
-    padding-bottom: $spacing-4;
-    padding-top: $spacing-4;
-  }
-
-  @include respond-above(md) {
-    font-size: $font-size-5;
-  }
 }
 
 .main-menu-footer-item {
@@ -112,7 +40,6 @@ $NAV_ITEM_HOVER: $neutral-200;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   margin: 0;
   padding: $spacing-3 $spacing-5;
   position: relative;
@@ -127,58 +54,12 @@ $NAV_ITEM_HOVER: $neutral-200;
   &:hover {
     background: $NAV_ITEM_HOVER;
   }
-}
-
-.main-menu-item-collapse {
-  font-size: $font-size-7;
-  color: $red;
-  background: $red-lighter;
-  
-  @include respond-between(sm, md) {
-    display: none;
-  }
-}
-
-.sub-menu-items {
-  border-bottom: 1px solid $NAV_BORDER_COLOR;
-  display: none;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 
   @include respond-between(sm, md) {
-    background: $white;
-    border-bottom: none;
-    box-shadow: $box-shadow-1;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 160px;
-    padding: 0;
-  }
-
-  @include respond-above(md) {
-    border-bottom: 1px solid $NAV_BORDER_COLOR;
-    position: relative;
-    left: 0;
-    width: 100%;
-    box-shadow: none;
-    background: transparent;
-  }
-}
-
-.sub-menu-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  min-height: 2.25rem;
-  padding: $spacing-2 $spacing-6;
-  color: $neutral-700;
-  font-size: $font-size-6;
-  transition: all .2s ease-out;
-
-  &:hover {
-    background-color: $NAV_ITEM_HOVER;
+    font-size: $font-size-6;
+    justify-content: center;
+    padding-bottom: $spacing-4;
+    padding-top: $spacing-4;
+    text-align: center;
   }
 }
