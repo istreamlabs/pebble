@@ -1,4 +1,5 @@
 ```js
-
-<MainMenu />
+<div class="styleguide__mainmenu">
+  <MainMenu />
+</div>
 ```

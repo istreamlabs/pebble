@@ -1,3 +1,7 @@
 .styleguide__buttons .btn {
   margin-right: .5rem;
 }
+
+.styleguide__mainmenu {
+  height: 700px;
+}
