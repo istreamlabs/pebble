@@ -47,4 +47,12 @@ describe('MainMenu', () => {
     const menu = shallow(<MainMenu items={mockData} />);
     expect(menu.find('MainMenuItem').length).toEqual(2);
   });
+
+  it('generates a unique key for each item from the label and index', () => {
+    const menu = shallow(<MainMenu items={mockData} />);
+    menu.find('MainMenuItem').forEach((item, index) => {
+      const expectedKey = `${mockData.items[index].label}-${index}`;
+      expect(item.key()).toBe(expectedKey);
+    });
+  });
 });

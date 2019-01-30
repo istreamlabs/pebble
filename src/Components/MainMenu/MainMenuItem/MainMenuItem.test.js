@@ -43,4 +43,12 @@ describe('MainMenuItem', () => {
     const item = shallow(<MainMenuItem item={mockDataNoSubItems} />);
     expect(item.find('ul.sub-menu-items').exists()).toBeFalsy();
   });
+
+  it('generates a unique key for each item from the subItem label and index', () => {
+    const item = shallow(<MainMenuItem item={mockData} />);
+    item.find('.sub-menu-items li').forEach((item, index) => {
+      const expectedKey = `subItem-${mockData.subItems[index].label}-${index}`;
+      expect(item.key()).toBe(expectedKey);
+    });
+  });
 });

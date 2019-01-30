@@ -62,7 +62,7 @@ class MainMenu extends React.Component {
                 isActive={i === activeIndex}
                 isSelected={i === selectedIndex}
                 onClick={() => this.handleClick(i)}
-                key={i}
+                key={`${navItems.label}-${i}`}
               />
             ))}
           </ul>

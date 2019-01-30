@@ -28,7 +28,7 @@ const MainMenuItem = (
           <ul className="sub-menu-items">
             {
               item.subItems.map((subItem, i) => (
-                <li key={i}>
+                <li key={`subItem-${subItem.label}-${i}`}>
                   <a href={subItem.href} className="sub-menu-item" key={i}>{subItem.label}</a>
                 </li>
               ))
@@ -36,7 +36,7 @@ const MainMenuItem = (
           </ul>
         </>
       ) : (
-        <a href="/#" className="main-menu-item">
+        <a href={item.href} className="main-menu-item">
           <div>{item.label}</div>
         </a>
       )}
