@@ -11,8 +11,6 @@ class MainMenu extends React.Component {
     this.state = {
       activeIndex: null,
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +23,7 @@ class MainMenu extends React.Component {
     });
   }
 
-  handleClick(key) {
+  handleClick = (key) => {
     const {
       activeIndex
     } = this.state;
