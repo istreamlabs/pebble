@@ -3,6 +3,8 @@
 $NAV_BG: $white;
 $NAV_BORDER_COLOR: $neutral-300;
 $NAV_ITEM_HOVER: $neutral-200;
+$NAV_TRANSITION_TIME: .2s;
+$NAV_TRANSITION_EASING: linear;
 
 .main-menu-item-container {
   display: flex;
@@ -105,7 +107,7 @@ $NAV_ITEM_HOVER: $neutral-200;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  transition: max-height .2s ease-out;
+  transition: max-height $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
 
   @include respond-between(sm, md) {
     background: $white;
@@ -116,7 +118,7 @@ $NAV_ITEM_HOVER: $neutral-200;
     left: 100%;
     width: 160px;
     padding: 0;
-    transition: opacity .2s ease-out;
+    transition: opacity $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
   }
 
   @include respond-above(md) {
@@ -125,6 +127,7 @@ $NAV_ITEM_HOVER: $neutral-200;
     width: 100%;
     box-shadow: none;
     background: transparent;
+    transition: max-height $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
   }
 }
 
@@ -137,7 +140,7 @@ $NAV_ITEM_HOVER: $neutral-200;
   padding: $spacing-2 $spacing-6;
   color: $neutral-700;
   font-size: $font-size-6;
-  transition: all .2s ease-out;
+  transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
 
   &:hover {
     background-color: $NAV_ITEM_HOVER;

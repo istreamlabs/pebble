@@ -6,8 +6,12 @@ import MainMenuItem from './MainMenuItem/MainMenuItem';
 
 import './MainMenu.scss';
 
-class MainMenu extends React.Component {
+// TO DO
+// 1. highlight a submenu item and show that section expanded
+// 2. more tests
+// 3. should we allow n number of menus to be expanded?
 
+class MainMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,12 +56,13 @@ class MainMenu extends React.Component {
       <nav className={classes}>
         <div className="main-menu-top">
           <ul className="main-menu-items">
-            { items.items.map((navItems, key) => (
+            { items.items.map((navItems, i) => (
               <MainMenuItem
                 item={navItems}
-                isActive={key === activeIndex}
-                isSelected={key === selectedIndex}
-                handleClick={() => this.handleClick(key)}
+                isActive={i === activeIndex}
+                isSelected={i === selectedIndex}
+                onClick={() => this.handleClick(i)}
+                key={i}
               />
             ))}
           </ul>
@@ -78,7 +83,7 @@ class MainMenu extends React.Component {
 }
 
 MainMenu.defaultProps = {
-  selectedIndex: 1, // index of the selected top level item
+  selectedIndex: 0, // index of the selected top level item
   items: {
     items: [
       {
@@ -146,6 +151,20 @@ MainMenu.defaultProps = {
       },
       {
         label: 'Promotion',
+        subItems: [
+          {
+            label: 'Pages',
+            href: '/promotion/pages',
+          },
+          {
+            label: 'Banners',
+            href: '/promotion/banners',
+          },
+          {
+            label: 'Collections',
+            href: '/promotion/collections',
+          },
+        ]
       },
       {
         label: 'Users',
@@ -189,7 +208,7 @@ MainMenu.propTypes = {
   /**
    * Takes up the full width of its parent container
    */
-  items: PropTypes.any,
+  items: PropTypes.object.isRequired,
 };
 
 export default MainMenu;

@@ -32,7 +32,15 @@ $NAV_ITEM_HOVER: $neutral-200;
 }
 
 .main-menu-top {
-  overflow: auto;
+  overflow-y: auto;
+
+  @include respond-between(sm, md) {
+    overflow: visible;
+  }
+
+  @include respond-above(md) {
+    overflow-y: auto;
+  }
 }
 
 .main-menu-footer-item {

@@ -9,7 +9,7 @@ const MainMenuItem = (
     isActive,
     isSelected,
     item,
-    handleClick
+    onClick
   }
 ) => {
   const itemClasses = classNames('main-menu-item-container', {
@@ -21,7 +21,7 @@ const MainMenuItem = (
     <li className={itemClasses}>
       {item.subItems && item.subItems.length ? (
         <>
-          <button type="button" className="main-menu-item" onClick={handleClick}>
+          <button type="button" className="main-menu-item" onClick={onClick}>
             <div>{item.label}</div>
             <div className="main-menu-item-collapse">{isSelected || isActive ? 'open' : 'closed'}</div>
           </button>
@@ -50,7 +50,7 @@ MainMenuItem.defaultProps = {
 };
 
 MainMenuItem.propTypes = {
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
   isActive: PropTypes.bool.isRequired,
   isSelected: PropTypes.bool.isRequired,
   item: PropTypes.object.isRequired,
