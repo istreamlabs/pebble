@@ -34,12 +34,17 @@ const mockData = {
 
 describe('MainMenu', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<MainMenu item={mockData} />); }).not.toThrow();
+    expect(() => { shallow(<MainMenu items={mockData} />); }).not.toThrow();
   });
 
   it('passes in class name', () => {
-    const menu = shallow(<MainMenu item={mockData} className="my-class" />);
+    const menu = shallow(<MainMenu items={mockData} className="my-class" />);
     expect(menu.html()).toContain('main-menu');
     expect(menu.html()).toContain('my-class');
+  });
+
+  it('if there are items in the nav, render them', () => {
+    const menu = shallow(<MainMenu items={mockData} />);
+    expect(menu.find('MainMenuItem').length).toEqual(2);
   });
 });
