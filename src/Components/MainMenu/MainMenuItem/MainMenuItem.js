@@ -27,8 +27,10 @@ const MainMenuItem = (
           </button>
           <ul className="sub-menu-items">
             {
-              item.subItems.map(subItem => (
-                <li><a href={subItem.href} className="sub-menu-item">{subItem.label}</a></li>
+              item.subItems.map((subItem, i) => (
+                <li key={i}>
+                  <a href={subItem.href} className="sub-menu-item" key={i}>{subItem.label}</a>
+                </li>
               ))
             }
           </ul>
