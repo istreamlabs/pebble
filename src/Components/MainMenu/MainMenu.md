@@ -1,5 +1,3 @@
-### MainMenu
-
 ```js
 
 <MainMenu />

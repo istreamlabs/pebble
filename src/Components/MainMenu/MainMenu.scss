@@ -3,14 +3,18 @@
 $MD_WIDTH: 130px;
 $LG_WIDTH: 230px;
 
+$NAV_BG: $white;
+$NAV_BORDER_COLOR: $neutral-300;
+$NAV_ITEM_HOVER: $neutral-200;
+
 .main-menu {
   display: flex;
   flex-direction: column;
-  background-color: $white;
+  background-color: $NAV_BG;
   justify-content: space-between;
   transition: width 0.2s ease-out, transform 0.2s ease-out;
   width: 100%;
-  height: 100%;
+  height: 650px;
 
   @include respond-above(sm) {
     width: $MD_WIDTH;
@@ -19,6 +23,10 @@ $LG_WIDTH: 230px;
   @include respond-above(md) {
     width: $LG_WIDTH;
   }
+}
+
+.main-menu-top {
+  overflow-y: auto;
 }
 
 .main-menu-items {
@@ -31,8 +39,20 @@ $LG_WIDTH: 230px;
   position: relative;
 
   &.active {
+
     .main-menu-item {
-      background: $neutral-200;
+      background: $NAV_ITEM_HOVER;
+    }
+
+    .sub-menu-items {
+      display: block;
+    }
+  }
+
+  &.selected {
+    .main-menu-item {
+      background: $NAV_ITEM_HOVER;
+      box-shadow: inset 5px 0 0 $brand-orange;
     }
 
     .sub-menu-items {
@@ -45,24 +65,25 @@ $LG_WIDTH: 230px;
   background: transparent;
   border: none;
   font-size: $font-size-5;
-  border-bottom: 1px solid $neutral-300;
+  border-bottom: 1px solid $NAV_BORDER_COLOR;
   color: $neutral-700;
   cursor: pointer;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin: 0;
-  padding: $spacing-3 $spacing-4;
+  padding: $spacing-3 $spacing-6;
   position: relative;
   text-decoration: none;
   width: 100%;
 
   &:focus {
-    background: $neutral-200;
+    background: $NAV_ITEM_HOVER;
     outline: 0;
   }
 
-  &:hover:not(.selected) {
-    background: $neutral-200;
+  &:hover {
+    background: $NAV_ITEM_HOVER;
   }
 
   // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
@@ -70,7 +91,7 @@ $LG_WIDTH: 230px;
     pointer-events: none;
   }
   
-  @include respond-above(sm) {
+  @include respond-between(sm, md) {
     font-size: $font-size-6;
     justify-content: center;
     padding-bottom: $spacing-4;
@@ -79,16 +100,47 @@ $LG_WIDTH: 230px;
 
   @include respond-above(md) {
     font-size: $font-size-5;
-    justify-content: flex-start;
   }
 }
 
-.main-menu-top {
-  margin-bottom: $spacing-6;
+.main-menu-footer-item {
+  background: transparent;
+  border: none;
+  font-size: $font-size-5;
+  border-top: 1px solid $NAV_BORDER_COLOR;
+  color: $neutral-700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: $spacing-3 $spacing-5;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+
+  &:focus {
+    background: $NAV_ITEM_HOVER;
+    outline: 0;
+  }
+
+  &:hover {
+    background: $NAV_ITEM_HOVER;
+  }
+}
+
+.main-menu-item-collapse {
+  font-size: $font-size-7;
+  color: $red;
+  background: $red-lighter;
+  
+  @include respond-between(sm, md) {
+    display: none;
+  }
 }
 
 .sub-menu-items {
-  border-bottom: 1px solid $neutral-300;
+  border-bottom: 1px solid $NAV_BORDER_COLOR;
   display: none;
   list-style: none;
   margin: 0;
@@ -106,7 +158,7 @@ $LG_WIDTH: 230px;
   }
 
   @include respond-above(md) {
-    border-bottom: 1px solid $neutral-300;
+    border-bottom: 1px solid $NAV_BORDER_COLOR;
     position: relative;
     left: 0;
     width: 100%;
@@ -121,13 +173,12 @@ $LG_WIDTH: 230px;
   align-items: center;
   text-decoration: none;
   min-height: 2.25rem;
-  padding: $spacing-2 $spacing-4;
+  padding: $spacing-2 $spacing-6;
   color: $neutral-700;
   font-size: $font-size-6;
   transition: all .2s ease-out;
 
   &:hover {
-    background-color: $neutral-200;
+    background-color: $NAV_ITEM_HOVER;
   }
-
 }
