@@ -39,11 +39,6 @@ describe('Icon', () => {
     expect(wrapper.find('svg').prop('className')).not.toContain('not-found');
   });
 
-  it('applies color', () => {
-    const wrapper = shallow(<Icon name="add-circle" color="red" />);
-    expect(wrapper.find('svg').prop('fill')).toContain('red');
-  });
-
   it('renders height and width as 16px by default', () => {
     const wrapper = shallow(<Icon name="add-circle" />);
     expect(wrapper.find('svg').prop('height')).toEqual('16px');

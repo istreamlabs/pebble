@@ -28,7 +28,6 @@ const Icon = (props) => {
   const {
     name,
     size,
-    color,
     ariaHidden,
     accessibilityLabel,
     className
@@ -36,6 +35,7 @@ const Icon = (props) => {
 
   const parsedSize = parseSize(size);
 
+  /* istanbul ignore next */
   let iconElements = icons[((typeof name) === 'string' ? name : '').toLowerCase()];
   let iconFound = true;
 
@@ -52,7 +52,7 @@ const Icon = (props) => {
       viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       height={`${parsedSize * viewBoxSize}px`}
       width={`${parsedSize * viewBoxSize}px`}
-      fill={color}
+      fill="currentColor"
     >
       {!!accessibilityLabel && <title>{accessibilityLabel}</title>}
       {iconElements}
@@ -75,10 +75,6 @@ Icon.propTypes = {
    * Changes the size of the icon, passed as a string or int
    */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
-  /**
-   * Set the color of the icon to something other than its container color.
-   */
-  color: PropTypes.string,
   /**
    * keeps the svg markup from being read aloud by assistive technologies
    */
