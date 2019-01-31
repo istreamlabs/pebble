@@ -1,0 +1,9 @@
+@import '../../Styles/foundation';
+
+
+.icon {
+
+  &.not-found {
+    color: $red;
+  }
+}
