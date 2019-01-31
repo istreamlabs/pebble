@@ -25,3 +25,13 @@ $line-height-copy: 1.5;
 $letter-spacing-tight:-.05em;
 $letter-spacing-1:.1em;
 $letter-spacing-2:.25em;
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-center  { text-align: center; }
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
