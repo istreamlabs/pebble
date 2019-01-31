@@ -84,7 +84,6 @@ const getSVGContent = source => source.slice(source.indexOf('>') + 1).slice(0, -
 
 const getName = filepath => path.basename(filepath, path.extname(filepath));
 
-// handle reserved words
 const toCamelCase = str => str.toLowerCase().replace(/\W+(.)/g, (match, chr) => chr.toUpperCase());
 
 async function main() {
@@ -123,6 +122,7 @@ ${iconExports.join('\t\n')}
 
 
     const exampleFileToWrite = `
+  [//]: # (THIS FILE IS AUTO GENERATED)
   ### Names
 \`\`\`js noeditor
   <div class="styleguide__icons">
