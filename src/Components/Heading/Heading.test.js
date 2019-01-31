@@ -53,20 +53,21 @@ describe('Heading', () => {
 
   it('has correct defaults', () => {
     expect(Heading.defaultProps.element).toEqual(2);
+    expect(Heading.defaultProps.responsive).toEqual(true);
   });
 
   it('allows for custom classes', () => {
     const wrapper = shallow(<Heading className="myClass">test</Heading>);
-    expect(wrapper.find('h2').prop('className')).toEqual('heading heading-2 myClass');
+    expect(wrapper.find('h2').prop('className')).toEqual('heading heading-2-responsive myClass');
   });
 
   it('size is set correctly', () => {
     const wrapper = shallow(<Heading element={1} size={4}>hello</Heading>);
-    expect(wrapper.find('h1').prop('className')).toEqual('heading heading-4');
+    expect(wrapper.find('h1').prop('className')).toEqual('heading heading-4-responsive');
   });
 
   it('responsive is set correctly', () => {
-    const wrapper = shallow(<Heading element={1} size={4} responsive>hello</Heading>);
-    expect(wrapper.find('h1').prop('className')).toEqual('heading heading-4-responsive');
+    const wrapper = shallow(<Heading element={1} size={4} responsive={false}>hello</Heading>);
+    expect(wrapper.find('h1').prop('className')).toEqual('heading heading-4');
   });
 });

@@ -63,6 +63,7 @@ const Heading = (
 
 Heading.defaultProps = {
   element: 2,
+  responsive: true,
 };
 
 Heading.propTypes = {
