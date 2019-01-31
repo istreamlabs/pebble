@@ -24,7 +24,10 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.3"
+    "eslint-plugin-react": "^7.12.3",
+    "fs-extra": "^7.0.1",
+    "glob": "^7.1.3",
+    "svgo": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -33,7 +36,8 @@
     "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "lint": "eslint src/Components/**/*.js"
+    "lint": "eslint src/Components/**/*.js",
+    "addIcon": "node ./src/Icons/generateIcons.js"
   },
   "eslintConfig": {
     "extends": "airbnb",
