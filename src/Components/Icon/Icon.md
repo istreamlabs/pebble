@@ -34,7 +34,7 @@ Pass a `className` containing custom css to apply in addition to the default sty
 
 ```js
 <Icon name="add-circle" accessibilityLabel="Some Descriptive Text" />
-<Icon name="add-circle" ariasHidden={false} accessibilityLabel="Read by assistive tech" />
+<Icon name="add-circle" ariaHidden={false} accessibilityLabel="Read by assistive tech" />
 ```
 ### Unknown Icon
 
