@@ -84,8 +84,6 @@ const getSVGContent = source => source.slice(source.indexOf('>') + 1).slice(0, -
 
 const getName = filepath => path.basename(filepath, path.extname(filepath));
 
-const toCamelCase = str => str.toLowerCase().replace(/\W+(.)/g, (match, chr) => chr.toUpperCase());
-
 async function main() {
   try {
     const originalIcons = await glob('./src/Icons/*.svg');
@@ -96,7 +94,7 @@ async function main() {
       try {
         const data = await readFile(iconFilePath);
         const optomizedData = await svgo.optimize(data);
-        const iconName = toCamelCase(getName(iconFilePath));
+        const iconName = getName(iconFilePath).toLocaleLowerCase();
         const exportRow = `'${iconName}': ${getSVGContent(optomizedData.data)},`;
         const example = `<div class="__icon"><Icon name="${iconName}" size="3" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
         iconExports.push(exportRow);

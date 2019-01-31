@@ -12,16 +12,16 @@ describe('Icon', () => {
       expect(parseSize('6')).toEqual(6);
     });
 
-    it('throws if larger than 8', () => {
-      expect(() => { parseSize('9'); }).toThrow();
+    it('return default size if larger than 8', () => {
+      expect(parseSize('9')).toEqual(1);
     });
 
-    it('throws if less than 1', () => {
-      expect(() => { parseSize('0'); }).toThrow();
+    it('return default size if less than 1', () => {
+      expect(parseSize('0')).toEqual(1);
     });
 
-    it('throws if string is not a number', () => {
-      expect(() => { parseSize('abc'); }).toThrow();
+    it('return default size if string is not a number', () => {
+      expect(parseSize('abc')).toEqual(1);
     });
   });
 
@@ -32,6 +32,11 @@ describe('Icon', () => {
   it('has correct defaults', () => {
     expect(Icon.defaultProps.size).toEqual(1);
     expect(Icon.defaultProps.ariaHidden).toEqual(true);
+  });
+
+  it('has case insensative name', () => {
+    const wrapper = shallow(<Icon name="BedRoom" />);
+    expect(wrapper.find('svg').prop('className')).not.toContain('not-found');
   });
 
   it('renders height and width as 16px by default', () => {
@@ -69,7 +74,7 @@ describe('Icon', () => {
   });
 
   it('returns a special icon if the name is bad', () => {
-    const wrapper = shallow(<Icon name="notValidName" />);
+    const wrapper = shallow(<Icon name="" />);
     expect(wrapper.find('svg').prop('className')).toContain('not-found');
     expect(wrapper.find('svg').html()).toContain('path');
   });

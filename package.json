@@ -37,7 +37,7 @@
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
     "lint": "eslint src/Components/**/*.js",
-    "addIcon": "node ./src/Icons/generateIcons.js"
+    "genIcons": "node ./src/Icons/generateIcons.js"
   },
   "eslintConfig": {
     "extends": "airbnb",

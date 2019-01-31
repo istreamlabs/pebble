@@ -12,7 +12,8 @@ export const parseSize = (size) => {
     size = parseInt(size, 10);
   }
   if (isNaN(size) || size < 1 || size > 8) {
-    throw new Error('Size must be 1, 2, 3, 4, 5, 6, 7, or 8');
+    const { size: defaultSize } = Icon.defaultProps;
+    size = defaultSize;
   }
   return size;
 };
@@ -34,7 +35,7 @@ const Icon = (props) => {
 
   const parsedSize = parseSize(size);
 
-  let iconElements = icons[name];
+  let iconElements = icons[((typeof name) === 'string' ? name : '').toLowerCase()];
   let iconFound = true;
 
   if (!iconElements) {
@@ -82,7 +83,7 @@ Icon.propTypes = {
   /**
    * The name of the icon to display
    */
-  name: PropTypes.oneOf(Object.keys(icons))
+  name: PropTypes.string
 };
 
 
