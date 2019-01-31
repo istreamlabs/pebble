@@ -62,7 +62,6 @@ const Icon = (props) => {
 
 Icon.defaultProps = {
   size: 1,
-  color: 'currentColor',
   ariaHidden: true
 };
 
