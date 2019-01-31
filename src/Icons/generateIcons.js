@@ -93,10 +93,10 @@ async function main() {
     const promises = originalIcons.map(async (iconFilePath) => {
       try {
         const data = await readFile(iconFilePath);
-        const optomizedData = await svgo.optimize(data);
+        const optimizeData = await svgo.optimize(data);
         const iconName = getName(iconFilePath).toLocaleLowerCase();
-        const exportRow = `'${iconName}': ${getSVGContent(optomizedData.data)},`;
-        const example = `<div class="__icon"><Icon name="${iconName}" size="3" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
+        const exportRow = `'${iconName}': ${getSVGContent(optimizeData.data)},`;
+        const example = `<div class="__icon"><Icon name="${iconName}" size="1" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
         iconExports.push(exportRow);
         examples.push(example);
       } catch (e) {
