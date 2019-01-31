@@ -4,12 +4,6 @@ import classNames from 'classnames';
 
 import './Heading.scss';
 
-const TEXT_ALIGN_MAP = {
-  center: 'center',
-  right: 'right',
-  left: 'left',
-};
-
 export const parseSize = (size, element) => {
   if (typeof size !== 'number') {
     size = parseInt(size, 10);
@@ -51,7 +45,7 @@ const Heading = (
 
   const classes = classNames('heading', headingSizeClass, {
     truncate,
-    [`text-${TEXT_ALIGN_MAP[textAlign]}`]: textAlign
+    [`text-${textAlign}`]: textAlign
   }, className);
 
   return (
