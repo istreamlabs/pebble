@@ -28,6 +28,7 @@ const Icon = (props) => {
   const {
     name,
     size,
+    color,
     ariaHidden,
     accessibilityLabel,
     className
@@ -51,6 +52,7 @@ const Icon = (props) => {
       viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       height={`${parsedSize * viewBoxSize}px`}
       width={`${parsedSize * viewBoxSize}px`}
+      fill={color}
     >
       {!!accessibilityLabel && <title>{accessibilityLabel}</title>}
       {iconElements}
@@ -60,24 +62,29 @@ const Icon = (props) => {
 
 Icon.defaultProps = {
   size: 1,
+  color: 'currentColor',
   ariaHidden: true
 };
 
 Icon.propTypes = {
   /**
-   * Additional ClassNames to add to the icon
+   * Additional classNames to add to the icon
    */
   className: PropTypes.string,
   /**
-   * Changes the size of the icon
+   * Changes the size of the icon, passed as a string or int
    */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
   /**
-   * keeps the icon from being read aloud by assistive technolgies
+   * Set the color of the icon to something other than its container color.
+   */
+  color: PropTypes.string,
+  /**
+   * keeps the svg markup from being read aloud by assistive technologies
    */
   ariaHidden: PropTypes.bool,
   /**
-   * descriptive text that will not be displayed by will provide context to assistive technologies
+   * descriptive text that will not be displayed but will provide context to assistive technologies
    */
   accessibilityLabel: PropTypes.string,
   /**
