@@ -12,16 +12,8 @@ describe('Icon', () => {
       expect(parseSize('6')).toEqual(6);
     });
 
-    it('return default size if larger than 8', () => {
-      expect(parseSize('9')).toEqual(1);
-    });
-
-    it('return default size if less than 1', () => {
-      expect(parseSize('0')).toEqual(1);
-    });
-
-    it('return default size if string is not a number', () => {
-      expect(parseSize('abc')).toEqual(1);
+    it('returns default size if nothing is passed', () => {
+      expect(parseSize()).toEqual(16);
     });
   });
 
@@ -30,7 +22,7 @@ describe('Icon', () => {
   });
 
   it('has correct defaults', () => {
-    expect(Icon.defaultProps.size).toEqual(1);
+    expect(Icon.defaultProps.size).toEqual(16);
     expect(Icon.defaultProps.ariaHidden).toEqual(true);
   });
 
@@ -45,10 +37,10 @@ describe('Icon', () => {
     expect(wrapper.find('svg').prop('width')).toEqual('16px');
   });
 
-  it('multiples size by 16 and sets height and width', () => {
-    const wrapper = shallow(<Icon name="add-circle" size={2} />);
-    expect(wrapper.find('svg').prop('height')).toEqual('32px');
-    expect(wrapper.find('svg').prop('width')).toEqual('32px');
+  it('uses size to set height and width', () => {
+    const wrapper = shallow(<Icon name="add-circle" size={20} />);
+    expect(wrapper.find('svg').prop('height')).toEqual('20px');
+    expect(wrapper.find('svg').prop('width')).toEqual('20px');
   });
 
   it('renders a title tag when accessibilityLabel set', () => {

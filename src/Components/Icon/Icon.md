@@ -11,13 +11,12 @@ Icons provide visual context and enhance usability.
 
 ```js
 <Icon name="add-circle" />
-<Icon name="add-circle" size="2" />
-<Icon name="add-circle" size="3" />
-<Icon name="add-circle" size="4" />
-<Icon name="add-circle" size="5" />
-<Icon name="add-circle" size="6" />
-<Icon name="add-circle" size="7" />
-<Icon name="add-circle" size="8" />
+<Icon name="add-circle" size="20" />
+<Icon name="add-circle" size="24" />
+<Icon name="add-circle" size="32" />
+<Icon name="add-circle" size="48" />
+<Icon name="add-circle" size="56" />
+<Icon name="add-circle" size="64" />
 ```
 
 ### Additional ClassNames

@@ -96,7 +96,7 @@ async function main() {
         const optimizeData = await svgo.optimize(data);
         const iconName = getName(iconFilePath).toLocaleLowerCase();
         const exportRow = `'${iconName}': ${getSVGContent(optimizeData.data)},`;
-        const example = `<div class="__icon"><Icon name="${iconName}" size="1" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
+        const example = `<div class="__icon"><Icon name="${iconName}" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
         iconExports.push(exportRow);
         examples.push(example);
       } catch (e) {
