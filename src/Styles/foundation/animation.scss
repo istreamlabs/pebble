@@ -39,7 +39,7 @@
 }
 
 @media (print), (prefers-reduced-motion) {
-  .animated {
+  .animate {
     animation: unset !important;
     transition: none !important;
   }

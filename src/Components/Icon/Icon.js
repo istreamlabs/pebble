@@ -52,7 +52,7 @@ const Icon = (props) => {
       aria-hidden={ariaHidden}
       className={classNames('icon', {
         'not-found': !iconFound,
-        spinner: (name === 'spinner')
+        'animate spin infinite': (name === 'spinner')
       }, className)}
       viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       height={`${parsedSize}px`}
