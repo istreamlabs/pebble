@@ -26,17 +26,19 @@ const viewBoxSize = 16;
  */
 const Icon = (props) => {
   const {
-    name,
     size,
     ariaHidden,
     accessibilityLabel,
     className
   } = props;
 
+  let { name } = props;
+  /* istanbul ignore next */
+  name = ((typeof name) === 'string' ? name : '').toLowerCase();
+
   const parsedSize = parseSize(size);
 
-  /* istanbul ignore next */
-  let iconElements = icons[((typeof name) === 'string' ? name : '').toLowerCase()];
+  let iconElements = icons[name];
   let iconFound = true;
 
   if (!iconElements) {
