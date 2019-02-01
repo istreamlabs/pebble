@@ -11,7 +11,7 @@ export const parseSize = (size) => {
   if (typeof size !== 'number') {
     size = parseInt(size, 10);
   }
-  if (isNaN(size) || size < 1 || size > 8) {
+  if (isNaN(size)) {
     const { size: defaultSize } = Icon.defaultProps;
     size = defaultSize;
   }
@@ -48,10 +48,13 @@ const Icon = (props) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden={ariaHidden}
-      className={classNames('icon', { 'not-found': !iconFound }, className)}
+      className={classNames('icon', {
+        'not-found': !iconFound,
+        spinner: (name === 'spinner')
+      }, className)}
       viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-      height={`${parsedSize * viewBoxSize}px`}
-      width={`${parsedSize * viewBoxSize}px`}
+      height={`${parsedSize}px`}
+      width={`${parsedSize}px`}
       fill="currentColor"
     >
       {!!accessibilityLabel && <title>{accessibilityLabel}</title>}
@@ -61,7 +64,7 @@ const Icon = (props) => {
 };
 
 Icon.defaultProps = {
-  size: 1,
+  size: 16,
   ariaHidden: true
 };
 
@@ -73,7 +76,7 @@ Icon.propTypes = {
   /**
    * Changes the size of the icon, passed as a string or int
    */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  size: PropTypes.oneOf([16, 20, 24, 32, 48, 56, 64, '16', '20', '24', '32', '48', '56', '64']),
   /**
    * keeps the svg markup from being read aloud by assistive technologies
    */

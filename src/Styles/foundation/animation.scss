@@ -1,0 +1,46 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(360deg);
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+.spin {
+  animation-name: spin;
+}
+
+.animate {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.animate.infinite {
+  animation-iteration-count: infinite;
+}
+
+@media (print), (prefers-reduced-motion) {
+  .animated {
+    animation: unset !important;
+    transition: none !important;
+  }
+}
