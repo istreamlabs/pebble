@@ -37,7 +37,7 @@ Omit the `sectioned` prop to allow full styling control over a Card's content.
 
 ### Card with Header Actions
 
-Pass a `<Button>` or `<ButtonGroup` as a `headerActions`. Actions in the header should impact the contents of the card.
+Pass a `<Button>` or `<ButtonGroup>` as a `headerActions`. Actions in the header should impact the contents of the card.
 
 ```js
 <Card
