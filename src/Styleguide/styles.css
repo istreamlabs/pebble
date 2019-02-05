@@ -5,3 +5,15 @@
 .styleguide__mainmenu {
   height: 700px;
 }
+
+.styleguide__icons .__icon {
+  display: inline-block;
+  width: 140px;
+  text-align: center;
+  word-break: break-all;
+  vertical-align: top;
+  border: solid 1px #eee;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+}

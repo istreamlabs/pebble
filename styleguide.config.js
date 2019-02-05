@@ -6,6 +6,7 @@ module.exports = {
   title: 'Pebble',
   webpackConfig: require('react-scripts/config/webpack.config.js'),
   require: [
+    path.resolve(__dirname, 'src/Styleguide/Setup.js'),
     path.join(__dirname, 'src/Styleguide/styles.css')
   ],
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
@@ -98,9 +99,9 @@ module.exports = {
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.spec.{js,jsx,ts,tsx}',
-    '**/*.d.ts'
+    '**/*.d.ts',
+    'src/Components/Icon/Icons.js',
   ],
-  require: [path.resolve(__dirname, 'src/Styleguide/Setup.js')],
   pagePerSection: true,
   sections: [
     {

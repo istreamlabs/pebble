@@ -26,6 +26,16 @@
 </div>
 ```
 
+### Icon and Text
+
+```js
+<div class="styleguide__buttons">
+  <Button primary size="small" icon="add-circle">small</Button>
+  <Button primary icon="add-circle">medium</Button>
+  <Button primary size="large" icon="add-circle">large</Button>
+</div>
+```
+
 ### Additional ClassNames
 
 Pass a `className` containing custom css to apply them in addition to the default button styles.
