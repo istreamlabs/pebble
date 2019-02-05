@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { requiresOtherProp } from '../../Utils';
 
-import { Header, Section } from './Components';
+import { Header, Section } from './Subcomponents';
 import './Card.scss';
 
 const Card = (
@@ -12,12 +12,12 @@ const Card = (
     className,
     headerActions,
     sectioned,
-    subdued,
+    muted,
     title,
   }
 ) => {
   const classes = classNames('card', className, {
-    subdued,
+    muted,
   });
 
   const header = title ? (
@@ -65,7 +65,7 @@ Card.propTypes = {
   /**
    * Make the card less visually prominent
    */
-  subdued: PropTypes.bool,
+  muted: PropTypes.bool,
 };
 
 export default Card;
