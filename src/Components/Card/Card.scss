@@ -1,0 +1,44 @@
+@import '../../Styles/foundation';
+
+.card {
+  border: 1px solid $neutral-300;
+  border-radius: $border-radius-2;
+  box-shadow: $box-shadow-2;
+  background-color: $white;
+  margin-bottom: $spacing-5;
+  overflow: hidden;
+}
+
+.card-section {
+  padding: $spacing-4 $spacing-5;
+  &:not(:last-child) {
+    border-bottom: 1px solid $neutral-300;
+  }
+}
+
+.card-title {
+  display: flex;
+  flex-directon: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: $spacing-5 $spacing-5 0 $spacing-5;
+}
+
+.card-title-icon-container {
+  color: white;
+  background: $blue;
+  padding: $spacing-2;
+  border-radius: $border-radius-2;
+  margin-right: $spacing-3;
+}
+
+.card-title-heading {
+  color: $neutral-600;
+  margin-bottom: 0;
+}
+
+.subdued {
+  background: $neutral-200;
+  box-shadow: none;
+  border: none;
+}
