@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { requiresOtherProp } from '../../Utils';
 
 import { Header, Section } from './Components';
 import './Card.scss';
-
 
 const Card = (
   {
@@ -51,9 +51,9 @@ Card.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   *
+   * button(s) to be displayed in the upper right of the Card. A title must be provided in order to display headerActions.
    */
-  headerActions: PropTypes.node,
+  headerActions: requiresOtherProp('title'),
   /**
    * Title content of the card
    */
