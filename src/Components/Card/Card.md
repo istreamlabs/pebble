@@ -18,7 +18,7 @@ Omit the `sectioned` prop to allow full styling control over a Card's content.
 
 ```js
 
-<Card title="No Padding">
+<Card>
   <div>First Child</div>
   <div>Second Child</div>
 </Card>

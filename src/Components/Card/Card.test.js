@@ -1,10 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Button from '../Button/Button';
 import Card from './Card';
-import Header from './Components/Header';
-import Section from './Components/Section';
-
+import Header from './Subcomponents/Header';
+import Section from './Subcomponents/Section';
 
 describe('Card', () => {
   it('renders without crashing', () => {
@@ -16,19 +14,16 @@ describe('Card', () => {
     expect(wrapper.find('div').prop('className')).toContain('myClass');
   });
 
-  it('renders sectioned children', () => {
-    const wrapper = mount(<Card sectioned>test</Card>);
-    expect(wrapper.contains(Section)).toBeTruthy();
+  it('wraps children in Section if sectioned', () => {
+    const wrapper = mount(<Card sectioned>
+      <p>child 1</p>
+      <p>child 2</p>
+    </Card>);
+    expect(wrapper.find(Section)).toHaveLength(2);
   });
 
-  describe('Header', () => {
-    it('has a header tag when the title is a string', () => {
-      const wrapper = mount(<Card title="Card Title">test</Card>);
-      expect(wrapper.find('h2').text()).toEqual('Card Title');
-    });
-    it('renders header actions', () => {
-      const wrapper = mount(<Header actions={<Button>action button</Button>}>test</Header>);
-      expect(wrapper.contains(Button)).toBeTruthy();
-    });
+  it('renders a header when a title is passed', () => {
+    const wrapper = mount(<Card title="test-title">test</Card>);
+    expect(wrapper.contains(Header)).toBeTruthy();
   });
 });

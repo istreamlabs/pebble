@@ -31,6 +31,9 @@ const Header = (
 };
 
 Header.propTypes = {
+  /**
+   * button(s) to be displayed on the right side
+   */
   actions: PropTypes.node,
   /**
    * Additional classNames to add to card title

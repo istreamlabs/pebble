@@ -47,7 +47,7 @@ Card.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Contents of the button
+   * Contents of the Card
    */
   children: PropTypes.node.isRequired,
   /**
