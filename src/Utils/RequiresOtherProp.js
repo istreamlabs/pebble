@@ -8,5 +8,4 @@ export default requiresOtherProp => (props, propName, componentName) => {
       );
     }
   }
-
 };
