@@ -13,7 +13,7 @@ describe('Card', () => {
 
   it('allows for custom classes', () => {
     const wrapper = shallow(<Card className="myClass">test</Card>);
-    expect(wrapper.find('div').prop('className')).toEqual('card myClass');
+    expect(wrapper.find('div').prop('className')).toContain('myClass');
   });
 
   it('renders sectioned children', () => {
