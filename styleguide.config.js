@@ -25,10 +25,6 @@ module.exports = {
       links: [
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Lato:300,400,700'
-        },
-        {
-          rel: 'stylesheet',
           href: 'src/Styleguide/styles.css'
         }
       ]
@@ -45,7 +41,7 @@ module.exports = {
       spaceFactor * 8, // 128
     ],
     fontFamily: {
-      base: '"lato", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      base: '"Infer", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
     },
     fontSize: {
       base: 14,
