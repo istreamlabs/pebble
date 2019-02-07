@@ -7,6 +7,18 @@ $NAV_BG: $white;
 $NAV_BORDER_COLOR: $neutral-300;
 $NAV_ITEM_HOVER: $neutral-200;
 
+.bar:hover {
+  .foo {
+    max-height: 1000000px;
+  }
+}
+
+.foo {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 10s;
+}
+
 .main-menu {
   display: flex;
   flex-direction: column;
@@ -40,38 +52,5 @@ $NAV_ITEM_HOVER: $neutral-200;
 
   @include respond-above(md) {
     overflow-y: auto;
-  }
-}
-
-.main-menu-footer-item {
-  background: transparent;
-  border: none;
-  font-size: $font-size-5;
-  border-top: 1px solid $NAV_BORDER_COLOR;
-  color: $neutral-700;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  padding: $spacing-3 $spacing-5;
-  position: relative;
-  text-decoration: none;
-  width: 100%;
-
-  &:focus {
-    background: $NAV_ITEM_HOVER;
-    outline: 0;
-  }
-
-  &:hover {
-    background: $NAV_ITEM_HOVER;
-  }
-
-  @include respond-between(sm, md) {
-    font-size: $font-size-6;
-    justify-content: center;
-    padding-bottom: $spacing-4;
-    padding-top: $spacing-4;
-    text-align: center;
   }
 }

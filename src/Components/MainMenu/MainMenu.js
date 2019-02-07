@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import MainMenuItem from './MainMenuItem/MainMenuItem';
+import MenuItem from './MainMenuItem/MainMenuItem';
 
 import './MainMenu.scss';
 
@@ -29,26 +29,26 @@ class MainMenu extends React.Component {
     });
   }
 
-  handleClick = (key) => {
-    const {
-      activeIndex
-    } = this.state;
+  handleClick = (e, id) => {
+    const { activeItem } = this.state;
+    e.preventDefault();
 
-    this.setState({
-      activeIndex: key === activeIndex ? null : key
-    });
+    // expand or collapse item
+    if (activeItem === id) {
+      this.setState({ activeItem: null });
+    } else {
+      this.setState({ activeItem: id });
+    }
   }
 
   render() {
     const {
-      selectedIndex,
+      activeItem,
       className,
       items,
+      menu,
+      auxMenu
     } = this.props;
-
-    const {
-      activeIndex
-    } = this.state;
 
     const classes = classNames('main-menu', className);
 
@@ -56,25 +56,25 @@ class MainMenu extends React.Component {
       <nav className={classes}>
         <div className="main-menu-top">
           <ul className="main-menu-items">
-            { items.items.map((navItems, i) => (
-              <MainMenuItem
-                item={navItems}
-                isActive={i === activeIndex}
-                isSelected={i === selectedIndex}
-                onClick={() => this.handleClick(i)}
-                key={`${navItems.label}-${i}`}
+            { menu.map(item => (
+              <MenuItem
+                activeItem={activeItem}
+                item={item}
+                key={item.id}
               />
             ))}
           </ul>
         </div>
         <div className="main-menu-bottom">
           <ul className="main-menu-items">
-            <li>
-              <a href="/#" className="main-menu-footer-item">Support</a>
-            </li>
-            <li>
-              <a href="/#" className="main-menu-footer-item">Trent Anderson</a>
-            </li>
+            {auxMenu.map(item => (
+              <MenuItem
+                activeItem={activeItem}
+                item={item}
+                key={item.id}
+                className="aux-menu"
+              />
+            ))}
           </ul>
         </div>
       </nav>
