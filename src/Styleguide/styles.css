@@ -4,6 +4,10 @@
   align-items: flex-end;
 }
 
+.styleguide__buttons:not(:first-child) {
+  margin-top: 2rem;
+}
+
 .styleguide__buttons .btn {
   margin-right: .5rem;
 }

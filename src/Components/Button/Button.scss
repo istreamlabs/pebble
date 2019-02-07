@@ -105,7 +105,8 @@
   }
 }
 
-.btn-plain {
+.btn-text {
+  background: transparent;
   border: none;
   color: $blue;
   height: auto;
@@ -114,8 +115,21 @@
 
   &:focus,
   &:hover {
+    background: transparent;
     color: $blue-dark;
     text-decoration: underline;
+  }
+}
+
+.btn-text.btn-danger,
+.btn-text.btn-danger.btn-primary {
+  background: transparent;
+  color: $red;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    color: $red-dark;
   }
 }
 

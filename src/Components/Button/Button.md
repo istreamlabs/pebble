@@ -1,6 +1,12 @@
 ### Buttons are used as triggers for actions. They are used in forms, toolbars, modal dialogs and as stand-alone action triggers.
 
-### Types
+### Button vs Link
+
+* Use buttons when performing an action on the page, such as "submit", "edit", or "upload". Actions almost always occur on the same page.
+* Use a link when navigation to another place, such as a profile page, vod asset detail, or a "skip to" anchor link.
+
+
+### Button Types
 
 * Default buttons are most commonly used
 * Primary buttons highlight the most important action in the experience
@@ -13,19 +19,25 @@
   <Button primary>primary</Button>
   <Button danger>danger</Button>
   <Button primary danger>primary danger</Button>
-  <Button plain>plain</Button>
+  <Button text>text</Button>
 </div>
 ```
 
-### Plain Button
+### Text Button
 
-If you need to make text clickable in the middle or end of a paragraph, but it's not navigating/routing to another page, add the `plain` prop.
+If you need to make text clickable inline, but it's not navigating/routing to another page, add the `text` prop.
 
 ```js
 <div class="styleguide__buttons">
-  <Button plain size="small">small</Button>
-  <Button plain>medium</Button>
-  <Button plain size="large">large</Button>
+  <Button text size="small">small text</Button>
+  <Button text>default text</Button>
+  <Button text size="large">large text</Button>
+</div>
+
+<div class="styleguide__buttons">
+  <Button text>text button</Button>
+  <Button primary text>primary text button</Button>
+  <Button danger text>danger text button</Button>
 </div>
 ```
 
