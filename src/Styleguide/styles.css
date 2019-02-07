@@ -1,3 +1,9 @@
+.styleguide__buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
 .styleguide__buttons .btn {
   margin-right: .5rem;
 }

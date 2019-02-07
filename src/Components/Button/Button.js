@@ -18,6 +18,7 @@ const Button = (
     size,
     primary,
     danger,
+    plain,
     fullWidth,
     icon,
     onClick,
@@ -41,6 +42,7 @@ const Button = (
     'btn-sm': caseInsensativeStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
+    'btn-plain': plain,
     'btn-fullwidth': fullWidth,
   });
 
@@ -139,6 +141,10 @@ Button.propTypes = {
    * Indicate pressing the button will perform a destructive action
    */
   danger: PropTypes.bool,
+  /**
+   * Make the button appear as inline text
+   */
+  plain: PropTypes.bool,
   /**
    * Button takes up the full width of its parent container
    */

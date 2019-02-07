@@ -13,6 +13,19 @@
   <Button primary>primary</Button>
   <Button danger>danger</Button>
   <Button primary danger>primary danger</Button>
+  <Button plain>plain</Button>
+</div>
+```
+
+### Plain Button
+
+If you need to make text clickable in the middle or end of a paragraph, but it's not navigating/routing to another page, add the `plain` prop.
+
+```js
+<div class="styleguide__buttons">
+  <Button plain size="small">small</Button>
+  <Button plain>medium</Button>
+  <Button plain size="large">large</Button>
 </div>
 ```
 
