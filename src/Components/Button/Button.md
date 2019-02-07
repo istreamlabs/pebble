@@ -23,21 +23,21 @@
 </div>
 ```
 
-### Text Button
+### Button Link
 
-If you need to make text clickable inline, but it's not navigating/routing to another page, add the `text` prop.
+Render a button that performs an action, but looks like inline clickable text because it is more visually appropriate.
 
 ```js
 <div class="styleguide__buttons">
-  <Button text size="small">small text</Button>
-  <Button text>default text</Button>
-  <Button text size="large">large text</Button>
+  <Button link size="small">small text</Button>
+  <Button link>default text</Button>
+  <Button link size="large">large text</Button>
 </div>
 
 <div class="styleguide__buttons">
-  <Button text>text button</Button>
-  <Button primary text>primary text button</Button>
-  <Button danger text>danger text button</Button>
+  <Button link>text button</Button>
+  <Button primary link>primary text button</Button>
+  <Button danger link>danger text button</Button>
 </div>
 ```
 

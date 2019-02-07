@@ -107,7 +107,7 @@
   }
 }
 
-.btn-text {
+.btn-link {
   background: transparent;
   border: none;
   color: $blue;
@@ -123,8 +123,8 @@
   }
 }
 
-.btn-text.btn-danger,
-.btn-text.btn-danger.btn-primary {
+.btn-link.btn-danger,
+.btn-link.btn-danger.btn-primary {
   background: transparent;
   color: $red;
 
