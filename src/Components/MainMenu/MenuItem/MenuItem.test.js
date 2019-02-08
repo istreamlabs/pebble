@@ -39,6 +39,12 @@ const mockData = {
   ]
 };
 
+const mockDataNoItems = {
+  id: '2',
+  label: 'Content',
+  description: '',
+};
+
 describe('MenuItem', () => {
   it('renders without crashing', () => {
     expect(() => { shallow(<MenuItem item={mockData} />); }).not.toThrow();
@@ -50,5 +56,16 @@ describe('MenuItem', () => {
       const expectedKey = `${mockData.items[index].id}`;
       expect(item.key()).toBe(expectedKey);
     });
+  });
+
+  it('opens when toggled', () => {
+    const item = shallow(<MenuItem item={mockData} />);
+    item.find('button').simulate('click');
+    expect(item.find('li.menu-item-container').prop('className')).toContain('open');
+  });
+
+  it('renders does not render an icon if one is not passed', () => {
+    const item = shallow(<MenuItem item={mockDataNoItems} />);
+    expect(item.find('Icon').length).toBe(0);
   });
 });
