@@ -22,7 +22,7 @@ $NAV_ITEM_HOVER: $neutral-200;
     width: $NAV_LG_WIDTH;
   }
 
-  &.open {
+  &.opened {
 
     @include respond-below(md) {
       display: flex;

@@ -17,7 +17,7 @@ class MainMenu extends React.Component {
     } = this.props;
 
     const classes = classNames('main-menu', className, {
-      open: showMenu
+      opened: showMenu
     });
 
     return (
