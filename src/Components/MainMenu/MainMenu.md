@@ -116,7 +116,7 @@ const menu = [
         icon: '',
       },
       {
-        id: '7a',
+        id: '7b',
         label: 'Sports',
         description: '',
         href: '/sports/',

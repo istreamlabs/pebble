@@ -2,74 +2,76 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import MainMenu from './MainMenu';
 
-const mockData = {
-  items: [
-    {
-      id: '1',
-      label: 'Dashboard',
-      description: 'The main page of the site',
-      href: '/',
-      icon: 'dashboard'
-    },
-    {
-      id: '2',
-      label: 'Content',
-      description: '',
-      icon: 'player',
-      items: [
-        {
-          id: '2a',
-          label: 'Channels',
-          description: '',
-          href: '/content/channels',
-          icon: '',
-        },
-        {
-          id: '2b',
-          label: 'Live',
-          description: '',
-          href: '/content/live',
-          icon: '',
-        },
-        {
-          id: '2c',
-          label: 'Schedule',
-          description: '',
-          href: '/content/schedule',
-          icon: '',
-        },
-        {
-          id: '2d',
-          label: 'VOD',
-          description: '',
-          href: '/content/vod',
-          icon: '',
-        },
-      ]
-    },
-  ]
-};
+const mockMenuData = [
+  {
+    id: '1',
+    label: 'Dashboard',
+    description: 'The main page of the site',
+    href: '/',
+    icon: 'dashboard'
+  },
+  {
+    id: '2',
+    label: 'Content',
+    description: '',
+    icon: 'player',
+    items: [
+      {
+        id: '2a',
+        label: 'Channels',
+        description: '',
+        href: '/content/channels',
+        icon: '',
+      },
+      {
+        id: '2b',
+        label: 'Live',
+        description: '',
+        href: '/content/live',
+        icon: '',
+      },
+      {
+        id: '2c',
+        label: 'Schedule',
+        description: '',
+        href: '/content/schedule',
+        icon: '',
+      },
+      {
+        id: '2d',
+        label: 'VOD',
+        description: '',
+        href: '/content/vod',
+        icon: '',
+      },
+    ]
+  }
+];
 
 describe('MainMenu', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<MainMenu items={mockData} />); }).not.toThrow();
+    expect(() => { shallow(<MainMenu menu={mockMenuData} />); }).not.toThrow();
   });
 
   it('passes in class name', () => {
-    const menu = shallow(<MainMenu items={mockData} className="my-class" />);
-    expect(menu.html()).toContain('main-menu');
-    expect(menu.html()).toContain('my-class');
+    const wrapper = shallow(<MainMenu menu={mockMenuData} className="my-class" />);
+    expect(wrapper.find('nav').prop('className')).toEqual('main-menu my-class');
   });
 
   it('if there are items in the nav, render them', () => {
-    const menu = shallow(<MainMenu items={mockData} />);
-    expect(menu.find('MainMenuItem').length).toEqual(2);
+    const menu = shallow(<MainMenu menu={mockMenuData} />);
+    expect(menu.find('MenuItem').length).toEqual(2);
   });
 
-  it('generates a unique key for each item from the label and index', () => {
-    const menu = shallow(<MainMenu items={mockData} />);
-    menu.find('MainMenuItem').forEach((item, index) => {
-      const expectedKey = `${mockData.items[index].label}-${index}`;
+  it('if there are items in the auxNav, render them', () => {
+    const menu = shallow(<MainMenu menu={mockMenuData} auxMenu={mockMenuData} />);
+    expect(menu.find('MenuItem').length).toEqual(4);
+  });
+
+  it('generates a unique key for each item from the item.id', () => {
+    const menu = shallow(<MainMenu menu={mockMenuData} />);
+    menu.find('MenuItem').forEach((item, index) => {
+      const expectedKey = `${mockMenuData[index].id}`;
       expect(item.key()).toBe(expectedKey);
     });
   });

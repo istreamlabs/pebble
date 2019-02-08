@@ -7,18 +7,6 @@ import MenuItem from './MenuItem/MenuItem';
 import './MainMenu.scss';
 
 class MainMenu extends React.Component {
-  handleClick = (e, id) => {
-    const { activeItem } = this.state;
-    e.preventDefault();
-
-    // expand or collapse item
-    if (activeItem === id) {
-      this.setState({ activeItem: null });
-    } else {
-      this.setState({ activeItem: id });
-    }
-  }
-
   render() {
     const {
       activeItem,
@@ -36,7 +24,7 @@ class MainMenu extends React.Component {
       <nav className={classes}>
         <div className="main-menu-top">
           <ul className="main-menu-items">
-            { menu.map(item => (
+            {menu.map(item => (
               <MenuItem
                 activeItem={activeItem}
                 item={item}
@@ -48,7 +36,7 @@ class MainMenu extends React.Component {
         </div>
         <div className="main-menu-bottom">
           <ul className="main-menu-items">
-            {auxMenu.map(item => (
+            {auxMenu && auxMenu.map(item => (
               <MenuItem
                 activeItem={activeItem}
                 item={item}
@@ -63,6 +51,10 @@ class MainMenu extends React.Component {
   }
 }
 
+MainMenu.defaultProps = {
+  showMenu: false,
+};
+
 MainMenu.propTypes = {
   /**
    * id of the item that is active
@@ -75,7 +67,7 @@ MainMenu.propTypes = {
   /**
    * Menu items for the upper portion of the menu
    */
-  menu: PropTypes.arrayOf(PropTypes.object),
+  menu: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
    * Menu items for the lower portion of the menu (e.g. Profile, Support)
    */

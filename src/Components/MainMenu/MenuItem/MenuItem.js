@@ -29,7 +29,7 @@ class MenuItem extends React.Component {
     const { activeItem } = this.props;
 
     const subItems = items.map((subItem, i) => (
-      <li key={`subItem-${subItem.label}-${i}`}>
+      <li key={subItem.id}>
         <a href={subItem.href} className={classNames('sub-menu-item', { active: subItem.id === activeItem })} key={i}>{subItem.label}</a>
       </li>
     ));
@@ -75,11 +75,6 @@ class MenuItem extends React.Component {
     );
   }
 }
-
-MenuItem.defaultProps = {
-  icon: null
-};
-
 
 MenuItem.propTypes = {
   /**
