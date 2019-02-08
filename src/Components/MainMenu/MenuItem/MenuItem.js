@@ -20,10 +20,27 @@ class MenuItem extends React.Component {
     this.setState({ isOpen: !isOpen });
   }
 
+  renderItemIcon = () => {
+    const { item } = this.props;
+    return item.icon ? <Icon name={item.icon} className="menu-item-icon" /> : null;
+  }
+
+  renderSubItems = (items) => {
+    const { activeItem } = this.props;
+
+    const subItems = items.map((subItem, i) => (
+      <li key={`subItem-${subItem.label}-${i}`}>
+        <a href={subItem.href} className={classNames('sub-menu-item', { active: subItem.id === activeItem })} key={i}>{subItem.label}</a>
+      </li>
+    ));
+
+    return subItems;
+  }
+
   render() {
     const { item, activeItem } = this.props;
     const { isOpen } = this.state;
-    const itemClasses = classNames('main-menu-item-container', {
+    const itemClasses = classNames('menu-item-container', {
       open: isOpen,
       active: item.id === activeItem
     });
@@ -31,9 +48,12 @@ class MenuItem extends React.Component {
       <li className={itemClasses}>
         {item.items && item.items.length ? (
           <>
-            <button type="button" className="main-menu-item" onClick={this.handleToogleOpen}>
-              <div>{item.label}</div>
-              <div className="main-menu-item-collapse">
+            <button type="button" className="menu-item" onClick={this.handleToogleOpen}>
+              <div className="menu-item-label">
+                {this.renderItemIcon()}
+                {item.label}
+              </div>
+              <div className="menu-item-collapse">
                 <Icon
                   name="arrow-small-down"
                   accessibilityLabel={isOpen ? 'opened' : 'closed'}
@@ -42,18 +62,15 @@ class MenuItem extends React.Component {
               </div>
             </button>
             <ul className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
-              {
-                item.items.map((subItem, i) => (
-                  <li key={`subItem-${subItem.label}-${i}`}>
-                    <a href={subItem.href} className={classNames('sub-menu-item', { active: subItem.id === activeItem })} key={i}>{subItem.label}</a>
-                  </li>
-                ))
-              }
+              {this.renderSubItems(item.items)}
             </ul>
           </>
         ) : (
-          <a href={item.href} className="main-menu-item">
-            <div>{item.label}</div>
+          <a href={item.href} className="menu-item">
+            <div className="menu-item-label">
+              {this.renderItemIcon()}
+              {item.label}
+            </div>
           </a>
         )}
       </li>
@@ -61,8 +78,19 @@ class MenuItem extends React.Component {
   }
 }
 
+MenuItem.defaultProps = {
+  icon: null
+};
+
+
 MenuItem.propTypes = {
-  activeItem: PropTypes.bool,
+  /**
+   * id of the selected submenu item
+   */
+  activeItem: PropTypes.string,
+  /**
+   * the menu that gets rendered
+   */
   item: PropTypes.object.isRequired,
 };
 

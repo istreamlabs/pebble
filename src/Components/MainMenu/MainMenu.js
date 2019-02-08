@@ -6,11 +6,6 @@ import MenuItem from './MenuItem/MenuItem';
 
 import './MainMenu.scss';
 
-// TO DO
-// 1. highlight a submenu item and show that section expanded
-// 2. more tests
-// 3. should we allow n number of menus to be expanded?
-
 class MainMenu extends React.Component {
   handleClick = (e, id) => {
     const { activeItem } = this.state;
@@ -43,6 +38,7 @@ class MainMenu extends React.Component {
                 activeItem={activeItem}
                 item={item}
                 key={item.id}
+                icon={item.icon}
               />
             ))}
           </ul>
@@ -54,7 +50,7 @@ class MainMenu extends React.Component {
                 activeItem={activeItem}
                 item={item}
                 key={item.id}
-                className="aux-menu"
+                icon={item.icon}
               />
             ))}
           </ul>
@@ -65,6 +61,9 @@ class MainMenu extends React.Component {
 }
 
 MainMenu.propTypes = {
+  /**
+   * id of the item that is active
+   */
   activeItem: PropTypes.string,
   /**
    * Additional ClassNames to add to button group

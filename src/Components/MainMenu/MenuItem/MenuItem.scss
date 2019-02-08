@@ -6,22 +6,17 @@ $NAV_ITEM_HOVER: $neutral-200;
 $NAV_TRANSITION_TIME: .2s;
 $NAV_TRANSITION_EASING: linear;
 $NAV_HIGHLIGHT: $brand-orange;
+$NAV_ITEM_ICON: $neutral-400;
+$NAV_ITEM_ICON_HOVER: $neutral-600;
 
-.main-menu-item-container {
+.menu-item-container {
   display: flex;
   flex-direction: column;
   justify-items: flex-start;
   position: relative;
-  height: 100%;
-
-  &.open {
-    .main-menu-item {
-      background: $NAV_ITEM_HOVER;
-    }
-  }
 
   &.active {
-    .main-menu-item {
+    .menu-item {
       background: $NAV_ITEM_HOVER;
       box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
     }
@@ -35,33 +30,14 @@ $NAV_HIGHLIGHT: $brand-orange;
     }
   }
 
-  &.aux-menu .main-menu-item {
-    background: transparent;
-    border: none;
-    font-size: $font-size-5;
-    border-top: 1px solid $NAV_BORDER_COLOR;
-    color: $neutral-700;
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    padding: $spacing-3 $spacing-5;
-    position: relative;
-    text-decoration: none;
-    width: 100%;
-
-    &:focus {
-      background: $NAV_ITEM_HOVER;
-      outline: 0;
-    }
-
-    &:hover {
-      background: $NAV_ITEM_HOVER;
-    }
-  }
 }
 
-.main-menu-item {
+.menu-item-label {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-item {
   background: transparent;
   border: none;
   font-size: $font-size-5;
@@ -72,18 +48,22 @@ $NAV_HIGHLIGHT: $brand-orange;
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
-  padding: $spacing-3 $spacing-6;
+  padding: $spacing-3 $spacing-4 $spacing-3 $spacing-6;
   position: relative;
   text-decoration: none;
   width: 100%;
+  transition: background-color $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
 
   &:focus {
     background: $NAV_ITEM_HOVER;
-    outline: 0;
   }
 
   &:hover {
     background: $NAV_ITEM_HOVER;
+
+    .menu-item-icon {
+      color: $NAV_ITEM_ICON_HOVER;
+    }
   }
 
   // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
@@ -96,16 +76,20 @@ $NAV_HIGHLIGHT: $brand-orange;
   }
 }
 
-.main-menu-item-collapse {
+.menu-item-icon {
+  margin-right: $spacing-4;
+  color: $NAV_ITEM_ICON;
+}
+
+.menu-item-collapse {
   .closed {
     transform: rotate(0deg);
-    // looks weird to rotate when slide isn't working
-    // transition: transform .3s linear;
+    transition: transform .3s linear;
   }
 
   .opened {
     transform: rotate(180deg);
-    // transition: transform .3s linear;
+    transition: transform .3s linear;
   }
 }
 
@@ -137,7 +121,7 @@ $NAV_HIGHLIGHT: $brand-orange;
   align-items: center;
   text-decoration: none;
   min-height: 2.25rem;
-  padding: $spacing-2 $spacing-6;
+  padding: $spacing-2 $spacing-4 $spacing-2 $spacing-7;
   color: $neutral-700;
   font-size: $font-size-6;
   transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;

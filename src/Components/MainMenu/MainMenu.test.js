@@ -5,27 +5,45 @@ import MainMenu from './MainMenu';
 const mockData = {
   items: [
     {
+      id: '1',
       label: 'Dashboard',
+      description: 'The main page of the site',
       href: '/',
+      icon: 'dashboard'
     },
     {
+      id: '2',
       label: 'Content',
-      subItems: [
+      description: '',
+      icon: 'player',
+      items: [
         {
+          id: '2a',
           label: 'Channels',
+          description: '',
           href: '/content/channels',
+          icon: '',
         },
         {
+          id: '2b',
           label: 'Live',
+          description: '',
           href: '/content/live',
+          icon: '',
         },
         {
+          id: '2c',
           label: 'Schedule',
+          description: '',
           href: '/content/schedule',
+          icon: '',
         },
         {
+          id: '2d',
           label: 'VOD',
+          description: '',
           href: '/content/vod',
+          icon: '',
         },
       ]
     },

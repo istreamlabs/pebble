@@ -1,8 +1,6 @@
 @import '../../Styles/foundation';
 
-$MD_WIDTH: 130px;
-$LG_WIDTH: 230px;
-
+$NAV_LG_WIDTH: 230px;
 $NAV_BG: $white;
 $NAV_BORDER_COLOR: $neutral-300;
 $NAV_ITEM_HOVER: $neutral-200;
@@ -11,13 +9,16 @@ $NAV_ITEM_HOVER: $neutral-200;
   display: flex;
   flex-direction: column;
   background-color: $NAV_BG;
-  justify-content: space-between;
   transition: width 0.2s ease-out, transform 0.2s ease-out;
   width: 100%;
   height: 100%;
 
+  @include respond-above(sm) {
+    justify-content: space-between;
+  }
+
   @include respond-above(md) {
-    width: $LG_WIDTH;
+    width: $NAV_LG_WIDTH;
   }
 }
 
@@ -28,9 +29,12 @@ $NAV_ITEM_HOVER: $neutral-200;
 }
 
 .main-menu-top {
-  overflow-y: auto;
 
   @include respond-above(sm) {
     overflow-y: auto;
   }
+}
+
+.main-menu-bottom {
+  border-top: 1px solid $NAV_BORDER_COLOR;
 }

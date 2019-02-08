@@ -1,41 +1,41 @@
 ```js
 const menu = [
   {
-    id: '93b7f09e-264d-4728-a4be-12c4307d3f37',
+    id: '1',
     label: 'Dashboard',
     description: 'The main page of the site',
     href: '/',
-    icon: ''
+    icon: 'dashboard'
   },
   {
-    id: '83b7f09e-264d-4728-a4be-12c4307d3f37',
+    id: '2',
     label: 'Content',
     description: '',
-    icon: '',
+    icon: 'player',
     items: [
       {
-        id: '73b7f09e-264d-4728-a4be-12c4307d3f37',
+        id: '2a',
         label: 'Channels',
         description: '',
         href: '/content/channels',
         icon: '',
       },
       {
-        id: '63b7f09e-264d-4728-a4be-12c4307d3f37',
+        id: '2b',
         label: 'Live',
         description: '',
         href: '/content/live',
         icon: '',
       },
       {
-        id: '53b7f09e-264d-4728-a4be-12c4307d3f37',
+        id: '2c',
         label: 'Schedule',
         description: '',
         href: '/content/schedule',
         icon: '',
       },
       {
-        id: '43b7f09e-264d-4728-a4be-12c4307d3f37',
+        id: '2d',
         label: 'VOD',
         description: '',
         href: '/content/vod',
@@ -44,42 +44,164 @@ const menu = [
     ]
   },
   {
-    id: '13b7f09e-264d-4728-a4be-12c4307d3f37',
-    label: 'Promotions',
+    id: '3',
+    label: 'Store',
     description: '',
-    icon: '',
+    icon: 'shop',
     items: [
       {
-        id: '72b7f09e-264d-4728-a4be-12c4307d3f37',
+        id: '3a',
+        label: 'Products',
+        description: '',
+        href: '/billing/products/',
+        icon: '',
+      },
+      {
+        id: '3b',
+        label: 'Billing Plans',
+        description: '',
+        href: '/billing/plans/',
+        icon: '',
+      },
+      {
+        id: '3c',
+        label: 'Packages',
+        description: '',
+        href: '/content/packages/',
+        icon: '',
+      },
+    ]
+  },
+  {
+    id: '4',
+    label: 'Promotions',
+    description: '',
+    icon: 'carousel',
+    items: [
+      {
+        id: '4a',
         label: 'Collections',
         description: '',
-        href: '/content/collections/',
+        href: '/promotion/collections/',
         icon: '',
-      }
+      },
+      {
+        id: '4b',
+        label: 'Banners',
+        description: '',
+        href: '/promotion/banners/',
+        icon: '',
+      },
     ]
-  }
+  },
+  {
+    id: '5',
+    label: 'Subscribers',
+    description: 'Manage subscriber accounts',
+    href: '/users',
+    icon: 'users'
+  },
+
+  {
+    id: '7',
+    label: 'Sports',
+    description: '',
+    icon: 'sports',
+    items: [
+      {
+        id: '7a',
+        label: 'Sports Schedule',
+        description: '',
+        href: '/sports/schedule/',
+        icon: '',
+      },
+      {
+        id: '7a',
+        label: 'Sports',
+        description: '',
+        href: '/sports/',
+        icon: '',
+      },
+    ]
+  },
+  {
+    id: '6',
+    label: 'Settings',
+    description: '',
+    icon: 'settings-gear',
+    items: [
+      {
+        id: '6a',
+        label: 'General',
+        description: '',
+        href: '/settings/custom/',
+        icon: '',
+      },
+      {
+        id: '6b',
+        label: 'Accounts',
+        description: '',
+        href: '/accounts/',
+        icon: '',
+      },
+
+      {
+        id: '6c',
+        label: 'Roles',
+        description: '',
+        href: '/roles/',
+        icon: '',
+      },
+      {
+        id: '6d',
+        label: 'Regions',
+        description: '',
+        href: '/cofiguration/regions/',
+        icon: '',
+      },
+      {
+        id: '6e',
+        label: 'Providers',
+        description: '',
+        href: '/configuration/providers/',
+        icon: '',
+      },
+      {
+        id: '6f',
+        label: 'Custom Attributes',
+        description: '',
+        href: '/settings/custom/',
+        icon: '',
+      },
+
+    ]
+  },
 ];
 const auxMenu = [
   {
-    id: '33b7f09e-264d-4728-a4be-12c4307d3f37',
+    id: '7',
     label: 'Support',
     description: 'Get support for our products',
-    href: '#support',
-    icon: ''
+    href: '/support',
+    icon: 'ticket'
   },
   {
-    id: '23b7f09e-264d-4728-a4be-12c4307d3f37',
+    id: '8',
     label: 'Trent Anderson',
     description: 'View your profile stuffs',
-    href: '#support',
-    icon: ''
+    href: '/profile',
+    icon: 'profile-circle'
   }
 ];
-initialState = { activeItem: "63b7f09e-264d-4728-a4be-12c4307d3f37" };
+initialState = { activeItem: "1" };
 
-<div className="styleguide__mainmenu">
-  <button className="btn" onClick={() => { setState({ activeItem: "43b7f09e-264d-4728-a4be-12c4307d3f37" }); }}>VOD</button>
-  <button className="btn" onClick={() => { setState({ activeItem: "63b7f09e-264d-4728-a4be-12c4307d3f37" }); }}>LIVE</button>
-  <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem}/>
+<div style={{display:'flex', flexDirection: 'row'}}>
+  <div className="styleguide__mainmenu">
+    <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem}/>
+  </div>
+  <ButtonGroup>
+    <Button onClick={() => { setState({ activeItem: "1" }); }}>select Dashboard</Button>
+    <Button onClick={() => { setState({ activeItem: "2b" }); }}>select Content/Live</Button>
+  </ButtonGroup>
 </div>
 ```

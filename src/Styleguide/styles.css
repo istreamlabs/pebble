@@ -3,7 +3,8 @@
 }
 
 .styleguide__mainmenu {
-  height: 700px;
+  height: 600px;
+  margin-right: 1rem;
 }
 
 .styleguide__icons .__icon {
