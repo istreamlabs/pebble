@@ -41,7 +41,7 @@ module.exports = {
       spaceFactor * 8, // 128
     ],
     fontFamily: {
-      base: '"Infer", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      base: '"Inter", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
     },
     fontSize: {
       base: 14,
@@ -84,6 +84,20 @@ module.exports = {
     },
     borderRadius: 4,
     maxWidth: 960,
+  },
+  styles: {
+    Heading: {
+      fontWeight: 700,
+    },
+    Markdown: {
+      pre: {
+        border: 0,
+        background: 'none',
+      },
+      code: {
+        fontSize: 24,
+      },
+    },
   },
   styleguideComponents: {
     ToolbarButtonRenderer: path.join(__dirname, 'src/Styleguide/ToolbarButtonRenderer')
