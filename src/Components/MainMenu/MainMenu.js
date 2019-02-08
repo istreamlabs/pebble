@@ -24,10 +24,13 @@ class MainMenu extends React.Component {
       activeItem,
       className,
       menu,
-      auxMenu
+      auxMenu,
+      showMenu
     } = this.props;
 
-    const classes = classNames('main-menu', className);
+    const classes = classNames('main-menu', className, {
+      open: showMenu
+    });
 
     return (
       <nav className={classes}>
@@ -70,10 +73,17 @@ MainMenu.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Takes up the full width of its parent container
+   * Menu items for the upper portion of the menu
    */
   menu: PropTypes.arrayOf(PropTypes.object),
-  auxMenu: PropTypes.arrayOf(PropTypes.object)
+  /**
+   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   */
+  auxMenu: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * show or hide menu below 30rem (480px)
+   */
+  showMenu: PropTypes.bool,
 };
 
 export default MainMenu;

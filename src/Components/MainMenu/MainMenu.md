@@ -193,12 +193,13 @@ const auxMenu = [
     icon: 'profile-circle'
   }
 ];
-initialState = { activeItem: "1" };
+initialState = { activeItem: "1", showMenu: false };
 
-<div style={{display:'flex', flexDirection: 'row'}}>
+<div>
   <div className="styleguide__mainmenu">
-    <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem}/>
+    <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} showMenu={state.showMenu} />
   </div>
+  <Button onClick={() => { setState(prevState => ({ showMenu: !prevState.showMenu })); }}>Toggle Mobile Menu</Button>
   <ButtonGroup>
     <Button onClick={() => { setState({ activeItem: "1" }); }}>select Dashboard</Button>
     <Button onClick={() => { setState({ activeItem: "2b" }); }}>select Content/Live</Button>

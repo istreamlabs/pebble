@@ -53,13 +53,11 @@ class MenuItem extends React.Component {
                 {this.renderItemIcon()}
                 {item.label}
               </div>
-              <div className="menu-item-collapse">
-                <Icon
-                  name="arrow-small-down"
-                  accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                  className={classNames({ opened: isOpen, closed: !isOpen })}
-                />
-              </div>
+              <Icon
+                name="arrow-small-down"
+                accessibilityLabel={isOpen ? 'opened' : 'closed'}
+                className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
+              />
             </button>
             <ul className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
               {this.renderSubItems(item.items)}

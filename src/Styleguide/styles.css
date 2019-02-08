@@ -5,6 +5,8 @@
 .styleguide__mainmenu {
   height: 600px;
   margin-right: 1rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .styleguide__icons .__icon {

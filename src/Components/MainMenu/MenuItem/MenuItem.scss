@@ -82,14 +82,15 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
 }
 
 .menu-item-collapse {
-  .closed {
+
+  transition: transform .3s linear;
+
+  &.closed {
     transform: rotate(0deg);
-    transition: transform .3s linear;
   }
 
-  .opened {
+  &.opened {
     transform: rotate(180deg);
-    transition: transform .3s linear;
   }
 }
 
