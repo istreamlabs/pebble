@@ -5,6 +5,7 @@ $NAV_BORDER_COLOR: $neutral-300;
 $NAV_ITEM_HOVER: $neutral-200;
 $NAV_TRANSITION_TIME: .2s;
 $NAV_TRANSITION_EASING: linear;
+$NAV_HIGHLIGHT: $brand-orange;
 
 .main-menu-item-container {
   display: flex;
@@ -22,16 +23,7 @@ $NAV_TRANSITION_EASING: linear;
   &.active {
     .main-menu-item {
       background: $NAV_ITEM_HOVER;
-      box-shadow: inset 5px 0 0 $brand-orange;
-    }
-  }
-
-  // don't automatically show the popout menu at this viewport size
-  &.active:not(.open) {
-    @include respond-between(sm, md) {
-      .sub-menu-items {
-        display: none;
-      }
+      box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
     }
   }
 
@@ -39,7 +31,7 @@ $NAV_TRANSITION_EASING: linear;
     &.active {
       background: $NAV_ITEM_HOVER;
       transition: box-shadow $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
-      box-shadow: inset 5px 0 0 $brand-orange;
+      box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
     }
   }
 
@@ -65,14 +57,6 @@ $NAV_TRANSITION_EASING: linear;
 
     &:hover {
       background: $NAV_ITEM_HOVER;
-    }
-
-    @include respond-between(sm, md) {
-      font-size: $font-size-6;
-      justify-content: center;
-      padding-bottom: $spacing-4;
-      padding-top: $spacing-4;
-      text-align: center;
     }
   }
 }
@@ -107,24 +91,12 @@ $NAV_TRANSITION_EASING: linear;
     pointer-events: none;
   }
 
-  @include respond-between(sm, md) {
-    font-size: $font-size-6;
-    justify-content: center;
-    padding-bottom: $spacing-4;
-    padding-top: $spacing-4;
-    text-align: center;
-  }
-
   @include respond-above(md) {
     font-size: $font-size-5;
   }
 }
 
 .main-menu-item-collapse {
-  @include respond-between(sm, md) {
-    display: none;
-  }
-
   .closed {
     transform: rotate(0deg);
     // looks weird to rotate when slide isn't working
@@ -144,18 +116,6 @@ $NAV_TRANSITION_EASING: linear;
   padding: 0;
   overflow: hidden;
 
-  @include respond-between(sm, md) {
-    background: $white;
-    border-bottom: none;
-    box-shadow: $box-shadow-1;
-    position: absolute;
-    top: 0;
-    left: 100%;
-    width: 160px;
-    padding: 0;
-    transition: opacity $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
-  }
-
   @include respond-above(md) {
     position: relative;
     left: 0;
@@ -165,10 +125,10 @@ $NAV_TRANSITION_EASING: linear;
   }
 
   &.opened {
-      border-bottom: 1px solid $NAV_BORDER_COLOR;
-      // used for css transition. set this to height greater than what we expect it to ever be
-      max-height: 800px;
-    }
+    border-bottom: 1px solid $NAV_BORDER_COLOR;
+    // used for css transition. set this to height greater than what we expect it to ever be
+    max-height: 800px;
+  }
 }
 
 .sub-menu-item {

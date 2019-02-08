@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../../Icon/Icon';
 
-import './MainMenuItem.scss';
+import './MenuItem.scss';
 
 class MenuItem extends React.Component {
   constructor(props) {
@@ -21,9 +21,9 @@ class MenuItem extends React.Component {
   }
 
   render() {
-    const { item, activeItem, className } = this.props;
+    const { item, activeItem } = this.props;
     const { isOpen } = this.state;
-    const itemClasses = classNames('main-menu-item-container', className, {
+    const itemClasses = classNames('main-menu-item-container', {
       open: isOpen,
       active: item.id === activeItem
     });
@@ -61,66 +61,8 @@ class MenuItem extends React.Component {
   }
 }
 
-const MainMenuItem = (
-  {
-    isSelected,
-    selectedItem,
-    activeItem,
-    item,
-    onClick
-  }
-) => {
-  const isActive = activeItem === item.id;
-
-  const shouldBeOpen = isActive || selectedItem === item.id || (item.items || []).some(i => i.id === selectedItem);
-
-  const itemClasses = classNames('main-menu-item-container', {
-    open: isSelected,
-    active: isActive
-  });
-
-  return (
-    <li className={itemClasses}>
-      {item.items && item.items.length ? (
-        <>
-          <button type="button" className="main-menu-item" onClick={onClick}>
-            <div>{item.label}</div>
-            <div className="main-menu-item-collapse">
-              <Icon
-                name="arrow-small-down"
-                accessibilityLabel={shouldBeOpen ? 'opened' : 'closed'}
-                className={classNames({ opened: shouldBeOpen, closed: !shouldBeOpen })}
-              />
-            </div>
-          </button>
-          <ul className={classNames('sub-menu-items', { opened: shouldBeOpen, closed: !shouldBeOpen })}>
-            {
-              item.items.map((subItem, i) => (
-                <li key={`subItem-${subItem.label}-${i}`}>
-                  <a href={subItem.href} className="sub-menu-item" key={i}>{subItem.label}</a>
-                </li>
-              ))
-            }
-          </ul>
-        </>
-      ) : (
-        <a href={item.href} className="main-menu-item">
-          <div>{item.label}</div>
-        </a>
-      )}
-    </li>
-  );
-};
-
-MainMenuItem.defaultProps = {
-  isActive: false,
-  isSelected: false,
-};
-
-MainMenuItem.propTypes = {
-  onClick: PropTypes.func,
-  isActive: PropTypes.bool.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+MenuItem.propTypes = {
+  activeItem: PropTypes.bool,
   item: PropTypes.object.isRequired,
 };
 
