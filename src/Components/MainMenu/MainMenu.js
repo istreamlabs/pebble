@@ -34,18 +34,21 @@ class MainMenu extends React.Component {
             ))}
           </ul>
         </div>
-        <div className="main-menu-bottom">
-          <ul className="main-menu-items">
-            {auxMenu && auxMenu.map(item => (
-              <MenuItem
-                activeItem={activeItem}
-                item={item}
-                key={item.id}
-                icon={item.icon}
-              />
-            ))}
-          </ul>
-        </div>
+        {auxMenu && (
+          <div className="main-menu-bottom">
+            <ul className="main-menu-items">
+              {auxMenu.map(item => (
+                <MenuItem
+                  activeItem={activeItem}
+                  item={item}
+                  key={item.id}
+                  icon={item.icon}
+                />
+              ))}
+            </ul>
+
+          </div>
+        )}
       </nav>
     );
   }
