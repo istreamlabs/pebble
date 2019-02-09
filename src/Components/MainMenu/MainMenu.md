@@ -54,10 +54,12 @@ initialState = { activeItem: "2b", showMenu: false };
     <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} showOnSmallScreen={state.showMenu} />
   </div>
   <div>
-    <Button onClick={() => { setState(prevState => ({ showMenu: !prevState.showMenu })); }}>Open Menu on Mobile</Button>
-    <ButtonGroup>
-      <Button onClick={() => { setState({ activeItem: "1" }); }}>Select Item Link</Button>
-      <Button onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button>
+    <ButtonGroup className="styleguide__menubutton">
+      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Item Link</Button>
+      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button>
+    </ButtonGroup>
+    <ButtonGroup className="styleguide__menubutton">
+      <Button onClick={() => { setState(prevState => ({ showMenu: !prevState.showMenu })); }}>Open Menu on Mobile</Button> (when viewport is less than 480px)
     </ButtonGroup>
   </div>
 </div>
