@@ -19,7 +19,7 @@
   <Button primary>primary</Button>
   <Button danger>danger</Button>
   <Button primary danger>primary danger</Button>
-  <Button text>text</Button>
+  <Button link>text</Button>
 </div>
 ```
 
