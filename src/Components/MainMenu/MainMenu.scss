@@ -31,6 +31,7 @@ $NAV_ITEM_HOVER: $neutral-200;
       width: 100%;
       overflow-y: auto;
       position: absolute;
+      z-index: 1;
     }
   }
 }

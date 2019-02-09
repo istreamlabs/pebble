@@ -13,11 +13,11 @@ class MainMenu extends React.Component {
       className,
       menu,
       auxMenu,
-      showMenu
+      showOnSmallScreen
     } = this.props;
 
     const classes = classNames('main-menu', className, {
-      opened: showMenu
+      opened: showOnSmallScreen
     });
 
     return (
@@ -54,10 +54,6 @@ class MainMenu extends React.Component {
   }
 }
 
-MainMenu.defaultProps = {
-  showMenu: false,
-};
-
 MainMenu.propTypes = {
   /**
    * id of the item that is active
@@ -78,7 +74,7 @@ MainMenu.propTypes = {
   /**
    * show or hide menu below 30rem (480px)
    */
-  showMenu: PropTypes.bool,
+  showOnSmallScreen: PropTypes.bool,
 };
 
 export default MainMenu;

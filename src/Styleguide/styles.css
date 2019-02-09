@@ -2,10 +2,15 @@
   margin-right: .5rem;
 }
 
+.styleguide__frame {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
 .styleguide__mainmenu {
   height: 600px;
   margin-right: 1rem;
-  position: relative;
   overflow: hidden;
 }
 

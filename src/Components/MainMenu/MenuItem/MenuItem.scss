@@ -50,8 +50,9 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
   padding: $spacing-3 $spacing-4 $spacing-3 $spacing-6;
   position: relative;
   text-decoration: none;
-  width: 100%;
+  text-align: left;
   transition: background-color $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
+  width: 100%;
 
   &:focus {
     background: $NAV_ITEM_HOVER;
