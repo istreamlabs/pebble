@@ -9,7 +9,7 @@
 }
 
 .styleguide__mainmenu {
-  height: 600px;
+  min-height: 250px;
   margin-right: 1rem;
   overflow: hidden;
 }

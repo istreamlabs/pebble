@@ -30,7 +30,14 @@ class MenuItem extends React.Component {
 
     const subItems = items.map((subItem, i) => (
       <li key={subItem.id}>
-        <a href={subItem.href} className={classNames('sub-menu-item', { active: subItem.id === activeItem })} key={i}>{subItem.label}</a>
+        <a
+          href={subItem.href}
+          className={classNames('sub-menu-item', { active: subItem.id === activeItem })}
+          key={i}
+          role="menuitem"
+        >
+          {subItem.label}
+        </a>
       </li>
     ));
 
@@ -48,7 +55,14 @@ class MenuItem extends React.Component {
       <li className={itemClasses}>
         {item.items && item.items.length ? (
           <>
-            <button type="button" className="menu-item" onClick={this.handleToogleOpen}>
+            <button
+              type="button"
+              className="menu-item"
+              onClick={this.handleToogleOpen}
+              aria-haspopup="true"
+              aria-expanded={isOpen}
+              id={`MenuItem-${item.id}`}
+            >
               <div className="menu-item-label">
                 {this.renderItemIcon()}
                 {item.label}
@@ -59,7 +73,7 @@ class MenuItem extends React.Component {
                 className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
               />
             </button>
-            <ul className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
+            <ul role="menu" aria-labelledby={`MenuItem-${item.id}`} className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
               {this.renderSubItems(item.items)}
             </ul>
           </>

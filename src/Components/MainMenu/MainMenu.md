@@ -27,6 +27,13 @@ const menu = [
         href: '/#/Components/MainMenu',
         icon: '',
       },
+      {
+        id: '2c',
+        label: 'Sub-item 3',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      }
     ]
   },
 ];
@@ -42,12 +49,27 @@ const auxMenu = [
     id: '8',
     label: 'Trent Anderson',
     description: 'View your profile stuffs',
-    href: '/#/Components/MainMenu',
     icon: 'profile-circle',
+    items: [
+      {
+        id: '8a',
+        label: 'Profile',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      },
+      {
+        id: '8b',
+        label: 'Sign Out',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      },
+    ]
   }
 ];
 
-initialState = { activeItem: "2b", showMenu: false };
+initialState = { activeItem: "1", showMenu: false };
 
 <div class="styleguide__frame">
   <div className="styleguide__mainmenu">

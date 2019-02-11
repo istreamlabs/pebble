@@ -2,12 +2,21 @@
 
 $NAV_BG: $white;
 $NAV_BORDER_COLOR: $neutral-300;
-$NAV_ITEM_HOVER: $neutral-200;
+
+$NAV_ITEM_COLOR: $neutral-700;
+
+$NAV_ITEM_ACTIVE_BG: $blue-lighter;
 $NAV_TRANSITION_TIME: .2s;
 $NAV_TRANSITION_EASING: linear;
-$NAV_HIGHLIGHT: $brand-orange;
+$NAV_HIGHLIGHT: $blue;
+$NAV_HIGHLIGHT_HOVER: $blue-light;
 $NAV_ITEM_ICON: $neutral-400;
-$NAV_ITEM_ICON_HOVER: $neutral-600;
+
+$NAV_ITEM_ICON_HOVER: $blue-dark;
+$NAV_ITEM_COLOR_HOVER: $blue-dark;
+
+$NAV_ITEM_ICON_FOCUS: $blue-darker;
+$NAV_ITEM_COLOR_FOCUS: $blue-darker;
 
 .menu-item-container {
   display: flex;
@@ -17,16 +26,22 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
 
   &.active {
     .menu-item {
-      background: $NAV_ITEM_HOVER;
-      box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
-    }
-  }
+      background: $NAV_ITEM_ACTIVE_BG;
+      box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT;
+      color: $NAV_ITEM_COLOR_HOVER;
 
-  .sub-menu-item {
-    &.active {
-      background: $NAV_ITEM_HOVER;
-      transition: box-shadow $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
-      box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
+      &:focus {
+        color: $NAV_ITEM_COLOR_FOCUS;
+        box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+
+        .menu-item-icon {
+          color: $NAV_ITEM_ICON_FOCUS;
+        }
+      }
+
+      .menu-item-icon {
+        color: $NAV_ITEM_ICON_HOVER;
+      }
     }
   }
 }
@@ -41,7 +56,7 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
   border: none;
   font-size: $font-size-5;
   border-bottom: 1px solid $NAV_BORDER_COLOR;
-  color: $neutral-700;
+  color: $NAV_ITEM_COLOR;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -51,16 +66,21 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
   position: relative;
   text-decoration: none;
   text-align: left;
-  transition: background-color $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
+  transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING, box-shadow $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
   width: 100%;
 
-  &:focus {
-    background: $NAV_ITEM_HOVER;
+  &:hover {
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+    .menu-item-icon {
+      color: $NAV_ITEM_ICON_HOVER;
+    }
   }
 
-  &:hover {
-    background: $NAV_ITEM_HOVER;
-
+  &:focus {
+    outline:0;
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
     .menu-item-icon {
       color: $NAV_ITEM_ICON_HOVER;
     }
@@ -100,6 +120,7 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
   margin: 0;
   padding: 0;
   overflow: hidden;
+  display: none;
 
   @include respond-above(md) {
     position: relative;
@@ -110,6 +131,7 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
   }
 
   &.opened {
+    display: block;
     border-bottom: 1px solid $NAV_BORDER_COLOR;
     // used for css transition. set this to height greater than what we expect it to ever be
     max-height: 800px;
@@ -125,9 +147,27 @@ $NAV_ITEM_ICON_HOVER: $neutral-600;
   padding: $spacing-2 $spacing-4 $spacing-2 $spacing-7;
   color: $neutral-700;
   font-size: $font-size-6;
-  transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
+  transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING, box-shadow $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
 
   &:hover {
-    background-color: $NAV_ITEM_HOVER;
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+  }
+
+  &:focus {
+    outline: 0;
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+  }
+
+  &.active {
+    background: $NAV_ITEM_ACTIVE_BG;
+    box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
+    color: $NAV_ITEM_ICON_HOVER;
+
+    &:focus {
+      color: $NAV_ITEM_COLOR_FOCUS;
+      box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+    }
   }
 }

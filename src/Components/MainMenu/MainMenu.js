@@ -20,8 +20,9 @@ class MainMenu extends React.Component {
       opened: showOnSmallScreen
     });
 
+
     return (
-      <nav className={classes}>
+      <nav className={classes} aria-label="Main navigation">
         <div className="main-menu-top">
           <ul className="main-menu-items">
             {menu.map(item => (
