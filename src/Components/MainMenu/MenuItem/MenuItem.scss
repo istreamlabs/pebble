@@ -43,7 +43,16 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
         color: $NAV_ITEM_ICON_HOVER;
       }
     }
+
+    .menu-item-collapse-button {
+      background: $NAV_ITEM_ACTIVE_BG;
+    }
   }
+}
+
+.menu-item-content {
+  display: flex;
+  flex-direction: row;
 }
 
 .menu-item-label {
@@ -111,6 +120,28 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 
   &.opened {
     transform: rotate(180deg);
+  }
+}
+
+.menu-item-collapse-button {
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid $NAV_BORDER_COLOR;
+  border-left: 1px solid $NAV_BORDER_COLOR;
+  border-radius: 0;
+  padding: $spacing-3 $spacing-4;
+
+  &:hover {
+    border-bottom: 1px solid $NAV_BORDER_COLOR;
+    border-color: $NAV_BORDER_COLOR;
+    color: $NAV_ITEM_COLOR_HOVER;
+  }
+
+  &:focus {
+    outline: 0;
+    border-color: $NAV_BORDER_COLOR;
+    color: $NAV_ITEM_COLOR_HOVER;
+    background: $NAV_ITEM_ACTIVE_BG;
   }
 }
 

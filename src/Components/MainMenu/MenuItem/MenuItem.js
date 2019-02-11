@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 
 import './MenuItem.scss';
@@ -11,7 +12,7 @@ class MenuItem extends React.Component {
     const { activeItem, item } = this.props;
 
     this.state = {
-      isOpen: item.id === activeItem || (item.items || []).some(i => i.id === activeItem)
+      isOpen: (item.items && item.items.length) && (item.id === activeItem || (item.items || []).some(i => i.id === activeItem))
     };
   }
 
@@ -20,9 +21,32 @@ class MenuItem extends React.Component {
     this.setState({ isOpen: !isOpen });
   }
 
-  renderItemIcon = () => {
+  renderIconLabel = () => {
     const { item } = this.props;
-    return item.icon ? <Icon name={item.icon} className="menu-item-icon" /> : null;
+
+    return (
+      <div className="menu-item-label">
+        {item.icon ? <Icon name={item.icon} className="menu-item-icon" /> : null}
+        {item.label}
+      </div>
+    );
+  }
+
+  renderToggleButton = () => {
+    const { isOpen } = this.state;
+    const { item } = this.props;
+
+    const accessibilityLabel = isOpen ? `close ${item.label} sub items` : `show ${item.label} sub items`;
+
+    return (
+      <Button onClick={this.handleToogleOpen} className="menu-item-collapse-button" accessibilityLabel={accessibilityLabel}>
+        <Icon
+          name="arrow-small-down"
+          accessibilityLabel={accessibilityLabel}
+          className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
+        />
+      </Button>
+    );
   }
 
   renderSubItems = (items) => {
@@ -51,39 +75,46 @@ class MenuItem extends React.Component {
       open: isOpen,
       active: item.id === activeItem
     });
+
+    const hasSubItems = (item.items && item.items.length);
+
     return (
       <li className={itemClasses}>
-        {item.items && item.items.length ? (
-          <>
+        <div className="menu-item-content">
+          {item.href ? (
+            <a
+              id={`MenuItem-${item.id}`}
+              href={item.href}
+              className="menu-item"
+              onClick={hasSubItems ? this.handleToogleOpen : undefined}
+              aria-haspopup={hasSubItems}
+              aria-expanded={isOpen}
+            >
+              {this.renderIconLabel()}
+            </a>
+          ) : (
             <button
+              id={`MenuItem-${item.id}`}
               type="button"
               className="menu-item"
-              onClick={this.handleToogleOpen}
-              aria-haspopup="true"
+              aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
-              id={`MenuItem-${item.id}`}
+              onClick={this.handleToogleOpen}
             >
-              <div className="menu-item-label">
-                {this.renderItemIcon()}
-                {item.label}
-              </div>
+              {this.renderIconLabel()}
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
                 className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
               />
             </button>
-            <ul role="menu" aria-labelledby={`MenuItem-${item.id}`} className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
-              {this.renderSubItems(item.items)}
-            </ul>
-          </>
-        ) : (
-          <a href={item.href} className="menu-item">
-            <div className="menu-item-label">
-              {this.renderItemIcon()}
-              {item.label}
-            </div>
-          </a>
+          )}
+          {hasSubItems && item.href && this.renderToggleButton()}
+        </div>
+        {hasSubItems && (
+        <ul role="menu" aria-labelledby={`MenuItem-${item.id}`} className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
+          {this.renderSubItems(item.items)}
+        </ul>
         )}
       </li>
     );

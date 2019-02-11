@@ -39,6 +39,14 @@ const mockData = {
   ]
 };
 
+const mockDataLink = {
+  id: '2',
+  label: 'Content',
+  description: '',
+  icon: 'player',
+  href: '/mylink'
+};
+
 const mockDataNoItems = {
   id: '2',
   label: 'Content',
@@ -64,8 +72,13 @@ describe('MenuItem', () => {
     expect(item.find('li.menu-item-container').prop('className')).toContain('open');
   });
 
-  it('renders does not render an icon if one is not passed', () => {
+  it('renders as <a> when href is set', () => {
+    const item = shallow(<MenuItem item={mockDataLink} />);
+    expect(item.find('a').prop('href')).toContain('/mylink');
+  });
+
+  it('sets isOpen to undefined when there are no sub-items', () => {
     const item = shallow(<MenuItem item={mockDataNoItems} />);
-    expect(item.find('Icon').length).toBe(0);
+    expect(item.state().isOpen).toEqual(undefined);
   });
 });

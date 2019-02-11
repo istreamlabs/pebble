@@ -2,15 +2,15 @@
 const menu = [
   {
     id: '1',
-    label: 'Item link',
-    description: 'Item that links to a page',
+    label: 'Link',
+    description: 'Links to a page',
     href: '/#/Components/MainMenu',
     icon: 'dashboard'
   },
   {
     id: '2',
-    label: 'Item with sub-items',
-    description: '',
+    label: 'Subs Only',
+    description: 'Does not link to a page but has sub-items',
     icon: 'player',
     items: [
       {
@@ -34,6 +34,29 @@ const menu = [
         href: '/#/Components/MainMenu',
         icon: '',
       }
+    ]
+  },
+  {
+    id: '3',
+    label: 'Link & Sub',
+    description: 'Links to a page and has sub-items',
+    icon: 'settings',
+    href: '/#/Components/MainMenu',
+    items: [
+      {
+        id: '3a',
+        label: 'Sub-item 1',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      },
+      {
+        id: '3b',
+        label: 'Sub-item 2',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      },
     ]
   },
 ];
@@ -69,7 +92,7 @@ const auxMenu = [
   }
 ];
 
-initialState = { activeItem: "1", showMenu: false };
+initialState = { activeItem: "2b", showMenu: false };
 
 <div class="styleguide__frame">
   <div className="styleguide__mainmenu">
@@ -77,8 +100,9 @@ initialState = { activeItem: "1", showMenu: false };
   </div>
   <div>
     <ButtonGroup className="styleguide__menubutton">
-      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Item Link</Button>
+      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Link</Button>
       <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button>
+      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "3" }); }}>Select Link w/ sub-items</Button>
     </ButtonGroup>
     <ButtonGroup className="styleguide__menubutton">
       <Button onClick={() => { setState(prevState => ({ showMenu: !prevState.showMenu })); }}>Open Menu on Mobile</Button> (when viewport is less than 480px)
