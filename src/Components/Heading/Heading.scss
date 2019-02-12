@@ -7,85 +7,21 @@
   color: $neutral-700;
 }
 
-.heading-1 {
-  font-size: $font-size-1;
-}
+.heading-1 { @extend .fs-1; }
+.heading-2 { @extend .fs-2; }
+.heading-3 { @extend .fs-3; }
+.heading-4 { @extend .fs-4; }
+.heading-5 { @extend .fs-5; }
 
-.heading-1-responsive {
-  font-size: $font-size-3;
-
-  @include respond-above(sm) {
-    font-size: $font-size-2;
-  }
-
-  @include respond-above(md) {
-    font-size: $font-size-1;
-  }
-}
-
-.heading-2 {
-  font-size: $font-size-2;
-}
-
-.heading-2-responsive {
-  font-size: $font-size-4;
-
-  @include respond-above(sm) {
-    font-size: $font-size-3;
-  }
-
-  @include respond-above(md) {
-    font-size: $font-size-2;
-  }
-}
-
-.heading-3 {
-  font-size: $font-size-3;
-}
-
-.heading-3-responsive {
-  font-size: $font-size-5;
-
-  @include respond-above(sm) {
-    font-size: $font-size-4;
-  }
-
-  @include respond-above(md) {
-    font-size: $font-size-3;
-  }
-}
-
-.heading-4 {
-  font-size: $font-size-4;
-}
-
-.heading-4-responsive {
-  font-size: $font-size-6;
-
-  @include respond-above(sm) {
-    font-size: $font-size-5;
-  }
-
-  @include respond-above(md) {
-    font-size: $font-size-4;
-  }
-}
-
-.heading-5 {
-  font-size: $font-size-5;
-}
-
-.heading-5-responsive {
-  font-size: $font-size-6;
-
-  @include respond-above(md) {
-    font-size: $font-size-5;
-  }
-}
+.heading-1-responsive { @extend .fs-1-responsive; }
+.heading-2-responsive { @extend .fs-2-responsive; }
+.heading-3-responsive { @extend .fs-3-responsive; }
+.heading-4-responsive { @extend .fs-4-responsive; }
+.heading-5-responsive { @extend .fs-5-responsive; }
 
 .heading-6-responsive,
 .heading-6 {
-  font-size: $font-size-6;
+  @extend .fs-6;
   letter-spacing: 1px;
   text-transform: uppercase;
 }

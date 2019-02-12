@@ -1,7 +1,4 @@
-
-Headings are labels for sections or areas that make up an interface. They can label an entire page, or sections of related content. Our `Heading` component allows you to select an appropriate semantic element (h1-h6) and independently set its size so that it is appropriate for the surrounding content. 
-
-If you do not pass an explicit size, the Heading will pick the size based on the element. By default headings will scale for mobile, tablet and desktop [viewports](.//#/Styles/Media%20Query).
+## Examples
 
 ```js
 <Heading element="1">Heading 1</Heading>
@@ -21,7 +18,7 @@ Pass an explicit size to control how big the heading should appear
 <Heading element="2" size="6">&lt;H2&gt; in size 6</Heading>
 ```
 
-### Responsive
+### Turn off Responsive
 
 Responsive font size scaling can be turned off.
 
@@ -39,7 +36,7 @@ Responsive font size scaling can be turned off.
 Add the `truncate` prop to restrict text to a single line and truncate with an ellipsis if it&apos;s too long.
 
 ```js
-<Heading element="1" size="4" truncate>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letraset</Heading>
+<Heading element="1" size="3" truncate>This heading text should be truncated with an ellipsis because it is too long to fit on one line</Heading>
 
 ```
 
