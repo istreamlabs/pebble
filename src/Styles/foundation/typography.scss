@@ -1,3 +1,5 @@
+@import 'media-queries';
+
 $sans-serif:
                 'Inter',
                 -apple-system, BlinkMacSystemFont,
@@ -36,3 +38,73 @@ $letter-spacing-2:.25em;
 .text-left    { text-align: left; }
 .text-right   { text-align: right; }
 .text-justify { text-align: justify; }
+
+.fw-400 { font-weight: 400 }
+.fw-700 { font-weight: 700 }
+
+.fs-1 { font-size: $font-size-1; }
+.fs-2 { font-size: $font-size-2; }
+.fs-3 { font-size: $font-size-3; }
+.fs-4 { font-size: $font-size-4; }
+.fs-5 { font-size: $font-size-5; }
+.fs-6-responsive,
+.fs-6 { font-size: $font-size-6; }
+.fs-7-responsive,
+.fs-7 { font-size: $font-size-7; }
+
+.fs-1-responsive {
+  font-size: $font-size-3;
+
+  @include respond-above(sm) {
+    font-size: $font-size-2;
+  }
+
+  @include respond-above(md) {
+    font-size: $font-size-1;
+  }
+}
+
+.fs-2-responsive {
+  font-size: $font-size-4;
+
+  @include respond-above(sm) {
+    font-size: $font-size-3;
+  }
+
+  @include respond-above(md) {
+    font-size: $font-size-2;
+  }
+}
+
+.fs-3-responsive {
+  font-size: $font-size-5;
+
+  @include respond-above(sm) {
+    font-size: $font-size-4;
+  }
+
+  @include respond-above(md) {
+    font-size: $font-size-3;
+  }
+}
+
+.fs-4-responsive {
+  font-size: $font-size-6;
+
+  @include respond-above(sm) {
+    font-size: $font-size-5;
+  }
+
+  @include respond-above(md) {
+    font-size: $font-size-4;
+  }
+}
+
+.fs-5-responsive {
+  font-size: $font-size-6;
+
+  @include respond-above(md) {
+    font-size: $font-size-5;
+  }
+}
+
