@@ -1,7 +1,9 @@
 @import '../../Styles/foundation';
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: $spacing-2 $spacing-3;
   position: relative;
@@ -47,8 +49,9 @@
 
 .btn-sm {
   font-size: $font-size-7;
-  padding: $spacing-2 $spacing-2;
+  padding: 0 $spacing-2;
   border-radius: $border-radius-2;
+  height: 30px;
 }
 
 .btn-primary {
@@ -101,6 +104,34 @@
 
   .btn-loading-spinner {
     color: $red-light;
+  }
+}
+
+.btn-plain {
+  background: transparent;
+  border: none;
+  color: $blue;
+  height: auto;
+  padding: 0 !important;
+  text-decoration: underline;
+
+  &:focus,
+  &:hover {
+    background: transparent;
+    color: $blue-dark;
+    text-decoration: underline;
+  }
+}
+
+.btn-plain.btn-danger,
+.btn-plain.btn-danger.btn-primary {
+  background: transparent;
+  color: $red;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    color: $red-dark;
   }
 }
 

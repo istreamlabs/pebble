@@ -1,6 +1,4 @@
-### Buttons are used as triggers for actions. They are used in forms, toolbars, modal dialogs and as stand-alone action triggers.
-
-### Types
+### Button Types
 
 * Default buttons are most commonly used
 * Primary buttons highlight the most important action in the experience
@@ -13,6 +11,32 @@
   <Button primary>primary</Button>
   <Button danger>danger</Button>
   <Button primary danger>primary danger</Button>
+  <Button plain>text</Button>
+</div>
+```
+
+### Plain Buttons
+
+Render a button that performs an action, but looks like inline clickable text because it is more visually appropriate.
+
+<div class="styleguide__callout">
+##### When to use a Button vs Link
+
+* Use buttons when performing an action on the page, such as "submit", "edit", or "upload". Actions almost always occur on the same page.
+* Use a [link](#/Components/Link) when navigation to another place, such as a profile page, vod asset detail, or a "skip to" anchor link.
+</div>
+
+```js
+<div class="styleguide__buttons">
+  <Button plain size="small">small text</Button>
+  <Button plain>default text</Button>
+  <Button plain size="large">large text</Button>
+</div>
+
+<div class="styleguide__buttons">
+  <Button plain>text button</Button>
+  <Button primary plain>primary text button</Button>
+  <Button danger plain>danger text button</Button>
 </div>
 ```
 
