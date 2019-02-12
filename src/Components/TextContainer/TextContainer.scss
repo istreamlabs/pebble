@@ -1,0 +1,15 @@
+@import '../../Styles/foundation';
+
+.text-container {
+  line-height: $line-height-copy;
+  > *:not(:first-child) {
+    margin-top: $spacing-4;
+  }
+}
+
+.text-container-tight {
+  line-height: $line-height-solid;
+  > *:not(:first-child) {
+    margin-top: $spacing-2;
+  }
+}
