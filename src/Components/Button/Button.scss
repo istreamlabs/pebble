@@ -107,7 +107,7 @@
   }
 }
 
-.btn-link {
+.btn-plain {
   background: transparent;
   border: none;
   color: $blue;
@@ -123,8 +123,8 @@
   }
 }
 
-.btn-link.btn-danger,
-.btn-link.btn-danger.btn-primary {
+.btn-plain.btn-danger,
+.btn-plain.btn-danger.btn-primary {
   background: transparent;
   color: $red;
 

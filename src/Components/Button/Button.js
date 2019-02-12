@@ -7,6 +7,11 @@ import Icon from '../Icon/Icon';
 
 import './Button.scss';
 
+/**
+ * Buttons are used as triggers for actions. They are used in forms,
+ * toolbars, modal dialogs and as stand-alone action triggers. Actions
+ * almost always occur on the same page.
+ */
 
 // see https://github.com/yannickcr/eslint-plugin-react/issues/1555
 // eslint-disable-next-line react/button-has-type
@@ -18,7 +23,7 @@ const Button = (
     size,
     primary,
     danger,
-    link,
+    plain,
     fullWidth,
     icon,
     onClick,
@@ -42,7 +47,7 @@ const Button = (
     'btn-sm': caseInsensativeStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
-    'btn-link': link,
+    'btn-plain': plain,
     'btn-fullwidth': fullWidth,
   });
 
@@ -142,9 +147,9 @@ Button.propTypes = {
    */
   danger: PropTypes.bool,
   /**
-   * Make the button look like an inline link
+   * Render the button as inline text without padding
    */
-  link: PropTypes.bool,
+  plain: PropTypes.bool,
   /**
    * Button takes up the full width of its parent container
    */
