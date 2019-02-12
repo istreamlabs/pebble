@@ -12,7 +12,7 @@ class MenuItem extends React.Component {
     const { activeItem, item } = this.props;
 
     this.state = {
-      isOpen: (item.items && item.items.length) && (item.id === activeItem || (item.items || []).some(i => i.id === activeItem))
+      isOpen: item.id === activeItem || (item.items || []).some(i => i.id === activeItem)
     };
   }
 

@@ -1,56 +1,52 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import MenuItem from './MenuItem';
 
 const mockData = {
-  id: '2',
+  id: '1',
   label: 'Content',
   description: '',
   icon: 'player',
   items: [
     {
-      id: '2a',
+      id: '1a',
       label: 'Channels',
       description: '',
       href: '/content/channels',
       icon: '',
     },
     {
-      id: '2b',
+      id: '1b',
       label: 'Live',
       description: '',
       href: '/content/live',
       icon: '',
     },
-    {
-      id: '2c',
-      label: 'Schedule',
-      description: '',
-      href: '/content/schedule',
-      icon: '',
-    },
-    {
-      id: '2d',
-      label: 'VOD',
-      description: '',
-      href: '/content/vod',
-      icon: '',
-    },
   ]
 };
 
-const mockDataLink = {
+const noItems = {
   id: '2',
+  label: 'Content',
+  description: '',
+  href: '/test',
+};
+
+const linkSubItems = {
+  id: '1',
   label: 'Content',
   description: '',
   icon: 'player',
-  href: '/mylink'
-};
-
-const mockDataNoItems = {
-  id: '2',
-  label: 'Content',
-  description: '',
+  href: '/test',
+  items: [
+    {
+      id: '1a',
+      label: 'Channels',
+      description: '',
+      href: '/content/channels',
+      icon: '',
+    },
+  ]
 };
 
 describe('MenuItem', () => {
@@ -72,13 +68,34 @@ describe('MenuItem', () => {
     expect(item.find('li.menu-item-container').prop('className')).toContain('open');
   });
 
-  it('renders as <a> when href is set', () => {
-    const item = shallow(<MenuItem item={mockDataLink} />);
-    expect(item.find('a').prop('href')).toContain('/mylink');
+  it('opens the submenu if a subitem is active and sets the subitem to active', () => {
+    const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
+    expect(item.find('li.menu-item-container').prop('className')).toContain('open');
+    expect(item.find('a.sub-menu-item').prop('className')).toContain('active');
   });
 
-  it('sets isOpen to undefined when there are no sub-items', () => {
-    const item = shallow(<MenuItem item={mockDataNoItems} />);
-    expect(item.state().isOpen).toEqual(undefined);
+  it('opens the submenu if the Item is active', () => {
+    const item = shallow(<MenuItem item={linkSubItems} activeItem="1" />);
+    expect(item.find('li.menu-item-container').prop('className')).toContain('open active');
+  });
+
+  it('renders as <a> when href is set', () => {
+    const item = shallow(<MenuItem item={linkSubItems} />);
+    expect(item.find('a.menu-item').prop('href')).toContain('/test');
+  });
+
+  it('sets isOpen to false when there are no sub-items', () => {
+    const item = shallow(<MenuItem item={noItems} />);
+    expect(item.state().isOpen).toEqual(false);
+  });
+
+  it('renders an separate toggle button when a link with sub items is passed', () => {
+    const item = mount(<MenuItem item={linkSubItems} />);
+    expect(item.find('button').prop('className')).toContain('menu-item-collapse-button');
+  });
+
+  it('sets the accessibilityLabel', () => {
+    const item = mount(<MenuItem item={linkSubItems} />);
+    expect(item.find('button').prop('aria-label')).toBe('show Content sub items');
   });
 });

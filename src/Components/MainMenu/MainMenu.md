@@ -92,7 +92,7 @@ const auxMenu = [
   }
 ];
 
-initialState = { activeItem: "2b", showMenu: false };
+initialState = { activeItem: "2", showMenu: false };
 
 <div class="styleguide__frame">
   <div className="styleguide__mainmenu">
