@@ -8,6 +8,7 @@
 
 ### Sizes
 ```js
+<div><Text>Default Size</Text></div>
 <div><Text size="1">Size 1</Text></div>
 <div><Text size="2">Size 2</Text></div>
 <div><Text size="3">Size 3</Text></div>
