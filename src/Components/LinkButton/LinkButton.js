@@ -5,6 +5,11 @@ import { caseInsensativeStringCompare } from '../../Utils';
 
 import '../Button/Button.scss';
 
+/**
+ * A LinkButton is a hyperlink that looks like a button.
+ * It shares styles with the [Button](/#/Components/Button).
+ */
+
 const LinkButton = (
   {
     id,

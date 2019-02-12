@@ -6,6 +6,13 @@ import { requiresOtherProp } from '../../Utils';
 import { Header, Section } from './Subcomponents';
 import './Card.scss';
 
+/**
+ * Cards are used to display content related to single subject,
+ * such as a list of packages or regions. A basic card contains
+ * a title, content and an optional set of actions that may be
+ * performed on the content.
+ */
+
 const Card = (
   {
     children,

@@ -1,9 +1,4 @@
-### Button Group
-
-Display related [Buttons](/#/Components/Button) or [LinkButtons](/#/Components/LinkButton) in a horizontal row to help with spacing between buttons.
-
-* Only group buttons that have a relationship
-* Be judicious in the number of items in a button group
+## Examples
 
 ```js
 

@@ -1,4 +1,4 @@
-A LinkButton is a hyperlink that looks like a button. It shares styles with the [Button](/#/Components/Button).
+## Examples
 
 ```js
 <div class="styleguide__buttons">
