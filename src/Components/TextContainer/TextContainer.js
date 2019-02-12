@@ -6,7 +6,7 @@ import './TextContainer.scss';
 
 /**
  * The TextContainer wraps text elements such as [Headings](/#/Components/Heading),
- * paragraphs and lists to apply the proper vertial
+ * paragraphs and lists to apply the proper vertical
  * spacing between them. This vertical spacing is
  * known as "vertical rhythm".
  */
