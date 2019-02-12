@@ -10,18 +10,18 @@ Use media query tokens to set media query width ranges.
     </thead>
     <tbody>
         <tr>
-            <td>$breakpoint-not-small</td>
-            <td> screen and (min-width: 30em)</td>
+            <td>$breakpoints.sm</td>
+            <td>30rem</td>
             <td>1.0.0</td>
         </tr>
         <tr>
-            <td>$breakpoint-medium</td>
-            <td>screen and (min-width: 30em) and (max-width: 60em);</td>
+            <td>$breakpoints.md</td>
+            <td>60rem</td>
             <td>1.0.0</td>
         </tr>
         <tr>
-            <td>$breakpoint-large</td>
-            <td>screen and (min-width: 60em)</td>
+            <td>$breakpoints.lg</td>
+            <td>90rem</td>
             <td>1.0.0</td>
         </tr>
     </tbody>

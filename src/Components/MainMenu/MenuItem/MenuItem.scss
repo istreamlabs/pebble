@@ -1,0 +1,204 @@
+@import '../../../Styles/foundation';
+
+$NAV_BG: $white;
+$NAV_BORDER_COLOR: $neutral-300;
+
+$NAV_ITEM_COLOR: $neutral-700;
+
+$NAV_ITEM_ACTIVE_BG: $blue-lighter;
+$NAV_TRANSITION_TIME: .2s;
+$NAV_TRANSITION_EASING: linear;
+$NAV_HIGHLIGHT: $blue;
+$NAV_HIGHLIGHT_HOVER: $blue-light;
+$NAV_ITEM_ICON: $neutral-400;
+
+$NAV_ITEM_ICON_HOVER: $blue-dark;
+$NAV_ITEM_COLOR_HOVER: $blue-dark;
+
+$NAV_ITEM_ICON_FOCUS: $blue-darker;
+$NAV_ITEM_COLOR_FOCUS: $blue-darker;
+
+.menu-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  position: relative;
+
+  &.active {
+    .menu-item {
+      background: $NAV_ITEM_ACTIVE_BG;
+      box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT;
+      color: $NAV_ITEM_COLOR_HOVER;
+
+      &:focus {
+        color: $NAV_ITEM_COLOR_FOCUS;
+        box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+
+        .menu-item-icon {
+          color: $NAV_ITEM_ICON_FOCUS;
+        }
+      }
+
+      .menu-item-icon {
+        color: $NAV_ITEM_ICON_HOVER;
+      }
+    }
+
+    .menu-item-collapse-button {
+      background: $NAV_ITEM_ACTIVE_BG;
+    }
+  }
+}
+
+.menu-item-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-item-label {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu-item {
+  background: transparent;
+  border: none;
+  font-size: $font-size-5;
+  border-bottom: 1px solid $NAV_BORDER_COLOR;
+  color: $NAV_ITEM_COLOR;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: $spacing-3 $spacing-4 $spacing-3 $spacing-6;
+  position: relative;
+  text-decoration: none;
+  text-align: left;
+  transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING, box-shadow $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
+  width: 100%;
+
+  &:hover {
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+    .menu-item-icon {
+      color: $NAV_ITEM_ICON_HOVER;
+    }
+  }
+
+  &:focus {
+    outline:0;
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+    .menu-item-icon {
+      color: $NAV_ITEM_ICON_HOVER;
+    }
+  }
+
+  // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
+  > * {
+    pointer-events: none;
+  }
+
+  @include respond-above(md) {
+    font-size: $font-size-5;
+  }
+}
+
+.menu-item-icon {
+  margin-right: $spacing-4;
+  color: $NAV_ITEM_ICON;
+}
+
+.menu-item-collapse {
+
+  transition: transform .3s linear;
+
+  &.closed {
+    transform: rotate(0deg);
+  }
+
+  &.opened {
+    transform: rotate(180deg);
+  }
+}
+
+.menu-item-collapse-button {
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid $NAV_BORDER_COLOR;
+  border-left: 1px solid $NAV_BORDER_COLOR;
+  border-radius: 0;
+  padding: $spacing-3 $spacing-4;
+
+  &:hover {
+    border-bottom: 1px solid $NAV_BORDER_COLOR;
+    border-color: $NAV_BORDER_COLOR;
+    color: $NAV_ITEM_COLOR_HOVER;
+  }
+
+  &:focus {
+    outline: 0;
+    border-color: $NAV_BORDER_COLOR;
+    color: $NAV_ITEM_COLOR_HOVER;
+    background: $NAV_ITEM_ACTIVE_BG;
+  }
+}
+
+.sub-menu-items {
+  max-height: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: none;
+
+  @include respond-above(md) {
+    position: relative;
+    left: 0;
+    width: 100%;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  &.opened {
+    display: block;
+    border-bottom: 1px solid $NAV_BORDER_COLOR;
+    // used for css transition. set this to height greater than what we expect it to ever be
+    max-height: 800px;
+  }
+}
+
+.sub-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  min-height: 2.25rem;
+  padding: $spacing-2 $spacing-4 $spacing-2 $spacing-7;
+  color: $neutral-700;
+  font-size: $font-size-6;
+  transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING, box-shadow $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING;
+
+  &:hover {
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+  }
+
+  &:focus {
+    outline: 0;
+    color: $NAV_ITEM_COLOR_HOVER;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
+  }
+
+  &.active {
+    background: $NAV_ITEM_ACTIVE_BG;
+    box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
+    color: $NAV_ITEM_ICON_HOVER;
+
+    &:focus {
+      color: $NAV_ITEM_COLOR_FOCUS;
+      box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+    }
+  }
+}

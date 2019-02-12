@@ -1,0 +1,56 @@
+@import '../../Styles/foundation';
+
+$NAV_LG_WIDTH: 230px;
+$NAV_BG: $white;
+$NAV_BORDER_COLOR: $neutral-300;
+$NAV_ITEM_HOVER: $neutral-200;
+
+.main-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $NAV_BG;
+  transition: width 0.2s ease-out, transform 0.2s ease-out;
+  width: 100%;
+  overflow-y: auto;
+
+  @include respond-above(md) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include respond-above(md) {
+    width: $NAV_LG_WIDTH;
+  }
+
+  &.opened {
+
+    @include respond-below(md) {
+      display: flex;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+    }
+  }
+}
+
+.main-menu-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu-top {
+
+  @include respond-above(sm) {
+    overflow-y: auto;
+  }
+}
+
+.main-menu-bottom {
+  @include respond-above(md) {
+    border-top: 1px solid $NAV_BORDER_COLOR;
+  }
+}
