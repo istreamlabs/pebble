@@ -62,7 +62,7 @@ Text.propTypes = {
   /**
    * A preset size based on our [typograhy scale](/#/Styles/Typography).
    */
-  size: PropTypes.PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
 };
 
 export default Text;
