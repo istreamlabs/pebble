@@ -26,6 +26,18 @@ export const parseElement = (element) => {
   return element;
 };
 
+/**
+ * Headings are labels for sections or areas that make up an interface.
+ * They can label an entire page, or sections of related content.
+ * Our `Heading` component allows you to select an appropriate semantic
+ * element (h1-h6) and independently set its size so that it is
+ * appropriate for the surrounding content.
+
+ * If you do not pass an explicit size, the Heading will pick the
+ * size based on the element. By default headings will scale for mobile,
+ * tablet and desktop [viewports](.//#/Styles/Media%20Query).
+ */
+
 const Heading = (
   {
     children,

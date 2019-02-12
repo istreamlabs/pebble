@@ -12,6 +12,19 @@
   margin-right: .5rem;
 }
 
+.styleguide__frame {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow-y: auto;
+}
+
+.styleguide__mainmenu {
+  min-height: 250px;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
 .styleguide__icons .__icon {
   display: inline-block;
   width: 140px;
@@ -30,4 +43,8 @@
   border: 1px solid #FFE39C;
   margin-bottom: 1rem;
   padding: 1.5rem 2rem .5rem;
+}
+
+.styleguide__menubutton {
+  margin-bottom: 1rem;
 }
