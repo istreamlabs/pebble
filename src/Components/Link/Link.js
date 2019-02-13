@@ -38,16 +38,17 @@ const Link = (
 
 Link.propTypes = {
   /**
-   *  indicates the link represents the current page for,
-   * such as in a navigation menu
+   * indicates to screenreaders that the link is
+   * also the current page (i.e. currently
+   * selected item in a navigation menu)
    */
   ariaCurrent: PropTypes.bool,
   /**
-   * should the clickable element should be `display: block`
+   * Make the link `display: block`
    */
   block: PropTypes.bool,
   /**
-   * Use for a links that open a different site
+   * Use for links that navigate to a different website
    */
   external: PropTypes.bool,
   /**
