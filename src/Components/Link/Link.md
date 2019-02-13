@@ -13,7 +13,7 @@ External links automatically open in a new window or tab.
 
 ### Wrap Content
 
-Wrap block elements with a `<Link>` to make the entire linkable.
+Wrap block elements with a `<Link>` to make all contents a link.
 
 ```js
 <Link href="http://istreamplanet.com" block>
