@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { caseInsensativeStringCompare } from '../../Utils';
+import { boolRequiresOtherProp, caseInsensativeStringCompare } from '../../Utils';
 
 import Icon from '../Icon/Icon';
 
@@ -26,6 +26,7 @@ const Button = (
     plain,
     fullWidth,
     icon,
+    iconAfterText,
     onClick,
     onFocus,
     onBlur,
@@ -56,18 +57,22 @@ const Button = (
   ) : null;
 
   const iconElement = function (name) {
-    const iconSize = size === 'large' ? 20 : 16;
+    const iconSize = caseInsensativeStringCompare(size, 'large') ? 20 : 16;
 
     return (
       <Icon name={name} size={iconSize} className="btn-icon" />
     );
   };
 
+  const leftIcon = !iconAfterText && icon && iconElement(icon);
+  const rightIcon = icon && iconAfterText && iconElement(icon);
+
   const content = (
     <span className="btn-content">
       {spinnerSVGMarkup}
-      {icon && iconElement(icon)}
-      {children}
+      {leftIcon}
+      {children && <span className="btn-label">{children}</span>}
+      {rightIcon}
     </span>
   );
 
@@ -117,7 +122,7 @@ Button.propTypes = {
   /**
    * Contents of the button
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * A unique identifier for the button
    */
@@ -126,6 +131,10 @@ Button.propTypes = {
    * The name of the [icon](/#/Components/Icon) to add inside the button
    */
   icon: PropTypes.string,
+  /**
+   * Boolean for placing the icon to the right of the button text
+   */
+  iconAfterText: boolRequiresOtherProp('icon'),
   /**
    * Disables the button, making it inoperable
    */

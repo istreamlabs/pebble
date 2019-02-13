@@ -138,5 +138,9 @@ describe('Button', () => {
       const button = shallow(<Button icon="add-circle" size="large">add button</Button>);
       expect(button.find('Icon').prop('size')).toBe(20);
     });
+    it('positions the icon on the right side', () => {
+      const button = shallow(<Button icon="add-circle" iconAfterText>add button</Button>);
+      expect(button.find('.btn-content').children().last().prop('className')).toContain('btn-icon');
+    });
   });
 });
