@@ -34,7 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "cover": "react-scripts test --coverage",
-    "styleguide": "styleguidist server",
+    "styleguide": "styleguidist server --open",
     "styleguide:build": "styleguidist build",
     "lint": "eslint src/Components/**/*.js",
     "genIcons": "node ./src/Icons/generateIcons.js"
