@@ -1,6 +1,6 @@
 {
   "name": "@istreamplanet/pebble",
-  "version": "1.0.0-alpha.1",
+  "version": "0.1.0",
   "description": "Pebble Design System",
   "private": false,
   "repository": {
@@ -9,14 +9,24 @@
   },
   "author": "iStreamPlanet",
   "license": "Apache-2.0",
+  "module": "dist/Components/index.js",
+  "files": [
+    "dist/*"
+  ],
   "dependencies": {
-    "classnames": "^2.2.6"
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/preset-env": "^7.3.1",
+    "cpx": "^1.5.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "5.6.0",
@@ -32,19 +42,25 @@
     "react-scripts": "2.1.3",
     "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.7.0",
+    "rimraf": "^2.6.3",
     "svgo": "^1.1.1",
     "webpack": "4.19.1"
   },
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils",
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server --open",
     "styleguide:build": "styleguidist build",
     "lint": "eslint src/Components/**/*.js",
-    "genIcons": "node ./src/Icons/generateIcons.js"
+    "genIcons": "node ./src/Icons/generateIcons.js",
+    "prepack": "yarn build"
   },
+  "eslintIgnore": [
+    "dist/**/*.js"
+  ],
   "eslintConfig": {
     "extends": "airbnb",
     "parser": "babel-eslint",
