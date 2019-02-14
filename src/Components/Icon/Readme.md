@@ -1,4 +1,4 @@
-Icons provide visual context and enhance usability.
+## Examples
 
 ```js
 <Icon name="dashboard" />
