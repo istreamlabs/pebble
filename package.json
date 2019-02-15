@@ -9,6 +9,7 @@
   },
   "author": "iStreamPlanet",
   "license": "Apache-2.0",
+  "main": "dist/Components/index.js",
   "module": "dist/Components/index.js",
   "files": [
     "dist/*"
