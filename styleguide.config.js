@@ -46,9 +46,9 @@ module.exports = {
       base: '"Inter", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
     },
     fontSize: {
-      base: 14,
+      base: 16,
       text: 16,
-      small: 12,
+      small: 14,
       h1: 48,
       h2: 36,
       h3: 24,
@@ -89,15 +89,30 @@ module.exports = {
   },
   styles: {
     Heading: {
-      fontWeight: 700,
-    },
-    Markdown: {
-      pre: {
-        border: 0,
-        background: 'none',
+      heading1: {
+        fontWeight: '700',
       },
+      heading2: {
+        fontWeight: '700',
+      },
+      heading3: {
+        fontWeight: '700',
+      },
+      heading4: {
+        fontWeight: '700',
+      },
+    },
+    Pre: {
+      pre: {
+        fontSize: '16px',
+      },
+    },
+    Code: {
       code: {
-        fontSize: 24,
+        backgroundColor: '#F4F6F8',
+        color: '#464F5B',
+        padding: '2px 4px',
+        borderRadius: '2px',
       },
     },
   },
