@@ -14,12 +14,14 @@
          url("/font/Inter-Bold.woff") format("woff");
   }
 
+@import 'foundation/variables';
+@import 'foundation/media-queries';
+
 @import 'foundation/reset';
 
 @import 'foundation/animation';
 @import 'foundation/border';
 @import 'foundation/colors';
-@import 'foundation/media-queries';
 @import 'foundation/shadow';
 @import 'foundation/sizing';
 @import 'foundation/spacing';
