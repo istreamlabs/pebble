@@ -10,6 +10,8 @@ module.exports = {
     path.join(__dirname, 'src/Styleguide/styles.css')
   ],
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
+    webpackConfig.entry.push('./src/Styles/foundation.scss');
+
     webpackConfig.output = {
       ...webpackConfig.output,
       publicPath: process.env.PUBLIC_URL || ''

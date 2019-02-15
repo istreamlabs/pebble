@@ -1,4 +1,5 @@
-@import '../../Styles/foundation';
+@import '../../Styles/foundation/variables.scss';
+@import '../../Styles/foundation/media-queries.scss';
 
 $NAV_LG_WIDTH: 230px;
 $NAV_BG: $white;
