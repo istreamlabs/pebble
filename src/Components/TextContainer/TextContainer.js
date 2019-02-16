@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { parseTextSize } from '../../Utils';
 
 import './TextContainer.scss';
 
@@ -16,9 +17,13 @@ const TextContainer = (
     children,
     className,
     tight,
+    size,
   }
 ) => {
+  const parsedSize = size ? parseTextSize(size) : null;
+
   const classes = classNames('text-container', {
+    [`fs-${parsedSize}`]: parsedSize,
     'text-container-tight': tight
   }, className);
 
@@ -38,6 +43,10 @@ TextContainer.propTypes = {
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node.isRequired,
+  /**
+   * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typograhy scale](/#/Styles/Typography
+   */
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
   /**
    * color of the text
    */
