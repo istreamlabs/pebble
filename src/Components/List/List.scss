@@ -1,0 +1,10 @@
+@import '../../Styles/foundation/variables.scss';
+
+.list {
+  margin: 0;
+  list-style: disc outside none;
+}
+
+.list-ordered {
+  list-style: decimal outside none;
+}
