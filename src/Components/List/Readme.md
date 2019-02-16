@@ -6,7 +6,7 @@
   <ListItem>Cartoon Network</ListItem>
   <ListItem>CNN</ListItem>
   <ListItem>TBS</ListItem>
-  <ListItem>TBS</ListItem>
+  <ListItem>TNT</ListItem>
 </List>
 ```
 
@@ -16,7 +16,7 @@
   <ListItem>Cartoon Network</ListItem>
   <ListItem>CNN</ListItem>
   <ListItem>TBS</ListItem>
-  <ListItem>TBS</ListItem>
+  <ListItem>TNT</ListItem>
 </List>
 ```
 
@@ -27,6 +27,6 @@
   <ListItem>Cartoon Network</ListItem>
   <ListItem>CNN</ListItem>
   <ListItem>TBS</ListItem>
-  <ListItem>TBS</ListItem>
+  <ListItem>TNT</ListItem>
 </List>
 ```
