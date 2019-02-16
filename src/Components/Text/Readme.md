@@ -1,7 +1,7 @@
 ## Examples
 
 ```js
-<Text>The Text component renders a span by default. It is a convenient way to enforce consistency of supported font-sizes.</Text>
+<Text>The Text component renders a span by default. It is a convenient way to enforce consistency of supported font sizes and text colors.</Text>
 ```
 
 ### Sizes

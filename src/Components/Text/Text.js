@@ -60,7 +60,7 @@ Text.propTypes = {
    */
   appearance: PropTypes.oneOf(['success', 'warn', 'danger', 'muted', 'info', 'code']),
   /**
-   * A preset size based on our [typograhy scale](/#/Styles/Typography).
+   * set font size based on the [typograhy scale](/#/Styles/Typography)
    */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
 };
