@@ -11,14 +11,23 @@ script:
 - yarn styleguide:build
 notifications:
   slack:
-    secure: VsE474aXVwiofaIwN5K4UUiK/F21ERz8I3/DsIYNlK0LttYblr9LRUXfmxhQSYy/7yceMRgK789qMC5w08yMgmjszlmti/PeDPQJIrgQMRTqxPGFoZvjyiFR8S0osjBr1iCK2TH46Z79kz/+AZObyPFsgRlxw/FpvbGs0HMvRvs8cDH5W+9uJmTeO5xlrAJwkQT+h3gQWF6ENSCiqirJDDo3a/sI9SckeQ7dL+hTIpUG+gsqQ94tI+9023jVoW+jrcF4UFzxILazq8O2seDId9W81iBfwshOisGOCAZOZ4QmX9pW9SM4eQ4jEigEmy6NknQq/ArrbIqVnzBlzdRZF2VTfL6ZJXPQv6MaRpJSaiqUn2seHiIfyM9YvIAcLvxP4TXHj6/43VaQ20ho/O+hRTarlRNRkKUbOQ+yyePthgW7GDiGT6hDY6cYqcBiVEpMOnW4+qYsCn4f6wypftwDVhv25ENZTGVhj1rQbPJtwe0NUIG+3eFqVAgn62YtbIAXERqyM/QXJZ72NE2fQqhpfWntnYmix0qKvRmRF4sfsPk6V77d19Eakvymp4nXVI9mnWM25qywVtu5sbOqzAgUKlai4lFj1MhkiXjMxNg/QtuT59DRvoJhTG2m4wpc0HMk2LRAX108ESF4QZD8R/UMy5HJHX4qPYypHMuj+OgEKNY=
+    secure: VsE474aXVwiofaIwN5K4UUiK/F21ERz8I3/DsIYNlK0LttYblr9LRUXfmxhQSYy/7yceMRgK789qMC5w08yMgmjszlmti/PeDPQJIrgQMRTqxPGFoZvjyiFR8S0osjBr1iCK2TH46Z79kz/+AZObyPFsgRlxw/FpvbGs0HMvRvs8cDH5W+9uJmTeO5xlrAJwkQT+h3gQWF6ENSCiqirJDDo3a/sI9SckeQ7dL+hTIpUG+gsqQ94tI+9023jVoW+jrcF4UFzxILazq8O2seDId9W81iBfwshOisGOCAZOZ4QmX9pW9SM4eQ4jEigEmy6NknQq/ArrbIqVnzBlzdRZF2VTfL6ZJXPQv6MaRpJSaiqUn2seHiIfyM9YvIAcLvxP4TXHj6/43VaQ20ho/O+hRTarlRNRkKUbOQ+yyePthgW7GDiGT6hDY6cYqcBiVEpMOnW4+qYsCn4f6wypftwDVhv25ENZTGVhj1rQbPJtwe0NUIG+3eFqVAgn62YtbIAXERqyM/QXJZ72NE2fQqhpfWntnYmix0qKvRmRF4sfsPk6V77d19Eakvymp4nXVI9mnWM25qywVtu5sbOqzAgUKlai4lFj1MhkiXjMxNg/QtuT59DRvoJhTG2m4wpc0HMk2LRAX108ESF4QZD8R/UMy5HJHX4qPYypHMuj+OgEKNY=s
 deploy:
   - provider: s3
-    access_key_id: $DEVELOPMENT_AWS_ACCESS_KEY
-    secret_access_key: $DEVELOPMENT_AWS_SECRET
+    access_key_id: "$DEVELOPMENT_AWS_ACCESS_KEY"
+    secret_access_key: "$DEVELOPMENT_AWS_SECRET"
     local_dir: styleguide
-    bucket: "pebble-dev"
+    bucket: pebble-dev
     skip_cleanup: true
-    region: "us-west-2"
+    region: us-west-2
     on:
       branch: master
+      repo: iStreamPlanet/pebble
+  - provider: npm
+    email: pia@istreamplanet.com
+    api_key:
+      secure: J0DXm0a+bWh6xT9M3Wlis+eKSASSdDPHpjBGxkm4ha7siu9JoKVRSeg3wvxZRfP26Z3B/8KFuPN68o9H4dxaxhxvv5BIvGMj+56gyeAtQ4eZIlI1VkgZTdTpHshpi1dmzrp0/w+/0IXxfwnjqyjpSckFq8BWkB6aa0EYBBOum3QsGBCzj3AQGjKr77s6VBCI8Aj1PTGKO9Yf3dMtZGqxtJSYA4ddikAXPVsAiswJOECK3ta9T91FzVHIbEJ2PJUKj8GhkDAw9LWYvvMxXXQHPHhGQTsNPYQHgaiMGZuvsLpakYDe5CP5lXmfvwxtUR6cJfDnPINpL0mYD22UaBIUWfQ/d1Nufgi+smFZfLwkBEBp6zQk4T8ohuUpZzVfIc986M8oN4gqrjWz5u+M4WCbchrFO7Wgy4dqVpj/pV6w2FPSaJPDG6w0U1nQ07D1maEkJIfnHjcNxFK0GmorAYdOQAEeOA51Wq0qPIvXBjUkO7q2jYpjz7jjwAn6sc1Wcgz455D1/wF5ax4mLj8R8xcJKJmrTDE6MncCPxFIgFPT29yXdOW/W23I0+XiwTI5dXikdtT/GGNNxynYLy+5zhLgE9LLvigeCdSraaQvImVYvhLK/9ZH0arCOBdn8V3Pq+FM8wKRc5g+dpPUxkpZBsRrX1aj1BKawfq4XnFORwJDjrM=
+    on:
+      tags: true
+      branch: master
+      repo: iStreamPlanet/pebble
