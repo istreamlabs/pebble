@@ -51,6 +51,29 @@ Build Documentation Site
 $ yarn styleguide:build
 ```
 
+## releasing
+Package releases should be done through the [`npm version`](https://docs.npmjs.com/cli/version.html) command. When you run the command, the following will happen
+* Execute a coverage test run to make sure everything is okay
+* Bump the version number in `package.json` accordingly (see examples)
+* Add a tag in git with that version number
+* Push to git origin including tags
+
+From there the CI machine takes over and for every tagged commit the following happens
+* `NPM publish` is run, this in turn will trigger our `prepack` that cleans and builds the package
+* The newly minted package it published with the `next` tag. This is done to prevent `prerelease` packages from being installed be default.
+
+If you want to promote the new package to the `latest` tag and thus making it be the preferred default install you may do this using the [`npm dist-tag`](https://docs.npmjs.com/cli/dist-tag) command.
+
+release an alpha prerelease minor update
+```
+npm version preminor -m "release package %s as alpah because reasons" --preid=alpha
+```
+
+release a minor update
+```
+npm version minor -m "release package %s because reasons"
+```
+
 
 ## License
 
