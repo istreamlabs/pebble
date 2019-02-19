@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import './List.scss';
 
 /**
- * A typographical item to be nested in a `<List>`
+ * A typographical item to be nested in a [List](/#/Components/List)
  */
 
 const ListItem = (

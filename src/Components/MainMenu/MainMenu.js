@@ -35,7 +35,6 @@ class MainMenu extends React.Component {
                 activeItem={activeItem}
                 item={item}
                 key={item.id}
-                icon={item.icon}
               />
             ))}
           </ul>
@@ -48,7 +47,6 @@ class MainMenu extends React.Component {
                   activeItem={activeItem}
                   item={item}
                   key={item.id}
-                  icon={item.icon}
                 />
               ))}
             </ul>
@@ -72,11 +70,33 @@ MainMenu.propTypes = {
   /**
    * Menu items for the upper portion of the menu
    */
-  menu: PropTypes.arrayOf(PropTypes.object).isRequired,
+  menu: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    href: PropTypes.string,
+    icon: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+    }))
+  })).isRequired,
   /**
    * Menu items for the lower portion of the menu (e.g. Profile, Support)
    */
-  auxMenu: PropTypes.arrayOf(PropTypes.object),
+  auxMenu: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    href: PropTypes.string,
+    icon: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+    }))
+  })),
   /**
    * show or hide menu below 30rem (480px)
    */

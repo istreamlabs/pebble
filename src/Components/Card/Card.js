@@ -66,7 +66,7 @@ Card.propTypes = {
    */
   title: PropTypes.string,
   /**
-   * Autowrap children in a padded section
+   * Auto-wrap children in a padded section
    */
   sectioned: PropTypes.bool,
   /**
