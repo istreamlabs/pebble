@@ -57,7 +57,8 @@
     "styleguide:build": "styleguidist build",
     "lint": "eslint src/Components/**/*.js",
     "genIcons": "node ./src/Icons/generateIcons.js",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "preversion": "yarn cover"
   },
   "eslintIgnore": [
     "dist/**/*.js"
