@@ -138,6 +138,10 @@ describe('Button', () => {
       const button = shallow(<Button icon="add-circle" size="large">add button</Button>);
       expect(button.find('Icon').prop('size')).toBe(20);
     });
+    it('it places icon to left of button text by default', () => {
+      const button = shallow(<Button icon="add-circle">add button</Button>);
+      expect(button.find('.btn-content').children().first().prop('className')).toContain('btn-icon');
+    });
     it('positions the icon on the right side', () => {
       const button = shallow(<Button icon="add-circle" iconAfterText>add button</Button>);
       expect(button.find('.btn-content').children().last().prop('className')).toContain('btn-icon');
