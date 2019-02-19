@@ -60,6 +60,29 @@ Render a button that performs an action, but looks like inline clickable text be
 </div>
 ```
 
+### Icon Positioning
+
+Icons can be placed on either side of the button label to meet your usecase.
+
+```js
+<ButtonGroup>
+  <Button icon="arrow-small-left">prev</Button>
+  <Button icon="arrow-small-right" iconAfterText>next</Button>
+</ButtonGroup>
+```
+
+### Icon Only
+
+Set a value for the `accessibilityLabel` if only using an icon in the button.
+
+```js
+<ButtonGroup>
+  <Button primary size="large" icon="play" accessibilityLabel="play video" />
+  <Button size="large" icon="pause" accessibilityLabel="pause" />
+  <Button size="large" icon="stop" accessibilityLabel="stop" />
+</ButtonGroup>
+```
+
 ### Additional ClassNames
 
 Pass a `className` containing custom css to apply them in addition to the default button styles.
