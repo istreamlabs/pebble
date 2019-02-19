@@ -36,7 +36,6 @@ const Block = (
   const classes = classNames('block', {
     [`fs-${parsedTextSize}`]: parsedTextSize,
     [`text-${textAlign}`]: textAlign,
-    [`text-${textAlign}`]: textAlign,
     [`mt-${marginTop}`]: marginTop,
     [`mb-${marginBottom}`]: marginBottom,
     [`p-${padding}`]: padding,
