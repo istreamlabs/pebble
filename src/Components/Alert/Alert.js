@@ -19,7 +19,7 @@ const DEFAULT_ICONS = {
 };
 
 /**
- * An Alert displays important status changes or peristant conditions.
+ * An Alert displays important status changes or persistent conditions.
  */
 
 const Alert = (
@@ -50,7 +50,13 @@ const Alert = (
   ) : null;
 
   return (
-    <Block paddingHorizontal="4" paddingVertical="5" marginBottom="4" className={classes}>
+    <Block
+      paddingHorizontal="4"
+      paddingVertical="4"
+      marginBottom="4"
+      className={classes}
+      role="alert"
+    >
       {iconMarkup}
       <TextContainer tight size="6" className="alert-content">
         {title && <Heading element="4">{title}</Heading>}
@@ -62,7 +68,8 @@ const Alert = (
 };
 
 Alert.defaultProps = {
-  type: 'default'
+  type: 'default',
+  isOpen: false,
 };
 
 Alert.propTypes = {
@@ -79,6 +86,10 @@ Alert.propTypes = {
    * See the [Icon component documentation](/#/Components/Icon) for available components
    */
   icon: PropTypes.string,
+  /**
+   * Is the banner shown or hidden
+   */
+  isOpen: PropTypes.bool,
   /**
    * The header of the alert
    */

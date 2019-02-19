@@ -28,6 +28,7 @@ const Block = (
     paddingVertical,
     textAlign,
     truncate,
+    ...props,
   }
 ) => {
   const parsedTextSize = textSize ? parseTextSize(textSize) : null;
@@ -45,7 +46,7 @@ const Block = (
   }, className);
 
   return (
-    <div className={classes}>
+    <div className={classes} {...props}>
       {children}
     </div>
   );

@@ -4,19 +4,19 @@
 
 ```js
 <Alert title="Default Alert">
-  <p>Default Alert</p>
+  <p>Something you should know about.</p>
 </Alert>
 <Alert type="info" title="Info Alert">
-  <p>Info Alert</p>
+  <p>Regions have been updated.</p>
 </Alert>
 <Alert type="warn"title="Warn Alert">
-  <p>Warn Alert</p>
+  <p>This change might impact another asset.</p>
 </Alert>
 <Alert type="danger"title="Danger Alert">
-  <p>Danger Alert</p>
+  <p>This change may have result in unintended consequences.</p>
 </Alert>
 <Alert type="success"title="Success Alert">
-  <p>Success Alert</p>
+  <p>Changes have been successfully saved.</p>
 </Alert>
 ```
 

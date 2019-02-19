@@ -15,15 +15,14 @@
 }
 
 .alert-icon-container {
+  background: $neutral-300;
+  border-radius: 100%;
+  color: $neutral-600;
+  height: $height-2;
+  margin-right: $spacing-4;
   position: relative;
   padding: $spacing-2;
   width: $width-2;
-  height: $height-2;
-  border-radius: 100%;
-  background: $neutral-300;
-  margin-right: $spacing-4;
-
-  color: $neutral-600;
 }
 
 .alert-icon {
@@ -106,12 +105,14 @@
 }
 
 .alert-content {
+  padding: $spacing-1 0;
   flex: 1 0 0;
 }
 
 .alert-dismiss-btn {
   color: $neutral-500;
   margin-left: $spacing-5;
+  padding: $spacing-1;
 
   &:hover {
     color: $neutral-700;
