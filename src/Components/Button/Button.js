@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { boolRequiresOtherProp, caseInsensativeStringCompare } from '../../Utils';
+import { boolRequiresOtherProp, caseInsensitiveStringCompare } from '../../Utils';
 
 import Icon from '../Icon/Icon';
 
@@ -44,8 +44,8 @@ const Button = (
 
   const classes = classNames('btn', className, {
     'btn-loading': loading,
-    'btn-lg': caseInsensativeStringCompare(size, 'large'),
-    'btn-sm': caseInsensativeStringCompare(size, 'small'),
+    'btn-lg': caseInsensitiveStringCompare(size, 'large'),
+    'btn-sm': caseInsensitiveStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
     'btn-plain': plain,
@@ -57,7 +57,7 @@ const Button = (
   ) : null;
 
   const iconElement = function (name) {
-    const iconSize = caseInsensativeStringCompare(size, 'large') ? 20 : 16;
+    const iconSize = caseInsensitiveStringCompare(size, 'large') ? 20 : 16;
 
     return (
       <Icon name={name} size={iconSize} className="btn-icon" />

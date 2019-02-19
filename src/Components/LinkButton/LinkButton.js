@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { caseInsensativeStringCompare } from '../../Utils';
+import { caseInsensitiveStringCompare } from '../../Utils';
 
 import '../Button/Button.scss';
 
@@ -27,8 +27,8 @@ const LinkButton = (
   }
 ) => {
   const classes = classNames('btn', className, {
-    'btn-lg': caseInsensativeStringCompare(size, 'large'),
-    'btn-sm': caseInsensativeStringCompare(size, 'small'),
+    'btn-lg': caseInsensitiveStringCompare(size, 'large'),
+    'btn-sm': caseInsensitiveStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
     'btn-fullwidth': fullWidth,
