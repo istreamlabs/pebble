@@ -1,6 +1,6 @@
 {
   "name": "@istreamplanet/pebble",
-  "version": "0.1.1",
+  "version": "0.3.0",
   "description": "Pebble Design System",
   "private": false,
   "repository": {
@@ -57,7 +57,9 @@
     "styleguide:build": "styleguidist build",
     "lint": "eslint src/Components/**/*.js",
     "genIcons": "node ./src/Icons/generateIcons.js",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "preversion": "yarn cover",
+    "postversion": "git push --follow-tags"
   },
   "eslintIgnore": [
     "dist/**/*.js"
