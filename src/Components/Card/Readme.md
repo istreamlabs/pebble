@@ -55,12 +55,12 @@ Pass a `<Button>` or `<ButtonGroup>` as a `headerActions`. Actions in the header
 </Card>
 ```
 
-### Subdued Card
+### Muted Card
 
-Use a subdued card to display information with less visual emphasis
+Use a muted card to display information with less visual emphasis
 
 ```js
-<Card title="Subdued Card" subdued sectioned>
+<Card title="Muted Card" muted sectioned>
   <p>Use a subdued card to display related content with less visual emphasis.</p>
 </Card>
 

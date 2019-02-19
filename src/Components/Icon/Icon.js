@@ -21,8 +21,10 @@ export const parseSize = (size) => {
 const viewBoxSize = 16;
 
 /**
- *
- * @example ./IconExamples.md
+ * Icons provide visual context and enhance usability.
+ * Be mindful that not everyone is able to see icons.
+ * When necessary, use alt text (accessibilityLabel prop or aria-label attribute)
+ * to communicate icon meaning for assistive technologies
  */
 const Icon = (props) => {
   const {

@@ -1,9 +1,3 @@
-$breakpoints: (
-  sm: 30rem,
-  md: 60rem,
-  lg: 90rem
-);
-
 // https://glennmccomb.com/articles/useful-sass-scss-media-query-mixins-for-bootstrap/
 
 @mixin respond-above($breakpoint) {
@@ -52,7 +46,6 @@ $breakpoints: (
     @warn 'Invalid breakpoint: #{$breakpoint}.';
   }
 }
-
 
 //
 //  RESPOND BETWEEN

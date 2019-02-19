@@ -1,4 +1,4 @@
-### Button Types
+## Examples
 
 * Default buttons are most commonly used
 * Primary buttons highlight the most important action in the experience
@@ -6,12 +6,12 @@
 * Danger buttons indicate a destructive action, and usually trigger a confirmation before the action is completed
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button>default</Button>
   <Button primary>primary</Button>
   <Button danger>danger</Button>
   <Button primary danger>primary danger</Button>
-  <Button plain>text</Button>
+  <Button plain>plain</Button>
 </div>
 ```
 
@@ -19,7 +19,7 @@
 
 Render a button that performs an action, but looks like inline clickable text because it is more visually appropriate.
 
-<div class="styleguide__callout">
+<div className="styleguide__callout">
 ##### When to use a Button vs Link
 
 * Use buttons when performing an action on the page, such as "submit", "edit", or "upload". Actions almost always occur on the same page.
@@ -27,13 +27,13 @@ Render a button that performs an action, but looks like inline clickable text be
 </div>
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button plain size="small">small text</Button>
   <Button plain>default text</Button>
   <Button plain size="large">large text</Button>
 </div>
 
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button plain>text button</Button>
   <Button primary plain>primary text button</Button>
   <Button danger plain>danger text button</Button>
@@ -43,7 +43,7 @@ Render a button that performs an action, but looks like inline clickable text be
 ### Size
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button size="small">small</Button>
   <Button>medium</Button>
   <Button size="large">large</Button>
@@ -53,7 +53,7 @@ Render a button that performs an action, but looks like inline clickable text be
 ### Icon and Text
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button primary size="small" icon="add-circle">small</Button>
   <Button primary icon="add-circle">medium</Button>
   <Button primary size="large" icon="add-circle">large</Button>
@@ -96,7 +96,7 @@ Pass a `className` containing custom css to apply them in addition to the defaul
 Use for actions that aren’t currently available. The surrounding interface should make it clear why the button is disabled and what needs to be done to enable it.
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button disabled>default</Button>
   <Button disabled primary>primary</Button>
   <Button disabled danger>danger</Button>
@@ -110,7 +110,7 @@ Use when a button has been pressed and the associated action is in progress.
 
 ```js
 
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <Button loading>my button</Button>
   <Button loading primary>my button</Button>
   <Button loading danger>my button</Button>

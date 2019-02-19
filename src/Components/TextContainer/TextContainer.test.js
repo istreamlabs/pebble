@@ -16,4 +16,9 @@ describe('TextContainer', () => {
     const wrapper = shallow(<TextContainer className="myClass">test</TextContainer>);
     expect(wrapper.find('div').prop('className')).toContain('myClass');
   });
+
+  it('sets the text size', () => {
+    const wrapper = shallow(<TextContainer size="1">test</TextContainer>);
+    expect(wrapper.prop('className')).toContain('fs-1');
+  });
 });
