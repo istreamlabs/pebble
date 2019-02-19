@@ -58,7 +58,8 @@
     "lint": "eslint src/Components/**/*.js",
     "genIcons": "node ./src/Icons/generateIcons.js",
     "prepack": "yarn build",
-    "preversion": "yarn cover"
+    "preversion": "yarn cover",
+    "postversion": "git push --follow-tags"
   },
   "eslintIgnore": [
     "dist/**/*.js"
