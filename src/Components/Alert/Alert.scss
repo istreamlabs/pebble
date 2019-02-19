@@ -4,11 +4,11 @@
 
 .alert {
   box-shadow: $box-shadow-2,
-              inset 0 4px 0 0 $neutral-500,
+              inset 4px 0 0 0 $neutral-500,
               inset 0 0 0 1px $neutral-300;
   background: $neutral-200;
-  border-bottom-left-radius: $border-radius-2;
-  border-bottom-right-radius: $border-radius-2;
+  border-top-right-radius: $border-radius-1;
+  border-bottom-right-radius: $border-radius-1;
   color: $neutral-700;
   display: flex;
   flex-direction: row;
@@ -44,7 +44,7 @@
 
 .alert-info {
   box-shadow: $box-shadow-2,
-              inset 0 4px 0 0 $blue,
+              inset 4px 0 0 0 $blue,
               inset 0 0 0 1px $blue-light;
   background: $blue-lighter;
 
@@ -56,7 +56,7 @@
 
 .alert-warn {
   box-shadow: $box-shadow-2,
-              inset 0 4px 0 0 $yellow,
+              inset 4px 0 0 0 $yellow,
               inset 0 0 0 1px $yellow-light;
   background: $yellow-lighter;
 
@@ -73,7 +73,7 @@
 
 .alert-danger {
   box-shadow: $box-shadow-2,
-              inset 0 4px 0 0 $red,
+              inset 4px 0 0 0 $red,
               inset 0 0 0 1px $red-light;
   background: $red-lighter;
 
@@ -90,7 +90,7 @@
 
 .alert-success {
   box-shadow: $box-shadow-2,
-              inset 0 4px 0 0 $green,
+              inset 4px 0 0 0 $green,
               inset 0 0 0 1px $green-light;
   background: $green-lighter;
 
