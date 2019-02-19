@@ -113,6 +113,7 @@ Button.propTypes = {
   /**
    * Optional prop to specify the type of the Button
    * @see see [W3C](https://www.w3.org/TR/2011/WD-html5-20110525/the-button-element.html)
+   * @type {PropTypes.Requireable<'button' | 'submit' | 'reset'>}
    */
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
   /**
@@ -145,6 +146,7 @@ Button.propTypes = {
   loading: PropTypes.bool,
   /**
    * Changes the size of the button, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<ButtonSize>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**

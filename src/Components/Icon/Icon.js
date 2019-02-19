@@ -23,7 +23,7 @@ const viewBoxSize = 16;
 /**
  * Icons provide visual context and enhance usability.
  * Be mindful that not everyone is able to see icons.
- * When necessary, use alt text (accessibilityLabel prop or aria-label attribute)
+ * When necessary, use alt text (`accessibilityLabel` prop or `aria-label` attribute)
  * to communicate icon meaning for assistive technologies
  */
 const Icon = (props) => {
@@ -79,6 +79,7 @@ Icon.propTypes = {
   className: PropTypes.string,
   /**
    * Changes the size of the icon, passed as a string or int
+   * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
    */
   size: PropTypes.oneOf([16, 20, 24, 32, 48, 56, 64, '16', '20', '24', '32', '48', '56', '64']),
   /**
@@ -91,6 +92,7 @@ Icon.propTypes = {
   accessibilityLabel: PropTypes.string,
   /**
    * The name of the icon to display
+   * @type {PropTypes.Requireable<keyof icons>}
    */
   name: PropTypes.string
 };

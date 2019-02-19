@@ -63,7 +63,6 @@ const LinkButton = (
 };
 
 LinkButton.defaultProps = {
-  type: 'button',
   size: 'medium',
 };
 
@@ -90,6 +89,7 @@ LinkButton.propTypes = {
   href: PropTypes.string.isRequired,
   /**
    * Changes the size of the button, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<ButtonSize>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**

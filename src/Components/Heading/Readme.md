@@ -43,4 +43,6 @@ Add the `truncate` prop to restrict text to a single line and truncate with an e
 ### Text Alignment
 ```js
 <Heading element="2" size="4" textAlign="right">Right Align</Heading>
+<Heading element="2" size="4" textAlign="center">Center Align</Heading>
+<Heading element="2" size="4" textAlign="left">Left Align</Heading>
 ```

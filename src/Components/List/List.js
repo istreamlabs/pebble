@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import TextContainer from '../TextContainer/TextContainer';
-import { parseTextSize } from '../../Utils';
 
 import './List.scss';
 
@@ -25,20 +24,18 @@ const List = (
     { 'list-ordered': ordered, },
     className);
 
-  const parsedSize = size ? parseTextSize(size) : null;
-
   const Element = ordered ? 'ol' : 'ul';
 
   const List = <Element className={classes}>{children}</Element>;
 
   return (
-    parsedSize ? <TextContainer size={parsedSize}>{List}</TextContainer> : List
+    size ? <TextContainer size={size}>{List}</TextContainer> : List
   );
 };
 
 List.propTypes = {
   /**
-   * Whether this is an ordered.
+   * Whether this is an ordered list.
    */
   ordered: PropTypes.bool,
   /**
@@ -50,9 +47,10 @@ List.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * font size to apply to the list based on the [typograhy scale](/#/Styles/Typography)
+   * font size to apply to the list based on the [typography scale](/#/Styles/Typography)
+   * @type {PropTypes.Requireable<FontSizeLike>}
    */
-  size: PropTypes.PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
 };
 
 export default List;
