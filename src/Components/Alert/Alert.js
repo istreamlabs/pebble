@@ -96,6 +96,7 @@ Alert.propTypes = {
   title: PropTypes.string,
   /**
    * Type of message to be displayed
+   * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
    */
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
   /**
