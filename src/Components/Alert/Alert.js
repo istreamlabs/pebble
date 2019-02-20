@@ -72,7 +72,6 @@ const Alert = (
 
 Alert.defaultProps = {
   type: 'default',
-  isOpen: false,
 };
 
 Alert.propTypes = {
@@ -89,10 +88,6 @@ Alert.propTypes = {
    * See the [Icon component documentation](/#/Components/Icon) for available components
    */
   icon: PropTypes.string,
-  /**
-   * Is the banner shown or hidden
-   */
-  isOpen: PropTypes.bool,
   /**
    * The header of the alert
    */
