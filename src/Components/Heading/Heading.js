@@ -98,9 +98,9 @@ Heading.propTypes = {
   responsive: PropTypes.bool,
   /**
    * text alignment
-   * @type {PropTypes.Requireable<'center'|'right'|'left'>}
+   * @type {PropTypes.Requireable<TextAlign>}
    */
-  textAlign: PropTypes.oneOf(['center', 'right', 'left']),
+  textAlign: PropTypes.oneOf(['left', 'center', 'right']),
   /**
    * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
    */
