@@ -85,6 +85,7 @@ Apply padding to all four sides.
 <Block textSize="5">Text size of 5</Block>
 <Block textSize="6">Text size of 6</Block>
 <Block textSize="7">Text size of 7</Block>
+<Block>Default text size</Block>
 ```
 
 ### Truncate
