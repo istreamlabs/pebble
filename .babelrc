@@ -3,7 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "modules": false
+        "modules": false,
+        "targets": {
+          "chrome": 70,
+        }
       }
     ],
     "@babel/preset-react"
