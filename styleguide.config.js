@@ -88,6 +88,11 @@ module.exports = {
     maxWidth: 960,
   },
   styles: {
+    List: {
+      li: {
+        marginBottom: '16px',
+      },
+    },
     Heading: {
       heading1: {
         fontWeight: '700',

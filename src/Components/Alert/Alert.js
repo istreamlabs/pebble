@@ -19,7 +19,9 @@ const DEFAULT_ICONS = {
 };
 
 /**
- * An Alert displays important status changes or persistent conditions.
+ * Used to communicate an important and usually time-sensitive message to the user.
+ *
+ * ---
  */
 
 const Alert = (
@@ -55,7 +57,8 @@ const Alert = (
       paddingVertical="4"
       marginBottom="4"
       className={classes}
-      role="alert"
+      role={type === 'danger' || type === 'warn' ? 'alert' : undefined}
+      aria-live={type === 'default' || type === 'info' || type === 'success' ? 'polite' : undefined}
     >
       {iconMarkup}
       <TextContainer tight size="6" className="alert-content">
