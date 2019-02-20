@@ -6,6 +6,8 @@ import './Link.scss';
 
 /**
  * A `Link` renders an `<a>` for navigation between web pages.
+ *
+ * ---
  */
 
 const Link = (

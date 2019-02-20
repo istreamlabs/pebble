@@ -26,6 +26,8 @@ const viewBoxSize = 16;
  * When necessary, use alt text (`accessibilityLabel` prop or `aria-label` attribute)
  * to communicate icon meaning for assistive technologies
  *
+ * ---
+ *
  * @example ./IconExamples.md
  */
 const Icon = (props) => {

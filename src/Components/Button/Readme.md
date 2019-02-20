@@ -1,9 +1,6 @@
 ## Examples
 
-* Default buttons are most commonly used
-* Primary buttons highlight the most important action in the experience
-* Don't use more than one primary button in a section/screen
-* Danger buttons indicate a destructive action, and usually trigger a confirmation before the action is completed
+Use the button that's most appropriate for your use case.
 
 ```js
 <div className="styleguide__buttons">
@@ -126,3 +123,14 @@ Use for buttons placed in a narrow column.
 <Button fullWidth primary>full width</Button>
 
 ```
+
+## Best Practices
+
+Buttons should:
+
+* Be concise and clearly labeled.
+* Use Default buttons for most cases
+* Avoid using Icon-only buttons unless the action they perform is completely obvious. 
+* Use primary buttons highlight the most important action in the experience
+* Only have one primary button in a section/screen
+* Use Danger buttons to indicate a destructive action. They usually trigger a confirmation before the action is completed

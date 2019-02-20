@@ -1,11 +1,13 @@
 {
-  "version": "0.1",
-  "language": "en",
-  "words": [
-    "assistive",
-    "viewports"
-  ],
-  "ignoreWords": [
-    "xmlns"
-  ]
+    "version": "0.1",
+    "language": "en",
+    "words": [
+        "assistive",
+        "scannable",
+        "viewports"
+    ],
+    "flagWords": [],
+    "ignoreWords": [
+        "xmlns"
+    ]
 }

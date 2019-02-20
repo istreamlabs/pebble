@@ -10,6 +10,8 @@ import './List.scss';
  * A typographical list of related content.
  * * Lists begin with a bullet or number
  * * Lists break up related content to make information easier to scan
+ *
+ * ---
  */
 
 const List = (

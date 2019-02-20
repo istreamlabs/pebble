@@ -11,6 +11,8 @@ import './Button.scss';
  * Buttons are used as triggers for actions. They are used in forms,
  * toolbars, modal dialogs and as stand-alone action triggers. Actions
  * almost always occur on the same page.
+ *
+ * ---
  */
 
 // see https://github.com/yannickcr/eslint-plugin-react/issues/1555

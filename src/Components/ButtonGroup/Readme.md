@@ -48,3 +48,11 @@ Make the group of buttons take up 100% of its parent width. Button widths are ev
   <Button>right</Button>
 </ButtonGroup>
 ```
+
+## Best Practices
+
+Button Groups should:
+
+* Contain [Buttons](/#/Components/Button)
+* Only group buttons that have a relationship
+* Contain only a limited number of buttons. Be judicious in the number of items in a button group

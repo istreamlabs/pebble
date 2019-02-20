@@ -36,6 +36,8 @@ export const parseElement = (element) => {
  * If you do not pass an explicit size, the Heading will pick the
  * size based on the element. By default headings will scale for mobile,
  * tablet and desktop [viewports](.//#/Styles/Media%20Query).
+ *
+ * ---
  */
 
 const Heading = (

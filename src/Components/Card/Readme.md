@@ -65,3 +65,12 @@ Use a muted card to display information with less visual emphasis
 </Card>
 
 ```
+
+## Best Practices
+
+Cards should:
+
+* Have a title to make the its contents easily scannable.
+* Should contain contents of the same type or have a relationship
+* Limit the number of header actions to two at most
+* Have only one primary call to action

@@ -11,6 +11,8 @@ import './Card.scss';
  * such as a list of packages or regions. A basic card contains
  * a title, content and an optional set of actions that may be
  * performed on the content.
+ *
+ * ---
  */
 
 const Card = (

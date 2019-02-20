@@ -10,6 +10,8 @@ import './MainMenu.scss';
  * MainMenu provides a way for users to navigate from one site section to another.
  * It contains a top (`menu`) and bottom (`auxMenu`) set of menu items, with each
  * allowing a two-level structure.
+ *
+ * ---
  */
 
 class MainMenu extends React.Component {
