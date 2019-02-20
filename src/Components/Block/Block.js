@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { parseTextSize } from '../../Utils';
 
-import './Block.scss';
-
 /**
  * A `<Block>` is a layout component to build UIs with consistent
  * padding and vertical spacing between components. Use it to also
