@@ -57,10 +57,12 @@ Text.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * color of the text
+   * @type {PropTypes.Requireable<'success'|'warn'|'danger'|'muted'|'info'|'code'>}
    */
   appearance: PropTypes.oneOf(['success', 'warn', 'danger', 'muted', 'info', 'code']),
   /**
-   * set font size based on the [typograhy scale](/#/Styles/Typography)
+   * set font size based on the [typography scale](/#/Styles/Typography)
+   * @type {PropTypes.Requireable<FontSizeLike>}
    */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
 };

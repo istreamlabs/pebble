@@ -16,7 +16,7 @@ class MenuItem extends React.Component {
     };
   }
 
-  handleToogleOpen = () => {
+  handleToggleOpen = () => {
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
   }
@@ -39,7 +39,7 @@ class MenuItem extends React.Component {
     const accessibilityLabel = isOpen ? `close ${item.label} sub items` : `show ${item.label} sub items`;
 
     return (
-      <Button onClick={this.handleToogleOpen} className="menu-item-collapse-button" accessibilityLabel={accessibilityLabel}>
+      <Button onClick={this.handleToggleOpen} className="menu-item-collapse-button" accessibilityLabel={accessibilityLabel}>
         <Icon
           name="arrow-small-down"
           accessibilityLabel={accessibilityLabel}
@@ -86,7 +86,7 @@ class MenuItem extends React.Component {
               id={`MenuItem-${item.id}`}
               href={item.href}
               className="menu-item"
-              onClick={hasSubItems ? this.handleToogleOpen : undefined}
+              onClick={hasSubItems ? this.handleToggleOpen : undefined}
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
             >
@@ -99,7 +99,7 @@ class MenuItem extends React.Component {
               className="menu-item"
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
-              onClick={this.handleToogleOpen}
+              onClick={this.handleToggleOpen}
             >
               {this.renderIconLabel()}
               <Icon

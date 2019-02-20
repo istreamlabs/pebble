@@ -70,8 +70,12 @@ const Heading = (
 Heading.defaultProps = {
   element: 2,
   responsive: true,
+  textAlign: 'left',
 };
 
+/**
+ * @typedef {(1|2|3|4|5|6|"1"|"2"|"3"|"4"|"5"|"6")} ElementSizeLike
+ */
 Heading.propTypes = {
   /**
    * Additional classNames to add
@@ -83,14 +87,16 @@ Heading.propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * Semantic heading level, can passed as int or string
+   * @type {PropTypes.Requireable<ElementSizeLike>}
    */
-  element: PropTypes.PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']).isRequired,
+  element: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']).isRequired,
   /**
    * should the font size be reduced for smaller viewports
    */
   responsive: PropTypes.bool,
   /**
    * text alignment
+   * @type {PropTypes.Requireable<'center'|'right'|'left'>}
    */
   textAlign: PropTypes.oneOf(['center', 'right', 'left']),
   /**
@@ -99,8 +105,9 @@ Heading.propTypes = {
   truncate: PropTypes.bool,
   /**
    * appearance level, can passed as int or string
+   * @type {PropTypes.Requireable<ElementSizeLike>}
    */
-  size: PropTypes.PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
 };
 
 export default Heading;
