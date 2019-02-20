@@ -61,7 +61,7 @@ describe('Alert', () => {
     });
 
     it('renders a custom icon', () => {
-      const wrapper = mount(<Alert icon="fullscreen">test</Alert>);
+      const wrapper = mount(<Alert icon="fullscreen" type="success">test</Alert>);
       expect(wrapper.find(Icon).prop('name')).toBe('fullscreen');
     });
   });
