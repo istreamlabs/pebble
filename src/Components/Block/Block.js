@@ -59,31 +59,38 @@ Block.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typography scale](/#/Styles/Typography
+   * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typography scale](/#/Styles/Typography)
+   * @type {PropTypes.Requireable<FontSizeLike>}
    */
   textSize: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
   /**
    * Margin spacing to be added above this block.
+   * @type {PropTypes.Requireable<Spacing>}
    */
   marginTop: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
   /**
    * Margin spacing to be added below this block.
+   * @type {PropTypes.Requireable<Spacing>}
    */
   marginBottom: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
   /**
    * Padding to be added uniformly within this block.
+   * @type {PropTypes.Requireable<Spacing>}
    */
   padding: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
   /**
    * Padding to be added to the left and right. Will override a `padding` value.
+   * @type {PropTypes.Requireable<Spacing>}
    */
   paddingHorizontal: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
   /**
    * Padding to be added to the top and bottom. Will override a `padding` value.
+   * @type {PropTypes.Requireable<Spacing>}
    */
   paddingVertical: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
   /**
    * Text alignment within this block.
+   * @type {PropTypes.Requireable<TextAlign>}
    */
   textAlign: PropTypes.oneOf(['left', 'right', 'center']),
   /**
