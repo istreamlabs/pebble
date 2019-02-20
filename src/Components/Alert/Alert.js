@@ -36,7 +36,7 @@ const Alert = (
     [`alert-${type}`]: type,
   }, className);
 
-  const iconName = icon || DEFAULT_ICONS[type];
+  const iconName = icon || DEFAULT_ICONS[type] || DEFAULT_ICONS['default'];
 
   const iconMarkup = (
     <div className="alert-icon-container">
