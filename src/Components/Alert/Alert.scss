@@ -1,0 +1,120 @@
+@import '../../Styles/foundation/variables.scss';
+@import '../../Styles/foundation/media-queries.scss';
+@import '../../Styles/foundation/typography.scss';
+
+.alert {
+  box-shadow: $box-shadow-2,
+              inset 4px 0 0 0 $neutral-500,
+              inset 0 0 0 1px $neutral-300;
+  background: $neutral-200;
+  border-top-right-radius: $border-radius-1;
+  border-bottom-right-radius: $border-radius-1;
+  color: $neutral-700;
+  display: flex;
+  flex-direction: row;
+}
+
+.alert-icon-container {
+  background: $neutral-300;
+  border-radius: 100%;
+  color: $neutral-600;
+  height: $height-2;
+  margin-right: $spacing-4;
+  position: relative;
+  padding: $spacing-2;
+  width: $width-2;
+}
+
+.alert-icon {
+  position: absolute;
+  z-index: 2;
+}
+
+.alert-icon-white-fill {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  border-radius: 100%;
+  width: 14px;
+  height: 14px;
+  background: $white;
+  z-index: 0;
+}
+
+.alert-info {
+  box-shadow: $box-shadow-2,
+              inset 4px 0 0 0 $blue,
+              inset 0 0 0 1px $blue-light;
+  background: $blue-lighter;
+
+  .alert-icon-container {
+    background: $blue-light;
+    color: $blue-dark;
+  }
+}
+
+.alert-warn {
+  box-shadow: $box-shadow-2,
+              inset 4px 0 0 0 $yellow,
+              inset 0 0 0 1px $yellow-light;
+  background: $yellow-lighter;
+
+  .alert-icon-container {
+    background: $yellow-light;
+    color: $yellow-dark;
+
+    svg {
+      border-radius: 8px;
+      background: $white;
+    }
+  }
+}
+
+.alert-danger {
+  box-shadow: $box-shadow-2,
+              inset 4px 0 0 0 $red,
+              inset 0 0 0 1px $red-light;
+  background: $red-lighter;
+
+  .alert-icon-container {
+    background: $red-light;
+    color: $red-dark;
+
+    svg {
+      border-radius: 8px;
+      background: $white;
+    }
+  }
+}
+
+.alert-success {
+  box-shadow: $box-shadow-2,
+              inset 4px 0 0 0 $green,
+              inset 0 0 0 1px $green-light;
+  background: $green-lighter;
+
+  .alert-icon-container {
+    background: $green-light;
+    color: $green-dark;
+
+    svg {
+      border-radius: 8px;
+      background: $white;
+    }
+  }
+}
+
+.alert-content {
+  padding: $spacing-1 0;
+  flex: 1 0 0;
+}
+
+.alert-dismiss-btn {
+  color: $neutral-500;
+  margin-left: $spacing-5;
+  padding: $spacing-1;
+
+  &:hover {
+    color: $neutral-700;
+  }
+}
