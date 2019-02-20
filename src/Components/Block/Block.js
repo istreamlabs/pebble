@@ -59,7 +59,7 @@ Block.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typograhy scale](/#/Styles/Typography
+   * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typography scale](/#/Styles/Typography
    */
   textSize: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
   /**
