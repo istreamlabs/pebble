@@ -14,8 +14,13 @@ describe('Badge', () => {
     expect(wrapper.text()).toBe('Hello Pebble');
   });
 
-  it('renders an icon if the type is live', () => {
-    const wrapper = mount(<Badge type="live">Hello Pebble</Badge>);
+  it('renders an icon', () => {
+    const wrapper = mount(<Badge type="danger" icon="circle">Hello Pebble</Badge>);
+    expect(wrapper.contains(Icon)).toBeTruthy();
+  });
+
+  it('renders correct icon', () => {
+    const wrapper = mount(<Badge type="danger" icon="circle">Hello Pebble</Badge>);
     expect(wrapper.find(Icon).prop('name')).toBe('circle');
   });
 

@@ -40,7 +40,7 @@
 
 .badge-danger {
   background: $red-lighter;
-  color: $red-dark;
+  color: $red;
 }
 
 .badge-success {
@@ -60,4 +60,9 @@
   text-transform: uppercase;
   top: .125em;
   position: relative;
+}
+
+.baseline {
+  position: relative;
+  top: .125em;
 }

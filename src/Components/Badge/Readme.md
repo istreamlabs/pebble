@@ -11,7 +11,6 @@ Choose the appropriate `type` for your use case.
 <Badge type="danger">danger</Badge>
 <Badge type="success">success</Badge>
 <Badge type="special">special</Badge>
-<Badge type="live" />
 ```
 
 ### Small Size
@@ -24,12 +23,12 @@ Medium is the default size.
 <Badge size="small">small</Badge>
 ```
 
-### Live Badge
+### Icons
 
-Because live is a special status, it renders a red light icon and automatically replaces the Badge label with the word &ldquo;LIVE&rdquo;. 
-
+Pass the name of an icon for special badges (e.g. a live stream).
 ```js
-<Badge size="large" type="live">This text is replaced with LIVE</Badge>
+<Badge size="large" type="danger" icon="circle">LIVE</Badge>
+<Badge size="large" type="special" icon="add-circle">add circle</Badge>
 ```
 
 ## Best Practices

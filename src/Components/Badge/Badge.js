@@ -7,6 +7,14 @@ import Text from '../Text/Text';
 
 import './Badge.scss';
 
+function getSize(size) {
+  switch (size) {
+    case 'small': return 7;
+    case 'large': return 5;
+    default: return 6;
+  }
+}
+
 /**
  * A way to communicate status of an object.
  *
@@ -16,6 +24,7 @@ import './Badge.scss';
 const Badge = (
   {
     children,
+    icon,
     size,
     type,
   }
@@ -23,19 +32,17 @@ const Badge = (
   const classes = classNames('badge', {
     [`badge-${type}`]: type !== 'default',
     [`badge-${size}`]: type !== 'medium',
-    baseline: type === 'live',
+    baseline: icon,
   });
-
-  const iconMarkup = type === 'live' ? <Icon name="circle" className="badge-icon" /> : null;
 
   return (
     <Text
       className={classes}
-      size={size === 'small' ? 7 : size === 'large' ? 5 : 6}
+      size={getSize(size)}
       bold
     >
-      {iconMarkup}
-      {type === 'live' ? 'live' : children}
+      {icon && <Icon name={icon} className="badge-icon" />}
+      {children}
     </Text>
   );
 };
@@ -51,15 +58,20 @@ Badge.propTypes = {
    */
   children: PropTypes.string,
   /**
+   * The `<Icon>` component to be rendered inside the badge.
+   * See the [Icon component documentation](/#/Components/Icon) for available components
+   */
+  icon: PropTypes.string,
+  /**
    * Change the size of the Badge
    * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Type of message to be displayed
-   * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success' | 'special' | 'live'>}
+   * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success' | 'special'>}
    */
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special', 'live']),
+  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
 };
 
 export default Badge;
