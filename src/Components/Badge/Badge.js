@@ -56,10 +56,11 @@ Badge.propTypes = {
   /**
    * Text to be rendered
    */
-  children: PropTypes.string,
+  children: PropTypes.string.isRequired,
   /**
    * The `<Icon>` component to be rendered inside the badge.
-   * See the [Icon component documentation](/#/Components/Icon) for available components
+   * See the [Icon component documentation](/#/Components/Icon) for available icons
+   * @type {PropTypes.Requireable<keyof icons>}
    */
   icon: PropTypes.string,
   /**
