@@ -53,7 +53,7 @@ ButtonGroup.propTypes = {
   fullWidth: PropTypes.bool,
   /**
    * Changes the size of all buttons in the group
-   * @type {PropTypes.Requireable<ButtonSize>}
+   * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**

@@ -1,4 +1,5 @@
 export { default as Alert } from './Alert/Alert';
+export { default as Badge } from './Badge/Badge';
 export { default as Block } from './Block/Block';
 export { default as Button } from './Button/Button';
 export { default as ButtonGroup } from './ButtonGroup/ButtonGroup';
