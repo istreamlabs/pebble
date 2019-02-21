@@ -91,7 +91,7 @@ LinkButton.propTypes = {
   href: PropTypes.string.isRequired,
   /**
    * Changes the size of the button, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<ButtonSize>}
+   * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**

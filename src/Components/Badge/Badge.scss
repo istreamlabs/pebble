@@ -1,0 +1,63 @@
+@import '../../Styles/foundation/variables.scss';
+@import '../../Styles/foundation/media-queries.scss';
+@import '../../Styles/foundation/typography.scss';
+
+.badge {
+  background: $neutral-300;
+  border-radius: $border-radius-pill;
+  color: $neutral-700;
+  display: inline-flex;
+    align-self: center;
+  line-height: 1;
+  padding: $spacing-1 $spacing-3;
+}
+
+.badge-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: $spacing-1;
+  height: 1em;
+  width: 1em;
+}
+
+.badge-large {
+  padding: $spacing-2 $spacing-4;
+}
+
+.badge-small {
+  padding: $spacing-1 $spacing-2;
+}
+
+.badge-info {
+  background: $blue-lighter;
+  color: $blue-dark;
+}
+
+.badge-warn {
+  background: $yellow-lighter;
+  color: $yellow-darker;
+}
+
+.badge-danger {
+  background: $red-lighter;
+  color: $red-dark;
+}
+
+.badge-success {
+  background: $green-lighter;
+  color: $green-dark;
+}
+
+.badge-special {
+  background: $indigo-lighter;
+  color: $indigo-dark;
+}
+
+.badge-live {
+  background: $red-lighter;
+  color: $red;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  top: .125em;
+  position: relative;
+}
