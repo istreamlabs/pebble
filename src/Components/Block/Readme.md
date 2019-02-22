@@ -26,15 +26,15 @@ Apply padding to all four sides.
 
 ```js hide
 <Block itemSpacing="1" direction="column">
-<Block background="neutral-300" padding="8">Padding of 8</Block>
-<Block background="neutral-300" padding="7">Padding of 7</Block>
-<Block background="neutral-300" padding="6">Padding of 6</Block>
-<Block background="neutral-300" padding="5">Padding of 5</Block>
-<Block background="neutral-300" padding="4">Padding of 4</Block>
-<Block background="neutral-300" padding="3">Padding of 3</Block>
-<Block background="neutral-300" padding="2">Padding of 2</Block>
-<Block background="neutral-300" padding="1">Padding of 1</Block>
-<Block background="neutral-300">No padding</Block>
+  <Block background="neutral-300" padding="8">Padding of 8</Block>
+  <Block background="neutral-300" padding="7">Padding of 7</Block>
+  <Block background="neutral-300" padding="6">Padding of 6</Block>
+  <Block background="neutral-300" padding="5">Padding of 5</Block>
+  <Block background="neutral-300" padding="4">Padding of 4</Block>
+  <Block background="neutral-300" padding="3">Padding of 3</Block>
+  <Block background="neutral-300" padding="2">Padding of 2</Block>
+  <Block background="neutral-300" padding="1">Padding of 1</Block>
+  <Block background="neutral-300">No padding</Block>
 </Block>
 ```
 
@@ -43,29 +43,33 @@ Apply padding to all four sides.
 `Block` can have separate horizontal and vertical padding
 
 ```js
-<Block background="neutral-300" paddingHorizontal="8">Horizontal padding of 8</Block>
-<Block background="neutral-300" paddingHorizontal="7">Horizontal padding of 7</Block>
-<Block background="neutral-300" paddingHorizontal="6">Horizontal padding of 6</Block>
-<Block background="neutral-300" paddingHorizontal="5">Horizontal padding of 5</Block>
-<Block background="neutral-300" paddingHorizontal="4">Horizontal padding of 4</Block>
-<Block background="neutral-300" paddingHorizontal="3">Horizontal padding of 3</Block>
-<Block background="neutral-300" paddingHorizontal="2">Horizontal padding of 2</Block>
-<Block background="neutral-300" paddingHorizontal="1">Horizontal padding of 1</Block>
-<Block background="neutral-300">No padding</Block>
+<Block itemSpacing="1" direction="column">
+  <Block background="neutral-300" paddingHorizontal="8">Horizontal padding of 8</Block>
+  <Block background="neutral-300" paddingHorizontal="7">Horizontal padding of 7</Block>
+  <Block background="neutral-300" paddingHorizontal="6">Horizontal padding of 6</Block>
+  <Block background="neutral-300" paddingHorizontal="5">Horizontal padding of 5</Block>
+  <Block background="neutral-300" paddingHorizontal="4">Horizontal padding of 4</Block>
+  <Block background="neutral-300" paddingHorizontal="3">Horizontal padding of 3</Block>
+  <Block background="neutral-300" paddingHorizontal="2">Horizontal padding of 2</Block>
+  <Block background="neutral-300" paddingHorizontal="1">Horizontal padding of 1</Block>
+  <Block background="neutral-300">No padding</Block>
+</Block>
 ```
 
 #### Vertical Padding
 
 ```js
-<Block background="neutral-300" paddingVertical="8">Vertical padding of 8</Block>
-<Block background="neutral-300" paddingVertical="7">Vertical padding of 7</Block>
-<Block background="neutral-300" paddingVertical="6">Vertical padding of 6</Block>
-<Block background="neutral-300" paddingVertical="5">Vertical padding of 5</Block>
-<Block background="neutral-300" paddingVertical="4">Vertical padding of 4</Block>
-<Block background="neutral-300" paddingVertical="3">Vertical padding of 3</Block>
-<Block background="neutral-300" paddingVertical="2">Vertical padding of 2</Block>
-<Block background="neutral-300" paddingVertical="1">Vertical padding of 1</Block>
-<Block background="neutral-300">No padding</Block>
+<Block itemSpacing="1" direction="column">
+  <Block background="neutral-300" paddingVertical="8">Vertical padding of 8</Block>
+  <Block background="neutral-300" paddingVertical="7">Vertical padding of 7</Block>
+  <Block background="neutral-300" paddingVertical="6">Vertical padding of 6</Block>
+  <Block background="neutral-300" paddingVertical="5">Vertical padding of 5</Block>
+  <Block background="neutral-300" paddingVertical="4">Vertical padding of 4</Block>
+  <Block background="neutral-300" paddingVertical="3">Vertical padding of 3</Block>
+  <Block background="neutral-300" paddingVertical="2">Vertical padding of 2</Block>
+  <Block background="neutral-300" paddingVertical="1">Vertical padding of 1</Block>
+  <Block background="neutral-300">No padding</Block>
+</Block>
 ```
 
 ### Margin Top
@@ -99,40 +103,30 @@ Apply padding to all four sides.
 ### Text Size
 
 ```js
-<Block background="neutral-300" textSize="1">Text size of 1</Block>
-<Block background="neutral-300" textSize="2">Text size of 2</Block>
-<Block background="neutral-300" textSize="3">Text size of 3</Block>
-<Block background="neutral-300" textSize="4">Text size of 4</Block>
-<Block background="neutral-300" textSize="5">Text size of 5</Block>
-<Block background="neutral-300" textSize="6">Text size of 6</Block>
-<Block background="neutral-300" textSize="7">Text size of 7</Block>
-<Block background="neutral-300">Default text size</Block>
+<Block itemSpacing="3" direction="column">
+  <Block textSize="1">Text size of 1</Block>
+  <Block textSize="2">Text size of 2</Block>
+  <Block textSize="3">Text size of 3</Block>
+  <Block textSize="4">Text size of 4</Block>
+  <Block textSize="5">Text size of 5</Block>
+  <Block textSize="6">Text size of 6</Block>
+  <Block textSize="7">Text size of 7</Block>
+  <Block>Default text size</Block>
+</Block>
 ```
 
 ### Truncate
 
 ```js
-<Block background="neutral-300" truncate>This Block has truncate set to true. Therefore it's content is limited to a single line, and overflow content truncated with an ellipsis.</Block>
+<Block truncate>This Block has truncate set to true. Therefore it's content is limited to a single line, and overflow content truncated with an ellipsis.</Block>
 ```
 
 ### Text Alignment
 
 ```js
-<Block background="neutral-300">Left Aligned</Block>
-<Block background="neutral-300" textAlign="center">Centered</Block>
-<Block background="neutral-300" textAlign="right">Right Aligned</Block>
-```
-
-### Block with TextContainer
-
-Use `<Block>` as a wrapper for other elements to consistently control spacing.
-
-```js
-<Block background="neutral-300" padding="6">
-  <TextContainer>
-    <Heading element="3">Who is iStreamPlanet?</Heading>
-    <p>iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media. We deliver the end-to-end video workflow from signal acquisition to the streaming app experience — all focused on the fan.</p>
-    <p>iStreamPlanet has earned the trust of leading sports and entertainment brands through innovation, dedication to high quality video, and exceptional customer service.</p>
-  </TextContainer>
+<Block direction="column" itemSpacing="3">
+  <Block background="neutral-300" direction="column">Left Aligned</Block>
+  <Block background="neutral-300" direction="column" textAlign="center">Centered</Block>
+  <Block background="neutral-300" direction="column" textAlign="right">Right Aligned</Block>
 </Block>
 ```
