@@ -24,6 +24,7 @@ function getSize(size) {
 const Badge = (
   {
     children,
+    className,
     icon,
     size,
     type,
@@ -33,7 +34,7 @@ const Badge = (
     [`badge-${type}`]: type !== 'default',
     [`badge-${size}`]: type !== 'medium',
     baseline: icon,
-  });
+  }, className);
 
   return (
     <Text
@@ -57,6 +58,10 @@ Badge.propTypes = {
    * Text to be rendered
    */
   children: PropTypes.string.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * The `<Icon>` component to be rendered inside the badge.
    * See the [Icon component documentation](/#/Components/Icon) for available icons

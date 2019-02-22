@@ -7,15 +7,51 @@ describe('Block', () => {
     expect(() => { shallow(<Block>hello</Block>); }).not.toThrow();
   });
 
-  it('renders children', () => {
-    const wrapper = shallow(<Block><p>Hello Pebble</p></Block>);
-    expect(wrapper.find('p').text()).toBe('Hello Pebble');
+  it('renders all children', () => {
+    const wrapper = shallow(<Block itemSpacing="3">
+      <p>Hello Pebble</p>
+      <p>Second Paragraph</p>
+    </Block>);
+    expect(wrapper.find('p').first().text()).toBe('Hello Pebble');
+    expect(wrapper.find('div').children()).toHaveLength(2);
   });
 
   it('allows for custom classes', () => {
     const wrapper = shallow(<Block className="myClass">test</Block>);
     expect(wrapper.prop('className')).toContain('myClass');
   });
+
+  describe('Flex', () => {
+    it('sets flex', () => {
+      const wrapper = shallow(<Block flex>test</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('flex', '1 1');
+    });
+    it('sets flex when passed a string', () => {
+      const wrapper = shallow(<Block flex="grow">test</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0 auto');
+    });
+    it('sets flex-grow and flex-shrink', () => {
+      const wrapper = shallow(<Block flex={{ grow: 5, shrink: 1 }}>test</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('flex', '5 1 auto');
+    });
+
+    it('sets default flex when passed an object', () => {
+      const wrapper = shallow(<Block flex={{ }}>test</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0 auto');
+    });
+
+    it('sets the flex-direction', () => {
+      const wrapper = shallow(<Block direction="column">test</Block>);
+      expect(wrapper.prop('className')).toContain('flex-column');
+    });
+    it('adds spacing between items', () => {
+      const wrapper = shallow(<Block itemSpacing="3">
+        <Block>1</Block>
+        <Block>2</Block>
+      </Block>);
+      expect(wrapper.find(Block).first().prop('className')).toContain('mr-3');
+    });
+  }),
 
   describe('Margin', () => {
     it('sets all margin bottom', () => {
@@ -57,12 +93,12 @@ describe('Block', () => {
       expect(wrapper.prop('className')).toContain('text-right');
     });
 
-    it('sets cemter alignment', () => {
+    it('sets center alignment', () => {
       const wrapper = shallow(<Block textAlign="center">test</Block>);
       expect(wrapper.prop('className')).toContain('text-center');
     });
 
-    it('sets trunate', () => {
+    it('sets truncate', () => {
       const wrapper = shallow(<Block truncate>test</Block>);
       expect(wrapper.prop('className')).toContain('truncate');
     });

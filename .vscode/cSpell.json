@@ -5,7 +5,8 @@
         "assistive",
         "dismissible",
         "scannable",
-        "viewports"
+        "viewports",
+        "woff"
     ],
     "flagWords": [],
     "ignoreWords": [
