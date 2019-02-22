@@ -12,21 +12,20 @@ const FLEX_MAP = {
   shrink: '0 1',
 };
 
-// const BASIS_MAP = {
-//   auto: 'auto',
-//   full: '100%',
-//   '1/2': '50%',
-//   '1/4': '25%',
-//   '2/4': '50%',
-//   '3/4': '75%',
-//   '1/3': '33.33%',
-//   '2/3': '66.66%',
-// };
+const BASIS_MAP = {
+  auto: 'auto',
+  full: '100%',
+  '1/2': '50%',
+  '1/4': '25%',
+  '2/4': '50%',
+  '3/4': '75%',
+  '1/3': '33.33%',
+  '2/3': '66.66%',
+};
 
 /**
  * A `<Block>` is a layout component to build UIs with consistent
- * padding and vertical spacing between components. Use it to also
- * set `font-size`.
+ * padding and vertical spacing between components. Use it to also set `font-size`.
  *
  * By using a `<Block>` component instead of a `div` for layouts,
  * you'll be able to maintain consistent component spacing by
@@ -45,6 +44,7 @@ const Block = (
     className,
     direction,
     flex,
+    height,
     itemSpacing,
     justify,
     marginTop,
@@ -55,11 +55,14 @@ const Block = (
     textAlign,
     textSize,
     truncate,
+    width,
     wrap,
     ...props,
   }
 ) => {
   const parsedTextSize = textSize ? parseTextSize(textSize) : null;
+
+  const basisStyle = basis ? { 'flex-basis': BASIS_MAP[basis] } : null;
 
   const flexGrowShrinkProp = (flex) => {
     if (typeof flex === 'boolean' || typeof flex === 'string') {
@@ -71,6 +74,14 @@ const Block = (
   };
 
   const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
+
+  const widthStyle = { width: width || null };
+  const heightStyle = { height: height || null };
+
+  const mergedStyle = {
+    ...flexStyle, ...basisStyle, ...widthStyle, ...heightStyle
+  };
+
 
   const classes = classNames('block', {
     [`bg-${background}`]: background,
@@ -98,7 +109,7 @@ const Block = (
   )) : children;
 
   return (
-    <div className={classes} {...props} style={flexStyle}>
+    <div className={classes} {...props} style={mergedStyle}>
       {blockChildren}
     </div>
   );
@@ -153,6 +164,10 @@ Block.propTypes = {
     })
   ]),
   /**
+   * A valid css width (%, px, em, rem)
+   */
+  height: PropTypes.string,
+  /**
    * Alignment of contents along the main axis
    */
   justify: PropTypes.oneOf(['around', 'between', 'center', 'evenly', 'start', 'end']),
@@ -200,6 +215,10 @@ Block.propTypes = {
    * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
    */
   truncate: PropTypes.bool,
+  /**
+   * A valid css width (%, px, em, rem)
+   */
+  width: PropTypes.string,
   /**
    * Wrap children if they can not fit along main axis
    */
