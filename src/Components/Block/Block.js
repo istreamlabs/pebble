@@ -17,7 +17,6 @@ const BASIS_MAP = {
   full: '100%',
   '1/2': '50%',
   '1/4': '25%',
-  '2/4': '50%',
   '3/4': '75%',
   '1/3': '33.33%',
   '2/3': '66.66%',
@@ -139,7 +138,7 @@ Block.propTypes = {
   /**
    * The default size of an element before the remaining space is distributed
    */
-  basis: PropTypes.oneOf(['auto', 'full', '1/2', '1/4', '2/4', '3/4', '1/3', '2/3']),
+  basis: PropTypes.oneOf(['auto', 'full', '1/2', '1/4', '3/4', '1/3', '2/3']),
   /**
    * Additional classNames to add
    */
