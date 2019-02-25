@@ -57,6 +57,8 @@ $letter-spacing-1:.1em;
 $letter-spacing-2:.25em;
 
 // COLORS
+// Update type definitions (../../Type/index.js and ../../Components/typedefs.js)
+// if a color is added or removed and it should be available as a prop value for a component
 $brand-orange: #F04E23;
   
 $neutral-100: #FAFBFB;
