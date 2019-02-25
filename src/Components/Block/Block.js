@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { parseTextSize } from '../../Utils';
+import {
+  colorType, fontSizeType, spacingType, textAlignType
+} from '../../Types';
 
 import './Block.scss';
 
@@ -133,8 +136,9 @@ Block.propTypes = {
   alignSelf: PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
   /**
    * [Color](/#/Styles/Color) identifier
+   * @type {PropTypes.Requireable<Color>}
    */
-  background: PropTypes.string,
+  background: colorType,
   /**
    * The default size of an element before the remaining space is distributed
    */
@@ -174,42 +178,42 @@ Block.propTypes = {
    * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typography scale](/#/Styles/Typography)
    * @type {PropTypes.Requireable<FontSizeLike>}
    */
-  textSize: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
+  textSize: fontSizeType,
   /**
    * Margin spacing to be added above this block.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginTop: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  marginTop: spacingType,
   /**
    * Margin spacing to be added below this block.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginBottom: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  marginBottom: spacingType,
   /**
    * Padding to be added uniformly within this block.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  padding: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  padding: spacingType,
   /**
    * Padding to be added to the left and right. Will override a `padding` value.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingHorizontal: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  paddingHorizontal: spacingType,
   /**
    * Padding to be added to the top and bottom. Will override a `padding` value.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingVertical: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  paddingVertical: spacingType,
   /**
    * Amount of [space](/#/Styles/Spacing) between each block item
    * @type {PropTypes.Requireable<Spacing>}
    */
-  itemSpacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']),
+  itemSpacing: spacingType,
   /**
    * Text alignment within this block.
    * @type {PropTypes.Requireable<TextAlign>}
    */
-  textAlign: PropTypes.oneOf(['left', 'right', 'center']),
+  textAlign: textAlignType,
   /**
    * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
    */

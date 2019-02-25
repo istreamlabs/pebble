@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { parseTextSize } from '../../Utils';
+import { fontSizeType } from '../../Types';
 
 import './Text.scss';
 
@@ -64,7 +65,7 @@ Text.propTypes = {
    * set font size based on the [typography scale](/#/Styles/Typography)
    * @type {PropTypes.Requireable<FontSizeLike>}
    */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
+  size: fontSizeType,
 };
 
 export default Text;
