@@ -51,4 +51,4 @@ Alerts should:
 * Focus on a single subject, piece of information, or required action.
 * Be dismissible unless they contain critical information or a required step.
 * Use the default icon for `success`, `info`, `warn` and `danger` types.
-* Be consise&mdash;users shouldn't need to spend a lot of time figuring out what to do
+* Be concise&mdash;users shouldn't need to spend a lot of time figuring out what to do
