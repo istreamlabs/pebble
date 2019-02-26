@@ -28,7 +28,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   &.active {
     .menu-item {
       background: $NAV_ITEM_ACTIVE_BG;
-      box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT;
+      box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT, inset -2px 0 4px -2px rgba(0,0,0,.1);
       color: $NAV_ITEM_COLOR_HOVER;
 
       &:focus {
@@ -47,6 +47,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 
     .menu-item-collapse-button {
       background: $NAV_ITEM_ACTIVE_BG;
+      box-shadow: inset -1px 0 4px 0 rgba(0,0,0,.1);
     }
   }
 }
@@ -130,6 +131,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   border-bottom: 1px solid $NAV_BORDER_COLOR;
   border-left: 1px solid $NAV_BORDER_COLOR;
   border-radius: 0;
+  box-shadow: inset -2px 0 4px -2px rgba(0,0,0,.1);
   padding: $spacing-3 $spacing-4;
 
   &:hover {
