@@ -57,6 +57,8 @@ $letter-spacing-1:.1em;
 $letter-spacing-2:.25em;
 
 // COLORS
+// Update type definitions (../../Type/index.js and ../../Components/typedefs.js)
+// if a color is added or removed and it should be available as a prop value for a component
 $brand-orange: #F04E23;
   
 $neutral-100: #FAFBFB;
@@ -98,31 +100,9 @@ $indigo: #5823F0;
 $indigo-dark: #451BBC;
 $indigo-darker: #270F6C;
 
-/* legacy gray colors. most likely these shouldn't be used. use the neutrals instead */
-$gray-100: #f4f4f4;
-$gray-200: #eee;
-$gray-300: #ccc;
-$gray-400: #aaa;
-$gray-500: #999;
-$gray-600: #777;
-$gray-700: #555;
-$gray-800: #333;
-$gray-900: #111;
-
-$black: #000;
-$near-black: #111111;
-$dark-gray:#333333;
-$mid-gray:#555555;
-$gray: #777777;
-$silver: #999999;
-$light-silver: #aaaaaa;
-$moon-gray: #cccccc;
-$light-gray: #eeeeee;
-$near-white: #f4f4f4;
-$white: #fff;
-
 $transparent:transparent;
 
+$black: #000;
 $black-90: rgba(0,0,0,.9);
 $black-80: rgba(0,0,0,.8);
 $black-70: rgba(0,0,0,.7);
@@ -136,6 +116,7 @@ $black-05: rgba(0,0,0,.05);
 $black-025: rgba(0,0,0,.025);
 $black-0125: rgba(0,0,0,.0125);
 
+$white: #fff;
 $white-90: rgba(255,255,255,.9);
 $white-80: rgba(255,255,255,.8);
 $white-70: rgba(255,255,255,.7);
@@ -148,6 +129,29 @@ $white-10: rgba(255,255,255,.1);
 $white-05: rgba(255,255,255,.05);
 $white-025: rgba(255,255,255,.025);
 $white-0125: rgba(255,255,255,.0125);
+
+
+/* legacy gray colors. most likely these shouldn't be used.
+use the neutrals instead */
+$gray-100: #f4f4f4;
+$gray-200: #eee;
+$gray-300: #ccc;
+$gray-400: #aaa;
+$gray-500: #999;
+$gray-600: #777;
+$gray-700: #555;
+$gray-800: #333;
+$gray-900: #111;
+$near-black: #111111;
+$dark-gray:#333333;
+$mid-gray:#555555;
+$gray: #777777;
+$silver: #999999;
+$light-silver: #aaaaaa;
+$moon-gray: #cccccc;
+$light-gray: #eeeeee;
+$near-white: #f4f4f4;
+/* end legacy colors */
 
 // SPACING
 $spacing-0: 0;         /* 0px */

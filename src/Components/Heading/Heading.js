@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { textAlignType } from '../../Types';
+
 import './Heading.scss';
 
 export const parseSize = (size, element) => {
@@ -100,7 +102,7 @@ Heading.propTypes = {
    * text alignment
    * @type {PropTypes.Requireable<TextAlign>}
    */
-  textAlign: PropTypes.oneOf(['left', 'center', 'right']),
+  textAlign: textAlignType,
   /**
    * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
    */
