@@ -15,7 +15,7 @@ $NAV_ITEM_HOVER: $neutral-200;
   width: 100%;
   overflow-y: auto;
   box-shadow: inset -2px 0 4px -2px rgba(0,0,0,.1);
-  border-right: 1px solid $neutral-200;
+  border-right: 1px solid $neutral-300;
 
   @include respond-above(md) {
     display: flex;

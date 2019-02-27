@@ -70,12 +70,12 @@ const Button = (
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
   const content = (
-    <span className="btn-content">
+    <div className="btn-content">
       {spinnerSVGMarkup}
       {leftIcon}
       {children && <span className="btn-label">{children}</span>}
       {rightIcon}
-    </span>
+    </div>
   );
 
   return (
