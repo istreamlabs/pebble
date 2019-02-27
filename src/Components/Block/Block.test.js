@@ -74,37 +74,37 @@ describe('Block', () => {
   describe('Basis', () => {
     it('sets auto basis', () => {
       const wrapper = shallow(<Block basis="auto">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', 'auto');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', 'auto');
     });
 
     it('sets full basis', () => {
       const wrapper = shallow(<Block basis="full">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', '100%');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '100%');
     });
 
     it('sets 1/2 basis', () => {
       const wrapper = shallow(<Block basis="1/2">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', '50%');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '50%');
     });
 
     it('sets 1/4 basis', () => {
       const wrapper = shallow(<Block basis="1/4">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', '25%');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '25%');
     });
 
     it('sets 3/4 basis', () => {
       const wrapper = shallow(<Block basis="3/4">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', '75%');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '75%');
     });
 
     it('sets 1/3 basis', () => {
       const wrapper = shallow(<Block basis="1/3">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', '33.33%');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '33.33%');
     });
 
     it('sets 2/3 basis', () => {
       const wrapper = shallow(<Block basis="2/3">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex-basis', '66.66%');
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '66.66%');
     });
   });
 
