@@ -69,8 +69,13 @@ const Button = (
   const leftIcon = !iconAfterText && icon && iconElement(icon);
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
+  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
+    'justify-center': !icon,
+    'justify-between': icon,
+  });
+
   const content = (
-    <div className="btn-content">
+    <div className={contentClasses}>
       {spinnerSVGMarkup}
       {leftIcon}
       {children && <span className="btn-label">{children}</span>}
