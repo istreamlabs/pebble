@@ -41,8 +41,11 @@
 }
 
 .btn-group-fullwidth {
-  width: 100%;
   display: flex;
+  flex-direction: row;
+  position: relative;
+  border-radius: $border-radius-2;
+  width: 100%;
 
   .btn-group-item,
   .btn-toolbar-item {
