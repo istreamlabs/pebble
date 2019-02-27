@@ -64,7 +64,7 @@ const Block = (
 ) => {
   const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
-  const basisStyle = basis ? { 'flexBasis': BASIS_MAP[basis] } : null;
+  const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] } : null;
 
   const flexGrowShrinkProp = (flex) => {
     if (typeof flex === 'boolean' || typeof flex === 'string') {
