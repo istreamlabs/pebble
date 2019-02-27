@@ -4,6 +4,7 @@ export { default as Block } from './Block/Block';
 export { default as Button } from './Button/Button';
 export { default as ButtonGroup } from './ButtonGroup/ButtonGroup';
 export { default as Card } from './Card/Card';
+export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
 export { default as Link } from './Link/Link';
 export { default as LinkButton } from './LinkButton/LinkButton';

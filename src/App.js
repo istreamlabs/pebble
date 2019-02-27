@@ -8,8 +8,6 @@ import {
   Heading,
   MainMenu,
   Text,
-  TextContainer,
-  Tooltip,
 } from './Components';
 
 import './Styles/foundation.scss';
@@ -53,7 +51,7 @@ class App extends Component {
     );
 
     const renderOverview = () => (
-      <Block itemSpacing="6" paddingHorizontal="7">
+      <Block itemSpacing="6" paddingHorizontal="7" styles={{ overflow: 'auto' }}>
         <Block basis="3/4">
           <Card>
             <Block width="100%" className="video-responsive">
@@ -90,20 +88,20 @@ class App extends Component {
         </Block>
         <Block direction="column" basis="1/4" itemSpacing="5">
           <div>
-            <Heading element="6" className="neutral-500 mb-1">BLUEPRINT</Heading>
+            <Heading element="6" className="neutral-600 mb-1">BLUEPRINT</Heading>
             <div className="mb-1">turner_nba_blueprint</div>
             <Text size="7" appearance="muted">version 3</Text>
           </div>
           <div>
-            <Heading element="6" className="neutral-500 mb-1">SOURCE</Heading>
+            <Heading element="6" className="neutral-600 mb-1">SOURCE</Heading>
             <div>turner.nbalp</div>
           </div>
           <div>
-            <Heading element="6" className="neutral-500 mb-1">VIDEO ENCODING PROFILE</Heading>
+            <Heading element="6" className="neutral-600 mb-1">VIDEO ENCODING PROFILE</Heading>
             <div>1920x1080 @ 60fps (7 layers)</div>
           </div>
           <div>
-            <Heading element="6" className="neutral-500 mb-1">AUDIO ENCODING PROFILE</Heading>
+            <Heading element="6" className="neutral-600 mb-1">AUDIO ENCODING PROFILE</Heading>
             <div>
               64 kbps 44.1 kHz 2 channels
               <br />
@@ -111,13 +109,13 @@ class App extends Component {
             </div>
           </div>
           <div>
-            <Heading element="6" className="neutral-500 mb-1">SLATE ON ADS</Heading>
+            <Heading element="6" className="neutral-600 mb-1">SLATE ON ADS</Heading>
             <div>disabled</div>
           </div>
           <div>
-            <Heading element="6" className="neutral-500 mb-1">FULL EVENT REPLAY</Heading>
+            <Heading element="6" className="neutral-600 mb-1">FULL EVENT REPLAY</Heading>
             <div>
-              NBA 2019 All Star Game 
+              NBA 2019 All Star Game
               {' '}
               <Badge type="default" size="small">unavailable</Badge>
             </div>

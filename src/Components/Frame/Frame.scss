@@ -1,0 +1,42 @@
+@import '../../Styles/foundation/variables.scss';
+
+
+.Frame {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.Navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  height: 100%;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.skip {
+  position: fixed;
+  z-index: 2;
+  top: $spacing-1;
+  left: $spacing-1;
+  opacity: 0;
+  pointer-events: none;
+  &.focused {
+    pointer-events: all;
+    opacity: 1;
+  }
+}
