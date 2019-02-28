@@ -133,14 +133,21 @@ Frame.propTypes = {
    * Component that will be rendered in the left sidebar of an application frame
    */
   navigation: PropTypes.node,
+  navigation: ({ navigation }) => {
+    if (navigation === undefined || (navigation && navigation.type !== MainMenu)) {
+      return new Error('Frame expects navigation to be a MainMenu instance.');
+    }
+  },
   /**
    * A callback function to handle clicking the mobile navigation toggle button
    */
   onNavigationToggle: PropTypes.func,
+  onNavigationToggle: PropTypes.func.isRequired,
   /**
    * Is the mobile nav currently open
    */
   isShowingMobileNav: PropTypes.bool,
+  isShowingMobileNav: PropTypes.bool.isRequired,
   /**
   * Contents of the frame
   */
@@ -149,6 +156,7 @@ Frame.propTypes = {
    * Title text that appears in mobile header
    */
   title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default Frame;
