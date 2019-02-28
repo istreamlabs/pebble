@@ -195,7 +195,8 @@ module.exports = {
       components: 'src/Components/*/*.js',
       exampleMode: 'expand',
       usageMode: 'expand',
-      sectionDepth: 2
+      sectionDepth: 2,
+      ignore: ['Overlay'],
     }
   ],
   ribbon: {
