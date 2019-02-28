@@ -160,14 +160,13 @@ class App extends Component {
         menu={menu}
         auxMenu={auxMenu}
         activeItem={activeMainMenuItem}
-        showMobileNavigation={showMobileNavigation}
       />
     );
 
     return (
       <Frame
-        navigation={mainMenu}
         isShowingMobileNav={showMobileNavigation}
+        navigation={mainMenu}
         onNavigationToggle={this.toggleState('showMobileNavigation')}
         title={TENANT_NAME}
       >
