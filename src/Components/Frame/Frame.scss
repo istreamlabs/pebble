@@ -1,31 +1,27 @@
 @import '../../Styles/foundation/variables.scss';
+@import '../../Styles/foundation/media-queries.scss';
 
+.frame {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    "header"
+    "nav"
+    "article";
+  grid-template-rows: 60px 0 auto;
+  position: relative;
+  overflow: none;
 
-.Frame {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-}
-
-.Navigation {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: stretch;
-  height: 100%;
-  outline: none;
-
-  &:focus {
-    outline: none;
+  @include respond-above(md) {
+    grid-template-columns: 230px auto;
+    grid-template-areas: "nav article";
+    grid-template-rows: auto;
   }
 }
 
-.main {
-  flex: 1;
-  display: flex;
-  align-items: stretch;
+.navigation {
+  grid-area: nav;
+  overflow: auto;
 }
 
 .skip {
@@ -38,5 +34,28 @@
   &.focused {
     pointer-events: all;
     opacity: 1;
+  }
+}
+
+main {
+  grid-area: article;
+  overflow: auto;
+}
+
+header {
+  background: $white;
+  border-bottom: 1px solid $neutral-300;
+  box-shadow: $box-shadow-1;
+  display: flex;
+  font-weight: 700;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  grid-area: header;
+  padding: 0 $spacing-4;
+  z-index: 1;
+
+  @include respond-above(md) {
+    display: none;
   }
 }

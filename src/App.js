@@ -5,6 +5,7 @@ import {
   Block,
   Button,
   ButtonGroup,
+  Frame,
   Heading,
   MainMenu,
   Text,
@@ -14,16 +15,45 @@ import './Styles/foundation.scss';
 
 import { menu, auxMenu } from './demo';
 
+const TENANT_NAME = 'iStreamPlanet';
+
 class App extends Component {
   constructor() {
     super();
-    this.state = { showMenuOnMobile: false };
+    this.state = {
+      activeMainMenuItem: '2b',
+      // showToast: false,
+      // isLoading: false,
+      // searchText: '',
+      showMobileNavigation: false,
+      // modalActive: false,
+    };
   }
+
+  toggleState = key => () => {
+    this.setState(prevState => ({ [key]: !prevState[key] }));
+  };
 
   render() {
     const {
-      showMenuOnMobile
+      activeMainMenuItem,
+      showMobileNavigation
     } = this.state;
+
+    const renderPageTitle = () => (
+      <Block direction="column" background="white" paddingVertical="6" paddingHorizontal="7">
+        <Block justify="between" alignItems="center">
+          <div>
+            <Heading element="6" className="neutral-500">LIVE COMPETITION</Heading>
+            <Heading element="1">NBA 2019 All-Star Game</Heading>
+            <Text bold>Sunday, Feb 17, 2019 at 5:00 PM</Text>
+          </div>
+          <div>
+            <Button danger icon="remove-circle" className="shadow-1">delete</Button>
+          </div>
+        </Block>
+      </Block>
+    );
 
     const renderControls = () => (
       <Block direction="column" paddingVertical="6" paddingHorizontal="7">
@@ -124,26 +154,27 @@ class App extends Component {
       </Block>
     );
 
+    const mainMenu = (
+      <MainMenu
+        title={TENANT_NAME}
+        menu={menu}
+        auxMenu={auxMenu}
+        activeItem={activeMainMenuItem}
+        showMobileNavigation={showMobileNavigation}
+      />
+    );
+
     return (
-      <Block height="100vh">
-        <MainMenu menu={menu} auxMenu={auxMenu} activeItem="2b" showOnSmallScreen={showMenuOnMobile} />
-        <Block flex direction="column">
-          <Block direction="column" background="white" paddingVertical="6" paddingHorizontal="7">
-            <Block justify="between" alignItems="center">
-              <div>
-                <Heading element="6" className="neutral-500">LIVE COMPETITION</Heading>
-                <Heading element="1">NBA 2019 All-Star Game</Heading>
-                <Text bold>Sunday, Feb 17, 2019 at 5:00 PM</Text>
-              </div>
-              <div>
-                <Button danger icon="remove-circle" className="shadow-1">delete</Button>
-              </div>
-            </Block>
-          </Block>
-          {renderControls()}
-          {renderOverview()}
-        </Block>
-      </Block>
+      <Frame
+        navigation={mainMenu}
+        isShowingMobileNav={showMobileNavigation}
+        onNavigationToggle={this.toggleState('showMobileNavigation')}
+        title={TENANT_NAME}
+      >
+        {renderPageTitle()}
+        {renderControls()}
+        {renderOverview()}
+      </Frame>
     );
   }
 }
