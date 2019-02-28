@@ -7,14 +7,14 @@
   grid-template-areas:
     "header"
     "nav"
-    "article";
+    "main";
   grid-template-rows: 60px 0 auto;
   position: relative;
   overflow: none;
 
   @include respond-above(md) {
     grid-template-columns: 230px auto;
-    grid-template-areas: "nav article";
+    grid-template-areas: "nav main";
     grid-template-rows: auto;
   }
 }
@@ -38,7 +38,7 @@
 }
 
 main {
-  grid-area: article;
+  grid-area: main;
   overflow: auto;
 }
 
