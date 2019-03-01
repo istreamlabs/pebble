@@ -1,8 +1,7 @@
 import React from 'react';
 import FocusTrap from 'focus-trap-react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import Frame from './Frame';
-import Button from '../Button/Button';
 import MainMenu from '../MainMenu/MainMenu';
 
 const navToggleMock = jest.fn();
@@ -48,16 +47,6 @@ describe('Frame', () => {
 
   it('renders without crashing', () => {
     expect(() => { shallow(testFrame); }).not.toThrow();
-  });
-
-  it('renders a skip to content button', () => {
-    const wrapper = mount(testFrame);
-    expect(wrapper.find(Button).first().text()).toBe('Skip to content');
-  });
-
-  it('it hides the mobile nav by default', () => {
-    const wrapper = mount(testFrame);
-    expect(wrapper.prop('isShowingMobileNav')).toBe(false);
   });
 
   it('opens the mobile nav when isShowingMobileNav is true', () => {
@@ -113,6 +102,19 @@ describe('Frame', () => {
       instance.setState = jest.fn();
       instance.handleBlur();
       expect(instance.setState).toBeCalledWith({ isSkipFocused: false });
+    });
+  });
+
+  describe('handleNavKeydown', () => {
+    beforeEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls handleNavigationDismiss when Escape key is pressed', () => {
+      const instance = new Frame();
+      instance.handleNavigationDismiss = jest.fn();
+      instance.handleNavKeydown({ event: 'keydown', key: 'Escape' });
+      expect(instance.handleNavigationDismiss).toHaveBeenCalled();
     });
   });
 
