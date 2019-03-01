@@ -1,34 +1,55 @@
 @import '../../Styles/foundation/variables.scss';
 @import '../../Styles/foundation/media-queries.scss';
 
+$FRAME_HEADER_HEIGHT: 60px;
+
 .frame {
   display: grid;
   height: 100vh;
   grid-template-areas:
     "header"
-    "nav"
-    "article";
-  grid-template-rows: 60px 0 auto;
+    "main";
+  grid-template-rows: $FRAME_HEADER_HEIGHT 0 auto;
   position: relative;
-  overflow: none;
+  overflow: hidden;
 
   @include respond-above(md) {
     grid-template-columns: 230px auto;
-    grid-template-areas: "nav article";
+    grid-template-areas: "nav main";
     grid-template-rows: auto;
   }
 }
 
 .navigation {
   grid-area: nav;
-  overflow: auto;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: 310px;
+  width: 100%;
+  z-index: $z-nav;
+
+  animation: slideInLeft .2s ease-out;
+
+  &.open {
+    display: block;
+  }
+
+  @include respond-above(md) {
+    display: block;
+    position: relative;
+    left: 0;
+    animation-name: none;
+  }
 }
 
 .skip {
   position: fixed;
-  z-index: 2;
-  top: $spacing-1;
-  left: $spacing-1;
+  z-index: $z-skip;
+  top: 0;
+  left: 0;
   opacity: 0;
   pointer-events: none;
   &.focused {
@@ -38,11 +59,16 @@
 }
 
 main {
-  grid-area: article;
+  grid-area: main;
   overflow: auto;
+  height: calc(100vh - 60px);
+
+  @include respond-above(md) {
+    height: auto;
+  }
 }
 
-header {
+.frame-header {
   background: $white;
   border-bottom: 1px solid $neutral-300;
   box-shadow: $box-shadow-1;
@@ -53,9 +79,31 @@ header {
   justify-content: space-between;
   grid-area: header;
   padding: 0 $spacing-4;
-  z-index: 1;
 
   @include respond-above(md) {
     display: none;
   }
+}
+
+.frame-close-nav {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin: $spacing-3;
+  
+  background: $neutral-700;
+  border-radius: $border-radius-circle;
+  color: $neutral-300;
+
+  &:focus,
+  &:hover {
+    background: $neutral-700;
+    color: $neutral-100;
+  }
+  
+  svg {
+    height: 2rem;
+    width: 2rem;
+  }
+  
 }

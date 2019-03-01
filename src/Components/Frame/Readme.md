@@ -67,6 +67,7 @@ class FrameExample extends React.Component {
 
     return (
       <Frame
+        isShowingMobileNav={showMobileNavigation}
         navigation={mainMenu}
         onNavigationToggle={this.toggleMainNav}
         tenantName={TENANT_NAME}

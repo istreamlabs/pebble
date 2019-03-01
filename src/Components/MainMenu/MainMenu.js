@@ -23,12 +23,10 @@ class MainMenu extends React.Component {
       className,
       menu,
       auxMenu,
-      showMobileNavigation,
       title
     } = this.props;
 
     const classes = classNames('main-menu', className, {
-      opened: showMobileNavigation
     });
 
     return (
@@ -37,7 +35,7 @@ class MainMenu extends React.Component {
           <Block
             className="main-menu-title"
             paddingVertical="3"
-            justify="center"
+            paddingHorizontal="5"
             alignItems="center"
           >
             <Text bold>{title}</Text>
@@ -114,10 +112,6 @@ MainMenu.propTypes = {
       href: PropTypes.string,
     }))
   })),
-  /**
-   * Show or hide menu below 80rem (960px)
-   */
-  showMobileNavigation: PropTypes.bool,
   title: PropTypes.string,
 };
 

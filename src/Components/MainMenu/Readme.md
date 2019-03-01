@@ -94,19 +94,17 @@ const auxMenu = [
 
 initialState = { activeItem: "2", showMenu: false };
 
-<div class="styleguide__frame">
-  <div className="styleguide__mainmenu">
-    <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} showOnSmallScreen={state.showMenu} />
-  </div>
-  <div>
-    <ButtonGroup className="styleguide__menubutton">
-      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Link</Button>
-      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button>
-      <Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "3" }); }}>Select Link w/ sub-items</Button>
-    </ButtonGroup>
-    <ButtonGroup className="styleguide__menubutton">
-      <Button onClick={() => { setState(prevState => ({ showMenu: !prevState.showMenu })); }}>Open Menu on Mobile</Button> (when viewport is less than 480px)
-    </ButtonGroup>
-  </div>
+<div  styles={{ overflow: 'auto' }}>
+  <Block height="400px">
+    <Block>
+      <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} />
+    </Block>
+    <Block direction="column" paddingHorizontal="5" itemSpacing="3">
+        <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Link</Button></Block>
+        <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button></Block>
+        <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "3" }); }}>Select Link w/ sub-items</Button></Block>
+    </Block>
+  </Block>
 </div>
+
 ```

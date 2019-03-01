@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import FocusTrap from 'focus-trap-react';
 
 import Button from '../Button/Button';
+import MainMenu from '../MainMenu/MainMenu';
+import Overlay from '../Overlay/Overlay';
 
 import './Frame.scss';
 
@@ -45,20 +48,46 @@ export class Frame extends React.PureComponent {
 
     const {
       children,
+      isShowingMobileNav,
       navigation,
       onNavigationToggle,
       title,
     } = this.props;
 
+    const navigationClasses = classNames('navigation', {
+      open: isShowingMobileNav
+    });
+
     const navigationMarkup = navigation ? (
-      <div
-        className="navigation"
-        onKeyDown={this.handleNavKeydown}
-        id={APP_FRAME_NAV}
-        key="NavContent"
+      <FocusTrap
+        active={isShowingMobileNav}
+        focusTrapOptions={{
+          clickOutsideDeactivates: true,
+        }}
       >
-        {navigation}
-      </div>
+        <div
+          className={navigationClasses}
+          onKeyDown={this.handleNavKeydown}
+          id={APP_FRAME_NAV}
+          key="NavContent"
+        >
+          {navigation}
+          {isShowingMobileNav && (
+          <Button
+            className="frame-close-nav"
+            icon="remove-circle"
+            onClick={this.handleNavigationDismiss}
+            accessibilityLabel="close menu"
+            plain
+            size="large"
+          />
+          )}
+        </div>
+      </FocusTrap>
+    ) : null;
+
+    const navigationOverlayMarkup = navigation && isShowingMobileNav ? (
+      <Overlay onClick={this.handleNavigationDismiss} />
     ) : null;
 
     const skipClassName = classNames(
@@ -69,7 +98,7 @@ export class Frame extends React.PureComponent {
     const skipToContent = (
       <div className={skipClassName}>
         <Button
-          onClick={this.handleClick}
+          onClick={this.handleSkipToContent}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           id="skipBtn"
@@ -82,15 +111,16 @@ export class Frame extends React.PureComponent {
     return (
       <div className="frame">
         {skipToContent}
-        <header>
-          <div>{title}</div>
+        <header className="frame-header">
           <Button
             icon="menu"
             accessibilityLabel="toggle main menu"
             onClick={onNavigationToggle}
           />
+          <div>{title}</div>
         </header>
         {navigationMarkup}
+        {navigationOverlayMarkup}
         <main
           className="main"
           id={APP_FRAME_MAIN}
@@ -101,7 +131,7 @@ export class Frame extends React.PureComponent {
     );
   }
 
-  handleClick = () => {
+  handleSkipToContent = () => {
     focusAppFrameMain();
   }
 
@@ -132,23 +162,27 @@ Frame.propTypes = {
   /**
    * Component that will be rendered in the left sidebar of an application frame
    */
-  navigation: PropTypes.node,
+  navigation: ({ navigation }) => {
+    if (navigation === undefined || (navigation && navigation.type !== MainMenu)) {
+      return new Error('Frame expects navigation to be a MainMenu instance.');
+    }
+  },
   /**
    * A callback function to handle clicking the mobile navigation toggle button
    */
-  onNavigationToggle: PropTypes.func,
+  onNavigationToggle: PropTypes.func.isRequired,
   /**
    * Is the mobile nav currently open
    */
-  isShowingMobileNav: PropTypes.bool,
+  isShowingMobileNav: PropTypes.bool.isRequired,
   /**
   * Contents of the frame
   */
   children: PropTypes.node,
   /**
-   * Title text that appears in mobile header
+   * Title text that appears in header and MainMenu
    */
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default Frame;

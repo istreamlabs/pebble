@@ -11,6 +11,7 @@ export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as List } from './List/List';
 export { default as ListItem } from './List/ListItem';
 export { default as MainMenu } from './MainMenu/MainMenu';
+export { default as Overlay } from './Overlay/Overlay';
 export { default as Icon } from './Icon/Icon';
 export { default as Text } from './Text/Text';
 export { default as TextContainer } from './TextContainer/TextContainer';
