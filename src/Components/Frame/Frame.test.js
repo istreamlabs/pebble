@@ -1,6 +1,6 @@
 import React from 'react';
 import FocusTrap from 'focus-trap-react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
 
@@ -49,13 +49,17 @@ describe('Frame', () => {
     expect(() => { shallow(testFrame); }).not.toThrow();
   });
 
-  it('opens the mobile nav when isShowingMobileNav is true', () => {
-    const wrapper = shallow(testFrameWithMobile);
-    expect(wrapper.find('.navigation').prop('className')).toContain('open');
+  it('renders a navigation wrapped in a FocusTrap with active set to false, when passed a navigation', () => {
+    const wrapper = shallow(testFrame);
+
+    expect(wrapper.find(FocusTrap).exists()).toBe(true);
+    expect(wrapper.find(FocusTrap).prop('active')).toBe(false);
   });
 
-  it('sets FocusTrap to active when isShowingMobileNav is true', () => {
+  it('renders a navigation wrapped in a FocusTrap with active set to true, when passed a navigation', () => {
     const wrapper = shallow(testFrameWithMobile);
+
+    expect(wrapper.find(FocusTrap).exists()).toBe(true);
     expect(wrapper.find(FocusTrap).prop('active')).toBe(true);
   });
 
@@ -77,6 +81,15 @@ describe('Frame', () => {
 
     instance.handleNavigationDismiss();
     expect(navToggleMock).not.toHaveBeenCalled();
+  });
+
+  it('should cleanup event listener when unmounted', () => {
+    document.removeEventListener = jest.fn();
+
+    const wrapper = mount(testFrame);
+
+    wrapper.unmount();
+    expect(document.removeEventListener).toHaveBeenCalled();
   });
 
   describe('handleFocus', () => {
@@ -113,8 +126,12 @@ describe('Frame', () => {
     it('calls handleNavigationDismiss when Escape key is pressed', () => {
       const instance = new Frame();
       instance.handleNavigationDismiss = jest.fn();
+
+      instance.handleNavKeydown({ event: 'keydown', key: 'Enter' });
+      expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(0);
+
       instance.handleNavKeydown({ event: 'keydown', key: 'Escape' });
-      expect(instance.handleNavigationDismiss).toHaveBeenCalled();
+      expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(1);
     });
   });
 

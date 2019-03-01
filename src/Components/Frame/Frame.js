@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
 
 import Button from '../Button/Button';
-import MainMenu from '../MainMenu/MainMenu';
 import Overlay from '../Overlay/Overlay';
 
 import './Frame.scss';
@@ -84,7 +83,7 @@ export class Frame extends React.PureComponent {
       open: isShowingMobileNav
     });
 
-    const navigationMarkup = navigation ? (
+    const navigationMarkup = (
       <FocusTrap
         active={isShowingMobileNav}
         focusTrapOptions={{
@@ -110,7 +109,7 @@ export class Frame extends React.PureComponent {
           )}
         </div>
       </FocusTrap>
-    ) : null;
+    );
 
     const navigationOverlayMarkup = navigation && isShowingMobileNav ? (
       <Overlay onClick={this.handleNavigationDismiss} />
@@ -162,11 +161,7 @@ Frame.propTypes = {
   /**
    * Component that will be rendered in the left sidebar of an application frame
    */
-  navigation: ({ navigation }) => {
-    if (navigation === undefined || (navigation && navigation.type !== MainMenu)) {
-      return new Error('Frame expects navigation to be a MainMenu instance.');
-    }
-  },
+  navigation: PropTypes.node.isRequired,
   /**
    * A callback function to handle clicking the mobile navigation toggle button
    */
