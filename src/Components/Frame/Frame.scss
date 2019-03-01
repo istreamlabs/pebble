@@ -31,13 +31,12 @@ $FRAME_HEADER_HEIGHT: 60px;
   width: 100%;
   z-index: $z-nav;
 
-  animation: slideInLeft .3s ease-out;
+  animation: slideInLeft .2s ease-out;
 
   &.open {
     display: block;
   }
 
-  
   @include respond-above(md) {
     display: block;
     position: relative;
@@ -91,12 +90,14 @@ main {
   top: 0;
   left: 100%;
   margin: $spacing-3;
+  
+  background: $neutral-700;
   border-radius: $border-radius-circle;
-
   color: $neutral-300;
 
   &:focus,
-    &:hover {
+  &:hover {
+    background: $neutral-700;
     color: $neutral-100;
   }
   

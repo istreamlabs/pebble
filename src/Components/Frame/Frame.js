@@ -98,7 +98,7 @@ export class Frame extends React.PureComponent {
     const skipToContent = (
       <div className={skipClassName}>
         <Button
-          onClick={this.handleClick}
+          onClick={this.handleSkipToContent}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
           id="skipBtn"
@@ -131,7 +131,7 @@ export class Frame extends React.PureComponent {
     );
   }
 
-  handleClick = () => {
+  handleSkipToContent = () => {
     focusAppFrameMain();
   }
 
@@ -180,7 +180,7 @@ Frame.propTypes = {
   */
   children: PropTypes.node,
   /**
-   * Title text that appears in mobile header
+   * Title text that appears in header and MainMenu
    */
   title: PropTypes.string.isRequired,
 };
