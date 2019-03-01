@@ -1,7 +1,7 @@
 ### Example
 
 ```js
-const TENANT_NAME = 'iStreamPlanet';
+const TENANT_NAME = 'Frame Example';
 
 const MENU = [
   {
@@ -71,6 +71,7 @@ class FrameExample extends React.Component {
         navigation={mainMenu}
         onNavigationToggle={this.toggleMainNav}
         tenantName={TENANT_NAME}
+        title={TENANT_NAME}
       >
         {bodyContent}
       </Frame>
