@@ -95,11 +95,24 @@ describe('Frame', () => {
       jest.restoreAllMocks();
     });
 
-    it('calls something', () => {
+    it('calls setState', () => {
       const instance = new Frame();
       instance.setState = jest.fn();
       instance.handleFocus();
       expect(instance.setState).toBeCalledWith({ isSkipFocused: true });
+    });
+  });
+
+  describe('handleBlur', () => {
+    beforeEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls setState', () => {
+      const instance = new Frame();
+      instance.setState = jest.fn();
+      instance.handleBlur();
+      expect(instance.setState).toBeCalledWith({ isSkipFocused: false });
     });
   });
 

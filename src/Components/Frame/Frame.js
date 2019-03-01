@@ -41,6 +41,32 @@ export class Frame extends React.PureComponent {
     document.removeEventListener('keydown', this.handleNavKeydown, false);
   }
 
+  handleSkipToContent = () => {
+    focusAppFrameMain();
+  }
+
+  handleFocus = () => {
+    this.setState({ isSkipFocused: true });
+  }
+
+  handleBlur = () => {
+    this.setState({ isSkipFocused: false });
+  }
+
+  handleNavigationDismiss = () => {
+    const { isShowingMobileNav, onNavigationToggle } = this.props;
+    if (onNavigationToggle != null && isShowingMobileNav) {
+      onNavigationToggle();
+    }
+  }
+
+  handleNavKeydown = (event) => {
+    const { key } = event;
+    if (key === 'Escape') {
+      this.handleNavigationDismiss();
+    }
+  }
+
   render() {
     const {
       isSkipFocused,
@@ -129,32 +155,6 @@ export class Frame extends React.PureComponent {
         </main>
       </div>
     );
-  }
-
-  handleSkipToContent = () => {
-    focusAppFrameMain();
-  }
-
-  handleFocus = () => {
-    this.setState({ isSkipFocused: true });
-  }
-
-  handleBlur = () => {
-    this.setState({ isSkipFocused: false });
-  }
-
-  handleNavigationDismiss = () => {
-    const { isShowingMobileNav, onNavigationToggle } = this.props;
-    if (onNavigationToggle != null && isShowingMobileNav) {
-      onNavigationToggle();
-    }
-  }
-
-  handleNavKeydown = (event) => {
-    const { key } = event;
-    if (key === 'Escape') {
-      this.handleNavigationDismiss();
-    }
   }
 }
 
