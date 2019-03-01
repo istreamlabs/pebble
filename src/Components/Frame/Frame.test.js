@@ -73,9 +73,7 @@ describe('Frame', () => {
   it('onNavigationToggle is called when isShowingMobileNav is true', () => {
     const instance = new Frame({
       onNavigationToggle: navToggleMock,
-      title: 'test frame',
-      isShowingMobileNav: true,
-      navigation: mainMenu
+      isShowingMobileNav: true
     });
 
     instance.handleNavigationDismiss();
@@ -85,9 +83,7 @@ describe('Frame', () => {
   it('onNavigationToggle is not called when isShowingMobileNav is false', () => {
     const instance = new Frame({
       onNavigationToggle: navToggleMock,
-      title: 'test frame',
-      isShowingMobileNav: false,
-      navigation: mainMenu
+      isShowingMobileNav: false
     });
 
     instance.handleNavigationDismiss();
@@ -101,7 +97,7 @@ describe('Frame', () => {
 
     it('calls something', () => {
       const instance = new Frame();
-      jest.spyOn(instance, 'setState');
+      instance.setState = jest.fn();
       instance.handleFocus();
       expect(instance.setState).toBeCalledWith({ isSkipFocused: true });
     });
