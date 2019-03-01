@@ -5,7 +5,7 @@ import Frame from './Frame';
 import Button from '../Button/Button';
 import MainMenu from '../MainMenu/MainMenu';
 
-const myMock = jest.fn();
+const navToggleMock = jest.fn();
 
 const menu = [
   {
@@ -21,7 +21,7 @@ const mainMenu = <MainMenu menu={menu} />;
 
 const testFrame = (
   <Frame
-    onNavigationToggle={myMock}
+    onNavigationToggle={navToggleMock}
     title="test frame"
     isShowingMobileNav={false}
     navigation={mainMenu}
@@ -32,7 +32,7 @@ const testFrame = (
 
 const testFrameWithMobile = (
   <Frame
-    onNavigationToggle={myMock}
+    onNavigationToggle={navToggleMock}
     title="test frame"
     isShowingMobileNav
     navigation={mainMenu}
@@ -42,6 +42,10 @@ const testFrameWithMobile = (
 );
 
 describe('Frame', () => {
+  beforeEach(() => {
+    jest.resetAllMocks();
+  });
+
   it('renders without crashing', () => {
     expect(() => { shallow(testFrame); }).not.toThrow();
   });
@@ -66,10 +70,41 @@ describe('Frame', () => {
     expect(wrapper.find(FocusTrap).prop('active')).toBe(true);
   });
 
-  it('onNavigationToggle is called when close nav button is clicked', () => {
-    const wrapper = mount(testFrameWithMobile);
-    wrapper.find('button.frame-close-nav').simulate('click');
-    expect(myMock).toHaveBeenCalledTimes(1);
+  it('onNavigationToggle is called when isShowingMobileNav is true', () => {
+    const instance = new Frame({
+      onNavigationToggle: navToggleMock,
+      title: 'test frame',
+      isShowingMobileNav: true,
+      navigation: mainMenu
+    });
+
+    instance.handleNavigationDismiss();
+    expect(navToggleMock).toHaveBeenCalled();
+  });
+
+  it('onNavigationToggle is not called when isShowingMobileNav is false', () => {
+    const instance = new Frame({
+      onNavigationToggle: navToggleMock,
+      title: 'test frame',
+      isShowingMobileNav: false,
+      navigation: mainMenu
+    });
+
+    instance.handleNavigationDismiss();
+    expect(navToggleMock).not.toHaveBeenCalled();
+  });
+
+  describe('handleFocus', () => {
+    beforeEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls something', () => {
+      const instance = new Frame();
+      jest.spyOn(instance, 'setState');
+      instance.handleFocus();
+      expect(instance.setState).toBeCalledWith({ isSkipFocused: true });
+    });
   });
 
   describe('skip-to-content', () => {

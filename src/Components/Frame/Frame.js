@@ -25,8 +25,8 @@ function focusAppFrameMain() {
  */
 
 export class Frame extends React.PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       isSkipFocused: false,
