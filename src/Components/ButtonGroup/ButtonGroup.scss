@@ -20,6 +20,8 @@
   margin-right: -1px;
 
   .btn {
+    height: 100%;
+
     &:hover {
       z-index: 1;
     }
@@ -50,9 +52,5 @@
   .btn-group-item,
   .btn-toolbar-item {
     flex: 1;
-
-    .btn {
-      width: 100%;
-    }
   }
 }

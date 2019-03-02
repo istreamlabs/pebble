@@ -70,8 +70,8 @@ const Button = (
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
   const contentClasses = classNames('btn-content', 'flex', 'items-center', {
-    'justify-center': !icon,
-    'justify-between': icon,
+    'justify-between': icon && fullWidth,
+    'justify-center': (!icon && fullWidth),
   });
 
   const content = (

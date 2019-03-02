@@ -8,6 +8,7 @@ import {
   Frame,
   Heading,
   MainMenu,
+  Tabs,
   Text,
 } from './Components';
 
@@ -22,6 +23,7 @@ class App extends Component {
     super();
     this.state = {
       activeMainMenuItem: '2b',
+      selectedTab: 'overview',
       // showToast: false,
       // isLoading: false,
       // searchText: '',
@@ -34,10 +36,15 @@ class App extends Component {
     this.setState(prevState => ({ [key]: !prevState[key] }));
   };
 
+  handleTabSelect = (newSelectedTab) => {
+    this.setState({ selectedTab: newSelectedTab });
+  }
+
   render() {
     const {
       activeMainMenuItem,
-      showMobileNavigation
+      showMobileNavigation,
+      selectedTab
     } = this.state;
 
     const renderPageTitle = () => (
@@ -55,22 +62,51 @@ class App extends Component {
       </Block>
     );
 
+    const TAB_CONTENT = [
+      {
+        id: 'overview',
+        content: 'Overview'
+      },
+      {
+        id: 'metadata',
+        content: 'Metadata'
+      },
+      {
+        id: 'slates',
+        content: 'Slates'
+      },
+      {
+        id: 'scte35',
+        content: 'SCTE-35 History'
+      },
+      {
+        id: 'change-log',
+        content: 'Change Log'
+      }
+    ];
+
+    const renderTabs = () => (
+      <Block background="white" paddingHorizontal="7">
+        <Tabs tabs={TAB_CONTENT} selected={selectedTab} onSelect={this.handleTabSelect} />
+      </Block>
+    );
+
     const renderControls = () => (
       <Block direction="column" paddingVertical="6" paddingHorizontal="7">
         <ButtonGroup fullWidth toolbar className="shadow-1" size="large">
-          <Button className="pv-4 ph-5 text-left" icon="arrow-small-down" iconAfterText>
+          <Button className="pv-4 ph-5" icon="arrow-small-down" iconAfterText>
             <div className="mb-1">
               <Text size="7" className="neutral-500">STATUS</Text>
             </div>
-            <Text appearance="success">Published</Text>
+            <Badge size="large" type="danger" icon="circle">LIVE</Badge>
           </Button>
-          <Button className="pv-4 ph-5 text-left" icon="arrow-small-down" iconAfterText>
+          <Button className="pv-4 ph-5" icon="arrow-small-down" iconAfterText>
             <div className="mb-1">
-              <Text size="7" className="neutral-500">ENCODER</Text>
+              <Text size="7" className="neutral-500">CHANNEL</Text>
             </div>
-            <div>On</div>
+            <Badge size="large" type="success" icon="circle">On</Badge>
           </Button>
-          <Button className="pv-4 ph-5 text-left">
+          <Button className="pv-4 ph-5">
             <div className="mb-1">
               <Text size="7" className="neutral-500">PROGRAM MARKER</Text>
             </div>
@@ -171,6 +207,7 @@ class App extends Component {
         title={TENANT_NAME}
       >
         {renderPageTitle()}
+        {renderTabs()}
         {renderControls()}
         {renderOverview()}
       </Frame>
