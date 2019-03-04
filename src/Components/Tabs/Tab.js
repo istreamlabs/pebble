@@ -7,7 +7,7 @@ import Button from '../Button/Button';
 import './Tab.scss';
 
 /**
- * A way to communicate status of an object.
+ * A single Tab used by Tabs
  *
  * ---
  */

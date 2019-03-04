@@ -11,10 +11,6 @@ import './Frame.scss';
 export const APP_FRAME_MAIN = 'AppFrameMain';
 const APP_FRAME_NAV = 'AppFrameNav';
 
-function focusAppFrameMain() {
-  window.location.assign(`${window.location.pathname}#${APP_FRAME_MAIN}`);
-}
-
 /**
  * The frame component provides UI structure for iStreamPlanet applications.
  * It wraps [main navigation](/#/Components/MainMenu) and main content,
@@ -30,6 +26,8 @@ export class Frame extends React.PureComponent {
     this.state = {
       isSkipFocused: false,
     };
+
+    this.mainContent = React.createRef();
   }
 
   componentDidMount() {
@@ -40,8 +38,13 @@ export class Frame extends React.PureComponent {
     document.removeEventListener('keydown', this.handleNavKeydown, false);
   }
 
-  handleSkipToContent = () => {
-    focusAppFrameMain();
+  handleSkipToMain = () => {
+    this.mainContent.current.setAttribute('tabindex', '-1');
+    this.mainContent.current.focus();
+  }
+
+  handleBlurMain = () => {
+    this.mainContent.current.removeAttribute('tabindex');
   }
 
   handleFocus = () => {
@@ -66,24 +69,41 @@ export class Frame extends React.PureComponent {
     }
   }
 
-  render() {
+  renderSkipToContent = () => {
     const {
       isSkipFocused,
     } = this.state;
 
+    const skipClassName = classNames(
+      'skip',
+      isSkipFocused && 'focused',
+    );
+
+    return (
+      <div className={skipClassName}>
+        <Button
+          onClick={this.handleSkipToMain}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+          id="skipBtn"
+        >
+          Skip to content
+        </Button>
+      </div>
+    );
+  }
+
+  renderNavigation = () => {
     const {
-      children,
       isShowingMobileNav,
-      navigation,
-      onNavigationToggle,
-      title,
+      navigation
     } = this.props;
 
     const navigationClasses = classNames('navigation', {
       open: isShowingMobileNav
     });
 
-    const navigationMarkup = (
+    return (
       <FocusTrap
         active={isShowingMobileNav}
         focusTrapOptions={{
@@ -110,32 +130,30 @@ export class Frame extends React.PureComponent {
         </div>
       </FocusTrap>
     );
+  }
 
-    const navigationOverlayMarkup = navigation && isShowingMobileNav ? (
-      <Overlay onClick={this.handleNavigationDismiss} />
-    ) : null;
+  renderOverlay = () => {
+    const {
+      isShowingMobileNav,
+      navigation
+    } = this.props;
 
-    const skipClassName = classNames(
-      'skip',
-      isSkipFocused && 'focused',
-    );
+    if (navigation && isShowingMobileNav) {
+      return <Overlay onClick={this.handleNavigationDismiss} />;
+    }
+    return null;
+  }
 
-    const skipToContent = (
-      <div className={skipClassName}>
-        <Button
-          onClick={this.handleSkipToContent}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          id="skipBtn"
-        >
-          Skip to content
-        </Button>
-      </div>
-    );
+  render() {
+    const {
+      children,
+      onNavigationToggle,
+      title,
+    } = this.props;
 
     return (
       <div className="frame">
-        {skipToContent}
+        {this.renderSkipToContent()}
         <header className="frame-header">
           <Button
             icon="menu"
@@ -144,11 +162,13 @@ export class Frame extends React.PureComponent {
           />
           <div>{title}</div>
         </header>
-        {navigationMarkup}
-        {navigationOverlayMarkup}
+        {this.renderNavigation()}
+        {this.renderOverlay()}
         <main
           className="main"
           id={APP_FRAME_MAIN}
+          ref={this.mainContent}
+          onBlur={this.handleBlurMain}
         >
           {children}
         </main>

@@ -70,7 +70,7 @@ class MainMenu extends React.Component {
 }
 
 MainMenu.defaultProps = {
-  title: 'iStreamPlanet',
+  title: 'Portal',
 };
 
 MainMenu.propTypes = {

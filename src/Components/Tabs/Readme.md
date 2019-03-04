@@ -2,24 +2,24 @@
 
 const tabs = [
   {
-    id: 'all-customers',
-    content: 'All',
-    panelID: 'all-customers-content',
+    id: 'overview',
+    content: 'Overview',
+    panelID: 'overview-content',
   },
   {
-    id: 'accepts-marketing',
-    content: 'Accepts marketing',
-    panelID: 'accepts-marketing-content',
+    id: 'catalog',
+    content: 'Catalog',
+    panelID: 'catalog-content',
   },
   {
-    id: 'repeat-customers',
-    content: 'Repeat customers',
-    panelID: 'repeat-customers-content',
+    id: 'metadata',
+    content: 'Metadata',
+    panelID: 'metadata-content',
   },
   {
-    id: 'prospects',
-    content: 'Prospects',
-    panelID: 'prospects-content',
+    id: 'settings',
+    content: 'Settings',
+    panelID: 'settings-content',
   },
 ];
 

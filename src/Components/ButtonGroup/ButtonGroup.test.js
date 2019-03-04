@@ -20,6 +20,19 @@ describe('ButtonGroup', () => {
     });
   });
 
+  describe('className', () => {
+    it('passes in class name', () => {
+      const buttonGroup = shallow(<ButtonGroup className="my-class">foo</ButtonGroup>);
+      expect(buttonGroup.prop('className')).toContain('btn-group');
+      expect(buttonGroup.prop('className')).toContain('my-class');
+    });
+
+    it('applies fullwidth', () => {
+      const buttonGroup = shallow(<ButtonGroup fullWidth>foo</ButtonGroup>);
+      expect(buttonGroup.prop('className')).toContain('btn-group-fullwidth');
+    });
+  });
+
   it('applies toolbar styles', () => {
     const buttonGroup = shallow(
       <ButtonGroup toolbar>

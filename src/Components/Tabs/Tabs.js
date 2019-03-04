@@ -6,6 +6,12 @@ import Tab from './Tab';
 
 import './Tabs.scss';
 
+/**
+ * A set of Tabs
+ *
+ * ---
+ */
+
 export class Tabs extends React.PureComponent {
   render() {
     const {
@@ -54,8 +60,7 @@ Tabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.object),
   /**
    * Callback function when a tab is selected
-   */
-  onSelect: PropTypes.func,
+  onSelect: PropTypes.func,  */
 };
 
 export default Tabs;

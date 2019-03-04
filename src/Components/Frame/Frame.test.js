@@ -136,11 +136,6 @@ describe('Frame', () => {
   });
 
   describe('skip-to-content', () => {
-    it('skips to the main element when clicked', () => {
-      const wrapper = shallow(testFrame);
-      wrapper.instance().handleSkipToContent();
-    });
-
     it('adds focus class to skip-to-content button when focused', () => {
       const wrapper = shallow(testFrame);
       wrapper.setState({ isSkipFocused: true });
