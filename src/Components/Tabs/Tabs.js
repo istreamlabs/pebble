@@ -44,7 +44,6 @@ Tabs.propTypes = {
    * Takes up the full width of its parent container
    */
   fullWidth: PropTypes.bool,
-  onSelect:PropTypes.func,
   /**
    * Index of selected tab
    */
@@ -54,7 +53,7 @@ Tabs.propTypes = {
    */
   tabs: PropTypes.arrayOf(PropTypes.object),
   /**
-   * Callback function when tab is selected
+   * Callback function when a tab is selected
    */
   onSelect: PropTypes.func,
 };
