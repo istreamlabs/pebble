@@ -18,6 +18,8 @@ import { menu, auxMenu } from './demo';
 
 const TENANT_NAME = 'iStreamPlanet';
 
+const H_PADDING = [4, 5, 6, 7];
+
 class App extends Component {
   constructor() {
     super();
@@ -48,7 +50,7 @@ class App extends Component {
     } = this.state;
 
     const renderPageTitle = () => (
-      <Block direction="column" background="white" paddingVertical="6" paddingHorizontal="7">
+      <Block direction="column" background="white" paddingVertical="6" paddingHorizontal={H_PADDING}>
         <Block justify="between" alignItems="center">
           <div>
             <Heading element="6" className="neutral-500">LIVE COMPETITION</Heading>
@@ -86,13 +88,13 @@ class App extends Component {
     ];
 
     const renderTabs = () => (
-      <Block background="white" paddingHorizontal="7">
+      <Block background="white" paddingHorizontal={H_PADDING}>
         <Tabs tabs={TAB_CONTENT} selected={selectedTab} onSelect={this.handleTabSelect} />
       </Block>
     );
 
     const renderControls = () => (
-      <Block direction="column" paddingVertical="6" paddingHorizontal="7">
+      <Block direction="column" paddingVertical="6" paddingHorizontal={H_PADDING}>
         <ButtonGroup fullWidth toolbar className="shadow-1" size="large">
           <Button className="pv-4 ph-5" icon="arrow-small-down" iconAfterText>
             <div className="mb-1">
@@ -117,7 +119,7 @@ class App extends Component {
     );
 
     const renderOverview = () => (
-      <Block itemSpacing="6" paddingHorizontal="7" styles={{ overflow: 'auto' }}>
+      <Block itemSpacing="6" paddingHorizontal={H_PADDING} styles={{ overflow: 'auto' }}>
         <Block basis="3/4">
           <Card>
             <Block width="100%" className="video-responsive">

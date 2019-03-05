@@ -154,7 +154,7 @@ export class Frame extends React.PureComponent {
     return (
       <div className="frame">
         {this.renderSkipToContent()}
-        <header className="frame-header">
+        <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
           <Button
             icon="menu"
             accessibilityLabel="toggle main menu"
