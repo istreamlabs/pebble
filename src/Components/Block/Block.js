@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { getSpacingClasses, parseTextSize } from '../../Utils';
 import {
-  colorType, fontSizeType, spacingType, textAlignType
+  colorType, fontSizeType, textAlignType, spacingType
 } from '../../Types';
 
 import './Block.scss';
@@ -85,11 +85,11 @@ class Block extends React.Component {
       ...flexStyle, ...basisStyle, ...widthStyle, ...heightStyle
     };
 
-    const mtClasses = marginTop ? getSpacingClasses('mt', marginTop) : null;
-    const mbClasses = marginBottom ? getSpacingClasses('mb', marginBottom) : null;
-    const pClasses = padding ? getSpacingClasses('p', padding) : null;
-    const phClasses = paddingHorizontal ? getSpacingClasses('ph', paddingHorizontal) : null;
-    const pvClasses = paddingVertical ? getSpacingClasses('pv', paddingVertical) : null;
+    const mtClasses = marginTop !== undefined ? getSpacingClasses('mt', marginTop) : null;
+    const mbClasses = marginBottom !== undefined ? getSpacingClasses('mb', marginBottom) : null;
+    const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
+    const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
+    const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
 
     const classes = classNames('block',
       mbClasses,
@@ -194,7 +194,7 @@ Block.propTypes = {
    * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginTop: spacingType,
+  marginTop: spacingType('marginTop'),
   /**
    * Margin [space](/#/Styles/Spacing) to be added below this block.
    *
@@ -203,7 +203,7 @@ Block.propTypes = {
    * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginBottom: spacingType,
+  marginBottom: spacingType('marginBottom'),
   /**
    * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
    *
@@ -212,7 +212,7 @@ Block.propTypes = {
    * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  padding: spacingType,
+  padding: spacingType('padding'),
   /**
    * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
    *
@@ -221,7 +221,7 @@ Block.propTypes = {
    * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingHorizontal: spacingType,
+  paddingHorizontal: spacingType('paddingHorizontal'),
   /**
    * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
    *
@@ -230,7 +230,7 @@ Block.propTypes = {
    * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingVertical: spacingType,
+  paddingVertical: spacingType('paddingVertical'),
   /**
    * Amount of [space](/#/Styles/Spacing) between each block item
    *
@@ -239,7 +239,7 @@ Block.propTypes = {
    * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  itemSpacing: spacingType,
+  itemSpacing: spacingType('itemSpacing'),
   /**
    * Text alignment within this block.
    * @type {PropTypes.Requireable<TextAlign>}

@@ -4,6 +4,10 @@
 
 import { PropTypes } from 'prop-types';
 
+export { default as spacingType } from './SpacingType';
+export { default as boolRequiresOtherProp } from './BoolRequiresOtherProp';
+export { default as requiresOtherProp } from './RequiresOtherProp';
+
 export const colorType = PropTypes.oneOf([
   'transparent',
   'neutral-100', 'neutral-200', 'neutral-300', 'neutral-400', 'neutral-500', 'neutral-600', 'neutral-700', 'neutral-800', 'neutral-900',
@@ -19,38 +23,3 @@ export const colorType = PropTypes.oneOf([
 export const fontSizeType = PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']);
 
 export const textAlignType = PropTypes.oneOf(['left', 'right', 'center']);
-
-export const spacingType = (props, propName, componentName) => {
-  componentName = componentName || 'ANONYMOUS';
-
-  // eslint-disable-next-line react/destructuring-assignment
-  const spacingType = props[propName];
-
-  if (spacingType === undefined) {
-    return null;
-  }
-
-  if (Array.isArray(spacingType)) {
-    if ((spacingType.length > 4 || spacingType.length < 1)
-      || !spacingType.every(item => [0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8'].some(v => item === v))) {
-      return new Error(
-        (`Invalid prop '${propName}' requires an array length up to 4, and a value of 0-8 in each element <${componentName}>`)
-      );
-    }
-  }
-
-  const parsedSpacing = parseNumber(spacingType);
-  if ((parsedSpacing > 8 || parsedSpacing < 0)) {
-    return new Error(
-      (`Invalid prop '${propName}' requires a value of 0-8 in <${componentName}>`)
-    );
-  }
-  return null;
-};
-
-export const parseNumber = (element) => {
-  if (typeof element !== 'number') {
-    element = parseInt(element, 10);
-  }
-  return element;
-};

@@ -79,7 +79,7 @@ Apply padding to all four sides.
   <Block background="blue-light" padding="3">Padding of 3</Block>
   <Block background="blue-light" padding="2">Padding of 2</Block>
   <Block background="blue-light" padding="1">Padding of 1</Block>
-  <Block background="blue-light">No padding</Block>
+  <Block background="blue-light" padding="0">No padding</Block>
 </Block>
 ```
 
