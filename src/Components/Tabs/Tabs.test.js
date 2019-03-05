@@ -12,8 +12,8 @@ describe('Tabs', () => {
   it('renders Tabs prop array', () => {
     expect(shallow(
       <Tabs tabs={[
-        { id: 1, content: 'tab 1' },
-        { id: 2, content: 'tab 2' }
+        { id: 'overview', content: 'overview-content' },
+        { id: 'metadata', content: 'metadata-content' }
       ]}
       >
       test

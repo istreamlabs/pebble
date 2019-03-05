@@ -14,20 +14,32 @@ import './Tab.scss';
 
 const Tab = (
   {
+    id,
     children,
     className,
-    selected,
+    isSelected,
+    ariaControls
   }
 ) => {
   const classes = classNames('tab', {
-    'tab-selected': selected
+    'tab-selected': isSelected
   }, className);
 
   return (
     <li
       className={classes}
+      role="presentation"
     >
-      <Button plain className="tab-button" fullWidth>
+      <Button
+        id={`${id}-tab`}
+        plain
+        className="tab-button"
+        fullWidth
+        aria-controls={ariaControls}
+        aria-selected={isSelected}
+        role="tab"
+
+      >
         {children}
       </Button>
     </li>
@@ -44,13 +56,18 @@ Tab.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Takes up the full width of its parent container
+   * Take up the full width of its parent container
    */
   fullWidth: PropTypes.bool,
+  id: PropTypes.string,
   /**
-   * Tab is selected
+   * Look like it is selected
    */
-  selected: PropTypes.bool,
+  isSelected: PropTypes.bool,
+  /**
+   * Id of the element the button controls
+  */
+  ariaControls: PropTypes.string,
 };
 
 export default Tab;

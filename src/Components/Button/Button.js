@@ -40,6 +40,7 @@ const Button = (
     ariaControls,
     ariaExpanded,
     ariaPressed,
+    ...otherProps
   }
 ) => {
   const isDisabled = loading || disabled;
@@ -99,6 +100,7 @@ const Button = (
       aria-expanded={ariaExpanded}
       aria-pressed={ariaPressed}
       aria-busy={loading ? true : undefined}
+      {...otherProps}
     >
       {content}
     </button>

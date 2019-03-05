@@ -23,7 +23,7 @@ class App extends Component {
     super();
     this.state = {
       activeMainMenuItem: '2b',
-      selectedTab: 'overview',
+      selectedTabId: 'overview',
       // showToast: false,
       // isLoading: false,
       // searchText: '',
@@ -44,7 +44,7 @@ class App extends Component {
     const {
       activeMainMenuItem,
       showMobileNavigation,
-      selectedTab
+      selectedTabId
     } = this.state;
 
     const renderPageTitle = () => (
@@ -87,7 +87,7 @@ class App extends Component {
 
     const renderTabs = () => (
       <Block background="white" paddingHorizontal="7">
-        <Tabs tabs={TAB_CONTENT} selected={selectedTab} onSelect={this.handleTabSelect} />
+        <Tabs tabs={TAB_CONTENT} selectedId={selectedTabId} onSelect={this.handleTabSelect} />
       </Block>
     );
 
