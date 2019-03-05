@@ -65,15 +65,14 @@ From there the CI machine takes over and for every tagged commit the following h
 If you want to promote the new package to the `latest` tag and thus making it be the preferred default install you may do this using the [`npm dist-tag`](https://docs.npmjs.com/cli/dist-tag) command.
 
 release an alpha prerelease minor update
-```
-npm version preminor -m "release package %s as alpah because reasons" --preid=alpha
+```shell
+$ npm version preminor -m "release package %s as alpah because reasons" --preid=alpha
 ```
 
 release a minor update
+```shell
+$ npm version minor -m "release package %s because reasons"
 ```
-npm version minor -m "release package %s because reasons"
-```
-
 
 ## License
 

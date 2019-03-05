@@ -92,6 +92,40 @@ describe('Frame', () => {
     expect(document.removeEventListener).toHaveBeenCalled();
   });
 
+  describe('handleSkipToMain', () => {
+    it('sets tabindex and focus on ref', () => {
+      const instance = new Frame({});
+      const mock = {
+        current: {
+          setAttribute: jest.fn(),
+          focus: jest.fn()
+        }
+      };
+      instance.mainContent = mock;
+
+      instance.handleSkipToMain();
+
+      expect(mock.current.setAttribute).toHaveBeenCalledWith('tabindex', '-1');
+      expect(mock.current.focus).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('handleBlurMain', () => {
+    it('removes tab index', () => {
+      const instance = new Frame({});
+      const mock = {
+        current: {
+          removeAttribute: jest.fn()
+        }
+      };
+      instance.mainContent = mock;
+
+      instance.handleBlurMain();
+
+      expect(mock.current.removeAttribute).toHaveBeenCalledWith('tabindex');
+    });
+  });
+
   describe('handleFocus', () => {
     beforeEach(() => {
       jest.restoreAllMocks();
@@ -146,12 +180,6 @@ describe('Frame', () => {
       const wrapper = shallow(testFrame);
       wrapper.instance().handleFocus();
       expect(wrapper.find('.skip').prop('className')).toBe('skip focused');
-    });
-
-    it('removes focus class to skip-to-content button when focused', () => {
-      const wrapper = shallow(testFrame);
-      wrapper.instance().handleBlur();
-      expect(wrapper.find('.skip').prop('className')).toBe('skip');
     });
   });
 });
