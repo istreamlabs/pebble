@@ -10,13 +10,20 @@ import './Tabs.scss';
  * A set of Tabs
  *
  * ---
+ *
+ * To do for each tab's content
+ *
+ * Add tabpanel role to each <section> to indicate it is a tab panel.
+ * Add id={tab.content} to each <section> as a reference for its tab.
+ * Add aria-labelledby={tab.id} to each <section> to reference its label.
+ * Add hidden to each inactive <section> to indicate it is hidden.
  */
 
 export class Tabs extends React.PureComponent {
   render() {
     const {
       fullWidth,
-      selected,
+      selectedId,
       tabs,
     } = this.props;
 
@@ -26,9 +33,11 @@ export class Tabs extends React.PureComponent {
 
     const tabsMarkup = tabs.map(tab => (
       <Tab
+        id={tab.id}
         key={tab.id}
-        selected={selected === tab.id}
+        isSelected={selectedId === tab.id}
         fullWidth={fullWidth}
+        ariaControls={tab.content}
       >
         {tab.content}
       </Tab>
@@ -51,9 +60,9 @@ Tabs.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * Index of selected tab
+   * Id of selected tab
    */
-  selected: PropTypes.string,
+  selectedId: PropTypes.string,
   /**
    * List of tabs
    */

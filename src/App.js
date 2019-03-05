@@ -25,7 +25,7 @@ class App extends Component {
     super();
     this.state = {
       activeMainMenuItem: '2b',
-      selectedTab: 'overview',
+      selectedTabId: 'overview',
       // showToast: false,
       // isLoading: false,
       // searchText: '',
@@ -46,7 +46,7 @@ class App extends Component {
     const {
       activeMainMenuItem,
       showMobileNavigation,
-      selectedTab
+      selectedTabId
     } = this.state;
 
     const renderPageTitle = () => (
