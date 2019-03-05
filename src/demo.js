@@ -100,6 +100,29 @@ export const menu = [
       },
     ]
   },
+
+  {
+    id: 'sports',
+    label: 'Sports',
+    description: 'Schedules and sports',
+    icon: 'sports',
+    items: [
+      {
+        id: 'sports-schedule',
+        label: 'Schedule',
+        description: '',
+        href: '#',
+        icon: '',
+      },
+      {
+        id: 'leagues',
+        label: 'Leagues',
+        description: '',
+        href: '#',
+        icon: '',
+      },
+    ]
+  },
   {
     id: '5',
     label: 'Subscribers',
