@@ -1,0 +1,16 @@
+@import '../../Styles/foundation/variables.scss';
+
+.tabs {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.tabs-fullwidth {
+  width: 100%;
+  .tab {
+    flex: 1 1 100%;
+  }
+}

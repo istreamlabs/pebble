@@ -2,10 +2,15 @@
     "version": "0.1",
     "language": "en",
     "words": [
+        "antialiased",
         "assistive",
+        "component",
         "dismissible",
         "scannable",
+        "tablist",
+        "unmount",
         "viewports",
+        "will",
         "woff"
     ],
     "flagWords": [],

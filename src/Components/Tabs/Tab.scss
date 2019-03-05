@@ -1,0 +1,41 @@
+@import '../../Styles/foundation/variables.scss';
+
+$TAB_BOTTOM_BORDER_HEIGHT: $spacing-1;
+
+.tab {
+  border-top: $TAB_BOTTOM_BORDER_HEIGHT solid transparent;
+  transition: border .2s linear, background .2s linear;
+  
+  &:hover:not(.tab-selected) {
+    border-top-color: $neutral-500;
+    background: $neutral-200;
+  }
+
+  &:not(:last-child) {
+    margin-right: $spacing-1;
+  }
+}
+
+.tab-button {
+  border-radius: 0;
+  color: $neutral-600;
+  font-weight: 400;
+  padding: $spacing-4 $spacing-5;
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: $neutral-700;
+    text-decoration: none;
+  }
+}
+
+.tab-selected {
+  border-top: $TAB_BOTTOM_BORDER_HEIGHT solid $blue;
+  background: $neutral-100;
+
+  .tab-button {
+    color: $neutral-700;
+    font-weight: 700;
+  }
+}

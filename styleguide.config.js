@@ -133,6 +133,9 @@ module.exports = {
     '**/*.spec.{js,jsx,ts,tsx}',
     '**/*.d.ts',
     'src/Components/Icon/Icons.js',
+    'src/Components/Overlay/Overlay.js',
+    'src/Components/Tabs/Tab.js',
+    'src/Components/Tabs/Tabs.js',
   ],
   pagePerSection: true,
   sections: [
@@ -195,7 +198,7 @@ module.exports = {
       components: 'src/Components/*/*.js',
       exampleMode: 'expand',
       usageMode: 'expand',
-      sectionDepth: 2
+      sectionDepth: 2,
     }
   ],
   ribbon: {

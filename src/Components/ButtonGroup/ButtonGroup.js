@@ -12,31 +12,30 @@ import './ButtonGroup.scss';
  * ---
  */
 
-const ButtonGroup = (
-  {
+function ButtonGroup(props) {
+  const {
     children,
     className,
-    fullWidth,
-    size,
     toolbar,
-  }
-) => {
+    ...otherProps
+  } = props;
+
   const classes = classNames(className, {
     'btn-group': !toolbar,
     'btn-toolbar': toolbar,
-    'btn-group-fullwidth': fullWidth,
+    'btn-group-fullwidth': otherProps.fullWidth,
   });
 
   return (
     <div className={classes}>
       {React.Children.map(children, child => (
         <div className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}>
-          {size ? React.cloneElement(child, { size }) : child}
+          {React.cloneElement(child, otherProps)}
         </div>
       ))}
     </div>
   );
-};
+}
 
 ButtonGroup.propTypes = {
   /**

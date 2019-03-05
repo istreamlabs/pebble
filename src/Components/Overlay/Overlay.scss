@@ -1,0 +1,17 @@
+@import '../../Styles/foundation/variables.scss';
+
+.overlay {
+  display: block;
+  position: absolute;
+  z-index: $z-overlay;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: $black-60;
+  opacity: 1;
+  will-change: opacity;
+
+  animation: fadeIn .2s 1 forwards;
+}

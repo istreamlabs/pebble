@@ -120,7 +120,8 @@ Use when a button has been pressed and the associated action is in progress.
 Use for buttons placed in a narrow column.
 
 ```js
-<Button fullWidth primary>full width</Button>
+<Button fullWidth primary className="mb-2">full width</Button>
+<Button fullWidth primary icon="arrow-small-down" iconAfterText>full width</Button>
 
 ```
 

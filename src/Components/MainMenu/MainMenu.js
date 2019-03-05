@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Block from '../Block/Block';
+import Text from '../Text/Text';
 import MenuItem from './MenuItem/MenuItem';
 
 import './MainMenu.scss';
@@ -21,16 +23,23 @@ class MainMenu extends React.Component {
       className,
       menu,
       auxMenu,
-      showOnSmallScreen
+      title
     } = this.props;
 
     const classes = classNames('main-menu', className, {
-      opened: showOnSmallScreen
     });
 
     return (
       <nav className={classes} aria-label="Main navigation">
         <div className="main-menu-top">
+          <Block
+            className="main-menu-title"
+            paddingVertical="3"
+            paddingHorizontal="5"
+            alignItems="center"
+          >
+            <Text bold>{title}</Text>
+          </Block>
           <ul className="main-menu-items">
             {menu.map(item => (
               <MenuItem
@@ -59,6 +68,10 @@ class MainMenu extends React.Component {
     );
   }
 }
+
+MainMenu.defaultProps = {
+  title: 'Portal',
+};
 
 MainMenu.propTypes = {
   /**
@@ -99,10 +112,7 @@ MainMenu.propTypes = {
       href: PropTypes.string,
     }))
   })),
-  /**
-   * show or hide menu below 30rem (480px)
-   */
-  showOnSmallScreen: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 export default MainMenu;

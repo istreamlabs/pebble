@@ -40,6 +40,7 @@ const Button = (
     ariaControls,
     ariaExpanded,
     ariaPressed,
+    ...otherProps
   }
 ) => {
   const isDisabled = loading || disabled;
@@ -69,13 +70,18 @@ const Button = (
   const leftIcon = !iconAfterText && icon && iconElement(icon);
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
+  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
+    'justify-between': icon && fullWidth,
+    'justify-center': (!icon && fullWidth),
+  });
+
   const content = (
-    <span className="btn-content">
+    <div className={contentClasses}>
       {spinnerSVGMarkup}
       {leftIcon}
       {children && <span className="btn-label">{children}</span>}
       {rightIcon}
-    </span>
+    </div>
   );
 
   return (
@@ -94,6 +100,7 @@ const Button = (
       aria-expanded={ariaExpanded}
       aria-pressed={ariaPressed}
       aria-busy={loading ? true : undefined}
+      {...otherProps}
     >
       {content}
     </button>

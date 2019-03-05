@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Button from '../Button/Button';
 import ButtonGroup from './ButtonGroup';
 
-describe('Button', () => {
+describe('ButtonGroup', () => {
   it('renders without crashing', () => {
     expect(() => { shallow(<ButtonGroup>hello</ButtonGroup>); }).not.toThrow();
   });
@@ -23,14 +23,14 @@ describe('Button', () => {
   describe('className', () => {
     it('passes in class name', () => {
       const buttonGroup = shallow(<ButtonGroup className="my-class">foo</ButtonGroup>);
-      expect(buttonGroup.html()).toContain('btn-group');
-      expect(buttonGroup.html()).toContain('my-class');
+      expect(buttonGroup.prop('className')).toContain('btn-group');
+      expect(buttonGroup.prop('className')).toContain('my-class');
     });
-  });
 
-  it('applies fullwidth', () => {
-    const buttonGroup = shallow(<ButtonGroup fullWidth>foo</ButtonGroup>);
-    expect(buttonGroup.html()).toContain('btn-group-fullwidth');
+    it('applies fullwidth', () => {
+      const buttonGroup = shallow(<ButtonGroup fullWidth>foo</ButtonGroup>);
+      expect(buttonGroup.prop('className')).toContain('btn-group-fullwidth');
+    });
   });
 
   it('applies toolbar styles', () => {
