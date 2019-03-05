@@ -187,32 +187,56 @@ Block.propTypes = {
    */
   textSize: fontSizeType,
   /**
-   * Margin spacing to be added above this block.
+   * Margin [space](/#/Styles/Spacing) to be added above this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
   marginTop: spacingType,
   /**
-   * Margin spacing to be added below this block.
+   * Margin [space](/#/Styles/Spacing) to be added below this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
   marginBottom: spacingType,
   /**
-   * Padding to be added uniformly within this block.
+   * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
   padding: spacingType,
   /**
-   * Padding to be added to the left and right. Will override a `padding` value.
+   * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
   paddingHorizontal: spacingType,
   /**
-   * Padding to be added to the top and bottom. Will override a `padding` value.
+   * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
   paddingVertical: spacingType,
   /**
    * Amount of [space](/#/Styles/Spacing) between each block item
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
   itemSpacing: spacingType,

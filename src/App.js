@@ -89,7 +89,7 @@ class App extends Component {
 
     const renderTabs = () => (
       <Block background="white" paddingHorizontal={H_PADDING}>
-        <Tabs tabs={TAB_CONTENT} selected={selectedTab} onSelect={this.handleTabSelect} />
+        <Tabs tabs={TAB_CONTENT} selected={selectedTabId} onSelect={this.handleTabSelect} />
       </Block>
     );
 

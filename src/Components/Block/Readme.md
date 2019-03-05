@@ -120,14 +120,14 @@ Apply padding to all four sides.
 ### Margin Top
 
 ```js
-<Block background="blue-light" marginTop="8">Margin top of 8</Block>
-<Block background="blue-light" marginTop="7">Margin top of 7</Block>
-<Block background="blue-light" marginTop="6">Margin top of 6</Block>
-<Block background="blue-light" marginTop="5">Margin top of 5</Block>
-<Block background="blue-light" marginTop="4">Margin top of 4</Block>
-<Block background="blue-light" marginTop="3">Margin top of 3</Block>
-<Block background="blue-light" marginTop="2">Margin top of 2</Block>
-<Block background="blue-light" marginTop="1">Margin top of 1</Block>
+<Block background="blue-light" marginTop="8">Margin bottom of 8</Block>
+<Block background="blue-light" marginTop="7">Margin bottom of 7</Block>
+<Block background="blue-light" marginTop="6">Margin bottom of 6</Block>
+<Block background="blue-light" marginTop="5">Margin bottom of 5</Block>
+<Block background="blue-light" marginTop="4">Margin bottom of 4</Block>
+<Block background="blue-light" marginTop="3">Margin bottom of 3</Block>
+<Block background="blue-light" marginTop="2">Margin bottom of 2</Block>
+<Block background="blue-light" marginTop="1">Margin bottom of 1</Block>
 <Block background="blue-light">No margin</Block>
 ```
 
@@ -159,7 +159,7 @@ Margin and padding props can be passed arrays as values for mobile-first respons
     8  // spacing-8 90rem and up
   ]}
 >
-  Padding of 1 and 8
+  Padding of 2 and 8
 </Block>
 ```
 
