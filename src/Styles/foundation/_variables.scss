@@ -22,9 +22,9 @@ $box-shadow-3: 0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24
 
 // BREAKPOINTS
 $breakpoints: (
-  sm: 30rem,
-  md: 60rem,
-  lg: 90rem
+  sm: 30rem,    /* 480px */
+  md: 60rem,    /* 960px */
+  lg: 90rem     /* 1440px */
 );
 
 // TYPOGRAPHY

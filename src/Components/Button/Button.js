@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { boolRequiresOtherProp, caseInsensitiveStringCompare } from '../../Utils';
+import { caseInsensitiveStringCompare } from '../../Utils';
+import { boolRequiresOtherProp } from '../../Types';
 
 import Icon from '../Icon/Icon';
 

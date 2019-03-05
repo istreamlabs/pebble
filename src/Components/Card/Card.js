@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { requiresOtherProp } from '../../Utils';
+import { requiresOtherProp } from '../../Types';
 
 import { Header, Section } from './Subcomponents';
 import './Card.scss';

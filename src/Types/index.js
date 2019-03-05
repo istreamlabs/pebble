@@ -4,6 +4,10 @@
 
 import { PropTypes } from 'prop-types';
 
+export { default as spacingType } from './SpacingType';
+export { default as boolRequiresOtherProp } from './BoolRequiresOtherProp';
+export { default as requiresOtherProp } from './RequiresOtherProp';
+
 export const colorType = PropTypes.oneOf([
   'transparent',
   'neutral-100', 'neutral-200', 'neutral-300', 'neutral-400', 'neutral-500', 'neutral-600', 'neutral-700', 'neutral-800', 'neutral-900',
@@ -17,7 +21,5 @@ export const colorType = PropTypes.oneOf([
 ]);
 
 export const fontSizeType = PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']);
-
-export const spacingType = PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, '1', '2', '3', '4', '5', '6', '7', '8']);
 
 export const textAlignType = PropTypes.oneOf(['left', 'right', 'center']);

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { parseTextSize } from '../../Utils';
+import { getSpacingClasses, parseTextSize } from '../../Utils';
 import {
-  colorType, fontSizeType, spacingType, textAlignType
+  colorType, fontSizeType, textAlignType, spacingType
 } from '../../Types';
 
 import './Block.scss';
@@ -35,87 +35,94 @@ const BASIS_MAP = {
  * of custom CSS.
  */
 
-const Block = (
-  {
-    alignContent,
-    alignItems,
-    alignSelf,
-    background,
-    basis,
-    children,
-    className,
-    direction,
-    flex,
-    height,
-    itemSpacing,
-    justify,
-    marginTop,
-    marginBottom,
-    padding,
-    paddingHorizontal,
-    paddingVertical,
-    textAlign,
-    textSize,
-    truncate,
-    width,
-    wrap,
-    ...props,
+class Block extends React.Component {
+  render() {
+    const {
+      alignContent,
+      alignItems,
+      alignSelf,
+      background,
+      basis,
+      children,
+      className,
+      direction,
+      flex,
+      height,
+      itemSpacing,
+      justify,
+      marginTop,
+      marginBottom,
+      padding,
+      paddingHorizontal,
+      paddingVertical,
+      textAlign,
+      textSize,
+      truncate,
+      width,
+      wrap,
+      ...props
+    } = this.props;
+
+    const parsedTextSize = textSize ? parseTextSize(textSize) : null;
+
+    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] } : null;
+
+    const flexGrowShrinkProp = (flex) => {
+      if (typeof flex === 'boolean' || typeof flex === 'string') {
+        return FLEX_MAP[flex];
+      }
+      if (typeof flex === 'object') {
+        return `${flex.grow ? flex.grow : 0} ${flex.shrink ? flex.shrink : 0}`;
+      }
+    };
+
+    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
+
+    const widthStyle = { width: width || null };
+    const heightStyle = { height: height || null };
+
+    const mergedStyle = {
+      ...flexStyle, ...basisStyle, ...widthStyle, ...heightStyle
+    };
+
+    const mtClasses = marginTop !== undefined ? getSpacingClasses('mt', marginTop) : null;
+    const mbClasses = marginBottom !== undefined ? getSpacingClasses('mb', marginBottom) : null;
+    const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
+    const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
+    const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
+
+    const classes = classNames('block',
+      mbClasses,
+      mtClasses,
+      pClasses,
+      phClasses,
+      pvClasses, {
+        [`bg-${background}`]: background,
+        'flex-wrap': wrap,
+        [`flex-${direction}`]: direction,
+        [`content-${alignContent}`]: alignContent,
+        [`self-${alignSelf}`]: alignSelf,
+        [`items-${alignItems}`]: alignItems,
+        [`justify-${justify}`]: justify,
+        [`fs-${parsedTextSize}`]: parsedTextSize,
+        [`text-${textAlign}`]: textAlign,
+        truncate,
+      }, className);
+
+    const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
+
+    const blockChildren = itemSpacing !== undefined ? React.Children.map(children, child => React.cloneElement(
+      child,
+      { className: classNames(child.className, 'block-item', spacingClass) }
+    )) : children;
+
+    return (
+      <div className={classes} {...props} style={mergedStyle}>
+        {blockChildren}
+      </div>
+    );
   }
-) => {
-  const parsedTextSize = textSize ? parseTextSize(textSize) : null;
-
-  const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] } : null;
-
-  const flexGrowShrinkProp = (flex) => {
-    if (typeof flex === 'boolean' || typeof flex === 'string') {
-      return FLEX_MAP[flex];
-    }
-    if (typeof flex === 'object') {
-      return `${flex.grow ? flex.grow : 0} ${flex.shrink ? flex.shrink : 0}`;
-    }
-  };
-
-  const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
-
-  const widthStyle = { width: width || null };
-  const heightStyle = { height: height || null };
-
-  const mergedStyle = {
-    ...flexStyle, ...basisStyle, ...widthStyle, ...heightStyle
-  };
-
-
-  const classes = classNames('block', {
-    [`bg-${background}`]: background,
-    'flex-wrap': wrap,
-    [`flex-${direction}`]: direction,
-    [`content-${alignContent}`]: alignContent,
-    [`self-${alignSelf}`]: alignSelf,
-    [`items-${alignItems}`]: alignItems,
-    [`justify-${justify}`]: justify,
-    [`fs-${parsedTextSize}`]: parsedTextSize,
-    [`text-${textAlign}`]: textAlign,
-    [`mt-${marginTop}`]: marginTop,
-    [`mb-${marginBottom}`]: marginBottom,
-    [`p-${padding}`]: padding,
-    [`ph-${paddingHorizontal}`]: paddingHorizontal,
-    [`pv-${paddingVertical}`]: paddingVertical,
-    truncate,
-  }, className);
-
-  const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
-
-  const blockChildren = itemSpacing !== undefined ? React.Children.map(children, child => React.cloneElement(
-    child,
-    { className: classNames(child.className, 'block-item', spacingClass) }
-  )) : children;
-
-  return (
-    <div className={classes} {...props} style={mergedStyle}>
-      {blockChildren}
-    </div>
-  );
-};
+}
 
 Block.defaultProps = {
   direction: 'row'
@@ -180,35 +187,59 @@ Block.propTypes = {
    */
   textSize: fontSizeType,
   /**
-   * Margin spacing to be added above this block.
+   * Margin [space](/#/Styles/Spacing) to be added above this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginTop: spacingType,
+  marginTop: spacingType('marginTop'),
   /**
-   * Margin spacing to be added below this block.
+   * Margin [space](/#/Styles/Spacing) to be added below this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginBottom: spacingType,
+  marginBottom: spacingType('marginBottom'),
   /**
-   * Padding to be added uniformly within this block.
+   * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  padding: spacingType,
+  padding: spacingType('padding'),
   /**
-   * Padding to be added to the left and right. Will override a `padding` value.
+   * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingHorizontal: spacingType,
+  paddingHorizontal: spacingType('paddingHorizontal'),
   /**
-   * Padding to be added to the top and bottom. Will override a `padding` value.
+   * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingVertical: spacingType,
+  paddingVertical: spacingType('paddingVertical'),
   /**
    * Amount of [space](/#/Styles/Spacing) between each block item
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or an `array` with length up to 4, for responsive behavior
    * @type {PropTypes.Requireable<Spacing>}
    */
-  itemSpacing: spacingType,
+  itemSpacing: spacingType('itemSpacing'),
   /**
    * Text alignment within this block.
    * @type {PropTypes.Requireable<TextAlign>}

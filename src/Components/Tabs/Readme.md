@@ -23,5 +23,5 @@ const tabs = [
   },
 ];
 
-<Tabs tabs={tabs} selected="all-customers" />
+<Tabs tabs={tabs} selectedId="overview" />
 ```

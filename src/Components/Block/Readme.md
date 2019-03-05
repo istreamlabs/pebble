@@ -79,7 +79,7 @@ Apply padding to all four sides.
   <Block background="blue-light" padding="3">Padding of 3</Block>
   <Block background="blue-light" padding="2">Padding of 2</Block>
   <Block background="blue-light" padding="1">Padding of 1</Block>
-  <Block background="blue-light">No padding</Block>
+  <Block background="blue-light" padding="0">No padding</Block>
 </Block>
 ```
 
@@ -145,6 +145,24 @@ Apply padding to all four sides.
 <Block background="blue-light">No margin</Block>
 ```
 
+### Responsive Styles
+
+Margin and padding props can be passed arrays as values for mobile-first responsive styles.
+
+```js
+<Block
+  background="blue-light"
+  padding={[
+    2, // spacing-2 by default
+    4, // spacing-4 30rem and up
+    6, // spacing-6 60rem and up
+    8  // spacing-8 90rem and up
+  ]}
+>
+  Padding of 2 and 8
+</Block>
+```
+
 ### Text Size
 
 ```js
@@ -175,3 +193,4 @@ Apply padding to all four sides.
   <Block background="blue-light" direction="column" textAlign="right">Right Aligned</Block>
 </Block>
 ```
+
