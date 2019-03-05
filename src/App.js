@@ -39,7 +39,7 @@ class App extends Component {
   };
 
   handleTabSelect = (newSelectedTab) => {
-    this.setState({ selectedTab: newSelectedTab });
+    this.setState({ selectedTabId: newSelectedTab });
   }
 
   render() {
@@ -89,7 +89,7 @@ class App extends Component {
 
     const renderTabs = () => (
       <Block background="white" paddingHorizontal={H_PADDING}>
-        <Tabs tabs={TAB_CONTENT} selected={selectedTabId} onSelect={this.handleTabSelect} />
+        <Tabs tabs={TAB_CONTENT} selectedId={selectedTabId} onSelect={this.handleTabSelect} />
       </Block>
     );
 
