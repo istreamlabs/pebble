@@ -16,4 +16,8 @@ describe('Util > GetSpacingClasses', () => {
   it('returns undefined if not passed an array, string, or number', () => {
     expect(getSpacingClasses('p', {})).toBe(undefined);
   });
+
+  it('returns undefined if passed an empty array', () => {
+    expect(getSpacingClasses('p', [])).toBe(undefined);
+  });
 });

@@ -3,7 +3,7 @@ export default (prefix, spacing) => {
 
   if (typeof spacing === 'string' || typeof spacing === 'number') {
     spacingClasses = `${prefix}-${spacing}`;
-  } else if (Array.isArray(spacing)) {
+  } else if (Array.isArray(spacing) && spacing.length) {
     spacingClasses = [];
     spacingClasses.push(`${prefix}-${spacing[0]}`);
 
