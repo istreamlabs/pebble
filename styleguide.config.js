@@ -135,7 +135,7 @@ module.exports = {
     'src/Components/Icon/Icons.js',
     'src/Components/Overlay/Overlay.js',
     'src/Components/Tabs/Tab.js',
-    'src/Components/Tabs/Tabs.js',
+    //'src/Components/Tabs/Tabs.js',
   ],
   pagePerSection: true,
   sections: [

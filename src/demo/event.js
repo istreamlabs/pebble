@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Badge,
@@ -54,7 +55,7 @@ class Event extends React.Component {
     <Block direction="column" background="white" paddingVertical="6" paddingHorizontal={H_PADDING}>
       <Block justify="between" alignItems="center">
         <div>
-          <Heading element="6" className="neutral-500">LIVE COMPETITION</Heading>
+          <Link to="/live"><Heading element="6" className="neutral-500">LIVE COMPETITION</Heading></Link>
           <Heading element="1">NBA 2019 All-Star Game</Heading>
           <Text bold>Sunday, Feb 17, 2019 at 5:00 PM</Text>
         </div>

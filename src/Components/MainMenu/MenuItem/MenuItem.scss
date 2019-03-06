@@ -32,8 +32,8 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
       color: $NAV_ITEM_COLOR_HOVER;
 
       &:focus {
-        color: $NAV_ITEM_COLOR_FOCUS;
-        box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+        color: $NAV_ITEM_COLOR_HOVER;
+        box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT;
 
         .menu-item-icon {
           color: $NAV_ITEM_ICON_FOCUS;
@@ -90,11 +90,6 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 
   &:focus {
     outline:0;
-    color: $NAV_ITEM_COLOR_HOVER;
-    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
-    .menu-item-icon {
-      color: $NAV_ITEM_ICON_HOVER;
-    }
   }
 
   // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
@@ -197,11 +192,11 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   &.active {
     background: $NAV_ITEM_ACTIVE_BG;
     box-shadow: inset 5px 0 0 $NAV_HIGHLIGHT;
-    color: $NAV_ITEM_ICON_HOVER;
+    color: $NAV_ITEM_COLOR_HOVER;
 
     &:focus {
-      color: $NAV_ITEM_COLOR_FOCUS;
-      box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+      color: $NAV_ITEM_COLOR_HOVER;
+      box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT;
     }
   }
 }

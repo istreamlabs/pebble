@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Event from './demo/event';
+import { Event, Live } from './demo';
 
 import {
   Frame,
   MainMenu,
 } from './Components';
 
-import { menu, auxMenu } from './demo';
+import { menu, auxMenu } from './demo/demo';
 
 const TENANT_NAME = 'iStreamPlanet';
 
-class App extends Component {
+function Dashboard() {
+  return <h2>Dashboard</h2>;
+}
+
+function Subscribers() {
+  return <h2>Subscribers</h2>;
+}
+
+class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      activeMainMenuItem: '2b',
+      activeMainMenuItem: 'live',
       // showToast: false,
       // isLoading: false,
       // searchText: '',
@@ -28,10 +37,9 @@ class App extends Component {
     this.setState(prevState => ({ [key]: !prevState[key] }));
   };
 
-  handleTabSelect = (newSelectedTab) => {
-    this.setState({ selectedTabId: newSelectedTab });
+  handleNavigationSelection = (selectedId) => {
+    this.setState({ activeMainMenuItem: selectedId });
   }
-
 
   render() {
     const {
@@ -45,18 +53,26 @@ class App extends Component {
         menu={menu}
         auxMenu={auxMenu}
         activeItem={activeMainMenuItem}
+        onNavigate={this.handleNavigationSelection}
       />
     );
 
     return (
-      <Frame
-        isShowingMobileNav={showMobileNavigation}
-        navigation={mainMenu}
-        onNavigationToggle={this.toggleState('showMobileNavigation')}
-        title={TENANT_NAME}
-      >
-        <Event />
-      </Frame>
+      <Router>
+        <Frame
+          isShowingMobileNav={showMobileNavigation}
+          navigation={mainMenu}
+          onNavigationToggle={this.toggleState('showMobileNavigation')}
+          title={TENANT_NAME}
+        >
+          <Switch>
+            <Route path="/live/" exact component={Live} />
+            <Route path="/live/event" exact component={Event} />
+            <Route path="/dashboard/" component={Dashboard} />
+            <Route path="/subscribers/" component={Subscribers} />
+          </Switch>
+        </Frame>
+      </Router>
     );
   }
 }

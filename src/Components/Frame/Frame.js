@@ -19,7 +19,7 @@ const APP_FRAME_NAV = 'AppFrameNav';
  * ---
  */
 
-export class Frame extends React.PureComponent {
+export class Frame extends React.Component {
   constructor(props) {
     super(props);
 

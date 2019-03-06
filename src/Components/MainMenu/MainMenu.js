@@ -17,13 +17,15 @@ import './MainMenu.scss';
  */
 
 class MainMenu extends React.Component {
+
   render() {
     const {
       activeItem,
       className,
       menu,
       auxMenu,
-      title
+      title,
+      onNavigate
     } = this.props;
 
     const classes = classNames('main-menu', className, {
@@ -46,6 +48,7 @@ class MainMenu extends React.Component {
                 activeItem={activeItem}
                 item={item}
                 key={item.id}
+                onClick={onNavigate}
               />
             ))}
           </ul>
@@ -58,10 +61,10 @@ class MainMenu extends React.Component {
                   activeItem={activeItem}
                   item={item}
                   key={item.id}
+                  onClick={onNavigate}
                 />
               ))}
             </ul>
-
           </div>
         )}
       </nav>
@@ -113,6 +116,10 @@ MainMenu.propTypes = {
     }))
   })),
   title: PropTypes.string,
+  /**
+   * Callback function when a MenuItem is clicked
+   */
+  onNavigate: PropTypes.func,
 };
 
 export default MainMenu;

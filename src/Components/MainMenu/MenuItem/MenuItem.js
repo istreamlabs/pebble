@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
+
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 
@@ -19,6 +21,16 @@ class MenuItem extends React.Component {
   handleToggleOpen = () => {
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
+  }
+
+  handleClick = (item) => {
+    const { onClick } = this.props;
+
+    const hasSubItems = (item.items && item.items.length);
+
+    if (hasSubItems) this.handleToggleOpen();
+
+    onClick(item.id);
   }
 
   renderIconLabel = () => {
@@ -54,14 +66,15 @@ class MenuItem extends React.Component {
 
     const subItems = items.map((subItem, i) => (
       <li key={subItem.id}>
-        <a
-          href={subItem.href}
+        <Link
+          to={subItem.href}
           className={classNames('sub-menu-item', { active: subItem.id === activeItem })}
           key={i}
           role="menuitem"
+          onClick={() => this.handleClick(subItem)}
         >
           {subItem.label}
-        </a>
+        </Link>
       </li>
     ));
 
@@ -82,16 +95,16 @@ class MenuItem extends React.Component {
       <li className={itemClasses}>
         <div className="menu-item-content">
           {item.href ? (
-            <a
+            <Link
               id={`MenuItem-${item.id}`}
-              href={item.href}
+              to={item.href}
               className="menu-item"
-              onClick={hasSubItems ? this.handleToggleOpen : undefined}
+              onClick={() => this.handleClick(item)}
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
             >
               {this.renderIconLabel()}
-            </a>
+            </Link>
           ) : (
             <button
               id={`MenuItem-${item.id}`}
@@ -130,6 +143,10 @@ MenuItem.propTypes = {
    * the menu that gets rendered
    */
   item: PropTypes.object.isRequired,
+  /**
+   * Callback when an item is clicked
+   */
+  onClick: PropTypes.func,
 };
 
 export default MenuItem;
