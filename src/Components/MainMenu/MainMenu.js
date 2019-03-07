@@ -17,7 +17,6 @@ import './MainMenu.scss';
  */
 
 class MainMenu extends React.Component {
-
   render() {
     const {
       activeItem,
