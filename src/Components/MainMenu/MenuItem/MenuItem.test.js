@@ -1,6 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import MenuItem from './MenuItem';
+
+const onClickMock = jest.fn();
 
 const mockData = {
   id: '1',
@@ -71,7 +75,7 @@ describe('MenuItem', () => {
   it('opens the submenu if a subitem is active and sets the subitem to active', () => {
     const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
     expect(item.find('li.menu-item-container').prop('className')).toContain('open');
-    expect(item.find('a.sub-menu-item').prop('className')).toContain('active');
+    expect(item.find('.sub-menu-item').prop('className')).toContain('active');
   });
 
   it('opens the submenu if the Item is active', () => {
@@ -79,9 +83,9 @@ describe('MenuItem', () => {
     expect(item.find('li.menu-item-container').prop('className')).toContain('open active');
   });
 
-  it('renders as <a> when href is set', () => {
+  it('renders as Link when to is set', () => {
     const item = shallow(<MenuItem item={linkSubItems} />);
-    expect(item.find('a.menu-item').prop('href')).toContain('/test');
+    expect(item.find('.menu-item').prop('to')).toContain('/test');
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
@@ -90,12 +94,24 @@ describe('MenuItem', () => {
   });
 
   it('renders an separate toggle button when a link with sub items is passed', () => {
-    const item = mount(<MenuItem item={linkSubItems} />);
+    const item = mount(<Router><MenuItem item={linkSubItems} /></Router>);
     expect(item.find('button').prop('className')).toContain('menu-item-collapse-button');
   });
 
   it('sets the accessibilityLabel', () => {
-    const item = mount(<MenuItem item={linkSubItems} />);
+    const item = mount(<Router><MenuItem item={linkSubItems} /></Router>);
     expect(item.find('button').prop('aria-label')).toBe('show Content sub items');
+  });
+
+  describe('handleClick', () => {
+    beforeEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls onClick', () => {
+      const wrapper = shallow(<MenuItem activeItem="1" item={mockData} onClick={onClickMock} />);
+      wrapper.instance().handleClick(1);
+      expect(onClickMock).toHaveBeenCalledTimes(1);
+    });
   });
 });

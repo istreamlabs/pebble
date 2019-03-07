@@ -27,7 +27,6 @@ class MenuItem extends React.Component {
     const { onClick } = this.props;
 
     const hasSubItems = (item.items && item.items.length);
-
     if (hasSubItems) this.handleToggleOpen();
 
     onClick(item.id);

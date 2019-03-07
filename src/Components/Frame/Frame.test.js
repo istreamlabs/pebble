@@ -1,6 +1,7 @@
 import React from 'react';
 import FocusTrap from 'focus-trap-react';
 import { mount, shallow } from 'enzyme';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
 
@@ -86,7 +87,7 @@ describe('Frame', () => {
   it('should cleanup event listener when unmounted', () => {
     document.removeEventListener = jest.fn();
 
-    const wrapper = mount(testFrame);
+    const wrapper = mount(<Router>{testFrame}</Router>);
 
     wrapper.unmount();
     expect(document.removeEventListener).toHaveBeenCalled();
