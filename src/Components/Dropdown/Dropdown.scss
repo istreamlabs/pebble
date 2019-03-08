@@ -1,0 +1,13 @@
+@import '../../Styles/foundation/variables';
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-overlay {
+  position: absolute;
+  margin-top: $spacing-1;
+  box-shadow: $box-shadow-1;
+  z-index: $z-overlay;
+}
