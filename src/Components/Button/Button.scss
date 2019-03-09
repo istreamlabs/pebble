@@ -170,6 +170,10 @@
   min-width: 1px;
   min-height: 1px;
   width: 100%;
+
+  svg {
+    min-width: 16px;
+  }
 }
 
 .btn-loading,

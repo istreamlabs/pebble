@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { caseInsensitiveStringCompare } from '../../Utils';
+import { boolRequiresOtherProp } from '../../Types';
+
+import Icon from '../Icon/Icon';
 
 import '../Button/Button.scss';
 
@@ -23,6 +26,8 @@ const LinkButton = (
     primary,
     danger,
     fullWidth,
+    icon,
+    iconAfterText,
     target,
     tabIndex,
     accessibilityLabel,
@@ -37,10 +42,28 @@ const LinkButton = (
     disabled,
   });
 
+  const iconElement = function (name) {
+    const iconSize = caseInsensitiveStringCompare(size, 'large') ? 20 : 16;
+
+    return (
+      <Icon name={name} size={iconSize} className="btn-icon" />
+    );
+  };
+
+  const leftIcon = !iconAfterText && icon && iconElement(icon);
+  const rightIcon = icon && iconAfterText && iconElement(icon);
+
+  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
+    'justify-between': icon && fullWidth,
+    'justify-center': (!icon && fullWidth),
+  });
+
   const content = (
-    <span className="btn-content">
-      {children}
-    </span>
+    <div className={contentClasses}>
+      {leftIcon}
+      {children && <span className="btn-label">{children}</span>}
+      {rightIcon}
+    </div>
   );
 
   return disabled ? (
@@ -89,6 +112,14 @@ LinkButton.propTypes = {
    * URL of the page the link goes to
    */
   href: PropTypes.string.isRequired,
+  /**
+   * The name of the [icon](/#/Components/Icon) to add inside the button
+   */
+  icon: PropTypes.string,
+  /**
+   * Boolean for placing the icon to the right of the button text
+   */
+  iconAfterText: boolRequiresOtherProp('icon'),
   /**
    * Changes the size of the button, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
