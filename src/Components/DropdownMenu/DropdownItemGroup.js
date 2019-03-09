@@ -15,7 +15,14 @@ const DropdownItemGroup = (
   const classes = classNames('dropdown-item-group', className);
   return (
     <Block marginBottom="4" direction="column" className={classes} role="menu">
-      <Heading element="4" size="6" className="text-transform-none fw-400 neutral-600 ph-3 mb-2">{title}</Heading>
+      <Heading
+        element="4"
+        size="6"
+        className="text-transform-none
+          fw-400 neutral-600 ph-3 mb-2"
+      >
+        {title}
+      </Heading>
       {children}
     </Block>
   );
@@ -31,9 +38,9 @@ DropdownItemGroup.propTypes = {
    */
   children: PropTypes.any,
   /**
-   * Title text that appears as header of the group
+   * Text that appears as header of the group
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 export default DropdownItemGroup;

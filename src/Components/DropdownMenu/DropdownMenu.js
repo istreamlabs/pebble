@@ -7,9 +7,15 @@ import FocusTrap from 'focus-trap-react';
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 
-import './Dropdown.scss';
+import './DropdownMenu.scss';
 
-export class Dropdown extends React.PureComponent {
+/**
+ * Creates a dropdown menu with optional groups with headings.
+ *
+ * ---
+ */
+
+export class DropdownMenu extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -43,7 +49,7 @@ export class Dropdown extends React.PureComponent {
   }
 
   renderToggle() {
-    const { trigger } = this.props;
+    const { trigger, disabled } = this.props;
 
     if (typeof trigger === 'string') {
       return (
@@ -52,6 +58,7 @@ export class Dropdown extends React.PureComponent {
           icon="arrow-small-down"
           iconAfterText
           className="dropdown-toggle"
+          disabled={disabled}
         >
           {trigger}
         </Button>
@@ -108,11 +115,11 @@ export class Dropdown extends React.PureComponent {
   }
 }
 
-Dropdown.defaultProps = {
+DropdownMenu.defaultProps = {
   trapFocus: true,
 };
 
-Dropdown.propTypes = {
+DropdownMenu.propTypes = {
   /**
    * Additional classNames to add
    */
@@ -148,10 +155,10 @@ Dropdown.propTypes = {
   /**
    * Content that will open and close the dropdown menu. Passing a string will render a Button with a down arrow.
    */
-  trigger: PropTypes.oneOf([
+  trigger: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),
 };
 
-export default onClickOutside(Dropdown);
+export default onClickOutside(DropdownMenu);
