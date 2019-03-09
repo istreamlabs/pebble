@@ -19,6 +19,27 @@
 </div>
 ```
 
+### Icon and Text
+
+```js
+<div className="styleguide__buttons">
+  <LinkButton href="#" primary size="small" icon="add-circle">small</LinkButton>
+  <LinkButton href="#" primary icon="add-circle">medium</LinkButton>
+  <LinkButton href="#" primary size="large" icon="add-circle">large</LinkButton>
+</div>
+```
+
+### Icon Positioning
+
+Icons can be placed on either side of the button label to meet your usecase.
+
+```js
+<ButtonGroup>
+  <LinkButton href="#" icon="arrow-small-left">prev</LinkButton>
+  <LinkButton href="#" icon="arrow-small-right" iconAfterText>next</LinkButton>
+</ButtonGroup>
+```
+
 ### Additional ClassNames
 
 Pass a `className` containing custom css to apply them in addition to the default button styles.
