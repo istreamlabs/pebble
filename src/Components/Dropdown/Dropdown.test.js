@@ -24,14 +24,6 @@ describe('Dropdown', () => {
   });
 
   describe('handleClose', () => {
-    it('should cleanup event listener', () => {
-      document.removeEventListener = jest.fn();
-
-      const instance = new Dropdown({ open: false });
-
-      instance.handleClose();
-      expect(document.removeEventListener).toHaveBeenCalled();
-    });
     it('should call onClose callback', () => {
       const onClose = jest.fn();
       const instance = new Dropdown({ open: false, onClose });
@@ -42,14 +34,6 @@ describe('Dropdown', () => {
   });
 
   describe('handleOpen', () => {
-    it('should add event listener', () => {
-      document.addEventListener = jest.fn();
-
-      const instance = new Dropdown({ open: false });
-
-      instance.handleOpen();
-      expect(document.addEventListener).toHaveBeenCalled();
-    });
     it('should call onClose callback', () => {
       const onOpen = jest.fn();
       const instance = new Dropdown({ open: false, onOpen });

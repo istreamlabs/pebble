@@ -1,4 +1,5 @@
 @import '../../Styles/foundation/variables';
+@import '../../Styles/foundation/color';
 
 .dropdown-container {
   position: relative;
@@ -6,8 +7,41 @@
 }
 
 .dropdown-overlay {
+  border-radius: $border-radius-2;
   position: absolute;
   margin-top: $spacing-1;
-  box-shadow: $box-shadow-1;
+  box-shadow: $box-shadow-2;
   z-index: $z-overlay;
+  min-width: $spacing-8;
+  max-width: 300px;
+  overflow: hidden;
+  background: $white;
+}
+
+.dropdown-item {
+  border: none;
+  border-radius: 0;
+  display: block;
+  font-weight: 400;
+  width: 100%;
+  background: transparent;
+  color: $neutral-700;
+  padding: $spacing-3 $spacing-4;
+  @extend .bg-blue-lighter-hover;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.dropdown-toggle {
+  &:focus {
+    outline: 0;
+  }
+}
+
+.dropdown-item-group {
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
