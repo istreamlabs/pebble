@@ -65,11 +65,9 @@ export class DropdownMenu extends React.PureComponent {
       );
     }
 
-    if (React.isValidElement(trigger)) {
-      return React.cloneElement(trigger, {
-        onClick: () => this.onToggle()
-      });
-    }
+    return React.cloneElement(trigger, {
+      onClick: () => this.onToggle()
+    });
   }
 
   renderOverlay = () => {
@@ -117,6 +115,7 @@ export class DropdownMenu extends React.PureComponent {
 
 DropdownMenu.defaultProps = {
   trapFocus: true,
+  open: false,
 };
 
 DropdownMenu.propTypes = {
@@ -160,5 +159,7 @@ DropdownMenu.propTypes = {
     PropTypes.node,
   ]),
 };
+
+export { DropdownMenu as DropdownMenuWithoutOnClickOutside };
 
 export default onClickOutside(DropdownMenu);
