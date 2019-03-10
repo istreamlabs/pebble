@@ -5,6 +5,13 @@ import classNames from 'classnames';
 import Block from '../Block/Block';
 import Heading from '../Heading/Heading';
 
+/**
+ * A child of [DropdownMenu](/#/Components/DropdownMenu).
+ * Used to group related [DropdownItems](/#/Components/DropdownItem) together.
+ *
+ * ---
+ */
+
 const DropdownItemGroup = (
   {
     children,

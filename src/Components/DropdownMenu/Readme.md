@@ -66,7 +66,6 @@ Pass a node as the `trigger` to allow it to open and close a dropdown menu when 
 
 ```
 
-
 ## Best Practices
 
 DropdownMenus should:
