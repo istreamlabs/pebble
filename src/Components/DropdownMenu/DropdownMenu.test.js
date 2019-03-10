@@ -3,9 +3,9 @@ import { shallow } from 'enzyme';
 import DropdownMenu from './DropdownMenu';
 
 describe('DropdownMenu', () => {
-  // it('renders without crashing', () => {
-  //   expect(() => { shallow(<Dropdown overlay={<div>overlay</div>}>hello</Dropdown>); }).not.toThrow();
-  // });
+  it('renders without crashing', () => {
+    expect(() => { shallow(<DropdownMenu overlay={<div>overlay</div>}>hello</DropdownMenu>); }).not.toThrow();
+  });
 
   // describe('onToggle', () => {
   //   it('should toggle the dropdown open and call onOpen and onClose', () => {

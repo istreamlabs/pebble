@@ -45,6 +45,17 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
 </DropdownMenu>
 ```
 
+### Custom Trigger and Claseses
+
+Pass a node as the `trigger` to allow it to open and close a dropdown menu when clicked.
+
+```jsx
+<DropdownMenu trigger={<Button size="large" plain className="bg-transparent">custom trigger</Button>}className="bg-blue-lighter p-4" overlayClassName="bg-black-90">
+  <DropdownItem className="neutral-100">item 1</DropdownItem>
+  <DropdownItem className="neutral-100">item 2</DropdownItem>
+</DropdownMenu>
+```
+
 ### Disabled
 
 ```jsx
