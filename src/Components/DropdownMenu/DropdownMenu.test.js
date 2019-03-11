@@ -31,11 +31,10 @@ describe('DropdownMenu', () => {
   });
 
   describe('handleClickOutside', () => {
-    it('should close the overlay its open', () => {
+    it('should close the overlay if it is open', () => {
       const onClose = jest.fn();
-      const instance = new DropdownMenu({ open: true, onClose });
-
-      instance.handleClickOutside();
+      const wrapper = shallow(<DropdownMenu open trigger="click me" onClose={onClose}><div>overlay</div></DropdownMenu>);
+      wrapper.instance().handleClickOutside();
       expect(onClose).toHaveBeenCalled();
     });
 
