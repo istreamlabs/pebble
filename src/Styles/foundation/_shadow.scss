@@ -1,3 +1,13 @@
 .shadow-1 { box-shadow: $box-shadow-1 }
 .shadow-2 { box-shadow: $box-shadow-2 }
 .shadow-3 { box-shadow: $box-shadow-3 }
+
+.shadow-1-hover:hover,
+.shadow-1-hover:focus,
+.shadow-1-hover:focus-within { box-shadow: $box-shadow-1 }
+.shadow-2-hover:hover,
+.shadow-2-hover:focus,
+.shadow-2-hover:focus-within { box-shadow: $box-shadow-2 }
+.shadow-3-hover:hover,
+.shadow-3-hover:focus,
+.shadow-3-hover:focus-within { box-shadow: $box-shadow-3 }
