@@ -51,7 +51,8 @@ Build Documentation Site
 $ yarn styleguide:build
 ```
 
-## releasing
+## Releasing
+
 Package releases should be done through the [`npm version`](https://docs.npmjs.com/cli/version.html) command. When you run the command, the following will happen
 * Execute a coverage test run to make sure everything is okay
 * Bump the version number in `package.json` accordingly (see examples)
