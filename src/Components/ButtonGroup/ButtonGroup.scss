@@ -22,7 +22,8 @@
   .btn {
     height: 100%;
 
-    &:hover {
+    &:hover,
+    &:focus {
       z-index: 1;
     }
   }

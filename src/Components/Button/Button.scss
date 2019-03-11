@@ -1,5 +1,10 @@
 @import '../../Styles/foundation/variables.scss';
 
+$BTN_FOCUS_SHADOW_WIDTH: $spacing-1;
+$BTN_FOCUS_DEFAULT: $blue-light;
+$BTN_FOCUS_PRIMARY: $blue-light;
+$BTN_FOCUS_DANGER: $red-light;
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -24,8 +29,13 @@
   &:focus,
   &:hover,
   &:active {
+    outline: 0;
     border-color: $neutral-500;
     color: $neutral-700;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 .2rem $BTN_FOCUS_DEFAULT;
   }
 
   &.disabled,
@@ -67,6 +77,10 @@
     border-color: $blue-dark;
   }
 
+  &:focus {
+    box-shadow: 0 0 0 .2rem $BTN_FOCUS_PRIMARY;
+  }
+
   &.disabled,
   &:disabled {
     color: $white;
@@ -96,6 +110,10 @@
     border-color: $red;
   }
 
+  &:focus {
+    box-shadow: 0 0 0 .2rem $BTN_FOCUS_DANGER;
+  }
+
   &.disabled,
   &:disabled {
     border-color: $red-light;
@@ -120,6 +138,12 @@
     background: transparent;
     color: $blue-dark;
     text-decoration: underline;
+  }
+
+  &:focus {
+    box-shadow: none;
+    outline: $BTN_FOCUS_DEFAULT dotted 2px;
+    outline-offset: $spacing-1;
   }
 }
 

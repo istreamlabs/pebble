@@ -181,6 +181,7 @@ export const menu = [
     ]
   },
 ];
+
 export const auxMenu = [
   {
     id: '7',
