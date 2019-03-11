@@ -60,13 +60,16 @@ Package releases should be done through the [`npm version`](https://docs.npmjs.c
 
 From there the CI machine takes over and for every tagged commit the following happens
 * `NPM publish` is run, this in turn will trigger our `prepack` that cleans and builds the package
-* The newly minted package it published with the `next` tag. This is done to prevent `prerelease` packages from being installed be default.
+* The newly minted package is published with the `next` tag. This is done to prevent `prerelease` packages from being installed by default.
 
-If you want to promote the new package to the `latest` tag and thus making it be the preferred default install you may do this using the [`npm dist-tag`](https://docs.npmjs.com/cli/dist-tag) command.
+To promote the new package to the `latest` tag and make it the preferred default install:
 
-release an alpha prerelease minor update
+1. Log into with `npm login [username]`
+2. Apply the latest tag `npm dist-tag add @istreamplanet/pebble@[version number] latest`
+
+release an alpha pre-release minor update
 ```shell
-$ npm version preminor -m "release package %s as alpah because reasons" --preid=alpha
+$ npm version pre-minor -m "release package %s as alpha because reasons" --preid=alpha
 ```
 
 release a minor update
