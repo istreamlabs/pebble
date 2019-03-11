@@ -1,0 +1,103 @@
+.b-black          { border-color: $black }
+.b-black-90       { border-color: $black-90 }
+.b-black-80       { border-color: $black-80 }
+.b-black-70       { border-color: $black-70 }
+.b-black-60       { border-color: $black-60 }
+.b-black-50       { border-color: $black-50 }
+.b-black-40       { border-color: $black-40 }
+.b-black-30       { border-color: $black-30 }
+.b-black-20       { border-color: $black-20 }
+.b-black-10       { border-color: $black-10 }
+.b-black-05       { border-color: $black-05 }
+.b-black-025      { border-color: $black-025 }
+.b-black-0125     { border-color: $black-0125 }
+
+.b-white          { border-color: $white }
+.b-white-90       { border-color: $white-90 }
+.b-white-80       { border-color: $white-80 }
+.b-white-70       { border-color: $white-70 }
+.b-white-60       { border-color: $white-60 }
+.b-white-50       { border-color: $white-50 }
+.b-white-40       { border-color: $white-40 }
+.b-white-30       { border-color: $white-30 }
+.b-white-20       { border-color: $white-20 }
+.b-white-10       { border-color: $white-10 }
+.b-white-05       { border-color: $white-05 }
+.b-white-025      { border-color: $white-025 }
+.b-white-0125     { border-color: $white-0125 }
+
+.b-neutral-100    { border-color: $neutral-100 }
+.b-neutral-200    { border-color: $neutral-200 }
+.b-neutral-300    { border-color: $neutral-300 }
+.b-neutral-400    { border-color: $neutral-400 }
+.b-neutral-500    { border-color: $neutral-500 }
+.b-neutral-600    { border-color: $neutral-600 }
+.b-neutral-700    { border-color: $neutral-700 }
+.b-neutral-800    { border-color: $neutral-800 }
+
+.b-blue-lighter   { border-color: $blue-lighter }
+.b-blue-light     { border-color: $blue-light }
+.b-blue           { border-color: $blue }
+.b-blue-dark      { border-color: $blue-dark }
+.b-blue-darker    { border-color: $blue-darker }
+
+.b-yellow-lighter { border-color: $yellow-lighter }
+.b-yellow-light   { border-color: $yellow-light }
+.b-yellow         { border-color: $yellow }
+.b-yellow-dark    { border-color: $yellow-dark }
+.b-yellow-darker  { border-color: $yellow-darker }
+
+.b-green-lighter  { border-color: $green-lighter }
+.b-green-light    { border-color: $green-light }
+.b-green          { border-color: $green }
+.b-green-dark     { border-color: $green-dark }
+.b-green-darker   { border-color: $green-darker }
+
+.b-red-lighter    { border-color: $red-lighter }
+.b-red-light      { border-color: $red-light }
+.b-red            { border-color: $red }
+.b-red-dark       { border-color: $red-dark }
+.b-red-darker     { border-color: $red-darker }
+
+.b-indigo-lighter { border-color: $indigo-lighter }
+.b-indigo-light   { border-color: $indigo-light }
+.b-indigo         { border-color: $indigo }
+.b-indigo-dark    { border-color: $indigo-dark }
+.b-indigo-darker  { border-color: $indigo-darker }
+
+.b-transparent { border-color: transparent; }
+.b-inherit { border-color: inherit; }
+
+.ba { border-style: solid; border-width: 1px; }
+.bt { border-top-style: solid; border-top-width: 1px; }
+.br { border-right-style: solid; border-right-width: 1px; }
+.bb { border-bottom-style: solid; border-bottom-width: 1px; }
+.bl { border-left-style: solid; border-left-width: 1px; }
+.bn { border-style: none; border-width: 0; }
+
+@include respond-above(sm) {
+  .ba-ns { border-style: solid; border-width: 1px; }
+  .bt-ns { border-top-style: solid; border-top-width: 1px; }
+  .br-ns { border-right-style: solid; border-right-width: 1px; }
+  .bb-ns { border-bottom-style: solid; border-bottom-width: 1px; }
+  .bl-ns { border-left-style: solid; border-left-width: 1px; }
+  .bn-ns { border-style: none; border-width: 0; }
+}
+
+@include respond-above(md) {
+  .ba-m { border-style: solid; border-width: 1px; }
+  .bt-m { border-top-style: solid; border-top-width: 1px; }
+  .br-m { border-right-style: solid; border-right-width: 1px; }
+  .bb-m { border-bottom-style: solid; border-bottom-width: 1px; }
+  .bl-m { border-left-style: solid; border-left-width: 1px; }
+  .bn-m { border-style: none; border-width: 0; }
+}
+
+@include respond-above(lg) {
+  .ba-l { border-style: solid; border-width: 1px; }
+  .bt-l { border-top-style: solid; border-top-width: 1px; }
+  .br-l { border-right-style: solid; border-right-width: 1px; }
+  .bb-l { border-bottom-style: solid; border-bottom-width: 1px; }
+  .bl-l { border-left-style: solid; border-left-width: 1px; }
+  .bn-l { border-style: none; border-width: 0; }
+}
