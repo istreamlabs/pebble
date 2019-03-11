@@ -6,11 +6,11 @@ import FocusTrap from 'focus-trap-react';
 
 describe('DropdownMenu', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<DropdownMenu trigger="click me"><div>overlay</div></DropdownMenu>); }).not.toThrow();
+    expect(() => { shallow(<DropdownMenu toggle="click me"><div>overlay</div></DropdownMenu>); }).not.toThrow();
   });
 
   it('should apply false FocusTrap prop even if its open', () => {
-    const wrapper = shallow(<DropdownMenu trapFocus={false} open trigger="click me"><div>overlay</div></DropdownMenu>);
+    const wrapper = shallow(<DropdownMenu trapFocus={false} open toggle="click me"><div>overlay</div></DropdownMenu>);
     expect(wrapper.find(FocusTrap).prop('active')).toBe(false);
   });
 
@@ -19,7 +19,7 @@ describe('DropdownMenu', () => {
       const onOpen = jest.fn();
       const onClose = jest.fn();
 
-      const wrapper = shallow(<DropdownMenu trigger="click me" onOpen={onOpen} onClose={onClose}><div>overlay</div></DropdownMenu>);
+      const wrapper = shallow(<DropdownMenu toggle="click me" onOpen={onOpen} onClose={onClose}><div>overlay</div></DropdownMenu>);
       const toggleButton = wrapper.find(Button);
       toggleButton.simulate('click');
       expect(wrapper.state().isOverlayOpen).toBe(true);
@@ -33,7 +33,7 @@ describe('DropdownMenu', () => {
   describe('handleClickOutside', () => {
     it('should close the overlay if it is open', () => {
       const onClose = jest.fn();
-      const wrapper = shallow(<DropdownMenu open trigger="click me" onClose={onClose}><div>overlay</div></DropdownMenu>);
+      const wrapper = shallow(<DropdownMenu open toggle="click me" onClose={onClose}><div>overlay</div></DropdownMenu>);
       wrapper.instance().handleClickOutside();
       expect(onClose).toHaveBeenCalled();
     });
@@ -69,7 +69,7 @@ describe('DropdownMenu', () => {
 
   describe('renderToggle', () => {
     it('should set onClick to onToggle', () => {
-      const wrapper = shallow(<DropdownMenu open={false} trigger="click me"><div>overlay</div></DropdownMenu>);
+      const wrapper = shallow(<DropdownMenu open={false} toggle="click me"><div>overlay</div></DropdownMenu>);
       const toggleButton = wrapper.find(Button);
       toggleButton.simulate('click');
       expect(wrapper.state().isOverlayOpen).toBe(true);
@@ -79,7 +79,7 @@ describe('DropdownMenu', () => {
       const customTrigger = <Button>click me</Button>;
       const onOpen = jest.fn();
 
-      const wrapper = shallow(<DropdownMenu trigger={customTrigger} onOpen={onOpen}><div>overlay</div></DropdownMenu>);
+      const wrapper = shallow(<DropdownMenu toggle={customTrigger} onOpen={onOpen}><div>overlay</div></DropdownMenu>);
       const toggleButton = wrapper.find(Button);
       toggleButton.simulate('click');
       expect(onOpen).toHaveBeenCalled();

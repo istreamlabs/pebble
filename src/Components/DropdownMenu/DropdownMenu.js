@@ -49,24 +49,25 @@ export class DropdownMenu extends React.PureComponent {
   }
 
   renderToggle() {
-    const { trigger, disabled } = this.props;
+    const { toggle, toggleClassName, disabled } = this.props;
+    const classes = classNames('dropdown-container', toggleClassName);
 
-    if (typeof trigger === 'string') {
+    if (typeof toggle === 'string') {
       return (
         <Button
           onClick={this.onToggle}
           icon="arrow-small-down"
           iconAfterText
-          className="dropdown-toggle"
+          className={classes}
           disabled={disabled}
           aria-haspopup
         >
-          {trigger}
+          {toggle}
         </Button>
       );
     }
 
-    return React.cloneElement(trigger, {
+    return React.cloneElement(toggle, {
       onClick: () => this.onToggle(),
       disabled,
       'aria-haspopup': true,
@@ -125,9 +126,13 @@ DropdownMenu.defaultProps = {
 
 DropdownMenu.propTypes = {
   /**
-   * Additional classNames to add
+   * Additional classNames to add to the container
    */
   className: PropTypes.string,
+  /**
+   * Additional classNames to add to the default toggle button
+   */
+  toggleClassName: PropTypes.string,
   /**
    * Additional classNames to add to the dropdown overlay
    */
@@ -159,7 +164,7 @@ DropdownMenu.propTypes = {
   /**
    * Content that will open and close the dropdown menu. Passing a string will render a Button with a down arrow.
    */
-  trigger: PropTypes.oneOfType([
+  toggle: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.node,
   ]),

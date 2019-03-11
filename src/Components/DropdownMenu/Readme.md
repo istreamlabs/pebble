@@ -18,12 +18,11 @@ function handleItemClick() {
 
 const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger</Block>);
 
-<DropdownMenu trigger="Dropdown" onOpen={handleOpen} onClose={handleClose} overlayClassName="w5">
+<DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
   <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
   <DropdownItem href="/">link</DropdownItem>
   <DropdownMenuSeparator />
   <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
-
 </DropdownMenu>
 ```
 
@@ -33,7 +32,7 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
 
 const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger</Block>);
 
-<DropdownMenu trigger="Dropdown with Item Groups">
+<DropdownMenu toggle="Dropdown with Item Groups">
   <DropdownItemGroup title="Transcoder">
     <DropdownItem icon="play">start</DropdownItem>
     <DropdownItem icon="stop">stop</DropdownItem>
@@ -53,7 +52,7 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
 Pass a node as the `trigger` to allow it to open and close a dropdown menu when clicked.
 
 ```jsx
-<DropdownMenu trigger={<Button size="large" plain className="bg-transparent">custom trigger</Button>}className="bg-blue-lighter p-4" overlayClassName="bg-black-90">
+<DropdownMenu toggle={<Button size="large" plain className="bg-transparent">custom trigger</Button>}className="bg-blue-lighter p-4" overlayClassName="bg-black-90">
   <DropdownItem className="neutral-100">item 1</DropdownItem>
   <DropdownItem className="neutral-100">item 2</DropdownItem>
 </DropdownMenu>
@@ -62,7 +61,7 @@ Pass a node as the `trigger` to allow it to open and close a dropdown menu when 
 ### Disabled
 
 ```jsx
-<DropdownMenu trigger="Disabled Dropdown" disabled>
+<DropdownMenu toggle="Disabled Dropdown" disabled>
   <DropdownItem>disabled</DropdownItem>
   <DropdownItem>disabled</DropdownItem>
 </DropdownMenu>
