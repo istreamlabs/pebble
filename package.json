@@ -17,7 +17,8 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "focus-trap-react": "^6.0.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-onclickoutside": "^6.8.0"
   },
   "peerDependencies": {
     "react": "^16.7.0",

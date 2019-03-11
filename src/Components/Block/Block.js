@@ -157,7 +157,7 @@ Block.propTypes = {
   /**
    * Elements to be rendered as children of this component
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Orientation to layout children
    */
