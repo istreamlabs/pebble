@@ -4,6 +4,7 @@
 
 import { PropTypes } from 'prop-types';
 
+export { default as radiusType } from './RadiusType';
 export { default as spacingType } from './SpacingType';
 export { default as boolRequiresOtherProp } from './BoolRequiresOtherProp';
 export { default as requiresOtherProp } from './RequiresOtherProp';

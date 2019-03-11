@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getSpacingClasses, parseTextSize } from '../../Utils';
+import { getSpacingClasses, getBorderRadiusClasses, parseTextSize } from '../../Utils';
 import {
-  colorType, fontSizeType, textAlignType, spacingType
+  colorType, fontSizeType, textAlignType, radiusType, spacingType
 } from '../../Types';
 
 import './Block.scss';
@@ -55,6 +55,7 @@ class Block extends React.Component {
       padding,
       paddingHorizontal,
       paddingVertical,
+      radius,
       textAlign,
       textSize,
       truncate,
@@ -90,13 +91,15 @@ class Block extends React.Component {
     const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
     const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
     const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
+    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
 
     const classes = classNames('block',
       mbClasses,
       mtClasses,
       pClasses,
       phClasses,
-      pvClasses, {
+      pvClasses,
+      radiusClass, {
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
         [`flex-${direction}`]: direction,
@@ -191,7 +194,7 @@ Block.propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
-   * or an `array` with length up to 4, for responsive behavior
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   marginTop: spacingType('marginTop'),
@@ -200,7 +203,7 @@ Block.propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
-   * or an `array` with length up to 4, for responsive behavior
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   marginBottom: spacingType('marginBottom'),
@@ -209,7 +212,7 @@ Block.propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
-   * or an `array` with length up to 4, for responsive behavior
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   padding: spacingType('padding'),
@@ -218,16 +221,25 @@ Block.propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
-   * or an `array` with length up to 4, for responsive behavior
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   paddingHorizontal: spacingType('paddingHorizontal'),
+  /**
+   * Set the [radius](/#/Styles/Border) of all corners
+   *
+   * One of: 1, 2, 3, 4, 5, circle, pill
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Radius>}
+   */
+  radius: radiusType('radius'),
   /**
    * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
-   * or an `array` with length up to 4, for responsive behavior
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   paddingVertical: spacingType('paddingVertical'),
@@ -236,7 +248,7 @@ Block.propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
-   * or an `array` with length up to 4, for responsive behavior
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   itemSpacing: spacingType('itemSpacing'),

@@ -137,6 +137,18 @@ describe('Block', () => {
     });
   }),
 
+  describe('Radius', () => {
+    it('sets border radius', () => {
+      const wrapper = shallow(<Block radius="1">test</Block>);
+      expect(wrapper.prop('className')).toContain('br1');
+    });
+
+    it('sets responsive border radius', () => {
+      const wrapper = shallow(<Block radius={[1, 2]}>test</Block>);
+      expect(wrapper.prop('className')).toContain('br1 br2-ns');
+    });
+  }),
+
   describe('Text', () => {
     it('sets the text size', () => {
       const wrapper = shallow(<Block textSize="1">test</Block>);
