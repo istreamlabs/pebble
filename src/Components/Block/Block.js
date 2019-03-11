@@ -134,14 +134,17 @@ Block.defaultProps = {
 Block.propTypes = {
   /**
    * Alignment of the contents along the cross axis when there is extra space. This property has no effect when there is only one line of flex items.
+   * @type {PropTypes.Requireable<AlignContent>}
    */
   alignContent: PropTypes.oneOf(['start', 'center', 'end', 'between', 'around', 'stretch']),
   /**
    * Alignment of flex items laid out along the cross axis on the current line
+   * @type {PropTypes.Requireable<AlignItems>}
    */
   alignItems: PropTypes.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
   /**
    * Alignment along the cross axis when contained in another Block
+   * @type {PropTypes.Requireable<AlignSelf>}
    */
   alignSelf: PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
   /**
@@ -151,6 +154,7 @@ Block.propTypes = {
   background: colorType,
   /**
    * The default size of an element before the remaining space is distributed
+   * @type {PropTypes.Requireable<Basis>}
    */
   basis: PropTypes.oneOf(['auto', 'full', '1/2', '1/4', '3/4', '1/3', '2/3']),
   /**
@@ -163,6 +167,7 @@ Block.propTypes = {
   children: PropTypes.node,
   /**
    * Orientation to layout children
+   * @type {PropTypes.Requireable<Direction>}
    */
   direction: PropTypes.oneOf(['row', 'column']),
   /**
@@ -182,6 +187,7 @@ Block.propTypes = {
   height: PropTypes.string,
   /**
    * Alignment of contents along the main axis
+   * @type {PropTypes.Requireable<Justify>}
    */
   justify: PropTypes.oneOf(['around', 'between', 'center', 'evenly', 'start', 'end']),
   /**
