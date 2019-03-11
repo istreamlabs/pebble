@@ -59,6 +59,7 @@ export class DropdownMenu extends React.PureComponent {
           iconAfterText
           className="dropdown-toggle"
           disabled={disabled}
+          aria-haspopup
         >
           {trigger}
         </Button>
@@ -66,7 +67,9 @@ export class DropdownMenu extends React.PureComponent {
     }
 
     return React.cloneElement(trigger, {
-      onClick: () => this.onToggle()
+      onClick: () => this.onToggle(),
+      disabled,
+      'aria-haspopup': true,
     });
   }
 
@@ -80,8 +83,10 @@ export class DropdownMenu extends React.PureComponent {
       <Block
         direction="column"
         className={classes}
-        aria-hidden={!isOverlayOpen}
         paddingVertical="2"
+        role="menu"
+        aria-hidden={!isOverlayOpen}
+        aria-expanded={!isOverlayOpen}
       >
         {children}
       </Block>

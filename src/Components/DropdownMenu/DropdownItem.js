@@ -23,11 +23,26 @@ const DropdownItem = (
   const classes = classNames('dropdown-item', 'text-left', 'ws-normal', className);
 
   if (href) {
-    return (<LinkButton {...props} role="menuitem" href={href} className={classes}>{children}</LinkButton>);
+    return (
+      <LinkButton
+        {...props}
+        role="menuitem"
+        href={href}
+        className={classes}
+      >
+        {children}
+      </LinkButton>
+    );
   }
 
   return (
-    <Button {...props} role="menuitem" className={classes}>{children}</Button>
+    <Button
+      {...props}
+      role="menuitem"
+      className={classes}
+    >
+      {children}
+    </Button>
   );
 };
 

@@ -18,9 +18,12 @@ function handleItemClick() {
 
 const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger</Block>);
 
-<DropdownMenu trigger="Dropdown" onOpen={handleOpen} onClose={handleClose}>
-  <DropdownItem icon="add-circle" onClick={handleItemClick}>Button</DropdownItem>
-  <DropdownItem href="/">Link</DropdownItem>
+<DropdownMenu trigger="Dropdown" onOpen={handleOpen} onClose={handleClose} overlayClassName="w5">
+  <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
+  <DropdownItem href="/">link</DropdownItem>
+  <DropdownMenuSeparator />
+  <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
+
 </DropdownMenu>
 ```
 
@@ -73,4 +76,4 @@ DropdownMenus should:
 * Be triggered by a clearly labeled button that allows for keyboard navigation.
 * Contain items that are related.
 * Be used as a way to declutter UI if there are too many options.
-* Should typically contain no more than 15 items. 
+* Should typically contain no more than 15 items.
