@@ -9,6 +9,11 @@
 .text-right   { text-align: right; }
 .text-justify { text-align: justify; }
 
+.text-transform-none        { text-transform: none; }
+.text-transform-capitalize  { text-transform: capitalize; }
+.text-transform-uppercase   { text-transform: uppercase; }
+.text-transform-lowercase   { text-transform: lowercase; }
+
 .fw-400 { font-weight: 400 }
 .fw-700 { font-weight: 700 }
 
@@ -21,6 +26,10 @@
 .fs-6 { font-size: $font-size-6; }
 .fs-7-responsive,
 .fs-7 { font-size: $font-size-7; }
+
+.ws-normal { white-space: normal; }
+.nowrap { white-space: nowrap; }
+.pre { white-space: pre; }
 
 .fs-1-responsive {
   font-size: $font-size-3;

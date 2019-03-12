@@ -65,6 +65,28 @@
 .bg-white-025      { background: $white-025 }
 .bg-white-0125     { background: $white-0125 }
 
+.bg-white-hover:hover,
+.bg-white-hover:focus,
+.bg-white-hover:focus-within  { background: $white }
+
+.bg-blue-lighter-hover:hover,
+.bg-blue-lighter-hover:focus,
+.bg-blue-lighter-hover:focus-within  { background: $blue-lighter }
+.bg-green-lighter-hover:hover,
+.bg-green-lighter-hover:focus,
+.bg-green-lighter-hover:focus-within       { background: $green-lighter }
+.bg-yellow-lighter-hover:hover,
+.bg-yellow-lighter-hover:focus,
+.bg-yellow-lighter-hover:focus-within      { background: $yellow-lighter }
+.bg-red-lighter-hover:hover,
+.bg-red-lighter-hover:focus,
+.bg-red-lighter-hover:focus-within         { background: $red-lighter }
+.bg-indigo-lighter-hover:hover,
+.bg-indigo-lighter-hover:focus,
+.bg-indigo-lighter-hover:focus-within      { background: $indigo-lighter }
+
+.bg-hover { transition: background-color .2s linear, box-shadow .2s linear;}
+
 .neutral-100    { color: $neutral-100 }
 .neutral-200    { color: $neutral-200 }
 .neutral-300    { color: $neutral-300 }

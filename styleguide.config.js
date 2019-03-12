@@ -186,6 +186,11 @@ module.exports = {
           exampleMode: 'hide'
         },
         {
+          name: 'Width',
+          content: 'src/Styleguide/Docs/Width.md',
+          exampleMode: 'hide'
+        },
+        {
           name: 'CSS Reset',
           content: 'src/Styleguide/Docs/Reset.md',
           exampleMode: 'hide'

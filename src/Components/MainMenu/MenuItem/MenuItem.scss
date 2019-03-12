@@ -140,6 +140,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     border-color: $NAV_BORDER_COLOR;
     color: $NAV_ITEM_COLOR_HOVER;
     background: $NAV_ITEM_ACTIVE_BG;
+    box-shadow: none;
   }
 }
 

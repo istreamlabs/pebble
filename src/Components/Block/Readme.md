@@ -145,7 +145,7 @@ Apply padding to all four sides.
 <Block background="blue-light">No margin</Block>
 ```
 
-### Responsive Styles
+### Responsive Spacing
 
 Margin and padding props can be passed arrays as values for mobile-first responsive styles.
 
@@ -161,6 +161,28 @@ Margin and padding props can be passed arrays as values for mobile-first respons
 >
   Padding of 2 and 8
 </Block>
+```
+
+### Radius Corners
+
+```js
+<Block itemSpacing="3" wrap>
+  <Block alignItems="center" justify="center" background="blue-light" radius="0" width="75px" height="75px">radius 0</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="1" width="75px" height="75px">radius 1</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="2" width="75px" height="75px">radius 2</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="3" width="75px" height="75px">radius 3</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="4" width="75px" height="75px">radius 4</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="5" width="75px" height="75px">radius 5</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="circle" width="75px" height="75px">circle</Block>
+  <Block alignItems="center" justify="center" background="blue-light" radius="pill" width="100px" height="75px">pill</Block>
+</Block>
+```
+
+#### Responsive Border Radius
+Pass an array of radius values to apply responsive border radii.
+
+```js
+<Block alignItems="center" justify="center"  radius={[5,3,1,'pill']} background="blue-light" width="240px" height="100px">responsive border radius</Block>
 ```
 
 ### Text Size
