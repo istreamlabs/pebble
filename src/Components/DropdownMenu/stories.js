@@ -7,9 +7,6 @@ import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import DropdownMenuSeparator from './DropdownMenuSeparator';
 
-import Button from '../Button/Button';
-import ButtonGroup from '../ButtonGroup/ButtonGroup';
-
 storiesOf('DropdownMenu', module)
   .add('all', () => (
     <>
