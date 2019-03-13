@@ -23,15 +23,11 @@ storiesOf('Alert', module)
       <Alert type="success" title="Success Alert">
         <p>Changes have been successfully saved.</p>
       </Alert>
+      <Alert title="Dismissible Alert" onDismiss={action('dismiss button pressed')}>
+        <p>Pass a function to onDismiss and a close button will be rendered.</p>
+      </Alert>
+      <Alert title="Custom Icon" icon="ticket">
+        <p>Generally, the default icons for the default, info, warn, danger and success status should be used.</p>
+      </Alert>
     </>
-  ))
-  .add('dismissible', () => (
-    <Alert title="Dismissible Alert" onDismiss={action('dismiss button pressed')}>
-      <p>Pass a function to onDismiss and a close button will be rendered.</p>
-    </Alert>
-  ))
-  .add('custom icon', () => (
-    <Alert title="Custom Icon" icon="ticket">
-      <p>Generally, the default icons for the default, info, warn, danger and success status should be used.</p>
-    </Alert>
   ));

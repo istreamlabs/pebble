@@ -131,6 +131,7 @@ module.exports = {
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.spec.{js,jsx,ts,tsx}',
+    '**/stories.{js,jsx,ts,tsx}',
     '**/*.d.ts',
     'src/Components/Icon/Icons.js',
     'src/Components/Overlay/Overlay.js',
