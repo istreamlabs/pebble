@@ -25,16 +25,17 @@
     "react-dom": "^16.7.0"
   },
   "devDependencies": {
-    "@storybook/react": "^5.0.1",
-    "babel-loader": "^8.0.5",
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/preset-env": "^7.3.1",
+    "@storybook/addon-actions": "^5.0.1",
+    "@storybook/addon-links": "^5.0.1",
+    "@storybook/addons": "^5.0.1",
+    "@storybook/react": "^5.0.1",
     "cpx": "^1.5.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
-    "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
@@ -44,15 +45,12 @@
     "node-sass": "^4.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts": "2.1.3",
+    "react-scripts": "2.1.8",
     "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.7.0",
     "rimraf": "^2.6.3",
-    "svgo": "^1.1.1",
-    "webpack": "4.19.1",
-    "@storybook/addon-actions": "^5.0.1",
-    "@storybook/addon-links": "^5.0.1",
-    "@storybook/addons": "^5.0.1"
+    "storybook-chromatic": "^1.3.0",
+    "svgo": "^1.1.1"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -68,7 +66,8 @@
     "preversion": "yarn cover",
     "postversion": "git push --follow-tags",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "chromatic test"
   },
   "eslintIgnore": [
     "dist/**/*.js"
@@ -160,6 +159,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/Components/**/*.{js,jsx,mjs}",
+      "!src/Components/**/stories.{js,jsx}",
       "!**/index.js"
     ],
     "coverageThreshold": {
