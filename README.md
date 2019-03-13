@@ -6,46 +6,44 @@ iStreamPlanet's Design System
 
 ## Install
 
-For NPM users:
-
-```shell
-$ npm install @istreamplanet/pebble node-sass --save
-```
-
-For YARN users:
-
 ```shell
 $ yarn add @istreamplanet/pebble node-sass
 ```
 
 ## Development
 
-Restore NPM Packages
+#### Restore NPM Packages
 
 ```shell
 $ yarn
 ```
 
-Start Development Server
+#### Start Development Server
 
 ```shell
 $ yarn start
 ```
 
-Run tests
+#### Run tests
 
 ```shell
 $ yarn test
 ```
 
-Start Documentation Server (handy when writing the docs)
+#### Visual Regression Testing
+
+Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://storybook.js.org/) for visual regression testing. Each push to the build service will run the Chromatic service. If there are visual changes detected in any component story, you will be required to review and approve the difference in the [Chromatic App](https://www.chromaticqa.com/builds?appId=5c893af34635b40020991b72).
+
+To learn how to run your first test, see the [Chromatic Documentation](http://docs.chromaticqa.com/test).
+
+
+#### Start Documentation Server
 
 ```shell
 $ yarn styleguide
 ```
 
-
-Build Documentation Site
+#### Build Documentation Site
 
 ```shell
 $ yarn styleguide:build
