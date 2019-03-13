@@ -34,7 +34,7 @@ $ yarn test
 
 Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://storybook.js.org/) for visual regression testing. Each push to the build service will run the Chromatic service. If there are visual changes detected in any component story, you will be required to review and approve the difference in the [Chromatic App](https://www.chromaticqa.com/builds?appId=5c893af34635b40020991b72).
 
-To learn how to run your first test, see the [Chromatic Documentation](http://docs.chromaticqa.com/test).
+To learn how to run Chromatic on a local build, see the [Chromatic Documentation](http://docs.chromaticqa.com/test). Otherwise, it will run automatically when you push to a remote branch.
 
 
 #### Start Documentation Server
