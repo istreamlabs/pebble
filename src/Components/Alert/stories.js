@@ -21,7 +21,7 @@ storiesOf('Alert', module)
         <p>This change may have result in unintended consequences.</p>
       </Alert>
       <Alert type="success" title="Success Alert">
-        <p>Changes have been successfully saved!!!!</p>
+        <p>Changes have been successfully saved</p>
       </Alert>
       <Alert title="Dismissible Alert" onDismiss={action('dismiss button pressed')}>
         <p>Pass a function to onDismiss and a close button will be rendered.</p>
