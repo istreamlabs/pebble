@@ -7,6 +7,12 @@ import Link from './Link';
 storiesOf('Link', module)
   .add('all', () => (
     <>
-      <Link href="#/">link</Link>
+      <p><Link href="/">relative link</Link></p>
+      <p><Link href="http://istreamplanet.com" external>istreamplanet.com</Link></p>
+      <Link href="http://istreamplanet.com" block>
+        This content is clickable.
+        <div>I'm some block content</div>
+        <div>I'm some block content</div>
+      </Link>
     </>
   ));

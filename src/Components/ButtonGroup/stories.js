@@ -6,6 +6,11 @@ import ButtonGroup from './ButtonGroup';
 import Button from '../Button/Button';
 import LinkButton from '../LinkButton/LinkButton';
 
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import DropdownItemGroup from '../DropdownMenu/DropdownItemGroup';
+import DropdownItem from '../DropdownMenu/DropdownItem';
+import DropdownMenuSeparator from '../DropdownMenu/DropdownMenuSeparator';
+
 storiesOf('ButtonGroup', module)
   .add('all', () => (
     <>
@@ -13,6 +18,12 @@ storiesOf('ButtonGroup', module)
         <Button primary>publish</Button>
         <Button>cancel</Button>
         <LinkButton href="#">LinkButton</LinkButton>
+        <DropdownMenu toggle="Dropdown" overlayClassName="w5">
+          <DropdownItem icon="add-bold">default button</DropdownItem>
+          <DropdownItem href="/">link</DropdownItem>
+          <DropdownMenuSeparator />
+          <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
+        </DropdownMenu>
       </ButtonGroup>
 
       <ButtonGroup toolbar className="mb-4">
@@ -22,6 +33,12 @@ storiesOf('ButtonGroup', module)
         <LinkButton href="#">LinkButton</LinkButton>
         <Button disabled>disabled</Button>
         <Button primary danger>delete</Button>
+        <DropdownMenu toggle="Dropdown" overlayClassName="w5">
+          <DropdownItem icon="add-bold">default button</DropdownItem>
+          <DropdownItem href="/">link</DropdownItem>
+          <DropdownMenuSeparator />
+          <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
+        </DropdownMenu>
       </ButtonGroup>
 
       <ButtonGroup toolbar>

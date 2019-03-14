@@ -14,5 +14,17 @@ storiesOf('List', module)
         <ListItem>TBS</ListItem>
         <ListItem>TNT</ListItem>
       </List>
+      <List ordered>
+        <ListItem>Cartoon Network</ListItem>
+        <ListItem>CNN</ListItem>
+        <ListItem>TBS</ListItem>
+        <ListItem>TNT</ListItem>
+      </List>
+      <List size="3">
+        <ListItem>Cartoon Network</ListItem>
+        <ListItem>CNN</ListItem>
+        <ListItem>TBS</ListItem>
+        <ListItem>TNT</ListItem>
+      </List>
     </>
   ));

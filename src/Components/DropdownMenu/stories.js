@@ -7,19 +7,27 @@ import DropdownItemGroup from './DropdownItemGroup';
 import DropdownItem from './DropdownItem';
 import DropdownMenuSeparator from './DropdownMenuSeparator';
 
+import Block from '../Block/Block';
+
 storiesOf('DropdownMenu', module)
   .add('all', () => (
     <>
-      <div>
+      <DropdownMenu toggle="Dropdown" overlayClassName="w5">
+        <DropdownItem icon="add-bold">default button</DropdownItem>
+        <DropdownItem href="/">link</DropdownItem>
+        <DropdownMenuSeparator />
+        <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
+      </DropdownMenu>
+      <Block height="220px">
         <DropdownMenu open toggle="Dropdown" overlayClassName="w5">
           <DropdownItem icon="add-bold">default button</DropdownItem>
           <DropdownItem href="/">link</DropdownItem>
           <DropdownMenuSeparator />
           <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
         </DropdownMenu>
-      </div>
-      <div>
-        <DropdownMenu toggle="Dropdown with Item Groups">
+      </Block>
+      <Block height="420px">
+        <DropdownMenu open toggle="Dropdown with Item Groups">
           <DropdownItemGroup title="Transcoder">
             <DropdownItem icon="play">start</DropdownItem>
             <DropdownItem icon="stop">stop</DropdownItem>
@@ -32,12 +40,11 @@ storiesOf('DropdownMenu', module)
             <DropdownItem href="#/Components/Text">Text</DropdownItem>
           </DropdownItemGroup>
         </DropdownMenu>
-      </div>
-      <div>
+      </Block>
+      <Block>
         <DropdownMenu toggle="Disabled Dropdown" disabled>
           <DropdownItem>disabled</DropdownItem>
-          <DropdownItem>disabled</DropdownItem>
         </DropdownMenu>
-      </div>
+      </Block>
     </>
   ));
