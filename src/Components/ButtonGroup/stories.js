@@ -7,7 +7,6 @@ import Button from '../Button/Button';
 import LinkButton from '../LinkButton/LinkButton';
 
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
-import DropdownItemGroup from '../DropdownMenu/DropdownItemGroup';
 import DropdownItem from '../DropdownMenu/DropdownItem';
 import DropdownMenuSeparator from '../DropdownMenu/DropdownMenuSeparator';
 
