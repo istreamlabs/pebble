@@ -1,0 +1,115 @@
+@import '../../Styles/foundation/variables.scss';
+
+$INPUT_COLOR: $neutral-700;
+
+$INPUT_PADDING_S: $spacing-1 $spacing-2;
+$INPUT_PADDING_M: $spacing-2 $spacing-3;
+$INPUT_PADDING_L: $spacing-3 $spacing-4;
+
+$INPUT_FONT_SIZE_S: $font-size-6;
+$INPUT_FONT_SIZE_M: $font-size-5;
+$INPUT_FONT_SIZE_L: $font-size-4;
+
+$INPUT_BORDER: 1px solid $neutral-400;
+$INPUT_BORDER_FOCUS: 1px solid $blue;
+$INPUT_BORDER_RADIUS: $border-radius-1;
+
+$INPUT_BORDER_ERROR: 1px solid $red;
+$INPUT_BORDER_DISABLED: 1px solid $neutral-200;
+
+$INPUT_FOCUS_SHADOW: $box-shadow-1;
+
+$INPUT_BG: $white;
+$INPUT_BG_ERROR: $red-lighter;
+$INPUT_BG_DISABLED: $neutral-300;
+$INPUT_COLOR_DISABLED: $neutral-500;
+
+
+.input-container {
+  width: 100%;
+}
+
+.input {
+  background: $INPUT_BG;
+  border-radius: $INPUT_BORDER_RADIUS;
+  border: $INPUT_BORDER;
+  display: block;
+  color: $INPUT_COLOR;
+  width: 100%;
+  max-width: 100%;
+  transition: box-shadow .1s linear, background .1s linear, border .1s linear;
+
+  &:focus {
+    outline: 0;
+    border: $INPUT_BORDER_FOCUS;
+    box-shadow: $INPUT_FOCUS_SHADOW;
+    z-index: 1;
+  }
+
+  &[disabled] {
+    border: $INPUT_BORDER_DISABLED;
+    transition: none;
+    color: $INPUT_COLOR_DISABLED;
+    cursor: not-allowed;
+    box-shadow: none;
+    background: $INPUT_BG_DISABLED;
+  }
+}
+
+.input-s {
+  padding: $INPUT_PADDING_S;
+  font-size: $INPUT_FONT_SIZE_S;
+}
+
+.input-m {
+  padding: $INPUT_PADDING_M;
+  font-size: $INPUT_FONT_SIZE_M;
+  height: 34px;
+}
+
+.input-l {
+
+  padding: $INPUT_PADDING_L;
+  font-size: $INPUT_FONT_SIZE_L;
+}
+.input-error {
+  background: $INPUT_BG_ERROR;
+  border: $INPUT_BORDER_ERROR;
+
+  &:focus {
+    outline: 0;
+    background: $INPUT_BG;
+    border: $INPUT_BORDER_ERROR;
+    box-shadow: $INPUT_FOCUS_SHADOW;
+  }
+}
+
+.input-prefix {
+  background: $neutral-200;
+  padding: $spacing-2;
+  height: 34px;
+  border-top-left-radius: $border-radius-1;
+  border-bottom-left-radius: $border-radius-1;
+  border: $INPUT_BORDER;
+  border-right: none;
+  color: inherit;
+  pointer-events: none;
+  flex: 0 0 auto;
+
+  + .input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.input-suffix {
+  background: $neutral-200;
+  padding: $spacing-2;
+  height: 34px;
+  border-top-right-radius: $border-radius-1;
+  border-bottom-right-radius: $border-radius-1;
+  border: $INPUT_BORDER;
+  pointer-events: none;
+  flex: 0 0 auto;
+  margin-left: -1px;
+}

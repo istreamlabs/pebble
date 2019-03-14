@@ -10,6 +10,7 @@ export { default as DropdownItem } from './DropdownMenu/DropdownItem';
 export { default as DropdownItemGroup } from './DropdownMenu/DropdownItemGroup';
 export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
+export { default as Input } from './Input/Input';
 export { default as Link } from './Link/Link';
 export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as List } from './List/List';
