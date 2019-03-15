@@ -2,51 +2,19 @@
 
 ### Input States
 ```js
-<Block direction="column" itemSpacing="3" width="500px">
-  <Block flex marginBottom="3">
-    <Input defaultValue="normal" />
-  </Block>
-
-  <Block marginBottom="3">
-    <Input error defaultValue="error" />
-  </Block>
-
-  <Block>
-    <Input disabled defaultValue="disabled" />
-  </Block>
-
-  <Block>
-    <Input autoFocus defaultValue="autoFocus" />
-  </Block>
-</Block>
+<Input />
+<Input autoFocus />
+<Input placeholder="this is placeholder text" />
+<Input error value="this value is invalid" />
+<Input disabled value="this input is disabled" />
+<Input prefix="$" />
+<Input suffix=".99" />
 ```
 
-### Sizes
+### Input Sizes
 
 ```jsx
-<Block direction="column" width="500px">
-  <Block marginBottom="3">
-    <Input size="large" defaultValue="large" />
-  </Block>
-
-  <Block marginBottom="3">
-    <Input size="medium" defaultValue="medium" />
-  </Block>
-
-  <Block>
-    <Input size="small" defaultValue="small" />
-  </Block>
-</Block>
-```
-
-### Prefix and Suffix
-
-```jsx
-<Block direction="column" marginBottom="3" width="500px">
-  <Input prefix="$" className="mb-3" />
-  <Input suffix=".00" type="number" className="text-right" />
-</Block>
-
-
-
+<Input size="small" placeholder="small" />
+<Input size="medium" placeholder="medium (default)" />
+<Input size="large" placeholder="large" />
 ```

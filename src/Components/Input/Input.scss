@@ -1,6 +1,7 @@
 @import '../../Styles/foundation/variables.scss';
 
 $INPUT_COLOR: $neutral-700;
+$INPUT_PLACEHOLDER_COLOR: $neutral-500;
 
 $INPUT_PADDING_S: $spacing-1 $spacing-2;
 $INPUT_PADDING_M: $spacing-2 $spacing-3;
@@ -53,6 +54,10 @@ $INPUT_COLOR_DISABLED: $neutral-500;
     cursor: not-allowed;
     box-shadow: none;
     background: $INPUT_BG_DISABLED;
+  }
+
+  &::placeholder {
+    color: $INPUT_PLACEHOLDER_COLOR;
   }
 }
 

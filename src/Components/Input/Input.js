@@ -14,36 +14,42 @@ import './Input.scss';
  */
 
 class Input extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // eslint-disable-next-line react/destructuring-assignment
-      value: this.props.defaultValue
-    };
-  }
+  onBlur = (event) => {
+    const { onBlur } = this.props;
+    if (onBlur !== undefined) {
+      onBlur(event);
+    }
+  };
 
-  handleChange = (e) => {
-    this.setState({ value: e.target.value });
-  }
+  onFocus = (event) => {
+    const { onFocus } = this.props;
+    if (onFocus !== undefined) {
+      onFocus(event);
+    }
+  };
+
+  onChange = (event) => {
+    const { onChange } = this.props;
+    if (onChange !== undefined) {
+      onChange(event);
+    }
+  };
 
   getInputProps = () => {
     const {
       ariaLabel,
       ariaLabelledby,
       ariaDescribedBy,
+      autoFocus,
       className,
       disabled,
       error,
       id,
       name,
-      onKeyDown,
-      onKeyPress,
-      onKeyUp,
       placeholder,
-      rows,
       size,
       type,
-      autoFocus,
+      value,
     } = this.props;
 
     const classes = classNames('input',
@@ -61,19 +67,17 @@ class Input extends React.Component {
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedBy,
       'aria-invalid': !!error,
+      autoFocus,
+      className: classes,
       disabled,
       id,
       name,
       onBlur: this.onBlur,
       onFocus: this.onFocus,
-      onKeyDown,
-      onKeyPress,
-      onKeyUp,
+      onChange: this.onChange,
       placeholder,
-      rows,
       type,
-      className: classes,
-      autoFocus
+      value,
     };
   };
 
@@ -90,16 +94,12 @@ class Input extends React.Component {
   )
 
   render() {
-    const { value } = this.state;
-
     const { prefix, suffix } = this.props;
 
     return (
       <Block alignItems="stretch" className="input-container">
         {prefix && this.getPrefixMarkup(prefix)}
         <input
-          value={value}
-          onChange={this.handleChange}
           {...this.getInputProps()}
         />
 
@@ -117,12 +117,6 @@ Input.defaultProps = {
   disabled: false,
   error: false,
   name: '',
-  onBlur: () => {},
-  onChange: () => {},
-  onKeyDown: () => {},
-  onKeyPress: () => {},
-  onKeyUp: () => {},
-  onFocus: () => {},
   overrides: {},
   placeholder: '',
   required: false,
@@ -143,17 +137,41 @@ Input.propTypes = {
    * Sets aria-describedby attribute.
    */
   ariaDescribedBy: PropTypes.string,
+  /**
+   * The autofocus attribute of the input
+   */
   autoFocus: PropTypes.bool,
+  /**
+   * If the input should be disabled
+   */
   disabled: PropTypes.bool,
+  /**
+   * If the input should appear in error
+   */
   error: PropTypes.bool,
+  /**
+   * The id attribute of the input
+   */
   id: PropTypes.string,
+  /**
+   * The name attribute of the input
+   */
   name: PropTypes.string,
+  /**
+   * Callback function when input is blurred
+   */
   onBlur: PropTypes.func,
+  /**
+   * Callback function when input is changed
+   */
   onChange: PropTypes.func,
-  onKeyDown: PropTypes.func,
-  onKeyPress: PropTypes.func,
-  onKeyUp: PropTypes.func,
+  /**
+   * Callback function when input is focused
+   */
   onFocus: PropTypes.func,
+  /**
+   * A short hint that is displayed when there is no value
+   */
   placeholder: PropTypes.string,
   /**
    * Text to display before the value
@@ -176,7 +194,6 @@ Input.propTypes = {
    * The value of the input on mount
    */
   defaultValue: PropTypes.string,
-  rows: PropTypes.number,
   /**
    * Additional classNames to add
    */
@@ -185,6 +202,10 @@ Input.propTypes = {
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node,
+  /**
+   * The value of the input
+   */
+  value: PropTypes.string,
 };
 
 export default Input;
