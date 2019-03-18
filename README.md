@@ -37,10 +37,16 @@ Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://sto
 To learn how to run Chromatic on a local build, see the [Chromatic Documentation](http://docs.chromaticqa.com/test). Otherwise, it will run automatically when you push to a remote branch.
 
 
-#### Start Documentation Server
+#### Run Documentation Site (React Styleguidist)
 
 ```shell
 $ yarn styleguide
+```
+
+#### Run Storybook Site
+
+```shell
+$ yarn storybook
 ```
 
 #### Build Documentation Site
