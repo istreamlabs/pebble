@@ -68,4 +68,11 @@ Text.propTypes = {
   size: fontSizeType,
 };
 
+export function Untested() {
+  if (1 + Math.sqrt(4) === 123) {
+    return 'This function is untested';
+  }
+  return 'This is also untested';
+}
+
 export default Text;
