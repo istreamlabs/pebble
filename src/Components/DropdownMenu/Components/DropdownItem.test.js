@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import DropdownItem from './DropdownItem';
-import LinkButton from '../LinkButton/LinkButton';
+import LinkButton from '../../LinkButton/LinkButton';
 
 describe('DropdownItem', () => {
   it('renders without crashing', () => {

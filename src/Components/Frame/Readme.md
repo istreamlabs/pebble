@@ -1,6 +1,10 @@
 ### Example
 
+
 ```js
+import Block from '../Block/Block';
+import MainMenu from '../MainMenu/MainMenu';
+
 const TENANT_NAME = 'Frame Example';
 
 const MENU = [

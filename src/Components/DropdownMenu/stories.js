@@ -3,9 +3,9 @@ import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
 import DropdownMenu from './DropdownMenu';
-import DropdownItemGroup from './DropdownItemGroup';
-import DropdownItem from './DropdownItem';
-import DropdownMenuSeparator from './DropdownMenuSeparator';
+import DropdownItemGroup from './Components/DropdownItemGroup';
+import DropdownItem from './Components/DropdownItem';
+import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
 import Block from '../Block/Block';
 
