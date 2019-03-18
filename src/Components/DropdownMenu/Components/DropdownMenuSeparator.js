@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Block from '../Block/Block';
+import Block from '../../Block/Block';
 
 /**
  * A child of [DropdownMenu](/#/Components/DropdownMenu).

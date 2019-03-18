@@ -62,10 +62,10 @@ Render a button that performs an action, but looks like inline clickable text be
 Icons can be placed on either side of the button label to meet your usecase.
 
 ```js
-<ButtonGroup>
+<div className="styleguide__buttons">
   <Button icon="arrow-small-left">prev</Button>
   <Button icon="arrow-small-right" iconAfterText>next</Button>
-</ButtonGroup>
+</div>
 ```
 
 ### Icon Only
@@ -73,11 +73,11 @@ Icons can be placed on either side of the button label to meet your usecase.
 Set a value for the `accessibilityLabel` if only using an icon in the button.
 
 ```js
-<ButtonGroup>
+<div className="styleguide__buttons">
   <Button primary size="large" icon="play" accessibilityLabel="play video" />
   <Button size="large" icon="pause" accessibilityLabel="pause" />
   <Button size="large" icon="stop" accessibilityLabel="stop" />
-</ButtonGroup>
+</div>
 ```
 
 ### Additional ClassNames
@@ -120,8 +120,8 @@ Use when a button has been pressed and the associated action is in progress.
 Use for buttons placed in a narrow column.
 
 ```js
-<Button fullWidth primary className="mb-2">full width</Button>
-<Button fullWidth primary icon="arrow-small-down" iconAfterText>full width</Button>
+<Button fullWidth className="mb-2">full width</Button>
+<Button fullWidth icon="arrow-small-down" iconAfterText>full width</Button>
 
 ```
 

@@ -3,6 +3,9 @@
 ### Basic Dropdown
 
 ```jsx
+import DropdownMenu from './DropdownMenu';
+import DropdownItem from './Components/DropdownItem';
+import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
 function handleOpen() {
   console.log('open');
@@ -16,8 +19,6 @@ function handleItemClick() {
   console.log('item clicked');
 }
 
-const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger</Block>);
-
 <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
   <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
   <DropdownItem href="/">link</DropdownItem>
@@ -26,9 +27,48 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
 </DropdownMenu>
 ```
 
+### Sizes
+
+```jsx
+import DropdownMenu from './DropdownMenu';
+import DropdownItem from './Components/DropdownItem';
+
+<>
+  <DropdownMenu size="small" toggle="small">
+    <DropdownItem>item</DropdownItem>
+  </DropdownMenu>
+  {' '}
+  <DropdownMenu size="medium" toggle="medium">
+    <DropdownItem>item</DropdownItem>
+  </DropdownMenu>
+  {' '}
+  <DropdownMenu size="large" toggle="large">
+    <DropdownItem>item</DropdownItem>
+  </DropdownMenu>
+</>
+```
+
+### Full width
+
+Use for dropdowns placed in a narrow column.
+
+```jsx
+import DropdownMenu from './DropdownMenu';
+import DropdownItem from './Components/DropdownItem';
+
+<DropdownMenu fullWidth toggle="medium">
+  <DropdownItem>item</DropdownItem>
+</DropdownMenu>
+```
+
 ### Dropdown Item Groups
 
 ```jsx
+import DropdownMenu from './DropdownMenu';
+import DropdownItem from './Components/DropdownItem';
+import DropdownItemGroup from './Components/DropdownItemGroup';
+import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
+import Block from '../Block/Block';
 
 const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger</Block>);
 
@@ -52,7 +92,15 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
 Pass a node as the `trigger` to allow it to open and close a dropdown menu when clicked.
 
 ```jsx
-<DropdownMenu toggle={<Button size="large" plain className="bg-transparent">custom trigger</Button>}className="bg-blue-lighter p-4" overlayClassName="bg-black-90">
+import DropdownMenu from './DropdownMenu';
+import DropdownItem from './Components/DropdownItem';
+import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
+import Button from '../Button/Button';
+
+<DropdownMenu
+  toggle={<Button size="large" plain className="bg-transparent">custom trigger</Button>}
+  className="bg-blue-lighter p-4" overlayClassName="bg-black-90"
+>
   <DropdownItem className="neutral-100">item 1</DropdownItem>
   <DropdownItem className="neutral-100">item 2</DropdownItem>
 </DropdownMenu>
@@ -61,6 +109,10 @@ Pass a node as the `trigger` to allow it to open and close a dropdown menu when 
 ### Disabled
 
 ```jsx
+import DropdownMenu from './DropdownMenu';
+import DropdownItem from './Components/DropdownItem';
+import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
+
 <DropdownMenu toggle="Disabled Dropdown" disabled>
   <DropdownItem>disabled</DropdownItem>
   <DropdownItem>disabled</DropdownItem>

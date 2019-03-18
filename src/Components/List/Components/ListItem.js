@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './List.scss';
+import './ListItem.scss';
 
 /**
  * A typographical item to be nested in a [List](/#/Components/List)
