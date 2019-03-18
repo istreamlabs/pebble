@@ -49,8 +49,13 @@ export class DropdownMenu extends React.PureComponent {
   }
 
   renderToggle() {
-    const { toggle, toggleClassName, disabled } = this.props;
-    const classes = classNames('dropdown-container', toggleClassName);
+    const {
+      fullWidth,
+      size,
+      toggle,
+      toggleClassName,
+      disabled
+    } = this.props;
 
     if (typeof toggle === 'string') {
       return (
@@ -58,9 +63,11 @@ export class DropdownMenu extends React.PureComponent {
           onClick={this.onToggle}
           icon="arrow-small-down"
           iconAfterText
-          className={classes}
+          className={toggleClassName}
           disabled={disabled}
           aria-haspopup
+          fullWidth={fullWidth}
+          size={size}
         >
           {toggle}
         </Button>
@@ -98,8 +105,10 @@ export class DropdownMenu extends React.PureComponent {
 
   render() {
     const { isOverlayOpen } = this.state;
-    const { className, trapFocus } = this.props;
-    const classes = classNames('dropdown-container', className);
+    const { className, fullWidth, trapFocus } = this.props;
+    const classes = classNames('dropdown-container', {
+      'w-100': fullWidth,
+    }, className);
 
     const enableFocusTrap = trapFocus ? isOverlayOpen : false;
 
@@ -145,6 +154,15 @@ DropdownMenu.propTypes = {
   * Whether dropdown is disabled
   */
   disabled: PropTypes.bool,
+  /**
+   * Takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Changes the size of all buttons in the group
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Callback when overlay is closed
    */

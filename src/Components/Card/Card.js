@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { requiresOtherProp } from '../../Types';
 
-import { Header, Section } from './Subcomponents';
+import { Header, Section } from './Components';
 import './Card.scss';
 
 /**

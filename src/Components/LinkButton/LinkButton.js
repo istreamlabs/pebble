@@ -38,7 +38,7 @@ const LinkButton = (
     'btn-sm': caseInsensitiveStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
-    'btn-fullwidth': fullWidth,
+    'w-100': fullWidth,
     disabled,
   });
 

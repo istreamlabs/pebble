@@ -40,6 +40,9 @@ Omit the `sectioned` prop to allow full styling control over a Card's content.
 Pass a `<Button>` or `<ButtonGroup>` as a `headerActions`. Actions in the header should impact the contents of the card.
 
 ```js
+import Button from '../Button/Button';
+import ButtonGroup from '../ButtonGroup/ButtonGroup';
+
 <Card
   title="Packages" sectioned headerActions={(
     <ButtonGroup>

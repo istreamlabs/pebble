@@ -48,7 +48,7 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-scripts": "2.1.8",
-    "react-styleguidist": "^8.0.6",
+    "react-styleguidist": "^9.0.4",
     "react-test-renderer": "^16.7.0",
     "rimraf": "^2.6.3",
     "storybook-chromatic": "^1.3.0",

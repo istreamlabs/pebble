@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import Card from './Card';
-import Header from './Subcomponents/Header';
-import Section from './Subcomponents/Section';
+import Header from './Components/Header';
+import Section from './Components/Section';
 
 describe('Card', () => {
   it('renders without crashing', () => {

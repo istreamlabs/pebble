@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Button from '../Button/Button';
-import LinkButton from '../LinkButton/LinkButton';
+import Button from '../../Button/Button';
+import LinkButton from '../../LinkButton/LinkButton';
 
 /**
  * A child of [DropdownMenu](/#/Components/DropdownMenu).

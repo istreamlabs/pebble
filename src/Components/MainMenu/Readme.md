@@ -1,4 +1,7 @@
 ```js
+import Block from '../Block/Block';
+import Button from '../Button/Button';
+
 const menu = [
   {
     id: '1',

@@ -7,8 +7,8 @@ import Button from '../Button/Button';
 import LinkButton from '../LinkButton/LinkButton';
 
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
-import DropdownItem from '../DropdownMenu/DropdownItem';
-import DropdownMenuSeparator from '../DropdownMenu/DropdownMenuSeparator';
+import DropdownItem from '../DropdownMenu/Components/DropdownItem';
+import DropdownMenuSeparator from '../DropdownMenu/Components/DropdownMenuSeparator';
 
 storiesOf('ButtonGroup', module)
   .add('all', () => (

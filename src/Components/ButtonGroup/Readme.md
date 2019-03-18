@@ -1,24 +1,60 @@
 ## Examples
 
 ```js
+import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
 <ButtonGroup>
   <Button primary>publish</Button>
   <Button>cancel</Button>
-  <LinkButton href="#">LinkButton</LinkButton>
+  <LinkButton href="/#/Components/ButtonGroup">LinkButton</LinkButton>
+  <DropdownMenu toggle="dropdown">
+    <DropdownItem>button</DropdownItem>
+    <DropdownItem href="/">link</DropdownItem>
+  </DropdownMenu>
 </ButtonGroup>
 ```
 
 ### Group Size
 
-Apply a `size` to all buttons in the group
+Apply a `size` to all items within the group. Default `size` is `medium`.
 
 ```js
+import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
-<ButtonGroup size="large">
-  <Button primary>publish</Button>
-  <Button>cancel</Button>
-</ButtonGroup>
+<>
+  <ButtonGroup size="large" className="mb-3">
+    <Button>button</Button>
+    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+
+  <ButtonGroup className="mb-3">
+    <Button>button</Button>
+    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+
+  <ButtonGroup size="small">
+    <Button>button</Button>
+    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+</>
 ```
 
 ### Toolbar
@@ -26,21 +62,42 @@ Apply a `size` to all buttons in the group
 Display related buttons in a horizontal toolbar.
 
 ```js
-<ButtonGroup toolbar className="mb-4">
-  <Button primary>save</Button>
-  <Button>status</Button>
-  <Button>rating</Button>
-  <LinkButton href="#">LinkButton</LinkButton>
-  <Button disabled>disabled</Button>
-  <Button primary danger>delete</Button>
-</ButtonGroup>
+import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
-<ButtonGroup toolbar>
-  <Button icon="arrow-small-left">prev</Button>
-  <Button icon="play">play</Button>
-  <Button icon="stop">stop</Button>
-  <Button icon="arrow-small-right" iconAfterText>next</Button>
-</ButtonGroup>
+<>
+  <ButtonGroup toolbar className="mb-4">
+    <Button>button</Button>
+    <Button primary>primary</Button>
+    <Button primary danger>primary danger</Button>
+    <Button danger>danger</Button>
+    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+
+  <ButtonGroup toolbar className="mb-4">
+    <Button icon="arrow-small-left">prev</Button>
+    <Button icon="play">play</Button>
+    <Button icon="stop">stop</Button>
+    <Button icon="arrow-small-right" iconAfterText>next</Button>
+  </ButtonGroup>
+
+  <ButtonGroup toolbar size="small">
+    <Button icon="arrow-small-left">prev</Button>
+    <Button icon="play">play</Button>
+    <Button icon="stop">stop</Button>
+    <Button icon="arrow-small-right" iconAfterText>next</Button>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+</>
 ```
 
 ### Full Width
@@ -48,24 +105,36 @@ Display related buttons in a horizontal toolbar.
 Make the group of buttons take up 100% of its parent width. Button widths are evenly divided.
 
 ```js
-<ButtonGroup fullWidth toolbar className="mb-4">
-  <Button primary>left</Button>
-  <Button>center</Button>
-  <Button>right</Button>
-</ButtonGroup>
+import Button from '../Button/Button';
+import LinkButton from '../LinkButton/LinkButton';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
+import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
-<ButtonGroup fullWidth toolbar>
-  <Button icon="arrow-small-left">prev</Button>
-  <Button icon="play">play</Button>
-  <Button icon="stop">stop</Button>
-  <Button icon="arrow-small-right" iconAfterText>next</Button>
-</ButtonGroup>
+<>
+  <ButtonGroup fullWidth className="mb-4">
+    <Button primary>left</Button>
+    <Button>center</Button>
+    <Button>right</Button>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+
+  <ButtonGroup fullWidth toolbar>
+    <Button icon="arrow-small-left">prev</Button>
+    <Button icon="play">play</Button>
+    <Button icon="stop">stop</Button>
+    <Button icon="arrow-small-right" iconAfterText>next</Button>
+  </ButtonGroup>
+</>
 ```
 
 ## Best Practices
 
 Button Groups should:
 
-* Contain [Buttons](/#/Components/Button)
+* Contain [Buttons](/#/Components/Button) or [DropdownMenu](/#/Components/DropdownMenu)
+* Can occasionally contain [LinkButtons](/#/Components/LinkButton) 
 * Only group buttons that have a relationship
 * Contain only a limited number of buttons. Be judicious in the number of items in a button group

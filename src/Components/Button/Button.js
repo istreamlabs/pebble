@@ -53,7 +53,7 @@ const Button = (
     'btn-primary': primary,
     'btn-danger': danger,
     'btn-plain': plain,
-    'btn-fullwidth': fullWidth,
+    'w-100': fullWidth,
   });
 
   const spinnerSVGMarkup = loading ? (
@@ -72,8 +72,7 @@ const Button = (
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
   const contentClasses = classNames('btn-content', 'flex', 'items-center', {
-    'justify-between': icon && fullWidth,
-    'justify-center': (!icon && fullWidth),
+    'justify-center': fullWidth,
   });
 
   const content = (
