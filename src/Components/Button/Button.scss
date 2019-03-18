@@ -9,7 +9,6 @@ $BTN_FOCUS_DANGER: $red-light;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
   padding: $spacing-2 $spacing-3;
   position: relative;
   background: $white;
@@ -46,10 +45,6 @@ $BTN_FOCUS_DANGER: $red-light;
     border-color: $neutral-300;
     box-shadow: none;
   }
-}
-
-.btn-fullwidth {
-  width: 100%;
 }
 
 .btn-lg {

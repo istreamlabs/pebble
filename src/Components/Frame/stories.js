@@ -1,7 +1,8 @@
-### Example
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import '../../Styles/foundation.scss';
 
-
-```js
+import Frame from './Frame';
 import Block from '../Block/Block';
 import MainMenu from '../MainMenu/MainMenu';
 
@@ -34,18 +35,18 @@ const MENU = [
 
 class FrameExample extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      activeMainMenuItem: "1",
+      activeMainMenuItem: '1',
       showMobileNavigation: false
     };
-    this.toggleMainNav = this.toggleMainNav.bind(this)
+    this.toggleMainNav = this.toggleMainNav.bind(this);
   }
 
   toggleMainNav() {
-    this.setState((prevState, props) => ({
+    this.setState(prevState => ({
       showMobileNavigation: !prevState.showMobileNavigation
-    }))
+    }));
   }
 
   render() {
@@ -79,11 +80,13 @@ class FrameExample extends React.Component {
       >
         {bodyContent}
       </Frame>
-    )
+    );
   }
 }
 
-<div style={{ height: '400px', overflow: 'auto' }}>
-  <FrameExample />
-</div>
-```
+storiesOf('Frame', module)
+  .add('all', () => (
+    <div style={{ height: '400px', overflow: 'auto' }}>
+      <FrameExample />
+    </div>
+  ));
