@@ -1,0 +1,29 @@
+.static {   position: static; }
+.sticky {   position: sticky; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed {    position: fixed; }
+
+@include respond-above(sm) {
+  .static-ns {    position: static; }
+  .sticky-ns {    position: sticky; }
+  .relative-ns {  position: relative; }
+  .absolute-ns {  position: absolute; }
+  .fixed-ns {     position: fixed; }
+}
+
+@include respond-above(md) {
+  .static-m {     position: static; }
+  .sticky-m {     position: sticky; }
+  .relative-m {   position: relative; }
+  .absolute-m {   position: absolute; }
+  .fixed-m {      position: fixed; }
+}
+
+@include respond-above(lg) {
+  .static-l {     position: static; }
+  .sticky-l {     position: sticky; }
+  .relative-l {   position: relative; }
+  .absolute-l {   position: absolute; }
+  .fixed-l {      position: fixed; }
+}
