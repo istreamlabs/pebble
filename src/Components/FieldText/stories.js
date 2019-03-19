@@ -18,7 +18,7 @@ function FieldTextExample() {
   const [readOnlyInput, setReadOnlyInput] = useState('I am read only');
   const [prefixInput, setPrefixInput] = useState('');
   const [suffixInput, setSuffixInput] = useState('');
-  const [prefixSuffixInput, setPrefixSuffixInput] = useState("");
+  const [prefixSuffixInput, setPrefixSuffixInput] = useState('');
   const [characterCountInput, setCharacterCountInput] = useState('13 characters');
 
   const handleChange = (e) => {
