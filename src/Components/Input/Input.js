@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Block from '../Block/Block';
 import Button from '../Button/Button';
+import Text from '../Text/Text';
 
 import './Input.scss';
 
@@ -45,6 +46,7 @@ class Input extends React.Component {
       className,
       disabled,
       isInvalid,
+      isReadOnly,
       id,
       maxLength,
       name,
@@ -57,11 +59,11 @@ class Input extends React.Component {
 
     const classes = classNames('input',
       {
-        'input-disabled': disabled,
         'input-error': isInvalid,
         'input-s': size === 'small',
         'input-m': size === 'medium',
         'input-l': size === 'large',
+        'bg-neutral-200': isReadOnly,
       },
       className);
 
@@ -80,6 +82,7 @@ class Input extends React.Component {
       onFocus: this.onFocus,
       onChange: this.onChange,
       placeholder,
+      readOnly: isReadOnly,
       spellCheck,
       type,
       value,
@@ -101,7 +104,7 @@ class Input extends React.Component {
   getClearBtnMarkup() {
     const { clearBtnFunc, value } = this.props;
 
-    if (value !== '') {
+    if (value !== '' && value !== null) {
       return (
         <Button
           plain
@@ -114,19 +117,39 @@ class Input extends React.Component {
     }
   }
 
-  render() {
-    const { clearBtnFunc, prefix, suffix } = this.props;
+  getCharacterCountMarkup() {
+    const { maxLength, value } = this.props;
+
+    const charValue = value !== '' ? value : '';
+    const characterCount = charValue.length;
+
+    const characterCountText = !maxLength
+      ? characterCount
+      : `${characterCount}/${maxLength}`;
 
     return (
-      <Block alignItems="stretch" className="input-container">
-        {prefix && this.getPrefixMarkup(prefix)}
-        <input
-          {...this.getInputProps()}
-        />
+      <Text size="6" className="pt-2">{characterCountText}</Text>
+    );
+  }
 
-        {suffix && this.getSuffixMarkup(suffix)}
-        {clearBtnFunc && this.getClearBtnMarkup()}
-      </Block>
+  render() {
+    const {
+      clearBtnFunc, prefix, suffix, showCharacterCount
+    } = this.props;
+
+    return (
+      <>
+        <Block alignItems="stretch" className="w-100 relative">
+          {prefix && this.getPrefixMarkup(prefix)}
+          <input
+            {...this.getInputProps()}
+          />
+
+          {suffix && this.getSuffixMarkup(suffix)}
+          {clearBtnFunc && this.getClearBtnMarkup()}
+        </Block>
+        {showCharacterCount && this.getCharacterCountMarkup()}
+      </>
     );
   }
 }
@@ -139,7 +162,6 @@ Input.defaultProps = {
   disabled: false,
   isInvalid: false,
   name: '',
-  overrides: {},
   placeholder: '',
   required: false,
   size: 'medium',
@@ -165,13 +187,17 @@ Input.propTypes = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * If the input should be disabled
+   * If the input should be disabled and not focusable
    */
   disabled: PropTypes.bool,
   /**
    * If the input should appear invalid
    */
   isInvalid: PropTypes.bool,
+  /**
+   * If the value of the input can be read, but not changed
+   */
+  isReadOnly: PropTypes.bool,
   /**
    * The id attribute of the input
    */
@@ -203,15 +229,15 @@ Input.propTypes = {
   /**
    * Text to display before the value
    */
-  prefix: PropTypes.node,
+  prefix: PropTypes.string,
   /**
    * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
    */
   spellCheck: PropTypes.bool,
-  /*
+  /**
    * Text to display after the value
    */
-  suffix: PropTypes.node,
+  suffix: PropTypes.string,
   /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
@@ -241,6 +267,10 @@ Input.propTypes = {
    * If defined, a clear button will be rendered and will call this function when pressed
    */
   clearBtnFunc: PropTypes.func,
+  /**
+   * Display character count of the input value
+   */
+  showCharacterCount: PropTypes.bool,
 };
 
 export default Input;

@@ -25,12 +25,6 @@ $INPUT_BG_ERROR: $red-lighter;
 $INPUT_BG_DISABLED: $neutral-300;
 $INPUT_COLOR_DISABLED: $neutral-500;
 
-
-.input-container {
-  width: 100%;
-  position: relative;
-}
-
 .input {
   background: $INPUT_BG;
   border-radius: $INPUT_BORDER_RADIUS;
@@ -123,11 +117,12 @@ $INPUT_COLOR_DISABLED: $neutral-500;
 .input-clear-btn {
   position: absolute;
   right: $spacing-3;
-  top: $spacing-2;
+  top: 50%;
+  transform: translateY(-50%);
   border-radius: $border-radius-circle;
-  box-shadow: $box-shadow-1;
+  z-index: 1;
 
-  color: $neutral-400;
+  color: $neutral-500;
 
   &:hover,
   &:focus {

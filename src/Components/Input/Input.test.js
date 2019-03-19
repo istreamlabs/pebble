@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Input from './Input';
 
 describe('List', () => {
@@ -81,6 +81,37 @@ describe('List', () => {
     it('does not render a suffix by default', () => {
       const wrapper = shallow(<Input />);
       expect(wrapper.exists('.input-suffix')).toEqual(false);
+    });
+  });
+
+  describe('getClearBtnMarkup', () => {
+    it('displays a clear button if passed a clearBtnFunc and value is set', () => {
+      const mock = jest.fn();
+      const wrapper = shallow(<Input clearBtnFunc={mock} value="test" />);
+      expect(wrapper.find('Button').prop('onClick')).toBe(mock);
+    });
+
+    it('does not display a clear button if input has no value', () => {
+      const mock = jest.fn();
+      const wrapper = shallow(<Input clearBtnFunc={mock} value="" />);
+      expect(wrapper.exists('.input-clear-btn')).toEqual(false);
+    });
+  });
+
+  describe('getCharacterCountMarkup', () => {
+    it('sets the correct character count', () => {
+      const wrapper = mount(<Input showCharacterCount value="12345" />);
+      expect(wrapper.find('span.pt-2').text()).toEqual('5');
+    });
+
+    it('sets the correct character count when input has no value', () => {
+      const wrapper = mount(<Input showCharacterCount value="" />);
+      expect(wrapper.find('span.pt-2').text()).toEqual('0');
+    });
+
+    it('sets the correct character count and displays max value', () => {
+      const wrapper = mount(<Input showCharacterCount value="12345" maxLength={5} />);
+      expect(wrapper.find('span.pt-2').text()).toEqual('5/5');
     });
   });
 });

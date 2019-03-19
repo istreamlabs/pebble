@@ -8,28 +8,52 @@ import Text from '../Text/Text';
 
 import './FieldText.scss';
 
+/**
+ * Stateless text fields.
+ *
+ * ---
+ */
+
 class FieldText extends React.Component {
-  getValidationMarkup() {
-    const { validationText } = this.props;
+  getLabelMarkup() {
+    const {
+      id, label, disabled, isInvalid
+    } = this.props;
+
+    const labelClasses = classNames(
+      'db',
+      'mb-2',
+      'fs-6',
+      'fw-700',
+      {
+        'neutral-500': disabled,
+        red: isInvalid,
+      }
+    );
 
     return (
-      <Text appearance="danger" size="6" className="pt-2">{validationText}</Text>
+      <label
+        className={labelClasses}
+        htmlFor={id}
+      >
+        {label}
+      </label>
     );
   }
 
   renderChildren() {
     const {
-      children,
       className,
+      isLabelHidden,
+      label,
       ...rest
     } = this.props;
 
-    if (children) {
-      return children;
-    }
+    const ariaLabelValue = isLabelHidden ? label : '';
 
     return (
       <Input
+        ariaLabel={ariaLabelValue}
         {...rest}
       />
     );
@@ -38,43 +62,22 @@ class FieldText extends React.Component {
   render() {
     const {
       className,
-      disabled,
       helpText,
-      htmlFor,
-      id,
-      label,
       isInvalid,
+      isLabelHidden,
+      label,
+      validationText,
     } = this.props;
 
     const classes = classNames('field-text', className);
-    const labelClasses = classNames(
-      'db',
-      'mb-2',
-      'fs-5',
-      'fw-700',
-      {
-        'neutral-500': disabled,
-        red: isInvalid,
-      }
-    );
-
-    const labelFor = htmlFor || id;
 
     return (
       <Block direction="column" className={classes}>
-        {label
-          && (
-          <label
-            className={labelClasses}
-            htmlFor={labelFor}
-          >
-            {label}
-          </label>
-          )
-        }
-        {helpText && <Text size="6" className="mb-2">{helpText}</Text>}
+        {label && !isLabelHidden && this.getLabelMarkup()}
+        {helpText && <Text size="6" className="field-text-help mb-2">{helpText}</Text>}
         {this.renderChildren()}
-        {isInvalid && this.getValidationMarkup()}
+        {isInvalid && validationText
+          && <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>}
       </Block>
     );
   }
@@ -85,28 +88,76 @@ FieldText.defaultProps = {
   disabled: false,
   helpText: '',
   isInvalid: false,
+  isLabelHidden: false,
+  isReadOnly: false,
   name: '',
   placeholder: '',
-  required: false,
   size: 'medium',
   spellCheck: true,
+  type: 'text'
 };
 
 FieldText.propTypes = {
-  children: PropTypes.node,
-  label: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node
-  ]),
+  /**
+   * Automatically focus the input
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * label for the input
+   */
+  label: PropTypes.string.isRequired,
+  /**
+   * Additional classNames to add
+   */
   className: PropTypes.string,
+  /**
+   * Name attribute of the input
+   */
   name: PropTypes.string,
+  /**
+   * Callback function when input is blurred
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback function when input is changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback function when input is focused
+   */
+  onFocus: PropTypes.func,
+  /**
+   * A short hint that is displayed when there is no value
+   */
   placeholder: PropTypes.string,
+  /**
+   * If the input should be disabled and not focusable
+   */
   disabled: PropTypes.bool,
-  htmlFor: PropTypes.string,
+  /**
+   * The id attribute of the input
+   */
   id: PropTypes.string,
-  required: PropTypes.bool,
+  /**
+   * Applies styling to indicate the input is invalid
+   */
   isInvalid: PropTypes.bool,
+  /**
+   * If the value of the input can be read, but not changed
+   */
+  isReadOnly: PropTypes.bool,
+  /**
+   * Additional hint displayed beneath the label
+   */
   helpText: PropTypes.string,
+  /**
+   * Visually hide the label
+   */
+  isLabelHidden: PropTypes.bool,
+  /**
+   * Text to display if the input is invalid.
+   * The text should explain why the input is invlide.
+   */
   validationText: PropTypes.string,
   /**
    * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
@@ -117,6 +168,18 @@ FieldText.propTypes = {
    * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Type attribute of the input
+   */
+  type: PropTypes.string,
+  /**
+   * Text to display before the value
+   */
+  prefix: PropTypes.string,
+  /**
+   * Text to display after the value
+   */
+  suffix: PropTypes.string,
 };
 
 export default FieldText;

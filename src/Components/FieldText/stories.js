@@ -1,40 +1,41 @@
-### FieldText Examples
+import React, { useState } from 'react';
+import { storiesOf } from '@storybook/react';
+import '../../Styles/foundation.scss';
 
-```js
-import { useState } from "react";
+import FieldText from './FieldText';
 
 function FieldTextExample() {
-  const [eventResult, setEventResult] = useState("");
-  const [basic, setBasic] = useState("");
-  const [autoFocus, setAutoFocus] = useState("");
-  const [disabledInput, setDisabledInput] = useState("can not edit this");
-  const [placeholderInput, setPlaceholderInput] = useState("");
-  const [helpTextInput, setHelpTextInput] = useState("");
-  const [errorInput, setErrorInput] = useState("");
-  const [spellcheckInput, setSpellcheckInput] = useState("");
-  const [maxLengthInput, setMaxLengthInput] = useState("");
-  const [clearBtnInput, setClearBtnInput] = useState("clear me!");
-  const [readOnlyInput, setReadOnlyInput] = useState("I am read only");
-  const [prefixInput, setPrefixInput] = useState("");
-  const [suffixInput, setSuffixInput] = useState("");
-  const [characterCountInput, setCharacterCountInput] = useState("13 characters");
+  const [eventResult, setEventResult] = useState('');
+  const [basic, setBasic] = useState('');
+  const [autoFocus, setAutoFocus] = useState('');
+  const [disabledInput, setDisabledInput] = useState('can not edit this');
+  const [placeholderInput, setPlaceholderInput] = useState('');
+  const [helpTextInput, setHelpTextInput] = useState('');
+  const [errorInput, setErrorInput] = useState('');
+  const [spellcheckInput, setSpellcheckInput] = useState('');
+  const [maxLengthInput, setMaxLengthInput] = useState('');
+  const [clearBtnInput, setClearBtnInput] = useState('clear me!');
+  const [readOnlyInput, setReadOnlyInput] = useState('I am read only');
+  const [prefixInput, setPrefixInput] = useState('');
+  const [suffixInput, setSuffixInput] = useState('');
+  const [characterCountInput, setCharacterCountInput] = useState('13 characters');
 
   const handleChange = (e) => {
-    setEventResult(`handleChange called with '${e.target.value}'`)
+    setEventResult(`handleChange called with '${e.target.value}'`);
     setBasic(e.target.value);
-  }
+  };
 
   const handleFocus = () => {
-    setEventResult('handleFocus called')
-  }
+    setEventResult('handleFocus called');
+  };
 
   const handleBlur = () => {
-    setEventResult('handleBlur called')
-  }
+    setEventResult('handleBlur called');
+  };
 
   const handleClear = () => {
     setClearBtnInput('');
-  }
+  };
 
   return (
     <>
@@ -47,7 +48,11 @@ function FieldTextExample() {
         onFocus={handleFocus}
       />
 
-      <div className="fs-6 mt-3 mb-5">event handler result: <span className="fw-700">{eventResult}</span></div>
+      <div className="fs-6 mt-3 mb-5">
+        event handler result:
+        {' '}
+        <span className="fw-700">{eventResult}</span>
+      </div>
 
       <FieldText
         autoFocus
@@ -168,27 +173,25 @@ function FieldTextExample() {
   );
 }
 
-<FieldTextExample />;
-```
-
-### Sizes
-
-```js
-<FieldText
-  size="small"
-  label="small"
-  placeholder="small-sized FieldText"
-  className="mb-5"
-/>
-<FieldText
-  label="medium (default)"
-  placeholder="medium-sized FieldText"
-  className="mb-5"
-/>
-<FieldText
-  size="large"
-  label="large"
-  placeholder="large-sized FieldText"
-  clearBtnFunc={() => {}}
-/>
-```
+storiesOf('FieldText', module)
+  .add('all', () => (
+    <>
+      <FieldTextExample />
+      <FieldText
+        size="small"
+        label="small"
+        placeholder="small-sized FieldText"
+        className="mb-5"
+      />
+      <FieldText
+        label="medium (default)"
+        placeholder="medium-sized FieldText"
+        className="mb-5"
+      />
+      <FieldText
+        size="large"
+        label="large"
+        placeholder="large-sized FieldText"
+      />
+    </>
+  ));
