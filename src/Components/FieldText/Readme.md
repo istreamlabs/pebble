@@ -17,6 +17,7 @@ function FieldTextExample() {
   const [readOnlyInput, setReadOnlyInput] = useState("I am read only");
   const [prefixInput, setPrefixInput] = useState("");
   const [suffixInput, setSuffixInput] = useState("");
+  const [prefixSuffixInput, setPrefixSuffixInput] = useState("");
   const [characterCountInput, setCharacterCountInput] = useState("13 characters");
 
   const handleChange = (e) => {
@@ -137,6 +138,17 @@ function FieldTextExample() {
         id="suffix-input"
         value={suffixInput}
         onChange={e => setSuffixInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        prefix="https://"
+        suffix=".com"
+        type="url"
+        label="With Prefix and Suffix"
+        id="suffix-input"
+        value={prefixSuffixInput}
+        onChange={e => setPrefixSuffixInput(e.target.value)}
         className="mb-5"
       />
 
