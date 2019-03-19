@@ -28,6 +28,7 @@ $INPUT_COLOR_DISABLED: $neutral-500;
 
 .input-container {
   width: 100%;
+  position: relative;
 }
 
 .input {
@@ -117,4 +118,19 @@ $INPUT_COLOR_DISABLED: $neutral-500;
   pointer-events: none;
   flex: 0 0 auto;
   margin-left: -1px;
+}
+
+.input-clear-btn {
+  position: absolute;
+  right: $spacing-3;
+  top: $spacing-2;
+  border-radius: $border-radius-circle;
+  box-shadow: $box-shadow-1;
+
+  color: $neutral-400;
+
+  &:hover,
+  &:focus {
+    color: $neutral-600;
+  }
 }

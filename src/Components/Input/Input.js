@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Block from '../Block/Block';
+import Button from '../Button/Button';
 
 import './Input.scss';
 
@@ -43,11 +44,13 @@ class Input extends React.Component {
       autoFocus,
       className,
       disabled,
-      error,
+      isInvalid,
       id,
+      maxLength,
       name,
       placeholder,
       size,
+      spellCheck,
       type,
       value,
     } = this.props;
@@ -55,7 +58,7 @@ class Input extends React.Component {
     const classes = classNames('input',
       {
         'input-disabled': disabled,
-        'input-error': error,
+        'input-error': isInvalid,
         'input-s': size === 'small',
         'input-m': size === 'medium',
         'input-l': size === 'large',
@@ -66,16 +69,18 @@ class Input extends React.Component {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedBy,
-      'aria-invalid': !!error,
+      'aria-invalid': !!isInvalid,
       autoFocus,
       className: classes,
       disabled,
       id,
+      maxLength,
       name,
       onBlur: this.onBlur,
       onFocus: this.onFocus,
       onChange: this.onChange,
       placeholder,
+      spellCheck,
       type,
       value,
     };
@@ -93,8 +98,24 @@ class Input extends React.Component {
     </div>
   )
 
+  getClearBtnMarkup() {
+    const { clearBtnFunc, value } = this.props;
+
+    if (value !== '') {
+      return (
+        <Button
+          plain
+          icon="remove-circle"
+          onClick={clearBtnFunc}
+          accessibilityLabel="clear input value"
+          className="input-clear-btn"
+        />
+      );
+    }
+  }
+
   render() {
-    const { prefix, suffix } = this.props;
+    const { clearBtnFunc, prefix, suffix } = this.props;
 
     return (
       <Block alignItems="stretch" className="input-container">
@@ -104,6 +125,7 @@ class Input extends React.Component {
         />
 
         {suffix && this.getSuffixMarkup(suffix)}
+        {clearBtnFunc && this.getClearBtnMarkup()}
       </Block>
     );
   }
@@ -115,12 +137,13 @@ Input.defaultProps = {
   ariaDescribedBy: null,
   autoFocus: false,
   disabled: false,
-  error: false,
+  isInvalid: false,
   name: '',
   overrides: {},
   placeholder: '',
   required: false,
   size: 'medium',
+  spellCheck: true,
   type: 'text',
 };
 
@@ -146,13 +169,17 @@ Input.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If the input should appear in error
+   * If the input should appear invalid
    */
-  error: PropTypes.bool,
+  isInvalid: PropTypes.bool,
   /**
    * The id attribute of the input
    */
   id: PropTypes.string,
+  /**
+   * Maximum length the input value can be
+   */
+  maxLength: PropTypes.number,
   /**
    * The name attribute of the input
    */
@@ -177,6 +204,10 @@ Input.propTypes = {
    * Text to display before the value
    */
   prefix: PropTypes.node,
+  /**
+   * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
+   */
+  spellCheck: PropTypes.bool,
   /*
    * Text to display after the value
    */
@@ -206,6 +237,10 @@ Input.propTypes = {
    * The value of the input
    */
   value: PropTypes.string,
+  /**
+   * If defined, a clear button will be rendered and will call this function when pressed
+   */
+  clearBtnFunc: PropTypes.func,
 };
 
 export default Input;
