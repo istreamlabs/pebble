@@ -168,6 +168,7 @@ function FieldTextExample() {
         isLabelHidden
         label="my label is visually hidden"
         placeholder="visually hidden label"
+        className="mb-5"
       />
     </>
   );
@@ -192,6 +193,36 @@ storiesOf('FieldText', module)
         size="large"
         label="large"
         placeholder="large-sized FieldText"
+      />
+      <FieldText
+        type="email"
+        label="email"
+        className="mb-5"
+      />
+      <FieldText
+        type="password"
+        label="password"
+        className="mb-5"
+      />
+      <FieldText
+        type="search"
+        label="search"
+        className="mb-5"
+      />
+      <FieldText
+        type="tel"
+        label="tel"
+        className="mb-5"
+      />
+      <FieldText
+        type="text"
+        label="text"
+        className="mb-5"
+      />
+      <FieldText
+        type="url"
+        label="url"
+        className="mb-5"
       />
     </>
   ));

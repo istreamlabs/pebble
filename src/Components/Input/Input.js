@@ -16,27 +16,6 @@ import './Input.scss';
  */
 
 class Input extends React.Component {
-  onBlur = (event) => {
-    const { onBlur } = this.props;
-    if (onBlur !== undefined) {
-      onBlur(event);
-    }
-  };
-
-  onFocus = (event) => {
-    const { onFocus } = this.props;
-    if (onFocus !== undefined) {
-      onFocus(event);
-    }
-  };
-
-  onChange = (event) => {
-    const { onChange } = this.props;
-    if (onChange !== undefined) {
-      onChange(event);
-    }
-  };
-
   getInputProps = () => {
     const {
       ariaLabel,
@@ -50,6 +29,9 @@ class Input extends React.Component {
       id,
       maxLength,
       name,
+      onBlur,
+      onFocus,
+      onChange,
       placeholder,
       size,
       spellCheck,
@@ -78,9 +60,9 @@ class Input extends React.Component {
       id,
       maxLength,
       name,
-      onBlur: this.onBlur,
-      onFocus: this.onFocus,
-      onChange: this.onChange,
+      onBlur,
+      onFocus,
+      onChange,
       placeholder,
       readOnly: isReadOnly,
       spellCheck,
@@ -89,22 +71,32 @@ class Input extends React.Component {
     };
   };
 
-  getPrefixMarkup = prefix => (
-    <div className="input-prefix">
-      {prefix}
-    </div>
-  )
+  getPrefixMarkup() {
+    const { prefix } = this.props;
+    if (prefix !== undefined) {
+      return (
+        <div className="input-prefix">
+          {prefix}
+        </div>
+      );
+    }
+  }
 
-  getSuffixMarkup = suffix => (
-    <div className="input-suffix">
-      {suffix}
-    </div>
-  )
+  getSuffixMarkup() {
+    const { suffix } = this.props;
+    if (suffix !== undefined) {
+      return (
+        <div className="input-suffix">
+          {suffix}
+        </div>
+      );
+    }
+  }
 
   getClearBtnMarkup() {
     const { clearBtnFunc, value } = this.props;
 
-    if (value !== '' && value !== null) {
+    if (clearBtnFunc !== undefined && value !== '') {
       return (
         <Button
           plain
@@ -118,7 +110,9 @@ class Input extends React.Component {
   }
 
   getCharacterCountMarkup() {
-    const { maxLength, value } = this.props;
+    const { maxLength, showCharacterCount, value } = this.props;
+
+    if (!showCharacterCount) return;
 
     const charValue = value !== '' ? value : '';
     const characterCount = charValue.length;
@@ -133,36 +127,26 @@ class Input extends React.Component {
   }
 
   render() {
-    const {
-      clearBtnFunc, prefix, suffix, showCharacterCount
-    } = this.props;
-
     return (
       <>
         <Block alignItems="stretch" className="w-100 relative">
-          {prefix && this.getPrefixMarkup(prefix)}
-          <input
-            {...this.getInputProps()}
-          />
-
-          {suffix && this.getSuffixMarkup(suffix)}
-          {clearBtnFunc && this.getClearBtnMarkup()}
+          {this.getPrefixMarkup()}
+          <input {...this.getInputProps()} />
+          {this.getSuffixMarkup()}
+          {this.getClearBtnMarkup()}
         </Block>
-        {showCharacterCount && this.getCharacterCountMarkup()}
+        {this.getCharacterCountMarkup()}
       </>
     );
   }
 }
 
 Input.defaultProps = {
-  ariaLabel: null,
-  ariaLabelledby: null,
-  ariaDescribedBy: null,
   autoFocus: false,
   disabled: false,
   isInvalid: false,
-  name: '',
-  placeholder: '',
+  // prevents React propType warning about read-only input
+  onChange: () => {},
   required: false,
   size: 'medium',
   spellCheck: true,

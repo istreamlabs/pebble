@@ -17,8 +17,10 @@ import './FieldText.scss';
 class FieldText extends React.Component {
   getLabelMarkup() {
     const {
-      id, label, disabled, isInvalid
+      id, label, disabled, isInvalid, isLabelHidden
     } = this.props;
+
+    if (isLabelHidden) return;
 
     const labelClasses = classNames(
       'db',
@@ -41,6 +43,29 @@ class FieldText extends React.Component {
     );
   }
 
+  getValidationTextMarkup() {
+    const {
+      isInvalid,
+      validationText,
+    } = this.props;
+
+    if (!isInvalid || validationText === undefined) return;
+
+    return (
+      <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>
+    );
+  }
+
+  getHelpTextMarkup() {
+    const { helpText } = this.props;
+
+    if (helpText === undefined) return;
+
+    return (
+      <Text size="6" className="field-text-help mb-2">{helpText}</Text>
+    );
+  }
+
   renderChildren() {
     const {
       className,
@@ -51,9 +76,12 @@ class FieldText extends React.Component {
 
     const ariaLabelValue = isLabelHidden ? label : '';
 
+    const shouldSpellCheck = rest.type === 'text';
+
     return (
       <Input
         ariaLabel={ariaLabelValue}
+        spellCheck={shouldSpellCheck}
         {...rest}
       />
     );
@@ -62,22 +90,16 @@ class FieldText extends React.Component {
   render() {
     const {
       className,
-      helpText,
-      isInvalid,
-      isLabelHidden,
-      label,
-      validationText,
     } = this.props;
 
     const classes = classNames('field-text', className);
 
     return (
       <Block direction="column" className={classes}>
-        {label && !isLabelHidden && this.getLabelMarkup()}
-        {helpText && <Text size="6" className="field-text-help mb-2">{helpText}</Text>}
+        {this.getLabelMarkup()}
+        {this.getHelpTextMarkup()}
         {this.renderChildren()}
-        {isInvalid && validationText
-          && <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>}
+        {this.getValidationTextMarkup()}
       </Block>
     );
   }
@@ -86,14 +108,10 @@ class FieldText extends React.Component {
 FieldText.defaultProps = {
   autoFocus: false,
   disabled: false,
-  helpText: '',
   isInvalid: false,
   isLabelHidden: false,
   isReadOnly: false,
-  name: '',
-  placeholder: '',
   size: 'medium',
-  spellCheck: true,
   type: 'text'
 };
 
@@ -171,7 +189,14 @@ FieldText.propTypes = {
   /**
    * Type attribute of the input
    */
-  type: PropTypes.string,
+  type: PropTypes.oneOf([
+    'email',
+    'password',
+    'search',
+    'tel',
+    'text',
+    'url'
+  ]),
   /**
    * Text to display before the value
    */

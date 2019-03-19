@@ -1,8 +1,9 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import FieldText from './FieldText';
 
 import Input from '../Input/Input';
+import Text from '../Text/Text';
 
 describe('FieldText', () => {
   it('renders without crashing', () => {
@@ -14,24 +15,39 @@ describe('FieldText', () => {
     expect(wrapper.prop('className')).toContain('myClass');
   });
 
-  it('sets aria-label if isLabelHidden is true', () => {
-    const wrapper = shallow(<FieldText label="hiddenLabel" isLabelHidden />);
-    expect(wrapper.find(Input).prop('ariaLabel')).toEqual('hiddenLabel');
-  });
-
-  it('renders helpText if set', () => {
-    const wrapper = mount(<FieldText label="label" helpText="i am help text" />);
-    expect(wrapper.find('.field-text-help').exists()).toBe(true);
-  });
-
-  describe('validation', () => {
-    it('renders validationText if isInvalid', () => {
-      const wrapper = mount(<FieldText label="label" validationText="this is invalid" isInvalid />);
-      expect(wrapper.find('.field-text-validation').exists()).toBe(true);
+  describe('getLabelMarkup', () => {
+    it('sets aria-label if isLabelHidden is true', () => {
+      const wrapper = shallow(<FieldText label="hiddenLabel" isLabelHidden />);
+      expect(wrapper.find(Input).prop('ariaLabel')).toEqual('hiddenLabel');
     });
-    it('does not render validationText if isInvalid is false', () => {
-      const wrapper = mount(<FieldText label="label" validationText="this is invalid" />);
-      expect(wrapper.find('.field-text-validation').exists()).toBe(false);
+  });
+
+  describe('getHelpTextMarkup', () => {
+    it('display the correct help text if passed', () => {
+      const helpText = 'i am help text';
+      const wrapper = shallow(<FieldText label="label" helpText={helpText} />);
+      expect(wrapper.find(Text).childAt(0).text()).toBe(helpText);
+    });
+
+    it('returns undefined if no helptext is set', () => {
+      const instance = new FieldText({ label: 'test' });
+      expect(instance.getHelpTextMarkup()).toBe(undefined);
+    });
+  });
+
+  describe('getValidationTextMarkup', () => {
+    it('renders validationText if isInvalid', () => {
+      const validationText = 'this is invalid';
+      const wrapper = shallow(<FieldText label="label" validationText={validationText} isInvalid />);
+      expect(wrapper.find(Text).childAt(0).text()).toBe(validationText);
+    });
+    it('returns undefined if isInvalid is false', () => {
+      const instance = new FieldText({ label: 'label', validationText: 'this is invalid' });
+      expect(instance.getValidationTextMarkup()).toBe(undefined);
+    });
+    it('returns undefined if isInvalid is true but no validationText is set', () => {
+      const instance = new FieldText({ label: 'label', isInvalid: true });
+      expect(instance.getValidationTextMarkup()).toBe(undefined);
     });
   });
 });

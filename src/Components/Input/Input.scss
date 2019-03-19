@@ -54,6 +54,15 @@ $INPUT_COLOR_DISABLED: $neutral-500;
   &::placeholder {
     color: $INPUT_PLACEHOLDER_COLOR;
   }
+
+  &::-ms-clear {
+    display: none;
+  }
+}
+
+// remove Chrome browser clear button
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
 }
 
 .input-s {

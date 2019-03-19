@@ -11,7 +11,6 @@ export { default as DropdownItemGroup } from './DropdownMenu/Components/Dropdown
 export { default as FieldText } from './FieldText/FieldText';
 export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
-export { default as Input } from './Input/Input';
 export { default as Link } from './Link/Link';
 export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as List } from './List/List';

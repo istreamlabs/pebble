@@ -163,6 +163,7 @@ function FieldTextExample() {
         isLabelHidden
         label="my label is visually hidden"
         placeholder="visually hidden label"
+        className="mb-5"
       />
     </>
   );
@@ -190,5 +191,42 @@ function FieldTextExample() {
   label="large"
   placeholder="large-sized FieldText"
   clearBtnFunc={() => {}}
+/>
+```
+
+### Types
+
+Each browser treats the following types differently. If the `type` attribute is not specified, the default type adopted is `text`.
+
+```js
+<FieldText
+  type="email"
+  label="email"
+  className="mb-5"
+/>
+<FieldText
+  type="password"
+  label="password"
+  className="mb-5"
+/>
+<FieldText
+  type="search"
+  label="search"
+  className="mb-5"
+/>
+<FieldText
+  type="tel"
+  label="tel"
+  className="mb-5"
+/>
+<FieldText
+  type="text"
+  label="text"
+  className="mb-5"
+/>
+<FieldText
+  type="url"
+  label="url"
+  className="mb-5"
 />
 ```
