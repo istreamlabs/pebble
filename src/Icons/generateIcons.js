@@ -123,6 +123,7 @@ ${iconExports.join('\t\n')}
   [//]: # (THIS FILE IS AUTO GENERATED)
   ### Names
 \`\`\`js noeditor
+import Icon from './Icon';
   <div class="styleguide__icons">
 ${examples.join('\t\n')}
   </div>
