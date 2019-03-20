@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
@@ -9,9 +10,9 @@ const RadioIcon = (
   { isSelected, ...props }
 ) => {
   if (isSelected) {
-    return <Icon {...props} name="check-circle" />;
+    return <Icon {...props} className="blue" name="radio-selected" />;
   }
-  return <Icon {...props} name="warning-circle-outline" />;
+  return <Icon {...props} className="neutral-500" name="radio" />;
 };
 
 RadioIcon.propTypes = {
@@ -35,23 +36,34 @@ const Radio = ({
     if (onChange == null) {
       return;
     }
-    onChange(id);
+    onChange(value);
   };
 
   const labelMarkup = () => (
-    <label className="db" htmlFor={id}>
-      <span className="fs-6 fw-700">{label}</span>
-      {helpText
-        && (
-        <Text size="7" appearance="muted" className="db mt-1">
-          {helpText}
-        </Text>
-        )}
-    </label>
+    <Block as="label" htmlFor={id} className="relative">
+      <RadioIcon
+        isSelected={isSelected}
+        size="20"
+      />
+      <Block
+        direction="column"
+        className="ml-2"
+      >
+        <span className="fs-6">{label}</span>
+        {helpText
+          && (
+          <Text size="7" appearance="muted" className="db mt-1">
+            {helpText}
+          </Text>
+          )}
+      </Block>
+    </Block>
   );
 
+  const classes = classNames('relative', className);
+
   return (
-    <Block marginBottom="3" className={className} alignItems="start">
+    <Block marginBottom="3" className={classes} alignItems="start">
       <input
         id={id}
         checked={isSelected}
@@ -62,14 +74,9 @@ const Radio = ({
         onBlur={onBlur}
         type="radio"
         value={value}
+        className="absolute o-0"
       />
-      <RadioIcon
-        isSelected={isSelected}
-        size="20"
-      />
-      <div className="ml-2">
-        {labelMarkup()}
-      </div>
+      {labelMarkup()}
     </Block>
   );
 };

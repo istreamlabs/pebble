@@ -13,21 +13,25 @@ const FieldRadioGroup = (
     onRadioChange
   }
 ) => {
-  const [selectedValue, setSelectedValue] = useState('mail');
+  const [selected, setSelected] = useState('');
 
-  const handleChange = (event) => {
-    onRadioChange(event);
-    setSelectedValue(event.target.value);
+  const handleChange = (newSelected) => {
+    setSelected(newSelected);
+    if (onRadioChange) {
+      onRadioChange(newSelected);
+    }
   };
 
+  // set the selected radio button
   const radioItems = () => {
-    if (selectedValue) {
+    if (selected !== '') {
       return radios.map(radio => (
-        selectedValue === radio.value
+        selected === radio.value
           ? { ...radio, ...{ isSelected: true } }
           : radio));
     }
 
+    // otherwise look to see if there is default selection
     const hasDefaultSelected = radios.some(radio => radio.defaultSelected);
 
     if (hasDefaultSelected) {
@@ -36,21 +40,22 @@ const FieldRadioGroup = (
           ? { ...radio, ...{ isSelected: true } }
           : radio));
     }
+
+    // nothing selected
+    return radios;
   };
 
-  const radioMarkup = radios => radios.map((radio, i) => (
-    <Block key={i} marginBottom="3">
-      <Radio
-        id={radio.id}
-        label={radio.label}
-        helpText={radio.helpText}
-        isSelected={radio.isSelected}
-        name={radio.name}
-        onChange={handleChange}
-        className="mr-2"
-        value={radio.value}
-      />
-    </Block>
+  const radioMarkup = radios => radios.map(radio => (
+    <Radio
+      key={radio.id}
+      id={radio.id}
+      label={radio.label}
+      helpText={radio.helpText}
+      isSelected={radio.isSelected}
+      name={radio.name}
+      onChange={handleChange}
+      value={radio.value}
+    />
   ));
 
   const helpTextMarkup = () => {

@@ -7,13 +7,16 @@ import FieldRadioGroup from './FieldRadioGroup';
 
 const contactMethods = [
   {
-    name: 'contactMethod', id: 'email', value: 'email', label: 'Email', defaultSelected: true
+    name: 'contactMethod', id: 'text', value: 'text', label: 'Text', helpText: '1 hour turn around'
   },
   {
-    name: 'contactMethod', id: 'phone', value: 'phone', label: 'Phone'
+    name: 'contactMethod', id: 'email', value: 'email', label: 'Email', helpText: '24 hour turn around'
   },
   {
-    name: 'contactMethod', id: 'mail', value: 'mail', label: 'Mail'
+    name: 'contactMethod', id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
+  },
+  {
+    name: 'contactMethod', id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days', defaultSelected: true
   },
 ];
 
@@ -25,14 +28,17 @@ function FieldRadioGroupExample() {
   };
 
   return (
-    // <FieldRadioGroup
-    //   helpText="This is how we will contact you with important information."
-    //   title="Select a contact method"
-    //   radios={contactMethods}
-    //   onRadioChange={onRadioChange}
-    // />
+
     <>
-      <Radio
+      <FieldRadioGroup
+        helpText="This is how we will contact you with important information."
+        title="Select a contact method"
+        radios={contactMethods}
+        value={selected}
+        onChange={handleChange}
+      />
+
+      {/* <Radio
         label="email"
         helpText="the 21st century way"
         isSelected={selected === 'email'}
@@ -58,7 +64,7 @@ function FieldRadioGroupExample() {
         onChange={handleChange}
         id="mail"
         value="mail"
-      />
+      /> */}
     </>
   );
 }
