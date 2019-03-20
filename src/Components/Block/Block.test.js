@@ -21,6 +21,11 @@ describe('Block', () => {
     expect(wrapper.prop('className')).toContain('myClass');
   });
 
+  it('allows you to render a Block as different DOM element', () => {
+    const wrapper = shallow(<Block as="li">a list item</Block>);
+    expect(wrapper.exists('li')).toEqual(true);
+  });
+
   describe('Flex', () => {
     it('sets flex', () => {
       const wrapper = shallow(<Block flex>test</Block>);
