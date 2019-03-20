@@ -5,6 +5,7 @@
         "antialiased",
         "assistive",
         "component",
+        "describedby",
         "dismissible",
         "dropdown",
         "scannable",
