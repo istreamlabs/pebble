@@ -41,6 +41,7 @@ class Block extends React.Component {
       alignContent,
       alignItems,
       alignSelf,
+      as,
       background,
       basis,
       children,
@@ -119,19 +120,26 @@ class Block extends React.Component {
       { className: classNames(child.className, 'block-item', spacingClass) }
     )) : children;
 
+    const Element = as;
+
     return (
-      <div className={classes} {...props} style={mergedStyle}>
+      <Element className={classes} {...props} style={mergedStyle}>
         {blockChildren}
-      </div>
+      </Element>
     );
   }
 }
 
 Block.defaultProps = {
-  direction: 'row'
+  as: 'div',
+  direction: 'row',
 };
 
 Block.propTypes = {
+  /**
+   * The DOM tag to render the block as
+   */
+  as: PropTypes.string,
   /**
    * Alignment of the contents along the cross axis when there is extra space. This property has no effect when there is only one line of flex items.
    * @type {PropTypes.Requireable<AlignContent>}
