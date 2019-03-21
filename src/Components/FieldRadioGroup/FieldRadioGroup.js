@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import Block from '../Block/Block';
 import Radio from './Radio';
@@ -7,56 +8,63 @@ import Text from '../Text/Text';
 
 const FieldRadioGroup = (
   {
+    className,
     helpText,
     radios,
     title,
-    onRadioChange
+    value,
   }
 ) => {
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState(value);
 
   const handleChange = (newSelected) => {
     setSelected(newSelected);
-    if (onRadioChange) {
-      onRadioChange(newSelected);
-    }
   };
 
   // set the selected radio button
-  const radioItems = () => {
-    if (selected !== '') {
-      return radios.map(radio => (
-        selected === radio.value
-          ? { ...radio, ...{ isSelected: true } }
-          : radio));
+  const getRadioItems = () => {
+    if (radios) {
+      if (selected !== '') {
+        return radios.map(radio => (
+          selected === radio.value
+            ? { ...radio, ...{ isSelected: true } }
+            : radio));
+      }
+
+      // otherwise look to see if there is default selection
+      const hasDefaultSelected = radios.some(radio => radio.defaultSelected);
+
+      if (hasDefaultSelected) {
+        return radios.map((radio) => {
+          if (radio.defaultSelected) {
+            setSelected(radio.value);
+            return { ...radio, ...{ isSelected: true } };
+          }
+          return radio;
+        });
+      }
+
+      // nothing selected
+      return radios;
     }
-
-    // otherwise look to see if there is default selection
-    const hasDefaultSelected = radios.some(radio => radio.defaultSelected);
-
-    if (hasDefaultSelected) {
-      return radios.map(radio => (
-        radio.defaultSelected
-          ? { ...radio, ...{ isSelected: true } }
-          : radio));
-    }
-
-    // nothing selected
-    return radios;
   };
 
-  const radioMarkup = radios => radios.map(radio => (
-    <Radio
-      key={radio.id}
-      id={radio.id}
-      label={radio.label}
-      helpText={radio.helpText}
-      isSelected={radio.isSelected}
-      name={radio.name}
-      onChange={handleChange}
-      value={radio.value}
-    />
-  ));
+  const radioMarkup = (radios) => {
+    if (radios) {
+      return radios.map(radio => (
+        <Radio
+          key={radio.id}
+          id={radio.id}
+          label={radio.label}
+          helpText={radio.helpText}
+          isSelected={radio.isSelected}
+          name={radio.name}
+          onChange={handleChange}
+          value={radio.value}
+        />
+      ));
+    }
+  };
 
   const helpTextMarkup = () => {
     if (helpText === undefined) return;
@@ -65,11 +73,13 @@ const FieldRadioGroup = (
     );
   };
 
+  const classes = classNames('field-radio-group', className);
+
   return (
-    <Block direction="column">
-      <Text bold className="db mb-2">{title}</Text>
+    <Block direction="column" className={classes}>
+      {title && <Text bold className="db mb-2">{title}</Text>}
       {helpTextMarkup()}
-      {radioMarkup(radioItems())}
+      {radioMarkup(getRadioItems())}
     </Block>
   );
 };
@@ -80,8 +90,9 @@ FieldRadioGroup.propTypes = {
    */
   helpText: PropTypes.string,
   title: PropTypes.string,
-  onRadioChange: () => {},
   radios: PropTypes.arrayOf(PropTypes.object),
+  value: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default FieldRadioGroup;

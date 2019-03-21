@@ -5,65 +5,94 @@ import '../../Styles/foundation.scss';
 import Radio from './Radio';
 import FieldRadioGroup from './FieldRadioGroup';
 
-const contactMethods = [
+const group1 = [
   {
-    name: 'contactMethod', id: 'text', value: 'text', label: 'Text', helpText: '1 hour turn around'
+    name: 'group1', id: 'text', value: 'text', label: 'Text', helpText: '1 hour turn around'
   },
   {
-    name: 'contactMethod', id: 'email', value: 'email', label: 'Email', helpText: '24 hour turn around'
+    name: 'group1', id: 'email', value: 'email', label: 'Email', helpText: '24 hour turn around'
   },
   {
-    name: 'contactMethod', id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
+    name: 'group1', id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
   },
   {
-    name: 'contactMethod', id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days', defaultSelected: true
+    name: 'group1', id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days', defaultSelected: true
+  },
+];
+
+const group2 = [
+  {
+    name: 'group2', id: 'small', value: 'small', label: 'Small'
+  },
+  {
+    name: 'group2', id: 'medium', value: 'medium', label: 'Medium'
+  },
+  {
+    name: 'group2', id: 'large', value: 'large', label: 'Large'
   },
 ];
 
 function FieldRadioGroupExample() {
-  const [selected, setSelected] = useState('email');
+  const [values, setValues] = useState({
+    group1: 'email',
+    group2: '',
+    radio: false,
+  });
 
-  const handleChange = (newSelected) => {
-    setSelected(newSelected);
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
 
     <>
       <FieldRadioGroup
-        helpText="This is how we will contact you with important information."
         title="Select a contact method"
-        radios={contactMethods}
-        value={selected}
+        helpText="This is how we will contact you with important information."
+        radios={group1}
+        value={values.group1}
         onChange={handleChange}
+        name="group1"
+        className="mb-5"
+      />
+
+      <FieldRadioGroup
+        title="T-Shirt Size"
+        helpText="Choose a t-shirt size"
+        radios={group2}
+        value={values.group2}
+        onChange={handleChange}
+        name="group2"
+        className="mb-5"
+      />
+
+      <Radio
+        id="one"
+        label="one"
+        isSelected={values.radio}
+        name="group3"
+        onChange={handleChange}
+        value="one"
       />
 
       {/* <Radio
-        label="email"
-        helpText="the 21st century way"
-        isSelected={selected === 'email'}
-        name="contactMethod"
+        label="two"
+        isSelected={values.group3 === 'phone'}
+        name="group3"
         onChange={handleChange}
-        id="email"
-        value="email"
+        id="two"
+        value="two"
       />
       <Radio
-        label="phone"
-        helpText="voice communication!"
-        isSelected={selected === 'phone'}
-        name="contactMethod"
+        label="three"
+        isSelected={values.group3 === 'mail'}
+        name="group3"
         onChange={handleChange}
-        id="phone"
-        value="phone"
-      />
-      <Radio
-        label="mail"
-        helpText="for the least urgent communication"
-        isSelected={selected === 'mail'}
-        name="contactMethod"
-        onChange={handleChange}
-        id="mail"
-        value="mail"
+        id="three"
+        value="three"
       /> */}
     </>
   );

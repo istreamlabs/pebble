@@ -6,19 +6,6 @@ import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
 
-const RadioIcon = (
-  { isSelected, ...props }
-) => {
-  if (isSelected) {
-    return <Icon {...props} className="blue" name="radio-selected" />;
-  }
-  return <Icon {...props} className="neutral-500" name="radio" />;
-};
-
-RadioIcon.propTypes = {
-  isSelected: PropTypes.bool,
-};
-
 const Radio = ({
   className,
   disabled,
@@ -33,33 +20,40 @@ const Radio = ({
   value,
 }) => {
   const handleChange = () => {
-    if (onChange == null) {
-      return;
-    }
     onChange(value);
+  };
+
+  const radioIconMarkup = () => {
+    if (isSelected) {
+      return <Icon size="20" className="blue" name="radio-selected" />;
+    }
+    return <Icon size="20" className="neutral-500 neutral-700-hover" name="radio" />;
+  };
+
+  const helpTextMarkup = () => {
+    if (helpText) {
+      return (
+        <Text size="7" appearance="muted" className="db mt-1" id={`${id}HelpText`}>
+          {helpText}
+        </Text>
+      );
+    }
   };
 
   const labelMarkup = () => (
     <Block as="label" htmlFor={id} className="relative">
-      <RadioIcon
-        isSelected={isSelected}
-        size="20"
-      />
+      {radioIconMarkup()}
       <Block
         direction="column"
         className="ml-2"
       >
         <span className="fs-6">{label}</span>
-        {helpText
-          && (
-          <Text size="7" appearance="muted" className="db mt-1">
-            {helpText}
-          </Text>
-          )}
+        {helpTextMarkup()}
       </Block>
     </Block>
   );
 
+  const describedBy = helpText ? `${id}HelpText` : undefined;
   const classes = classNames('relative', className);
 
   return (
@@ -73,8 +67,9 @@ const Radio = ({
         onFocus={onFocus}
         onBlur={onBlur}
         type="radio"
-        value={value}
         className="absolute o-0"
+        value={value}
+        aria-describedby={describedBy}
       />
       {labelMarkup()}
     </Block>
@@ -84,6 +79,7 @@ const Radio = ({
 Radio.defaultPros = {
   disabled: false,
   isSelected: false,
+  onChange: () => {}
 };
 
 Radio.propTypes = {
@@ -107,7 +103,7 @@ Radio.propTypes = {
   /**
    * The id attribute of the input
    */
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   /**
    * Set the radio as selected
    */
