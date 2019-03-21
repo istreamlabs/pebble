@@ -57,7 +57,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils",
+    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils && babel src/Types -d dist/Types",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "cover": "react-scripts test --coverage",
