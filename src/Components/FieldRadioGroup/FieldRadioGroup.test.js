@@ -47,13 +47,13 @@ describe('FieldRadioGroup', () => {
     it('checks the first radio if not specified', () => {
       const items = [
         {
-          id: '1', name: 'n', value: '1', label: '1'
+          id: '1', value: '1', label: '1'
         },
         {
-          id: '2', name: 'n', value: '2', label: '2'
+          id: '2', value: '2', label: '2'
         },
         {
-          id: '3', name: 'n', value: '3', label: '3'
+          id: '3', value: '3', label: '3'
         },
       ];
       const wrapper = mount(<FieldRadioGroup radios={items} />);
@@ -64,13 +64,13 @@ describe('FieldRadioGroup', () => {
     it('checks specified radio', () => {
       const items = [
         {
-          id: '1', name: 'n', value: '1', label: '1'
+          id: '1', value: '1', label: '1'
         },
         {
-          id: '2', name: 'n', value: '2', label: '2'
+          id: '2', value: '2', label: '2'
         },
         {
-          id: '3', name: 'n', value: '3', label: '3'
+          id: '3', value: '3', label: '3'
         },
       ];
       const wrapper = mount(<FieldRadioGroup value="2" radios={items} />);
@@ -81,13 +81,13 @@ describe('FieldRadioGroup', () => {
     it('checks specified radio', () => {
       const items = [
         {
-          id: '1', name: 'n', value: '1', label: '1'
+          id: '1', value: '1', label: '1'
         },
         {
-          id: '2', name: 'n', value: '2', label: '2'
+          id: '2', value: '2', label: '2'
         },
         {
-          id: '3', name: 'n', value: '3', label: '3'
+          id: '3', value: '3', label: '3'
         },
       ];
       const wrapper = mount(<FieldRadioGroup value="2" radios={items} />);

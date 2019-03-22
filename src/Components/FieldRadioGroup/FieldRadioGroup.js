@@ -19,7 +19,8 @@ const FieldRadioGroup = (
     radios,
     title,
     value,
-    onChange
+    onChange,
+    name
   }
 ) => {
   // set the selected radio button or the first one
@@ -31,7 +32,7 @@ const FieldRadioGroup = (
 
       return radios.map(radio => (
         selected === radio.value
-          ? { ...radio, ...{ isSelected: true } }
+          ? { ...radio, ...{ isSelected: true, name } }
           : radio));
     }
   };
@@ -79,13 +80,37 @@ const FieldRadioGroup = (
 
 FieldRadioGroup.propTypes = {
   /**
+   * Name attribute applied to all radios
+   */
+  name: PropTypes.string,
+  /**
    * Additional hint displayed beneath the label
    */
   helpText: PropTypes.string,
+  /**
+   * The label for the group of radios
+   */
   title: PropTypes.string,
-  radios: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Radio options
+   */
+  radios: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    helpText: PropTypes.string,
+    value: PropTypes.string.isRequired,
+  })),
+  /**
+   * Currently selected option value
+   */
   value: PropTypes.string,
+  /**
+   * Additional classes to add
+   */
   className: PropTypes.string,
+  /**
+   * Callback function when a radio is changed
+   */
   onChange: PropTypes.func,
 };
 

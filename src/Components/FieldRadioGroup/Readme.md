@@ -3,16 +3,16 @@ import { useState } from 'react';
 
 const group1 = [
   {
-    name: 'group1', id: 'text', value: 'text', label: 'Text', helpText: '1 hour turn around'
+    id: 'text', value: 'text', label: 'Text', helpText: '1 hour turn around'
   },
   {
-    name: 'group1', id: 'email', value: 'email', label: 'Email', helpText: '24 hour turn around'
+    id: 'email', value: 'email', label: 'Email', helpText: '24 hour turn around'
   },
   {
-    name: 'group1', id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
+    id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
   },
   {
-    name: 'group1', id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days',
+    id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days',
   },
 ];
 
