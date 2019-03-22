@@ -3,57 +3,84 @@ import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
 import Tabs from './Tabs';
+import TabPanel from './Components/TabPanel';
 
-const tabs = [
+const tabData = [
   {
-    id: 'overview',
-    label: 'Overview',
-    panelId: 'overview-content',
+    id: 'one',
+    label: 'One',
+    panelId: 'one-content',
+    content: 'one content'
   },
   {
-    id: 'metadata',
-    label: 'Metadata',
-    panelId: 'metadata-content',
+    id: 'two',
+    label: 'Two',
+    panelId: 'two-content',
+    content: 'two content'
   },
   {
-    id: 'settings',
-    label: 'Settings',
-    panelId: 'settings-content',
+    id: 'three',
+    label: 'Three',
+    panelId: 'three-content',
+    content: 'three content'
+  },
+  {
+    id: 'disabled',
+    label: 'Disabled',
+    panelId: 'disabled-content',
+    content: 'disabled content',
+    disabled: true
   },
 ];
 
 function TabsExample() {
-  const [selectedTab, setSelectedTab] = useState('overview');
-  const [selectedFWTab, setSelectedFWTab] = useState('overview');
-  const [selectedSmallTab, setSelectedSmallTab] = useState('');
+  const [selectedSmallTab, setSelectedSmallTab] = useState('one');
+  const [selectedTab, setSelectedTab] = useState('one');
+  const [selectedLargeTab, setSelectedLargeTab] = useState('');
+  const [selectedFWTab, setSelectedFWTab] = useState('one');
+  const [selectedPanelTab, setSelectedPanelTab] = useState('panel-1');
   return (
     <>
       <Tabs
-        tabs={tabs}
-        selectedId={selectedTab}
-        onSelect={setSelectedTab}
-        className="mb-5"
-      >
-        <div className="w-100 bg-white p-5">
-          Content for
-          {' '}
-          {selectedTab}
-        </div>
-      </Tabs>
+        size="small"
+        tabs={tabData}
+        selectedId={selectedSmallTab}
+        onSelect={setSelectedSmallTab}
+        className="mb-6"
+      />
 
       <Tabs
-        tabs={tabs}
+        tabs={tabData}
+        selectedId={selectedTab}
+        onSelect={setSelectedTab}
+        className="mb-6"
+      />
+
+      <Tabs
+        size="large"
+        tabs={tabData}
+        selectedId={selectedLargeTab}
+        onSelect={setSelectedLargeTab}
+        className="mb-6"
+      />
+
+      <Tabs
+        tabs={tabData}
         selectedId={selectedFWTab}
         onSelect={setSelectedFWTab}
         fullWidth
+        className="mb-6"
       />
 
       <Tabs
-        size="small"
-        tabs={tabs}
-        selectedId={selectedSmallTab}
-        onSelect={setSelectedSmallTab}
-      />
+        selectedId={selectedPanelTab}
+        onSelect={setSelectedPanelTab}
+        className="mb-6"
+      >
+        <TabPanel background="white" label="Panel 1" tabId="panel-1" padding="4">Panel 1 Content</TabPanel>
+        <TabPanel background="white" label="Panel 2" tabId="panel-2" padding="4">Panel 2 Content</TabPanel>
+        <TabPanel background="white" label="Panel 3" tabId="panel-3" padding="4">Panel 3 Content</TabPanel>
+      </Tabs>
     </>
   );
 }

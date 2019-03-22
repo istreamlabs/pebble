@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Button from '../Button/Button';
+import Button from '../../Button/Button';
 
 import './Tab.scss';
 
@@ -21,7 +21,8 @@ const Tab = (
     onClick,
     label,
     fullWidth,
-    size
+    size,
+    disabled
   }
 ) => {
   const handleClick = () => {
@@ -32,10 +33,13 @@ const Tab = (
     'tab', {
       'tab-selected': isSelected,
       'w-100': fullWidth,
-      'pb-1 ph-2': size === 'small',
-      'pv-4 ph-5': size === 'medium',
-      'pv-4 ph-6': size === 'large',
     }, className
+  );
+
+  const tabClasses = classNames(
+    'tab-button', {
+      'text-transform-uppercase tracked': size === 'small',
+    }
   );
 
   return (
@@ -44,9 +48,8 @@ const Tab = (
       role="presentation"
     >
       <Button
-        id={`${id}-tab`}
-        plain
-        className="tab-button"
+        id={id}
+        className={tabClasses}
         fullWidth
         aria-controls={ariaControls}
         aria-selected={isSelected}
@@ -54,6 +57,7 @@ const Tab = (
         onClick={handleClick}
         value={label}
         size={size}
+        disabled={disabled}
       >
         {label}
       </Button>
@@ -66,6 +70,10 @@ Tab.defaultProps = {
 };
 
 Tab.propTypes = {
+  /**
+   * Disables the tab, making it inoperable
+   */
+  disabled: PropTypes.bool,
   /**
    * Additional classNames to add
    */

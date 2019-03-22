@@ -7,10 +7,13 @@
         "component",
         "dismissible",
         "dropdown",
+        "labelledby",
         "scannable",
         "styleguide",
         "tablist",
+        "tabpanel",
         "unmount",
+        "unstyled",
         "viewports",
         "will",
         "woff"
