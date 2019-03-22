@@ -38,7 +38,7 @@ function TabsExample() {
   const [selectedTab, setSelectedTab] = useState('one');
   const [selectedLargeTab, setSelectedLargeTab] = useState('');
   const [selectedFWTab, setSelectedFWTab] = useState('one');
-  const [selectedPanelTab, setSelectedPanelTab] = useState('panel-1');
+  const [selectedPanelTab, setSelectedPanelTab] = useState('panel-1-tab');
   return (
     <>
       <Tabs
@@ -77,9 +77,9 @@ function TabsExample() {
         onSelect={setSelectedPanelTab}
         className="mb-6"
       >
-        <TabPanel background="white" label="Panel 1" tabId="panel-1" padding="4">Panel 1 Content</TabPanel>
-        <TabPanel background="white" label="Panel 2" tabId="panel-2" padding="4">Panel 2 Content</TabPanel>
-        <TabPanel background="white" label="Panel 3" tabId="panel-3" padding="4">Panel 3 Content</TabPanel>
+        <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" padding="4">Panel 1 Content</TabPanel>
+        <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" padding="4">Panel 2 Content</TabPanel>
+        <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" padding="4">Panel 3 Content</TabPanel>
       </Tabs>
     </>
   );

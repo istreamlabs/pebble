@@ -125,7 +125,7 @@ module.exports = {
     ToolbarButtonRenderer: path.join(__dirname, 'src/Styleguide/ToolbarButtonRenderer')
   },
   components: [
-    'src/components/**/[A-Z]*.js'
+    'src/components/**/[A-Z]*.js',
   ],
   ignore: [
     '**/__tests__/**',

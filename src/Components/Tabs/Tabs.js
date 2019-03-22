@@ -66,7 +66,7 @@ export class Tabs extends React.PureComponent {
           onClick={onSelect}
           size={size}
           disabled={child.props.disabled}
-          ariaControls={child.props.tabId}
+          ariaControls={child.props.id}
         />
       ));
     };
@@ -78,7 +78,12 @@ export class Tabs extends React.PureComponent {
           : tabs.findIndex(tab => selectedId === tab.id);
 
         return (
-          <Block as="section" role="tabpanel" aria-labelledby={tabs[selectedIndex].id}>
+          <Block
+            id={tabs[selectedIndex].panelId}
+            as="section"
+            role="tabpanel"
+            aria-labelledby={tabs[selectedIndex].id}
+          >
             {tabs[selectedIndex].content}
           </Block>
         );

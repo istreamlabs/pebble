@@ -13,9 +13,15 @@ function TabExample() {
       selectedId={selectedTabPanel}
       onSelect={setSelectedTabPanel}
     >
-      <TabPanel label="panel 1" tabId="1" padding="4" background="white">Panel 1 Content</TabPanel>
-      <TabPanel label="panel 2" tabId="2" padding="4" background="white">Panel 2 Content</TabPanel>
-      <TabPanel label="panel 3" tabId="3" padding="4" background="white">Panel 3 Content</TabPanel>
+      <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" padding="4">
+        Panel 1 Content
+      </TabPanel>
+      <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" padding="4">
+        Panel 2 Content
+      </TabPanel>
+      <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" padding="4">
+        Panel 3 Content
+      </TabPanel>
     </Tabs>
   )
 }
@@ -100,25 +106,21 @@ const tabData = [
     id: 'one',
     label: 'One',
     panelId: 'one-content',
-    content: 'one content'
   },
   {
     id: 'two',
     label: 'Two',
     panelId: 'two-content',
-    content: 'two content'
   },
   {
     id: 'three',
     label: 'Three',
     panelId: 'three-content',
-    content: 'three content'
   },
   {
     id: 'disabled',
     label: 'Disabled',
     panelId: 'disabled-content',
-    content: 'disabled content',
     disabled: true
   },
 ];
