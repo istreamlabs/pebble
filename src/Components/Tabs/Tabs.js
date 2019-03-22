@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Tab from './Tab';
-
-import './Tabs.scss';
-
+import Block from '../Block/Block';
 /**
  * A set of Tabs
  *
@@ -22,39 +20,55 @@ import './Tabs.scss';
 export class Tabs extends React.PureComponent {
   render() {
     const {
+      children,
+      className,
       fullWidth,
       selectedId,
       tabs,
+      onSelect,
+      size,
     } = this.props;
 
-    const tabClasses = classNames('tabs', {
-      'tabs-fullwidth': fullWidth
+    const tabClasses = classNames('flex', 'list-unstyled', {
+      'w-100': fullWidth
     });
 
     const tabsMarkup = tabs.map(tab => (
       <Tab
+        ariaControls={tab.panelId}
         id={tab.id}
         key={tab.id}
         isSelected={selectedId === tab.id}
         fullWidth={fullWidth}
-        ariaControls={tab.content}
-      >
-        {tab.content}
-      </Tab>
+        onClick={onSelect}
+        label={tab.label}
+        size={size}
+      />
     ));
 
     return (
-      <ul
-        role="tablist"
-        className={tabClasses}
-      >
-        {tabsMarkup}
-      </ul>
+      <Block direction="column" className={className}>
+        <ul
+          role="tablist"
+          className={tabClasses}
+        >
+          {tabsMarkup}
+        </ul>
+        <Block>
+          {children}
+        </Block>
+      </Block>
+
     );
   }
 }
 
 Tabs.propTypes = {
+  children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * Takes up the full width of its parent container
    */
@@ -69,7 +83,13 @@ Tabs.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.object),
   /**
    * Callback function when a tab is selected
-  onSelect: PropTypes.func,  */
+   */
+  onSelect: PropTypes.func,
+  /**
+   * Changes the size of the tabs, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 export default Tabs;
