@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Block from '../Block/Block';
-import Icon from '../Icon/Icon';
-import Text from '../Text/Text';
+import Block from '../../Block/Block';
+import Icon from '../../Icon/Icon';
+import Text from '../../Text/Text';
 
 const Radio = ({
   className,
@@ -26,6 +26,9 @@ const Radio = ({
   const radioIconMarkup = () => {
     if (isSelected) {
       return <Icon size="20" className="blue" name="radio-selected" />;
+    }
+    if (disabled) {
+      return <Icon size="20" className="neutral-300" name="radio" />;
     }
     return <Icon size="20" className="neutral-500 neutral-700-hover" name="radio" />;
   };
@@ -60,7 +63,7 @@ const Radio = ({
     <Block marginBottom="3" className={classes} alignItems="start">
       <input
         id={id}
-        checked={isSelected}
+        checked={isSelected || false}
         disabled={disabled}
         name={name}
         onChange={handleChange}

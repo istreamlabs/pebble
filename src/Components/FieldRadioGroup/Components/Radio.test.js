@@ -20,6 +20,11 @@ describe('Radio', () => {
     expect(wrapper.find('input').prop('checked')).toBe(true);
   });
 
+  it('disabled should be reflected in the input', () => {
+    const wrapper = mount(<Radio id="test" label="test radio" onChange={() => {}} disabled />);
+    expect(wrapper.find('input').prop('disabled')).toBe(true);
+  });
+
   describe('handleChange', () => {
     it('calls onChange if defined', () => {
       const onChange = jest.fn();

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
-import Radio from './Radio';
+import Radio from './Components/Radio';
 import FieldRadioGroup from './FieldRadioGroup';
 
 const group1 = [
@@ -16,7 +16,7 @@ const group1 = [
     name: 'group1', id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
   },
   {
-    name: 'group1', id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days', defaultSelected: true
+    name: 'group1', id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days',
   },
 ];
 
@@ -33,28 +33,17 @@ const group2 = [
 ];
 
 function FieldRadioGroupExample() {
-  const [values, setValues] = useState({
-    group1: 'email',
-    group2: '',
-    radio: false,
-  });
-
-  const handleChange = (e) => {
-    setValues({
-      ...values,
-      [e.target.name]: e.target.value
-    });
-  };
+  const [contactMethod, setContactMethod] = useState('phone');
+  const [size, setSize] = useState('');
 
   return (
-
     <>
       <FieldRadioGroup
         title="Select a contact method"
         helpText="This is how we will contact you with important information."
         radios={group1}
-        value={values.group1}
-        onChange={handleChange}
+        value={contactMethod}
+        onChange={setContactMethod}
         name="group1"
         className="mb-5"
       />
@@ -63,37 +52,36 @@ function FieldRadioGroupExample() {
         title="T-Shirt Size"
         helpText="Choose a t-shirt size"
         radios={group2}
-        value={values.group2}
-        onChange={handleChange}
+        value={size}
+        onChange={setSize}
         name="group2"
         className="mb-5"
       />
-
       <Radio
-        id="one"
-        label="one"
-        isSelected={values.radio}
+        label="yes"
+        isSelected
         name="group3"
-        onChange={handleChange}
-        value="one"
-      />
-
-      {/* <Radio
-        label="two"
-        isSelected={values.group3 === 'phone'}
-        name="group3"
-        onChange={handleChange}
-        id="two"
-        value="two"
+        onChange={() => {}}
+        id="group3-yes"
+        value="yes"
       />
       <Radio
-        label="three"
-        isSelected={values.group3 === 'mail'}
+        label="no"
+        isSelected={false}
         name="group3"
-        onChange={handleChange}
-        id="three"
-        value="three"
-      /> */}
+        onChange={() => {}}
+        id="group3-no"
+        value="no"
+      />
+      <Radio
+        label="disabled"
+        isSelected={false}
+        name="group3"
+        onChange={() => {}}
+        id="group3-disabled"
+        value="no"
+        disabled
+      />
     </>
   );
 }

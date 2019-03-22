@@ -49,8 +49,8 @@ describe('Tabs', () => {
         <Tabs
           selectedId="panel-2"
         >
-          <TabPanel label="1" tabId="panel-1">panel 1</TabPanel>
-          <TabPanel label="2" tabId="panel-2">panel 1</TabPanel>
+          <TabPanel id="1" label="1" tabId="panel-1">panel 1</TabPanel>
+          <TabPanel id="2" label="2" tabId="panel-2">panel 1</TabPanel>
         </Tabs>
       );
       expect(wrapper.find('#panel-2').prop('isSelected')).toBe(true);
@@ -59,8 +59,8 @@ describe('Tabs', () => {
     it('selects the first Tab by default passed children', () => {
       const wrapper = shallow(
         <Tabs>
-          <TabPanel label="1" tabId="panel-1">panel 1</TabPanel>
-          <TabPanel label="2" tabId="panel-2">panel 1</TabPanel>
+          <TabPanel id="1" label="1" tabId="panel-1">panel 1</TabPanel>
+          <TabPanel id="2" label="2" tabId="panel-2">panel 1</TabPanel>
         </Tabs>
       );
       const TabsArray = wrapper.find(Tab);

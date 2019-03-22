@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Block from '../Block/Block';
-import Radio from './Radio';
+import Radio from './Components/Radio';
 import Text from '../Text/Text';
+
+/**
+ * A way to select a single option from a list of options.
+ *
+ * ---
+ */
 
 const FieldRadioGroup = (
   {
@@ -13,39 +19,20 @@ const FieldRadioGroup = (
     radios,
     title,
     value,
+    onChange
   }
 ) => {
-  const [selected, setSelected] = useState(value);
-
-  const handleChange = (newSelected) => {
-    setSelected(newSelected);
-  };
-
-  // set the selected radio button
+  // set the selected radio button or the first one
   const getRadioItems = () => {
     if (radios) {
-      if (selected !== '') {
-        return radios.map(radio => (
-          selected === radio.value
-            ? { ...radio, ...{ isSelected: true } }
-            : radio));
-      }
+      const selected = value === '' || value === undefined
+        ? radios[0].value
+        : radios[radios.findIndex(radio => radio.value === value)].value;
 
-      // otherwise look to see if there is default selection
-      const hasDefaultSelected = radios.some(radio => radio.defaultSelected);
-
-      if (hasDefaultSelected) {
-        return radios.map((radio) => {
-          if (radio.defaultSelected) {
-            setSelected(radio.value);
-            return { ...radio, ...{ isSelected: true } };
-          }
-          return radio;
-        });
-      }
-
-      // nothing selected
-      return radios;
+      return radios.map(radio => (
+        selected === radio.value
+          ? { ...radio, ...{ isSelected: true } }
+          : radio));
     }
   };
 
@@ -59,10 +46,16 @@ const FieldRadioGroup = (
           helpText={radio.helpText}
           isSelected={radio.isSelected}
           name={radio.name}
-          onChange={handleChange}
+          onChange={onChange}
           value={radio.value}
         />
       ));
+    }
+  };
+
+  const titleMarkup = () => {
+    if (title) {
+      return (<Text bold className="db mb-2">{title}</Text>);
     }
   };
 
@@ -77,7 +70,7 @@ const FieldRadioGroup = (
 
   return (
     <Block direction="column" className={classes}>
-      {title && <Text bold className="db mb-2">{title}</Text>}
+      {titleMarkup()}
       {helpTextMarkup()}
       {radioMarkup(getRadioItems())}
     </Block>
@@ -93,6 +86,7 @@ FieldRadioGroup.propTypes = {
   radios: PropTypes.arrayOf(PropTypes.object),
   value: PropTypes.string,
   className: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default FieldRadioGroup;
