@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Tab from './Tab';
+import TabPanel from './TabPanel';
 
 describe('Tab', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Tab>hello</Tab>); }).not.toThrow();
+    expect(() => { shallow(<TabPanel label="tab label" tabId="1">hello</TabPanel>); }).not.toThrow();
   });
 });
