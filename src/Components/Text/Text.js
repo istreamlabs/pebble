@@ -20,6 +20,7 @@ const Text = (
     className,
     appearance,
     size,
+    ...rest
   }
 ) => {
   const parsedSize = parseTextSize(size);
@@ -33,7 +34,7 @@ const Text = (
   }, className);
 
   return (
-    <Element className={classes}>
+    <Element className={classes} {...rest}>
       {children}
     </Element>
   );
