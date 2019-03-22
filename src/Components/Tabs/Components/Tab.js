@@ -82,6 +82,9 @@ Tab.propTypes = {
    * Take up the full width of its parent container
    */
   fullWidth: PropTypes.bool,
+  /**
+   * The id of the tab
+   */
   id: PropTypes.string,
   /**
    * Look like it is selected
