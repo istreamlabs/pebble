@@ -2,16 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
+
+import './Checkbox.scss';
 
 const Checkbox = ({
   className,
   disabled,
   id,
   isSelected,
+  isInvalid,
   onChange,
   value,
+  toggle,
   ...rest
 }) => {
   const handleChange = () => {
@@ -19,34 +22,43 @@ const Checkbox = ({
   };
 
   const checkboxIconMarkup = () => {
-    if (isSelected && disabled) {
-      return <Icon size="20" className="blue-light" name="checkbox-checked" />;
+    if (!toggle) {
+      const iconProps = {
+        classes: 'neutral-500 neutral-700-hover',
+        name: 'checkbox'
+      };
+      if (isSelected && disabled) {
+        iconProps.classes = 'blue';
+        iconProps.name = 'checkbox-checked';
+      }
+      if (isSelected) {
+        iconProps.classes = 'blue blue-dark-hover';
+        iconProps.name = 'checkbox-checked';
+      }
+      if (isInvalid) {
+        iconProps.classes = 'red';
+      }
+      const checkboxIconClasses = classNames(iconProps.classes, 'checkbox-icon');
+      return <Icon size="20" className={checkboxIconClasses} name={iconProps.name} />;
     }
-    if (isSelected) {
-      return <Icon size="20" className="blue" name="checkbox-checked" />;
-    }
-    if (disabled) {
-      return <Icon size="20" className="neutral-300" name="checkbox" />;
-    }
-    return <Icon size="20" className="neutral-500 neutral-700-hover" name="checkbox" />;
   };
 
-  const classes = classNames('relative', className);
+  const inputClasses = classNames('checkbox absolute o-0', className);
 
   return (
-    <Block className={classes}>
+    <>
       <input
         id={id}
         checked={isSelected || false}
         disabled={disabled}
         onChange={handleChange}
         type="checkbox"
-        className="absolute o-0"
+        className={inputClasses}
         value={value}
         {...rest}
       />
       {checkboxIconMarkup()}
-    </Block>
+    </>
   );
 };
 
@@ -78,6 +90,10 @@ Checkbox.propTypes = {
    */
   isReadOnly: PropTypes.bool,
   /**
+   * Applies styling to indicate the input is invalid
+   */
+  isInvalid: PropTypes.bool,
+  /**
    * The id attribute of the input
    */
   id: PropTypes.string.isRequired,
@@ -93,6 +109,10 @@ Checkbox.propTypes = {
    * The value of the input
    */
   value: PropTypes.string,
+  /**
+   * Make the checkbox look like a toggle switch
+   */
+  toggle: PropTypes.bool
 };
 
 export default Checkbox;

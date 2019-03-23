@@ -17,47 +17,108 @@ const FieldCheckbox = (
     id,
     label,
     isSelected,
+    isInvalid,
     className,
     helpText,
     value,
     onChange,
-    disabled
+    disabled,
+    toggle,
+    validationText,
+    ...rest
   }
 ) => {
   const checkboxMarkup = () => (
     <Checkbox
+      toggle={toggle}
       key={id}
       id={id}
       isSelected={isSelected}
+      isInvalid={isInvalid}
       onChange={onChange}
       value={value}
       disabled={disabled}
+      className={toggle ? 'toggle-input' : null}
+      {...rest}
     />
   );
 
-  const helpTextMarkup = () => {
-    if (helpText === undefined) return;
-    return (
-      <Text size="6" appearance="muted" className="db fs-7 mt-1">{helpText}</Text>
+  const labelMarkup = () => {
+    if (toggle) {
+      const labelClasses = classNames(
+        'flex', {
+          'items-center': toggle && !isInvalid,
+          red: isInvalid,
+        }
+      );
+
+      return (
+        <label className={labelClasses} htmlFor={id}>
+          <div className="toggle-switch" aria-hidden="true">
+            <div className="toggle-text-left relative text-center fw-700 text-transform-uppercase" aria-hidden="true">
+              on
+            </div>
+            <div className="toggle-text-right relative text-center fw-700 text-transform-uppercase" aria-hidden="true">
+              off
+            </div>
+          </div>
+          <div className="ml-2">
+            {label}
+            {helpTextMarkup()}
+            {getValidationTextMarkup()}
+          </div>
+        </label>
+      );
+    }
+
+    // normal checkbox
+    const labelClasses = classNames(
+      'db mb-2', {
+        red: isInvalid,
+      }
     );
-  };
 
-  const classes = classNames('field-radio-group', className);
-
-  const labelClasses = classNames('db mb-2', {
-    'neutral-400': disabled
-  });
-
-  return (
-    <Block className={classes}>
-      {checkboxMarkup()}
+    return (
       <Block direction="column" className="ml-2">
         <label htmlFor={id} className={labelClasses}>
           {label}
           {helpTextMarkup()}
+          {getValidationTextMarkup()}
         </label>
       </Block>
-    </Block>
+    );
+  };
+
+  const helpTextMarkup = () => {
+    if (helpText === undefined) return;
+    return (
+      <Text size="6" appearance="muted" className="db mt-1">{helpText}</Text>
+    );
+  };
+
+  const getValidationTextMarkup = () => {
+    if (!isInvalid || validationText === undefined) return;
+
+    return (
+      <Text appearance="danger" size="6" className="db pt-2">{validationText}</Text>
+    );
+  };
+
+  const classes = classNames('field-radio-group relative',
+    {
+      toggle,
+      invalid: isInvalid,
+      'o-50': disabled
+    },
+    className);
+
+  return (
+    <div>
+      <Block className={classes}>
+        {checkboxMarkup()}
+        {labelMarkup()}
+      </Block>
+    </div>
   );
 };
 
@@ -83,6 +144,10 @@ FieldCheckbox.propTypes = {
    */
   isSelected: PropTypes.bool,
   /**
+   * Applies styling to indicate the input is invalid
+   */
+  isInvalid: PropTypes.bool,
+  /**
    * Currently selected option value
    */
   value: PropTypes.string,
@@ -94,6 +159,15 @@ FieldCheckbox.propTypes = {
    * Callback function when a checkbox is changed
    */
   onChange: PropTypes.func,
+  /**
+   * Make the checkbox look like a toggle switch
+   */
+  toggle: PropTypes.bool,
+  /**
+   * Text to display if the input is invalid.
+   * The text should explain why the input is invalid.
+   */
+  validationText: PropTypes.string,
 };
 
 export default FieldCheckbox;
