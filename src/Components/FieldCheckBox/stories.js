@@ -8,7 +8,8 @@ function FieldCheckboxExample() {
   const [checkbox1, setCheckBox1] = useState(true);
   const [checkbox2, setCheckBox2] = useState(false);
   const [invalid, setInvalid] = useState(false);
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
+  const [toggleHelp, setToggleHelp] = useState(false);
   const [invalidToggle, setInvalidToggle] = useState(false);
 
   return (
@@ -45,6 +46,7 @@ function FieldCheckboxExample() {
 
       <FieldCheckbox
         isInvalid
+        validationText="This checkbox is required"
         id="invalid-checkbox"
         label="Invalid"
         helpText="For required acknowledgements (e.g. usage policy)"
@@ -65,22 +67,34 @@ function FieldCheckboxExample() {
       />
 
       <FieldCheckbox
+        toggle
+        id="toggleHelp"
+        label="toggle with helpText"
+        isSelected={toggleHelp}
+        value="first"
+        onChange={setToggleHelp}
+        className="mb-5"
+      />
+
+      <FieldCheckbox
         disabled
         toggle
         id="disabledToggle"
         label="disabled toggle"
         helpText="Can not be changed by user input and can not be focused"
-        isSelected={toggle}
+        isSelected={toggleHelp}
         value="first"
-        onChange={setToggle}
+        onChange={setToggleHelp}
         className="mb-5"
       />
 
       <FieldCheckbox
         isInvalid
+        validationText="This checkbox is required"
         toggle
         id="toggle-invalid"
         label="invalid toggle"
+        helpText="this is an invalid toggle"
         isSelected={invalidToggle}
         value="first"
         onChange={setInvalidToggle}
