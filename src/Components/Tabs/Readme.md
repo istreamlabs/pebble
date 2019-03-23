@@ -1,35 +1,6 @@
-```js
-
-import { useState } from 'react';
-
-import Tabs from './Tabs';
-import TabPanel from './Components/TabPanel';
-
-function TabExample() {
-  const [selectedTabPanel, setSelectedTabPanel] = useState('');
-
-  return (
-    <Tabs
-      selectedId={selectedTabPanel}
-      onSelect={setSelectedTabPanel}
-    >
-      <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" padding="4">
-        Panel 1 Content
-      </TabPanel>
-      <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" padding="4">
-        Panel 2 Content
-      </TabPanel>
-      <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" padding="4">
-        Panel 3 Content
-      </TabPanel>
-    </Tabs>
-  )
-}
-<TabExample/>
-
-```
-
 ### Sizes
+
+Three sizes are available to suite your application.
 
 ```js
 import { useState } from 'react';
@@ -99,6 +70,8 @@ function TabsExample() {
 
 ### Full Width
 
+The width of each tab will be equally distributed to fill the full width of the parent container.
+
 ```js
 import Tabs from './Tabs';
 const tabData = [
@@ -133,6 +106,39 @@ const tabData = [
 />
 ```
 
+### Tab Panels
+
+TabPanel is a child component of Tabs meant to be an easy way to create a Tab and its associated content. Apply any props available in [Block](/#/Components/Block), as TabPanel is just a wrapper for that
+
+```js
+
+import { useState } from 'react';
+
+import TabPanel from './Components/TabPanel';
+
+function TabExample() {
+  const [selectedTabPanel, setSelectedTabPanel] = useState('');
+
+  return (
+    <Tabs
+      selectedId={selectedTabPanel}
+      onSelect={setSelectedTabPanel}
+    >
+      <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" padding="4">
+        Panel 1 Content
+      </TabPanel>
+      <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" padding="4">
+        Panel 2 Content
+      </TabPanel>
+      <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" padding="4">
+        Panel 3 Content
+      </TabPanel>
+    </Tabs>
+  )
+}
+<TabExample/>
+
+```
 
 ## Best Practices
 
