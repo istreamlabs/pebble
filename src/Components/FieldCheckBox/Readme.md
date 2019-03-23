@@ -1,3 +1,5 @@
+### Checkboxes
+
 ```js
 import { useState } from 'react';
 
@@ -52,7 +54,29 @@ function FieldCheckboxExample() {
         onChange={setInvalid}
         className="mb-5"
       />
+    </>
+  );
+}
 
+<FieldCheckboxExample />
+```
+
+### Toggles
+
+Allow user to view and switch between enabled or disabled states. Use toggles when your intent is to turn something on or off instantly.
+
+Toggles should never require users to press a button to apply the settings. When you require users to press a submit button with a toggle, you may confuse them because it’s not the expected next step. In those cases, use checkboxes instead.
+
+```js
+import { useState } from 'react';
+
+function FieldToggleExample() {
+  const [toggle, setToggle] = useState(true);
+  const [toggleHelp, setToggleHelp] = useState(false);
+  const [invalidToggle, setInvalidToggle] = useState(false);
+
+  return (
+    <>
       <FieldCheckbox
         toggle
         id="toggle"
@@ -101,7 +125,7 @@ function FieldCheckboxExample() {
   );
 }
 
-<FieldCheckboxExample />
+<FieldToggleExample />
 ```
 
 ## Best Practices
@@ -110,3 +134,9 @@ FieldCheckbox should:
 
 * Work independently from other checkboxes
 * Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
+* Should be applied when the user presses a form "submit" button
+
+FieldCheckbox as toggle should:
+
+* allow user to view and switch between enabled or disabled states.
+* be used when your intent is to turn something on or off **instantly**.
