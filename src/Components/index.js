@@ -11,7 +11,7 @@ export { default as DropdownItemGroup } from './DropdownMenu/Components/Dropdown
 export { default as FieldCheckbox } from './FieldCheckbox/FieldCheckbox';
 export { default as FieldRadioGroup } from './FieldRadioGroup/FieldRadioGroup';
 export { default as FieldText } from './FieldText/FieldText';
-export { default as FieldToggle } from './FieldCheckbox/FieldCheckbox';
+export { default as FieldToggle } from './FieldToggle/FieldToggle';
 export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
 export { default as Link } from './Link/Link';
