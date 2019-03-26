@@ -61,72 +61,11 @@ function FieldCheckboxExample() {
 <FieldCheckboxExample />
 ```
 
-### Toggles
+<div className="styleguide__callout">
+### Toggle vs Checkbox
 
-Allow user to view and switch between enabled or disabled states. Use toggles when your intent is to turn something on or off instantly.
-
-Toggles should never require users to press a button to apply the settings. When you require users to press a submit button with a toggle, you may confuse them because it’s not the expected next step. In those cases, use checkboxes instead.
-
-```js
-import { useState } from 'react';
-
-function FieldToggleExample() {
-  const [toggle, setToggle] = useState(true);
-  const [toggleHelp, setToggleHelp] = useState(false);
-  const [invalidToggle, setInvalidToggle] = useState(false);
-
-  return (
-    <>
-      <FieldCheckbox
-        toggle
-        id="toggle"
-        label="checkbox as toggle"
-        isSelected={toggle}
-        value="first"
-        onChange={setToggle}
-        className="mb-5"
-      />
-
-      <FieldCheckbox
-        toggle
-        id="toggleHelp"
-        label="toggle with helpText"
-        isSelected={toggleHelp}
-        value="first"
-        onChange={setToggleHelp}
-        className="mb-5"
-      />
-
-      <FieldCheckbox
-        disabled
-        toggle
-        id="disabledToggle"
-        label="disabled toggle"
-        helpText="Can not be changed by user input and can not be focused"
-        isSelected={toggleHelp}
-        value="first"
-        onChange={setToggleHelp}
-        className="mb-5"
-      />
-
-      <FieldCheckbox
-        isInvalid
-        validationText="This checkbox is required"
-        toggle
-        id="toggle-invalid"
-        label="invalid toggle"
-        helpText="this is an invalid toggle"
-        isSelected={invalidToggle}
-        value="first"
-        onChange={setInvalidToggle}
-        className="mb-5"
-      />
-    </>
-  );
-}
-
-<FieldToggleExample />
-```
+Toggles should not require users to press a button to apply the settings. When you require users to press a submit button with a toggle, you may confuse them because it’s not the expected next step. If you need to apply a setting instantly, use [toggle](/#/Components/FieldToggle) instead.
+</div>
 
 ## Best Practices
 
@@ -135,8 +74,3 @@ FieldCheckbox should:
 * Work independently from other checkboxes
 * Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
 * Should be applied when the user presses a form "submit" button
-
-FieldCheckbox as toggle should:
-
-* allow user to view and switch between enabled or disabled states.
-* be used when your intent is to turn something on or off **instantly**.
