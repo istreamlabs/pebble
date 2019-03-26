@@ -8,6 +8,7 @@ export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
 export { default as DropdownMenuSeparator } from './DropdownMenu/Components/DropdownMenuSeparator';
 export { default as DropdownItem } from './DropdownMenu/Components/DropdownItem';
 export { default as DropdownItemGroup } from './DropdownMenu/Components/DropdownItemGroup';
+export { default as FieldRadioGroup } from './FieldRadioGroup/FieldRadioGroup';
 export { default as FieldText } from './FieldText/FieldText';
 export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
