@@ -33,6 +33,7 @@ class Input extends React.Component {
       onFocus,
       onChange,
       placeholder,
+      required,
       size,
       spellCheck,
       type,
@@ -65,6 +66,7 @@ class Input extends React.Component {
       onChange,
       placeholder,
       readOnly: isReadOnly,
+      required,
       spellCheck,
       type,
       value,
@@ -214,6 +216,10 @@ Input.propTypes = {
    * Text to display before the value
    */
   prefix: PropTypes.string,
+  /**
+   * Is the input required
+   */
+  required: PropTypes.bool,
   /**
    * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
    */

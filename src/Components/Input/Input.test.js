@@ -7,10 +7,21 @@ describe('Input', () => {
     expect(() => { shallow(<Input />); }).not.toThrow();
   });
 
+  it('sets the correct default props', () => {
+    const wrapper = shallow(<Input />);
+    expect(wrapper.find('input').prop('autoFocus')).toBe(false);
+    expect(wrapper.find('input').prop('disabled')).toBe(false);
+    expect(wrapper.find('input').prop('aria-invalid')).toBe(false);
+    expect(wrapper.find('input').prop('required')).toBe(false);
+    expect(wrapper.find('input').prop('type')).toBe('text');
+  });
+
   describe('getInputProps', () => {
     it('allows for custom classes', () => {
       const wrapper = shallow(<Input className="myClass" />);
       expect(wrapper.find('input').prop('className')).toContain('myClass');
+      expect(wrapper.find('input').prop('className')).toContain('input-m');
+      expect(wrapper.find('input').prop('aria-invalid')).toBe(false);
     });
 
     it('size small styles get set', () => {
@@ -32,6 +43,23 @@ describe('Input', () => {
       const testLabel = 'aria test label';
       const wrapper = shallow(<Input ariaLabel={testLabel} label="test label" />);
       expect(wrapper.find('input').prop('aria-label')).toBe(testLabel);
+    });
+
+    it('aria-labelledby gets set ', () => {
+      const testLabel = 'aria test label';
+      const wrapper = shallow(<Input ariaLabelledby={testLabel} label="test label" />);
+      expect(wrapper.find('input').prop('aria-labelledby')).toBe(testLabel);
+    });
+
+    it('aria-describedby gets set ', () => {
+      const testLabel = 'aria test label';
+      const wrapper = shallow(<Input ariaDescribedBy={testLabel} label="test label" />);
+      expect(wrapper.find('input').prop('aria-describedby')).toBe(testLabel);
+    });
+
+    it('aria-invalid gets set ', () => {
+      const wrapper = shallow(<Input isInvalid label="test label" />);
+      expect(wrapper.find('input').prop('aria-invalid')).toBe(true);
     });
   });
 
