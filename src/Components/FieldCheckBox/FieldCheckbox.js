@@ -104,7 +104,7 @@ const FieldCheckbox = (
     );
   };
 
-  const classes = classNames('field-radio-group relative',
+  const classes = classNames('relative',
     {
       toggle,
       invalid: isInvalid,
@@ -113,12 +113,10 @@ const FieldCheckbox = (
     className);
 
   return (
-    <div>
-      <Block className={classes}>
-        {checkboxMarkup()}
-        {labelMarkup()}
-      </Block>
-    </div>
+    <Block className={classes}>
+      {checkboxMarkup()}
+      {labelMarkup()}
+    </Block>
   );
 };
 
