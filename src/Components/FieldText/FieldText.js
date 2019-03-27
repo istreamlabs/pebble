@@ -174,7 +174,7 @@ FieldText.propTypes = {
   isLabelHidden: PropTypes.bool,
   /**
    * Text to display if the input is invalid.
-   * The text should explain why the input is invlide.
+   * The text should explain why the input is invalid.
    */
   validationText: PropTypes.string,
   /**

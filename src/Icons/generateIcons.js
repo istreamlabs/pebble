@@ -3,6 +3,7 @@ const Glob = require('glob');
 const path = require('path');
 const { promisify } = require('util');
 const SVGO = require('svgo');
+const svgtojsx = require('svg-to-jsx');
 
 const readFile = promisify(fs.readFile);
 const glob = promisify(Glob.glob);
@@ -94,9 +95,10 @@ async function main() {
       try {
         const data = await readFile(iconFilePath);
         const optimizeData = await svgo.optimize(data);
+        const optimizedJSX = await svgtojsx(optimizeData.data);
         const iconName = getName(iconFilePath).toLocaleLowerCase();
-        const exportRow = `'${iconName}': ${getSVGContent(optimizeData.data)},`;
-        const example = `<div class="__icon"><Icon name="${iconName}" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
+        const exportRow = `'${iconName}': ${getSVGContent(optimizedJSX)},`;
+        const example = `<div className="__icon"><Icon name="${iconName}" accessibilityLabel="${iconName}" /><div>${iconName}</div></div>`;
         iconExports.push(exportRow);
         examples.push(example);
       } catch (e) {
@@ -124,7 +126,7 @@ ${iconExports.join('\t\n')}
   ### Names
 \`\`\`js noeditor
 import Icon from './Icon';
-  <div class="styleguide__icons">
+  <div className="styleguide__icons">
 ${examples.join('\t\n')}
   </div>
 \`\`\`

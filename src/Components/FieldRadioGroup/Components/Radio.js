@@ -41,6 +41,7 @@ const Radio = ({
         </Text>
       );
     }
+    return null;
   };
 
   const labelMarkup = () => (

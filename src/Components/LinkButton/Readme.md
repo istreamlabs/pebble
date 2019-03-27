@@ -1,7 +1,7 @@
 ## Examples
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <LinkButton href="/#/Components/LinkButton">default</LinkButton>
   <LinkButton href="/#/Components/LinkButton" primary>primary</LinkButton>
   <LinkButton href="/#/Components/LinkButton" danger>danger</LinkButton>
@@ -12,7 +12,7 @@
 ### Size
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <LinkButton href="/#/Components/LinkButton" size="small">small</LinkButton>
   <LinkButton href="/#/Components/LinkButton">medium</LinkButton>
   <LinkButton href="/#/Components/LinkButton" size="large">large</LinkButton>
@@ -53,7 +53,7 @@ Pass a `className` containing custom css to apply them in addition to the defaul
 Use for links that aren’t currently available. The surrounding interface should make it clear why the link is disabled and what needs to be done to enable it.
 
 ```js
-<div class="styleguide__buttons">
+<div className="styleguide__buttons">
   <LinkButton href="/#/Components/LinkButton" disabled>default</LinkButton>
   <LinkButton href="/#/Components/LinkButton" disabled primary>primary</LinkButton>
   <LinkButton href="/#/Components/LinkButton" disabled danger>danger</LinkButton>
