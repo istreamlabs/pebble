@@ -9,10 +9,10 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 <ButtonGroup>
   <Button primary>publish</Button>
   <Button>cancel</Button>
-  <LinkButton href="/#/Components/ButtonGroup">LinkButton</LinkButton>
+  <LinkButton as="a" href="/#/Components/ButtonGroup">LinkButton</LinkButton>
   <DropdownMenu toggle="dropdown">
     <DropdownItem>button</DropdownItem>
-    <DropdownItem href="/">link</DropdownItem>
+    <DropdownItem as="a" href="/">link</DropdownItem>
   </DropdownMenu>
 </ButtonGroup>
 ```
@@ -30,28 +30,28 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 <>
   <ButtonGroup size="large" className="mb-3">
     <Button>button</Button>
-    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <LinkButton as="a" href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem  as="a"href="/#/Components/ButtonGroup">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
   <ButtonGroup className="mb-3">
     <Button>button</Button>
-    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <LinkButton as="a" href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem as="a" href="/#/Components/ButtonGroup">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
   <ButtonGroup size="small">
     <Button>button</Button>
-    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <LinkButton as="a" href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem as="a" href="/#/Components/ButtonGroup">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 </>
@@ -73,10 +73,10 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button primary>primary</Button>
     <Button primary danger>primary danger</Button>
     <Button danger>danger</Button>
-    <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
+    <LinkButton as="a" href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem as="a" href="/#/Components/ButtonGroup">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
@@ -94,7 +94,7 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button icon="arrow-small-right" iconAfterText>next</Button>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/">link</DropdownItem>
+      <DropdownItem as="a" href="/">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 </>
@@ -117,7 +117,7 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button>right</Button>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/">link</DropdownItem>
+      <DropdownItem as="a" href="/">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
@@ -135,6 +135,6 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 Button Groups should:
 
 * Contain [Buttons](/#/Components/Button) or [DropdownMenu](/#/Components/DropdownMenu)
-* Can occasionally contain [LinkButtons](/#/Components/LinkButton) 
+* Can occasionally contain [LinkButtons](/#/Components/LinkButton)
 * Only group buttons that have a relationship
 * Contain only a limited number of buttons. Be judicious in the number of items in a button group

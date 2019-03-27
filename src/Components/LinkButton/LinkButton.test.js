@@ -23,11 +23,11 @@ describe('LinkButton', () => {
 
   it('disable renders <a> without a href', () => {
     const linkButton = shallow(<LinkButton href="#" disabled>test</LinkButton>);
-    expect(linkButton.find(Link).prop('href')).toBeFalsy();
+    expect(linkButton.find('a').prop('href')).toBeFalsy();
   });
 
   it('passes in class name', () => {
-    const linkButton = shallow(<LinkButton href="#" className="my-class">foo</LinkButton>);
+    const linkButton = shallow(<LinkButton as="a" href="#" className="my-class">foo</LinkButton>);
     expect(linkButton.html()).toContain('btn');
     expect(linkButton.html()).toContain('my-class');
   });

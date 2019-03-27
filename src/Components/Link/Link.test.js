@@ -2,9 +2,21 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Link from './Link';
 
+import { Link as RouterLink } from 'react-router-dom';
+
 describe('Link', () => {
   it('renders without crashing', () => {
     expect(() => { shallow(<Link href="http://istreamplanet.com">hello</Link>); }).not.toThrow();
+  });
+
+  it('renders a react-router-dom Link by default', () => {
+    const wrapper = shallow(<Link href="http://istreamplanet.com"><p>Hello Pebble</p></Link>);
+    expect(wrapper.find(RouterLink).exists()).toBe(true);
+  });
+
+  it('renders the as prop element', () => {
+    const wrapper = shallow(<Link as="a" href="http://istreamplanet.com"><p>Hello Pebble</p></Link>);
+    expect(wrapper.find('a').exists()).toBe(true);
   });
 
   it('renders children', () => {
@@ -13,7 +25,7 @@ describe('Link', () => {
   });
 
   it('allows for custom classes', () => {
-    const wrapper = shallow(<Link href="http://istreamplanet.com" className="myClass">test</Link>);
+    const wrapper = shallow(<Link as="a" href="http://istreamplanet.com" className="myClass">test</Link>);
     expect(wrapper.find('a').prop('className')).toContain('myClass');
   });
 });

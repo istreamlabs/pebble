@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { BrowserRouter } from 'react-router-dom';
+
 import '../../Styles/foundation.scss';
 
 import LinkButton from './LinkButton';
@@ -8,7 +10,7 @@ import ButtonGroup from '../ButtonGroup/ButtonGroup';
 
 storiesOf('LinkButton', module)
   .add('all', () => (
-    <>
+    <BrowserRouter>
       <ButtonGroup>
         <LinkButton href="#">default</LinkButton>
         <LinkButton href="#" primary>primary</LinkButton>
@@ -43,5 +45,5 @@ storiesOf('LinkButton', module)
       </ButtonGroup>
 
       <LinkButton href="#" fullWidth primary>full width</LinkButton>
-    </>
+    </BrowserRouter>
   ));

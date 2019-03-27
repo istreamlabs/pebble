@@ -11,7 +11,7 @@ import '../Button/Button.scss';
 
 /**
  * A LinkButton is a hyperlink that looks like a button.
- * It shares styles with the [Button](/#/Components/Button).
+ * It applies the same styles from [Button](/#/Components/Button) to a [Link](/#/Components/Link) component.
  *
  * ---
  */
@@ -29,7 +29,6 @@ const LinkButton = (
     fullWidth,
     icon,
     iconAfterText,
-    target,
     tabIndex,
     accessibilityLabel,
     ...rest,
@@ -72,15 +71,14 @@ const LinkButton = (
     // Render an `<a>` so toggling disabled/enabled state changes only the
     // `href` attribute instead of replacing the whole element.
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link
+    <a
       id={id}
       className={classes}
-      unstyled
       aria-label={accessibilityLabel}
       aria-disabled={disabled}
     >
       {content}
-    </Link>
+    </a>
   ) : (
     <Link
       id={id}
@@ -88,7 +86,6 @@ const LinkButton = (
       unstyled
       href={href}
       tabIndex={tabIndex}
-      target={target}
       aria-label={accessibilityLabel}
       {...rest}
     >
@@ -151,10 +148,6 @@ LinkButton.propTypes = {
    * Specify the tabIndex of the button
    */
   tabIndex: PropTypes.number,
-  /**
-   * where to open the linked document
-   */
-  target: PropTypes.string,
   /**
    * Visually hidden text for screen readers
    */

@@ -14,14 +14,14 @@ storiesOf('DropdownMenu', module)
     <>
       <DropdownMenu toggle="Dropdown" overlayClassName="w5">
         <DropdownItem icon="add-bold">default button</DropdownItem>
-        <DropdownItem href="/">link</DropdownItem>
+        <DropdownItem as="a" href="/">link</DropdownItem>
         <DropdownMenuSeparator />
         <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
       </DropdownMenu>
       <Block height="220px">
         <DropdownMenu open toggle="Dropdown" overlayClassName="w5">
           <DropdownItem icon="add-bold">default button</DropdownItem>
-          <DropdownItem href="/">link</DropdownItem>
+          <DropdownItem as="a" href="/">link</DropdownItem>
           <DropdownMenuSeparator />
           <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
         </DropdownMenu>
@@ -35,9 +35,9 @@ storiesOf('DropdownMenu', module)
             <DropdownItem disabled>disabled</DropdownItem>
           </DropdownItemGroup>
           <DropdownItemGroup title="Components">
-            <DropdownItem href="#/Components/Button">Button</DropdownItem>
-            <DropdownItem href="#/Components/Frame">Frame</DropdownItem>
-            <DropdownItem href="#/Components/Text">Text</DropdownItem>
+            <DropdownItem as="a" href="#/Components/Button">Button</DropdownItem>
+            <DropdownItem as="a" href="#/Components/Frame">Frame</DropdownItem>
+            <DropdownItem as="a" href="#/Components/Text">Text</DropdownItem>
           </DropdownItemGroup>
         </DropdownMenu>
       </Block>

@@ -1,20 +1,21 @@
 ```js
-<Link href="http://istreamplanet.com">istreamplanet.com</Link>
+import { BrowserRouter } from 'react-router-dom';
+
+<BrowserRouter>
+  <Link to="/#/Components/Link">Link</Link>
+</BrowserRouter>
 ```
 
-### Using a custom component
+### Using a custom component or `<a>`
 
-Pass a custom component, such as a `Link` from `react-router-dom`.
+Pass a component (e.g. `NavLink` from `react-router-dom`) or a regular `<a>` tag to render a normal link.
 
 ```js
-// example markup with react-router-dom
-// import { BrowserRouter as Router, Link as RouterDomLink } from 'react-router-dom';
+// note that we do not have to include <BrowserRouter> because it's a regular <a> tag.
 
-// <Router>
-//   <Link component={RouterDomLink} to="/#somewhere">
-//     Home
-//   </Link>
-// </Router>
+<Link as="a" href="http://istreamplanet.com">
+  istreamplanet.com
+</Link>
 ```
 
 ### Unstyled
@@ -22,5 +23,9 @@ Pass a custom component, such as a `Link` from `react-router-dom`.
 Don't include the default styles by adding the `unstyled` prop..
 
 ```js
-<Link href="http://istreamplanet.com" unstyled>istreamplanet.com</Link>
+
+import { BrowserRouter } from 'react-router-dom';
+<BrowserRouter>
+  <Link to="/#/Components/Link" unstyled>Link</Link>
+</BrowserRouter>
 ```

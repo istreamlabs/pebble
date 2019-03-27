@@ -21,7 +21,7 @@ function handleItemClick() {
 
 <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
   <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
-  <DropdownItem href="/">link</DropdownItem>
+  <DropdownItem as="a" href="/">link</DropdownItem>
   <DropdownMenuSeparator />
   <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
 </DropdownMenu>
@@ -80,9 +80,9 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
     <DropdownItem disabled>disabled</DropdownItem>
   </DropdownItemGroup>
   <DropdownItemGroup title="Components">
-    <DropdownItem href="#/Components/Button">Button</DropdownItem>
-    <DropdownItem href="#/Components/Frame">Frame</DropdownItem>
-    <DropdownItem href="#/Components/Text">Text</DropdownItem>
+    <DropdownItem as="a" href="#/Components/Button">Button</DropdownItem>
+    <DropdownItem as="a" href="#/Components/Frame">Frame</DropdownItem>
+    <DropdownItem as="a" href="#/Components/Text">Text</DropdownItem>
   </DropdownItemGroup>
 </DropdownMenu>
 ```
