@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { BrowserRouter } from 'react-router-dom';
+
 import '../../Styles/foundation.scss';
 
 import MainMenu from './MainMenu';
@@ -102,9 +104,11 @@ const initialState = { activeItem: '2', showMenu: false };
 
 storiesOf('MainMenu', module)
   .add('all', () => (
-    <div styles={{ overflow: 'auto' }}>
-      <Block height="400px">
-        <MainMenu menu={menu} auxMenu={auxMenu} activeItem={initialState.activeItem} />
-      </Block>
-    </div>
+    <BrowserRouter>
+      <div styles={{ overflow: 'auto' }}>
+        <Block height="400px">
+          <MainMenu menu={menu} auxMenu={auxMenu} activeItem={initialState.activeItem} />
+        </Block>
+      </div>
+    </BrowserRouter>
   ));

@@ -1,6 +1,7 @@
 import React from 'react';
 import FocusTrap from 'focus-trap-react';
 import { mount, shallow } from 'enzyme';
+
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
 
@@ -11,7 +12,6 @@ const menu = [
     id: '1',
     label: 'Dashboard',
     description: '',
-    href: '/',
     icon: 'dashboard'
   },
 ];

@@ -1,4 +1,6 @@
 ```js
+import { BrowserRouter } from 'react-router-dom';
+
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 
@@ -97,17 +99,19 @@ const auxMenu = [
 
 initialState = { activeItem: "2", showMenu: false };
 
-<div styles={{ overflow: 'auto' }}>
-  <Block height="400px">
-    <Block>
-      <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} />
-    </Block>
-    <Block direction="column" paddingHorizontal="5" itemSpacing="3">
+<BrowserRouter>
+  <div styles={{ overflow: 'auto' }}>
+    <Block height="400px">
+      <Block>
+        <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} />
+      </Block>
+      <Block direction="column" paddingHorizontal="5" itemSpacing="3">
         <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Link</Button></Block>
         <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button></Block>
         <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "3" }); }}>Select Link w/ sub-items</Button></Block>
+      </Block>
     </Block>
-  </Block>
-</div>
+  </div>
+</BrowserRouter>
 
 ```
