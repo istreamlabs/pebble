@@ -1,24 +1,26 @@
-## Examples
 ```js
 <Link href="http://istreamplanet.com">istreamplanet.com</Link>
 ```
 
-### External Links
+### Using a custom component
 
-External links automatically open in a new window or tab.
+Pass a custom component, such as a `Link` from `react-router-dom`.
 
 ```js
-<Link href="http://istreamplanet.com" external>istreamplanet.com</Link>
+// example markup with react-router-dom
+// import { BrowserRouter as Router, Link as RouterDomLink } from 'react-router-dom';
+
+// <Router>
+//   <Link component={RouterDomLink} to="/#somewhere">
+//     Home
+//   </Link>
+// </Router>
 ```
 
-### Wrap Content
+### Unstyled
 
-Wrap block elements with a `<Link>` to make all contents a link.
+Don't include the default styles by adding the `unstyled` prop..
 
 ```js
-<Link href="http://istreamplanet.com" block>
-  This content is clickable.
-  <div>I'm some block content</div>
-  <div>I'm some block content</div>
-</Link>
+<Link href="http://istreamplanet.com" unstyled>istreamplanet.com</Link>
 ```

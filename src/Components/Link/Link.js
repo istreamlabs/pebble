@@ -5,54 +5,42 @@ import classNames from 'classnames';
 import './Link.scss';
 
 /**
- * A `Link` renders an `<a>` for navigation between web pages.
+ * Renders an `<a>` or a custom component,
+ * for navigation between web pages
  *
  * ---
  */
 
 const Link = (
   {
-    ariaCurrent,
-    block,
     children,
     className,
-    external,
+    component,
     href,
+    unstyled,
+    ...rest
   }
 ) => {
-  const classes = classNames('link',
-    { 'link-block': block, },
-    className);
+  const classes = classNames({ link: !unstyled }, className);
 
-  const target = external ? '_blank' : undefined;
+  const Component = component || 'a';
 
   return (
-    <a
-      href={href}
+    <Component
       className={classes}
-      target={target}
-      aria-current={ariaCurrent}
+      href={href}
+      {...rest}
     >
       {children}
-    </a>
+    </Component>
   );
 };
 
 Link.propTypes = {
   /**
-   * indicates to screenreaders that the link is
-   * also the current page (i.e. currently
-   * selected item in a navigation menu)
+   * Use a custom component (e.g. a react-router-dom Link)
    */
-  ariaCurrent: PropTypes.bool,
-  /**
-   * Make the link `display: block`
-   */
-  block: PropTypes.bool,
-  /**
-   * Use for links that navigate to a different website
-   */
-  external: PropTypes.bool,
+  component: PropTypes.element,
   /**
    * Additional classNames to add
    */
@@ -62,9 +50,13 @@ Link.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Partial or full URL that link goes to
+   * Partial or full url the Link goes to
    */
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
+  /**
+   * Do not apply default styling
+   */
+  unstyled: PropTypes.bool,
 };
 
 export default Link;

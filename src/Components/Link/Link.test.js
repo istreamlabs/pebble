@@ -16,9 +16,4 @@ describe('Link', () => {
     const wrapper = shallow(<Link href="http://istreamplanet.com" className="myClass">test</Link>);
     expect(wrapper.find('a').prop('className')).toContain('myClass');
   });
-
-  it('sets the target to "_blank" if link is external', () => {
-    const wrapper = shallow(<Link href="http://istreamplanet.com" external>test</Link>);
-    expect(wrapper.find('a').prop('target')).toBe('_blank');
-  });
 });
