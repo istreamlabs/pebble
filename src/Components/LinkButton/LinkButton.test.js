@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import LinkButton from './LinkButton';
 
+import Link from '../Link/Link';
+
 describe('LinkButton', () => {
   it('renders without crashing', () => {
     expect(() => { shallow(<LinkButton href="#">hello</LinkButton>); }).not.toThrow();
@@ -16,12 +18,12 @@ describe('LinkButton', () => {
   it('id is passed into button', () => {
     const id = 'myId';
     const linkButton = shallow(<LinkButton href="#" id={id}>foo</LinkButton>);
-    expect(linkButton.find('a').prop('id')).toBe(id);
+    expect(linkButton.find(Link).prop('id')).toBe(id);
   });
 
   it('disable renders <a> without a href', () => {
     const linkButton = shallow(<LinkButton href="#" disabled>test</LinkButton>);
-    expect(linkButton.find('a').prop('href')).toBeFalsy();
+    expect(linkButton.find(Link).prop('href')).toBeFalsy();
   });
 
   it('passes in class name', () => {
@@ -35,7 +37,7 @@ describe('LinkButton', () => {
     const linkButton = shallow(
       <LinkButton href="#" accessibilityLabel={label}>foo</LinkButton>,
     );
-    expect(linkButton.find('a').prop('aria-label')).toBe(label);
+    expect(linkButton.find(Link).prop('aria-label')).toBe(label);
   });
 
   describe('icon', () => {

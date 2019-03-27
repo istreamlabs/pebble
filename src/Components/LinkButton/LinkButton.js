@@ -5,6 +5,7 @@ import { caseInsensitiveStringCompare } from '../../Utils';
 import { boolRequiresOtherProp } from '../../Types';
 
 import Icon from '../Icon/Icon';
+import Link from '../Link/Link';
 
 import '../Button/Button.scss';
 
@@ -31,6 +32,7 @@ const LinkButton = (
     target,
     tabIndex,
     accessibilityLabel,
+    ...rest,
   }
 ) => {
   const classes = classNames('btn', className, {
@@ -70,20 +72,28 @@ const LinkButton = (
     // Render an `<a>` so toggling disabled/enabled state changes only the
     // `href` attribute instead of replacing the whole element.
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <a id={id} className={classes} aria-label={accessibilityLabel} aria-disabled={disabled}>
-      {content}
-    </a>
-  ) : (
-    <a
+    <Link
       id={id}
       className={classes}
+      unstyled
+      aria-label={accessibilityLabel}
+      aria-disabled={disabled}
+    >
+      {content}
+    </Link>
+  ) : (
+    <Link
+      id={id}
+      className={classes}
+      unstyled
       href={href}
       tabIndex={tabIndex}
       target={target}
       aria-label={accessibilityLabel}
+      {...rest}
     >
       {content}
-    </a>
+    </Link>
   );
 };
 
@@ -109,9 +119,9 @@ LinkButton.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * URL of the page the link goes to
+   * Partial or full url the Link goes to
    */
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   /**
    * The name of the [icon](/#/Components/Icon) to add inside the button
    */
