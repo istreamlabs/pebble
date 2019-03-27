@@ -68,15 +68,12 @@ import { BrowserRouter } from 'react-router-dom';
 Use for links that aren’t currently available. The surrounding interface should make it clear why the link is disabled and what needs to be done to enable it.
 
 ```js
-import { BrowserRouter } from 'react-router-dom';
-<BrowserRouter>
-  <div className="styleguide__buttons">
-    <LinkButton as="a" href="/#/Components/LinkButton" disabled>default</LinkButton>
-    <LinkButton as="a" href="/#/Components/LinkButton" disabled primary>primary</LinkButton>
-    <LinkButton as="a" href="/#/Components/LinkButton" disabled danger>danger</LinkButton>
-    <LinkButton as="a" href="/#/Components/LinkButton" disabled primary danger>primary danger</LinkButton>
-  </div>
-</BrowserRouter>
+<div className="styleguide__buttons">
+  <LinkButton as="a" href="/#/Components/LinkButton" disabled>default</LinkButton>
+  <LinkButton as="a" href="/#/Components/LinkButton" disabled primary>primary</LinkButton>
+  <LinkButton as="a" href="/#/Components/LinkButton" disabled danger>danger</LinkButton>
+  <LinkButton as="a" href="/#/Components/LinkButton" disabled primary danger>primary danger</LinkButton>
+</div>
 ```
 
 ### Full Width
