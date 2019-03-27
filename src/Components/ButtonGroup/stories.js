@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { BrowserRouter } from 'react-router-dom';
+
 import '../../Styles/foundation.scss';
 
 import ButtonGroup from './ButtonGroup';
@@ -12,7 +14,7 @@ import DropdownMenuSeparator from '../DropdownMenu/Components/DropdownMenuSepara
 
 storiesOf('ButtonGroup', module)
   .add('all', () => (
-    <>
+    <BrowserRouter>
       <ButtonGroup>
         <Button primary>publish</Button>
         <Button>cancel</Button>
@@ -59,5 +61,5 @@ storiesOf('ButtonGroup', module)
         <Button icon="stop">stop</Button>
         <Button icon="arrow-small-right" iconAfterText>next</Button>
       </ButtonGroup>
-    </>
+    </BrowserRouter>
   ));
