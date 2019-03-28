@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-import { storiesOf } from '@storybook/react';
-import '../../Styles/foundation.scss';
-
-import Overlay from './Overlay';
+```js
+import { useState } from 'react';
 import Button from '../Button/Button';
 
 function OverlayExample() {
@@ -16,9 +13,6 @@ function OverlayExample() {
   );
 }
 
-storiesOf('Overlay', module)
-  .add('all', () => (
-    <>
-      <OverlayExample />
-    </>
-  ));
+<OverlayExample />
+
+```

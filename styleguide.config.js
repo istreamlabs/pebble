@@ -134,7 +134,6 @@ module.exports = {
     '**/stories.{js,jsx,ts,tsx}',
     '**/*.d.ts',
     'src/Components/Icon/Icons.js',
-    'src/Components/Overlay/Overlay.js',
     'src/Components/Input/Input.js',
   ],
   pagePerSection: true,

@@ -36,3 +36,5 @@ deploy:
       tags: true
       branch: master
       repo: iStreamPlanet/pebble
+after_deploy:
+  - ./after-deploy.sh
