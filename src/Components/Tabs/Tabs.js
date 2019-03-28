@@ -22,6 +22,7 @@ export class Tabs extends React.PureComponent {
       selectedId,
       size,
       children,
+      ...rest
     } = this.props;
 
     const tabsClasses = classNames(
@@ -99,12 +100,14 @@ export class Tabs extends React.PureComponent {
 
     return (
       <Block direction="column" alignContent="start" className={className}>
-        <ul
+        <Block
+          as="ul"
           role="tablist"
           className={tabsClasses}
+          {...rest}
         >
           {getTabsMarkup()}
-        </ul>
+        </Block>
         {getSelectedTabContent()}
       </Block>
     );

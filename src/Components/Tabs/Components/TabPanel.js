@@ -26,10 +26,10 @@ const Tab = (
   return (
     <Block
       as="section"
-      {...rest}
       className={classes}
       role="tabpanel"
       aria-labelledby={tabId}
+      {...rest}
     >
       {children}
     </Block>
