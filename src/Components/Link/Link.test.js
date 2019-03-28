@@ -14,8 +14,8 @@ describe('Link', () => {
     expect(wrapper.find(RouterLink).exists()).toBe(true);
   });
 
-  it('renders the as prop element', () => {
-    const wrapper = shallow(<Link as="a" href="http://istreamplanet.com"><p>Hello Pebble</p></Link>);
+  it('external renders an a tag', () => {
+    const wrapper = shallow(<Link external href="http://istreamplanet.com"><p>Hello Pebble</p></Link>);
     expect(wrapper.find('a').exists()).toBe(true);
   });
 
@@ -25,7 +25,7 @@ describe('Link', () => {
   });
 
   it('allows for custom classes', () => {
-    const wrapper = shallow(<Link as="a" href="http://istreamplanet.com" className="myClass">test</Link>);
-    expect(wrapper.find('a').prop('className')).toContain('myClass');
+    const wrapper = shallow(<Link href="http://istreamplanet.com" className="myClass">test</Link>);
+    expect(wrapper.find(RouterLink).prop('className')).toContain('myClass');
   });
 });

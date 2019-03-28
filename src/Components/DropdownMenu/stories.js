@@ -16,7 +16,7 @@ storiesOf('DropdownMenu', module)
     <DemoBrowserRouter>
       <DropdownMenu toggle="Dropdown" overlayClassName="w5">
         <DropdownItem icon="add-bold">default button</DropdownItem>
-        <DropdownItem as="a" href="/">link</DropdownItem>
+        <DropdownItem href="/">link</DropdownItem>
         <DropdownMenuSeparator />
         <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
       </DropdownMenu>

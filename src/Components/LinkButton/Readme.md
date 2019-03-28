@@ -74,10 +74,10 @@ Use for links that aren’t currently available. The surrounding interface shoul
 
 ```js
 <div className="styleguide__buttons">
-  <LinkButton as="a" href="/#/Components/LinkButton" disabled>default</LinkButton>
-  <LinkButton as="a" href="/#/Components/LinkButton" disabled primary>primary</LinkButton>
-  <LinkButton as="a" href="/#/Components/LinkButton" disabled danger>danger</LinkButton>
-  <LinkButton as="a" href="/#/Components/LinkButton" disabled primary danger>primary danger</LinkButton>
+  <LinkButton href="/#/Components/LinkButton" disabled>default</LinkButton>
+  <LinkButton href="/#/Components/LinkButton" disabled primary>primary</LinkButton>
+  <LinkButton href="/#/Components/LinkButton" disabled danger>danger</LinkButton>
+  <LinkButton href="/#/Components/LinkButton" disabled primary danger>primary danger</LinkButton>
 </div>
 ```
 

@@ -27,9 +27,9 @@ describe('LinkButton', () => {
   });
 
   it('passes in class name', () => {
-    const linkButton = shallow(<LinkButton as="a" href="#" className="my-class">foo</LinkButton>);
-    expect(linkButton.html()).toContain('btn');
-    expect(linkButton.html()).toContain('my-class');
+    const linkButton = shallow(<LinkButton href="#" className="my-class">foo</LinkButton>);
+    expect(linkButton.find(Link).prop('className')).toContain('btn');
+    expect(linkButton.find(Link).prop('className')).toContain('my-class');
   });
 
   it('sets an aria-label on the button', () => {
