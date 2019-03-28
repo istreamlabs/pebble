@@ -117,20 +117,21 @@ import { useState } from 'react';
 import TabPanel from './Components/TabPanel';
 
 function TabExample() {
-  const [selectedTabPanel, setSelectedTabPanel] = useState('');
+  const [selectedPanelTab, setSelectedPanelTab] = useState('panel-1-tab');
 
   return (
     <Tabs
-      selectedId={selectedTabPanel}
-      onSelect={setSelectedTabPanel}
+      selectedId={selectedPanelTab}
+      onSelect={setSelectedPanelTab}
+      paddingHorizontal={[0, 4, 5]}
     >
-      <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" padding="4">
+      <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" paddingVertical="4" paddingHorizontal={[3, 4, 5]}>
         Panel 1 Content
       </TabPanel>
-      <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" padding="4">
+      <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" paddingVertical="4" paddingHorizontal={[3, 4, 5]}>
         Panel 2 Content
       </TabPanel>
-      <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" padding="4">
+      <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" paddingVertical="4" paddingHorizontal={[3, 4, 5]}>
         Panel 3 Content
       </TabPanel>
     </Tabs>
