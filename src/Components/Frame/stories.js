@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { BrowserRouter } from 'react-router-dom';
+
 import '../../Styles/foundation.scss';
 
 import Frame from './Frame';
@@ -86,7 +88,9 @@ class FrameExample extends React.Component {
 
 storiesOf('Frame', module)
   .add('all', () => (
-    <div style={{ height: '400px', overflow: 'auto' }}>
-      <FrameExample />
-    </div>
+    <BrowserRouter>
+      <div style={{ height: '400px', overflow: 'auto' }}>
+        <FrameExample />
+      </div>
+    </BrowserRouter>
   ));

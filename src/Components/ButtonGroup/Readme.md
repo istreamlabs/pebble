@@ -1,20 +1,23 @@
 ## Examples
 
 ```js
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import Button from '../Button/Button';
 import LinkButton from '../LinkButton/LinkButton';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
-<ButtonGroup>
-  <Button primary>publish</Button>
-  <Button>cancel</Button>
-  <LinkButton href="/#/Components/ButtonGroup">LinkButton</LinkButton>
-  <DropdownMenu toggle="dropdown">
-    <DropdownItem>button</DropdownItem>
-    <DropdownItem href="/">link</DropdownItem>
-  </DropdownMenu>
-</ButtonGroup>
+<DemoBrowserRouter>
+  <ButtonGroup>
+    <Button primary>publish</Button>
+    <Button>cancel</Button>
+    <LinkButton href="/#/Components/ButtonGroup">LinkButton</LinkButton>
+    <DropdownMenu toggle="dropdown">
+      <DropdownItem>button</DropdownItem>
+      <DropdownItem href="/">link</DropdownItem>
+    </DropdownMenu>
+  </ButtonGroup>
+</DemoBrowserRouter>
 ```
 
 ### Group Size
@@ -22,12 +25,13 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 Apply a `size` to all items within the group. Default `size` is `medium`.
 
 ```js
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import Button from '../Button/Button';
 import LinkButton from '../LinkButton/LinkButton';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
-<>
+<DemoBrowserRouter>
   <ButtonGroup size="large" className="mb-3">
     <Button>button</Button>
     <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
@@ -54,7 +58,7 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
       <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
-</>
+</DemoBrowserRouter>
 ```
 
 ### Toolbar
@@ -62,12 +66,13 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 Display related buttons in a horizontal toolbar.
 
 ```js
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import Button from '../Button/Button';
 import LinkButton from '../LinkButton/LinkButton';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 
-<>
+<DemoBrowserRouter>
   <ButtonGroup toolbar className="mb-4">
     <Button>button</Button>
     <Button primary>primary</Button>
@@ -97,7 +102,7 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
       <DropdownItem href="/">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
-</>
+</DemoBrowserRouter>
 ```
 
 ### Full Width
@@ -117,7 +122,6 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button>right</Button>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
@@ -135,6 +139,6 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 Button Groups should:
 
 * Contain [Buttons](/#/Components/Button) or [DropdownMenu](/#/Components/DropdownMenu)
-* Can occasionally contain [LinkButtons](/#/Components/LinkButton) 
+* Can occasionally contain [LinkButtons](/#/Components/LinkButton)
 * Only group buttons that have a relationship
 * Contain only a limited number of buttons. Be judicious in the number of items in a button group

@@ -22,7 +22,8 @@
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -48,6 +49,7 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-styleguidist": "^9.0.4",
     "react-test-renderer": "^16.7.0",

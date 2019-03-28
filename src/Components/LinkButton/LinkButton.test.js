@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import LinkButton from './LinkButton';
 
+import Link from '../Link/Link';
+
 describe('LinkButton', () => {
   it('renders without crashing', () => {
     expect(() => { shallow(<LinkButton href="#">hello</LinkButton>); }).not.toThrow();
@@ -16,7 +18,7 @@ describe('LinkButton', () => {
   it('id is passed into button', () => {
     const id = 'myId';
     const linkButton = shallow(<LinkButton href="#" id={id}>foo</LinkButton>);
-    expect(linkButton.find('a').prop('id')).toBe(id);
+    expect(linkButton.find(Link).prop('id')).toBe(id);
   });
 
   it('disable renders <a> without a href', () => {
@@ -26,8 +28,8 @@ describe('LinkButton', () => {
 
   it('passes in class name', () => {
     const linkButton = shallow(<LinkButton href="#" className="my-class">foo</LinkButton>);
-    expect(linkButton.html()).toContain('btn');
-    expect(linkButton.html()).toContain('my-class');
+    expect(linkButton.find(Link).prop('className')).toContain('btn');
+    expect(linkButton.find(Link).prop('className')).toContain('my-class');
   });
 
   it('sets an aria-label on the button', () => {
@@ -35,7 +37,7 @@ describe('LinkButton', () => {
     const linkButton = shallow(
       <LinkButton href="#" accessibilityLabel={label}>foo</LinkButton>,
     );
-    expect(linkButton.find('a').prop('aria-label')).toBe(label);
+    expect(linkButton.find(Link).prop('aria-label')).toBe(label);
   });
 
   describe('icon', () => {

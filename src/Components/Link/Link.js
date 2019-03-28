@@ -2,57 +2,50 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { Link as RouterLink } from 'react-router-dom';
+
 import './Link.scss';
 
 /**
- * A `Link` renders an `<a>` for navigation between web pages.
+ * A Link is a wrapper for Links from react-router-dom that applies Pebble styling.
+ * Pebble assumes your application uses `react-router-dom`,
+ * therefore we have optimized for this usecase.
  *
  * ---
  */
 
 const Link = (
   {
-    ariaCurrent,
-    block,
     children,
     className,
     external,
     href,
+    unstyled,
+    ...rest
   }
 ) => {
-  const classes = classNames('link',
-    { 'link-block': block, },
-    className);
+  const classes = classNames({ link: !unstyled }, className);
 
-  const target = external ? '_blank' : undefined;
-
-  return (
+  return external ? (
     <a
-      href={href}
       className={classes}
-      target={target}
-      aria-current={ariaCurrent}
+      href={href}
+      {...rest}
     >
       {children}
     </a>
+  ) : (
+    <RouterLink
+      className={classes}
+      to={href}
+      {...rest}
+    >
+      {children}
+    </RouterLink>
   );
 };
 
 Link.propTypes = {
-  /**
-   * indicates to screenreaders that the link is
-   * also the current page (i.e. currently
-   * selected item in a navigation menu)
-   */
-  ariaCurrent: PropTypes.bool,
-  /**
-   * Make the link `display: block`
-   */
-  block: PropTypes.bool,
-  /**
-   * Use for links that navigate to a different website
-   */
-  external: PropTypes.bool,
   /**
    * Additional classNames to add
    */
@@ -62,9 +55,17 @@ Link.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Partial or full URL that link goes to
+   * render an `<a>` for links to external sites
    */
-  href: PropTypes.string.isRequired,
+  external: PropTypes.bool,
+  /**
+   * Partial or full url the Link goes to
+   */
+  href: PropTypes.string,
+  /**
+   * Do not apply default styling
+   */
+  unstyled: PropTypes.bool,
 };
 
 export default Link;

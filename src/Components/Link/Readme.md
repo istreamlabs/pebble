@@ -1,24 +1,35 @@
-## Examples
 ```js
-<Link href="http://istreamplanet.com">istreamplanet.com</Link>
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
+
+<DemoBrowserRouter>
+  <Link to="/#/Components/Link">Link</Link>
+</DemoBrowserRouter>
 ```
 
 ### External Links
 
-External links automatically open in a new window or tab.
+Use the `external` prop to render an `<a>` for links to external sites or mailto links.
 
 ```js
-<Link href="http://istreamplanet.com" external>istreamplanet.com</Link>
+<>
+  <Link external href="http://istreamplanet.com" target="_blank" className="db mb-3">
+    istreamplanet.com
+  </Link>
+  <Link external href="mailto:support@istreamplanet.com">
+    Email Support
+  </Link>
+</>
 ```
 
-### Wrap Content
+### Unstyled
 
-Wrap block elements with a `<Link>` to make all contents a link.
+Don't include the default styles by adding the `unstyled` prop.
 
 ```js
-<Link href="http://istreamplanet.com" block>
-  This content is clickable.
-  <div>I'm some block content</div>
-  <div>I'm some block content</div>
-</Link>
+
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
+
+<DemoBrowserRouter>
+  <Link to="/#/Components/Link" unstyled>Link</Link>
+</DemoBrowserRouter>
 ```

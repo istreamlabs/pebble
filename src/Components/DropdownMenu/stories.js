@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
+
 import '../../Styles/foundation.scss';
 
 import DropdownMenu from './DropdownMenu';
@@ -11,7 +13,7 @@ import Block from '../Block/Block';
 
 storiesOf('DropdownMenu', module)
   .add('all', () => (
-    <>
+    <DemoBrowserRouter>
       <DropdownMenu toggle="Dropdown" overlayClassName="w5">
         <DropdownItem icon="add-bold">default button</DropdownItem>
         <DropdownItem href="/">link</DropdownItem>
@@ -46,5 +48,5 @@ storiesOf('DropdownMenu', module)
           <DropdownItem>disabled</DropdownItem>
         </DropdownMenu>
       </Block>
-    </>
+    </DemoBrowserRouter>
   ));

@@ -1,6 +1,9 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+
 import MenuItem from './MenuItem';
+import Button from '../../Button/Button';
+import Link from '../../Link/Link';
 
 const mockData = {
   id: '1',
@@ -12,14 +15,12 @@ const mockData = {
       id: '1a',
       label: 'Channels',
       description: '',
-      href: '/content/channels',
       icon: '',
     },
     {
       id: '1b',
       label: 'Live',
       description: '',
-      href: '/content/live',
       icon: '',
     },
   ]
@@ -71,7 +72,7 @@ describe('MenuItem', () => {
   it('opens the submenu if a subitem is active and sets the subitem to active', () => {
     const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
     expect(item.find('li.menu-item-container').prop('className')).toContain('open');
-    expect(item.find('a.sub-menu-item').prop('className')).toContain('active');
+    expect(item.find('Link.sub-menu-item').prop('className')).toContain('active');
   });
 
   it('opens the submenu if the Item is active', () => {
@@ -79,9 +80,9 @@ describe('MenuItem', () => {
     expect(item.find('li.menu-item-container').prop('className')).toContain('open active');
   });
 
-  it('renders as <a> when href is set', () => {
-    const item = shallow(<MenuItem item={linkSubItems} />);
-    expect(item.find('a.menu-item').prop('href')).toContain('/test');
+  it('renders Link when href is set', () => {
+    const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
+    expect(item.find(Link).at(0).prop('href')).toContain('/test');
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
@@ -90,12 +91,12 @@ describe('MenuItem', () => {
   });
 
   it('renders an separate toggle button when a link with sub items is passed', () => {
-    const item = mount(<MenuItem item={linkSubItems} />);
-    expect(item.find('button').prop('className')).toContain('menu-item-collapse-button');
+    const item = shallow(<MenuItem item={linkSubItems} />);
+    expect(item.find(Button).prop('className')).toContain('menu-item-collapse-button');
   });
 
   it('sets the accessibilityLabel', () => {
-    const item = mount(<MenuItem item={linkSubItems} />);
-    expect(item.find('button').prop('aria-label')).toBe('show Content sub items');
+    const item = shallow(<MenuItem item={linkSubItems} />);
+    expect(item.find('Button.menu-item-collapse-button').prop('accessibilityLabel')).toBe('show Content sub items');
   });
 });
