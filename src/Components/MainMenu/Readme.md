@@ -1,5 +1,5 @@
 ```js
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 
 import Block from '../Block/Block';
 import Button from '../Button/Button';
@@ -99,7 +99,7 @@ const auxMenu = [
 
 initialState = { activeItem: "2", showMenu: false };
 
-<BrowserRouter>
+<DemoBrowserRouter>
   <div styles={{ overflow: 'auto' }}>
     <Block height="400px">
       <Block>
@@ -112,6 +112,6 @@ initialState = { activeItem: "2", showMenu: false };
       </Block>
     </Block>
   </div>
-</BrowserRouter>
+</DemoBrowserRouter>
 
 ```
