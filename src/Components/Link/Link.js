@@ -7,8 +7,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import './Link.scss';
 
 /**
- * A Pebble Link is a wrapper for Links from react-router-dom.
- * It renders an `<a>` or a custom component with styles, for navigation between application views.
+ * A Link is a wrapper for Links from react-router-dom that applies Pebble styling.
  * Pebble assumes your application uses `react-router-dom`,
  * therefore we have optimized for this usecase.
  *
@@ -19,7 +18,7 @@ const Link = (
   {
     children,
     className,
-    as,
+    external,
     href,
     unstyled,
     ...rest
@@ -27,36 +26,26 @@ const Link = (
 ) => {
   const classes = classNames({ link: !unstyled }, className);
 
-  if (as === undefined) {
-    return (
-      <RouterLink
-        className={classes}
-        to={href}
-        {...rest}
-      >
-        {children}
-      </RouterLink>
-    );
-  }
-
-  const Component = as;
-
-  return (
-    <Component
+  return external ? (
+    <a
       className={classes}
       href={href}
       {...rest}
     >
       {children}
-    </Component>
+    </a>
+  ) : (
+    <RouterLink
+      className={classes}
+      to={href}
+      {...rest}
+    >
+      {children}
+    </RouterLink>
   );
 };
 
 Link.propTypes = {
-  /**
-   * Use a custom component or a regular `a` tag
-   */
-  as: PropTypes.node,
   /**
    * Additional classNames to add
    */
@@ -65,6 +54,10 @@ Link.propTypes = {
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node.isRequired,
+  /**
+   * render an `<a>` for links to external sites
+   */
+  external: PropTypes.bool,
   /**
    * Partial or full url the Link goes to
    */

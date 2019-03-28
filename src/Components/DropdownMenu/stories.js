@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
+
 import '../../Styles/foundation.scss';
 
 import DropdownMenu from './DropdownMenu';
@@ -11,7 +13,7 @@ import Block from '../Block/Block';
 
 storiesOf('DropdownMenu', module)
   .add('all', () => (
-    <>
+    <DemoBrowserRouter>
       <DropdownMenu toggle="Dropdown" overlayClassName="w5">
         <DropdownItem icon="add-bold">default button</DropdownItem>
         <DropdownItem as="a" href="/">link</DropdownItem>
@@ -21,7 +23,7 @@ storiesOf('DropdownMenu', module)
       <Block height="220px">
         <DropdownMenu open toggle="Dropdown" overlayClassName="w5">
           <DropdownItem icon="add-bold">default button</DropdownItem>
-          <DropdownItem as="a" href="/">link</DropdownItem>
+          <DropdownItem href="/">link</DropdownItem>
           <DropdownMenuSeparator />
           <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
         </DropdownMenu>
@@ -35,9 +37,9 @@ storiesOf('DropdownMenu', module)
             <DropdownItem disabled>disabled</DropdownItem>
           </DropdownItemGroup>
           <DropdownItemGroup title="Components">
-            <DropdownItem as="a" href="#/Components/Button">Button</DropdownItem>
-            <DropdownItem as="a" href="#/Components/Frame">Frame</DropdownItem>
-            <DropdownItem as="a" href="#/Components/Text">Text</DropdownItem>
+            <DropdownItem href="#/Components/Button">Button</DropdownItem>
+            <DropdownItem href="#/Components/Frame">Frame</DropdownItem>
+            <DropdownItem href="#/Components/Text">Text</DropdownItem>
           </DropdownItemGroup>
         </DropdownMenu>
       </Block>
@@ -46,5 +48,5 @@ storiesOf('DropdownMenu', module)
           <DropdownItem>disabled</DropdownItem>
         </DropdownMenu>
       </Block>
-    </>
+    </DemoBrowserRouter>
   ));
