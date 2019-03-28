@@ -21,10 +21,6 @@ const Overlay = (
   />
 );
 
-Overlay.defaultProps = {
-  type: 'default',
-};
-
 Overlay.propTypes = {
   /**
    * Callback when backdrop is dismissed
