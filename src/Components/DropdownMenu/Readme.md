@@ -3,7 +3,6 @@
 ### Basic Dropdown
 
 ```jsx
-import DropdownMenu from './DropdownMenu';
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
@@ -30,7 +29,7 @@ function handleItemClick() {
 ### Sizes
 
 ```jsx
-import DropdownMenu from './DropdownMenu';
+
 import DropdownItem from './Components/DropdownItem';
 
 <>
@@ -53,7 +52,7 @@ import DropdownItem from './Components/DropdownItem';
 Use for dropdowns placed in a narrow column.
 
 ```jsx
-import DropdownMenu from './DropdownMenu';
+
 import DropdownItem from './Components/DropdownItem';
 
 <DropdownMenu fullWidth toggle="medium">
@@ -64,13 +63,11 @@ import DropdownItem from './Components/DropdownItem';
 ### Dropdown Item Groups
 
 ```jsx
-import DropdownMenu from './DropdownMenu';
+
 import DropdownItem from './Components/DropdownItem';
 import DropdownItemGroup from './Components/DropdownItemGroup';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 import Block from '../Block/Block';
-
-const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger</Block>);
 
 <DropdownMenu toggle="Dropdown with Item Groups">
   <DropdownItemGroup title="Transcoder">
@@ -92,7 +89,7 @@ const BlockTrigger = (<Block padding="3" background="neutral-400">Block Trigger<
 Pass a node as the `trigger` to allow it to open and close a dropdown menu when clicked.
 
 ```jsx
-import DropdownMenu from './DropdownMenu';
+
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 import Button from '../Button/Button';
@@ -109,7 +106,7 @@ import Button from '../Button/Button';
 ### Disabled
 
 ```jsx
-import DropdownMenu from './DropdownMenu';
+
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
