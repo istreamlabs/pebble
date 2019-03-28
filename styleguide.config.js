@@ -200,7 +200,7 @@ module.exports = {
       name: 'Components',
       content: 'src/Styleguide/Docs/Components.md',
       components: 'src/Components/*/*.js',
-      exampleMode: 'collapse',
+      exampleMode: 'expand',
       usageMode: 'expand',
       sectionDepth: 2,
     }
