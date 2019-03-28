@@ -1,0 +1,9 @@
+version: '1.0'
+steps:
+  perform_tests:
+    image: yarnpkg/node-yarn
+    working_directory: ${{main_clone}}
+    description: Running Unit tests
+    commands:
+      - yarn
+      - yarn cover
