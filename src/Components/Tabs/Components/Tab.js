@@ -39,6 +39,8 @@ const Tab = (
   const tabClasses = classNames(
     'tab-button', {
       'text-transform-uppercase tracked': size === 'small',
+      'ph-5': size === 'medium',
+      'ph-6': size === 'large',
     }
   );
 
