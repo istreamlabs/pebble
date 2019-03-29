@@ -1,9 +1,5 @@
 @import '../../Styles/foundation/variables.scss';
 
-.block {
-  display: flex;
-}
-
 .block-item:only-child,
 .block-item:last-child {
   margin-right: 0;

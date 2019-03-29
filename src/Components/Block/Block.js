@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { getSpacingClasses, getBorderRadiusClasses, parseTextSize } from '../../Utils';
+import {
+  getOverflowClasses, getSpacingClasses, getBorderRadiusClasses, parseTextSize
+} from '../../Utils';
 import {
   colorType, fontSizeType, textAlignType, radiusType, spacingType
 } from '../../Types';
@@ -53,6 +55,7 @@ class Block extends React.Component {
       justify,
       marginTop,
       marginBottom,
+      overflow,
       padding,
       paddingHorizontal,
       paddingVertical,
@@ -93,8 +96,10 @@ class Block extends React.Component {
     const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
     const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
     const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
+    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
 
     const classes = classNames(
+      overflowClasses,
       mbClasses,
       mtClasses,
       pClasses,
@@ -113,6 +118,7 @@ class Block extends React.Component {
         [`text-${textAlign}`]: textAlign,
         'truncate db': truncate,
       }, className
+    );
 
     const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
 
@@ -222,6 +228,46 @@ Block.propTypes = {
    * @type {PropTypes.Requireable<Spacing>}
    */
   marginBottom: spacingType('marginBottom'),
+  /**
+   * Overflow behavior
+   *
+   * One of: 'auto', 'visible', 'hidden', 'scroll'
+   *
+   * or {"vertical": "...", "horizontal": "..."}
+   *
+   * For responsive behavior, pass an array with length up to 4, with a valid value for each element.
+   * @type {PropTypes.Requireable<Overflow>}
+   */
+  overflow: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+    PropTypes.shape({
+      horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+      vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+    }),
+    PropTypes.shape({
+      horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+    }),
+    PropTypes.shape({
+      vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+    }),
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+        PropTypes.arrayOf(
+          PropTypes.shape({
+            horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+            vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+          })
+        ),
+        PropTypes.shape({
+          horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+        }),
+        PropTypes.shape({
+          vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+        }),
+      ])
+    )
+  ]),
   /**
    * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
    *
