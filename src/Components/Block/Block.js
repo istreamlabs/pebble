@@ -94,13 +94,14 @@ class Block extends React.Component {
     const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
     const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
 
-    const classes = classNames('block',
+    const classes = classNames(
       mbClasses,
       mtClasses,
       pClasses,
       phClasses,
       pvClasses,
       radiusClass, {
+        flex: !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
         [`flex-${direction}`]: direction,
@@ -110,8 +111,8 @@ class Block extends React.Component {
         [`justify-${justify}`]: justify,
         [`fs-${parsedTextSize}`]: parsedTextSize,
         [`text-${textAlign}`]: textAlign,
-        truncate,
-      }, className);
+        'truncate db': truncate,
+      }, className
 
     const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
 
