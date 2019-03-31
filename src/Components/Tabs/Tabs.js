@@ -30,7 +30,7 @@ export class Tabs extends React.PureComponent {
       'flex',
       'list-unstyled',
       'bb',
-      'b-neutral-400',
+      'b-neutral-300',
     );
 
     const getTabsMarkup = () => {
