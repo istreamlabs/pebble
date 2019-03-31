@@ -5,22 +5,24 @@
 Defaults to row.
 
 ```js hide
+import Badge from '../Badge/Badge';
+<>
+  <Block background="white" padding="3" justify="center" itemSpacing="3" marginBottom="4">
+    <Badge type="info">badge 1</Badge>
+    <Badge type="info">badge 2</Badge>
+    <Badge type="info">badge 3</Badge>
+    <Badge type="info">badge 4</Badge>
+    <Badge type="info">badge 5</Badge>
+  </Block>
 
-<Block background="white" padding="3" justify="center" itemSpacing="3" marginBottom="4">
-  <Badge type="info">badge 1</Badge>
-  <Badge type="info">badge 2</Badge>
-  <Badge type="info">badge 3</Badge>
-  <Badge type="info">badge 4</Badge>
-  <Badge type="info">badge 5</Badge>
-</Block>
-
-<Block background="white" direction="column" padding="3" alignItems="center" itemSpacing="3">
-  <Badge type="info">badge 1</Badge>
-  <Badge type="info">badge 2</Badge>
-  <Badge type="info">badge 3</Badge>
-  <Badge type="info">badge 4</Badge>
-  <Badge type="info">badge 5</Badge>
-</Block>
+  <Block background="white" direction="column" padding="3" alignItems="center" itemSpacing="3">
+    <Badge type="info">badge 1</Badge>
+    <Badge type="info">badge 2</Badge>
+    <Badge type="info">badge 3</Badge>
+    <Badge type="info">badge 4</Badge>
+    <Badge type="info">badge 5</Badge>
+  </Block>
+</>
 ```
 
 ### Basis
@@ -56,6 +58,9 @@ Set the width and/or height
 ### Vertically Center
 
 ```js
+import Badge from '../Badge/Badge';
+import Text from '../Text/Text';
+
 <Block alignItems="center" itemSpacing="3">
   <Block width="150px"><Text size="2">A tall column with variable height</Text></Block>
   <Badge type="info">badge</Badge>
@@ -197,6 +202,29 @@ Pass an array of radius values to apply responsive border radii.
   <Block textSize="6">Text size of 6</Block>
   <Block textSize="7">Text size of 7</Block>
   <Block>Default text size</Block>
+</Block>
+```
+
+### Responsive Overflow
+Pass an array of overflow values to apply responsive overflow
+
+```js
+<Block
+  overflow={
+    ['hidden',            // won't scroll by default
+    { vertical: 'auto' }, // overflow-y is auto at 30rem and up
+    {
+      vertical: 'auto',
+      horizontal: 'auto'
+    },                    // overflow-x and overflow-y is auto at 60rem and up
+    'hidden']}            // overflow is hidden at 90rem and up
+  height="200px"
+  width="100px"
+  background="blue-light"
+>
+  <p>iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media. We deliver the end-to-end video workflow from signal acquisition to the streaming app experience — all focused on the fan.</p>
+
+  <p>iStreamPlanet has earned the trust of leading sports and entertainment brands through innovation, dedication to high quality video, and exceptional customer service.</p>
 </Block>
 ```
 

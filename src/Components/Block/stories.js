@@ -128,6 +128,24 @@ storiesOf('Block', module)
         <Block>Default text size</Block>
       </Block>
 
+      <Block
+        overflow={
+          ['hidden', // won't scroll by default
+            { vertical: 'auto' }, // overflow-y is auto at 30rem and up
+            {
+              vertical: 'auto',
+              horizontal: 'auto'
+            }, // overflow-x and overflow-y is auto at 60rem and up
+            'hidden']} // overflow is hidden at 90rem and up
+        height="200px"
+        width="100px"
+        background="blue-light"
+      >
+        <p>iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media. We deliver the end-to-end video workflow from signal acquisition to the streaming app experience — all focused on the fan.</p>
+
+        <p>iStreamPlanet has earned the trust of leading sports and entertainment brands through innovation, dedication to high quality video, and exceptional customer service.</p>
+      </Block>
+
       <Block truncate>This Block has truncate set to true. Therefore it's content is limited to a single line, and overflow content truncated with an ellipsis.</Block>
 
       <Block direction="column" itemSpacing="3">

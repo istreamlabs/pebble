@@ -154,6 +154,18 @@ describe('Block', () => {
     });
   }),
 
+  describe('Overflow', () => {
+    it('sets overflow', () => {
+      const wrapper = shallow(<Block overflow="auto">test</Block>);
+      expect(wrapper.prop('className')).toContain('overflow-auto');
+    });
+
+    it('sets responsive border radius', () => {
+      const wrapper = shallow(<Block overflow={['auto', 'hidden']}>test</Block>);
+      expect(wrapper.prop('className')).toContain('overflow-auto overflow-hidden-ns');
+    });
+  }),
+
   describe('Text', () => {
     it('sets the text size', () => {
       const wrapper = shallow(<Block textSize="1">test</Block>);
