@@ -99,7 +99,7 @@ export class Tabs extends React.PureComponent {
     };
 
     return (
-      <Block direction="column" alignContent="start" className={className}>
+      <Block flex direction="column" className={className}>
         <Block
           as="ul"
           role="tablist"
