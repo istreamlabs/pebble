@@ -1,0 +1,19 @@
+@import '../../Styles/foundation/variables.scss';
+@import '../../Styles/foundation/media-queries.scss';
+
+.modal-container {
+  align-items: flex-end;
+
+  @include respond-above(sm) {
+    align-items: center;
+  }
+}
+
+.modal {
+  z-index: $z-modal;
+  width: 100%;
+
+  @include respond-above(sm) {
+    max-width: $width-6;
+  }
+}

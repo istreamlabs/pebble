@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+
+import Block from '../Block/Block';
 
 import './Overlay.scss';
 
@@ -12,16 +15,28 @@ import './Overlay.scss';
 
 const Overlay = (
   {
+    children,
+    className,
     onClick,
+    ...rest,
   }
-) => (
-  <div
-    className="overlay"
-    onClick={onClick}
-  />
-);
+) => {
+  const classes = classNames('overlay', className);
+
+  return (
+    <Block
+      className={classes}
+      onClick={onClick}
+      {...rest}
+    >
+      {children}
+    </Block>
+  );
+};
 
 Overlay.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
   /**
    * Callback when backdrop is dismissed
    */

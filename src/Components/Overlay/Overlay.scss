@@ -1,8 +1,7 @@
 @import '../../Styles/foundation/variables.scss';
 
 .overlay {
-  display: block;
-  position: absolute;
+  position: fixed;
   z-index: $z-overlay;
   top: 0;
   right: 0;
@@ -12,6 +11,7 @@
   background: $black-60;
   opacity: 1;
   will-change: opacity;
+  touch-action: none;
 
   animation: fadeIn .2s 1 forwards;
 }
