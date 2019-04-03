@@ -1,29 +1,32 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import List from './List';
+import { shallow } from 'enzyme';
 
-describe('List', () => {
+import Modal from './Modal';
+
+describe('Modal', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<List><li>item</li></List>); }).not.toThrow();
+    expect(() => { shallow(<Modal>content</Modal>); }).not.toThrow();
   });
 
-  it('renders children', () => {
-    const wrapper = shallow(<List><li>item</li></List>);
-    expect(wrapper.find('li').text()).toBe('item');
+  describe('className', () => {
+    it('passes in class name', () => {
+      const instance = shallow(<Modal className="my-class">content</Modal>);
+      expect(instance.html()).toContain('my-class');
+    });
   });
 
-  it('allows for custom classes', () => {
-    const wrapper = shallow(<List className="myClass"><li>item</li></List>);
-    expect(wrapper.find('ul').prop('className')).toContain('myClass');
+  describe('header', () => {
+    it('renders a header if title if set', () => {
+      const instance = shallow(<Modal className="my-class" title="Modal Title">content</Modal>);
+      expect(instance.find({ as: 'header' })).toHaveLength(1);
+      expect(instance.find({ justify: 'between' })).toHaveLength(1);
+    });
   });
 
-  it('renders ordered list', () => {
-    const wrapper = shallow(<List ordered><li>item</li></List>);
-    expect(wrapper.find('ol').length).toBe(1);
-  });
-
-  it('sets the text size', () => {
-    const wrapper = mount(<List size="1">test</List>);
-    expect(wrapper.find('.text-container').prop('className')).toContain('fs-1');
+  describe('footer', () => {
+    it('renders a footer if set', () => {
+      const instance = shallow(<Modal className="my-class" footer={<div>footer</div>}>content</Modal>);
+      expect(instance.find({ as: 'footer' })).toHaveLength(1);
+    });
   });
 });
