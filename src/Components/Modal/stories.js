@@ -10,13 +10,14 @@ function ModalExample(props) {
   const [showModal, setShowModal] = useState(true);
 
   const {
-    children, noTitle, noFooter, type
+    children, noTitle, noFooter, type, large
   } = props;
 
   return (
     <>
       {showModal && (
       <Modal
+        large={large}
         type={type}
         title={!noTitle ? `${type} modal` : undefined}
         icon="ticket"
@@ -36,6 +37,7 @@ function ModalExample(props) {
 
 ModalExample.propTypes = {
   children: PropTypes.node,
+  large: PropTypes.bool,
   noTitle: PropTypes.bool,
   noFooter: PropTypes.bool,
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
@@ -75,4 +77,7 @@ storiesOf('Modal', module)
       <p>iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media. We deliver the end-to-end video workflow from signal acquisition to the streaming app experience — all focused on the fan.</p>
       <p>iStreamPlanet has earned the trust of leading sports and entertainment brands through innovation, dedication to high quality video, and exceptional customer service.</p>
     </ModalExample>
+  ))
+  .add('large', () => (
+    <ModalExample large />
   ));

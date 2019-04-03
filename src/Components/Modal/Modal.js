@@ -46,6 +46,7 @@ const Modal = (
     className,
     footer,
     icon,
+    large,
     mobileFullScreen,
     showing,
     onRequestClose,
@@ -128,7 +129,8 @@ const Modal = (
     'shadow-1',
     'neutral-700',
     {
-      'mobile-full-screen': mobileFullScreen
+      'mobile-full-screen': mobileFullScreen,
+      'modal-large': large
     },
     className
   );
@@ -187,6 +189,10 @@ Modal.propTypes = {
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
   icon: requiresOtherProp('title'),
+  /**
+   * increase the height and width of the modal
+   */
+  large: PropTypes.bool,
   /**
    * Determines when to apply focus trap
    */
