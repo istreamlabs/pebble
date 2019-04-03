@@ -52,9 +52,7 @@ function ModalExample() {
       title="Success Modal"
       onRequestClose={() => setShowSuccessModal(!showSuccessModal)}
       showing={showDangerModal}
-      footer={[
-        <Button onClick={() => setShowSuccessModal(!showSuccessModal)}>Close</Button>
-      ]}
+      footer={<Button onClick={() => setShowSuccessModal(!showSuccessModal)}>Close</Button>}
     >
       Congratulations, your changes have been sent.
     </Modal>
@@ -66,9 +64,7 @@ function ModalExample() {
       title="Warn Modal"
       onRequestClose={() => setShowWarnModal(!showWarnModal)}
       showing={showDangerModal}
-      footer={[
-        <Button onClick={() => setShowWarnModal(!showWarnModal)}>Close</Button>
-      ]}
+      footer={<Button onClick={() => setShowWarnModal(!showWarnModal)}>Close</Button>}
     >
       I'm a demo modal
     </Modal>
@@ -80,9 +76,7 @@ function ModalExample() {
       title="Info Modal"
       onRequestClose={() => setShowInfoModal(!showInfoModal)}
       showing={showDangerModal}
-      footer={[
-        <Button onClick={() => setShowInfoModal(!showInfoModal)}>Close</Button>
-      ]}
+      footer={<Button onClick={() => setShowInfoModal(!showInfoModal)}>Close</Button>}
     >
       I'm a demo modal
     </Modal>
@@ -94,9 +88,7 @@ function ModalExample() {
       title="Special Modal"
       onRequestClose={() => setShowSpecialModal(!showSpecialModal)}
       showing={showDangerModal}
-      footer={[
-        <Button onClick={() => setShowSpecialModal(!showSpecialModal)}>Close</Button>
-      ]}
+      footer={<Button onClick={() => setShowSpecialModal(!showSpecialModal)}>Close</Button>}
     >
       I'm a demo modal
     </Modal>

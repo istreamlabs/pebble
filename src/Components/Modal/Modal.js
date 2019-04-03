@@ -17,12 +17,12 @@ import { requiresOtherProp } from '../../Types';
 import './Modal.scss';
 
 const HEADER_STYLES_MAP = {
-  default: 'b-neutral-200',
-  info: 'bg-blue-lighter b-blue-light',
-  warn: 'bg-yellow-lighter b-yellow-light',
-  danger: 'bg-red-lighter b-red-light',
-  success: 'bg-green-lighter b-green-light',
-  special: 'bg-indigo-lighter b-indigo-light'
+  default: '',
+  info: 'bg-blue-lighter',
+  warn: 'bg-yellow-lighter',
+  danger: 'bg-red-lighter',
+  success: 'bg-green-lighter',
+  special: 'bg-indigo-lighter'
 };
 
 const ICON_COLOR_MAP = {
@@ -71,7 +71,6 @@ const Modal = (
     const headerClass = HEADER_STYLES_MAP[type];
 
     const headerClasses = classNames({
-      bb: title,
     }, headerClass);
 
     const iconClass = ICON_COLOR_MAP[type];
@@ -102,17 +101,21 @@ const Modal = (
     let footerMarkup = null;
     const hasFooter = footer !== undefined;
 
+    const footerContent = Array.isArray(footer)
+      ? footer.map((item, i) => (React.cloneElement(item, { key: i })
+      )) : footer;
+
     if (hasFooter) {
       footerMarkup = (
         <Block
           as="footer"
-          background="neutral-100"
+          background="neutral-200"
           justify="end"
           paddingHorizontal={[4, 5]}
           paddingVertical="4"
         >
           <ButtonGroup fullWidth={windowSize.innerWidth <= 480}>
-            {footer}
+            {footerContent}
           </ButtonGroup>
         </Block>
       );
