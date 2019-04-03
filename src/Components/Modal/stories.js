@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+import '../../../stories/styles.css';
+
 import Modal from './Modal';
 import Button from '../Button/Button';
 
@@ -35,6 +37,7 @@ function ModalExample(props) {
   );
 }
 
+
 ModalExample.propTypes = {
   children: PropTypes.node,
   large: PropTypes.bool,
@@ -43,50 +46,35 @@ ModalExample.propTypes = {
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
 };
 
-// delay the capture of stories because it takes time to animate them in
-const CHROMATIC_DELAY = 500;
-
 storiesOf('Modal', module)
+  .addDecorator(storyFn => <div style={{ width: '800px', height: '800px' }}>{storyFn()}</div>)
+  .addParameters({
+    chromatic: { delay: 2000 },
+  })
   .add('default', () => (
     <ModalExample type="default" />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('danger', () => (
     <ModalExample type="danger" />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('success', () => (
     <ModalExample type="success" />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('warn', () => (
     <ModalExample type="warn" />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('info', () => (
     <ModalExample type="info" />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('special', () => (
     <ModalExample type="special" />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('without title', () => (
     <ModalExample noTitle />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('without title and footer', () => (
     <ModalExample noTitle noFooter />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  })
+  ))
   .add('scrolling content', () => (
     <ModalExample type="default">
       <p>iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media. We deliver the end-to-end video workflow from signal acquisition to the streaming app experience — all focused on the fan.</p>
@@ -96,9 +84,4 @@ storiesOf('Modal', module)
       <p>iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media. We deliver the end-to-end video workflow from signal acquisition to the streaming app experience — all focused on the fan.</p>
       <p>iStreamPlanet has earned the trust of leading sports and entertainment brands through innovation, dedication to high quality video, and exceptional customer service.</p>
     </ModalExample>
-  ))
-  .add('large', () => (
-    <ModalExample large />
-  ), {
-    chromatic: { delay: CHROMATIC_DELAY },
-  });
+  ));
