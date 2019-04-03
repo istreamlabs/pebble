@@ -184,7 +184,7 @@ Modal.propTypes = {
   /**
    * A button, or an array of buttons. If an array, the nodes render right to left.
    */
-  footer: PropTypes.oneOfType([PropTypes.array, PropTypes.node]),
+  footer: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   /**
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
