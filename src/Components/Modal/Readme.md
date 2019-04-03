@@ -2,8 +2,6 @@
 
 ### Types
 
-Choose a modal that's appropriate for your use case.
-
 ```js
 import { useState } from 'react';
 import Button from '../Button/Button';
@@ -49,12 +47,12 @@ function ModalExample() {
   const SuccessModal = (
     <Modal
       type="success"
-      title="Success Modal"
+      title="success Modal"
       onRequestClose={() => setShowSuccessModal(!showSuccessModal)}
-      showing={showDangerModal}
+      showing={showSuccessModal}
       footer={<Button onClick={() => setShowSuccessModal(!showSuccessModal)}>Close</Button>}
     >
-      Congratulations, your changes have been sent.
+     Congratulations, your request has been received.
     </Modal>
   );
 
@@ -63,10 +61,10 @@ function ModalExample() {
       type="warn"
       title="Warn Modal"
       onRequestClose={() => setShowWarnModal(!showWarnModal)}
-      showing={showDangerModal}
+      showing={showWarnModal}
       footer={<Button onClick={() => setShowWarnModal(!showWarnModal)}>Close</Button>}
     >
-      I'm a demo modal
+     This is a warning modal.
     </Modal>
   );
 
@@ -75,7 +73,7 @@ function ModalExample() {
       type="info"
       title="Info Modal"
       onRequestClose={() => setShowInfoModal(!showInfoModal)}
-      showing={showDangerModal}
+      showing={showInfoModal}
       footer={<Button onClick={() => setShowInfoModal(!showInfoModal)}>Close</Button>}
     >
       I'm a demo modal
@@ -87,7 +85,7 @@ function ModalExample() {
       type="special"
       title="Special Modal"
       onRequestClose={() => setShowSpecialModal(!showSpecialModal)}
-      showing={showDangerModal}
+      showing={showSpecialModal}
       footer={<Button onClick={() => setShowSpecialModal(!showSpecialModal)}>Close</Button>}
     >
       I'm a demo modal
@@ -117,38 +115,9 @@ function ModalExample() {
 <ModalExample />
 ```
 
-### Without a Title or Footer
+### Large
 
-Modal's without a `title` or `footer` can be used to display smaller bits of information that require the users attention.
-
-```js
-import { useState } from 'react';
-import Button from '../Button/Button';
-
-function ModalExample() {
-  const [showModal, setShowModal] = useState(false);
-
-  const DemoModal = (
-    <Modal
-      onRequestClose={() => setShowModal(!showModal)}
-      showing={showModal}
-    >
-      I don't have a title
-    </Modal>
-  )
-
-  return (
-    <>
-      {showModal && DemoModal}
-      <Button primary onClick={() => setShowModal(!showModal)}>Show Modal Without Title</Button>
-    </>
-  );
-}
-<ModalExample />
-```
-
-### Large Modal
-
+When you need to show a lot content, such as a table or grid.
 
 ```js
 import { useState } from 'react';
@@ -178,9 +147,38 @@ function ModalExample() {
       {showModal && LargeModal}
       <Button primary onClick={() => setShowModal(!showModal)}>Show Large Modal</Button>
     </>
+  )
+}
+<ModalExample />
+```
+
+### Without a Title or Footer
+
+Modal's without a `title` or `footer` can be used to display smaller bits of information that require the users attention.
+
+```js
+import { useState } from 'react';
+import Button from '../Button/Button';
+
+function ModalExample() {
+  const [showModalNoTitle, setShowModalNoTitle] = useState(false);
+
+  const DemoModalNoTitle = (
+    <Modal
+      onRequestClose={() => setShowModalNoTitle(!showModalNoTitle)}
+      showing={showModalNoTitle}
+    >
+      I don't have a title
+    </Modal>
+  )
+
+  return (
+    <>
+      {showModalNoTitle && DemoModalNoTitle}
+      <Button primary onClick={() => setShowModalNoTitle(!showModalNoTitle)}>Show Modal Without Title</Button>
+    </>
   );
 }
-
 <ModalExample />
 ```
 
@@ -193,17 +191,17 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 
 function ModalExample() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModalMobileFullScreen, setShowModalMobileFullScreen] = useState(false);
 
-  const DemoModal = (
+  const MobileFullScreenModal = (
     <Modal
       mobileFullScreen
       title="Full Screen Mobile"
-      onRequestClose={() => setShowModal(!showModal)}
-      showing={showModal}
+      onRequestClose={() => setShowModalMobileFullScreen(!showModalMobileFullScreen)}
+      showing={showModalMobileFullScreen}
       footer={[
-        <Button primary onClick={() => setShowModal(!showModal)}>Save</Button>,
-        <Button onClick={() => setShowModal(!showModal)}>Cancel</Button>
+        <Button primary onClick={() => setShowModalMobileFullScreen(!showModalMobileFullScreen)}>Save</Button>,
+        <Button onClick={() => setShowModalMobileFullScreen(!showModalMobileFullScreen)}>Cancel</Button>
       ]}
     >
       Resize the browser to a width less than 480px wide and i'll take up the full viewport.
@@ -212,8 +210,8 @@ function ModalExample() {
 
   return (
     <>
-      {showModal && DemoModal}
-      <Button primary onClick={() => setShowModal(!showModal)}>Show Modal Mobile Full Screen</Button>
+      {showModalMobileFullScreen && MobileFullScreenModal}
+      <Button primary onClick={() => setShowModalMobileFullScreen(!showModalMobileFullScreen)}>Show Modal Mobile Full Screen</Button>
     </>
   );
 }
@@ -230,14 +228,14 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 
 function ModalExample() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModalMobileFullScreen, setShowModalMobileFullScreen] = useState(false);
 
-  const DemoModal = (
+  const MobileFullScreenModal = (
     <Modal
       icon="ticket"
       title="Header Icon"
-      onRequestClose={() => setShowModal(!showModal)}
-      showing={showModal}
+      onRequestClose={() => setShowModalMobileFullScreen(!showModalMobileFullScreen)}
+      showing={showModalMobileFullScreen}
     >
       My title has an icon in the header.
     </Modal>
@@ -245,8 +243,8 @@ function ModalExample() {
 
   return (
     <>
-      {showModal && DemoModal}
-      <Button primary onClick={() => setShowModal(!showModal)}>Show Modal with Header Icon</Button>
+      {showModalMobileFullScreen && MobileFullScreenModal}
+      <Button primary onClick={() => setShowModalMobileFullScreen(!showModalMobileFullScreen)}>Show Modal with Header Icon</Button>
     </>
   );
 }
