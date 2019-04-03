@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import Modal from './Modal';
+import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Icon from '../Icon/Icon';
 
 describe('Modal', () => {
@@ -27,6 +28,11 @@ describe('Modal', () => {
     it('renders a footer if set', () => {
       const instance = shallow(<Modal showing className="my-class" footer={<div>footer</div>}>content</Modal>);
       expect(instance.find({ as: 'footer' })).toHaveLength(1);
+      expect(instance.find(ButtonGroup).children()).toHaveLength(1);
+    });
+    it('renders an array of nodes', () => {
+      const instance = shallow(<Modal showing className="my-class" footer={[<div>1</div>, <div>2</div>]}>content</Modal>);
+      expect(instance.find(ButtonGroup).children()).toHaveLength(2);
     });
   });
 
