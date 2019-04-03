@@ -11,7 +11,8 @@ import Icon from '../Icon/Icon';
 import Overlay from '../Overlay/Overlay';
 import TextContainer from '../TextContainer/TextContainer';
 
-import { useWindowSize, useLockBodyScroll } from '../../Hooks';
+import { useKeyBoardEvent, useWindowSize, useLockBodyScroll } from '../../Hooks';
+import { requiresOtherProp } from '../../Types';
 
 import './Modal.scss';
 
@@ -22,6 +23,15 @@ const HEADER_STYLES_MAP = {
   danger: 'bg-red-lighter b-red-light',
   success: 'bg-green-lighter b-green-light',
   special: 'bg-indigo-lighter b-indigo-light'
+};
+
+const ICON_COLOR_MAP = {
+  default: 'neutral-400',
+  info: 'blue',
+  warn: 'yellow',
+  danger: 'red',
+  success: 'green',
+  special: 'indigo'
 };
 
 /**
@@ -44,6 +54,7 @@ const Modal = (
   }
 ) => {
   useLockBodyScroll();
+  useKeyBoardEvent('Escape', onRequestClose);
 
   const closeBtn = (
     <Button
@@ -63,17 +74,21 @@ const Modal = (
       bb: title,
     }, headerClass);
 
+    const iconClass = ICON_COLOR_MAP[type];
+
+    const iconClasses = classNames('mr-3', iconClass);
+
     return title ? (
       <Block
         as="header"
-        justify={title ? 'between' : 'end'}
+        justify="between"
         alignItems="start"
         paddingHorizontal={[4, 5]}
         paddingVertical="4"
-        className={title ? headerClasses : 'bg-white'}
+        className={headerClasses}
       >
         <Block className="mr-3">
-          {icon && <Icon name={icon} size="24" className="mr-3" />}
+          {icon && <Icon name={icon} size="24" className={iconClasses} />}
           {title && <Heading element="4" responsive={false}>{title}</Heading>}
         </Block>
         {closeBtn}
@@ -128,7 +143,7 @@ const Modal = (
       >
         <Block
           direction="column"
-          background="neutral-100"
+          background="white"
           className={classes}
           radius={[0, 3]}
           overflow="hidden"
@@ -168,11 +183,11 @@ Modal.propTypes = {
   /**
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
-  icon: PropTypes.string,
+  icon: requiresOtherProp('title'),
   /**
-   * Is the modal visible
+   * Determines when to apply focus trap
    */
-  showing: PropTypes.bool,
+  showing: PropTypes.bool.isRequired,
   /**
    * When open, take up the entire screen on a mobile device
    */
@@ -188,6 +203,7 @@ Modal.propTypes = {
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
   /**
    * callback function when modal is closed
+   * the `escape` key is also automatically assigned this callback when the modal is showing
    */
   onRequestClose: PropTypes.func,
   /**

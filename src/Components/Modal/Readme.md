@@ -2,6 +2,8 @@
 
 ### Types
 
+Choose a modal that's appropriate for your use case.
+
 ```js
 import { useState } from 'react';
 import Button from '../Button/Button';

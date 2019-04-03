@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
 function getSize() {
+  if (typeof window === 'undefined') {
+    return {};
+  }
+
   return {
     innerHeight: window.innerHeight,
     innerWidth: window.innerWidth,
