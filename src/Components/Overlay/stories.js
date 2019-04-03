@@ -6,7 +6,7 @@ import Overlay from './Overlay';
 import Button from '../Button/Button';
 
 function OverlayExample() {
-  const [openOverlay, setOpenOverlay] = useState(false);
+  const [openOverlay, setOpenOverlay] = useState(true);
 
   return (
     <>
