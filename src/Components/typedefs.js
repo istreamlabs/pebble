@@ -14,4 +14,5 @@
  * @typedef {'auto'|'full'|'1/2'|'1/4'|'3/4'|'1/3'|'2/3'} Basis
  * @typedef {'row'|'column'} Direction
  * @typedef {'auto'|'hidden'|'scroll'|'visible'} Overflow
+ * @typedef {'default'|'info'|'warn'|'danger'|'success'|'special'} AppearanceType
  */

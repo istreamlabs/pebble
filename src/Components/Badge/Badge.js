@@ -75,7 +75,7 @@ Badge.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Type of message to be displayed
-   * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success' | 'special'>}
+   * @type {PropTypes.Requireable<AppearanceType>}
    */
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
 };
