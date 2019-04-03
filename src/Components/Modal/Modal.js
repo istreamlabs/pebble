@@ -21,17 +21,12 @@ const HEADER_STYLES_MAP = {
   info: 'bg-blue-lighter',
   warn: 'bg-yellow-lighter',
   danger: 'bg-red-lighter',
-  success: 'bg-green-lighter',
-  special: 'bg-indigo-lighter'
 };
 
 const ICON_COLOR_MAP = {
   default: 'neutral-400',
-  info: 'blue',
   warn: 'yellow',
   danger: 'red',
-  success: 'green',
-  special: 'indigo'
 };
 
 /**
@@ -209,7 +204,7 @@ Modal.propTypes = {
    * Type of message to be displayed
    * @type {PropTypes.Requireable<AppearanceType>}
    */
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
+  type: PropTypes.oneOf(['default', 'warn', 'danger']),
   /**
    * callback function when modal is closed
    * the `escape` key is also automatically assigned this callback when the modal is showing

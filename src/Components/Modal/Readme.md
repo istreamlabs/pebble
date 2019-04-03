@@ -2,6 +2,10 @@
 
 ### Types
 
+Generally, modals should be used when user action is immediately required. Three appearance types are available to address scenarios that commonly require immediate action.
+
+To give visual feedback for things like a successful transaction or asset edit, consider Toasts or Alerts instead.
+
 ```js
 import { useState } from 'react';
 import Button from '../Button/Button';
@@ -10,10 +14,7 @@ import Block from '../Block/Block';
 function ModalExample() {
   const [showModal, setShowModal] = useState(false);
   const [showDangerModal, setShowDangerModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showWarnModal, setShowWarnModal] = useState(false);
-  const [showInfoModal, setShowInfoModal] = useState(false);
-  const [showSpecialModal, setShowSpecialModal] = useState(false);
 
   const Default = (
     <Modal
@@ -32,6 +33,7 @@ function ModalExample() {
   const DangerModal = (
     <Modal
       type="danger"
+      icon="ban"
       title="Danger Modal"
       onRequestClose={() => setShowDangerModal(!showDangerModal)}
       showing={showDangerModal}
@@ -44,21 +46,10 @@ function ModalExample() {
     </Modal>
   );
 
-  const SuccessModal = (
-    <Modal
-      type="success"
-      title="success Modal"
-      onRequestClose={() => setShowSuccessModal(!showSuccessModal)}
-      showing={showSuccessModal}
-      footer={<Button onClick={() => setShowSuccessModal(!showSuccessModal)}>Close</Button>}
-    >
-     Congratulations, your request has been received.
-    </Modal>
-  );
-
   const WarnModal = (
     <Modal
       type="warn"
+      icon="warning-circle-outline"
       title="Warn Modal"
       onRequestClose={() => setShowWarnModal(!showWarnModal)}
       showing={showWarnModal}
@@ -68,45 +59,15 @@ function ModalExample() {
     </Modal>
   );
 
-  const InfoModal = (
-    <Modal
-      type="info"
-      title="Info Modal"
-      onRequestClose={() => setShowInfoModal(!showInfoModal)}
-      showing={showInfoModal}
-      footer={<Button onClick={() => setShowInfoModal(!showInfoModal)}>Close</Button>}
-    >
-      I'm a demo modal
-    </Modal>
-  );
-
-  const SpecialModal = (
-    <Modal
-      type="special"
-      title="Special Modal"
-      onRequestClose={() => setShowSpecialModal(!showSpecialModal)}
-      showing={showSpecialModal}
-      footer={<Button onClick={() => setShowSpecialModal(!showSpecialModal)}>Close</Button>}
-    >
-      I'm a demo modal
-    </Modal>
-  );
-
   return (
     <>
       {showModal && Default}
       {showDangerModal && DangerModal}
-      {showSuccessModal && SuccessModal}
       {showWarnModal && WarnModal}
-      {showInfoModal && InfoModal}
-      {showSpecialModal && SpecialModal}
       <Block wrap itemSpacing="2">
         <Button onClick={() => setShowModal(!showModal)}>Default</Button>
         <Button onClick={() => setShowDangerModal(!showDangerModal)}>Danger</Button>
-        <Button onClick={() => setShowSuccessModal(!showSuccessModal)}>Success</Button>
         <Button onClick={() => setShowWarnModal(!showWarnModal)}>Warn</Button>
-        <Button onClick={() => setShowInfoModal(!showInfoModal)}>Info</Button>
-        <Button onClick={() => setShowSpecialModal(!showSpecialModal)}>Special</Button>
       </Block>
     </>
   );
@@ -258,5 +219,5 @@ Modals should
 
 * Be used only when an action by the user is required. Otherwise use something inline.
 * Have content that is succinct and to the point.
-* Trap focus, which is automatically handled.
+* Trap focus when the modal is open, and return focus back to the element that triggered the modal.
 * Escape key closes the modal and moves focus back to whatever triggered the modal

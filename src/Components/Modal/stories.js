@@ -43,7 +43,7 @@ ModalExample.propTypes = {
   large: PropTypes.bool,
   noTitle: PropTypes.bool,
   noFooter: PropTypes.bool,
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
+  type: PropTypes.oneOf(['default', 'warn', 'danger']),
 };
 
 storiesOf('Modal', module)
@@ -57,17 +57,8 @@ storiesOf('Modal', module)
   .add('danger', () => (
     <ModalExample type="danger" />
   ))
-  .add('success', () => (
-    <ModalExample type="success" />
-  ))
   .add('warn', () => (
     <ModalExample type="warn" />
-  ))
-  .add('info', () => (
-    <ModalExample type="info" />
-  ))
-  .add('special', () => (
-    <ModalExample type="special" />
   ))
   .add('without title', () => (
     <ModalExample noTitle />
