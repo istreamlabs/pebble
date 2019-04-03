@@ -194,7 +194,7 @@ Modal.propTypes = {
    */
   large: PropTypes.bool,
   /**
-   * Determines when to apply focus trap
+   * Controls whether the modal is showing or not
    */
   showing: PropTypes.bool.isRequired,
   /**
