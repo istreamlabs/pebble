@@ -13,7 +13,7 @@ const styles = {
   width: '30rem',
   display: 'block'
 };
-const componentContainerDecorator = storyFn => <div style={styles}>{storyFn()}</div>;
+const componentContainerDecorator = storyFn => <div className="storybook" style={styles}>{storyFn()}</div>;
 addDecorator(componentContainerDecorator);
 
 configure(loadStories, module);

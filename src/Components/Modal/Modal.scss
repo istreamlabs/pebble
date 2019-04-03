@@ -1,0 +1,70 @@
+@import '../../Styles/foundation/variables.scss';
+@import '../../Styles/foundation/media-queries.scss';
+
+.modal-container {
+  align-items: flex-end;
+
+  @include respond-above(sm) {
+    align-items: center;
+  }
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  z-index: $z-modal;
+  max-height: 100%;
+
+  @include respond-above(sm) {
+    max-width: $width-6;
+    max-height: $height-6;
+
+    &.modal-large {
+      max-width: calc(100% - #{$width-4});
+      max-height: calc(100% - #{$height-5})
+    }
+  }
+
+  @include respond-above(md) {
+    &.modal-large {
+      max-width: calc(100% - #{$width-5});
+      max-height: calc(100% - #{$height-5})
+    }
+  }
+
+  @include respond-above(lg) {
+    &.modal-large {
+      max-width: calc(100% - #{$width-6});
+      max-height: calc(100% - #{$height-5})
+    }
+  }
+
+  &.mobile-full-screen {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    @include respond-above(sm) {
+      position: relative;
+    }
+  }
+
+}
+
+.modal-close-btn {
+  color: $neutral-500;
+
+  &:focus,
+  &:hover {
+    color: $neutral-700;
+  }
+}
+
+.modal-close-btn-no-title {
+  position: absolute;
+  right: $spacing-5;
+  top: $spacing-4;
+}
+

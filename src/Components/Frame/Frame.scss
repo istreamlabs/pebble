@@ -6,6 +6,7 @@ $FRAME_HEADER_HEIGHT: 60px;
 .frame {
   display: grid;
   height: 100vh;
+  position: relative;
   grid-template-areas:
     "header"
     "main";

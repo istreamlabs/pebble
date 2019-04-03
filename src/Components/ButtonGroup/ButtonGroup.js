@@ -29,7 +29,7 @@ function ButtonGroup(props) {
   return (
     <div className={classes}>
       {React.Children.map(children, child => (
-        <div className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}>
+        <div key={child.key} className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}>
           {React.cloneElement(child, otherProps)}
         </div>
       ))}
