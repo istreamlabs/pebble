@@ -122,10 +122,11 @@ class Block extends React.Component {
 
     const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
 
-    const blockChildren = itemSpacing !== undefined ? React.Children.map(children, child => React.cloneElement(
-      child,
-      { className: classNames(child.className, 'block-item', spacingClass) }
-    )) : children;
+    const blockChildren = itemSpacing !== undefined
+      ? React.Children.map(children, child => React.cloneElement(
+        child,
+        { className: classNames(child.props.className, 'block-item', spacingClass) }
+      )) : children;
 
     const Element = as;
 
