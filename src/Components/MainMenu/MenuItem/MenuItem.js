@@ -24,6 +24,10 @@ class MenuItem extends React.Component {
     this.setState({ isOpen: !isOpen });
   }
 
+  onActive = () => {
+    this.setState({ isOpen: true });
+  }
+
   renderIconLabel = () => {
     const { item } = this.props;
 
@@ -53,16 +57,20 @@ class MenuItem extends React.Component {
   }
 
   renderSubItems = (items) => {
-    const { activeItem } = this.props;
-
     const subItems = items.map((subItem, i) => (
       <li key={subItem.id}>
         <NavLink
           to={subItem.href}
-          className={classNames('sub-menu-item', { active: subItem.id === activeItem })}
+          className={classNames('sub-menu-item')}
           key={i}
           role="menuitem"
           activeClassName="active"
+          isActive={(match, location) => {
+            // call onActive to open the parent item
+            console.log(match, location);
+
+            return location.pathname.startsWith(subItem.href);
+          }}
         >
           {subItem.label}
         </NavLink>
@@ -88,6 +96,7 @@ class MenuItem extends React.Component {
           {item.href ? (
             <NavLink
               id={`MenuItem-${item.id}`}
+              exact={item.exact}
               to={item.href}
               className="menu-item"
               onClick={hasSubItems ? this.handleToggleOpen : undefined}

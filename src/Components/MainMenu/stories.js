@@ -100,14 +100,12 @@ const auxMenu = [
   }
 ];
 
-const initialState = { activeItem: '2', showMenu: false };
-
 storiesOf('MainMenu', module)
   .add('all', () => (
     <DemoBrowserRouter>
       <div styles={{ overflow: 'auto' }}>
         <Block height="400px">
-          <MainMenu menu={menu} auxMenu={auxMenu} activeItem={initialState.activeItem} />
+          <MainMenu menu={menu} auxMenu={auxMenu} />
         </Block>
       </div>
     </DemoBrowserRouter>
