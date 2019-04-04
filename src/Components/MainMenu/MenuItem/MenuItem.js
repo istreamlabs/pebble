@@ -65,12 +65,6 @@ class MenuItem extends React.Component {
           key={i}
           role="menuitem"
           activeClassName="active"
-          isActive={(match, location) => {
-            // call onActive to open the parent item
-            console.log(match, location);
-
-            return location.pathname.startsWith(subItem.href);
-          }}
         >
           {subItem.label}
         </NavLink>
@@ -90,6 +84,19 @@ class MenuItem extends React.Component {
 
     const hasSubItems = (item.items && item.items.length);
 
+    const isActive = (match, location) => {
+      const { isOpen } = this.state;
+
+      if (!isOpen) {
+        if (item.items && item.items.length) {
+          if (item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname)) {
+            this.setState({ isOpen: true });
+          }
+        }
+      }
+      return match;
+    };
+
     return (
       <li className={itemClasses}>
         <div className="menu-item-content">
@@ -103,6 +110,7 @@ class MenuItem extends React.Component {
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
+              isActive={isActive}
             >
               {this.renderIconLabel()}
             </NavLink>
@@ -119,16 +127,23 @@ class MenuItem extends React.Component {
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
+                className={classNames("menu-item-collapse", {
+                  opened: isOpen,
+                  closed: !isOpen
+                })}
               />
             </button>
           )}
           {hasSubItems && item.href && this.renderToggleButton()}
         </div>
         {hasSubItems && (
-        <ul role="menu" aria-labelledby={`MenuItem-${item.id}`} className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
-          {this.renderSubItems(item.items)}
-        </ul>
+          <ul
+            role="menu"
+            aria-labelledby={`MenuItem-${item.id}`}
+            className={classNames("sub-menu-items", { opened: isOpen, closed: !isOpen })}
+          >
+            {this.renderSubItems(item.items)}
+          </ul>
         )}
       </li>
     );
