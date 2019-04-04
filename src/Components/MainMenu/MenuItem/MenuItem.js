@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
-import Link from '../../Link/Link';
+
 
 import './MenuItem.scss';
 
@@ -56,14 +57,15 @@ class MenuItem extends React.Component {
 
     const subItems = items.map((subItem, i) => (
       <li key={subItem.id}>
-        <Link
-          href={subItem.href}
+        <NavLink
+          to={subItem.href}
           className={classNames('sub-menu-item', { active: subItem.id === activeItem })}
           key={i}
           role="menuitem"
+          activeClassName="active"
         >
           {subItem.label}
-        </Link>
+        </NavLink>
       </li>
     ));
 
@@ -84,16 +86,17 @@ class MenuItem extends React.Component {
       <li className={itemClasses}>
         <div className="menu-item-content">
           {item.href ? (
-            <Link
+            <NavLink
               id={`MenuItem-${item.id}`}
-              href={item.href}
+              to={item.href}
               className="menu-item"
               onClick={hasSubItems ? this.handleToggleOpen : undefined}
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
+              activeClassName="active"
             >
               {this.renderIconLabel()}
-            </Link>
+            </NavLink>
           ) : (
             <button
               id={`MenuItem-${item.id}`}

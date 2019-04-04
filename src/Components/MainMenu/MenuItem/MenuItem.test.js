@@ -1,9 +1,9 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
+import { NavLink } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
 import Button from '../../Button/Button';
-import Link from '../../Link/Link';
 
 const mockData = {
   id: '1',
@@ -16,12 +16,14 @@ const mockData = {
       label: 'Channels',
       description: '',
       icon: '',
+      href: '/test',
     },
     {
       id: '1b',
       label: 'Live',
       description: '',
       icon: '',
+      href: '/test',
     },
   ]
 };
@@ -72,7 +74,7 @@ describe('MenuItem', () => {
   it('opens the submenu if a subitem is active and sets the subitem to active', () => {
     const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
     expect(item.find('li.menu-item-container').prop('className')).toContain('open');
-    expect(item.find('Link.sub-menu-item').prop('className')).toContain('active');
+    expect(item.find('NavLink.sub-menu-item').prop('className')).toContain('active');
   });
 
   it('opens the submenu if the Item is active', () => {
@@ -82,7 +84,7 @@ describe('MenuItem', () => {
 
   it('renders Link when href is set', () => {
     const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
-    expect(item.find(Link).at(0).prop('href')).toContain('/test');
+    expect(item.find(NavLink).at(0).prop('to')).toContain('/test');
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
