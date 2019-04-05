@@ -105,11 +105,6 @@ initialState = { activeItem: "2", showMenu: false };
       <Block>
         <MainMenu menu={menu} auxMenu={auxMenu} />
       </Block>
-      <Block direction="column" paddingHorizontal="5" itemSpacing="3">
-        <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Link</Button></Block>
-        <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "2b" }); }}>Select Sub-Item 2</Button></Block>
-        <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "3" }); }}>Select Link w/ sub-items</Button></Block>
-      </Block>
     </Block>
   </div>
 </DemoBrowserRouter>

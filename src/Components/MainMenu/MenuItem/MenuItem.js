@@ -14,9 +14,17 @@ class MenuItem extends React.Component {
     const { containsActiveItem } = this.props;
 
     this.state = {
-      // isOpen: item.id === activeItem || (item.items || []).some(i => i.id === activeItem)
-      isOpen: containsActiveItem
+      isOpen: !!containsActiveItem
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.containsActiveItem) {
+      const { isOpen } = this.state;
+      if (!isOpen) {
+        this.setState({ isOpen: true });
+      }
+    }
   }
 
   handleToggleOpen = () => {
@@ -73,28 +81,11 @@ class MenuItem extends React.Component {
   render() {
     const { item } = this.props;
     const { isOpen } = this.state;
-    const itemClasses = classNames('menu-item-container', {
-      // open: isOpen,
-      // active: item.id === activeItem
-    });
 
     const hasSubItems = (item.items && item.items.length);
 
-    // const isActive = (match, location) => {
-    //   const { isOpen } = this.state;
-
-    //   if (!isOpen) {
-    //     if (item.items && item.items.length) {
-    //       if (item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname)) {
-    //         this.setState({ isOpen: true });
-    //       }
-    //     }
-    //   }
-    //   return match;
-    // };
-
     return (
-      <li className={itemClasses}>
+      <li className="menu-item-container">
         <div className="menu-item-content">
           {item.href ? (
             <NavLink
@@ -106,7 +97,6 @@ class MenuItem extends React.Component {
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
-              // isActive={isActive}
             >
               {this.renderIconLabel()}
             </NavLink>

@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NavLink } from 'react-router-dom';
 
 import MenuItem from './MenuItem';
 import Button from '../../Button/Button';
+import Icon from '../../Icon/Icon';
 
 const mockData = {
   id: '1',
@@ -65,40 +65,79 @@ describe('MenuItem', () => {
     });
   });
 
-  it('opens when toggled', () => {
-    const item = shallow(<MenuItem item={mockData} />);
-    item.find('button').simulate('click');
-    expect(item.find('li.menu-item-container').prop('className')).toContain('open');
+  describe('componentWillReceiveProps', () => {
+    let instance;
+    let spy;
+
+    beforeEach(() => {
+      instance = new MenuItem({});
+      spy = jest.spyOn(instance, 'setState').mockImplementation(() => {});
+    });
+
+    it('does nothing when it does not contain an active item', () => {
+      instance.componentWillReceiveProps({
+        containsActiveItem: false
+      });
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('sets it to open when it contains an active item', () => {
+      instance.componentWillReceiveProps({
+        containsActiveItem: true
+      });
+      expect(spy).toHaveBeenCalledWith({ isOpen: true });
+    });
+
+    it('does not call if it is already open', () => {
+      instance = new MenuItem({
+        containsActiveItem: true
+      });
+      instance.componentWillReceiveProps({
+        containsActiveItem: true
+      });
+      expect(spy).not.toHaveBeenCalled();
+    });
   });
 
-  it('opens the submenu if a subitem is active and sets the subitem to active', () => {
-    const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
-    expect(item.find('li.menu-item-container').prop('className')).toContain('open');
-    expect(item.find('NavLink.sub-menu-item').prop('className')).toContain('active');
+  describe('handleToggleOpen', () => {
+    it('', () => {
+      const instance = new MenuItem({});
+      const firstState = instance.state.isOpen;
+      const spy = jest.spyOn(instance, 'setState').mockImplementation(() => {});
+      instance.handleToggleOpen();
+      expect(spy).toHaveBeenCalledWith({
+        isOpen: !firstState
+      });
+    });
   });
 
-  it('opens the submenu if the Item is active', () => {
-    const item = shallow(<MenuItem item={linkSubItems} activeItem="1" />);
-    expect(item.find('li.menu-item-container').prop('className')).toContain('open active');
-  });
-
-  it('renders Link when href is set', () => {
-    const item = shallow(<MenuItem item={linkSubItems} activeItem="1a" />);
-    expect(item.find(NavLink).at(0).prop('to')).toContain('/test');
+  describe('renderToggleButton', () => {
+    it('renders a separate toggle button when a link with sub items is passed', () => {
+      const item = shallow(<MenuItem item={linkSubItems} />);
+      expect(item.find(Button).prop('className')).toContain('menu-item-collapse-button');
+    });
+    it('sets the correct toggle button accessibility label', () => {
+      const item = shallow(<MenuItem item={linkSubItems} />);
+      expect(item.find(Icon).at(1).prop('accessibilityLabel')).toContain('show Content sub items');
+    });
+    it('sets the correct toggle button accessibility label', () => {
+      const item = shallow(<MenuItem item={linkSubItems} />);
+      item.setState({ isOpen: true });
+      expect(item.find(Icon).at(1).prop('accessibilityLabel')).toBe('close Content sub items');
+    });
+    it('sets the correct button item accessibility label', () => {
+      const item = shallow(<MenuItem item={mockData} />);
+      expect(item.find(Icon).at(1).prop('accessibilityLabel')).toContain('closed');
+    });
+    it('sets the correct button item accessibility label', () => {
+      const item = shallow(<MenuItem item={mockData} />);
+      item.setState({ isOpen: true });
+      expect(item.find(Icon).at(1).prop('accessibilityLabel')).toBe('opened');
+    });
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
     const item = shallow(<MenuItem item={noItems} />);
     expect(item.state().isOpen).toEqual(false);
-  });
-
-  it('renders an separate toggle button when a link with sub items is passed', () => {
-    const item = shallow(<MenuItem item={linkSubItems} />);
-    expect(item.find(Button).prop('className')).toContain('menu-item-collapse-button');
-  });
-
-  it('sets the accessibilityLabel', () => {
-    const item = shallow(<MenuItem item={linkSubItems} />);
-    expect(item.find('Button.menu-item-collapse-button').prop('accessibilityLabel')).toBe('show Content sub items');
   });
 });

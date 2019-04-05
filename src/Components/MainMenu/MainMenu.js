@@ -14,46 +14,47 @@ import './MainMenu.scss';
  * It contains a top (`menu`) and bottom (`auxMenu`) set of menu items, with each
  * allowing a two-level structure.
  *
+ * It uses [NavLinks from react-router](https://reacttraining.com/react-router/web/api/NavLink)
+ * as a way to automatically highlight the currently selected page.
+ *
  * ---
  */
 
 class MainMenu extends React.Component {
+  static shouldBeOpen(location, item) {
+    let isOpen = false;
+    if (Array.isArray(item.items) && item.items.length > 0) {
+      isOpen = location.pathname === item.href
+      || item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location
+        .pathname);
+    }
+    return isOpen;
+  }
+
+  renderItem(menu) {
+    const {
+      location,
+    } = this.props;
+
+    return menu.map(item => (
+      <MenuItem
+        containsActiveItem={MainMenu.shouldBeOpen(location, item)}
+        item={item}
+        key={item.id}
+      />
+    ));
+  }
+
   render() {
     const {
       className,
       menu,
       auxMenu,
       title,
-      location,
     } = this.props;
 
-    const classes = classNames('main-menu', className);
-
-    const renderItem = menu => (
-      menu.map((item) => {
-        let isOpen = false;
-        if (Array.isArray(item.items) && item.items.length > 0) {
-          isOpen = location.pathname === item.href
-            || item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname);
-          console.log('location.pathname', location.pathname);
-          console.log('some is ', item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname));
-        }
-
-        console.log('isOpen', isOpen);
-
-
-        return (
-          <MenuItem
-            containsActiveItem={isOpen}
-            item={item}
-            key={item.id}
-          />
-        );
-      })
-    );
-
     return (
-      <nav className={classes} aria-label="Main navigation">
+      <nav className={classNames('main-menu', className)} aria-label="Main navigation">
         <div className="main-menu-top">
           <Block
             className="main-menu-title"
@@ -64,15 +65,14 @@ class MainMenu extends React.Component {
             <Text bold>{title}</Text>
           </Block>
           <ul className="main-menu-items">
-            {renderItem(menu)}
+            {this.renderItem(menu)}
           </ul>
         </div>
         {auxMenu && (
           <div className="main-menu-bottom">
             <ul className="main-menu-items">
-              {renderItem(auxMenu)}
+              {this.renderItem(auxMenu)}
             </ul>
-
           </div>
         )}
       </nav>
@@ -89,9 +89,10 @@ MainMenu.propTypes = {
    * Additional ClassNames to add to button group
    */
   className: PropTypes.string,
-  match: PropTypes.object.isRequired,
+  /**
+   * Automatically passed from [withRouter higher-order-component](https://reacttraining.com/react-router/web/api/withRouter).
+   */
   location: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
   /**
    * Menu items for the upper portion of the menu
    */
@@ -122,7 +123,14 @@ MainMenu.propTypes = {
       href: PropTypes.string,
     }))
   })),
+  /**
+   * Text that appears at the top of the menu
+   */
   title: PropTypes.string,
+  /**
+   * start with everything expanded
+   */
+  startExpanded: PropTypes.bool,
 };
 
 export default withRouter(MainMenu);
