@@ -6,26 +6,22 @@ import { NavLink } from 'react-router-dom';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 
-
 import './MenuItem.scss';
 
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
-    const { activeItem, item } = this.props;
+    const { containsActiveItem } = this.props;
 
     this.state = {
-      isOpen: item.id === activeItem || (item.items || []).some(i => i.id === activeItem)
+      // isOpen: item.id === activeItem || (item.items || []).some(i => i.id === activeItem)
+      isOpen: containsActiveItem
     };
   }
 
   handleToggleOpen = () => {
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
-  }
-
-  onActive = () => {
-    this.setState({ isOpen: true });
   }
 
   renderIconLabel = () => {
@@ -75,27 +71,27 @@ class MenuItem extends React.Component {
   }
 
   render() {
-    const { item, activeItem } = this.props;
+    const { item } = this.props;
     const { isOpen } = this.state;
     const itemClasses = classNames('menu-item-container', {
-      open: isOpen,
-      active: item.id === activeItem
+      // open: isOpen,
+      // active: item.id === activeItem
     });
 
     const hasSubItems = (item.items && item.items.length);
 
-    const isActive = (match, location) => {
-      const { isOpen } = this.state;
+    // const isActive = (match, location) => {
+    //   const { isOpen } = this.state;
 
-      if (!isOpen) {
-        if (item.items && item.items.length) {
-          if (item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname)) {
-            this.setState({ isOpen: true });
-          }
-        }
-      }
-      return match;
-    };
+    //   if (!isOpen) {
+    //     if (item.items && item.items.length) {
+    //       if (item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname)) {
+    //         this.setState({ isOpen: true });
+    //       }
+    //     }
+    //   }
+    //   return match;
+    // };
 
     return (
       <li className={itemClasses}>
@@ -110,7 +106,7 @@ class MenuItem extends React.Component {
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
-              isActive={isActive}
+              // isActive={isActive}
             >
               {this.renderIconLabel()}
             </NavLink>
@@ -127,7 +123,7 @@ class MenuItem extends React.Component {
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                className={classNames("menu-item-collapse", {
+                className={classNames('menu-item-collapse', {
                   opened: isOpen,
                   closed: !isOpen
                 })}
@@ -140,7 +136,7 @@ class MenuItem extends React.Component {
           <ul
             role="menu"
             aria-labelledby={`MenuItem-${item.id}`}
-            className={classNames("sub-menu-items", { opened: isOpen, closed: !isOpen })}
+            className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}
           >
             {this.renderSubItems(item.items)}
           </ul>
@@ -152,9 +148,9 @@ class MenuItem extends React.Component {
 
 MenuItem.propTypes = {
   /**
-   * id of the selected submenu item
+   * A child item is the currently selected item
    */
-  activeItem: PropTypes.string,
+  containsActiveItem: PropTypes.bool,
   /**
    * the menu that gets rendered
    */

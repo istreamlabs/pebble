@@ -103,7 +103,7 @@ initialState = { activeItem: "2", showMenu: false };
   <div styles={{ overflow: 'auto' }}>
     <Block height="400px">
       <Block>
-        <MainMenu menu={menu} auxMenu={auxMenu} activeItem={state.activeItem} />
+        <MainMenu menu={menu} auxMenu={auxMenu} />
       </Block>
       <Block direction="column" paddingHorizontal="5" itemSpacing="3">
         <Block><Button className="styleguide__menubutton" onClick={() => { setState({ activeItem: "1" }); }}>Select Link</Button></Block>

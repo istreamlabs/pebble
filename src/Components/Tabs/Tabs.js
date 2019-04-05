@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Tab from './Components/Tab';
 import Block from '../Block/Block';
 
-import './Tabs.scss';
 /**
  * A tab keeps related content in a single container that is shown and hidden through navigation
  *

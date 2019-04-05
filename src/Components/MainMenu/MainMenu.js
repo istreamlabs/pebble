@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { withRouter } from 'react-router';
 
 import Block from '../Block/Block';
 import Text from '../Text/Text';
@@ -19,15 +20,37 @@ import './MainMenu.scss';
 class MainMenu extends React.Component {
   render() {
     const {
-      activeItem,
       className,
       menu,
       auxMenu,
-      title
+      title,
+      location,
     } = this.props;
 
-    const classes = classNames('main-menu', className, {
-    });
+    const classes = classNames('main-menu', className);
+
+    const renderItem = menu => (
+      menu.map((item) => {
+        let isOpen = false;
+        if (Array.isArray(item.items) && item.items.length > 0) {
+          isOpen = location.pathname === item.href
+            || item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname);
+          console.log('location.pathname', location.pathname);
+          console.log('some is ', item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location.pathname));
+        }
+
+        console.log('isOpen', isOpen);
+
+
+        return (
+          <MenuItem
+            containsActiveItem={isOpen}
+            item={item}
+            key={item.id}
+          />
+        );
+      })
+    );
 
     return (
       <nav className={classes} aria-label="Main navigation">
@@ -41,25 +64,13 @@ class MainMenu extends React.Component {
             <Text bold>{title}</Text>
           </Block>
           <ul className="main-menu-items">
-            {menu.map(item => (
-              <MenuItem
-                activeItem={activeItem}
-                item={item}
-                key={item.id}
-              />
-            ))}
+            {renderItem(menu)}
           </ul>
         </div>
         {auxMenu && (
           <div className="main-menu-bottom">
             <ul className="main-menu-items">
-              {auxMenu.map(item => (
-                <MenuItem
-                  activeItem={activeItem}
-                  item={item}
-                  key={item.id}
-                />
-              ))}
+              {renderItem(auxMenu)}
             </ul>
 
           </div>
@@ -75,13 +86,12 @@ MainMenu.defaultProps = {
 
 MainMenu.propTypes = {
   /**
-   * id of the item that is active
-   */
-  activeItem: PropTypes.string,
-  /**
    * Additional ClassNames to add to button group
    */
   className: PropTypes.string,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   /**
    * Menu items for the upper portion of the menu
    */
@@ -115,4 +125,4 @@ MainMenu.propTypes = {
   title: PropTypes.string,
 };
 
-export default MainMenu;
+export default withRouter(MainMenu);
