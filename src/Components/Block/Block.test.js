@@ -74,6 +74,15 @@ describe('Block', () => {
       </Block>);
       expect(wrapper.find(Block).first().prop('className')).toContain('mr-3');
     });
+
+    it('adds spacing between items and keeps custom classes applied to child items', () => {
+      const wrapper = shallow(<Block itemSpacing="3">
+        <Block className="red">1</Block>
+        <Block>2</Block>
+      </Block>);
+      expect(wrapper.find(Block).first().prop('className')).toContain('red');
+      expect(wrapper.find(Block).first().prop('className')).toContain('mr-3');
+    });
   }),
 
   describe('Basis', () => {
