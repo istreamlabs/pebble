@@ -1,16 +1,5 @@
 import React, { Component } from 'react';
 
-import Event from './demo/event';
-
-import {
-  Frame,
-  MainMenu,
-} from './Components';
-
-import { menu, auxMenu } from './demo';
-
-const TENANT_NAME = 'iStreamPlanet';
-
 class App extends Component {
   constructor() {
     super();
@@ -34,29 +23,8 @@ class App extends Component {
 
 
   render() {
-    const {
-      activeMainMenuItem,
-      showMobileNavigation,
-    } = this.state;
-
-    const mainMenu = (
-      <MainMenu
-        title={TENANT_NAME}
-        menu={menu}
-        auxMenu={auxMenu}
-        activeItem={activeMainMenuItem}
-      />
-    );
-
     return (
-      <Frame
-        isShowingMobileNav={showMobileNavigation}
-        navigation={mainMenu}
-        onNavigationToggle={this.toggleState('showMobileNavigation')}
-        title={TENANT_NAME}
-      >
-        <Event />
-      </Frame>
+      <div>hell</div>
     );
   }
 }

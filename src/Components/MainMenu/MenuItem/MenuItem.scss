@@ -97,6 +97,25 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     }
   }
 
+  &.active {
+    background: $NAV_ITEM_ACTIVE_BG;
+    box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT, inset -2px 0 4px -2px rgba(0,0,0,.1);
+    color: $NAV_ITEM_COLOR_HOVER;
+
+    &:focus {
+      color: $NAV_ITEM_COLOR_FOCUS;
+      box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+
+      .menu-item-icon {
+        color: $NAV_ITEM_ICON_FOCUS;
+      }
+    }
+
+    .menu-item-icon {
+      color: $NAV_ITEM_ICON_HOVER;
+    }
+  }
+
   // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
   > * {
     pointer-events: none;

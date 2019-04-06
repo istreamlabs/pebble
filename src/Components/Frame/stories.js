@@ -27,11 +27,27 @@ const MENU = [
     ]
   },
   {
-    id: '2',
+    id: '3',
     label: 'Link & Sub',
     description: 'Links to a page and has sub-items',
     icon: 'settings',
-    href: '/#/Components/MainMenu',
+    href: '?path=/story/frame--all',
+    items: [
+      {
+        id: '3a',
+        label: 'Sub-item 1',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      },
+      {
+        id: '3b',
+        label: 'Sub-item 2',
+        description: '',
+        href: '/#/Components/MainMenu',
+        icon: '',
+      },
+    ]
   },
 ];
 

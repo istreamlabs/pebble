@@ -1,6 +1,6 @@
 import React from 'react';
 import FocusTrap from 'focus-trap-react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
@@ -85,11 +85,9 @@ describe('Frame', () => {
 
   it('should cleanup event listener when unmounted', () => {
     document.removeEventListener = jest.fn();
-
-    const wrapper = mount(testFrame);
-
-    wrapper.unmount();
-    expect(document.removeEventListener).toHaveBeenCalled();
+    const instance = new Frame({});
+    instance.componentWillUnmount();
+    expect(document.removeEventListener).toHaveBeenCalledWith('keydown', instance.handleNavKeydown, false);
   });
 
   describe('handleSkipToMain', () => {

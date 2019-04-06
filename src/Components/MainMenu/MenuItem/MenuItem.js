@@ -4,19 +4,28 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import Button from '../../Button/Button';
+import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
-
 
 import './MenuItem.scss';
 
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
-    const { activeItem, item } = this.props;
+    const { containsActiveItem } = this.props;
 
     this.state = {
-      isOpen: item.id === activeItem || (item.items || []).some(i => i.id === activeItem)
+      isOpen: !!containsActiveItem
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.containsActiveItem) {
+      const { isOpen } = this.state;
+      if (!isOpen) {
+        this.setState({ isOpen: true });
+      }
+    }
   }
 
   handleToggleOpen = () => {
@@ -53,13 +62,11 @@ class MenuItem extends React.Component {
   }
 
   renderSubItems = (items) => {
-    const { activeItem } = this.props;
-
     const subItems = items.map((subItem, i) => (
       <li key={subItem.id}>
         <NavLink
           to={subItem.href}
-          className={classNames('sub-menu-item', { active: subItem.id === activeItem })}
+          className={classNames('sub-menu-item')}
           key={i}
           role="menuitem"
           activeClassName="active"
@@ -73,21 +80,18 @@ class MenuItem extends React.Component {
   }
 
   render() {
-    const { item, activeItem } = this.props;
+    const { item } = this.props;
     const { isOpen } = this.state;
-    const itemClasses = classNames('menu-item-container', {
-      open: isOpen,
-      active: item.id === activeItem
-    });
 
     const hasSubItems = (item.items && item.items.length);
 
     return (
-      <li className={itemClasses}>
+      <li className="menu-item-container">
         <div className="menu-item-content">
           {item.href ? (
             <NavLink
               id={`MenuItem-${item.id}`}
+              exact={item.exact}
               to={item.href}
               className="menu-item"
               onClick={hasSubItems ? this.handleToggleOpen : undefined}
@@ -97,7 +101,7 @@ class MenuItem extends React.Component {
             >
               {this.renderIconLabel()}
             </NavLink>
-          ) : (
+          ) : Array.isArray(item.items) && item.items.length > 0 ? (
             <button
               id={`MenuItem-${item.id}`}
               type="button"
@@ -110,16 +114,25 @@ class MenuItem extends React.Component {
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
+                className={classNames('menu-item-collapse', {
+                  opened: isOpen,
+                  closed: !isOpen
+                })}
               />
             </button>
+          ) : (
+            <Block flex paddingVertical="3" paddingHorizontal="6" textSize="6" className="neutral-500">{item.label}</Block>
           )}
           {hasSubItems && item.href && this.renderToggleButton()}
         </div>
         {hasSubItems && (
-        <ul role="menu" aria-labelledby={`MenuItem-${item.id}`} className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}>
-          {this.renderSubItems(item.items)}
-        </ul>
+          <ul
+            role="menu"
+            aria-labelledby={`MenuItem-${item.id}`}
+            className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}
+          >
+            {this.renderSubItems(item.items)}
+          </ul>
         )}
       </li>
     );
@@ -128,9 +141,9 @@ class MenuItem extends React.Component {
 
 MenuItem.propTypes = {
   /**
-   * id of the selected submenu item
+   * A child item is the currently selected item
    */
-  activeItem: PropTypes.string,
+  containsActiveItem: PropTypes.bool,
   /**
    * the menu that gets rendered
    */
