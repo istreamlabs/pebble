@@ -94,19 +94,21 @@ const auxMenu = [
         icon: '',
       },
     ]
+  },
+  {
+    id: 'version',
+    label: 'v1.2.3.4',
   }
 ];
 
 initialState = { activeItem: "2", showMenu: false };
 
 <DemoBrowserRouter>
-  <div styles={{ overflow: 'auto' }}>
-    <Block height="400px">
-      <Block>
-        <MainMenu menu={menu} auxMenu={auxMenu} />
-      </Block>
+  <Block overflow="auto">
+    <Block>
+      <MainMenu menu={menu} auxMenu={auxMenu} />
     </Block>
-  </div>
+  </Block>
 </DemoBrowserRouter>
 
 ```

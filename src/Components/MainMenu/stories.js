@@ -97,6 +97,10 @@ const auxMenu = [
         icon: '',
       },
     ]
+  },
+  {
+    id: 'version',
+    label: 'v1.2.3.4',
   }
 ];
 

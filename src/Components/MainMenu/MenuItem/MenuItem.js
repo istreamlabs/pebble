@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import Button from '../../Button/Button';
+import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
 
 import './MenuItem.scss';
@@ -100,7 +101,7 @@ class MenuItem extends React.Component {
             >
               {this.renderIconLabel()}
             </NavLink>
-          ) : (
+          ) : Array.isArray(item.items) && item.items.length > 0 ? (
             <button
               id={`MenuItem-${item.id}`}
               type="button"
@@ -119,6 +120,8 @@ class MenuItem extends React.Component {
                 })}
               />
             </button>
+          ) : (
+            <Block flex paddingVertical="3" paddingHorizontal="6" textSize="6" className="neutral-500">{item.label}</Block>
           )}
           {hasSubItems && item.href && this.renderToggleButton()}
         </div>

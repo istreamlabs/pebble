@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import MenuItem from './MenuItem';
+import Block from '../../Block/Block';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 
@@ -24,9 +25,14 @@ const mockData = {
       description: '',
       icon: '',
       href: '/test',
-    },
+    }
   ]
 };
+
+const textOnly = {
+  id: 'version',
+  label: 'v1234'
+}
 
 const noItems = {
   id: '2',
@@ -63,6 +69,16 @@ describe('MenuItem', () => {
       const expectedKey = `${mockData.items[index].id}`;
       expect(item.key()).toBe(expectedKey);
     });
+  });
+
+  it('sets isOpen to false when there are no sub-items', () => {
+    const item = shallow(<MenuItem item={noItems} />);
+    expect(item.state().isOpen).toEqual(false);
+  });
+
+  it('displays item as text if there are no sub-items and no href', () => {
+    const item = shallow(<MenuItem item={textOnly} />);
+    expect(item.find(Block).prop('textSize')).toHaveLength(1);
   });
 
   describe('componentWillReceiveProps', () => {
@@ -134,10 +150,5 @@ describe('MenuItem', () => {
       item.setState({ isOpen: true });
       expect(item.find(Icon).at(1).prop('accessibilityLabel')).toBe('opened');
     });
-  });
-
-  it('sets isOpen to false when there are no sub-items', () => {
-    const item = shallow(<MenuItem item={noItems} />);
-    expect(item.state().isOpen).toEqual(false);
   });
 });
