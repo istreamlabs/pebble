@@ -43,7 +43,7 @@ module.exports = {
       spaceFactor * 8, // 128
     ],
     fontFamily: {
-      base: '"Inter", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      base: '-apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
     },
     fontSize: {
       base: 16,

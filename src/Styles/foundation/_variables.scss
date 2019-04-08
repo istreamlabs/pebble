@@ -28,17 +28,14 @@ $breakpoints: (
 );
 
 // TYPOGRAPHY
-$sans-serif:
-                'Inter',
-                -apple-system, BlinkMacSystemFont,
-                'avenir next', avenir,
-                helvetica, 'helvetica neue',
-                ubuntu,
-                roboto,
-                noto,
-                'segoe ui',
-                arial,
-                sans-serif;
+$sans-serif:  -apple-system,BlinkMacSystemFont,
+              "Segoe UI",
+              Roboto,
+              Oxygen-Sans,
+              Ubuntu,
+              Cantarell,
+              "Helvetica Neue",
+              sans-serif;
 
 $font-size-1: 3rem;
 $font-size-2: 2.25rem;
