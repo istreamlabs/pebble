@@ -32,7 +32,7 @@ const mockData = {
 const textOnly = {
   id: 'version',
   label: 'v1234'
-}
+};
 
 const noItems = {
   id: '2',
@@ -66,14 +66,14 @@ describe('MenuItem', () => {
   it('generates a unique key for each item from the subItem label and index', () => {
     const item = shallow(<MenuItem item={mockData} />);
     item.find('.sub-menu-items li').forEach((item, index) => {
-      const expectedKey = `${mockData.items[index].id}`;
+      const expectedKey = `${index}`;
       expect(item.key()).toBe(expectedKey);
     });
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
     const item = shallow(<MenuItem item={noItems} />);
-    expect(item.state().isOpen).toEqual(false);
+    expect(item.state().isOpen).toEqual(undefined);
   });
 
   it('displays item as text if there are no sub-items and no href', () => {

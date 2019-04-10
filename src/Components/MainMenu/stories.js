@@ -113,4 +113,13 @@ storiesOf('MainMenu', module)
         </Block>
       </div>
     </DemoBrowserRouter>
+  ))
+  .add('start expanded', () => (
+    <DemoBrowserRouter>
+      <div styles={{ overflow: 'auto' }}>
+        <Block height="400px">
+          <MainMenu menu={menu} auxMenu={auxMenu} startExpanded />
+        </Block>
+      </div>
+    </DemoBrowserRouter>
   ));

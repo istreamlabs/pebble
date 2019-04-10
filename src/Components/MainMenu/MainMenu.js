@@ -34,6 +34,7 @@ class MainMenu extends React.Component {
   renderItem(menu) {
     const {
       location,
+      startExpanded,
     } = this.props;
 
     return menu.map((item, i) => (
@@ -41,6 +42,7 @@ class MainMenu extends React.Component {
         containsActiveItem={MainMenu.shouldBeOpen(location, item)}
         item={item}
         key={i}
+        startExpanded={startExpanded}
       />
     ));
   }
@@ -122,7 +124,7 @@ MainMenu.propTypes = {
    */
   title: PropTypes.string,
   /**
-   * start with everything expanded
+   * On first load, expand all menu items that contain child items
    */
   startExpanded: PropTypes.bool,
 };

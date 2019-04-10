@@ -12,10 +12,10 @@ import './MenuItem.scss';
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
-    const { containsActiveItem } = this.props;
+    const { containsActiveItem, startExpanded } = this.props;
 
     this.state = {
-      isOpen: !!containsActiveItem
+      isOpen: !!containsActiveItem || startExpanded
     };
   }
 
@@ -147,6 +147,10 @@ MenuItem.propTypes = {
    * the menu that gets rendered
    */
   item: PropTypes.object.isRequired,
+  /**
+   * start with the item expanded
+   */
+  startExpanded: PropTypes.bool,
 };
 
 export default MenuItem;
