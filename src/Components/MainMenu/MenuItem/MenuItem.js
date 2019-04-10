@@ -83,7 +83,7 @@ class MenuItem extends React.Component {
     const { item } = this.props;
     const { isOpen } = this.state;
 
-    const hasSubItems = (item.items && item.items.length);
+    const hasSubItems = !!(item.items && item.items.length);
 
     return (
       <li className="menu-item-container">
