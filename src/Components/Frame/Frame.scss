@@ -15,7 +15,7 @@ $FRAME_HEADER_HEIGHT: 60px;
   overflow: hidden;
 
   @include respond-above(md) {
-    grid-template-columns: 230px auto;
+    grid-template-columns: $NAV_LG_WIDTH auto;
     grid-template-areas: "nav main";
     grid-template-rows: auto;
   }
