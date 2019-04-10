@@ -97,13 +97,10 @@ MainMenu.propTypes = {
    * Menu items for the upper portion of the menu
    */
   menu: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    description: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
     }))
@@ -112,13 +109,10 @@ MainMenu.propTypes = {
    * Menu items for the lower portion of the menu (e.g. Profile, Support)
    */
   auxMenu: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    description: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
     }))
