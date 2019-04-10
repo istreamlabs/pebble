@@ -36,11 +36,11 @@ class MainMenu extends React.Component {
       location,
     } = this.props;
 
-    return menu.map(item => (
+    return menu.map((item, i) => (
       <MenuItem
         containsActiveItem={MainMenu.shouldBeOpen(location, item)}
         item={item}
-        key={item.id}
+        key={i}
       />
     ));
   }

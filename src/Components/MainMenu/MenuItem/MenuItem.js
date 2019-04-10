@@ -63,11 +63,10 @@ class MenuItem extends React.Component {
 
   renderSubItems = (items) => {
     const subItems = items.map((subItem, i) => (
-      <li key={subItem.id}>
+      <li key={i}>
         <NavLink
           to={subItem.href}
           className={classNames('sub-menu-item')}
-          key={i}
           role="menuitem"
           activeClassName="active"
         >
@@ -90,7 +89,7 @@ class MenuItem extends React.Component {
         <div className="menu-item-content">
           {item.href ? (
             <NavLink
-              id={`MenuItem-${item.id}`}
+              id={`MenuItem-${item.label}`}
               exact={item.exact}
               to={item.href}
               className="menu-item"
@@ -103,7 +102,7 @@ class MenuItem extends React.Component {
             </NavLink>
           ) : Array.isArray(item.items) && item.items.length > 0 ? (
             <button
-              id={`MenuItem-${item.id}`}
+              id={`MenuItem-${item.label}`}
               type="button"
               className="menu-item"
               aria-haspopup={hasSubItems}
@@ -128,7 +127,7 @@ class MenuItem extends React.Component {
         {hasSubItems && (
           <ul
             role="menu"
-            aria-labelledby={`MenuItem-${item.id}`}
+            aria-labelledby={`MenuItem-${item.label}`}
             className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}
           >
             {this.renderSubItems(item.items)}
