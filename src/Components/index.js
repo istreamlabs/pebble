@@ -10,6 +10,7 @@ export { default as DropdownItem } from './DropdownMenu/Components/DropdownItem'
 export { default as DropdownItemGroup } from './DropdownMenu/Components/DropdownItemGroup';
 export { default as FieldCheckbox } from './FieldCheckbox/FieldCheckbox';
 export { default as FieldRadioGroup } from './FieldRadioGroup/FieldRadioGroup';
+export { default as FieldSelect } from './FieldSelect/FieldSelect';
 export { default as FieldText } from './FieldText/FieldText';
 export { default as FieldToggle } from './FieldToggle/FieldToggle';
 export { default as Frame } from './Frame/Frame';

@@ -1,7 +1,8 @@
-### FieldSelect Examples
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import '../../Styles/foundation.scss';
 
-```js
-import { useState } from "react";
+import FieldSelect from './FieldSelect';
 
 const options = [
   { value: 'blueberry', label: 'Blueberry' },
@@ -15,48 +16,35 @@ const options = [
 ];
 
 function FieldSelectExamples() {
-  const [singleValue, setSingleValue] = useState();
-  const [multiValue, setMultiValue] = useState();
-
   return (
     <>
       <FieldSelect
         id="single"
         options={options}
         isSearchable
-        className="mb-2"
+        className="mb-5"
         label="Single Select"
         helpText="this is help text"
         placeholder="choose one"
-        onChange={(object,action)=>{
-         setSingleValue(object.value)
-        }}
       />
-
-      <div className="mb-5">selected value: {singleValue}</div>
 
       <FieldSelect
         id="multi"
         options={options}
         multiSelect
+        className="mb-5"
         isSearchable
-        className="mb-2"
         label="Multi-Select"
         placeholder="choose one or many"
-        onChange={(object,action)=>{
-          setMultiValue(object.map(o => o.value).join(', '))
-        }}
       />
-      <div className="mb-5">selected value(s): {multiValue}</div>
-
 
       <FieldSelect
         id="checkbox"
         options={options}
         showCheckbox
+        className="mb-5"
         multiSelect
         isSearchable
-        className="mb-5"
         label="Checkbox Multi-Select"
         placeholder="choose one or many"
       />
@@ -80,16 +68,44 @@ function FieldSelectExamples() {
         placeholder="choose one"
       />
     </>
-  )
+  );
 }
 
-<FieldSelectExamples />
-```
-
-## Best Practices
-
-FieldSelect should:
-
-* Work independently from other checkboxes
-* Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
-* Should be applied when the user presses a form "submit" button
+storiesOf('FieldSelect', module)
+  .add('all', () => (
+    <FieldSelectExamples />
+  ))
+  .add('open single', () => (
+    <FieldSelect
+      id="openSingle"
+      options={options}
+      showCheckbox
+      isSearchable
+      label="Checkbox Multi-Select"
+      placeholder="choose one or many"
+      menuIsOpen
+    />
+  ))
+  .add('open multi', () => (
+    <FieldSelect
+      id="openMulti"
+      options={options}
+      multiSelect
+      isSearchable
+      label="Checkbox Multi-Select"
+      placeholder="choose one or many"
+      menuIsOpen
+    />
+  ))
+  .add('open multi with checkbox', () => (
+    <FieldSelect
+      id="openMultiCheckbox"
+      options={options}
+      showCheckbox
+      multiSelect
+      isSearchable
+      label="Checkbox Multi-Select"
+      placeholder="choose one or many"
+      menuIsOpen
+    />
+  ));

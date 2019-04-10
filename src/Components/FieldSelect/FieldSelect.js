@@ -1,61 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import Select, { components } from 'react-select';
+import Select from 'react-select';
+
+import ClearIndicator from './Components/ClearIndicator';
+import DropdownIndicator from './Components/DropdownIndicator';
+import MultiValueRemove from './Components/MultiValueRemove';
+import Option from './Components/Option';
 
 import './FieldSelect.scss';
 
-import classNames from 'classnames';
 
 import Block from '../Block/Block';
-import Badge from '../Badge/Badge';
 import Text from '../Text/Text';
-import Icon from '../Icon/Icon';
 
 /**
  * Allows for the selection of item(s) from a set of options.
+ * This is a wrapper of [React Select](https://react-select.com).
  *
  * ---
  */
 
-const ClearIndicator = (props) => {
-  const { innerProps: { ref, ...restInnerProps } } = props;
-  return (
-    <Block {...restInnerProps} ref={ref} paddingHorizontal="3">
-      <Icon name="remove-circle" />
-    </Block>
-  );
-};
-
-ClearIndicator.propTypes = {
-  innerProps: PropTypes.object,
-};
-
-const DropdownIndicator = () => (
-  <Block paddingHorizontal="3">
-    <Icon name="arrow-small-down" />
-  </Block>
-);
-
-const MultiValueContainer = props => (
-  <Badge className="m-1">
-    <components.MultiValueContainer {...props} />
-  </Badge>
-);
-
-const MultiValueLabel = props => (
-  <components.MultiValueLabel {...props} />
-);
-
-const MultiValueRemove = props => (
-  <components.MultiValueRemove {...props}>
-    <Icon name="remove" size="10" />
-  </components.MultiValueRemove>
-);
-
 const FieldSelect = (
   {
     className,
+    closeMenuOnSelect,
     id,
     label,
     isInvalid,
@@ -63,27 +33,32 @@ const FieldSelect = (
     multiSelect,
     value,
     disabled,
+    showCheckbox,
     validationText,
     ...rest
   }
 ) => {
+  const selectClassNames = classNames('fieldSelect', {
+    invalid: isInvalid,
+  });
+
+  const components = {
+    ...((showCheckbox && multiSelect) && { Option }), ClearIndicator, DropdownIndicator, MultiValueRemove
+  };
+
   const selectMarkup = () => (
     <Select
-      className="fieldSelect"
+      id={id}
+      className={selectClassNames}
       classNamePrefix="pebble"
       isMulti={multiSelect}
       isDisabled={disabled}
-      components={{
-        ClearIndicator, DropdownIndicator, MultiValueContainer, MultiValueLabel, MultiValueRemove
-      }}
-      styles={{
-        multiValueLabel: base => ({ ...base, padding: 0 }),
-        MultiValueContainer: base => ({ ...base, margin: 0 })
-      }}
+      closeMenuOnSelect={closeMenuOnSelect || (!multiSelect)}
+      hideSelectedOptions={false}
+      components={components}
       {...rest}
     />
   );
-
 
   const labelMarkup = () => {
     // normal checkbox
@@ -139,11 +114,16 @@ const FieldSelect = (
 };
 
 FieldSelect.propTypes = {
+  showCheckbox: PropTypes.bool,
   autoFocus: PropTypes.bool,
   /**
    * Additional classes to add
    */
   className: PropTypes.string,
+  /**
+   * Close the menu when a user selects an option
+   */
+  closeMenuOnSelect: PropTypes.string,
   /**
    * Sets aria-label attribute.
    */
@@ -161,7 +141,7 @@ FieldSelect.propTypes = {
    */
   isReadOnly: PropTypes.bool,
   /**
-   * The id attribute of the input
+   * The id attribute of the container
    */
   id: PropTypes.string.isRequired,
   /**
@@ -184,10 +164,6 @@ FieldSelect.propTypes = {
    * Support multiple selected options
    */
   multiSelect: PropTypes.bool,
-  /**
-   * Text to display when there are no options
-   */
-  noOptionsMessage: PropTypes.string,
   /**
    * Callback function when select is blurred
    */
