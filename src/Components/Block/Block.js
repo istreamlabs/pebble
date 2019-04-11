@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  getOverflowClasses, getSpacingClasses, getBorderRadiusClasses, parseTextSize
+  getFlexDirectionClasses,
+  getDimensionClasses,
+  getItemSpacingClasses,
+  getOverflowClasses,
+  getBorderRadiusClasses,
+  parseTextSize
 } from '../../Utils';
 import {
-  colorType, fontSizeType, textAlignType, radiusType, spacingType
+  colorType, fontSizeType, textAlignType, radiusType, spacingType, dimensionType
 } from '../../Types';
 
 import './Block.scss';
@@ -68,6 +73,17 @@ class Block extends React.Component {
       ...props
     } = this.props;
 
+    const mtClasses = marginTop !== undefined ? getDimensionClasses('mt', marginTop) : null;
+    const mbClasses = marginBottom !== undefined ? getDimensionClasses('mb', marginBottom) : null;
+    const pClasses = padding !== undefined ? getDimensionClasses('p', padding) : null;
+    const phClasses = paddingHorizontal !== undefined ? getDimensionClasses('ph', paddingHorizontal) : null;
+    const pvClasses = paddingVertical !== undefined ? getDimensionClasses('pv', paddingVertical) : null;
+    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
+    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
+    const directionClasses = getFlexDirectionClasses(direction);
+    const widthStyles = getDimensionClasses('width', width);
+    const heightStyles = getDimensionClasses('height', height);
+
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
     const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] } : null;
@@ -83,33 +99,35 @@ class Block extends React.Component {
 
     const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
 
-    const widthStyle = { width: width || null };
-    const heightStyle = { height: height || null };
-
     const mergedStyle = {
-      ...flexStyle, ...basisStyle, ...widthStyle, ...heightStyle
+      ...flexStyle, ...basisStyle,
     };
 
-    const mtClasses = marginTop !== undefined ? getSpacingClasses('mt', marginTop) : null;
-    const mbClasses = marginBottom !== undefined ? getSpacingClasses('mb', marginBottom) : null;
-    const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
-    const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
-    const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
-    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
-    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
+    // widthStyles is a style
+    if (typeof widthStyles === 'object') {
+      Object.assign(mergedStyle, widthStyles);
+    }
+
+    if (typeof heightStyles === 'object') {
+      Object.assign(mergedStyle, heightStyles);
+    }
 
     const classes = classNames(
+      directionClasses,
       overflowClasses,
       mbClasses,
       mtClasses,
       pClasses,
       phClasses,
       pvClasses,
-      radiusClass, {
+      radiusClass,
+      Array.isArray(heightStyles) && heightStyles.length && heightStyles,
+      typeof heightStyles === 'string' && heightStyles,
+      Array.isArray(widthStyles) && widthStyles.length && widthStyles, // width is responsive
+      typeof widthStyles === 'string' && widthStyles, { // width is percentage
         flex: !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
-        [`flex-${direction}`]: direction,
         [`content-${alignContent}`]: alignContent,
         [`self-${alignSelf}`]: alignSelf,
         [`items-${alignItems}`]: alignItems,
@@ -120,12 +138,12 @@ class Block extends React.Component {
       }, className
     );
 
-    const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
+    const spacingClasses = itemSpacing !== undefined ? getItemSpacingClasses(direction, itemSpacing) : null;
 
     const blockChildren = itemSpacing !== undefined
       ? React.Children.map(children, child => React.cloneElement(
         child,
-        { className: classNames(child.props.className, 'block-item', spacingClass) }
+        { className: classNames(child.props.className, 'block-item', spacingClasses) }
       )) : children;
 
     const Element = as;
@@ -183,9 +201,14 @@ Block.propTypes = {
   children: PropTypes.node,
   /**
    * Orientation to layout children
+   *
+   * For responsive behavior, pass an array with length up to 4, with 'row' or 'column' as the value for each element.
    * @type {PropTypes.Requireable<Direction>}
    */
-  direction: PropTypes.oneOf(['row', 'column']),
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['row', 'column']),
+    PropTypes.array,
+  ]),
   /**
    * Whether flex-grow and/or flex-shrink is true and at a desired factor
    */
@@ -198,9 +221,13 @@ Block.propTypes = {
     })
   ]),
   /**
-   * A valid css width (%, px, em, rem)
+   * A valid css width (%, px, em, rem).
+   *
+   * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  height: PropTypes.string,
+  height: dimensionType,
   /**
    * Alignment of contents along the main axis
    * @type {PropTypes.Requireable<Justify>}
@@ -324,9 +351,13 @@ Block.propTypes = {
    */
   truncate: PropTypes.bool,
   /**
-   * A valid css width (%, px, em, rem)
+   * A valid css width (%, px, em, rem).
+   *
+   * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width: PropTypes.string,
+  width: dimensionType,
   /**
    * Wrap children if they can not fit along main axis
    */

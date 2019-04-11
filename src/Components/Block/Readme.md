@@ -2,12 +2,12 @@
 
 ### Direction
 
-Defaults to row.
+Pass a flex-direction to control which way the content will flow. Defaults to row. For responsive mobile-first styles, pass an array with `row` or `column` as the value for each element.
 
 ```js hide
 import Badge from '../Badge/Badge';
 <>
-  <Block background="white" padding="3" justify="center" itemSpacing="3" marginBottom="4">
+  <Block direction="column" padding="3" alignItems="center" itemSpacing="3">
     <Badge type="info">badge 1</Badge>
     <Badge type="info">badge 2</Badge>
     <Badge type="info">badge 3</Badge>
@@ -15,7 +15,18 @@ import Badge from '../Badge/Badge';
     <Badge type="info">badge 5</Badge>
   </Block>
 
-  <Block background="white" direction="column" padding="3" alignItems="center" itemSpacing="3">
+  <Block
+    direction={[
+      'column', // by default
+      'row',    // 30rem and up
+      'column', // 60rem and up
+      'row'     // 90rem and up
+    ]}
+    padding="3"
+    justify="center"
+    alignItems="center"
+    itemSpacing="3"
+  >
     <Badge type="info">badge 1</Badge>
     <Badge type="info">badge 2</Badge>
     <Badge type="info">badge 3</Badge>
@@ -37,21 +48,45 @@ Basis defines the default size of an element before the remaining space is distr
 </Block>
 ```
 
-### Width and Height
+### Width
 
-Set the width and/or height
+Width can be set to a valid css width value.
 
 ```js
-<Block justify="start" itemSpacing="3" marginBottom="4">
-  <Block padding="3" width="200px" background="blue-light">200px</Block>
-  <Block padding="3" width="100px" background="blue-light">100px</Block>
-  <Block padding="3" flex background="blue-light">Fills remaining space</Block>
-</Block>
+<Block width="243px" padding="3" background="blue-light" marginBottom="4">233px</Block>
+<Block width="10rem" padding="3" background="blue-light" marginBottom="4">10rem (160px)</Block>
+<Block width="25%" padding="3" background="blue-light" marginBottom="4">25%</Block>
+```
 
-<Block justify="start" itemSpacing="3">
-  <Block padding="3" width="30%" height="100px" background="blue-light">30%, 100px</Block>
-  <Block padding="3" width="30%" height="50px" background="blue-light">30%, 50px</Block>
-  <Block padding="3" width="40%" height="100px" background="blue-light">40%, 100px</Block>
+For responsive widths, pass an array of percentages for each element.
+
+```js
+<Block itemSpacing="3">
+  <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
+  <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
+  <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
+</Block>
+```
+
+### Height
+
+Height can be set to a valid css height value.
+
+```js
+<Block itemSpacing="3" height="100px">
+  <Block height="44px" padding="3" background="blue-light" marginBottom="4">44px</Block>
+  <Block height="4rem" padding="3" background="blue-light" marginBottom="4">4rem (64px)</Block>
+  <Block height="80%" padding="3" background="blue-light" marginBottom="4">80%</Block>
+</Block>
+```
+
+For responsive height, pass an array of percentages for each element.
+
+```js
+<Block direction="column" itemSpacing="3" height="300px">
+  <Block height={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
+  <Block height={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
+  <Block height={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
 </Block>
 ```
 

@@ -194,3 +194,31 @@ $NAV_LG_WIDTH: 250px;
 $NAV_BG: $white;
 $NAV_BORDER_COLOR: $neutral-300;
 $NAV_ITEM_HOVER: $neutral-200;
+
+
+$INPUT_COLOR: $neutral-700;
+$INPUT_PLACEHOLDER_COLOR: $neutral-500;
+
+$INPUT_PADDING_S: $spacing-1 $spacing-2;
+$INPUT_PADDING_M: $spacing-2 $spacing-3;
+$INPUT_PADDING_L: $spacing-3 $spacing-4;
+
+$INPUT_FONT_SIZE_S: $font-size-6;
+$INPUT_FONT_SIZE_M: $font-size-5;
+$INPUT_FONT_SIZE_L: $font-size-4;
+
+$INPUT_BORDER: 1px solid $neutral-400;
+$INPUT_BORDER_FOCUS: 1px solid $blue;
+$INPUT_BORDER_RADIUS: $border-radius-1;
+
+$INPUT_BORDER_ERROR: 1px solid $red;
+$INPUT_BORDER_DISABLED: 1px solid $neutral-200;
+
+$INPUT_FOCUS_SHADOW: $box-shadow-1;
+
+$INPUT_BG: $white;
+$INPUT_BG_ERROR: $red-lighter;
+$INPUT_BG_DISABLED: $neutral-300;
+$INPUT_COLOR_DISABLED: $neutral-500;
+
+$INPUT_SELECTED_BG: $blue-dark;
