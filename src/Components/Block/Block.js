@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
   getFlexDirectionClasses,
+  getDimensionClasses,
   getItemSpacingClasses,
   getOverflowClasses,
   getSpacingClasses,
@@ -10,7 +11,7 @@ import {
   parseTextSize
 } from '../../Utils';
 import {
-  colorType, fontSizeType, textAlignType, radiusType, spacingType
+  colorType, fontSizeType, textAlignType, radiusType, spacingType, dimensionType
 } from '../../Types';
 
 import './Block.scss';
@@ -73,6 +74,16 @@ class Block extends React.Component {
       ...props
     } = this.props;
 
+    const mtClasses = marginTop !== undefined ? getSpacingClasses('mt', marginTop) : null;
+    const mbClasses = marginBottom !== undefined ? getSpacingClasses('mb', marginBottom) : null;
+    const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
+    const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
+    const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
+    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
+    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
+    const directionClasses = getFlexDirectionClasses(direction);
+    const widthStyles = getDimensionClasses('width', width);
+
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
     const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] } : null;
@@ -88,21 +99,16 @@ class Block extends React.Component {
 
     const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
 
-    const widthStyle = { width: width || null };
     const heightStyle = { height: height || null };
 
     const mergedStyle = {
-      ...flexStyle, ...basisStyle, ...widthStyle, ...heightStyle
+      ...flexStyle, ...basisStyle, ...heightStyle
     };
 
-    const mtClasses = marginTop !== undefined ? getSpacingClasses('mt', marginTop) : null;
-    const mbClasses = marginBottom !== undefined ? getSpacingClasses('mb', marginBottom) : null;
-    const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
-    const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
-    const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
-    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
-    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
-    const directionClasses = getFlexDirectionClasses(direction);
+    // widthStyles is a style
+    if (typeof widthStyles === 'object') {
+      Object.assign(mergedStyle, widthStyles);
+    }
 
     const classes = classNames(
       directionClasses,
@@ -112,7 +118,9 @@ class Block extends React.Component {
       pClasses,
       phClasses,
       pvClasses,
-      radiusClass, {
+      radiusClass,
+      Array.isArray(widthStyles) && widthStyles.length && widthStyles, // width is responsive
+      typeof widthStyles === 'string' && widthStyles, { // width is percentage
         flex: !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
@@ -335,9 +343,13 @@ Block.propTypes = {
    */
   truncate: PropTypes.bool,
   /**
-   * A valid css width (%, px, em, rem)
+   * A valid css width (%, px, em, rem).
+   *
+   * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width: PropTypes.string,
+  width: dimensionType,
   /**
    * Wrap children if they can not fit along main axis
    */

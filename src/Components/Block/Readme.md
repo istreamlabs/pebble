@@ -48,21 +48,23 @@ Basis defines the default size of an element before the remaining space is distr
 </Block>
 ```
 
-### Width and Height
+### Width
 
-Set the width and/or height.
+Set the width with a valid css width.
 
 ```js
-<Block justify="start" itemSpacing="3" marginBottom="4">
-  <Block padding="3" width="200px" background="blue-light">200px</Block>
-  <Block padding="3" width="100px" background="blue-light">100px</Block>
-  <Block padding="3" flex background="blue-light">Fills remaining space</Block>
-</Block>
+<Block width="243px" padding="3" background="blue-light" marginBottom="4">233px</Block>
+<Block width="10rem" padding="3" background="blue-light" marginBottom="4">10rem (160px)</Block>
+<Block width="25%" padding="3" background="blue-light" marginBottom="4">25%</Block>
+```
 
-<Block justify="start" itemSpacing="3">
-  <Block padding="3" width="30%" height="100px" background="blue-light">30%, 100px</Block>
-  <Block padding="3" width="30%" height="50px" background="blue-light">30%, 50px</Block>
-  <Block padding="3" width="40%" height="100px" background="blue-light">40%, 100px</Block>
+For responsive widths, pass an array of percentages for each element.
+
+```js
+<Block itemSpacing="3" marginBottom="4">
+  <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
+  <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
+  <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
 </Block>
 ```
 

@@ -24,3 +24,11 @@ export const colorType = PropTypes.oneOf([
 export const fontSizeType = PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']);
 
 export const textAlignType = PropTypes.oneOf(['left', 'right', 'center']);
+
+const validDimensions = [1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'];
+
+export const dimensionType = PropTypes.oneOfType([
+  PropTypes.oneOf(validDimensions),
+  PropTypes.string,
+  PropTypes.arrayOf(PropTypes.oneOf(validDimensions))
+]);
