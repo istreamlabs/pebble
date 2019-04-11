@@ -90,6 +90,6 @@ function FieldSelectExamples() {
 
 FieldSelect should:
 
-* Work independently from other checkboxes
+* Work independently from other checkboxes. Selecting one checkbox in a collection of checkboxes, should not change the status of another checkbox in the collection. However, an exception is when a checkbox makes a bulk selection of multiple items in a list.
 * Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
 * Should be applied when the user presses a form "submit" button
