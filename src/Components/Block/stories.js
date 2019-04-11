@@ -17,18 +17,30 @@ storiesOf('Block', module)
       </Block>
 
       <Block justify="start" itemSpacing="3" marginBottom="4">
-        <Block padding="3" width="200px" background="blue-light">200px</Block>
-        <Block padding="3" width="100px" background="blue-light">100px</Block>
-        <Block padding="3" flex background="blue-light">Fills remaining space</Block>
+        <Block width="243px" padding="3" background="blue-light" marginBottom="4">233px</Block>
+        <Block width="10rem" padding="3" background="blue-light" marginBottom="4">10rem (160px)</Block>
+        <Block width="25%" padding="3" background="blue-light" marginBottom="4">25%</Block>
       </Block>
 
-      <Block justify="start" itemSpacing="3">
-        <Block padding="3" width="30%" height="100px" background="blue-light">30%, 100px</Block>
-        <Block padding="3" width="30%" height="50px" background="blue-light">30%, 50px</Block>
-        <Block padding="3" width="40%" height="100px" background="blue-light">40%, 100px</Block>
+      <Block itemSpacing="3" marginBottom="4">
+        <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
+        <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
+        <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
       </Block>
 
-      <Block alignItems="center" itemSpacing="3">
+      <Block itemSpacing="3" height="100px" marginBottom="4">
+        <Block height="44px" padding="3" background="blue-light" marginBottom="4">44px</Block>
+        <Block height="4rem" padding="3" background="blue-light" marginBottom="4">4rem (64px)</Block>
+        <Block height="80%" padding="3" background="blue-light" marginBottom="4">80%</Block>
+      </Block>
+
+      <Block direction="column" itemSpacing="3" height="300px" marginBottom="4">
+        <Block height={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
+        <Block height={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
+        <Block height={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
+      </Block>
+
+      <Block alignItems="center" itemSpacing="3" marginBottom="4">
         <Block width="150px"><Text size="2">A tall column with variable height</Text></Block>
         <Badge type="info">badge</Badge>
         <Block height="100px" background="blue-light" padding="3" alignItems="center">100px height</Block>

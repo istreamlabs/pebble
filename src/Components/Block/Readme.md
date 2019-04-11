@@ -50,7 +50,7 @@ Basis defines the default size of an element before the remaining space is distr
 
 ### Width
 
-Set the width with a valid css width.
+Width can be set to a valid css width value.
 
 ```js
 <Block width="243px" padding="3" background="blue-light" marginBottom="4">233px</Block>
@@ -61,10 +61,32 @@ Set the width with a valid css width.
 For responsive widths, pass an array of percentages for each element.
 
 ```js
-<Block itemSpacing="3" marginBottom="4">
+<Block itemSpacing="3">
   <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
   <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
   <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
+</Block>
+```
+
+### Height
+
+Height can be set to a valid css height value.
+
+```js
+<Block itemSpacing="3" height="100px">
+  <Block height="44px" padding="3" background="blue-light" marginBottom="4">44px</Block>
+  <Block height="4rem" padding="3" background="blue-light" marginBottom="4">4rem (64px)</Block>
+  <Block height="80%" padding="3" background="blue-light" marginBottom="4">80%</Block>
+</Block>
+```
+
+For responsive height, pass an array of percentages for each element.
+
+```js
+<Block direction="column" itemSpacing="3" height="300px">
+  <Block height={[10, 33, 25, 10]} padding="3" background="blue-light">10%, 33%, 25%, 10%</Block>
+  <Block height={[80, 33, 50, 10]} padding="3" background="blue-light">80%, 33%, 50%, 10%</Block>
+  <Block height={[10, 34, 25, 80]} padding="3" background="blue-light">10%, 34%, 25%, 80%</Block>
 </Block>
 ```
 

@@ -82,6 +82,7 @@ class Block extends React.Component {
     const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
     const directionClasses = getFlexDirectionClasses(direction);
     const widthStyles = getDimensionClasses('width', width);
+    const heightStyles = getDimensionClasses('height', height);
 
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
@@ -98,15 +99,17 @@ class Block extends React.Component {
 
     const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
 
-    const heightStyle = { height: height || null };
-
     const mergedStyle = {
-      ...flexStyle, ...basisStyle, ...heightStyle
+      ...flexStyle, ...basisStyle,
     };
 
     // widthStyles is a style
     if (typeof widthStyles === 'object') {
       Object.assign(mergedStyle, widthStyles);
+    }
+
+    if (typeof heightStyles === 'object') {
+      Object.assign(mergedStyle, heightStyles);
     }
 
     const classes = classNames(
@@ -118,6 +121,8 @@ class Block extends React.Component {
       phClasses,
       pvClasses,
       radiusClass,
+      Array.isArray(heightStyles) && heightStyles.length && heightStyles,
+      typeof heightStyles === 'string' && heightStyles,
       Array.isArray(widthStyles) && widthStyles.length && widthStyles, // width is responsive
       typeof widthStyles === 'string' && widthStyles, { // width is percentage
         flex: !truncate,
@@ -216,9 +221,13 @@ Block.propTypes = {
     })
   ]),
   /**
-   * A valid css width (%, px, em, rem)
+   * A valid css width (%, px, em, rem).
+   *
+   * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  height: PropTypes.string,
+  height: dimensionType,
   /**
    * Alignment of contents along the main axis
    * @type {PropTypes.Requireable<Justify>}
