@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  getOverflowClasses, getSpacingClasses, getBorderRadiusClasses, parseTextSize
+  getFlexDirectionClasses,
+  getItemSpacingClasses,
+  getOverflowClasses,
+  getSpacingClasses,
+  getBorderRadiusClasses,
+  parseTextSize
 } from '../../Utils';
 import {
   colorType, fontSizeType, textAlignType, radiusType, spacingType
@@ -26,6 +31,9 @@ const BASIS_MAP = {
   '1/3': '33.33%',
   '2/3': '66.66%',
 };
+
+
+
 
 /**
  * A `<Block>` is a layout component to build UIs with consistent
@@ -97,8 +105,10 @@ class Block extends React.Component {
     const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
     const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
+    const directionClasses = getFlexDirectionClasses(direction);
 
     const classes = classNames(
+      directionClasses,
       overflowClasses,
       mbClasses,
       mtClasses,
@@ -109,7 +119,6 @@ class Block extends React.Component {
         flex: !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
-        [`flex-${direction}`]: direction,
         [`content-${alignContent}`]: alignContent,
         [`self-${alignSelf}`]: alignSelf,
         [`items-${alignItems}`]: alignItems,
@@ -120,12 +129,12 @@ class Block extends React.Component {
       }, className
     );
 
-    const spacingClass = direction === 'row' ? classNames({ [`mr-${itemSpacing}`]: itemSpacing }) : classNames({ [`mb-${itemSpacing}`]: itemSpacing });
+    const spacingClasses = itemSpacing !== undefined ? getItemSpacingClasses(direction, itemSpacing) : null;
 
     const blockChildren = itemSpacing !== undefined
       ? React.Children.map(children, child => React.cloneElement(
         child,
-        { className: classNames(child.props.className, 'block-item', spacingClass) }
+        { className: classNames(child.props.className, 'block-item', spacingClasses) }
       )) : children;
 
     const Element = as;
@@ -185,7 +194,10 @@ Block.propTypes = {
    * Orientation to layout children
    * @type {PropTypes.Requireable<Direction>}
    */
-  direction: PropTypes.oneOf(['row', 'column']),
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['row', 'column']),
+    PropTypes.array,
+  ]),
   /**
    * Whether flex-grow and/or flex-shrink is true and at a desired factor
    */

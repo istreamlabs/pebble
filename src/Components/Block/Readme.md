@@ -2,12 +2,12 @@
 
 ### Direction
 
-Defaults to row.
+Defaults to row. Pass an array of values for mobile-first responsive styles.
 
 ```js hide
 import Badge from '../Badge/Badge';
 <>
-  <Block background="white" padding="3" justify="center" itemSpacing="3" marginBottom="4">
+  <Block background="white" direction="column" padding="3" alignItems="center" itemSpacing="3">
     <Badge type="info">badge 1</Badge>
     <Badge type="info">badge 2</Badge>
     <Badge type="info">badge 3</Badge>
@@ -15,7 +15,7 @@ import Badge from '../Badge/Badge';
     <Badge type="info">badge 5</Badge>
   </Block>
 
-  <Block background="white" direction="column" padding="3" alignItems="center" itemSpacing="3">
+  <Block background="white" direction={['column', 'row','column', 'row']} padding="3" justify="center" alignItems="center" itemSpacing="3">
     <Badge type="info">badge 1</Badge>
     <Badge type="info">badge 2</Badge>
     <Badge type="info">badge 3</Badge>
