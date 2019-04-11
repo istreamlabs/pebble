@@ -100,6 +100,21 @@ describe('Block', () => {
     });
   });
 
+  describe('Width', () => {
+    it('gets the correct css value', () => {
+      const wrapper = shallow(<Block height="27rem">width</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('height', '27rem');
+    });
+    it('gets the correct value when passed a number', () => {
+      const wrapper = shallow(<Block height="8">width</Block>);
+      expect(wrapper.prop('className')).toContain('h8');
+    });
+    it('gets the correct value when passed an array', () => {
+      const wrapper = shallow(<Block height={[20, 30]}>width</Block>);
+      expect(wrapper.prop('className')).toContain('h-20 h-30-ns');
+    });
+  });
+
   describe('Basis', () => {
     it('sets auto basis', () => {
       const wrapper = shallow(<Block basis="auto">test</Block>);
