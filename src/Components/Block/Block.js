@@ -32,9 +32,6 @@ const BASIS_MAP = {
   '2/3': '66.66%',
 };
 
-
-
-
 /**
  * A `<Block>` is a layout component to build UIs with consistent
  * padding and vertical spacing between components. Use it to also set `font-size`.
