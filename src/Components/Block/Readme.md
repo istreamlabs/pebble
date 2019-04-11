@@ -2,12 +2,12 @@
 
 ### Direction
 
-Defaults to row. Pass an array of values for mobile-first responsive styles.
+Pass a flex-direction to control which way the content will flow. Defaults to row. For responsive mobile-first styles, pass an array with `row` or `column` as the value for each element.
 
 ```js hide
 import Badge from '../Badge/Badge';
 <>
-  <Block background="white" direction="column" padding="3" alignItems="center" itemSpacing="3">
+  <Block direction="column" padding="3" alignItems="center" itemSpacing="3">
     <Badge type="info">badge 1</Badge>
     <Badge type="info">badge 2</Badge>
     <Badge type="info">badge 3</Badge>
@@ -15,7 +15,18 @@ import Badge from '../Badge/Badge';
     <Badge type="info">badge 5</Badge>
   </Block>
 
-  <Block background="white" direction={['column', 'row','column', 'row']} padding="3" justify="center" alignItems="center" itemSpacing="3">
+  <Block
+    direction={[
+      'column', // by default
+      'row',    // 30rem and up
+      'column', // 60rem and up
+      'row'     // 90rem and up
+    ]}
+    padding="3"
+    justify="center"
+    alignItems="center"
+    itemSpacing="3"
+  >
     <Badge type="info">badge 1</Badge>
     <Badge type="info">badge 2</Badge>
     <Badge type="info">badge 3</Badge>
@@ -39,7 +50,7 @@ Basis defines the default size of an element before the remaining space is distr
 
 ### Width and Height
 
-Set the width and/or height
+Set the width and/or height.
 
 ```js
 <Block justify="start" itemSpacing="3" marginBottom="4">

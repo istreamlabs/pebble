@@ -189,6 +189,8 @@ Block.propTypes = {
   children: PropTypes.node,
   /**
    * Orientation to layout children
+   *
+   * For responsive behavior, pass an array with length up to 4, with 'row' or 'column' as the value for each element.
    * @type {PropTypes.Requireable<Direction>}
    */
   direction: PropTypes.oneOfType([
