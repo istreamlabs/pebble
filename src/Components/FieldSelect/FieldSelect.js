@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import Select from 'react-select';
 
+import { dimensionType } from '../../Types';
+
 import ClearIndicator from './Components/ClearIndicator';
 import DropdownIndicator from './Components/DropdownIndicator';
 import MultiValueRemove from './Components/MultiValueRemove';
@@ -35,6 +37,7 @@ const FieldSelect = (
     disabled,
     showCheckbox,
     validationText,
+    width,
     ...rest
   }
 ) => {
@@ -104,7 +107,7 @@ const FieldSelect = (
     className);
 
   return (
-    <Block direction="column" className={classes}>
+    <Block direction="column" className={classes} width={width}>
       {labelMarkup()}
       {helpTextMarkup()}
       {selectMarkup()}
@@ -204,6 +207,14 @@ FieldSelect.propTypes = {
    * The text should explain why the input is invalid.
    */
   validationText: PropTypes.string,
+  /**
+   * A valid css width (%, px, em, rem).
+   *
+   * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   */
+  width: dimensionType,
 };
 
 export default FieldSelect;

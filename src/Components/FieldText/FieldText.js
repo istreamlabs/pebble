@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { dimensionType } from '../../Types';
+
 import Block from '../Block/Block';
 import Input from '../Input/Input';
 import Text from '../Text/Text';
@@ -90,12 +92,13 @@ class FieldText extends React.Component {
   render() {
     const {
       className,
+      width,
     } = this.props;
 
     const classes = classNames('field-text', className);
 
     return (
-      <Block direction="column" className={classes}>
+      <Block direction="column" className={classes} width={width}>
         {this.getLabelMarkup()}
         {this.getHelpTextMarkup()}
         {this.renderChildren()}
@@ -205,6 +208,14 @@ FieldText.propTypes = {
    * Text to display after the value
    */
   suffix: PropTypes.string,
+  /**
+   * A valid css width (%, px, em, rem).
+   *
+   * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   */
+  width: dimensionType,
 };
 
 export default FieldText;

@@ -20,7 +20,6 @@ export default (direction, spacing) => {
   } else {
     return undefined;
   }
-  console.log('itemSpacing', itemSpacing);
 
   return itemSpacing;
 };

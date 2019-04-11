@@ -85,6 +85,21 @@ describe('Block', () => {
     });
   }),
 
+  describe('Width', () => {
+    it('gets the correct css value', () => {
+      const wrapper = shallow(<Block width="27rem">width</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('width', '27rem');
+    });
+    it('gets the correct value when passed a number', () => {
+      const wrapper = shallow(<Block width="8">width</Block>);
+      expect(wrapper.prop('className')).toContain('w8');
+    });
+    it('gets the correct value when passed an array', () => {
+      const wrapper = shallow(<Block width={[20, 30]}>width</Block>);
+      expect(wrapper.prop('className')).toContain('w-20 w-30-ns');
+    });
+  });
+
   describe('Basis', () => {
     it('sets auto basis', () => {
       const wrapper = shallow(<Block basis="auto">test</Block>);
