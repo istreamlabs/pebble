@@ -113,7 +113,7 @@ class MenuItem extends React.Component {
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                className={classNames('menu-item-collapse', {
+                className={classNames('menu-item-collapse', 'neutral-500', {
                   opened: isOpen,
                   closed: !isOpen
                 })}
