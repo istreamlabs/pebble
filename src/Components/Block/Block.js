@@ -6,7 +6,6 @@ import {
   getDimensionClasses,
   getItemSpacingClasses,
   getOverflowClasses,
-  getSpacingClasses,
   getBorderRadiusClasses,
   parseTextSize
 } from '../../Utils';
@@ -74,11 +73,11 @@ class Block extends React.Component {
       ...props
     } = this.props;
 
-    const mtClasses = marginTop !== undefined ? getSpacingClasses('mt', marginTop) : null;
-    const mbClasses = marginBottom !== undefined ? getSpacingClasses('mb', marginBottom) : null;
-    const pClasses = padding !== undefined ? getSpacingClasses('p', padding) : null;
-    const phClasses = paddingHorizontal !== undefined ? getSpacingClasses('ph', paddingHorizontal) : null;
-    const pvClasses = paddingVertical !== undefined ? getSpacingClasses('pv', paddingVertical) : null;
+    const mtClasses = marginTop !== undefined ? getDimensionClasses('mt', marginTop) : null;
+    const mbClasses = marginBottom !== undefined ? getDimensionClasses('mb', marginBottom) : null;
+    const pClasses = padding !== undefined ? getDimensionClasses('p', padding) : null;
+    const phClasses = paddingHorizontal !== undefined ? getDimensionClasses('ph', paddingHorizontal) : null;
+    const pvClasses = paddingVertical !== undefined ? getDimensionClasses('pv', paddingVertical) : null;
     const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
     const directionClasses = getFlexDirectionClasses(direction);

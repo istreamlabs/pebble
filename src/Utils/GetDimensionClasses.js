@@ -3,18 +3,13 @@ export default (dimension, value) => {
 
   let classPrefix = getPrefix(dimension, value);
 
-  if (typeof value === 'number') {
-    console.log('number')
-    classes = `${classPrefix}${value}`;
-  } else if (typeof value === 'string') {
-    console.log('string')
-    if (value.includes('px') || value.includes('em') || value.includes('rem') || value.includes('%')) {
-      return { [dimension]: value };
-    }
+  if (typeof value === 'string' && (value.includes('px') || value.includes('em') || value.includes('rem') || value.includes('%'))) {
+    return { [dimension]: value };
+  }
+
+  if (typeof value === 'string' || typeof value === 'number') {
     classes = `${classPrefix}${value}`;
   } else if (Array.isArray(value) && value.length) {
-    console.log('array')
-
     classes = [];
     classPrefix = getPrefix(dimension, value[0]);
     classes.push(`${classPrefix}${value[0]}`);
@@ -36,16 +31,27 @@ export default (dimension, value) => {
   } else {
     return undefined;
   }
-
-  console.log(classes);
   return classes;
 };
 
 function getPrefix(dimension, value) {
   let prefix = dimension === 'width' ? 'w' : 'h';
 
-  if (value > 9) {
-    prefix = `${prefix}-`;
+  switch (dimension) {
+    case 'width':
+      prefix = 'w';
+      if (value > 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'height':
+      prefix = 'h';
+      if (value > 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    default:
+      prefix = `${dimension}-`;
   }
 
   return prefix;
