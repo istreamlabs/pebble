@@ -1,0 +1,88 @@
+@import '../../Styles/foundation/variables.scss';
+
+.fieldSelect.invalid .pebble__control {
+  border: $INPUT_BORDER_ERROR;
+  background: $INPUT_BG_ERROR;
+
+  &:focus,
+  &:hover {
+    border: $INPUT_BORDER_ERROR;
+    background: $INPUT_BG_ERROR;
+  }
+}
+
+.fieldSelect {
+  .pebble-container {
+    color: $INPUT_COLOR;
+    min-height: 34px;
+  }
+
+  .pebble__control {
+    min-height: 34px;
+
+    background: $INPUT_BG;
+    border-radius: $INPUT_BORDER_RADIUS;
+    border: $INPUT_BORDER;
+    color: $INPUT_COLOR;
+    width: 100%;
+    max-width: 100%;
+    transition: box-shadow .1s linear, background .1s linear, border .1s linear;
+
+    &:hover {
+      border: $INPUT_BORDER;
+    }
+
+    &:focus,
+    &.pebble__control--is-focused {
+      outline: 0;
+      border: $INPUT_BORDER_FOCUS;
+      box-shadow: $INPUT_FOCUS_SHADOW;
+      z-index: 1;
+    }
+  }
+
+  .pebble__option--is-focused {
+    background: $blue-lighter;
+  }
+
+  .pebble__option--is-selected,
+  .pebble__option--is-selected:hover {
+    background: $blue-lighter;
+    color: $INPUT_COLOR;
+  }
+
+  .pebble__value-container {
+    padding: 2px $spacing-3;
+  }
+
+  .pebble__single-value {
+    color: $INPUT_COLOR;
+  }
+
+  .pebble__multi-value {
+    background: $neutral-300;
+  }
+
+  .pebble__multi-value__remove {
+    margin-left: $spacing-1;
+    padding: 1px $spacing-2;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    &:hover {
+      background: $neutral-700;
+      color: $neutral-100;
+      cursor: pointer;
+    }
+  }
+
+  .pebble__multi-value__label {
+    padding-left: $spacing-2;
+    color: $INPUT_COLOR;
+  }
+
+  .pebble__menu {
+    box-shadow: $box-shadow-2;
+    border-radius: $INPUT_BORDER_RADIUS;
+  }
+}

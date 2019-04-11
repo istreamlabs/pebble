@@ -57,7 +57,7 @@ Badge.propTypes = {
   /**
    * Text to be rendered
    */
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   /**
    * Additional classNames to add
    */

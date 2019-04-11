@@ -85,7 +85,7 @@ Icon.propTypes = {
    * Changes the size of the icon, passed as a string or int
    * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
    */
-  size: PropTypes.oneOf([16, 20, 24, 32, 48, 56, 64, '16', '20', '24', '32', '48', '56', '64']),
+  size: PropTypes.oneOf([10, 12, 16, 20, 24, 32, 48, 56, 64, '10', '12', '16', '20', '24', '32', '48', '56', '64']),
   /**
    * keeps the svg markup from being read aloud by assistive technologies
    */
