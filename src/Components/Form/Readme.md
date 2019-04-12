@@ -1,20 +1,25 @@
-### Form Example
+## Example
 
 ```js
 import Button from '../Button/Button';
+import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Block from '../Block/Block';
 import FieldText from '../FieldText/FieldText';
+import FormLayout from '../FormLayout/FormLayout';
 
-<Form>
-  <FieldText id="name" label="Name" />
-  <FieldText id="email" label="Email" helpText="enter your business email address" />
-  <Block itemSpacing="4">
-    <FieldText id="first" label="First Name" />
-    <FieldText id="last" label="Last Name" />
-  </Block>
-  <div>
-  <Button type="submit" primary>Submit</Button>
-  </div>
+<Form
+  onSubmit={() => console.log("Form Submitted")}
+  onChange={() => console.log("Changed")}
+  onReset={() => console.log("Reset")}
+>
+  <FormLayout>
+    <FieldText id="name" label="Name" placeholder="your name here" />
+    <FieldText id="email" label="Email" placeholder="jane@example.com" />
+    <ButtonGroup>
+      <Button type="submit" primary>Submit</Button>
+      <Button type="reset" >Reset</Button>
+    </ButtonGroup>
+  </FormLayout>
 </Form>
 
 ```
