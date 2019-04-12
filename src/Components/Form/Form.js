@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import FormLayout from '../FormLayout/FormLayout';
+
 /**
  * A wrapper component that handles submission of a form
+ * and automatically wraps its children in [FormLayout](/#/Components/FormLayout).
  *
  * ---
  */
@@ -44,7 +47,9 @@ class Form extends React.Component {
         onSubmit={this.handleSubmit}
         {...rest}
       >
-        {children}
+        <FormLayout>
+          {children}
+        </FormLayout>
       </form>
     );
   }

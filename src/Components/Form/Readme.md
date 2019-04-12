@@ -12,14 +12,12 @@ import FormLayout from '../FormLayout/FormLayout';
   onChange={() => console.log("Changed")}
   onReset={() => console.log("Reset")}
 >
-  <FormLayout>
-    <FieldText id="name" label="Name" placeholder="your name here" />
-    <FieldText id="email" label="Email" placeholder="jane@example.com" />
-    <ButtonGroup>
-      <Button type="submit" primary>Submit</Button>
-      <Button type="reset" >Reset</Button>
-    </ButtonGroup>
-  </FormLayout>
+  <FieldText id="name" label="Name" placeholder="your name here" />
+  <FieldText id="email" label="Email" placeholder="jane@example.com" />
+  <ButtonGroup>
+    <Button type="submit" primary>Submit</Button>
+    <Button type="reset" >Reset</Button>
+  </ButtonGroup>
 </Form>
 
 ```

@@ -8,7 +8,7 @@ import Block from '../Block/Block';
 import FormLayoutRow from './Components/FormLayoutRow';
 
 /**
- * Arranges input fields within a [Form](/#/Components/Form) using standard spacing.
+ * Arranges input fields within a [Form](/#/Components/Form) with standard spacing.
  *
  */
 class FormLayout extends React.Component {
