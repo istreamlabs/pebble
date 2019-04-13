@@ -36,7 +36,7 @@
         "    children,",
         "  }",
         ") => {",
-        "  const classes = classNames('table', className);",
+        "  const classes = className('table', className);",
 "",
         "  return (",
         "    <div classNames={classes}>",
