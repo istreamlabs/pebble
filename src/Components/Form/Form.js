@@ -34,6 +34,7 @@ class Form extends React.Component {
       onReset,
       onSubmit,
       onChange,
+      tight,
       ...rest
     } = this.props;
 
@@ -47,7 +48,7 @@ class Form extends React.Component {
         onSubmit={this.handleSubmit}
         {...rest}
       >
-        <FormLayout>
+        <FormLayout tight={tight}>
           {children}
         </FormLayout>
       </form>
@@ -84,6 +85,10 @@ Form.propTypes = {
    * Callback function when the Form is submitted
    */
   onSubmit: PropTypes.func,
+  /**
+   * Decrease the vertical and horizontal spacing between inputs
+   */
+  tight: PropTypes.bool,
 };
 
 export default Form;

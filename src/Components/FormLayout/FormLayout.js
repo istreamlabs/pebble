@@ -54,7 +54,7 @@ FormLayout.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Decrease the spacing between rows of inputs
+   * Decrease the spacing between inputs
    */
   tight: PropTypes.bool,
   /**
