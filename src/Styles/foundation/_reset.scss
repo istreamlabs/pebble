@@ -37,3 +37,8 @@ p {
 input, textarea, select, button {
   font-family: $sans-serif;
 }
+
+table {
+  border-spacing: 0;
+  border-collapse: separate;
+}
