@@ -42,7 +42,7 @@ FormLayoutRow.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Decrease the vertical spacing between rows of inputs
+   * Decrease the vertical and horizontal spacing between inputs
    */
   tight: PropTypes.bool,
 };
