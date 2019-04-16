@@ -15,11 +15,13 @@ const Table = (
     children,
     className,
     columns,
+    columnWidths,
     data,
     ...rest,
   }
 ) => {
   const classes = classNames('table', className);
+  const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
 
   return (
     <Block
@@ -34,6 +36,9 @@ const Table = (
               <TableCell
                 key={index}
                 role="columnheader"
+                flex={!(hasColumnWidths && columnWidths[index])}
+                width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
+                className="fw-700 fs-6"
               >
                 {column}
               </TableCell>
@@ -42,8 +47,14 @@ const Table = (
         )}
         {data && data.map((row, index) => (
           <TableRow key={index}>
-            {row.map((cell, cellIndex) => (
-              <TableCell key={cellIndex}>{cell}</TableCell>
+            {row.map((cell, colIndex) => (
+              <TableCell
+                key={colIndex}
+                flex={!(hasColumnWidths && columnWidths[colIndex])}
+                width={hasColumnWidths && columnWidths[colIndex] ? columnWidths[colIndex] : '100%'}
+              >
+                {cell}
+              </TableCell>
             ))}
           </TableRow>
         ))
@@ -61,6 +72,7 @@ Table.propTypes = {
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.arrayOf(PropTypes.node)
   ]),
+  columnWidths: PropTypes.arrayOf(PropTypes.string),
   data: PropTypes.array,
 };
 
@@ -93,12 +105,12 @@ export const TableCell = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('pv-3 ph-3 bb b-neutral-300 w-100', className);
+  const classes = classNames('pv-3 ph-3 bb b-neutral-300', className);
 
   return (
-    <div className={classes} {...rest}>
+    <Block direction="column" className={classes} flex="shrink" {...rest}>
       {children}
-    </div>
+    </Block>
   );
 };
 
