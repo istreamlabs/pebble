@@ -7,7 +7,7 @@ cache:
   - node_modules
 script:
 - yarn lint
-- yarn cover && codecov
+- yarn cover
 - yarn styleguide:build
 - if [[ $TRAVIS_EVENT_TYPE != 'pull_request' ||  $TRAVIS_PULL_REQUEST_SLUG != $TRAVIS_REPO_SLUG ]]; then
     yarn chromatic --exit-zero-on-changes;

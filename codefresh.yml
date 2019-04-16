@@ -34,7 +34,7 @@ steps:
         - CODECOV_TOKEN=acd60370-1c28-43f8-96ce-801a884cd204
         commands:
         - yarn cover
-        - yarn codecov
+        - curl -s https://codecov.io/bash | bash -s
   build_styleguide:
     title: Build Styleguide
     stage: Build
