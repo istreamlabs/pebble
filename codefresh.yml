@@ -8,10 +8,11 @@ steps:
     image: alpine
     commands:
     - cf_export CI=true
+    - cf_export NODE_IMAGE=node:10.15.3
     - env | grep CF_
   install_dependecies:
     title: Install Dependecies
-    image: node
+    image: ${{NODE_IMAGE}}
     commands:
     - echo node $(node --version)
     - echo npm $(npm --version)
@@ -24,12 +25,12 @@ steps:
     steps:
       lint:
         title: Lint
-        image: node
+        image: ${{NODE_IMAGE}}
         commands:
         - yarn lint
       perform_tests:
         title: Run Tests with Coverage
-        image: node
+        image: ${{NODE_IMAGE}}
         environment:
         - CODECOV_TOKEN=acd60370-1c28-43f8-96ce-801a884cd204
         commands:
@@ -38,12 +39,12 @@ steps:
   build_styleguide:
     title: Build Styleguide
     stage: Build
-    image: node
+    image: ${{NODE_IMAGE}}
     commands:
     - yarn styleguide:build
   run_chromatic:
     title: Run Chromatic
     stage: Build
-    image: node
+    image: ${{NODE_IMAGE}}
     commands:
     - yarn chromatic --exit-zero-on-changes
