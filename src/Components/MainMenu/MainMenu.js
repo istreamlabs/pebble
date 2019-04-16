@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withRouter } from 'react-router';
+import { withRouter, matchPath } from 'react-router';
 
 import Block from '../Block/Block';
 import Text from '../Text/Text';
@@ -22,25 +22,23 @@ import './MainMenu.scss';
 
 class MainMenu extends React.Component {
   static shouldBeOpen(location, item) {
-    let isOpen = false;
-    if (Array.isArray(item.items) && item.items.length > 0) {
-      isOpen = location.pathname === item.href
-      || item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location
-        .pathname);
-    }
-    return isOpen;
+    return (!!item.href && matchPath(location.pathname, { path: item.href, strict: true }) !== null)
+    || (item.aliases || []).some(path => matchPath(location.pathname, { path }) !== null)
+    || (item.items || []).some(i => MainMenu.shouldBeOpen(location, i));
   }
 
   renderItem(menu) {
     const {
       location,
+      startExpanded,
     } = this.props;
 
-    return menu.map(item => (
+    return menu.map((item, i) => (
       <MenuItem
         containsActiveItem={MainMenu.shouldBeOpen(location, item)}
         item={item}
-        key={item.id}
+        key={i}
+        startExpanded={startExpanded}
       />
     ));
   }
@@ -97,30 +95,28 @@ MainMenu.propTypes = {
    * Menu items for the upper portion of the menu
    */
   menu: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    description: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
     items: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
     }))
   })).isRequired,
   /**
    * Menu items for the lower portion of the menu (e.g. Profile, Support)
    */
   auxMenu: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    description: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
     items: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
     }))
   })),
   /**
@@ -128,7 +124,7 @@ MainMenu.propTypes = {
    */
   title: PropTypes.string,
   /**
-   * start with everything expanded
+   * On first load, expand all menu items that contain child items
    */
   startExpanded: PropTypes.bool,
 };

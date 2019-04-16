@@ -83,7 +83,8 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   &:hover {
     color: $NAV_ITEM_COLOR_HOVER;
     box-shadow: inset 6px 0 0 $NAV_HIGHLIGHT_HOVER;
-    .menu-item-icon {
+    .menu-item-icon,
+    .menu-item-collapse {
       color: $NAV_ITEM_ICON_HOVER;
     }
   }
@@ -114,6 +115,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     .menu-item-icon {
       color: $NAV_ITEM_ICON_HOVER;
     }
+
   }
 
   // https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
@@ -146,6 +148,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 
 .menu-item-collapse-button {
   border: none;
+  color: $neutral-500;
   cursor: pointer;
   border-bottom: 1px solid $NAV_BORDER_COLOR;
   border-left: 1px solid $NAV_BORDER_COLOR;
@@ -156,7 +159,10 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   &:hover {
     border-bottom: 1px solid $NAV_BORDER_COLOR;
     border-color: $NAV_BORDER_COLOR;
-    color: $NAV_ITEM_COLOR_HOVER;
+
+    &.menu-item-collapse {
+      color: $NAV_ITEM_COLOR_HOVER;
+    }
   }
 
   &:focus {

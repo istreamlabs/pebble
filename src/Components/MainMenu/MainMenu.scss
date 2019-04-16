@@ -1,11 +1,6 @@
 @import '../../Styles/foundation/variables.scss';
 @import '../../Styles/foundation/media-queries.scss';
 
-$NAV_LG_WIDTH: 250px;
-$NAV_BG: $white;
-$NAV_BORDER_COLOR: $neutral-300;
-$NAV_ITEM_HOVER: $neutral-200;
-
 .main-menu {
   display: flex;
   flex-direction: column;
