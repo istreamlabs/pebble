@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { NavLink, matchPath } from 'react-router-dom';
 
 import Button from '../../Button/Button';
 import Block from '../../Block/Block';
@@ -12,12 +12,31 @@ import './MenuItem.scss';
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
-    const { containsActiveItem, startExpanded } = this.props;
+    const { containsActiveItem, startExpanded, item } = this.props;
 
+    if (item) {
+      MenuItem.generateAndAddIsActiveHandler(item);
+    }
+
+    // TODO: move this to getDerivedStateFromProps
     this.state = {
       isOpen: !!containsActiveItem || startExpanded
     };
   }
+
+  static generateAndAddIsActiveHandler(item) {
+    // only needed to support alias otherwise react router's default behavior works just fine.
+    if (item.aliases && item.aliases.length) {
+      item.activeHandler = (match, location) => {
+        if (match) {
+          return match;
+        }
+        return item.aliases.some(path => matchPath(location.pathname, { path }) !== null);
+      };
+    }
+    (item.items || []).forEach(sub => MenuItem.generateAndAddIsActiveHandler(sub));
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.containsActiveItem) {
@@ -25,6 +44,9 @@ class MenuItem extends React.Component {
       if (!isOpen) {
         this.setState({ isOpen: true });
       }
+    }
+    if (nextProps.item) {
+      MenuItem.generateAndAddIsActiveHandler(nextProps.item);
     }
   }
 
@@ -69,6 +91,7 @@ class MenuItem extends React.Component {
           className={classNames('sub-menu-item')}
           role="menuitem"
           activeClassName="active"
+          isActive={subItem.activeHandler}
         >
           {subItem.label}
         </NavLink>
@@ -97,6 +120,7 @@ class MenuItem extends React.Component {
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
+              isActive={item.activeHandler}
             >
               {this.renderIconLabel()}
             </NavLink>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { withRouter } from 'react-router';
+import { withRouter, matchPath } from 'react-router';
 
 import Block from '../Block/Block';
 import Text from '../Text/Text';
@@ -22,13 +22,9 @@ import './MainMenu.scss';
 
 class MainMenu extends React.Component {
   static shouldBeOpen(location, item) {
-    let isOpen = false;
-    if (Array.isArray(item.items) && item.items.length > 0) {
-      isOpen = location.pathname === item.href
-      || item.items.some(sub => sub.href === location.pathname || `${sub.href}/` === location
-        .pathname);
-    }
-    return isOpen;
+    return (!!item.href && matchPath(location.pathname, { path: item.href, strict: true }) !== null)
+    || (item.aliases || []).some(path => matchPath(location.pathname, { path }) !== null)
+    || (item.items || []).some(i => MainMenu.shouldBeOpen(location, i));
   }
 
   renderItem(menu) {
@@ -102,9 +98,11 @@ MainMenu.propTypes = {
     label: PropTypes.string.isRequired,
     href: PropTypes.string,
     icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
     items: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
     }))
   })).isRequired,
   /**
@@ -114,9 +112,11 @@ MainMenu.propTypes = {
     label: PropTypes.string.isRequired,
     href: PropTypes.string,
     icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
     items: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
     }))
   })),
   /**

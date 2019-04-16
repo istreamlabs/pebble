@@ -11,7 +11,7 @@ const menu = [
   {
     label: 'Link',
     href: '/#/Components/MainMenu',
-    icon: 'dashboard'
+    icon: 'dashboard',
   },
   {
     label: 'Subs Only',
@@ -20,18 +20,15 @@ const menu = [
       {
         label: 'Sub-item 1',
         href: '/#/Components/MainMenu',
-        icon: '',
+        aliases: ['/iframe.html']
       },
       {
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
-        icon: '',
       },
       {
-        id: '2c',
         label: 'Sub-item 3',
         href: '/#/Components/MainMenu',
-        icon: '',
       }
     ]
   },
@@ -39,6 +36,7 @@ const menu = [
     label: 'Link & Sub',
     icon: 'settings',
     href: '/#/Components/MainMenu',
+    aliases: ['/iframe.html'],
     items: [
       {
         label: 'Sub-item 1',
