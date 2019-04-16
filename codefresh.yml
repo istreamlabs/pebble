@@ -41,3 +41,9 @@ steps:
     image: node
     commands:
     - yarn styleguide:build
+  run_chromatic:
+    title: Run Chromatic
+    stage: Build
+    image: node
+    commands:
+    - yarn chromatic --exit-zero-on-changes
