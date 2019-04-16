@@ -1,9 +1,43 @@
 version: '1.0'
+stages:
+- Validate
+- Build
 steps:
-  perform_tests:
-    image: yarnpkg/node-yarn
-    working_directory: ${{main_clone}}
-    description: Running Unit tests
+  configure_env:
+    title: Configure Environment
+    image: alpine
     commands:
-      - yarn
-      - yarn cover
+    - cf_export CI=true
+    - env | grep CF_
+  install_dependecies:
+    title: Install Dependecies
+    image: node
+    commands:
+    - echo node $(node --version)
+    - echo npm $(npm --version)
+    - echo yarn $(yarn --version)
+    - yarn
+  validation:
+    type: parallel
+    title: Validation
+    stage: Validate
+    steps:
+      lint:
+        title: Lint
+        image: node
+        commands:
+        - yarn lint
+      perform_tests:
+        title: Run Tests with Coverage
+        image: node
+        environment:
+        - CODECOV_TOKEN=acd60370-1c28-43f8-96ce-801a884cd204
+        commands:
+        - yarn cover
+        - yarn codecov
+  build_styleguide:
+    title: Build Styleguide
+    stage: Build
+    image: node
+    commands:
+    - yarn styleguide:build
