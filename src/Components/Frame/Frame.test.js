@@ -134,6 +134,27 @@ describe('Frame', () => {
     expect(document.removeEventListener).toHaveBeenCalledWith('keydown', instance.handleNavKeydown, false);
   });
 
+  describe('handleOnClick', () => {
+    it('does nothing if target is not a tag', () => {
+      const instance = new Frame({});
+      const spy = jest.spyOn(instance, 'handleNavigationDismiss').mockImplementation(() => {});
+      instance.handleOnClick({ target: { tagName: 'div', href: '/foo' } });
+      expect(spy).not.toHaveBeenCalled();
+    });
+    it('does nothing if target does not have href', () => {
+      const instance = new Frame({});
+      const spy = jest.spyOn(instance, 'handleNavigationDismiss').mockImplementation(() => { });
+      instance.handleOnClick({ target: { tagName: 'a' } });
+      expect(spy).not.toHaveBeenCalled();
+    });
+    it('dismisses nav if click was on something that would navigate', () => {
+      const instance = new Frame({});
+      const spy = jest.spyOn(instance, 'handleNavigationDismiss').mockImplementation(() => { });
+      instance.handleOnClick({ target: { tagName: 'a', href: '/foo' } });
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
   describe('handleSkipToMain', () => {
     it('sets tabindex and focus on ref', () => {
       const instance = new Frame({});

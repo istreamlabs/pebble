@@ -127,6 +127,7 @@ export class Frame extends React.PureComponent {
         <div
           className={navigationClasses}
           onKeyDown={this.handleNavKeydown}
+          onClick={this.handleOnClick}
           id={APP_FRAME_NAV}
           key="NavContent"
         >
@@ -154,6 +155,12 @@ export class Frame extends React.PureComponent {
       return <Overlay onClick={this.handleNavigationDismiss} />;
     }
     return null;
+  }
+
+  handleOnClick = ({ target }) => {
+    if (target.tagName.toLowerCase() === 'a' && target.href) {
+      this.handleNavigationDismiss();
+    }
   }
 
   render() {
