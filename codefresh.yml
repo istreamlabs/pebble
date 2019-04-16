@@ -2,6 +2,7 @@ version: '1.0'
 stages:
 - Validate
 - Build
+- Deploy
 steps:
   configure_env:
     title: Configure Environment
@@ -48,3 +49,16 @@ steps:
     image: ${{NODE_IMAGE}}
     commands:
     - yarn chromatic --exit-zero-on-changes
+  deploy_styleguide:
+    title: Deploy Styleguide
+    stage: Deploy
+    image: codefresh/s3copy
+    environment:
+    - AWS_ACCESS_KEY_ID=${{DEVELOPMENT_AWS_ACCESS_KEY}}
+    - AWS_SECRET_ACCESS_KEY=${{DEVELOPMENT_AWS_SECRET}}
+    commands:
+    - ./deploy.sh "pebble-dev"
+    when:
+      branch:
+        only:
+          - master

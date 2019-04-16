@@ -13,16 +13,6 @@ notifications:
   slack:
     secure: VsE474aXVwiofaIwN5K4UUiK/F21ERz8I3/DsIYNlK0LttYblr9LRUXfmxhQSYy/7yceMRgK789qMC5w08yMgmjszlmti/PeDPQJIrgQMRTqxPGFoZvjyiFR8S0osjBr1iCK2TH46Z79kz/+AZObyPFsgRlxw/FpvbGs0HMvRvs8cDH5W+9uJmTeO5xlrAJwkQT+h3gQWF6ENSCiqirJDDo3a/sI9SckeQ7dL+hTIpUG+gsqQ94tI+9023jVoW+jrcF4UFzxILazq8O2seDId9W81iBfwshOisGOCAZOZ4QmX9pW9SM4eQ4jEigEmy6NknQq/ArrbIqVnzBlzdRZF2VTfL6ZJXPQv6MaRpJSaiqUn2seHiIfyM9YvIAcLvxP4TXHj6/43VaQ20ho/O+hRTarlRNRkKUbOQ+yyePthgW7GDiGT6hDY6cYqcBiVEpMOnW4+qYsCn4f6wypftwDVhv25ENZTGVhj1rQbPJtwe0NUIG+3eFqVAgn62YtbIAXERqyM/QXJZ72NE2fQqhpfWntnYmix0qKvRmRF4sfsPk6V77d19Eakvymp4nXVI9mnWM25qywVtu5sbOqzAgUKlai4lFj1MhkiXjMxNg/QtuT59DRvoJhTG2m4wpc0HMk2LRAX108ESF4QZD8R/UMy5HJHX4qPYypHMuj+OgEKNY=s
 deploy:
-  - provider: s3
-    access_key_id: "$DEVELOPMENT_AWS_ACCESS_KEY"
-    secret_access_key: "$DEVELOPMENT_AWS_SECRET"
-    local_dir: styleguide
-    bucket: pebble-dev
-    skip_cleanup: true
-    region: us-west-2
-    on:
-      branch: master
-      repo: iStreamPlanet/pebble
   - provider: npm
     email: pia@istreamplanet.com
     api_key:
