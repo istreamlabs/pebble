@@ -12,40 +12,33 @@ const TENANT_NAME = 'Frame Example';
 
 const MENU = [
   {
-    id: '1',
+    label: 'Dashboard',
+    icon: 'dashboard',
+    href: '/',
+  },
+  {
     label: 'Subs Only',
-    description: 'Does not link to a page but has sub-items',
     icon: 'player',
     items: [
       {
-        id: '1a',
         label: 'Sub-item 1',
-        description: '',
-        href: '/#/Components/MainMenu',
-        icon: '',
+        href: '/',
       },
     ]
   },
   {
     id: '3',
     label: 'Link & Sub',
-    description: 'Links to a page and has sub-items',
     icon: 'settings',
     href: '?path=/story/frame--all',
     items: [
       {
-        id: '3a',
         label: 'Sub-item 1',
-        description: '',
-        href: '/#/Components/MainMenu',
-        icon: '',
+        href: '/',
       },
       {
-        id: '3b',
         label: 'Sub-item 2',
-        description: '',
         href: '/#/Components/MainMenu',
-        icon: '',
       },
     ]
   },

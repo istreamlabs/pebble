@@ -7,23 +7,15 @@ import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 
 const mockData = {
-  id: '1',
   label: 'Content',
-  description: '',
   icon: 'player',
   items: [
     {
-      id: '1a',
       label: 'Channels',
-      description: '',
-      icon: '',
       href: '/test',
     },
     {
-      id: '1b',
       label: 'Live',
-      description: '',
-      icon: '',
       href: '/test',
     }
   ]
@@ -32,33 +24,111 @@ const mockData = {
 const textOnly = {
   id: 'version',
   label: 'v1234'
-}
+};
 
 const noItems = {
-  id: '2',
   label: 'Content',
-  description: '',
   href: '/test',
 };
 
 const linkSubItems = {
-  id: '1',
   label: 'Content',
-  description: '',
   icon: 'player',
   href: '/test',
   items: [
     {
-      id: '1a',
       label: 'Channels',
-      description: '',
       href: '/content/channels',
-      icon: '',
     },
   ]
 };
 
 describe('MenuItem', () => {
+  describe('ctor', () => {
+    let spy;
+
+    beforeEach(() => {
+      spy = jest.spyOn(MenuItem, 'generateAndAddIsActiveHandler').mockImplementation(() => { });
+    });
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls generateAndAddIsActiveHandler if item is not empty', () => {
+      new MenuItem({ item: {} }); // eslint-disable-line no-new
+      expect(spy).toBeCalled();
+    });
+  });
+
+  describe('generateAndAddIsActiveHandler', () => {
+    it('if no alias it does nothing', () => {
+      const item = {
+        label: 'Dashboard',
+        href: '/',
+        icon: 'dashboard'
+      };
+      MenuItem.generateAndAddIsActiveHandler(item);
+      expect(item.activeHandler).toBeUndefined();
+    });
+    it('if there are aliases it adds activeHandler to item', () => {
+      const item = {
+        label: 'Dashboard',
+        href: '/',
+        icon: 'dashboard',
+        aliases: ['/foo']
+      };
+      MenuItem.generateAndAddIsActiveHandler(item);
+      expect(item.activeHandler).toBeDefined();
+    });
+    it('adds items to sub items', () => {
+      const item = {
+        label: 'Dashboard',
+        href: '/',
+        icon: 'dashboard',
+        aliases: ['/baz'],
+        items: [
+          {
+            label: 'bar',
+            href: '/bar',
+          },
+          {
+            label: 'foo',
+            href: '/foo',
+            aliases: ['/buz'],
+          }
+        ]
+      };
+      MenuItem.generateAndAddIsActiveHandler(item);
+      expect(item.activeHandler).toBeDefined();
+      expect(item.items[0].activeHandler).toBeUndefined();
+      expect(item.items[1].activeHandler).toBeDefined();
+    });
+
+    it('creates a useful handler that matches', () => {
+      const item = {
+        label: 'Dashboard',
+        href: '/',
+        icon: 'dashboard',
+        aliases: ['/foo']
+      };
+      MenuItem.generateAndAddIsActiveHandler(item);
+      expect(item.activeHandler(false, { pathname: '/bar' })).toBeFalsy();
+      expect(item.activeHandler(false, { pathname: '/foo' })).toBeTruthy();
+    });
+
+    it('will use match if provided', () => {
+      const item = {
+        label: 'Dashboard',
+        href: '/',
+        icon: 'dashboard',
+        aliases: ['/foo']
+      };
+      MenuItem.generateAndAddIsActiveHandler(item);
+      expect(item.activeHandler(true, { pathname: '/bar' })).toBeTruthy();
+    });
+  });
+
+
   it('renders without crashing', () => {
     expect(() => { shallow(<MenuItem item={mockData} />); }).not.toThrow();
   });
@@ -66,14 +136,14 @@ describe('MenuItem', () => {
   it('generates a unique key for each item from the subItem label and index', () => {
     const item = shallow(<MenuItem item={mockData} />);
     item.find('.sub-menu-items li').forEach((item, index) => {
-      const expectedKey = `${mockData.items[index].id}`;
+      const expectedKey = `${index}`;
       expect(item.key()).toBe(expectedKey);
     });
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
     const item = shallow(<MenuItem item={noItems} />);
-    expect(item.state().isOpen).toEqual(false);
+    expect(item.state().isOpen).toEqual(undefined);
   });
 
   it('displays item as text if there are no sub-items and no href', () => {
@@ -83,25 +153,27 @@ describe('MenuItem', () => {
 
   describe('componentWillReceiveProps', () => {
     let instance;
-    let spy;
+    let stateSpy;
+    let genSpy;
 
     beforeEach(() => {
       instance = new MenuItem({});
-      spy = jest.spyOn(instance, 'setState').mockImplementation(() => {});
+      stateSpy = jest.spyOn(instance, 'setState').mockImplementation(() => {});
+      genSpy = jest.spyOn(MenuItem, 'generateAndAddIsActiveHandler').mockImplementation(() => {});
     });
 
     it('does nothing when it does not contain an active item', () => {
       instance.componentWillReceiveProps({
         containsActiveItem: false
       });
-      expect(spy).not.toHaveBeenCalled();
+      expect(stateSpy).not.toHaveBeenCalled();
     });
 
     it('sets it to open when it contains an active item', () => {
       instance.componentWillReceiveProps({
         containsActiveItem: true
       });
-      expect(spy).toHaveBeenCalledWith({ isOpen: true });
+      expect(stateSpy).toHaveBeenCalledWith({ isOpen: true });
     });
 
     it('does not call if it is already open', () => {
@@ -111,7 +183,34 @@ describe('MenuItem', () => {
       instance.componentWillReceiveProps({
         containsActiveItem: true
       });
-      expect(spy).not.toHaveBeenCalled();
+      expect(stateSpy).not.toHaveBeenCalled();
+    });
+
+    it('does not call generateAndAddIsActiveHandler if there is no item', () => {
+      instance = new MenuItem({
+        containsActiveItem: true
+      });
+      instance.componentWillReceiveProps({
+        containsActiveItem: true
+      });
+      expect(genSpy).not.toHaveBeenCalled();
+    });
+
+    it('calls generateAndAddIsActiveHandler if there is an item', () => {
+      const item = {
+        label: 'Dashboard',
+        href: '/',
+        icon: 'dashboard',
+        aliases: ['/foo']
+      };
+      instance = new MenuItem({
+        containsActiveItem: true,
+      });
+      instance.componentWillReceiveProps({
+        containsActiveItem: true,
+        item
+      });
+      expect(genSpy).toHaveBeenCalledWith(item);
     });
   });
 

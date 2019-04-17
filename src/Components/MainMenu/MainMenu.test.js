@@ -7,45 +7,29 @@ import MenuItem from './MenuItem/MenuItem';
 
 const mockMenuData = [
   {
-    id: '1',
     label: 'Dashboard',
-    description: 'The main page of the site',
     href: '/',
     icon: 'dashboard'
   },
   {
-    id: '2',
     label: 'Content',
-    description: '',
     icon: 'player',
     items: [
       {
-        id: '2a',
         label: 'Channels',
-        description: '',
         href: '/content/channels',
-        icon: '',
       },
       {
-        id: '2b',
         label: 'Live',
-        description: '',
         href: '/content/live',
-        icon: '',
       },
       {
-        id: '2c',
         label: 'Schedule',
-        description: '',
         href: '/content/schedule',
-        icon: '',
       },
       {
-        id: '2d',
         label: 'VOD',
-        description: '',
         href: '/content/vod',
-        icon: '',
       },
     ]
   }
@@ -60,16 +44,20 @@ describe('shouldBeOpen', () => {
     const result = MainMenu.shouldBeOpen({ pathname: '/' }, { items: [{ href: '/different' }] });
     expect(result).toBe(false);
   });
-  it('returns true if an item in the items array has href equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/' }, { items: [{ href: '/' }] });
+  it('returns true if an item has href equal to current path ', () => {
+    const result = MainMenu.shouldBeOpen({ pathname: '/a' }, { href: '/a', items: [{ href: '/page' }] });
     expect(result).toBe(true);
   });
   it('returns true if an item in the items array has href equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/page' }, { items: [{ href: '/page' }] });
+    const result = MainMenu.shouldBeOpen({ pathname: '/page' }, { href: '', items: [{ href: '/page' }] });
     expect(result).toBe(true);
   });
-  it('returns true if an item in the items array has href equal to current path with a trailing slash', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/page/' }, { items: [{ href: '/page' }] });
+  it('returns true if an item has alias equal to current path ', () => {
+    const result = MainMenu.shouldBeOpen({ pathname: '/a' }, { aliases: ['/a'], items: [{ href: '/page' }] });
+    expect(result).toBe(true);
+  });
+  it('returns true if an item in the items array has alias equal to current path ', () => {
+    const result = MainMenu.shouldBeOpen({ pathname: '/page' }, { href: '', items: [{ aliases: ['/page'] }] });
     expect(result).toBe(true);
   });
 });

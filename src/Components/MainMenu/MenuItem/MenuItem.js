@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import { NavLink, matchPath } from 'react-router-dom';
 
 import Button from '../../Button/Button';
 import Block from '../../Block/Block';
@@ -12,12 +12,31 @@ import './MenuItem.scss';
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
-    const { containsActiveItem } = this.props;
+    const { containsActiveItem, startExpanded, item } = this.props;
 
+    if (item) {
+      MenuItem.generateAndAddIsActiveHandler(item);
+    }
+
+    // TODO: move this to getDerivedStateFromProps
     this.state = {
-      isOpen: !!containsActiveItem
+      isOpen: !!containsActiveItem || startExpanded
     };
   }
+
+  static generateAndAddIsActiveHandler(item) {
+    // only needed to support alias otherwise react router's default behavior works just fine.
+    if (item.aliases && item.aliases.length) {
+      item.activeHandler = (match, location) => {
+        if (match) {
+          return match;
+        }
+        return item.aliases.some(path => matchPath(location.pathname, { path }) !== null);
+      };
+    }
+    (item.items || []).forEach(sub => MenuItem.generateAndAddIsActiveHandler(sub));
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.containsActiveItem) {
@@ -25,6 +44,9 @@ class MenuItem extends React.Component {
       if (!isOpen) {
         this.setState({ isOpen: true });
       }
+    }
+    if (nextProps.item) {
+      MenuItem.generateAndAddIsActiveHandler(nextProps.item);
     }
   }
 
@@ -63,13 +85,13 @@ class MenuItem extends React.Component {
 
   renderSubItems = (items) => {
     const subItems = items.map((subItem, i) => (
-      <li key={subItem.id}>
+      <li key={i}>
         <NavLink
           to={subItem.href}
           className={classNames('sub-menu-item')}
-          key={i}
           role="menuitem"
           activeClassName="active"
+          isActive={subItem.activeHandler}
         >
           {subItem.label}
         </NavLink>
@@ -83,14 +105,14 @@ class MenuItem extends React.Component {
     const { item } = this.props;
     const { isOpen } = this.state;
 
-    const hasSubItems = (item.items && item.items.length);
+    const hasSubItems = !!(item.items && item.items.length);
 
     return (
       <li className="menu-item-container">
         <div className="menu-item-content">
           {item.href ? (
             <NavLink
-              id={`MenuItem-${item.id}`}
+              id={`MenuItem-${item.label}`}
               exact={item.exact}
               to={item.href}
               className="menu-item"
@@ -98,12 +120,13 @@ class MenuItem extends React.Component {
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
+              isActive={item.activeHandler}
             >
               {this.renderIconLabel()}
             </NavLink>
           ) : Array.isArray(item.items) && item.items.length > 0 ? (
             <button
-              id={`MenuItem-${item.id}`}
+              id={`MenuItem-${item.label}`}
               type="button"
               className="menu-item"
               aria-haspopup={hasSubItems}
@@ -114,7 +137,7 @@ class MenuItem extends React.Component {
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                className={classNames('menu-item-collapse', {
+                className={classNames('menu-item-collapse', 'neutral-500', {
                   opened: isOpen,
                   closed: !isOpen
                 })}
@@ -128,7 +151,7 @@ class MenuItem extends React.Component {
         {hasSubItems && (
           <ul
             role="menu"
-            aria-labelledby={`MenuItem-${item.id}`}
+            aria-labelledby={`MenuItem-${item.label}`}
             className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}
           >
             {this.renderSubItems(item.items)}
@@ -148,6 +171,10 @@ MenuItem.propTypes = {
    * the menu that gets rendered
    */
   item: PropTypes.object.isRequired,
+  /**
+   * start with the item expanded
+   */
+  startExpanded: PropTypes.bool,
 };
 
 export default MenuItem;

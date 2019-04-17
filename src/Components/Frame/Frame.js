@@ -25,6 +25,7 @@ export class Frame extends React.PureComponent {
 
     this.state = {
       isSkipFocused: false,
+      isShowingMobileNav: false
     };
 
     this.mainContent = React.createRef();
@@ -55,10 +56,25 @@ export class Frame extends React.PureComponent {
     this.setState({ isSkipFocused: false });
   }
 
+  handleNavigationToggle = () => {
+    const { onNavigationToggle } = this.props;
+    const { isShowingMobileNav } = this.state;
+    this.setState({ isShowingMobileNav: !isShowingMobileNav }, () => {
+      if (onNavigationToggle) {
+        onNavigationToggle(!isShowingMobileNav);
+      }
+    });
+  }
+
   handleNavigationDismiss = () => {
-    const { isShowingMobileNav, onNavigationToggle } = this.props;
-    if (onNavigationToggle != null && isShowingMobileNav) {
-      onNavigationToggle();
+    const { onNavigationToggle } = this.props;
+    const { isShowingMobileNav } = this.state;
+    if (isShowingMobileNav) {
+      this.setState({ isShowingMobileNav: false }, () => {
+        if (onNavigationToggle) {
+          onNavigationToggle(false);
+        }
+      });
     }
   }
 
@@ -94,10 +110,8 @@ export class Frame extends React.PureComponent {
   }
 
   renderNavigation = () => {
-    const {
-      isShowingMobileNav,
-      navigation
-    } = this.props;
+    const { navigation } = this.props;
+    const { isShowingMobileNav } = this.state;
 
     const navigationClasses = classNames('navigation', {
       open: isShowingMobileNav
@@ -113,6 +127,7 @@ export class Frame extends React.PureComponent {
         <div
           className={navigationClasses}
           onKeyDown={this.handleNavKeydown}
+          onClick={this.handleOnClick}
           id={APP_FRAME_NAV}
           key="NavContent"
         >
@@ -133,10 +148,8 @@ export class Frame extends React.PureComponent {
   }
 
   renderOverlay = () => {
-    const {
-      isShowingMobileNav,
-      navigation
-    } = this.props;
+    const { navigation } = this.props;
+    const { isShowingMobileNav } = this.state;
 
     if (navigation && isShowingMobileNav) {
       return <Overlay onClick={this.handleNavigationDismiss} />;
@@ -144,10 +157,15 @@ export class Frame extends React.PureComponent {
     return null;
   }
 
+  handleOnClick = ({ target }) => {
+    if (target.tagName.toLowerCase() === 'a' && target.href) {
+      this.handleNavigationDismiss();
+    }
+  }
+
   render() {
     const {
       children,
-      onNavigationToggle,
       title,
     } = this.props;
 
@@ -158,7 +176,7 @@ export class Frame extends React.PureComponent {
           <Button
             icon="menu"
             accessibilityLabel="toggle main menu"
-            onClick={onNavigationToggle}
+            onClick={this.handleNavigationToggle}
           />
           <div>{title}</div>
         </header>
@@ -183,13 +201,9 @@ Frame.propTypes = {
    */
   navigation: PropTypes.node.isRequired,
   /**
-   * A callback function to handle clicking the mobile navigation toggle button
+   * A callback function that is called when the navigation is toggled
    */
-  onNavigationToggle: PropTypes.func.isRequired,
-  /**
-   * Is the mobile nav currently open
-   */
-  isShowingMobileNav: PropTypes.bool.isRequired,
+  onNavigationToggle: PropTypes.func,
   /**
   * Contents of the frame
   */
