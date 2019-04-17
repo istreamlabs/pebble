@@ -23,6 +23,24 @@ const Table = (
   const classes = classNames('table', className);
   const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
 
+  const renderBody = () => {
+    if (data === undefined) {
+      return children;
+    }
+    let rowCells = [];
+    return data.map((row, i) => {
+      rowCells = [];
+      return (
+        <TableRow key={i}>
+          {Object.keys(row).forEach((key) => {
+            rowCells.push(<TableCell key={key}>{row[key]}</TableCell>);
+          })}
+          {rowCells}
+        </TableRow>
+      );
+    });
+  };
+
   return (
     <Block
       className={classes}
@@ -54,7 +72,7 @@ const Table = (
         direction="column"
         overflow={{ vertical: 'scroll', horizontal: 'scroll' }}
       >
-        {children}
+        {renderBody()}
       </Block>
     </Block>
   );
