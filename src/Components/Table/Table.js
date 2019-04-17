@@ -109,7 +109,7 @@ export const TableCell = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('bb b-neutral-300', className, {
+  const classes = classNames('bb b-neutral-300 word-wrap', className, {
     'pv-4 ph-4': rest.padding === undefined
   });
 
