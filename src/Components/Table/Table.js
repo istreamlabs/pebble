@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Block from '../Block/Block';
 
 /**
-* Displays tabular data in a Table
+* Display tabular data in a grid
 *
 * ---
 */
@@ -27,40 +27,35 @@ const Table = (
     <Block
       className={classes}
       width={rest.width ? rest.width : '100%'}
+      height="100%"
       {...rest}
+      role="grid"
+      aria-colcount={columns && columns.length}
+      aria-rowcount={data && data.length}
+      direction="column"
     >
-      <div role="grid" aria-colcount={columns && columns.length} aria-rowcount={data && data.length} className="w-100">
-        {columns && (
-          <TableRow>
-            {columns.map((column, index) => (
-              <TableCell
-                key={index}
-                role="columnheader"
-                flex={!(hasColumnWidths && columnWidths[index])}
-                width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
-                className="fw-700 fs-6"
-              >
-                {column}
-              </TableCell>
-            ))}
-          </TableRow>
-        )}
-        {data && data.map((row, index) => (
-          <TableRow key={index}>
-            {row.map((cell, colIndex) => (
-              <TableCell
-                key={colIndex}
-                flex={!(hasColumnWidths && columnWidths[colIndex])}
-                width={hasColumnWidths && columnWidths[colIndex] ? columnWidths[colIndex] : '100%'}
-              >
-                {cell}
-              </TableCell>
-            ))}
-          </TableRow>
-        ))
-        }
+      {columns && (
+        <TableRow background="white">
+          {columns.map((column, index) => (
+            <TableCell
+              key={index}
+              role="columnheader"
+              flex={!(hasColumnWidths && columnWidths[index])}
+              width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
+              className="fw-700 fs-6"
+            >
+              {column}
+            </TableCell>
+          ))}
+        </TableRow>
+      )}
+      <Block
+        role="rowgroup"
+        direction="column"
+        overflow={{ vertical: 'scroll', horizontal: 'scroll' }}
+      >
         {children}
-      </div>
+      </Block>
     </Block>
   );
 };
@@ -73,19 +68,28 @@ Table.propTypes = {
     PropTypes.arrayOf(PropTypes.node)
   ]),
   columnWidths: PropTypes.arrayOf(PropTypes.string),
-  data: PropTypes.array,
+  data: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
 };
 
 export default Table;
 
+/**
+ * A row container in a table/grid
+ *
+ * ---
+ */
+
 export const TableRow = (
   { children, className, ...rest }
 ) => {
-  const classes = classNames('flex w-100', className);
+  const classes = classNames('flex w-100 bg-hover bg-blue-lighter-hover', className);
   return (
-    <div role="row" className={classes} {...rest}>
+    <Block role="row" className={classes} {...rest}>
       {children}
-    </div>
+    </Block>
   );
 };
 
@@ -95,7 +99,7 @@ TableRow.propTypes = {
 };
 
 /**
- * Used for <td> and <th> elements
+ * The cell in a table/grid
  *
  * ---
  */
@@ -105,10 +109,17 @@ export const TableCell = ({
   className,
   ...rest
 }) => {
-  const classes = classNames('pv-3 ph-3 bb b-neutral-300', className);
+  const classes = classNames('bb b-neutral-300', className, {
+    'pv-4 ph-4': rest.padding === undefined
+  });
 
   return (
-    <Block direction="column" className={classes} flex="shrink" {...rest}>
+    <Block
+      flex={(rest.width === undefined)}
+      direction="column"
+      className={classes}
+      {...rest}
+    >
       {children}
     </Block>
   );
