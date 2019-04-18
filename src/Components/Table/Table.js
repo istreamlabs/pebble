@@ -21,7 +21,25 @@ const Table = (
   }
 ) => {
   const classes = classNames('table', className);
-  const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
+
+  const renderColumnHeaders = () => {
+    const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
+    return (
+      <TableRow background="white">
+        {columns.map((column, index) => (
+          <TableCell
+            key={index}
+            role="columnheader"
+            flex={!(hasColumnWidths && columnWidths[index])}
+            width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
+            className="fw-700 fs-6"
+          >
+            {column}
+          </TableCell>
+        ))}
+      </TableRow>
+    );
+  };
 
   const renderBody = () => {
     if (data === undefined) {
@@ -52,21 +70,7 @@ const Table = (
       aria-rowcount={data && data.length}
       direction="column"
     >
-      {columns && (
-        <TableRow background="white">
-          {columns.map((column, index) => (
-            <TableCell
-              key={index}
-              role="columnheader"
-              flex={!(hasColumnWidths && columnWidths[index])}
-              width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
-              className="fw-700 fs-6"
-            >
-              {column}
-            </TableCell>
-          ))}
-        </TableRow>
-      )}
+      {columns && renderColumnHeaders()}
       <Block
         role="rowgroup"
         direction="column"
