@@ -115,7 +115,7 @@ export const TableRow = (
 ) => {
   const classes = classNames('flex w-100 bg-hover bg-blue-lighter-hover', className);
   return (
-    <Block role={rest.role ? rest.role : 'gridcell'} className={classes} {...rest}>
+    <Block role="row" className={classes} {...rest}>
       {children}
     </Block>
   );
@@ -143,7 +143,7 @@ export const TableCell = ({
 
   return (
     <Block
-      role="gridcell"
+      role={rest.role ? rest.role : 'gridcell'}
       flex={(rest.width === undefined)}
       direction="column"
       className={classes}
