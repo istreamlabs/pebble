@@ -1,3 +1,80 @@
+export const PEOPLE_DATA_2 = [{
+  name: 'Kelley Roxbee',
+  email: 'kroxbee0@examiner.com',
+  phone: "900-439-4457",
+  gender: 'Male'
+}, {
+  name: 'Loralie Archibould',
+  email: 'larchibould1@netscape.com',
+  gender: 'Female'
+}, {
+  name: 'Gene Regorz',
+  email: 'gregorz2@reddit.com',
+  phone: "900-439-4457",
+  gender: 'Male'
+}, {
+  name: 'Stan Clarkin',
+  email: 'sclarkin3@samsung.com',
+  phone: "900-439-4457",
+  gender: 'Male'
+}, {
+  name: 'Carolyne Juden',
+  email: 'cjuden4@ted.com',
+  phone: "900-439-4457",
+  gender: 'Female'
+}]
+
+export const PEOPLE_DATA = [{
+  name: 'Vicki Rohlfs',
+  job_title: 'VP Marketing',
+  email: 'vrohlfs0@zdnet.com',
+  company: 'Weimann Group'
+}, {
+  name: 'Nicol Tanslie',
+  job_title: 'Systems Administrator III',
+  email: 'ntanslie1@com.com',
+  company: 'Jakubowski Inc'
+}, {
+  name: 'Stacia Mardlin',
+  job_title: 'Senior Cost Accountant',
+  email: 'smardlin2@storify.com',
+  company: 'Jacobs, Kirlin and Runte'
+}, {
+  name: 'Carlos St Leger',
+  job_title: 'Assistant Manager',
+  email: 'cst3@4shared.com',
+  company: 'Torp Inc'
+}, {
+  name: 'Kaye Swabey',
+  job_title: 'Data Coordiator',
+  email: 'kswabey4@etsy.com',
+  company: 'Lesch Group'
+}, {
+  name: 'Jose McGahy',
+  job_title: 'Systems Administrator I',
+  email: 'jmcgahy5@cafepress.com',
+  company: 'Runolfsdottir, Simonis and Bednar'
+}, {
+  name: 'Emalia Warnes',
+  job_title: 'Quality Engineer',
+  email: 'ewarnes6@alexa.com',
+  company: 'Gusikowski-Glover'
+}, {
+  name: 'Tera Huffa',
+  job_title: 'Project Manager',
+  email: 'thuffa7@pinterest.com',
+  company: 'Stiedemann Inc'
+}, {
+  name: 'Maudie Paireman',
+  job_title: 'VP Sales',
+  email: 'mpaireman8@scientificamerican.com',
+  company: 'Runolfsdottir-Mraz'
+}, {
+  name: 'Blake Cossans',
+  job_title: 'Account Coordinator',
+  email: 'bcossans9@bluehost.com',
+  company: 'Frami LLC'
+}]
 
 export const CHANNEL_DATA = [
   {

@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import TableCell from './TableCell';
+import TableRow from './TableRow';
+
 import Block from '../Block/Block';
 
 /**
@@ -21,25 +24,23 @@ const Table = (
   }
 ) => {
   const classes = classNames('table', className);
+  const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
 
-  const renderColumnHeaders = () => {
-    const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
-    return (
-      <TableRow background="white">
-        {columns.map((column, index) => (
-          <TableCell
-            key={index}
-            role="columnheader"
-            flex={!(hasColumnWidths && columnWidths[index])}
-            basis={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
-            className="fw-700 fs-6"
-          >
-            {column}
-          </TableCell>
-        ))}
-      </TableRow>
-    );
-  };
+  const renderColumnHeaders = () => (
+    <TableRow background="white">
+      {columns.map((column, index) => (
+        <TableCell
+          key={index}
+          role="columnheader"
+          flex={!(hasColumnWidths && columnWidths[index])}
+          basis={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
+          className="fw-700 fs-6"
+        >
+          {column}
+        </TableCell>
+      ))}
+    </TableRow>
+  );
 
   const renderBody = () => {
     if (data === undefined) {
@@ -50,10 +51,12 @@ const Table = (
       rowCells = [];
       return (
         <TableRow key={i}>
-          {Object.keys(row).forEach((key) => {
+          {Object.keys(row).forEach((key, j) => {
             rowCells.push(
               <TableCell
                 key={key}
+                flex={!(hasColumnWidths && columnWidths[j])}
+                basis={hasColumnWidths && columnWidths[j] ? columnWidths[j] : '100%'}
               >
                 {row[key]}
               </TableCell>
@@ -103,58 +106,3 @@ Table.propTypes = {
 };
 
 export default Table;
-
-/**
- * A row container in a table/grid
- *
- * ---
- */
-
-export const TableRow = (
-  { children, className, ...rest }
-) => {
-  const classes = classNames('flex w-100 bg-hover bg-blue-lighter-hover', className);
-  return (
-    <Block role="row" flex={false} className={classes} {...rest}>
-      {children}
-    </Block>
-  );
-};
-
-TableRow.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};
-
-/**
- * The cell in a table/grid
- *
- * ---
- */
-
-export const TableCell = ({
-  children,
-  className,
-  ...rest
-}) => {
-  const classes = classNames('bb b-neutral-300 word-wrap', className, {
-    'pv-4 ph-4': rest.padding === undefined
-  });
-
-  return (
-    <Block
-      role={rest.role ? rest.role : 'gridcell'}
-      basis={rest.width ? rest.width : '100%'}
-      direction="column"
-      className={classes}
-      {...rest}
-    >
-      {children}
-    </Block>
-  );
-};
-
-TableCell.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-};

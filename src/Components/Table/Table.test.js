@@ -57,10 +57,10 @@ describe('Table', () => {
     });
     it('it renders column headers with specified widths', () => {
       const wrapper = shallow(<Table columns={COLUMNS} columnWidths={['50px', '51px', '52px', '53px']} />);
-      expect(wrapper.find(TableCell).at(0).prop('width')).toBe('50px');
-      expect(wrapper.find(TableCell).at(1).prop('width')).toBe('51px');
-      expect(wrapper.find(TableCell).at(2).prop('width')).toBe('52px');
-      expect(wrapper.find(TableCell).at(3).prop('width')).toBe('53px');
+      expect(wrapper.find(TableCell).at(0).prop('basis')).toBe('50px');
+      expect(wrapper.find(TableCell).at(1).prop('basis')).toBe('51px');
+      expect(wrapper.find(TableCell).at(2).prop('basis')).toBe('52px');
+      expect(wrapper.find(TableCell).at(3).prop('basis')).toBe('53px');
     });
   });
 });
@@ -82,5 +82,13 @@ describe('TableCell', () => {
   it('sets the role if specified', () => {
     const wrapper = shallow(<TableCell role="columnheader" />);
     expect(wrapper.prop('role')).toBe('columnheader');
+  });
+  it('sets the basis if width is specified', () => {
+    const wrapper = shallow(<TableCell width="20px" />);
+    expect(wrapper.prop('basis')).toBe('20px');
+  });
+  it('sets the basis if width is not specified', () => {
+    const wrapper = shallow(<TableCell />);
+    expect(wrapper.prop('basis')).toBe('100%');
   });
 });
