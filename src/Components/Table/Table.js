@@ -20,7 +20,7 @@ const Table = (
     ...rest,
   }
 ) => {
-  const classes = classNames('table', className);
+  const classes = classNames('table', 'ba', 'b-neutral-300', className);
   const hasColumnWidths = Array.isArray(columnWidths) && !!columnWidths.length;
 
   const renderBody = () => {
@@ -33,7 +33,13 @@ const Table = (
       return (
         <TableRow key={i}>
           {Object.keys(row).forEach((key) => {
-            rowCells.push(<TableCell key={key}>{row[key]}</TableCell>);
+            rowCells.push(
+              <TableCell
+                key={key}
+              >
+                {row[key]}
+              </TableCell>
+            );
           })}
           {rowCells}
         </TableRow>
@@ -56,11 +62,12 @@ const Table = (
         <TableRow background="white">
           {columns.map((column, index) => (
             <TableCell
+              className="fw-700 fs-6"
               key={index}
               role="columnheader"
               flex={!(hasColumnWidths && columnWidths[index])}
+              basis={hasColumnWidths ? columnWidths[index] : 'auto'}
               width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
-              className="fw-700 fs-6"
             >
               {column}
             </TableCell>
@@ -105,7 +112,7 @@ export const TableRow = (
 ) => {
   const classes = classNames('flex w-100 bg-hover bg-blue-lighter-hover', className);
   return (
-    <Block role="row" className={classes} {...rest}>
+    <Block role={rest.role ? rest.role : 'gridcell'} className={classes} {...rest}>
       {children}
     </Block>
   );
@@ -133,6 +140,7 @@ export const TableCell = ({
 
   return (
     <Block
+      role="gridcell"
       flex={(rest.width === undefined)}
       direction="column"
       className={classes}
