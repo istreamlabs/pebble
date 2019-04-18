@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Table, { TableRow, TableCell } from './Table';
+import Table from './Table';
+import TableRow from './TableRow';
+import TableCell from './TableCell';
 
 const DATA = [{
   name: 'Vicki Rohlfs',
@@ -44,6 +46,17 @@ describe('Table', () => {
       const wrapper = shallow(<Table data={DATA} />);
       expect(wrapper.find(TableRow)).toHaveLength(3);
     });
+    it('sets the widths of each column in th body', () => {
+      const wrapper = shallow(<Table data={DATA} columnWidths={['50px', '51px', '52px', '53px']} />);
+      expect(wrapper.find(TableCell).at(0).prop('basis')).toBe('50px');
+      expect(wrapper.find(TableCell).at(1).prop('basis')).toBe('51px');
+      expect(wrapper.find(TableCell).at(2).prop('basis')).toBe('52px');
+      expect(wrapper.find(TableCell).at(3).prop('basis')).toBe('53px');
+    });
+    it('sets flex to false if there column widths', () => {
+      const wrapper = shallow(<Table data={DATA} columnWidths={['50px', '51px', '52px', '53px']} />);
+      expect(wrapper.find(TableCell).at(0).prop('flex')).toBe(false);
+    });
   });
 
   describe('renderColumnHeaders', () => {
@@ -62,33 +75,5 @@ describe('Table', () => {
       expect(wrapper.find(TableCell).at(2).prop('basis')).toBe('52px');
       expect(wrapper.find(TableCell).at(3).prop('basis')).toBe('53px');
     });
-  });
-});
-
-describe('TableRow', () => {
-  it('renders without crashing', () => {
-    expect(() => { shallow(<TableRow />); }).not.toThrow();
-  });
-});
-
-describe('TableCell', () => {
-  it('renders without crashing', () => {
-    expect(() => { shallow(<TableCell />); }).not.toThrow();
-  });
-  it('applies rowgroup as the role by default', () => {
-    const wrapper = shallow(<TableCell />);
-    expect(wrapper.prop('role')).toBe('gridcell');
-  });
-  it('sets the role if specified', () => {
-    const wrapper = shallow(<TableCell role="columnheader" />);
-    expect(wrapper.prop('role')).toBe('columnheader');
-  });
-  it('sets the basis if width is specified', () => {
-    const wrapper = shallow(<TableCell width="20px" />);
-    expect(wrapper.prop('basis')).toBe('20px');
-  });
-  it('sets the basis if width is not specified', () => {
-    const wrapper = shallow(<TableCell />);
-    expect(wrapper.prop('basis')).toBe('100%');
   });
 });
