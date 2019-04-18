@@ -31,7 +31,7 @@ const Table = (
             key={index}
             role="columnheader"
             flex={!(hasColumnWidths && columnWidths[index])}
-            width={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
+            basis={hasColumnWidths && columnWidths[index] ? columnWidths[index] : '100%'}
             className="fw-700 fs-6"
           >
             {column}
@@ -115,7 +115,7 @@ export const TableRow = (
 ) => {
   const classes = classNames('flex w-100 bg-hover bg-blue-lighter-hover', className);
   return (
-    <Block role="row" className={classes} {...rest}>
+    <Block role="row" flex={false} className={classes} {...rest}>
       {children}
     </Block>
   );
@@ -144,7 +144,7 @@ export const TableCell = ({
   return (
     <Block
       role={rest.role ? rest.role : 'gridcell'}
-      flex={(rest.width === undefined)}
+      basis={rest.width ? rest.width : '100%'}
       direction="column"
       className={classes}
       {...rest}
