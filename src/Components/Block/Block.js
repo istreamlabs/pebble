@@ -86,7 +86,7 @@ class Block extends React.Component {
 
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
-    const basisStyle = basis ? { flexBasis: BASIS_MAP.hasOwnProperty(basis) ? BASIS_MAP[basis] : basis } : null;
+    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] || basis } : null;
 
     const flexGrowShrinkProp = (flex) => {
       if (typeof flex === 'boolean' || typeof flex === 'string') {
