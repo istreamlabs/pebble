@@ -4,7 +4,6 @@ If the data you wish to format is a simple array of objects, pass it to the `dat
 
 ```js
 import Block from '../Block/Block';
-import { TableRow, TableCell } from './Table';
 
 import { PEOPLE_DATA } from '../../demo/data.js';
 
@@ -60,8 +59,8 @@ import Text from '../Text/Text';
 
 import { PEOPLE_DATA_2 } from '../../demo/data.js';
 
-import TableRow from './TableRow';   //import { TableRow } from '@istreamplanet/pebble';
-import TableCell from './TableCell'; //import { TableCell } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 function BasicTable() {
   const COLUMNS = ['','name', 'contact', 'gender'];

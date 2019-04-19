@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import TableCell from './TableCell';
-import TableRow from './TableRow';
+import TableCell from './Components/TableCell';
+import TableRow from './Components/TableRow';
 
 import Block from '../Block/Block';
 

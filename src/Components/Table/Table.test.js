@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import Table from './Table';
-import TableRow from './TableRow';
-import TableCell from './TableCell';
+import TableRow from './Components/TableRow';
+import TableCell from './Components/TableCell';
 
 const DATA = [{
   name: 'Vicki Rohlfs',
