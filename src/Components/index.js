@@ -26,5 +26,7 @@ export { default as Modal } from './Modal/Modal';
 export { default as Overlay } from './Overlay/Overlay';
 export { default as Icon } from './Icon/Icon';
 export { default as Tabs } from './Tabs/Tabs';
+export { default as Tab } from './Tabs/Components/Tab';
+export { default as TabPanel } from './Tabs/Components/TabPanel';
 export { default as Text } from './Text/Text';
 export { default as TextContainer } from './TextContainer/TextContainer';
