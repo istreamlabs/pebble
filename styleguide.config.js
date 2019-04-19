@@ -135,8 +135,6 @@ module.exports = {
     '**/*.d.ts',
     'src/Components/Icon/Icons.js',
     'src/Components/Input/Input.js',
-    'src/Components/Table/TableRow.js',
-    'src/Components/Table/TableCell.js',
   ],
   pagePerSection: true,
   sections: [
