@@ -83,7 +83,108 @@ function CustomCellTable() {
   )
 }
 
-// <Block height="250px">
-  <CustomCellTable />
-// </Block>
+<CustomCellTable />
+```
+
+### Pagination Example
+
+```js
+import { useState } from 'react';
+import Block from '../Block/Block';
+import ButtonGroup from '../ButtonGroup/ButtonGroup';
+import Button from '../Button/Button';
+import FieldSelect from '../FieldSelect/FieldSelect';
+import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
+import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
+
+const DATA = [];
+for (var i = 0; i < 200; i++) {
+  DATA.push({
+      row: i+1,
+  });
+}
+
+const PAGE_SIZE_OPTIONS = [
+  { value: '5', label: '5' },
+  { value: '10', label: '10' },
+  { value: '20', label: '20' },
+  { value: '40', label: '40' },
+]
+
+function PaginationTableSample() {
+
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
+
+  handlePageChange = nextPage => {
+    if (nextPage < 1) {
+      return;
+    }
+    if (nextPage > Math.ceil(DATA.length / pageSize)) {
+      return;
+    }
+    setPage(nextPage);
+  };
+
+  handleLimitChange = (nextPageSize) => {
+    const nextPageNum = Math.ceil(DATA.length / nextPageSize);
+    if (nextPageNum < page) {
+      setPageSize(nextPageSize);
+      setPage(nextPageNumb);
+    } else {
+      setPageSize(nextPageSize);
+    }
+  };
+
+  const visibleData = () => {
+    const min = (page - 1) * pageSize;
+    return DATA.slice(min, min + pageSize);
+  };
+
+  return (
+    <>
+    <Table height="300px">
+      <TableHeader mobileLabel="Pagination Example">
+        <TableCell>Column 1</TableCell>
+        <TableCell>Column 2</TableCell>
+        <TableCell>Column 3</TableCell>
+        <TableCell>Column 4</TableCell>
+      </TableHeader>
+      <TableBody>
+        {
+          visibleData().map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>row: {row.row}</TableCell>
+              <TableCell>row: {row.row}</TableCell>
+              <TableCell>row: {row.row}</TableCell>
+              <TableCell>row: {row.row}</TableCell>
+            </TableRow>
+          ))
+        }
+      </TableBody>
+    </Table>
+
+    <Block marginTop="5">
+      <ButtonGroup>
+        <Button onClick={() => handlePageChange(page - 1)}>prev</Button>
+        <Button onClick={() => handlePageChange(page + 1)}>next</Button>
+      </ButtonGroup>
+      <FieldSelect
+        id="single"
+        options={PAGE_SIZE_OPTIONS}
+        label="page size"
+        placeholder={pageSize}
+        onChange={(object,action)=>{
+          handleLimitChange(object.value)
+        }}
+        className="w4"
+      />
+      </Block>
+    </>
+  )
+}
+
+<PaginationTableSample />
 ```
