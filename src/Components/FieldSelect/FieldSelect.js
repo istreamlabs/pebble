@@ -161,7 +161,8 @@ function FieldSelect({
 
   const selectMarkup = () => (
     <Select
-      id={id}
+      inputId={id}
+      name={id}
       className={selectClassNames}
       classNamePrefix="pebble"
       isMulti={multiSelect}
