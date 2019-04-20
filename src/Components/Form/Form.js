@@ -4,6 +4,41 @@ import classNames from 'classnames';
 
 import FormLayout from '../FormLayout/FormLayout';
 
+const propTypes = {
+  /**
+   * Additional css classes to apply to the Form
+   */
+  className: PropTypes.string,
+  /**
+   * Contents of the form
+   */
+  children: PropTypes.node,
+  /**
+   * Method used to submit the form
+   */
+  method: PropTypes.oneOf(['post', 'get']),
+  /**
+   * A unique name for the Form
+   */
+  name: PropTypes.string,
+  /**
+   * Callback function when the Form is changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback function when the Form is reset
+   */
+  onReset: PropTypes.func,
+  /**
+   * Callback function when the Form is submitted
+   */
+  onSubmit: PropTypes.func,
+  /**
+   * Decrease the vertical and horizontal spacing between inputs
+   */
+  tight: PropTypes.bool,
+};
+
 /**
  * A wrapper component that handles submission of a form
  * and automatically wraps its children in [FormLayout](/#/Components/FormLayout).
@@ -56,39 +91,6 @@ class Form extends React.Component {
   }
 }
 
-Form.propTypes = {
-  /**
-   * Additional css classes to apply to the Form
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the form
-   */
-  children: PropTypes.node,
-  /**
-   * Method used to submit the form
-   */
-  method: PropTypes.oneOf(['post', 'get']),
-  /**
-   * A unique name for the Form
-   */
-  name: PropTypes.string,
-  /**
-   * Callback function when the Form is changed
-   */
-  onChange: PropTypes.func,
-  /**
-   * Callback function when the Form is reset
-   */
-  onReset: PropTypes.func,
-  /**
-   * Callback function when the Form is submitted
-   */
-  onSubmit: PropTypes.func,
-  /**
-   * Decrease the vertical and horizontal spacing between inputs
-   */
-  tight: PropTypes.bool,
-};
+Form.propTypes = propTypes;
 
 export default Form;

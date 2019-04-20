@@ -6,7 +6,14 @@ import { components } from 'react-select';
 import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
 
-const Option = (props) => {
+const propTypes = {
+  innerProps: PropTypes.object,
+  children: PropTypes.node,
+  isSelected: PropTypes.bool,
+  isMulti: PropTypes.bool,
+};
+
+function Option(props) {
   const {
     innerProps, children, isSelected
   } = props;
@@ -19,13 +26,8 @@ const Option = (props) => {
       </components.Option>
     </Block>
   );
-};
+}
 
-Option.propTypes = {
-  innerProps: PropTypes.object,
-  children: PropTypes.node,
-  isSelected: PropTypes.bool,
-  isMulti: PropTypes.bool,
-};
+Option.propTypes = propTypes;
 
 export default Option;

@@ -4,11 +4,27 @@ import classNames from 'classnames';
 
 import Block from '../../Block/Block';
 
-const FormLayoutRow = ({
+const propTypes = {
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Content to display inside a row
+   */
+  children: PropTypes.node,
+  /**
+   * Decrease the vertical and horizontal spacing between inputs
+   */
+  tight: PropTypes.bool,
+};
+
+
+function FormLayoutRow({
   className,
   children,
   tight
-}) => {
+}) {
   const itemMarkup = React.Children.map(children, child => React.cloneElement(
     child,
     {
@@ -28,21 +44,8 @@ const FormLayoutRow = ({
       {itemMarkup}
     </Block>
   );
-};
+}
+
+FormLayoutRow.propTypes = propTypes;
 
 export default FormLayoutRow;
-
-FormLayoutRow.propTypes = {
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Content to display inside a row
-   */
-  children: PropTypes.node,
-  /**
-   * Decrease the vertical and horizontal spacing between inputs
-   */
-  tight: PropTypes.bool,
-};

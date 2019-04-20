@@ -79,6 +79,15 @@ function FieldSelectExamples() {
         validationText="this selection is required"
         placeholder="choose one"
       />
+
+      <FieldSelect
+        hideLabel
+        id="hiddenLabel"
+        options={options}
+        isSearchable
+        label="Hidden Label"
+        placeholder="hidden label"
+      />
     </>
   )
 }

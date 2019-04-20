@@ -5,120 +5,13 @@ import classNames from 'classnames';
 import { dimensionType } from '../../Types';
 
 import Block from '../Block/Block';
+import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Text from '../Text/Text';
 
 import './FieldText.scss';
 
-/**
- * Stateless text fields.
- *
- * ---
- */
-
-class FieldText extends React.Component {
-  getLabelMarkup() {
-    const {
-      id, label, disabled, isInvalid, isLabelHidden
-    } = this.props;
-
-    if (isLabelHidden) return;
-
-    const labelClasses = classNames(
-      'db',
-      'mb-2',
-      'fs-6',
-      'fw-700',
-      {
-        'neutral-500': disabled,
-        red: isInvalid,
-      }
-    );
-
-    return (
-      <label
-        className={labelClasses}
-        htmlFor={id}
-      >
-        {label}
-      </label>
-    );
-  }
-
-  getValidationTextMarkup() {
-    const {
-      isInvalid,
-      validationText,
-    } = this.props;
-
-    if (!isInvalid || validationText === undefined) return;
-
-    return (
-      <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>
-    );
-  }
-
-  getHelpTextMarkup() {
-    const { helpText } = this.props;
-
-    if (helpText === undefined) return;
-
-    return (
-      <Text size="6" className="field-text-help mb-2">{helpText}</Text>
-    );
-  }
-
-  renderChildren() {
-    const {
-      className,
-      isLabelHidden,
-      label,
-      ...rest
-    } = this.props;
-
-    const ariaLabelValue = isLabelHidden ? label : '';
-
-    const shouldSpellCheck = rest.type === 'text';
-
-    return (
-      <Input
-        ariaLabel={ariaLabelValue}
-        spellCheck={shouldSpellCheck}
-        {...rest}
-      />
-    );
-  }
-
-  render() {
-    const {
-      className,
-      width,
-    } = this.props;
-
-    const classes = classNames('field-text', className);
-
-    return (
-      <Block direction="column" className={classes} width={width}>
-        {this.getLabelMarkup()}
-        {this.getHelpTextMarkup()}
-        {this.renderChildren()}
-        {this.getValidationTextMarkup()}
-      </Block>
-    );
-  }
-}
-
-FieldText.defaultProps = {
-  autoFocus: false,
-  disabled: false,
-  isInvalid: false,
-  isLabelHidden: false,
-  isReadOnly: false,
-  size: 'medium',
-  type: 'text'
-};
-
-FieldText.propTypes = {
+const propTypes = {
   /**
    * Automatically focus the input
    */
@@ -174,7 +67,7 @@ FieldText.propTypes = {
   /**
    * Visually hide the label
    */
-  isLabelHidden: PropTypes.bool,
+  hideLabel: PropTypes.bool,
   /**
    * Text to display if the input is invalid.
    * The text should explain why the input is invalid.
@@ -217,5 +110,106 @@ FieldText.propTypes = {
    */
   width: dimensionType,
 };
+
+const defaultProps = {
+  autoFocus: false,
+  disabled: false,
+  isInvalid: false,
+  hideLabel: false,
+  isReadOnly: false,
+  size: 'medium',
+  type: 'text'
+};
+
+/**
+ * Stateless text fields.
+ *
+ * ---
+ */
+
+class FieldText extends React.Component {
+  getLabel() {
+    const {
+      isInvalid, disabled, id, hideLabel, label
+    } = this.props;
+
+    return (
+      <Label
+        id={id}
+        invalid={isInvalid}
+        disabled={disabled}
+        hide={hideLabel}
+      >
+        {label}
+      </Label>
+    );
+  }
+
+  getValidationTextMarkup() {
+    const {
+      isInvalid,
+      validationText,
+    } = this.props;
+
+    if (!isInvalid || validationText === undefined) return;
+
+    return (
+      <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>
+    );
+  }
+
+  getHelpTextMarkup() {
+    const { helpText } = this.props;
+
+    if (helpText === undefined) return;
+
+    return (
+      <Text size="6" className="field-text-help mb-2">{helpText}</Text>
+    );
+  }
+
+  renderChildren() {
+    const {
+      className,
+      hideLabel,
+      label,
+      ...rest
+    } = this.props;
+
+    const ariaLabelValue = hideLabel ? label : '';
+
+    const shouldSpellCheck = rest.type === 'text';
+
+    return (
+      <Input
+        ariaLabel={ariaLabelValue}
+        spellCheck={shouldSpellCheck}
+        {...rest}
+      />
+    );
+  }
+
+  render() {
+    const {
+      className,
+      width,
+    } = this.props;
+
+    const classes = classNames('field-text', className);
+
+    return (
+      <Block direction="column" className={classes} width={width}>
+        {this.getLabel()}
+        {this.getHelpTextMarkup()}
+        {this.renderChildren()}
+        {this.getValidationTextMarkup()}
+      </Block>
+    );
+  }
+}
+
+FieldText.defaultProps = defaultProps;
+
+FieldText.propTypes = propTypes;
 
 export default FieldText;

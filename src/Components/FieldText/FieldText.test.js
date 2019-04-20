@@ -16,8 +16,8 @@ describe('FieldText', () => {
   });
 
   describe('getLabelMarkup', () => {
-    it('sets aria-label if isLabelHidden is true', () => {
-      const wrapper = shallow(<FieldText label="hiddenLabel" isLabelHidden />);
+    it('sets aria-label if hideLabel is true', () => {
+      const wrapper = shallow(<FieldText label="hiddenLabel" hideLabel />);
       expect(wrapper.find(Input).prop('ariaLabel')).toEqual('hiddenLabel');
     });
   });

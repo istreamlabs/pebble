@@ -6,7 +6,54 @@ import Icon from '../../Icon/Icon';
 
 import './Checkbox.scss';
 
-const Checkbox = ({
+const propTypes = {
+  /**
+   * Additional classes to add
+   */
+  className: PropTypes.string,
+  /**
+   * Sets aria-label attribute.
+   */
+  ariaLabel: PropTypes.string,
+  /**
+   * Sets aria-labelledby attribute.
+   */
+  ariaLabelledby: PropTypes.string,
+  /**
+   * If the input should be disabled and not focusable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If the value of the input can be read, but not changed
+   */
+  isReadOnly: PropTypes.bool,
+  /**
+   * Applies styling to indicate the input is invalid
+   */
+  isInvalid: PropTypes.bool,
+  /**
+   * The id attribute of the input
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * Set the checkbox as selected
+   */
+  isSelected: PropTypes.bool,
+  /**
+   * Callback function when input is changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * The value of the input
+   */
+  value: PropTypes.string,
+  /**
+   * Make the checkbox look like a toggle switch
+   */
+  toggle: PropTypes.bool
+};
+
+function Checkbox({
   className,
   disabled,
   id,
@@ -16,7 +63,7 @@ const Checkbox = ({
   value,
   toggle,
   ...rest
-}) => {
+}) {
   const handleChange = () => {
     onChange(!isSelected);
   };
@@ -68,51 +115,6 @@ Checkbox.defaultPros = {
   onChange: () => {}
 };
 
-Checkbox.propTypes = {
-  /**
-   * Additional classes to add
-   */
-  className: PropTypes.string,
-  /**
-   * Sets aria-label attribute.
-   */
-  ariaLabel: PropTypes.string,
-  /**
-   * Sets aria-labelledby attribute.
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
-   * If the input should be disabled and not focusable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If the value of the input can be read, but not changed
-   */
-  isReadOnly: PropTypes.bool,
-  /**
-   * Applies styling to indicate the input is invalid
-   */
-  isInvalid: PropTypes.bool,
-  /**
-   * The id attribute of the input
-   */
-  id: PropTypes.string.isRequired,
-  /**
-   * Set the checkbox as selected
-   */
-  isSelected: PropTypes.bool,
-  /**
-   * Callback function when input is changed
-   */
-  onChange: PropTypes.func,
-  /**
-   * The value of the input
-   */
-  value: PropTypes.string,
-  /**
-   * Make the checkbox look like a toggle switch
-   */
-  toggle: PropTypes.bool
-};
+Checkbox.propTypes = propTypes;
 
 export default Checkbox;
