@@ -6,28 +6,74 @@ import Block from '../Block/Block';
 import Checkbox from './Components/Checkbox';
 import Text from '../Text/Text';
 
+const propTypes = {
+  /**
+   * The id attribute of the checkbox
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * Additional hint displayed beneath the label
+   */
+  helpText: PropTypes.string,
+  /**
+   * The label for the checkbox
+   */
+  label: PropTypes.string.isRequired,
+  /**
+   * If the input should be disabled and not focusable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Set the checkbox as selected
+   */
+  isSelected: PropTypes.bool,
+  /**
+   * Applies styling to indicate the input is invalid
+   */
+  isInvalid: PropTypes.bool,
+  /**
+   * Currently selected option value
+   */
+  value: PropTypes.string,
+  /**
+   * Additional classes to add
+   */
+  className: PropTypes.string,
+  /**
+   * Callback function when a checkbox is changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * Make the checkbox look like a toggle switch
+   */
+  toggle: PropTypes.bool,
+  /**
+   * Text to display if the input is invalid.
+   * The text should explain why the input is invalid.
+   */
+  validationText: PropTypes.string,
+};
+
 /**
  * A way to allow users to make a range of selections (zero, one or many).
  *
  * ---
  */
 
-const FieldCheckbox = (
-  {
-    id,
-    label,
-    isSelected,
-    isInvalid,
-    className,
-    helpText,
-    value,
-    onChange,
-    disabled,
-    toggle,
-    validationText,
-    ...rest
-  }
-) => {
+function FieldCheckbox({
+  id,
+  label,
+  isSelected,
+  isInvalid,
+  className,
+  helpText,
+  value,
+  onChange,
+  disabled,
+  toggle,
+  validationText,
+  ...rest
+}) {
   const checkboxMarkup = () => (
     <Checkbox
       toggle={toggle}
@@ -118,54 +164,8 @@ const FieldCheckbox = (
       {labelMarkup()}
     </Block>
   );
-};
+}
 
-FieldCheckbox.propTypes = {
-  /**
-   * The id attribute of the checkbox
-   */
-  id: PropTypes.string.isRequired,
-  /**
-   * Additional hint displayed beneath the label
-   */
-  helpText: PropTypes.string,
-  /**
-   * The label for the checkbox
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * If the input should be disabled and not focusable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Set the checkbox as selected
-   */
-  isSelected: PropTypes.bool,
-  /**
-   * Applies styling to indicate the input is invalid
-   */
-  isInvalid: PropTypes.bool,
-  /**
-   * Currently selected option value
-   */
-  value: PropTypes.string,
-  /**
-   * Additional classes to add
-   */
-  className: PropTypes.string,
-  /**
-   * Callback function when a checkbox is changed
-   */
-  onChange: PropTypes.func,
-  /**
-   * Make the checkbox look like a toggle switch
-   */
-  toggle: PropTypes.bool,
-  /**
-   * Text to display if the input is invalid.
-   * The text should explain why the input is invalid.
-   */
-  validationText: PropTypes.string,
-};
+FieldCheckbox.propTypes = propTypes;
 
 export default FieldCheckbox;

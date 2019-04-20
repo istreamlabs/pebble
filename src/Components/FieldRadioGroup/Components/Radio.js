@@ -6,7 +6,62 @@ import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
 import Text from '../../Text/Text';
 
-const Radio = ({
+const propTypes = {
+  className: PropTypes.string,
+  /**
+   * Sets aria-label attribute.
+   */
+  ariaLabel: PropTypes.string,
+  /**
+   * Sets aria-labelledby attribute.
+   */
+  ariaLabelledby: PropTypes.string,
+  /**
+   * If the input should be disabled and not focusable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If the value of the input can be read, but not changed
+   */
+  isReadOnly: PropTypes.bool,
+  /**
+   * The id attribute of the input
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * Set the radio as selected
+   */
+  isSelected: PropTypes.bool,
+  label: PropTypes.string.isRequired,
+  helpText: PropTypes.string,
+  /**
+   * The name attribute of the input
+   */
+  name: PropTypes.string,
+  /**
+   * Callback function when input is blurred
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback function when input is changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback function when input is focused
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Changes the size of the input, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * The value of the input
+   */
+  value: PropTypes.string,
+};
+
+function Radio({
   className,
   disabled,
   helpText,
@@ -18,7 +73,7 @@ const Radio = ({
   onFocus,
   onBlur,
   value,
-}) => {
+}) {
   const handleChange = () => {
     onChange(value);
   };
@@ -86,59 +141,6 @@ Radio.defaultPros = {
   onChange: () => {}
 };
 
-Radio.propTypes = {
-  className: PropTypes.string,
-  /**
-   * Sets aria-label attribute.
-   */
-  ariaLabel: PropTypes.string,
-  /**
-   * Sets aria-labelledby attribute.
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
-   * If the input should be disabled and not focusable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If the value of the input can be read, but not changed
-   */
-  isReadOnly: PropTypes.bool,
-  /**
-   * The id attribute of the input
-   */
-  id: PropTypes.string.isRequired,
-  /**
-   * Set the radio as selected
-   */
-  isSelected: PropTypes.bool,
-  label: PropTypes.string.isRequired,
-  helpText: PropTypes.string,
-  /**
-   * The name attribute of the input
-   */
-  name: PropTypes.string,
-  /**
-   * Callback function when input is blurred
-   */
-  onBlur: PropTypes.func,
-  /**
-   * Callback function when input is changed
-   */
-  onChange: PropTypes.func,
-  /**
-   * Callback function when input is focused
-   */
-  onFocus: PropTypes.func,
-  /**
-   * Changes the size of the input, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * The value of the input
-   */
-  value: PropTypes.string,
-};
+Radio.propTypes = propTypes;
 
 export default Radio;

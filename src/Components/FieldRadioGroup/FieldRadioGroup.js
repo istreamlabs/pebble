@@ -6,23 +6,57 @@ import Block from '../Block/Block';
 import Radio from './Components/Radio';
 import Text from '../Text/Text';
 
+const propTypes = {
+  /**
+   * Name attribute applied to all radios
+   */
+  name: PropTypes.string,
+  /**
+   * Additional hint displayed beneath the label
+   */
+  helpText: PropTypes.string,
+  /**
+   * The label for the group of radios
+   */
+  title: PropTypes.string,
+  /**
+   * Radio options
+   */
+  radios: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    helpText: PropTypes.string,
+    value: PropTypes.string.isRequired,
+  })),
+  /**
+   * Currently selected option value
+   */
+  value: PropTypes.string,
+  /**
+   * Additional classes to add
+   */
+  className: PropTypes.string,
+  /**
+   * Callback function when a radio is changed
+   */
+  onChange: PropTypes.func,
+};
+
 /**
  * A way to select a single option from a list of options.
  *
  * ---
  */
 
-const FieldRadioGroup = (
-  {
-    className,
-    helpText,
-    radios,
-    title,
-    value,
-    onChange,
-    name
-  }
-) => {
+function FieldRadioGroup({
+  className,
+  helpText,
+  radios,
+  title,
+  value,
+  onChange,
+  name
+}) {
   // set the selected radio button or the first one
   const getRadioItems = () => {
     if (radios) {
@@ -76,42 +110,8 @@ const FieldRadioGroup = (
       {radioMarkup(getRadioItems())}
     </Block>
   );
-};
+}
 
-FieldRadioGroup.propTypes = {
-  /**
-   * Name attribute applied to all radios
-   */
-  name: PropTypes.string,
-  /**
-   * Additional hint displayed beneath the label
-   */
-  helpText: PropTypes.string,
-  /**
-   * The label for the group of radios
-   */
-  title: PropTypes.string,
-  /**
-   * Radio options
-   */
-  radios: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    helpText: PropTypes.string,
-    value: PropTypes.string.isRequired,
-  })),
-  /**
-   * Currently selected option value
-   */
-  value: PropTypes.string,
-  /**
-   * Additional classes to add
-   */
-  className: PropTypes.string,
-  /**
-   * Callback function when a radio is changed
-   */
-  onChange: PropTypes.func,
-};
+FieldRadioGroup.propTypes = propTypes;
 
 export default FieldRadioGroup;

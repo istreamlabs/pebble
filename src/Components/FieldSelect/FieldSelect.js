@@ -17,107 +17,14 @@ import './FieldSelect.scss';
 import Block from '../Block/Block';
 import Text from '../Text/Text';
 
-/**
- * Allows for the selection of item(s) from a set of options.
- * This is a wrapper of [React Select](https://react-select.com).
- *
- * ---
- */
-
-const FieldSelect = (
-  {
-    className,
-    closeMenuOnSelect,
-    id,
-    label,
-    isInvalid,
-    helpText,
-    multiSelect,
-    value,
-    disabled,
-    showCheckbox,
-    validationText,
-    width,
-    ...rest
-  }
-) => {
-  const selectClassNames = classNames('fieldSelect', {
-    invalid: isInvalid,
-  });
-
-  const components = {
-    ...((showCheckbox && multiSelect) && { Option }), ClearIndicator, DropdownIndicator, MultiValueRemove
-  };
-
-  const selectMarkup = () => (
-    <Select
-      id={id}
-      className={selectClassNames}
-      classNamePrefix="pebble"
-      isMulti={multiSelect}
-      isDisabled={disabled}
-      closeMenuOnSelect={closeMenuOnSelect || (!multiSelect)}
-      hideSelectedOptions={false}
-      components={components}
-      {...rest}
-    />
-  );
-
-  const labelMarkup = () => {
-    // normal checkbox
-    const labelClasses = classNames(
-      'db',
-      'mb-2',
-      'fs-6',
-      'fw-700', {
-        'neutral-500': disabled,
-        red: isInvalid,
-      }
-    );
-
-    return (
-      <Block direction="column">
-        <label htmlFor={id} className={labelClasses}>
-          {label}
-        </label>
-      </Block>
-    );
-  };
-
-  const helpTextMarkup = () => {
-    if (helpText === undefined) return;
-    return (
-      <Text size="6" appearance="muted" className="db mb-2">{helpText}</Text>
-    );
-  };
-
-  const getValidationTextMarkup = () => {
-    if (!isInvalid || validationText === undefined) return;
-
-    return (
-      <Text appearance="danger" size="6" className="db pt-2">{validationText}</Text>
-    );
-  };
-
-  const classes = classNames('relative',
-    {
-      invalid: isInvalid,
-      'o-50': disabled
-    },
-    className);
-
-  return (
-    <Block direction="column" className={classes} width={width}>
-      {labelMarkup()}
-      {helpTextMarkup()}
-      {selectMarkup()}
-      {getValidationTextMarkup()}
-    </Block>
-  );
-};
-
-FieldSelect.propTypes = {
+const propTypes = {
+  /**
+   * Display a checkbox before each option
+   */
   showCheckbox: PropTypes.bool,
+  /**
+   * Automatically focus the select box
+   */
   autoFocus: PropTypes.bool,
   /**
    * Additional classes to add
@@ -216,5 +123,104 @@ FieldSelect.propTypes = {
    */
   width: dimensionType,
 };
+
+/**
+ * Allows for the selection of item(s) from a set of options.
+ * This is a wrapper of [React Select](https://react-select.com).
+ *
+ * ---
+ */
+
+function FieldSelect({
+  className,
+  closeMenuOnSelect,
+  id,
+  label,
+  isInvalid,
+  helpText,
+  multiSelect,
+  value,
+  disabled,
+  showCheckbox,
+  validationText,
+  width,
+  ...rest
+}) {
+  const selectClassNames = classNames('fieldSelect', {
+    invalid: isInvalid,
+  });
+
+  const components = {
+    ...((showCheckbox && multiSelect) && { Option }), ClearIndicator, DropdownIndicator, MultiValueRemove
+  };
+
+  const selectMarkup = () => (
+    <Select
+      id={id}
+      className={selectClassNames}
+      classNamePrefix="pebble"
+      isMulti={multiSelect}
+      isDisabled={disabled}
+      closeMenuOnSelect={closeMenuOnSelect || (!multiSelect)}
+      hideSelectedOptions={false}
+      components={components}
+      {...rest}
+    />
+  );
+
+  const labelMarkup = () => {
+    // normal checkbox
+    const labelClasses = classNames(
+      'db',
+      'mb-2',
+      'fs-6',
+      'fw-700', {
+        'neutral-500': disabled,
+        red: isInvalid,
+      }
+    );
+
+    return (
+      <Block direction="column">
+        <label htmlFor={id} className={labelClasses}>
+          {label}
+        </label>
+      </Block>
+    );
+  };
+
+  const helpTextMarkup = () => {
+    if (helpText === undefined) return;
+    return (
+      <Text size="6" appearance="muted" className="db mb-2">{helpText}</Text>
+    );
+  };
+
+  const getValidationTextMarkup = () => {
+    if (!isInvalid || validationText === undefined) return;
+
+    return (
+      <Text appearance="danger" size="6" className="db pt-2">{validationText}</Text>
+    );
+  };
+
+  const classes = classNames('relative',
+    {
+      invalid: isInvalid,
+      'o-50': disabled
+    },
+    className);
+
+  return (
+    <Block direction="column" className={classes} width={width}>
+      {labelMarkup()}
+      {helpTextMarkup()}
+      {selectMarkup()}
+      {getValidationTextMarkup()}
+    </Block>
+  );
+}
+
+FieldSelect.propTypes = propTypes;
 
 export default FieldSelect;

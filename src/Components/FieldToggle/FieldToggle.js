@@ -11,10 +11,12 @@ import FieldCheckbox from '../FieldCheckbox/FieldCheckbox';
  * -----
  */
 
-const FieldToggle = ({
+function FieldToggle({
   ...props
-}) => (
-  <FieldCheckbox toggle {...props} />
-);
+}) {
+  return (
+    <FieldCheckbox toggle {...props} />
+  );
+}
 
 export default FieldToggle;
