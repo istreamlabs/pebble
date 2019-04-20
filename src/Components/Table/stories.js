@@ -4,6 +4,8 @@ import { storiesOf } from '@storybook/react';
 import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 
 import Table from './Table';
+import TableHeader from './Components/TableHeader';
+import TableBody from './Components/TableBody';
 import TableRow from './Components/TableRow';
 import TableCell from './Components/TableCell';
 
@@ -19,27 +21,7 @@ import DropdownMenuSeparator from '../DropdownMenu/Components/DropdownMenuSepara
 
 import { CHANNEL_DATA } from '../../demo/data';
 
-const WIDTHS = ['200px', '', '', '300px'];
-const COLUMNS = ['name', 'title', 'email', 'company'];
-const DATA = [{
-  name: 'Vicki Rohlfs',
-  job_title: 'VP Marketing',
-  email: 'vrohlfs0@zdnet.com',
-  company: 'Weimann Group'
-}, {
-  name: 'Nicol Tanslie',
-  job_title: 'Systems Administrator III',
-  email: 'ntanslie1@com.com',
-  company: 'Jakubowski Inc'
-}, {
-  name: 'Stacia Mardlin',
-  job_title: 'Senior Cost Accountant',
-  email: 'smardlin2@storify.com',
-  company: 'Jacobs, Kirlin and Runte'
-}];
-
 function CustomTable() {
-  const COLUMNS = ['Channel ID', 'Blueprint', 'Desired Status', 'Region Status', ''];
   const WIDTHS = [null, '200px', '90px', '300px', '80px'];
 
   const STATUS_BADGE_MAP = {
@@ -82,20 +64,20 @@ function CustomTable() {
         <TableCell>
           <Link href="/#/Components/Table"><Text bold>{row.id}</Text></Link>
         </TableCell>
-        <TableCell flex={false} width={WIDTHS[1]}>
+        <TableCell width={WIDTHS[1]}>
           <Link href="/#/Components/Table">
             {row.blueprint.id}
             {' v'}
             {row.blueprint.version}
           </Link>
         </TableCell>
-        <TableCell flex={false} width={WIDTHS[2]}>
+        <TableCell width={WIDTHS[2]}>
           {row.state.desired_state}
         </TableCell>
-        <TableCell flex={false} padding="0" width={WIDTHS[3]}>
+        <TableCell padding="0" width={WIDTHS[3]}>
           {statusMarkup}
         </TableCell>
-        <TableCell flex={false} width={WIDTHS[4]}>
+        <TableCell width={WIDTHS[4]}>
           {getDropdownMarkup()}
         </TableCell>
       </TableRow>
@@ -104,17 +86,47 @@ function CustomTable() {
 
   return (
     <Block height="400px" overflow="auto">
-      <Table columns={COLUMNS} columnWidths={WIDTHS}>
-        {CHANNEL_DATA.map((row, index) => getRowMarkup(row, index))}
+      <Table>
+        <TableHeader mobileLabel="Channels">
+          <TableCell>Channel ID</TableCell>
+          <TableCell width={WIDTHS[1]}>Blueprint</TableCell>
+          <TableCell width={WIDTHS[2]}>Desired Status</TableCell>
+          <TableCell width={WIDTHS[3]}>Current Status</TableCell>
+          <TableCell width={WIDTHS[4]} />
+        </TableHeader>
+        <TableBody>
+          {CHANNEL_DATA.map((row, index) => getRowMarkup(row, index))}
+        </TableBody>
       </Table>
     </Block>
   );
 }
 
 storiesOf('Table', module)
-  .addDecorator(storyFn => <div style={{ width: '1200px' }}>{storyFn()}</div>)
+  .addDecorator(storyFn => <div style={{ width: '900px' }}>{storyFn()}</div>)
   .add('tabular data', () => (
-    <Table columns={COLUMNS} data={DATA} columnWidths={WIDTHS} />
+    <Table>
+      <TableHeader mobileLabel="Contacts">
+        <TableCell>Name</TableCell>
+        <TableCell>Title</TableCell>
+        <TableCell>Email</TableCell>
+        <TableCell>Company</TableCell>
+      </TableHeader>
+      <TableBody>
+        <TableRow>
+          <TableCell>Vicki Rohlfs</TableCell>
+          <TableCell>VP Marketing</TableCell>
+          <TableCell>ntanslie1@example.com</TableCell>
+          <TableCell>Acme Inc.</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Stacy Mardlin</TableCell>
+          <TableCell>Senior Cost Accountant</TableCell>
+          <TableCell>smardlin2@example.com</TableCell>
+          <TableCell>Acme Inc.</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   ))
   .add('custom cells', () => (
     <DemoBrowserRouter>

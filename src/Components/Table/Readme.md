@@ -53,7 +53,7 @@ function CustomCellTable() {
   return (
     <Table columns={COLUMNS} height="250px">
       <TableHeader mobileLabel="Contacts">
-        <TableCell width="56px"></TableCell>
+        <TableCell width="56px" />
         <TableCell width="300px">Name</TableCell>
         <TableCell>Contact</TableCell>
         <TableCell>Company</TableCell>
