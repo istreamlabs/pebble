@@ -16,6 +16,7 @@
   ],
   "dependencies": {
     "@reach/visually-hidden": "^0.1.2",
+    "@storybook/theming": "^5.0.10",
     "classnames": "^2.2.6",
     "focus-trap-react": "^6.0.0",
     "prop-types": "^15.7.2",
