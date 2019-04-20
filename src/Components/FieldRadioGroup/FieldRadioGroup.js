@@ -104,7 +104,7 @@ function FieldRadioGroup({
   const classes = classNames('field-radio-group', className);
 
   return (
-    <Block direction="column" className={classes}>
+    <Block role="radiogroup" direction="column" className={classes}>
       {titleMarkup()}
       {helpTextMarkup()}
       {radioMarkup(getRadioItems())}
