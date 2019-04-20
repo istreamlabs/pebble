@@ -146,7 +146,7 @@ function FieldTextExample() {
         suffix=".com"
         type="url"
         label="With Prefix and Suffix"
-        id="suffix-input"
+        id="suffix-input2"
         value={prefixSuffixInput}
         onChange={e => setPrefixSuffixInput(e.target.value)}
         className="mb-5"
@@ -172,7 +172,8 @@ function FieldTextExample() {
       />
 
       <FieldText
-        isLabelHidden
+        hideLabel
+        id="hiddenLabel"
         label="my label is visually hidden"
         placeholder="visually hidden label"
         className="mb-5"
@@ -188,17 +189,20 @@ function FieldTextExample() {
 
 ```js
 <FieldText
+  id="smallSize"
   size="small"
   label="small"
   placeholder="small-sized FieldText"
   className="mb-5"
 />
 <FieldText
+  id="defaultSize"
   label="medium (default)"
   placeholder="medium-sized FieldText"
   className="mb-5"
 />
 <FieldText
+  id="largeSize"
   size="large"
   label="large"
   placeholder="large-sized FieldText"
@@ -212,31 +216,37 @@ Each browser treats the following types differently. If the `type` attribute is 
 
 ```js
 <FieldText
+  id="emailType"
   type="email"
   label="email"
   className="mb-5"
 />
 <FieldText
+  id="passwordType"
   type="password"
   label="password"
   className="mb-5"
 />
 <FieldText
+  id="searchType"
   type="search"
   label="search"
   className="mb-5"
 />
 <FieldText
+  id="telType"
   type="tel"
   label="tel"
   className="mb-5"
 />
 <FieldText
+  id="textType"
   type="text"
   label="text"
   className="mb-5"
 />
 <FieldText
+  id="urlType"
   type="url"
   label="url"
   className="mb-5"

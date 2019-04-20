@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { dimensionType } from '../../Types';
 
 import Block from '../Block/Block';
+import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Text from '../Text/Text';
 
@@ -66,7 +67,7 @@ const propTypes = {
   /**
    * Visually hide the label
    */
-  isLabelHidden: PropTypes.bool,
+  hideLabel: PropTypes.bool,
   /**
    * Text to display if the input is invalid.
    * The text should explain why the input is invalid.
@@ -114,7 +115,7 @@ const defaultProps = {
   autoFocus: false,
   disabled: false,
   isInvalid: false,
-  isLabelHidden: false,
+  hideLabel: false,
   isReadOnly: false,
   size: 'medium',
   type: 'text'
@@ -127,31 +128,20 @@ const defaultProps = {
  */
 
 class FieldText extends React.Component {
-  getLabelMarkup() {
+  getLabel() {
     const {
-      id, label, disabled, isInvalid, isLabelHidden
+      isInvalid, disabled, id, hideLabel, label
     } = this.props;
 
-    if (isLabelHidden) return;
-
-    const labelClasses = classNames(
-      'db',
-      'mb-2',
-      'fs-6',
-      'fw-700',
-      {
-        'neutral-500': disabled,
-        red: isInvalid,
-      }
-    );
-
     return (
-      <label
-        className={labelClasses}
-        htmlFor={id}
+      <Label
+        id={id}
+        invalid={isInvalid}
+        disabled={disabled}
+        hide={hideLabel}
       >
         {label}
-      </label>
+      </Label>
     );
   }
 
@@ -181,12 +171,12 @@ class FieldText extends React.Component {
   renderChildren() {
     const {
       className,
-      isLabelHidden,
+      hideLabel,
       label,
       ...rest
     } = this.props;
 
-    const ariaLabelValue = isLabelHidden ? label : '';
+    const ariaLabelValue = hideLabel ? label : '';
 
     const shouldSpellCheck = rest.type === 'text';
 
@@ -209,7 +199,7 @@ class FieldText extends React.Component {
 
     return (
       <Block direction="column" className={classes} width={width}>
-        {this.getLabelMarkup()}
+        {this.getLabel()}
         {this.getHelpTextMarkup()}
         {this.renderChildren()}
         {this.getValidationTextMarkup()}

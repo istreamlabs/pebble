@@ -13,8 +13,8 @@ import Option from './Components/Option';
 
 import './FieldSelect.scss';
 
-
 import Block from '../Block/Block';
+import Label from '../Label/Label';
 import Text from '../Text/Text';
 
 const propTypes = {
@@ -106,6 +106,10 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
+   * visually hide the label, but keep it accessible for screenreaders
+   */
+  hideLabel: PropTypes.bool,
+  /**
    * Applies styling to indicate the input is invalid
    */
   isInvalid: PropTypes.bool,
@@ -138,6 +142,7 @@ function FieldSelect({
   label,
   isInvalid,
   helpText,
+  hideLabel,
   multiSelect,
   value,
   disabled,
@@ -168,26 +173,16 @@ function FieldSelect({
     />
   );
 
-  const labelMarkup = () => {
-    // normal checkbox
-    const labelClasses = classNames(
-      'db',
-      'mb-2',
-      'fs-6',
-      'fw-700', {
-        'neutral-500': disabled,
-        red: isInvalid,
-      }
-    );
-
-    return (
-      <Block direction="column">
-        <label htmlFor={id} className={labelClasses}>
-          {label}
-        </label>
-      </Block>
-    );
-  };
+  const getLabel = () => (
+    <Label
+      id={id}
+      invalid={isInvalid}
+      disabled={disabled}
+      hide={hideLabel}
+    >
+      {label}
+    </Label>
+  );
 
   const helpTextMarkup = () => {
     if (helpText === undefined) return;
@@ -213,7 +208,7 @@ function FieldSelect({
 
   return (
     <Block direction="column" className={classes} width={width}>
-      {labelMarkup()}
+      {getLabel()}
       {helpTextMarkup()}
       {selectMarkup()}
       {getValidationTextMarkup()}
