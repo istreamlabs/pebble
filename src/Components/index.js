@@ -17,6 +17,7 @@ export { default as Form } from './Form/Form';
 export { default as FormLayout } from './FormLayout/FormLayout';
 export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
+export { default as Label } from './Label/Label';
 export { default as Link } from './Link/Link';
 export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as List } from './List/List';
