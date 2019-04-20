@@ -1,104 +1,50 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
-
 import Table from './Table';
 import TableHeader from './Components/TableHeader';
 import TableBody from './Components/TableBody';
 import TableRow from './Components/TableRow';
 import TableCell from './Components/TableCell';
 
-import Block from '../Block/Block';
-import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
-import Badge from '../Badge/Badge';
-import Link from '../Link/Link';
 
-import DropdownMenu from '../DropdownMenu/DropdownMenu';
-import DropdownItem from '../DropdownMenu/Components/DropdownItem';
-import DropdownMenuSeparator from '../DropdownMenu/Components/DropdownMenuSeparator';
+import { PEOPLE_DATA_2 } from '../../demo/data';
 
-import { CHANNEL_DATA } from '../../demo/data';
-
-function CustomTable() {
-  const WIDTHS = [null, '200px', '90px', '300px', '80px'];
-
-  const STATUS_BADGE_MAP = {
-    on: 'success',
-    off: 'default',
-    reconciling: 'warn',
-  };
-
-  const getDropdownMarkup = () => (
-    <DropdownMenu toggle={<Button size="small" icon="menu-dots" accessibilityLabel="actions" />} overlayClassName="w5">
-      <DropdownItem icon="add-bold">default button</DropdownItem>
-      <DropdownItem href="/">link</DropdownItem>
-      <DropdownMenuSeparator />
-      <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
-    </DropdownMenu>
-  );
-
-  const getRowMarkup = (row, index) => {
-    const statusMarkup = [];
-    let regionState;
-
-    for (const prop in row.state.regions) {
-      if (!row.state.regions.hasOwnProperty(prop)) {
-        continue;
-      }
-      regionState = row.state.regions[prop].channel_state;
-
-      statusMarkup.push(
-        <Block key={`${prop}-${index}`} paddingHorizontal="4" justify="between" paddingVertical="3">
-          <div className="text-transform-uppercase fs-6">{prop}</div>
-          <div className="fw-700">
-            <Badge type={STATUS_BADGE_MAP[regionState]}>{regionState}</Badge>
-          </div>
-        </Block>
-      );
-    }
-
-    return (
-      <TableRow key={index}>
-        <TableCell>
-          <Link href="/#/Components/Table"><Text bold>{row.id}</Text></Link>
-        </TableCell>
-        <TableCell width={WIDTHS[1]}>
-          <Link href="/#/Components/Table">
-            {row.blueprint.id}
-            {' v'}
-            {row.blueprint.version}
-          </Link>
-        </TableCell>
-        <TableCell width={WIDTHS[2]}>
-          {row.state.desired_state}
-        </TableCell>
-        <TableCell padding="0" width={WIDTHS[3]}>
-          {statusMarkup}
-        </TableCell>
-        <TableCell width={WIDTHS[4]}>
-          {getDropdownMarkup()}
-        </TableCell>
-      </TableRow>
-    );
-  };
+function CustomCellTable() {
+  const COLUMNS = ['', 'name', 'contact', 'company'];
 
   return (
-    <Block height="400px" overflow="auto">
-      <Table>
-        <TableHeader mobileLabel="Channels">
-          <TableCell>Channel ID</TableCell>
-          <TableCell width={WIDTHS[1]}>Blueprint</TableCell>
-          <TableCell width={WIDTHS[2]}>Desired Status</TableCell>
-          <TableCell width={WIDTHS[3]}>Current Status</TableCell>
-          <TableCell width={WIDTHS[4]} />
-        </TableHeader>
-        <TableBody>
-          {CHANNEL_DATA.map((row, index) => getRowMarkup(row, index))}
-        </TableBody>
-      </Table>
-    </Block>
+    <Table columns={COLUMNS} height="250px">
+      <TableHeader mobileLabel="Contacts">
+        <TableCell width="56px" />
+        <TableCell width="300px">Name</TableCell>
+        <TableCell>Contact</TableCell>
+        <TableCell>Company</TableCell>
+      </TableHeader>
+      <TableBody>
+        {
+        PEOPLE_DATA_2.map((row, index) => (
+          <TableRow key={index}>
+            <TableCell width="56px">
+              <Icon name="profile-circle" size="24" className="neutral-300" />
+            </TableCell>
+            <TableCell width="300px">
+              <Text size="4" bold>{row.name}</Text>
+            </TableCell>
+            <TableCell>
+              <div className="mb-2">
+                <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
+              </div>
+              <div>{row.phone}</div>
+            </TableCell>
+            <TableCell>{row.company}</TableCell>
+          </TableRow>
+        ))
+      }
+      </TableBody>
+    </Table>
   );
 }
 
@@ -129,7 +75,5 @@ storiesOf('Table', module)
     </Table>
   ))
   .add('custom cells', () => (
-    <DemoBrowserRouter>
-      <CustomTable />
-    </DemoBrowserRouter>
+    <CustomCellTable />
   ));
