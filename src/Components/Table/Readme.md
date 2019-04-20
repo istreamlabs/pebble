@@ -1,51 +1,34 @@
-### Basic Table Layout
-
-If the data you wish to format is a simple array of objects, pass it to the `data` prop and the component will generate a table for you. Column widths will be divided equally.
+### Basic Table
 
 ```js
-import Block from '../Block/Block';
+import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
+import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
-import { PEOPLE_DATA } from '../../demo/data.js';
+<Table>
+  <TableHeader mobileLabel="Contacts">
+    <TableCell>Name</TableCell>
+    <TableCell>Title</TableCell>
+    <TableCell>Email</TableCell>
+    <TableCell>Company</TableCell>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Vicki Rohlfs</TableCell>
+      <TableCell>VP Marketing</TableCell>
+      <TableCell>ntanslie1@example.com</TableCell>
+      <TableCell>Acme Inc.</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Stacy Mardlin</TableCell>
+      <TableCell>Senior Cost Accountant</TableCell>
+      <TableCell>smardlin2@example.com</TableCell>
+      <TableCell>Acme Inc.</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 
-function BasicTable() {
-  const COLUMNS = ['name', 'title', 'email', 'company'];
-
-  return (
-    <Table columns={COLUMNS} data={PEOPLE_DATA} />
-  )
-}
-
-<Block height="280px">
-  <BasicTable />
-</Block>
-
-```
-
-### Column Widths
-
-Set the width of each column by passing an array of widths.
-
-```js
-const WIDTHS = ['200px', '', '', '300px'];
-const COLUMNS = ['name', 'title', 'email', 'company'];
-const DATA = [{
-  name: 'Vicki Rohlfs',
-  job_title: 'VP Marketing',
-  email: 'vrohlfs0@zdnet.com',
-  company: 'Weimann Group'
-}, {
-  name: 'Nicol Tanslie',
-  job_title: 'Systems Administrator III',
-  email: 'ntanslie1@com.com',
-  company: 'Jakubowski Inc'
-}, {
-  name: 'Stacia Mardlin',
-  job_title: 'Senior Cost Accountant',
-  email: 'smardlin2@storify.com',
-  company: 'Jacobs, Kirlin and Runte'
-}];
-
-<Table columns={COLUMNS} data={DATA} columnWidths={WIDTHS} />
 ```
 
 ### Custom Cells
@@ -59,21 +42,30 @@ import Text from '../Text/Text';
 
 import { PEOPLE_DATA_2 } from '../../demo/data.js';
 
+import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
+import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
-function BasicTable() {
-  const COLUMNS = ['','name', 'contact', 'gender'];
+function CustomCellTable() {
+  const COLUMNS = ['','name', 'contact', 'company'];
 
   return (
-    <Table columns={COLUMNS} columnWidths={['50px']}>
+    <Table columns={COLUMNS} height="250px">
+      <TableHeader mobileLabel="Contacts">
+        <TableCell width="56px"></TableCell>
+        <TableCell width="300px">Name</TableCell>
+        <TableCell>Contact</TableCell>
+        <TableCell>Company</TableCell>
+      </TableHeader>
+      <TableBody>
       {
         PEOPLE_DATA_2.map((row, index) => (
           <TableRow key={index}>
-            <TableCell width="50px">
+            <TableCell width="56px">
               <Icon name="profile-circle" size="24" className="neutral-300" />
             </TableCell>
-            <TableCell>
+            <TableCell width="300px">
               <Text size="4" bold>{row.name}</Text>
             </TableCell>
             <TableCell>
@@ -82,16 +74,16 @@ function BasicTable() {
               </div>
               <div>{row.phone}</div>
             </TableCell>
-            <TableCell>{row.gender}</TableCell>
+            <TableCell>{row.company}</TableCell>
           </TableRow>
         ))
       }
+      </TableBody>
     </Table>
   )
 }
 
-<Block height="300px">
-  <BasicTable />
-</Block>
-
+// <Block height="250px">
+  <CustomCellTable />
+// </Block>
 ```

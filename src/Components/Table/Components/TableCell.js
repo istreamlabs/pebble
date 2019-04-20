@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { useWindowSize } from '../../../Hooks';
 import { dimensionType, spacingType } from '../../../Types';
 
 import Block from '../../Block/Block';
@@ -27,7 +28,7 @@ const propTypes = {
   /**
    * Role of the cell
    */
-  role: PropTypes.oneOf(['gridcell', 'columnheader']),
+  role: PropTypes.oneOf(['gridcell', 'columnheader', 'rowheader']),
   /**
    * A valid css width (%, px, em, rem).
    *
@@ -39,7 +40,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  padding: 4,
+  padding: [0, 0, 4],
   role: 'gridcell',
   width: '100%',
 };
@@ -58,15 +59,22 @@ function TableCell({
   width,
   ...rest
 }) {
+  const windowWidth = useWindowSize();
+  const isMobileLayout = windowWidth.innerWidth < 960;
+
   const classes = classNames(
-    'bb b-neutral-300 word-wrap',
+    'word-wrap',
+    {
+      'bb b-neutral-300': !isMobileLayout
+    },
     className,
   );
 
   return (
     <Block
       role={role}
-      basis={width}
+      flex={width === '100%' ? 'grow' : undefined}
+      width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
       direction="column"
       className={classes}
       padding={padding}

@@ -65,6 +65,7 @@ class Block extends React.Component {
       paddingHorizontal,
       paddingVertical,
       radius,
+      styles,
       textAlign,
       textSize,
       truncate,
@@ -97,10 +98,10 @@ class Block extends React.Component {
       }
     };
 
-    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
+    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}` };
 
     const mergedStyle = {
-      ...flexStyle, ...basisStyle,
+      ...flexStyle, ...basisStyle, ...styles,
     };
 
     // widthStyles is a style
@@ -344,6 +345,10 @@ Block.propTypes = {
    * @type {PropTypes.Requireable<Spacing>}
    */
   itemSpacing: spacingType('itemSpacing'),
+  /**
+   * react css styles object
+   */
+  styles: PropTypes.object,
   /**
    * Text alignment within this block.
    * @type {PropTypes.Requireable<TextAlign>}

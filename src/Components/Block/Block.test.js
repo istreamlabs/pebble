@@ -34,32 +34,32 @@ describe('Block', () => {
 
     it('sets flex false', () => {
       const wrapper = shallow(<Block flex={false}>test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0 auto');
+      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0');
     });
 
     it('sets grow', () => {
       const wrapper = shallow(<Block flex="grow">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0 auto');
+      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0');
     });
 
     it('sets flex', () => {
       const wrapper = shallow(<Block flex="shrink">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '0 1 auto');
+      expect(wrapper.prop('style')).toHaveProperty('flex', '0 1');
     });
 
     it('sets flex when passed a string', () => {
       const wrapper = shallow(<Block flex="grow">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0 auto');
+      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0');
     });
 
     it('sets flex-grow and flex-shrink', () => {
       const wrapper = shallow(<Block flex={{ grow: 5, shrink: 1 }}>test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '5 1 auto');
+      expect(wrapper.prop('style')).toHaveProperty('flex', '5 1');
     });
 
     it('sets default flex when passed an object', () => {
       const wrapper = shallow(<Block flex={{ }}>test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0 auto');
+      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0');
     });
 
     it('sets the flex-direction', () => {
@@ -100,7 +100,7 @@ describe('Block', () => {
     });
   });
 
-  describe('Width', () => {
+  describe('Height', () => {
     it('gets the correct css value', () => {
       const wrapper = shallow(<Block height="27rem">width</Block>);
       expect(wrapper.prop('style')).toHaveProperty('height', '27rem');
@@ -116,6 +116,16 @@ describe('Block', () => {
   });
 
   describe('Basis', () => {
+    it('sets auto basis', () => {
+      const wrapper = shallow(<Block>test</Block>);
+      expect(wrapper.prop('style')).not.toContain('flexBasis');
+    });
+
+    it('sets custom basis', () => {
+      const wrapper = shallow(<Block basis="21px">test</Block>);
+      expect(wrapper.prop('style')).toHaveProperty('flexBasis', '21px');
+    });
+
     it('sets auto basis', () => {
       const wrapper = shallow(<Block basis="auto">test</Block>);
       expect(wrapper.prop('style')).toHaveProperty('flexBasis', 'auto');

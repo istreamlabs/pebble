@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { useWindowSize } from '../../../Hooks';
+
 import Block from '../../Block/Block';
 
 const propTypes = {
@@ -31,14 +33,38 @@ function TableRow({
   hoverHighlight,
   ...rest
 }) {
+  const windowWidth = useWindowSize();
+  const isMobileLayout = windowWidth.innerWidth <= 960;
+
   const classes = classNames(
     'flex w-100',
-    { 'bg-hover bg-blue-lighter-hover': hoverHighlight },
+    {
+      'bg-hover bg-blue-lighter-hover': hoverHighlight,
+      'bb b-neutral-300 pb-4': isMobileLayout
+    },
     className
   );
+
+  const childrenMarkup = () => (
+    React.Children.map(children, (child, i) => React.cloneElement(
+      child,
+      {
+        'aria-colindex': i + 1
+      }
+    ))
+  );
+
   return (
-    <Block role="row" flex={false} className={classes} {...rest}>
-      {children}
+    <Block
+      role="row"
+      className={classes}
+      direction={isMobileLayout ? 'column' : 'row'}
+      marginTop={isMobileLayout ? '4' : null}
+      width="100%"
+      styles={{ flexShrink: 0 }}
+      {...rest}
+    >
+      {childrenMarkup()}
     </Block>
   );
 }

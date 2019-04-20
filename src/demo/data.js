@@ -2,27 +2,28 @@ export const PEOPLE_DATA_2 = [{
   name: 'Kelley Roxbee',
   email: 'kroxbee0@example.com',
   phone: '555-555-5555',
-  gender: 'Male'
+  company: 'Acme Inc.'
 }, {
   name: 'Loralie Archibould',
   email: 'larchibould1@example.com',
-  gender: 'Female'
+  company: 'Acme Inc.'
 }, {
   name: 'Gene Regorz',
   email: 'gregorz2@example.com',
   phone: '555-555-5555',
-  gender: 'Male'
+  company: 'Acme Inc.'
 }, {
   name: 'Stan Clarkin',
   email: 'sclarkin3@example.com',
   phone: '555-555-5555',
-  gender: 'Male'
+  company: 'Acme Inc.'
 }, {
   name: 'Carolyne Juden',
   email: 'cjuden4@example.com',
   phone: '555-555-5555',
-  gender: 'Female'
-}];
+  company: 'Acme Inc.'
+}
+];
 
 export const PEOPLE_DATA = [{
   name: 'Vicki Rohlfs',

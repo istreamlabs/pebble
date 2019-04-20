@@ -15,12 +15,8 @@ describe('TableCell', () => {
     const wrapper = shallow(<TableCell role="columnheader" />);
     expect(wrapper.prop('role')).toBe('columnheader');
   });
-  it('sets the basis if width is specified', () => {
+  it('sets the width if specified', () => {
     const wrapper = shallow(<TableCell width="20px" />);
-    expect(wrapper.prop('basis')).toBe('20px');
-  });
-  it('sets the basis if width is not specified', () => {
-    const wrapper = shallow(<TableCell />);
-    expect(wrapper.prop('basis')).toBe('100%');
+    expect(wrapper.prop('width')).toBe('20px');
   });
 });
