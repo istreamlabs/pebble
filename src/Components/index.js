@@ -25,6 +25,7 @@ export { default as ListItem } from './List/Components/ListItem';
 export { default as MainMenu } from './MainMenu/MainMenu';
 export { default as Modal } from './Modal/Modal';
 export { default as Overlay } from './Overlay/Overlay';
+export { default as Pagination } from './Pagination/Pagination';
 export { default as Icon } from './Icon/Icon';
 export { default as Table } from './Table/Table';
 export { default as TableBody } from './Table/Components/TableBody';

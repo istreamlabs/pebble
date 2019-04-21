@@ -94,31 +94,32 @@ import Block from '../Block/Block';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
 import FieldSelect from '../FieldSelect/FieldSelect';
+import Pagination from '../Pagination/Pagination';
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 const DATA = [];
-for (var i = 0; i < 200; i++) {
+for (var i = 0; i < 500; i++) {
   DATA.push({
       row: i+1,
   });
 }
 
 const PAGE_SIZE_OPTIONS = [
-  { value: '5', label: '5' },
-  { value: '10', label: '10' },
-  { value: '20', label: '20' },
-  { value: '40', label: '40' },
+  { value: 25, label: '25' },
+  { value: 50, label: '50' },
+  { value: 100, label: '100' },
 ]
 
 function PaginationTableSample() {
 
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(25);
+  const [numPages, setNumPages] = useState(Math.ceil(DATA.length / pageSize))
 
-  handlePageChange = nextPage => {
+  const handlePageChange = nextPage => {
     if (nextPage < 1) {
       return;
     }
@@ -130,9 +131,14 @@ function PaginationTableSample() {
 
   handleLimitChange = (nextPageSize) => {
     const nextPageNum = Math.ceil(DATA.length / nextPageSize);
+    const nextNumPages = Math.ceil(DATA.length / nextPageSize);
+
+    setNumPages(nextNumPages);
+    console.log('numPages', nextNumPages)
+
     if (nextPageNum < page) {
       setPageSize(nextPageSize);
-      setPage(nextPageNumb);
+      setPage(nextPageNum);
     } else {
       setPageSize(nextPageSize);
     }
@@ -143,45 +149,58 @@ function PaginationTableSample() {
     return DATA.slice(min, min + pageSize);
   };
 
+  const currentDisplayRange = () => {
+    const start = (page - 1) * pageSize + 1;
+    const end = start + pageSize - 1;
+
+    return (
+      <Block marginBottom="4">showing {start} - {end} of {DATA.length}</Block>
+    )
+  }
+
   return (
     <>
-    <Table height="300px">
-      <TableHeader mobileLabel="Pagination Example">
-        <TableCell>Column 1</TableCell>
-        <TableCell>Column 2</TableCell>
-        <TableCell>Column 3</TableCell>
-        <TableCell>Column 4</TableCell>
-      </TableHeader>
-      <TableBody>
-        {
-          visibleData().map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>row: {row.row}</TableCell>
-              <TableCell>row: {row.row}</TableCell>
-              <TableCell>row: {row.row}</TableCell>
-              <TableCell>row: {row.row}</TableCell>
-            </TableRow>
-          ))
-        }
-      </TableBody>
-    </Table>
-
-    <Block marginTop="5">
-      <ButtonGroup>
-        <Button onClick={() => handlePageChange(page - 1)}>prev</Button>
-        <Button onClick={() => handlePageChange(page + 1)}>next</Button>
-      </ButtonGroup>
       <FieldSelect
-        id="single"
+        id="pageSize"
         options={PAGE_SIZE_OPTIONS}
-        label="page size"
+        label="choose a page size"
         placeholder={pageSize}
         onChange={(object,action)=>{
           handleLimitChange(object.value)
         }}
-        className="w4"
+        className="w5 mb-5 "
       />
-      </Block>
+      {currentDisplayRange()}
+      <Table height="300px">
+        <TableHeader mobileLabel="Pagination Example">
+          <TableCell>Column 1</TableCell>
+          <TableCell>Column 2</TableCell>
+          <TableCell>Column 3</TableCell>
+          <TableCell>Column 4</TableCell>
+        </TableHeader>
+        <TableBody>
+          {
+            visibleData().map((row, index) => (
+              <TableRow key={index}>
+                <TableCell>row: {row.row}</TableCell>
+                <TableCell>row: {row.row}</TableCell>
+                <TableCell>row: {row.row}</TableCell>
+                <TableCell>row: {row.row}</TableCell>
+              </TableRow>
+            ))
+          }
+        </TableBody>
+      </Table>
+
+      <Pagination
+        onPrev={() => handlePageChange(page - 1)}
+        onNext={() => handlePageChange(page + 1)}
+        onPageChange={handlePageChange}
+        currentPage={page}
+        numPages={numPages}
+        key={numPages}
+      >
+      </Pagination>
     </>
   )
 }
