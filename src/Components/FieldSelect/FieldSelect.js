@@ -93,7 +93,7 @@ const propTypes = {
   /**
    * The value(s) of select
    */
-  value: PropTypes.oneOf([
+  value: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.arrayOf(PropTypes.object)
   ]),
@@ -170,6 +170,7 @@ function FieldSelect({
       closeMenuOnSelect={closeMenuOnSelect || (!multiSelect)}
       hideSelectedOptions={false}
       components={components}
+      value={value}
       {...rest}
     />
   );
