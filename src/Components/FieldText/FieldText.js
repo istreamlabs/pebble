@@ -51,7 +51,7 @@ const propTypes = {
   /**
    * The id attribute of the input
    */
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   /**
    * Applies styling to indicate the input is invalid
    */
@@ -135,7 +135,7 @@ class FieldText extends React.Component {
 
     return (
       <Label
-        id={id || label}
+        id={id}
         invalid={isInvalid}
         disabled={disabled}
         hide={hideLabel}
