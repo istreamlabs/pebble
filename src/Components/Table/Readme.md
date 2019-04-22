@@ -50,15 +50,13 @@ import TableRow from './Components/TableRow';   //import { TableRow } from '@ist
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 function CustomCellTable() {
-  const COLUMNS = ['','name', 'contact', 'company'];
-
   return (
-    <Table columns={COLUMNS} height="250px">
+    <Table height="250px">
       <TableHeader mobileLabel="Contacts">
         <TableHeaderCell width="56px" />
         <TableHeaderCell width="300px">Name</TableHeaderCell>
         <TableHeaderCell>Contact</TableHeaderCell>
-        <TableHeaderCell>Company</TableHeaderCell>
+        <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
       <TableBody>
       {
@@ -76,7 +74,7 @@ function CustomCellTable() {
               </div>
               <div>{row.phone}</div>
             </TableCell>
-            <TableCell>{row.company}</TableCell>
+            <TableCell>{row.age}</TableCell>
           </TableRow>
         ))
       }
@@ -89,6 +87,8 @@ function CustomCellTable() {
 ```
 
 ### Sorting Example
+
+Pass a `sortDirection` and `onSort` function to each sortable `TableHeaderCell` component
 
 ```js
 import Block from '../Block/Block';
@@ -105,33 +105,108 @@ import TableCell from './Components/TableCell'; //import { TableCell } from '@is
 
 import { useState } from 'react';
 
-function SortableTable() {
-  const COLUMNS = ['','name', 'contact', 'company'];
+function compare(key) {
+  return function(a, b) {
+    // property does not exist
+    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
 
-  const [nameSortDirection, setNameSortDirection] = useState('');
-  const [companySortDirection, setCompanySortDirection] = useState('');
+    const varA = (typeof a[key] === 'string') ?
+      a[key].toUpperCase() : a[key];
+    const varB = (typeof b[key] === 'string') ?
+      b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return comparison
+  };
+}
+
+function SortableTable() {
+  const [nameSortDirection, setNameSortDirection] = useState(null);
+  const [ageSortDirection, setAgeSortDirection] = useState(null);
+
+  const handleSort = (title, prevDirection) => {
+    let nextDirection = null;
+
+    if (prevDirection === 'ASC') {
+      nextDirection = 'DESC';
+    }
+
+    if (prevDirection === 'DESC') {
+      nextDirection = 'ASC';
+    }
+
+    if (prevDirection === null) {
+      nextDirection = 'ASC';
+    }
+
+    if (title === 'name') {
+      setNameSortDirection(nextDirection);
+      setAgeSortDirection(null);
+      return;
+    }
+
+    if (title === 'age') {
+      setNameSortDirection(null);
+      setAgeSortDirection(nextDirection);;
+      return;
+    }
+  };
+
+  getSortedData = (DATA) => {
+    if (nameSortDirection) {
+      const sorted = DATA.sort(compare('name'));
+
+      if (nameSortDirection === 'ASC') {
+        return sorted;
+      }
+
+      if (nameSortDirection === 'DESC') {
+        return sorted.reverse();
+      }
+    }
+
+    if (ageSortDirection) {
+      const sorted = DATA.sort(compare('age'));
+      if (ageSortDirection === 'ASC') {
+        return sorted;
+      }
+
+      if (ageSortDirection === 'DESC') {
+        return sorted.reverse();
+      }
+    }
+    return DATA;
+  };
 
   return (
-    <Table columns={COLUMNS}>
+    <Table>
       <TableHeader mobileLabel="Contacts">
-        <TableHeaderCell width="300px">Name</TableHeaderCell>
-        <TableHeaderCell>Contact</TableHeaderCell>
-        <TableHeaderCell>Company</TableHeaderCell>
+        <TableHeaderCell
+          sortDirection={nameSortDirection}
+          onSort={() => handleSort('name', nameSortDirection)}
+        >
+          Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          sortDirection={ageSortDirection}
+          onSort={() => handleSort('age', ageSortDirection)}
+        >
+          Age
+        </TableHeaderCell>
       </TableHeader>
       <TableBody>
       {
-        PEOPLE_DATA_2.map((row, index) => (
+        getSortedData(PEOPLE_DATA_2).map((row, index) => (
           <TableRow key={index}>
-            <TableCell width="300px">
-              <Text size="4" bold>{row.name}</Text>
-            </TableCell>
-            <TableCell>
-              <div className="mb-2">
-                <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
-              </div>
-              <div>{row.phone}</div>
-            </TableCell>
-            <TableCell>{row.company}</TableCell>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.age}</TableCell>
           </TableRow>
         ))
       }
@@ -203,42 +278,42 @@ function PaginationTableSample() {
 
   return (
     <>
-    <Table height="300px">
-      <TableHeader mobileLabel="Pagination Example">
-        <TableHeaderCell>Column 1</TableHeaderCell>
-        <TableHeaderCell>Column 2</TableHeaderCell>
-        <TableHeaderCell>Column 3</TableHeaderCell>
-        <TableHeaderCell>Column 4</TableHeaderCell>
-      </TableHeader>
-      <TableBody>
-        {
-          visibleData().map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>row: {row.row}</TableCell>
-              <TableCell>row: {row.row}</TableCell>
-              <TableCell>row: {row.row}</TableCell>
-              <TableCell>row: {row.row}</TableCell>
-            </TableRow>
-          ))
-        }
-      </TableBody>
-    </Table>
+      <Table height="300px">
+        <TableHeader mobileLabel="Pagination Example">
+          <TableHeaderCell>Column 1</TableHeaderCell>
+          <TableHeaderCell>Column 2</TableHeaderCell>
+          <TableHeaderCell>Column 3</TableHeaderCell>
+          <TableHeaderCell>Column 4</TableHeaderCell>
+        </TableHeader>
+        <TableBody>
+          {
+            visibleData().map((row, index) => (
+              <TableRow key={index}>
+                <TableCell>row: {row.row}</TableCell>
+                <TableCell>row: {row.row}</TableCell>
+                <TableCell>row: {row.row}</TableCell>
+                <TableCell>row: {row.row}</TableCell>
+              </TableRow>
+            ))
+          }
+        </TableBody>
+      </Table>
 
-    <Block marginTop="5">
-      <ButtonGroup>
-        <Button onClick={() => handlePageChange(page - 1)}>prev</Button>
-        <Button onClick={() => handlePageChange(page + 1)}>next</Button>
-      </ButtonGroup>
-      <FieldSelect
-        id="single"
-        options={PAGE_SIZE_OPTIONS}
-        label="page size"
-        placeholder={pageSize}
-        onChange={(object,action)=>{
-          handleLimitChange(object.value)
-        }}
-        className="w4"
-      />
+      <Block marginTop="5">
+        <ButtonGroup>
+          <Button onClick={() => handlePageChange(page - 1)}>prev</Button>
+          <Button onClick={() => handlePageChange(page + 1)}>next</Button>
+        </ButtonGroup>
+        <FieldSelect
+          id="single"
+          options={PAGE_SIZE_OPTIONS}
+          label="page size"
+          placeholder={pageSize}
+          onChange={(object,action)=>{
+            handleLimitChange(object.value)
+          }}
+          className="w4"
+        />
       </Block>
     </>
   )

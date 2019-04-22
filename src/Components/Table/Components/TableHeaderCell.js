@@ -6,6 +6,8 @@ import { useMobileLayout } from '../../../Hooks';
 import { dimensionType, spacingType } from '../../../Types';
 
 import Block from '../../Block/Block';
+import Button from '../../Button/Button';
+import Icon from '../../Icon/Icon';
 
 const propTypes = {
   /**
@@ -16,6 +18,14 @@ const propTypes = {
    * Additional classes to apply
    */
   className: PropTypes.string,
+  /**
+   * Callback function when a TableHeader cell is pressed
+   */
+  onSort: PropTypes.func,
+  /**
+   * Direction the column should be sorted
+   */
+  sortDirection: PropTypes.oneOf(['ASC', 'DESC', null]),
   /**
    * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
    *
@@ -37,6 +47,8 @@ const propTypes = {
 
 const defaultProps = {
   padding: [0, 0, 4],
+  onSort: null,
+  sortDirection: null,
   width: '100%',
 };
 
@@ -49,26 +61,68 @@ const defaultProps = {
 function TableHeaderCell({
   children,
   className,
+  onSort,
+  sortDirection,
   padding,
   width,
   ...rest
 }) {
   const isMobileLayout = useMobileLayout();
 
+  const isSortable = onSort !== null;
+
   const classes = classNames(
     'word-wrap fw-700 fs-6',
     {
-      'bb b-neutral-300': !isMobileLayout
+      'bb b-neutral-300': !isMobileLayout,
     },
     className,
   );
 
+  const getSortDirectionArrow = () => {
+    if (sortDirection === 'ASC') {
+      return <Icon name="arrow-small-up" className="mr-1" />;
+    }
+
+    if (sortDirection === 'DESC') {
+      return <Icon name="arrow-small-down" className="mr-1" />;
+    }
+
+    return null;
+  };
+
+  const onSortClick = () => {
+    onSort && onSort();
+  };
+
+  if (isSortable) {
+    return (
+      <Block
+        alignItems="center"
+        className={classes}
+        padding={padding}
+        flex={width === '100%' ? 'grow' : undefined}
+        width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
+        {...rest}
+      >
+        <Button
+          plain
+          onClick={onSortClick}
+          width="100%"
+        >
+          {getSortDirectionArrow()}
+          {children}
+        </Button>
+      </Block>
+    );
+  }
+
   return (
     <Block
       role="columnheader"
+      alignItems="center"
       flex={width === '100%' ? 'grow' : undefined}
       width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
-      direction="column"
       className={classes}
       padding={padding}
       {...rest}
