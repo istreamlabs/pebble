@@ -292,6 +292,17 @@ function PaginationTableSample() {
 
   return (
     <>
+      <FieldSelect
+        id="pageSize"
+        options={PAGE_SIZE_OPTIONS}
+        label="page size"
+        placeholder={pageSize}
+        onChange={(object,action)=>{
+          handleLimitChange(object.value)
+        }}
+        className="w4 mb-5 "
+      />
+      {currentDisplayRange()}
       <Table height="300px">
         <TableHeader mobileLabel="Pagination Example">
           <TableHeaderCell>Column 1</TableHeaderCell>
