@@ -7,17 +7,17 @@ import Text from '../Text/Text';
 
 describe('FieldText', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<FieldText label="test" />); }).not.toThrow();
+    expect(() => { shallow(<FieldText id="testField" label="test" />); }).not.toThrow();
   });
 
   it('allows for custom classes', () => {
-    const wrapper = shallow(<FieldText label="test" className="myClass" />);
+    const wrapper = shallow(<FieldText id="testField" label="test" className="myClass" />);
     expect(wrapper.prop('className')).toContain('myClass');
   });
 
   describe('getLabelMarkup', () => {
     it('sets aria-label if hideLabel is true', () => {
-      const wrapper = shallow(<FieldText label="hiddenLabel" hideLabel />);
+      const wrapper = shallow(<FieldText id="testField" label="hiddenLabel" hideLabel />);
       expect(wrapper.find(Input).prop('ariaLabel')).toEqual('hiddenLabel');
     });
   });
@@ -25,7 +25,7 @@ describe('FieldText', () => {
   describe('getHelpTextMarkup', () => {
     it('display the correct help text if passed', () => {
       const helpText = 'i am help text';
-      const wrapper = shallow(<FieldText label="label" helpText={helpText} />);
+      const wrapper = shallow(<FieldText id="testField" label="label" helpText={helpText} />);
       expect(wrapper.find(Text).childAt(0).text()).toBe(helpText);
     });
 
@@ -38,7 +38,7 @@ describe('FieldText', () => {
   describe('getValidationTextMarkup', () => {
     it('renders validationText if isInvalid', () => {
       const validationText = 'this is invalid';
-      const wrapper = shallow(<FieldText label="label" validationText={validationText} isInvalid />);
+      const wrapper = shallow(<FieldText id="testField" label="label" validationText={validationText} isInvalid />);
       expect(wrapper.find(Text).childAt(0).text()).toBe(validationText);
     });
     it('returns undefined if isInvalid is false', () => {

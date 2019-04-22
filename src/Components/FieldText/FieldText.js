@@ -51,7 +51,7 @@ const propTypes = {
   /**
    * The id attribute of the input
    */
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   /**
    * Applies styling to indicate the input is invalid
    */
