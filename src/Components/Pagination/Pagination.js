@@ -7,11 +7,29 @@ import Button from '../Button/Button';
 import FieldSelect from '../FieldSelect/FieldSelect';
 
 const propTypes = {
+  /**
+   * Additional css classes to apply
+   */
   className: PropTypes.string,
+  /**
+   * Current page
+   */
   currentPage: PropTypes.number.isRequired,
+  /**
+   * Max number of pages
+   */
   numPages: PropTypes.number.isRequired,
+  /**
+   * Callback for when the next button is pressed
+   */
   onNext: PropTypes.func,
+  /**
+   * Callback for when the prev button is pressed
+   */
   onPrev: PropTypes.func,
+  /**
+   * Callback when for when the page changes
+   */
   onPageChange: PropTypes.func,
 };
 
@@ -52,12 +70,12 @@ class Pagination extends React.Component {
     const {
       className,
       currentPage,
-      numPages
+      numPages,
     } = this.props;
 
     const options = this.getMenuOptions(numPages);
 
-    const classes = classNames('pagination bl br bb b-neutral-300', className);
+    const classes = classNames('pagination ba b-neutral-300', className);
 
     return (
       <Block background="neutral-200" padding="3" itemSpacing="4" alignItems="center" className={classes}>
@@ -78,9 +96,7 @@ class Pagination extends React.Component {
           width="96px"
         />
         <Block textSize="6">
-          of
-          {' '}
-          {numPages}
+          {`of ${numPages}`}
         </Block>
         <Button
           disabled={currentPage === numPages}
