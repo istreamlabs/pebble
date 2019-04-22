@@ -1,13 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function isMobileSize() {
-  if (typeof window === 'undefined') {
-    return {};
-  }
-
-  const isMobileSize = window.innerWidth < 960;
-
-  return isMobileSize;
+  return window && window.innerWidth < 960;
 }
 
 /**
