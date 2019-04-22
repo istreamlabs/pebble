@@ -36,6 +36,16 @@ import Badge from '../Badge/Badge';
 </>
 ```
 
+### Flex
+
+```js
+<Block itemSpacing="3">
+  <Block flex={false} padding="3" background="blue-light">1</Block>
+  <Block width="100px" flex={true} padding="3" background="blue-light">1</Block>
+  <Block flex={false} padding="3" background="blue-light">1</Block>
+</Block>
+```
+
 ### Basis
 
 Basis defines the default size of an element before the remaining space is distributed.

@@ -65,6 +65,7 @@ class Block extends React.Component {
       paddingHorizontal,
       paddingVertical,
       radius,
+      styles,
       textAlign,
       textSize,
       truncate,
@@ -86,7 +87,7 @@ class Block extends React.Component {
 
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
-    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] } : null;
+    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] || basis } : null;
 
     const flexGrowShrinkProp = (flex) => {
       if (typeof flex === 'boolean' || typeof flex === 'string') {
@@ -97,10 +98,10 @@ class Block extends React.Component {
       }
     };
 
-    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}${flex !== true && !basis ? ' auto' : ''}` };
+    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}` };
 
     const mergedStyle = {
-      ...flexStyle, ...basisStyle,
+      ...flexStyle, ...basisStyle, ...styles,
     };
 
     // widthStyles is a style
@@ -190,7 +191,10 @@ Block.propTypes = {
    * The default size of an element before the remaining space is distributed
    * @type {PropTypes.Requireable<Basis>}
    */
-  basis: PropTypes.oneOf(['auto', 'full', '1/2', '1/4', '3/4', '1/3', '2/3']),
+  basis: PropTypes.oneOfType([
+    PropTypes.oneOf(['auto', 'full', '1/2', '1/4', '3/4', '1/3', '2/3']),
+    PropTypes.string
+  ]),
   /**
    * Additional classNames to add
    */
@@ -341,6 +345,10 @@ Block.propTypes = {
    * @type {PropTypes.Requireable<Spacing>}
    */
   itemSpacing: spacingType('itemSpacing'),
+  /**
+   * react css styles object
+   */
+  styles: PropTypes.object,
   /**
    * Text alignment within this block.
    * @type {PropTypes.Requireable<TextAlign>}
