@@ -3,15 +3,16 @@
 ```js
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 <Table>
   <TableHeader mobileLabel="Contacts">
-    <TableCell>Name</TableCell>
-    <TableCell>Title</TableCell>
-    <TableCell>Email</TableCell>
-    <TableCell>Company</TableCell>
+    <TableHeaderCell>Name</TableHeaderCell>
+    <TableHeaderCell>Title</TableHeaderCell>
+    <TableHeaderCell>Email</TableHeaderCell>
+    <TableHeaderCell>Company</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
@@ -44,6 +45,7 @@ import { PEOPLE_DATA_2 } from '../../demo/data.js';
 
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
@@ -53,10 +55,10 @@ function CustomCellTable() {
   return (
     <Table columns={COLUMNS} height="250px">
       <TableHeader mobileLabel="Contacts">
-        <TableCell width="56px" />
-        <TableCell width="300px">Name</TableCell>
-        <TableCell>Contact</TableCell>
-        <TableCell>Company</TableCell>
+        <TableHeaderCell width="56px" />
+        <TableHeaderCell width="300px">Name</TableHeaderCell>
+        <TableHeaderCell>Contact</TableHeaderCell>
+        <TableHeaderCell>Company</TableHeaderCell>
       </TableHeader>
       <TableBody>
       {
@@ -86,6 +88,61 @@ function CustomCellTable() {
 <CustomCellTable />
 ```
 
+### Sorting Example
+
+```js
+import Block from '../Block/Block';
+import Icon from '../Icon/Icon';
+import Text from '../Text/Text';
+
+import { PEOPLE_DATA_2 } from '../../demo/data.js';
+
+import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
+import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
+
+import { useState } from 'react';
+
+function SortableTable() {
+  const COLUMNS = ['','name', 'contact', 'company'];
+
+  const [nameSortDirection, setNameSortDirection] = useState('');
+  const [companySortDirection, setCompanySortDirection] = useState('');
+
+  return (
+    <Table columns={COLUMNS}>
+      <TableHeader mobileLabel="Contacts">
+        <TableHeaderCell width="300px">Name</TableHeaderCell>
+        <TableHeaderCell>Contact</TableHeaderCell>
+        <TableHeaderCell>Company</TableHeaderCell>
+      </TableHeader>
+      <TableBody>
+      {
+        PEOPLE_DATA_2.map((row, index) => (
+          <TableRow key={index}>
+            <TableCell width="300px">
+              <Text size="4" bold>{row.name}</Text>
+            </TableCell>
+            <TableCell>
+              <div className="mb-2">
+                <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
+              </div>
+              <div>{row.phone}</div>
+            </TableCell>
+            <TableCell>{row.company}</TableCell>
+          </TableRow>
+        ))
+      }
+      </TableBody>
+    </Table>
+  )
+}
+
+<SortableTable />
+```
+
 ### Pagination Example
 
 ```js
@@ -96,6 +153,7 @@ import Button from '../Button/Button';
 import FieldSelect from '../FieldSelect/FieldSelect';
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
@@ -147,10 +205,10 @@ function PaginationTableSample() {
     <>
     <Table height="300px">
       <TableHeader mobileLabel="Pagination Example">
-        <TableCell>Column 1</TableCell>
-        <TableCell>Column 2</TableCell>
-        <TableCell>Column 3</TableCell>
-        <TableCell>Column 4</TableCell>
+        <TableHeaderCell>Column 1</TableHeaderCell>
+        <TableHeaderCell>Column 2</TableHeaderCell>
+        <TableHeaderCell>Column 3</TableHeaderCell>
+        <TableHeaderCell>Column 4</TableHeaderCell>
       </TableHeader>
       <TableBody>
         {

@@ -29,6 +29,7 @@ export { default as Icon } from './Icon/Icon';
 export { default as Table } from './Table/Table';
 export { default as TableBody } from './Table/Components/TableBody';
 export { default as TableHeader } from './Table/Components/TableHeader';
+export { default as TableHeaderCell } from './Table/Components/TableHeaderCell';
 export { default as TableRow } from './Table/Components/TableRow';
 export { default as TableCell } from './Table/Components/TableCell';
 export { default as Tabs } from './Tabs/Tabs';

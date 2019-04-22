@@ -41,12 +41,12 @@ const defaultProps = {
 };
 
 /**
- * The cell in a table/grid
- *
- * ---
- */
+* A column header in a Table
+*
+* ---
+*/
 
-function TableCell({
+function TableHeaderCell({
   children,
   className,
   padding,
@@ -56,7 +56,7 @@ function TableCell({
   const isMobileLayout = useMobileLayout();
 
   const classes = classNames(
-    'word-wrap',
+    'word-wrap fw-700 fs-6',
     {
       'bb b-neutral-300': !isMobileLayout
     },
@@ -65,7 +65,7 @@ function TableCell({
 
   return (
     <Block
-      role="gridcell"
+      role="columnheader"
       flex={width === '100%' ? 'grow' : undefined}
       width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
       direction="column"
@@ -78,7 +78,7 @@ function TableCell({
   );
 }
 
-TableCell.propTypes = propTypes;
-TableCell.defaultProps = defaultProps;
+TableHeaderCell.propTypes = propTypes;
+TableHeaderCell.defaultProps = defaultProps;
 
-export default TableCell;
+export default TableHeaderCell;

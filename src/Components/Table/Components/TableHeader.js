@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { useMobileLayout } from '../../../Hooks';
 
@@ -19,7 +18,7 @@ const propTypes = {
 };
 
 /**
- * A row container in a table/grid
+ * A wrapper for Table headers
  *
  * ---
  */
@@ -36,17 +35,7 @@ function TableHeader({
         <Heading element="4" size="3">{mobileLabel}</Heading>
       );
     }
-
-    return (
-      React.Children.map(children, child => React.cloneElement(
-        child,
-        {
-          className: classNames(child.props.className, 'fw-700 fs-6'),
-          role: 'columnheader',
-          key: child.key,
-        }
-      ))
-    );
+    return children;
   };
 
   return (
