@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useWindowSize } from '../../../Hooks';
+import { useMobileLayout } from '../../../Hooks';
 
 import Block from '../../Block/Block';
 import Heading from '../../Heading/Heading';
@@ -28,8 +28,7 @@ function TableHeader({
   children,
   mobileLabel,
 }) {
-  const windowWidth = useWindowSize();
-  const isMobileLayout = windowWidth.innerWidth <= 960;
+  const isMobileLayout = useMobileLayout();
 
   const childrenMarkup = () => {
     if (isMobileLayout) {
@@ -44,6 +43,7 @@ function TableHeader({
         {
           className: classNames(child.props.className, 'fw-700 fs-6'),
           role: 'columnheader',
+          key: child.key,
         }
       ))
     );

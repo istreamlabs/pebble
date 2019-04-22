@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { useWindowSize } from '../../../Hooks';
+import { useMobileLayout } from '../../../Hooks';
 import { dimensionType, spacingType } from '../../../Types';
 
 import Block from '../../Block/Block';
@@ -59,8 +59,7 @@ function TableCell({
   width,
   ...rest
 }) {
-  const windowWidth = useWindowSize();
-  const isMobileLayout = windowWidth.innerWidth < 960;
+  const isMobileLayout = useMobileLayout();
 
   const classes = classNames(
     'word-wrap',
