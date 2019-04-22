@@ -135,7 +135,7 @@ class FieldText extends React.Component {
 
     return (
       <Label
-        id={id}
+        id={id || label}
         invalid={isInvalid}
         disabled={disabled}
         hide={hideLabel}
