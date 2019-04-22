@@ -98,6 +98,7 @@ function TableHeaderCell({
   if (isSortable) {
     return (
       <Block
+        role="columnheader"
         alignItems="center"
         className={classes}
         padding={padding}

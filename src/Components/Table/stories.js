@@ -14,41 +14,38 @@ import Text from '../Text/Text';
 import { PEOPLE_DATA_2 } from '../../demo/data';
 
 function CustomCellTable() {
-  const COLUMNS = ['', 'name', 'contact', 'company'];
-
   return (
-    <Table columns={COLUMNS} height="250px">
+    <Table height="250px">
       <TableHeader mobileLabel="Contacts">
-        <TableCell width="56px" />
-        <TableCell width="300px">Name</TableCell>
-        <TableCell>Contact</TableCell>
-        <TableCell>Company</TableCell>
+        <TableHeaderCell width="56px" />
+        <TableHeaderCell width="300px">Name</TableHeaderCell>
+        <TableHeaderCell>Contact</TableHeaderCell>
+        <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
       <TableBody>
         {
-        PEOPLE_DATA_2.map((row, index) => (
-          <TableRow key={index}>
-            <TableCell width="56px">
-              <Icon name="profile-circle" size="24" className="neutral-300" />
-            </TableCell>
-            <TableCell width="300px">
-              <Text size="4" bold>{row.name}</Text>
-            </TableCell>
-            <TableCell>
-              <div className="mb-2">
-                <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
-              </div>
-              <div>{row.phone}</div>
-            </TableCell>
-            <TableCell>{row.company}</TableCell>
-          </TableRow>
-        ))
-      }
+          PEOPLE_DATA_2.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell width="56px">
+                <Icon name="profile-circle" size="24" className="neutral-300" />
+              </TableCell>
+              <TableCell width="300px">
+                <Text size="4" bold>{row.name}</Text>
+              </TableCell>
+              <TableCell>
+                <div className="mb-2">
+                  <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
+                </div>
+                <div>{row.phone}</div>
+              </TableCell>
+              <TableCell>{row.age}</TableCell>
+            </TableRow>
+          ))
+        }
       </TableBody>
     </Table>
   );
 }
-
 function compare(key) {
   return function (a, b) {
     // property does not exist
@@ -163,10 +160,10 @@ storiesOf('Table', module)
   .add('tabular data', () => (
     <Table>
       <TableHeader mobileLabel="Contacts">
-        <TableCell>Name</TableCell>
-        <TableCell>Title</TableCell>
-        <TableCell>Email</TableCell>
-        <TableCell>Company</TableCell>
+        <TableHeaderCell>Name</TableHeaderCell>
+        <TableHeaderCell>Title</TableHeaderCell>
+        <TableHeaderCell>Email</TableHeaderCell>
+        <TableHeaderCell>Company</TableHeaderCell>
       </TableHeader>
       <TableBody>
         <TableRow>
