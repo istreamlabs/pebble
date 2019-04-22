@@ -3,15 +3,16 @@
 ```js
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 <Table>
   <TableHeader mobileLabel="Contacts">
-    <TableCell>Name</TableCell>
-    <TableCell>Title</TableCell>
-    <TableCell>Email</TableCell>
-    <TableCell>Company</TableCell>
+    <TableHeaderCell>Name</TableHeaderCell>
+    <TableHeaderCell>Title</TableHeaderCell>
+    <TableHeaderCell>Email</TableHeaderCell>
+    <TableHeaderCell>Company</TableHeaderCell>
   </TableHeader>
   <TableBody>
     <TableRow>
@@ -44,19 +45,18 @@ import { PEOPLE_DATA_2 } from '../../demo/data.js';
 
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 function CustomCellTable() {
-  const COLUMNS = ['','name', 'contact', 'company'];
-
   return (
-    <Table columns={COLUMNS} height="250px">
+    <Table height="250px">
       <TableHeader mobileLabel="Contacts">
-        <TableCell width="56px" />
-        <TableCell width="300px">Name</TableCell>
-        <TableCell>Contact</TableCell>
-        <TableCell>Company</TableCell>
+        <TableHeaderCell width="56px" />
+        <TableHeaderCell width="300px">Name</TableHeaderCell>
+        <TableHeaderCell>Contact</TableHeaderCell>
+        <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
       <TableBody>
       {
@@ -74,7 +74,7 @@ function CustomCellTable() {
               </div>
               <div>{row.phone}</div>
             </TableCell>
-            <TableCell>{row.company}</TableCell>
+            <TableCell>{row.age}</TableCell>
           </TableRow>
         ))
       }
@@ -84,6 +84,137 @@ function CustomCellTable() {
 }
 
 <CustomCellTable />
+```
+
+### Sorting Example
+
+Pass a `sortDirection` and `onSort` function to each sortable `TableHeaderCell` component
+
+```js
+import Block from '../Block/Block';
+import Icon from '../Icon/Icon';
+import Text from '../Text/Text';
+
+import { PEOPLE_DATA_2 } from '../../demo/data.js';
+
+import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
+import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
+
+import { useState } from 'react';
+
+function compare(key) {
+  return function (a, b) {
+    // property does not exist
+    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      return 0;
+    }
+
+    const varA = (typeof a[key] === 'string')
+      ? a[key].toUpperCase() : a[key];
+    const varB = (typeof b[key] === 'string')
+      ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return comparison
+  };
+}
+
+function SortableTable() {
+  const [nameSortDirection, setNameSortDirection] = useState('ASC');
+  const [ageSortDirection, setAgeSortDirection] = useState(null);
+
+  const handleSort = (title, prevDirection) => {
+    let nextDirection = null;
+
+    if (prevDirection === 'ASC') {
+      nextDirection = 'DESC';
+    }
+
+    if (prevDirection === 'DESC') {
+      nextDirection = 'ASC';
+    }
+
+    if (prevDirection === null) {
+      nextDirection = 'ASC';
+    }
+
+    if (title === 'name') {
+      setNameSortDirection(nextDirection);
+      setAgeSortDirection(null);
+      return;
+    }
+
+    if (title === 'age') {
+      setNameSortDirection(null);
+      setAgeSortDirection(nextDirection);
+    }
+  };
+
+  const getSortedData = (DATA) => {
+    if (nameSortDirection) {
+      const sorted = DATA.sort(compare('name'));
+
+      if (nameSortDirection === 'ASC') {
+        return sorted;
+      }
+
+      if (nameSortDirection === 'DESC') {
+        return sorted.reverse();
+      }
+    }
+
+    if (ageSortDirection) {
+      const sorted = DATA.sort(compare('age'));
+      if (ageSortDirection === 'ASC') {
+        return sorted;
+      }
+
+      if (ageSortDirection === 'DESC') {
+        return sorted.reverse();
+      }
+    }
+    return DATA;
+  };
+
+  return (
+    <Table>
+      <TableHeader mobileLabel="Contacts">
+        <TableHeaderCell
+          sortDirection={nameSortDirection}
+          onSort={() => handleSort('name', nameSortDirection)}
+        >
+          Name
+        </TableHeaderCell>
+        <TableHeaderCell
+          sortDirection={ageSortDirection}
+          onSort={() => handleSort('age', ageSortDirection)}
+        >
+          Age
+        </TableHeaderCell>
+      </TableHeader>
+      <TableBody>
+        {
+          getSortedData(PEOPLE_DATA_2).map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.age}</TableCell>
+            </TableRow>
+          ))
+        }
+      </TableBody>
+    </Table>
+  );
+}
+
+<SortableTable />
 ```
 
 ### Pagination Example
@@ -97,6 +228,7 @@ import FieldSelect from '../FieldSelect/FieldSelect';
 import Pagination from '../Pagination/Pagination';
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
+import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
 import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
@@ -160,23 +292,12 @@ function PaginationTableSample() {
 
   return (
     <>
-      <FieldSelect
-        id="pageSize"
-        options={PAGE_SIZE_OPTIONS}
-        label="choose a page size"
-        placeholder={pageSize}
-        onChange={(object,action)=>{
-          handleLimitChange(object.value)
-        }}
-        className="w5 mb-5 "
-      />
-      {currentDisplayRange()}
       <Table height="300px">
         <TableHeader mobileLabel="Pagination Example">
-          <TableCell>Column 1</TableCell>
-          <TableCell>Column 2</TableCell>
-          <TableCell>Column 3</TableCell>
-          <TableCell>Column 4</TableCell>
+          <TableHeaderCell>Column 1</TableHeaderCell>
+          <TableHeaderCell>Column 2</TableHeaderCell>
+          <TableHeaderCell>Column 3</TableHeaderCell>
+          <TableHeaderCell>Column 4</TableHeaderCell>
         </TableHeader>
         <TableBody>
           {

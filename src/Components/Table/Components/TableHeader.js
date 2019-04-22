@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-import { useWindowSize } from '../../../Hooks';
+import { useMobileLayout } from '../../../Hooks';
 
 import Block from '../../Block/Block';
 import Heading from '../../Heading/Heading';
@@ -19,7 +18,7 @@ const propTypes = {
 };
 
 /**
- * A row container in a table/grid
+ * A wrapper for Table headers
  *
  * ---
  */
@@ -28,8 +27,7 @@ function TableHeader({
   children,
   mobileLabel,
 }) {
-  const windowWidth = useWindowSize();
-  const isMobileLayout = windowWidth.innerWidth <= 960;
+  const isMobileLayout = useMobileLayout();
 
   const childrenMarkup = () => {
     if (isMobileLayout) {
@@ -37,16 +35,7 @@ function TableHeader({
         <Heading element="4" size="3">{mobileLabel}</Heading>
       );
     }
-
-    return (
-      React.Children.map(children, child => React.cloneElement(
-        child,
-        {
-          className: classNames(child.props.className, 'fw-700 fs-6'),
-          role: 'columnheader',
-        }
-      ))
-    );
+    return children;
   };
 
   return (
