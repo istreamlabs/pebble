@@ -30,8 +30,9 @@ class Pagination extends React.Component {
     return menuOptions;
   };
 
-  onPageSelect = (page) => {
+  onPageSelect = (selected) => {
     const { currentPage, onPageChange } = this.props;
+    const page = selected.value;
     if (page !== currentPage) {
       onPageChange && onPageChange(page);
     }
@@ -72,10 +73,9 @@ class Pagination extends React.Component {
           label="current page"
           hideLabel
           options={options}
-          onChange={(object) => {
-            this.onPageSelect(object.value);
-          }}
+          onChange={this.onPageSelect}
           value={{ value: currentPage, label: `${currentPage}` }}
+          width="96px"
         />
         <Block textSize="6">
           of
