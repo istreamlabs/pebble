@@ -106,16 +106,16 @@ import TableCell from './Components/TableCell'; //import { TableCell } from '@is
 import { useState } from 'react';
 
 function compare(key) {
-  return function(a, b) {
+  return function (a, b) {
     // property does not exist
     if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0;
     }
 
-    const varA = (typeof a[key] === 'string') ?
-      a[key].toUpperCase() : a[key];
-    const varB = (typeof b[key] === 'string') ?
-      b[key].toUpperCase() : b[key];
+    const varA = (typeof a[key] === 'string')
+      ? a[key].toUpperCase() : a[key];
+    const varB = (typeof b[key] === 'string')
+      ? b[key].toUpperCase() : b[key];
 
     let comparison = 0;
     if (varA > varB) {
@@ -128,7 +128,7 @@ function compare(key) {
 }
 
 function SortableTable() {
-  const [nameSortDirection, setNameSortDirection] = useState(null);
+  const [nameSortDirection, setNameSortDirection] = useState('ASC');
   const [ageSortDirection, setAgeSortDirection] = useState(null);
 
   const handleSort = (title, prevDirection) => {
@@ -154,12 +154,11 @@ function SortableTable() {
 
     if (title === 'age') {
       setNameSortDirection(null);
-      setAgeSortDirection(nextDirection);;
-      return;
+      setAgeSortDirection(nextDirection);
     }
   };
 
-  getSortedData = (DATA) => {
+  const getSortedData = (DATA) => {
     if (nameSortDirection) {
       const sorted = DATA.sort(compare('name'));
 
@@ -202,17 +201,17 @@ function SortableTable() {
         </TableHeaderCell>
       </TableHeader>
       <TableBody>
-      {
-        getSortedData(PEOPLE_DATA_2).map((row, index) => (
-          <TableRow key={index}>
-            <TableCell>{row.name}</TableCell>
-            <TableCell>{row.age}</TableCell>
-          </TableRow>
-        ))
-      }
+        {
+          getSortedData(PEOPLE_DATA_2).map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.age}</TableCell>
+            </TableRow>
+          ))
+        }
       </TableBody>
     </Table>
-  )
+  );
 }
 
 <SortableTable />
