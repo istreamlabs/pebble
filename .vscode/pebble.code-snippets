@@ -42,7 +42,7 @@
       "  const classes = classNames('table', className);",
 "",
       "  return (",
-      "    <div classNames={classes}>",
+      "    <div className={classes}>",
       "      {children}",
       "    </div>",
       "  );",
