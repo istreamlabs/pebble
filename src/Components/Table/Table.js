@@ -41,7 +41,7 @@ function Table({
   width,
   ...rest
 }) {
-  const classes = classNames('table', className);
+  const classes = classNames('table ba b-neutral-300', className);
 
   return (
     <Block

@@ -4,6 +4,8 @@ import classNames from 'classnames';
 
 import { useMobileLayout } from '../../../Hooks';
 
+import './TableRow.scss';
+
 import Block from '../../Block/Block';
 
 const propTypes = {
@@ -36,10 +38,11 @@ function TableRow({
   const isMobileLayout = useMobileLayout();
 
   const classes = classNames(
+    'table-row',
     'flex w-100',
     {
       'bg-hover bg-blue-lighter-hover': hoverHighlight,
-      'bb b-neutral-300 pb-4': isMobileLayout
+      'bb b-neutral-300 pb-4 ph-4': isMobileLayout
     },
     className
   );
