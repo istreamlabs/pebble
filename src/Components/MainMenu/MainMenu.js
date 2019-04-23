@@ -27,10 +27,9 @@ class MainMenu extends React.Component {
     || (item.items || []).some(i => MainMenu.shouldBeOpen(location, i));
   }
 
-  renderItem(menu) {
+  renderItem(menu, startExpanded) {
     const {
       location,
-      startExpanded,
     } = this.props;
 
     return menu.map((item, i) => (
@@ -47,7 +46,9 @@ class MainMenu extends React.Component {
     const {
       className,
       menu,
+      startMenuExpanded,
       auxMenu,
+      startAuxMenuExpanded,
       title,
     } = this.props;
 
@@ -63,13 +64,13 @@ class MainMenu extends React.Component {
             <Text bold>{title}</Text>
           </Block>
           <ul className="main-menu-items">
-            {this.renderItem(menu)}
+            {this.renderItem(menu, startMenuExpanded)}
           </ul>
         </div>
         {auxMenu && (
           <div className="main-menu-bottom">
             <ul className="main-menu-items">
-              {this.renderItem(auxMenu)}
+              {this.renderItem(auxMenu, startAuxMenuExpanded)}
             </ul>
           </div>
         )}
@@ -124,9 +125,13 @@ MainMenu.propTypes = {
    */
   title: PropTypes.string,
   /**
-   * On first load, expand all menu items that contain child items
+   * On page load, expand items in the menu that contain child items
    */
-  startExpanded: PropTypes.bool,
+  startMenuExpanded: PropTypes.bool,
+  /**
+   * On page load, expand items in the auxMenu that contain child items
+   */
+  startAuxMenuExpanded: PropTypes.bool,
 };
 
 export default withRouter(MainMenu);

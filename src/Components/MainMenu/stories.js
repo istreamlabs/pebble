@@ -93,7 +93,7 @@ storiesOf('MainMenu', module)
     <DemoBrowserRouter>
       <div styles={{ overflow: 'auto' }}>
         <Block height="400px">
-          <MainMenu menu={menu} auxMenu={auxMenu} startExpanded />
+          <MainMenu menu={menu} auxMenu={auxMenu} startMenuExpanded />
         </Block>
       </div>
     </DemoBrowserRouter>
