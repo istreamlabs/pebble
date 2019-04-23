@@ -42,7 +42,7 @@ function TableRow({
     'flex w-100',
     {
       'bg-hover bg-blue-lighter-hover': hoverHighlight,
-      'bb b-neutral-300 pb-4': isMobileLayout
+      'bb b-neutral-300 pb-4 ph-4': isMobileLayout
     },
     className
   );

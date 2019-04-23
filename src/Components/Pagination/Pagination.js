@@ -18,15 +18,7 @@ const propTypes = {
   /**
    * Max number of pages
    */
-  numPages: PropTypes.number.isRequired,
-  /**
-   * Callback for when the next button is pressed
-   */
-  onNext: PropTypes.func,
-  /**
-   * Callback for when the prev button is pressed
-   */
-  onPrev: PropTypes.func,
+  numPages: PropTypes.number,
   /**
    * Callback when for when the page changes
    */
@@ -50,21 +42,38 @@ class Pagination extends React.Component {
 
   onPageSelect = (selected) => {
     const { currentPage, onPageChange } = this.props;
-    const page = selected.value;
+    // call coming from the next/prev button, or from the FieldSelect
+    const page = typeof selected === 'number' ? selected : selected.value;
     if (page !== currentPage) {
       onPageChange && onPageChange(page);
     }
   };
 
-  onPrevClick = (event) => {
-    const { onPrev } = this.props;
-    onPrev && onPrev({ event });
-  };
+  getPageSelectDropdown = () => {
+    const { currentPage, numPages } = this.props;
 
-  onNextClick = (event) => {
-    const { onNext } = this.props;
-    onNext && onNext({ event });
-  };
+    const options = this.getMenuOptions(numPages);
+
+    if (numPages !== undefined) {
+      return (
+        <Block alignItems="center" className="mr-4">
+          <FieldSelect
+            id="currentPageSelect"
+            label="current page"
+            hideLabel
+            options={options}
+            onChange={this.onPageSelect}
+            value={{ value: currentPage, label: `${currentPage}` }}
+            width="96px"
+            className="mr-2"
+          />
+          <Block textSize="6">
+            {`of ${numPages}`}
+          </Block>
+        </Block>
+      );
+    }
+  }
 
   render() {
     const {
@@ -73,34 +82,23 @@ class Pagination extends React.Component {
       numPages,
     } = this.props;
 
-    const options = this.getMenuOptions(numPages);
 
     const classes = classNames('pagination ba b-neutral-300', className);
 
     return (
-      <Block background="neutral-200" padding="3" itemSpacing="4" alignItems="center" className={classes}>
+      <Block background="neutral-200" padding="3" alignItems="center" className={classes}>
         <Button
           disabled={currentPage === 1}
-          onClick={this.onPrevClick}
+          onClick={() => this.onPageSelect(currentPage - 1)}
           icon="arrow-small-left"
+          className="mr-4"
         >
           Prev
         </Button>
-        <FieldSelect
-          id="currentPageSelect"
-          label="current page"
-          hideLabel
-          options={options}
-          onChange={this.onPageSelect}
-          value={{ value: currentPage, label: `${currentPage}` }}
-          width="96px"
-        />
-        <Block textSize="6">
-          {`of ${numPages}`}
-        </Block>
+        {this.getPageSelectDropdown()}
         <Button
           disabled={currentPage === numPages}
-          onClick={this.onNextClick}
+          onClick={() => this.onPageSelect(currentPage + 1)}
           icon="arrow-small-right"
           iconAfterText
         >

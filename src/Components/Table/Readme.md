@@ -324,12 +324,9 @@ function PaginationTableSample() {
       </Table>
 
       <Pagination
-        onPrev={() => handlePageChange(page - 1)}
-        onNext={() => handlePageChange(page + 1)}
         onPageChange={handlePageChange}
         currentPage={page}
         numPages={numPages}
-        key={numPages}
       >
       </Pagination>
     </>

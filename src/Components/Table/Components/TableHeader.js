@@ -42,11 +42,12 @@ function TableHeader({
     <Block
       role="row"
       width="100%"
-      background={!isMobileLayout ? 'white' : undefined}
+      background="white"
       className={isMobileLayout ? 'bb b-neutral-300' : undefined}
       direction={isMobileLayout ? 'column' : 'row'}
       styles={{ flexShrink: 0, minHeight: '50px' }}
       justify={isMobileLayout ? 'center' : 'start'}
+      padding={isMobileLayout ? '4' : null}
     >
       {childrenMarkup()}
     </Block>
