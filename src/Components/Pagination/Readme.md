@@ -36,7 +36,7 @@ function PaginationExample() {
     <>
       <div className="mb-5">current page: {currentPage}</div>
       <Pagination
-        onPageChange={(nextPage) => setCurrentPage(nextPage)}
+        onPageChange={setCurrentPage}
         currentPage={currentPage}
       />
     </>
