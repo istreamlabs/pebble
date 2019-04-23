@@ -47,7 +47,6 @@ function Table({
     <Block
       className={classes}
       width={width}
-      height="100%"
       {...rest}
       role="grid"
       direction="column"
