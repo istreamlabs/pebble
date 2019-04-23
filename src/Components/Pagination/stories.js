@@ -9,7 +9,7 @@ function PaginationExample() {
 
   return (
     <Pagination
-      onPageChange={nextPage => setCurrentPage(nextPage)}
+      onPageChange={setCurrentPage}
       currentPage={currentPage}
       numPages={5}
     />
@@ -27,7 +27,7 @@ function PaginationNoNumPagesExample() {
         {currentPage}
       </div>
       <Pagination
-        onPageChange={nextPage => setCurrentPage(nextPage)}
+        onPageChange={setCurrentPage}
         currentPage={currentPage}
       />
     </>
