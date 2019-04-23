@@ -82,7 +82,6 @@ class Pagination extends React.Component {
       numPages,
     } = this.props;
 
-
     const classes = classNames('pagination ba b-neutral-300', className);
 
     return (

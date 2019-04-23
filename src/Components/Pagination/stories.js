@@ -9,8 +9,6 @@ function PaginationExample() {
 
   return (
     <Pagination
-      onPrev={() => setCurrentPage(currentPage - 1)}
-      onNext={() => setCurrentPage(currentPage + 1)}
       onPageChange={nextPage => setCurrentPage(nextPage)}
       currentPage={currentPage}
       numPages={5}
@@ -18,9 +16,32 @@ function PaginationExample() {
   );
 }
 
+function PaginationNoNumPagesExample() {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  return (
+    <>
+      <div className="mb-5">
+        current page:
+        {' '}
+        {currentPage}
+      </div>
+      <Pagination
+        onPageChange={nextPage => setCurrentPage(nextPage)}
+        currentPage={currentPage}
+      />
+    </>
+  );
+}
+
 storiesOf('Pagination', module)
-  .add('all', () => (
+  .add('with numPages', () => (
     <>
       <PaginationExample />
+    </>
+  ))
+  .add('without numPages', () => (
+    <>
+      <PaginationNoNumPagesExample />
     </>
   ));
