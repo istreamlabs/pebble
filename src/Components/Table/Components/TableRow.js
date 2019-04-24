@@ -48,7 +48,7 @@ function TableRow({
   );
 
   const childrenMarkup = () => (
-    React.Children.map(children, (child, i) => React.cloneElement(
+    React.Children.map(children, (child, i) => child && React.cloneElement(
       child,
       {
         'aria-colindex': i + 1
