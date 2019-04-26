@@ -2,10 +2,13 @@
 
 
 ```js
+import { useState } from 'react';
 import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 
 import Block from '../Block/Block';
+import Button from '../Button/Button';
 import MainMenu from '../MainMenu/MainMenu';
+import Modal from '../Modal/Modal';
 
 const TENANT_NAME = 'Frame Example';
 
@@ -49,42 +52,50 @@ const MENU = [
   },
 ];
 
-class FrameExample extends React.Component {
-  constructor() {
-    super()
-  }
+function FrameExample() {
+  const [showModal, setShowModal] = useState(false);
 
-  mainNavigationToggled(isOpen) {
+  const mainNavigationToggled = (isOpen) => {
     console.log(`menu has been toggled to a ${isOpen ? 'Expanded': 'Collapsed'} state.`)
   }
 
-  render() {
-    const mainMenu = (
-      <MainMenu
+  const mainMenu = (
+    <MainMenu
+      title={TENANT_NAME}
+      menu={MENU}
+    />
+  )
+
+  const demoModal = (
+    <Modal
+      title="Demo Modal"
+      onRequestClose={() => setShowModal(!showModal)}
+      showing={showModal}
+      footer={[
+        <Button primary onClick={() => setShowModal(!showModal)}>Save</Button>,
+        <Button onClick={() => setShowModal(!showModal)}>Cancel</Button>
+      ]}
+    >
+      I am a demo modal
+    </Modal>
+  );
+
+  return (
+    <DemoBrowserRouter>
+      <Frame
+        navigation={mainMenu}
+        onNavigationToggle={this.mainNavigationToggled}
+        tenantName={TENANT_NAME}
         title={TENANT_NAME}
-        menu={MENU}
-      />
-    );
-
-    const bodyContent = (
-      <Block background="blue-lighter" flex direction="column" height="100%" padding="6">
-        Main Content goes here
-      </Block>
-    );
-
-    return (
-      <DemoBrowserRouter>
-        <Frame
-          navigation={mainMenu}
-          onNavigationToggle={this.mainNavigationToggled}
-          tenantName={TENANT_NAME}
-          title={TENANT_NAME}
-        >
-          {bodyContent}
-        </Frame>
-      </DemoBrowserRouter>
-    )
-  }
+      >
+        {showModal && demoModal}
+        <Block background="blue-lighter" alignItems="start" flex direction="column" height="100%" padding="6">
+          <p>Main Content goes here</p>
+          <Button onClick={() => setShowModal(!showModal)}>Open Modal</Button>
+        </Block>
+      </Frame>
+    </DemoBrowserRouter>
+  )
 }
 
 <div style={{ height: '400px', overflow: 'auto' }}>
