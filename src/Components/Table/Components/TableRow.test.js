@@ -16,6 +16,13 @@ describe('TableRow', () => {
     expect(() => { shallow(<TableRow />); }).not.toThrow();
   });
 
+  it('renders blank children without crashing', () => {
+    const wrapper = shallow(<TableRow>
+      {null}
+      <div></div>
+    </TableRow>)
+  })
+
   it('sets the direction to row when not mobile', () => {
     const wrapper = shallow(<TableRow />);
     expect(wrapper.prop('direction')).toBe('row');
