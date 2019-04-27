@@ -98,6 +98,7 @@ Use for actions that aren’t currently available. The surrounding interface sho
   <Button disabled primary>primary</Button>
   <Button disabled danger>danger</Button>
   <Button disabled primary danger>primary danger</Button>
+  <Button disabled plain>plain</Button>
 </div>
 ```
 
@@ -131,7 +132,7 @@ Buttons should:
 
 * Be concise and clearly labeled.
 * Use Default buttons for most cases
-* Avoid using Icon-only buttons unless the action they perform is completely obvious. 
+* Avoid using Icon-only buttons unless the action they perform is completely obvious.
 * Use primary buttons highlight the most important action in the experience
 * Only have one primary button in a section/screen
 * Use Danger buttons to indicate a destructive action. They usually trigger a confirmation before the action is completed

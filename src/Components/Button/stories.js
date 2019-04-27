@@ -35,6 +35,7 @@ storiesOf('Button', module)
         <Button disabled primary>primary</Button>
         <Button disabled danger>danger</Button>
         <Button disabled primary danger>primary danger</Button>
+        <Button href="#" disabled plain>plain</Button>
       </ButtonGroup>
       <ButtonGroup>
         <Button loading>my button</Button>
