@@ -14,6 +14,13 @@ describe('DropdownMenu', () => {
     expect(wrapper.find(FocusTrap).prop('active')).toBe(false);
   });
 
+  it('should cleanup event listener when unmounted', () => {
+    document.removeEventListener = jest.fn();
+    const instance = new DropdownMenu({});
+    instance.componentWillUnmount();
+    expect(document.removeEventListener).toHaveBeenCalledWith('keydown', instance.handleKeydown, false);
+  });
+
   describe('onToggle', () => {
     it('should toggle the dropdown open and call onOpen and onClose', () => {
       const onOpen = jest.fn();
@@ -64,6 +71,23 @@ describe('DropdownMenu', () => {
 
       instance.handleOpen();
       expect(onOpen).toHaveBeenCalled();
+    });
+  });
+
+  describe('handleKeydown', () => {
+    beforeEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls handleClose when Escape key is pressed', () => {
+      const instance = new DropdownMenu({ open: true });
+      instance.setState = jest.fn();
+
+      instance.handleKeydown({ event: 'keydown', key: 'Enter' });
+      expect(instance.setState).toHaveBeenCalledTimes(0);
+
+      instance.handleKeydown({ event: 'keydown', key: 'Escape' });
+      expect(instance.setState).toHaveBeenCalledTimes(1);
     });
   });
 
