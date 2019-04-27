@@ -96,7 +96,6 @@ $BTN_FOCUS_DANGER: $red-light;
 
 .btn-danger {
   color: $red;
-  border-color: $red-light;
 
   &:focus,
   &:hover,
@@ -123,22 +122,29 @@ $BTN_FOCUS_DANGER: $red-light;
 .btn-plain {
   background: transparent;
   border: none;
-  color: $blue;
+  color: $blue-dark;
   height: auto;
   padding: 0;
-  text-decoration: underline;
+  font-weight: normal;
 
   &:focus,
   &:hover {
     background: transparent;
-    color: $blue-dark;
-    text-decoration: underline;
+    color: $blue-darker;
   }
 
   &:focus {
     box-shadow: none;
     outline: $BTN_FOCUS_DEFAULT dotted 2px;
     outline-offset: $spacing-1;
+  }
+
+
+  &.disabled,
+  &:disabled {
+    &:hover {
+      color: $blue-light;
+    }
   }
 }
 

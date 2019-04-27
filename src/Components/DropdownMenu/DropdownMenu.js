@@ -9,6 +9,67 @@ import Button from '../Button/Button';
 
 import './DropdownMenu.scss';
 
+const propTypes = {
+  /**
+   * Additional classNames to add to the container
+   */
+  className: PropTypes.string,
+  /**
+   * Additional classNames to add to the default toggle button
+   */
+  toggleClassName: PropTypes.string,
+  /**
+   * Additional classNames to add to the dropdown overlay
+   */
+  overlayClassName: PropTypes.string,
+  /**
+  * Contents of the component
+  */
+  children: PropTypes.node,
+  /**
+  * Whether dropdown is disabled
+  */
+  disabled: PropTypes.bool,
+  /**
+   * Takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Changes the size of all buttons in the group
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Callback when overlay is closed
+   */
+  onClose: PropTypes.func,
+  /**
+   * Callback when overlay is open
+   */
+  onOpen: PropTypes.func,
+  /**
+   * Whether the drop should be open or not. Will not apply after component is been rendered.
+   */
+  open: PropTypes.bool,
+  /**
+   * trap focus when the dropdown is open
+   */
+  trapFocus: PropTypes.bool,
+  /**
+   * Content that will open and close the dropdown menu. Passing a string will render a Button with a down arrow.
+   */
+  toggle: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]).isRequired,
+};
+
+const defaultProps = {
+  trapFocus: true,
+  open: false,
+};
+
+
 /**
  * Creates a dropdown menu with optional groups with headings.
  *
@@ -22,6 +83,14 @@ export class DropdownMenu extends React.PureComponent {
     this.state = {
       isOverlayOpen: props.open || false,
     };
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeydown, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeydown, false);
   }
 
   onToggle = () => {
@@ -46,6 +115,14 @@ export class DropdownMenu extends React.PureComponent {
   handleOpen = () => {
     const { onOpen } = this.props;
     onOpen && onOpen();
+  }
+
+  handleKeydown = (event) => {
+    const { isOverlayOpen } = this.state;
+    const { key } = event;
+    if (key === 'Escape' && isOverlayOpen) {
+      this.setState({ isOverlayOpen: false }, this.handleClose());
+    }
   }
 
   renderToggle() {
@@ -119,7 +196,10 @@ export class DropdownMenu extends React.PureComponent {
           clickOutsideDeactivates: true,
         }}
       >
-        <div className={classes}>
+        <div
+          className={classes}
+          onKeyDown={this.handleKeydown}
+        >
           {this.renderToggle()}
           {this.renderOverlay()}
         </div>
@@ -128,65 +208,9 @@ export class DropdownMenu extends React.PureComponent {
   }
 }
 
-DropdownMenu.defaultProps = {
-  trapFocus: true,
-  open: false,
-};
+DropdownMenu.defaultProps = defaultProps;
 
-DropdownMenu.propTypes = {
-  /**
-   * Additional classNames to add to the container
-   */
-  className: PropTypes.string,
-  /**
-   * Additional classNames to add to the default toggle button
-   */
-  toggleClassName: PropTypes.string,
-  /**
-   * Additional classNames to add to the dropdown overlay
-   */
-  overlayClassName: PropTypes.string,
-  /**
-  * Contents of the component
-  */
-  children: PropTypes.node,
-  /**
-  * Whether dropdown is disabled
-  */
-  disabled: PropTypes.bool,
-  /**
-   * Takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * Changes the size of all buttons in the group
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Callback when overlay is closed
-   */
-  onClose: PropTypes.func,
-  /**
-   * Callback when overlay is open
-   */
-  onOpen: PropTypes.func,
-  /**
-   * Whether the drop should be open or not. Will not apply after component is been rendered.
-   */
-  open: PropTypes.bool,
-  /**
-   * trap focus when the dropdown is open
-   */
-  trapFocus: PropTypes.bool,
-  /**
-   * Content that will open and close the dropdown menu. Passing a string will render a Button with a down arrow.
-   */
-  toggle: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]),
-};
+DropdownMenu.propTypes = propTypes;
 
 export { DropdownMenu as DropdownMenuWithoutOnClickOutside };
 
