@@ -152,7 +152,7 @@ export class Frame extends React.PureComponent {
     const { isShowingMobileNav } = this.state;
 
     if (navigation && isShowingMobileNav) {
-      return <Overlay onClick={this.handleNavigationDismiss} />;
+      return <Overlay onClick={this.handleNavigationDismiss} styles={{ zIndex: 99 }} />;
     }
     return null;
   }
