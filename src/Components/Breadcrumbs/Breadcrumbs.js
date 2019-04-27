@@ -13,14 +13,15 @@ const propTypes = {
 };
 
 /**
-* Secondary form of navigation that helps orient users in an application with hierarchical content.
+* Secondary form of navigation that helps orient users in an application within hierarchical content.
 *
 * ---
 */
 
-function Breadcrumb({
+function Breadcrumbs({
   className,
   children,
+  ...rest
 }) {
   const classes = classNames('breadcrumbs', className);
   const childrenWithDividers = [];
@@ -30,7 +31,7 @@ function Breadcrumb({
     child && childrenWithDividers.push(child);
 
     if (index !== numChildren - 1) {
-      childrenWithDividers.push(<Icon key={`separator-${index}`} name="arrow-small-right" className="ml-2 mr-2 neutral-500" />);
+      childrenWithDividers.push(<Icon key={`separator-${index}`} name="arrow-small-triangle-right" className="ml-2 mr-2 ml-3-ns mr-3-ns neutral-500" />);
     }
   });
 
@@ -38,16 +39,17 @@ function Breadcrumb({
     <Block
       as="nav"
       direction="row"
-      aria-label="breadcrumb"
+      aria-label="breadcrumbs navigation"
       alignItems="center"
       className={classes}
       wrap
+      {...rest}
     >
       {childrenWithDividers}
     </Block>
   );
 }
 
-Breadcrumb.propTypes = propTypes;
+Breadcrumbs.propTypes = propTypes;
 
-export default Breadcrumb;
+export default Breadcrumbs;

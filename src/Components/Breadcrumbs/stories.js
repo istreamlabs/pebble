@@ -5,7 +5,6 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 
 import Breadcrumbs from './Breadcrumbs';
 import Button from '../Button/Button';
-import Heading from '../Heading/Heading';
 import Link from '../Link/Link';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import DropdownItem from '../DropdownMenu/Components/DropdownItem';
@@ -15,14 +14,12 @@ storiesOf('Breadcrumbs', module)
     <DemoBrowserRouter>
       <Breadcrumbs>
         <Link href="#">Parent</Link>
-        <DropdownMenu toggle={<Button plain iconAfterText icon="arrow-small-down">Sub-Level 1</Button>}>
-          <DropdownItem>Sub-Level 1a</DropdownItem>
-          <DropdownItem>Sub-Level 1b</DropdownItem>
+        <DropdownMenu toggle={<Button plain iconAfterText icon="arrow-small-down">Level 1</Button>}>
+          <DropdownItem>Level 1a</DropdownItem>
+          <DropdownItem>Level 1b</DropdownItem>
         </DropdownMenu>
-
-        <Link href="#">Sub-Level 2</Link>
-        <Link href="#">Sub-Level 3</Link>
+        <Link href="#">Level 2</Link>
+        <Link href="#">Level 3</Link>
       </Breadcrumbs>
-      <Heading element="1">The Page Heading</Heading>
     </DemoBrowserRouter>
   ));
