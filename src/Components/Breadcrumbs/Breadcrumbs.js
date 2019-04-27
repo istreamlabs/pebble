@@ -27,11 +27,11 @@ function Breadcrumbs({
   const childrenWithDividers = [];
   const numChildren = React.Children.count(children);
 
-  React.Children.forEach(children, (child, index) => {
+  React.Children.forEach(children, (child, i) => {
     child && childrenWithDividers.push(child);
 
-    if (index !== numChildren - 1) {
-      childrenWithDividers.push(<Icon key={`separator-${index}`} name="arrow-small-triangle-right" className="ml-2 mr-2 ml-3-ns mr-3-ns neutral-500" />);
+    if (i !== numChildren - 1) {
+      childrenWithDividers.push(<Icon key={i} name="arrow-small-triangle-right" className="ml-2 mr-2 ml-3-ns mr-3-ns neutral-500" />);
     }
   });
 
