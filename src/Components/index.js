@@ -15,6 +15,7 @@ export { default as FieldText } from './FieldText/FieldText';
 export { default as FieldToggle } from './FieldToggle/FieldToggle';
 export { default as Form } from './Form/Form';
 export { default as FormLayout } from './FormLayout/FormLayout';
+export { default as FormLayoutRow } from './FormLayout/Components/FormLayoutRow';
 export { default as Frame } from './Frame/Frame';
 export { default as Heading } from './Heading/Heading';
 export { default as Label } from './Label/Label';
