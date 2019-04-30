@@ -164,7 +164,7 @@ class FieldText extends React.Component {
     if (helpText === undefined) return;
 
     return (
-      <Text size="6" className="field-text-help mb-2">{helpText}</Text>
+      <Text size="6" className="field-text-help mt-2">{helpText}</Text>
     );
   }
 
@@ -200,8 +200,8 @@ class FieldText extends React.Component {
     return (
       <Block direction="column" className={classes} width={width}>
         {this.getLabel()}
-        {this.getHelpTextMarkup()}
         {this.renderChildren()}
+        {this.getHelpTextMarkup()}
         {this.getValidationTextMarkup()}
       </Block>
     );

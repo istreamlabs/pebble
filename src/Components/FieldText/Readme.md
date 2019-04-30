@@ -98,6 +98,7 @@ function FieldTextExample() {
       <FieldText
         isInvalid
         validationText="i am invalid"
+        helpText="I'm some helpful text"
         label="Is Invalid"
         id="error-input"
         value={errorInput}
