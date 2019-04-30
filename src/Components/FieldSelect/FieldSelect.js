@@ -189,7 +189,7 @@ function FieldSelect({
   const helpTextMarkup = () => {
     if (helpText === undefined) return;
     return (
-      <Text size="6" appearance="muted" className="db mb-2">{helpText}</Text>
+      <Text size="6" className="db mt-2">{helpText}</Text>
     );
   };
 
@@ -211,8 +211,8 @@ function FieldSelect({
   return (
     <Block direction="column" className={classes} width={width}>
       {getLabel()}
-      {helpTextMarkup()}
       {selectMarkup()}
+      {helpTextMarkup()}
       {getValidationTextMarkup()}
     </Block>
   );
