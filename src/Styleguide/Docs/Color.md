@@ -32,7 +32,7 @@ Used for for buttons, alert messages, form elements.
 ```js noeditor
 <ColorSwatch name="$blue-lighter" value="#EEF5FF" />
 <ColorSwatch name="$blue-light" value="#B6D2F7" />
-<ColorSwatch name="$blue" value="#2F80ED" />
+<ColorSwatch name="$blue" value="#2872d6" />
 <ColorSwatch name="$blue-dark" value="#1C4D90" />
 <ColorSwatch name="$blue-darker" value="#0D2648" />
 ```

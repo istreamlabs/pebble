@@ -122,7 +122,7 @@ $BTN_FOCUS_DANGER: $red-light;
 .btn-plain {
   background: transparent;
   border: none;
-  color: $blue-dark;
+  color: $blue;
   height: auto;
   padding: 0;
   font-weight: normal;
@@ -130,7 +130,11 @@ $BTN_FOCUS_DANGER: $red-light;
   &:focus,
   &:hover {
     background: transparent;
-    color: $blue-darker;
+    color: $blue-dark;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 
   &:focus {
