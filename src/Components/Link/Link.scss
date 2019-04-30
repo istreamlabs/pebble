@@ -8,7 +8,7 @@
   display: inline;
   font-size: inherit;
   padding: 0;
-  color: $blue-dark;
+  color: $blue;
   text-align: inherit;
   text-decoration: none;
   transition: color .1s linear;
@@ -16,6 +16,10 @@
   &:hover,
   &:focus,
   &:active {
-    color: $blue-darker;
+    color: $blue-dark;
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
