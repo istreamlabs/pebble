@@ -183,7 +183,7 @@ export class DropdownMenu extends React.PureComponent {
   render() {
     const { isOverlayOpen } = this.state;
     const { className, fullWidth, trapFocus } = this.props;
-    const classes = classNames('dropdown-container flex', {
+    const classes = classNames('dropdown-container', {
       'w-100': fullWidth,
     }, className);
 
