@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
-  getFlexDirectionClasses,
   getFlexPropertyClasses,
   getDimensionClasses,
   getItemSpacingClasses,
@@ -321,7 +320,7 @@ class Block extends React.Component {
     const pvClasses = paddingVertical !== undefined ? getDimensionClasses('pv', paddingVertical) : null;
     const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
-    const directionClasses = getFlexDirectionClasses(direction);
+    const directionClasses = getFlexPropertyClasses('flex', direction);
     const widthStyles = getDimensionClasses('width', width);
     const heightStyles = getDimensionClasses('height', height);
     const justifyClasses = getFlexPropertyClasses('justify', justify);
