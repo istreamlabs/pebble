@@ -26,7 +26,11 @@
   width: 100%;
   background: transparent;
   padding: $spacing-3 $spacing-4;
-  @extend .bg-blue-lighter-hover;
+
+  &:not(:disabled):hover,
+  &:not(:disabled):focus {
+    @extend .bg-blue-lighter-hover;
+  }
 
   &:focus {
     outline: 0;

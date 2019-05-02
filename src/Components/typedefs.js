@@ -10,7 +10,7 @@
  * @typedef {'around'|'between'|'center'|'evenly'|'start'|'end'} Justify
  * @typedef {'start'|'center'|'end'|'stretch'|'baseline'} AlignItems
  * @typedef {'start'|'center'|'end'|'between'|'around'|'stretch'} AlignContent
- * @typedef {'start'|'center'|'end'|'stretch'} AlignSelf
+ * @typedef {'start'|'center'|'end'|'stretch'|'baseline'} AlignSelf
  * @typedef {'auto'|'full'|'1/2'|'1/4'|'3/4'|'1/3'|'2/3'} Basis
  * @typedef {'row'|'column'} Direction
  * @typedef {'auto'|'hidden'|'scroll'|'visible'} Overflow
