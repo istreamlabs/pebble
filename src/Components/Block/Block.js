@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
   getFlexDirectionClasses,
+  getFlexPropertyClasses,
   getDimensionClasses,
   getItemSpacingClasses,
   getOverflowClasses,
   getBorderRadiusClasses,
-  parseTextSize
+  parseTextSize,
 } from '../../Utils';
 import {
   colorType, fontSizeType, textAlignType, radiusType, spacingType, dimensionType
@@ -32,156 +33,48 @@ const BASIS_MAP = {
   '2/3': '66.66%',
 };
 
-/**
- * A `<Block>` is a layout component to build UIs with consistent
- * padding and vertical spacing between components. Use it to also set `font-size`.
- *
- * By using a `<Block>` component instead of a `div` for layouts,
- * you'll be able to maintain consistent component spacing by
- * using the padding and bottomSpacing props instead
- * of custom CSS.
- */
-
-class Block extends React.Component {
-  render() {
-    const {
-      alignContent,
-      alignItems,
-      alignSelf,
-      as,
-      background,
-      basis,
-      children,
-      className,
-      direction,
-      flex,
-      height,
-      itemSpacing,
-      justify,
-      marginTop,
-      marginBottom,
-      overflow,
-      padding,
-      paddingHorizontal,
-      paddingVertical,
-      radius,
-      styles,
-      textAlign,
-      textSize,
-      truncate,
-      width,
-      wrap,
-      ...props
-    } = this.props;
-
-    const mtClasses = marginTop !== undefined ? getDimensionClasses('mt', marginTop) : null;
-    const mbClasses = marginBottom !== undefined ? getDimensionClasses('mb', marginBottom) : null;
-    const pClasses = padding !== undefined ? getDimensionClasses('p', padding) : null;
-    const phClasses = paddingHorizontal !== undefined ? getDimensionClasses('ph', paddingHorizontal) : null;
-    const pvClasses = paddingVertical !== undefined ? getDimensionClasses('pv', paddingVertical) : null;
-    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
-    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
-    const directionClasses = getFlexDirectionClasses(direction);
-    const widthStyles = getDimensionClasses('width', width);
-    const heightStyles = getDimensionClasses('height', height);
-
-    const parsedTextSize = textSize ? parseTextSize(textSize) : null;
-
-    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] || basis } : null;
-
-    const flexGrowShrinkProp = (flex) => {
-      if (typeof flex === 'boolean' || typeof flex === 'string') {
-        return FLEX_MAP[flex];
-      }
-      if (typeof flex === 'object') {
-        return `${flex.grow ? flex.grow : 0} ${flex.shrink ? flex.shrink : 0}`;
-      }
-    };
-
-    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}` };
-
-    const mergedStyle = {
-      ...flexStyle, ...basisStyle, ...styles,
-    };
-
-    // widthStyles is a style
-    if (typeof widthStyles === 'object') {
-      Object.assign(mergedStyle, widthStyles);
-    }
-
-    if (typeof heightStyles === 'object') {
-      Object.assign(mergedStyle, heightStyles);
-    }
-
-    const classes = classNames(
-      directionClasses,
-      overflowClasses,
-      mbClasses,
-      mtClasses,
-      pClasses,
-      phClasses,
-      pvClasses,
-      radiusClass,
-      Array.isArray(heightStyles) && heightStyles.length && heightStyles,
-      typeof heightStyles === 'string' && heightStyles,
-      Array.isArray(widthStyles) && widthStyles.length && widthStyles, // width is responsive
-      typeof widthStyles === 'string' && widthStyles, { // width is percentage
-        flex: !truncate,
-        [`bg-${background}`]: background,
-        'flex-wrap': wrap,
-        [`content-${alignContent}`]: alignContent,
-        [`self-${alignSelf}`]: alignSelf,
-        [`items-${alignItems}`]: alignItems,
-        [`justify-${justify}`]: justify,
-        [`fs-${parsedTextSize}`]: parsedTextSize,
-        [`text-${textAlign}`]: textAlign,
-        'truncate db': truncate,
-      }, className
-    );
-
-    const spacingClasses = itemSpacing !== undefined ? getItemSpacingClasses(direction, itemSpacing) : null;
-
-    const blockChildren = itemSpacing !== undefined
-      ? React.Children.map(children, child => React.cloneElement(
-        child,
-        { className: classNames(child.props.className, 'block-item', spacingClasses) }
-      )) : children;
-
-    const Element = as;
-
-    return (
-      <Element className={classes} {...props} style={mergedStyle}>
-        {blockChildren}
-      </Element>
-    );
-  }
-}
-
-Block.defaultProps = {
-  as: 'div',
-  direction: 'row',
-};
-
-Block.propTypes = {
+const propTypes = {
   /**
    * The DOM tag to render the block as
    */
   as: PropTypes.string,
   /**
    * Alignment of the contents along the cross axis when there is extra space. This property has no effect when there is only one line of flex items.
+   *
+   * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
+   *
+   * One of: `start`, `center`, `end`, `between`, `around`, `stretch`
+   *
    * @type {PropTypes.Requireable<AlignContent>}
    */
-  alignContent: PropTypes.oneOf(['start', 'center', 'end', 'between', 'around', 'stretch']),
+  alignContent: PropTypes.oneOfType([
+    PropTypes.oneOf(['start', 'center', 'end', 'between', 'around', 'stretch']),
+    PropTypes.array
+  ]),
   /**
    * Alignment of flex items laid out along the cross axis on the current line
+   *
+   * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
+   *
+   * One of: `start`, `center`, `end`, `stretch`, `baseline`
    * @type {PropTypes.Requireable<AlignItems>}
    */
-  alignItems: PropTypes.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
+  alignItems: PropTypes.oneOfType([
+    PropTypes.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
+    PropTypes.array
+  ]),
   /**
    * Alignment along the cross axis when contained in another Block
+   *
+   * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
+   *
+   * One of: `start`, `center`, `end`, `stretch`, `baseline`
    * @type {PropTypes.Requireable<AlignSelf>}
    */
-  alignSelf: PropTypes.oneOf(['start', 'center', 'end', 'stretch']),
+  alignSelf: PropTypes.oneOfType([
+    PropTypes.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
+    PropTypes.array
+  ]),
   /**
    * [Color](/#/Styles/Color) identifier
    * @type {PropTypes.Requireable<Color>}
@@ -234,9 +127,16 @@ Block.propTypes = {
   height: dimensionType,
   /**
    * Alignment of contents along the main axis
+   *
+   * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
+   *
+   * One of: `around`, `between`, `center`, `evenly`, `start`, `end`
    * @type {PropTypes.Requireable<Justify>}
    */
-  justify: PropTypes.oneOf(['around', 'between', 'center', 'evenly', 'start', 'end']),
+  justify: PropTypes.oneOfType([
+    PropTypes.oneOf(['around', 'between', 'center', 'evenly', 'start', 'end']),
+    PropTypes.array,
+  ]),
   /**
    * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typography scale](/#/Styles/Typography)
    * @type {PropTypes.Requireable<FontSizeLike>}
@@ -371,5 +271,141 @@ Block.propTypes = {
    */
   wrap: PropTypes.bool,
 };
+
+/**
+ * A `<Block>` is a layout component to build UIs with consistent
+ * padding and vertical spacing between components. Use it to also set `font-size`.
+ *
+ * By using a `<Block>` component instead of a `div` for layouts,
+ * you'll be able to maintain consistent component spacing by
+ * using the padding and bottomSpacing props instead
+ * of custom CSS.
+ */
+
+class Block extends React.Component {
+  render() {
+    const {
+      alignContent,
+      alignItems,
+      alignSelf,
+      as,
+      background,
+      basis,
+      children,
+      className,
+      direction,
+      flex,
+      height,
+      itemSpacing,
+      justify,
+      marginTop,
+      marginBottom,
+      overflow,
+      padding,
+      paddingHorizontal,
+      paddingVertical,
+      radius,
+      styles,
+      textAlign,
+      textSize,
+      truncate,
+      width,
+      wrap,
+      ...props
+    } = this.props;
+
+    const mtClasses = marginTop !== undefined ? getDimensionClasses('mt', marginTop) : null;
+    const mbClasses = marginBottom !== undefined ? getDimensionClasses('mb', marginBottom) : null;
+    const pClasses = padding !== undefined ? getDimensionClasses('p', padding) : null;
+    const phClasses = paddingHorizontal !== undefined ? getDimensionClasses('ph', paddingHorizontal) : null;
+    const pvClasses = paddingVertical !== undefined ? getDimensionClasses('pv', paddingVertical) : null;
+    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
+    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
+    const directionClasses = getFlexDirectionClasses(direction);
+    const widthStyles = getDimensionClasses('width', width);
+    const heightStyles = getDimensionClasses('height', height);
+    const justifyClasses = getFlexPropertyClasses('justify', justify);
+    const alignContentClasses = getFlexPropertyClasses('content', alignContent);
+    const alignItemsClasses = getFlexPropertyClasses('items', alignItems);
+    const alignSelfClasses = getFlexPropertyClasses('self', alignSelf);
+
+    const parsedTextSize = textSize ? parseTextSize(textSize) : null;
+
+    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] || basis } : null;
+
+    const flexGrowShrinkProp = (flex) => {
+      if (typeof flex === 'boolean' || typeof flex === 'string') {
+        return FLEX_MAP[flex];
+      }
+      if (typeof flex === 'object') {
+        return `${flex.grow ? flex.grow : 0} ${flex.shrink ? flex.shrink : 0}`;
+      }
+    };
+
+    const flexStyle = { flex: `${flexGrowShrinkProp(flex)}` };
+
+    const mergedStyle = {
+      ...flexStyle, ...basisStyle, ...styles,
+    };
+
+    // widthStyles is a style
+    if (typeof widthStyles === 'object') {
+      Object.assign(mergedStyle, widthStyles);
+    }
+
+    if (typeof heightStyles === 'object') {
+      Object.assign(mergedStyle, heightStyles);
+    }
+
+    const classes = classNames(
+      directionClasses,
+      overflowClasses,
+      mbClasses,
+      mtClasses,
+      pClasses,
+      phClasses,
+      pvClasses,
+      radiusClass,
+      justifyClasses,
+      alignContentClasses,
+      alignItemsClasses,
+      alignSelfClasses,
+      Array.isArray(heightStyles) && heightStyles.length && heightStyles,
+      typeof heightStyles === 'string' && heightStyles,
+      Array.isArray(widthStyles) && widthStyles.length && widthStyles, // width is responsive
+      typeof widthStyles === 'string' && widthStyles, { // width is percentage
+        flex: !truncate,
+        [`bg-${background}`]: background,
+        'flex-wrap': wrap,
+        [`fs-${parsedTextSize}`]: parsedTextSize,
+        [`text-${textAlign}`]: textAlign,
+        'truncate db': truncate,
+      }, className
+    );
+
+    const spacingClasses = itemSpacing !== undefined ? getItemSpacingClasses(direction, itemSpacing) : null;
+
+    const blockChildren = itemSpacing !== undefined
+      ? React.Children.map(children, child => React.cloneElement(
+        child,
+        { className: classNames(child.props.className, 'block-item', spacingClasses) }
+      )) : children;
+
+    const Element = as;
+
+    return (
+      <Element className={classes} {...props} style={mergedStyle}>
+        {blockChildren}
+      </Element>
+    );
+  }
+}
+
+Block.defaultProps = {
+  as: 'div',
+  direction: 'row',
+};
+
+Block.propTypes = propTypes;
 
 export default Block;

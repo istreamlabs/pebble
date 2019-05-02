@@ -8,6 +8,33 @@ import Badge from '../Badge/Badge';
 import Text from '../Text/Text';
 
 storiesOf('Block', module)
+  .add('responsive justify', () => (
+    <Block width="100%" justify={['start', 'evenly', 'end', 'center']} background="white">
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+    </Block>
+  ))
+  .add('responsive alignment', () => (
+    <Block direction="column" width="100%" alignItems={['start', 'end', 'stretch', 'center']} background="white">
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+    </Block>
+  ))
+  .add('responsive content', () => (
+    <Block direction="row" width="370px" itemSpacing="3" wrap height="300px" alignItems="start" alignContent={['start', 'end', 'between', 'stretch']} background="white">
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+      <Block width="80px" padding="3" background="blue-light">1/3</Block>
+    </Block>
+  ))
   .add('all', () => (
     <>
       <Block justify="start" itemSpacing="3" marginBottom="4">
