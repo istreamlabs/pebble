@@ -8,7 +8,7 @@ import TableRow from './Components/TableRow';   //import { TableRow } from '@ist
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 <Table>
-  <TableHeader mobileLabel="Contacts">
+  <TableHeader>
     <TableHeaderCell>Name</TableHeaderCell>
     <TableHeaderCell>Title</TableHeaderCell>
     <TableHeaderCell>Email</TableHeaderCell>

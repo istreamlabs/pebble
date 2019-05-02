@@ -38,6 +38,10 @@ function TableHeader({
     return children;
   };
 
+  if (isMobileLayout && mobileLabel === undefined) {
+    return null;
+  }
+
   return (
     <Block
       role="row"
