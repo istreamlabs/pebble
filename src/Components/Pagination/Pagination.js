@@ -61,6 +61,8 @@ class Pagination extends React.Component {
             id="currentPageSelect"
             label="current page"
             hideLabel
+            menuPlacement="auto"
+            menuPortalTarget={document.body}
             options={options}
             onChange={this.onPageSelect}
             value={{ value: currentPage, label: `${currentPage}` }}
