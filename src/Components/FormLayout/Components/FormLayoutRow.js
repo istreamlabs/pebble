@@ -14,15 +14,30 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Orientation to layout children
+   *
+   * For responsive behavior, pass an array with length up to 4, with 'row' or 'column' as the value for each element.
+   * @type {PropTypes.Requireable<Direction>}
+   */
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['row', 'column']),
+    PropTypes.array,
+  ]),
+  /**
    * Decrease the vertical and horizontal spacing between inputs
    */
   tight: PropTypes.bool,
+};
+
+const defaultProps = {
+  direction: ['column', 'row']
 };
 
 
 function FormLayoutRow({
   className,
   children,
+  direction,
   tight
 }) {
   const itemMarkup = React.Children.map(children, child => React.cloneElement(
@@ -37,7 +52,7 @@ function FormLayoutRow({
   return (
     <Block
       flex
-      direction={['column', 'row']}
+      direction={direction}
       itemSpacing={tight ? 3 : 5}
       className={className}
     >
@@ -47,5 +62,6 @@ function FormLayoutRow({
 }
 
 FormLayoutRow.propTypes = propTypes;
+FormLayoutRow.defaultProps = defaultProps;
 
 export default FormLayoutRow;
