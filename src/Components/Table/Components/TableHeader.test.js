@@ -17,6 +17,12 @@ describe('TableHeader', () => {
     expect(() => { shallow(<TableHeader mobileLabel="heading" />); }).not.toThrow();
   });
 
+  it('renders null if mobileLayout is true and mobileLabel is undefined', () => {
+    useMobileLayout.mockImplementation(() => (true));
+    const wrapper = shallow(<TableHeader />);
+    expect(wrapper.html()).toEqual(null);
+  });
+
   describe('childrenMarkup', () => {
     it('returns the mobileLabel if viewed in mobile sized viewport', () => {
       useMobileLayout.mockImplementation(() => (true));
