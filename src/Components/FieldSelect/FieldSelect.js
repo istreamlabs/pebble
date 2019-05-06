@@ -71,6 +71,12 @@ const propTypes = {
    */
   menuPlacement: PropTypes.oneOf(['auto', 'top', 'bottom']),
   /**
+   * Whether the menu should use a portal, and where it should attach
+   *
+   * An example can be found https://react-select.com/advanced#portaling
+   */
+  menuPortalTarget: PropTypes.instanceOf(Element),
+  /**
    * Support multiple selected options
    */
   multiSelect: PropTypes.bool,
@@ -143,6 +149,8 @@ function FieldSelect({
   isInvalid,
   helpText,
   hideLabel,
+  menuPlacement,
+  menuPortalTarget,
   multiSelect,
   value,
   disabled,
@@ -169,6 +177,8 @@ function FieldSelect({
       isDisabled={disabled}
       closeMenuOnSelect={closeMenuOnSelect || (!multiSelect)}
       hideSelectedOptions={false}
+      menuPortalTarget={menuPortalTarget}
+      menuPlacement={menuPlacement}
       components={components}
       value={value}
       {...rest}
