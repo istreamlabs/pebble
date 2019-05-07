@@ -347,13 +347,18 @@ class Block extends React.Component {
       ...flexStyle, ...basisStyle, ...styles,
     };
 
-    // widthStyles is a style
+    // widthStyles is a specific css unit
     if (typeof widthStyles === 'object') {
-      Object.assign(mergedStyle, widthStyles);
+      if (widthStyles.hasOwnProperty('width')) {
+        Object.assign(mergedStyle, widthStyles);
+      }
     }
 
+    // heightStyles is a specific css unit
     if (typeof heightStyles === 'object') {
-      Object.assign(mergedStyle, heightStyles);
+      if (heightStyles.hasOwnProperty('height')) {
+        Object.assign(mergedStyle, heightStyles);
+      }
     }
 
     const classes = classNames(
