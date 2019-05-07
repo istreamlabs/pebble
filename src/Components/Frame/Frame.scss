@@ -63,6 +63,7 @@ main {
   grid-area: main;
   overflow: auto;
   height: calc(100vh - 60px);
+  -webkit-overflow-scrolling: touch;
 
   @include respond-above(md) {
     height: auto;
