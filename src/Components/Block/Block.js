@@ -365,7 +365,7 @@ class Block extends React.Component {
       alignSelfClasses,
       widthStyles.classes,
       heightStyles.classes,
-      typeof widthStyles === 'string' && widthStyles, { // width is percentage
+      {
         flex: !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
