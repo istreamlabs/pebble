@@ -66,6 +66,15 @@ describe('Block', () => {
       const wrapper = shallow(<Block direction="column">test</Block>);
       expect(wrapper.prop('className')).toContain('flex-column');
     });
+  }),
+
+  describe('itemSpacing', () => {
+    it('does not add spacing if the child is a string', () => {
+      const wrapper = shallow(<Block itemSpacing="3">
+        I am not an element
+      </Block>);
+      expect(wrapper.text()).toBe('I am not an element');
+    });
 
     it('adds spacing between items', () => {
       const wrapper = shallow(<Block itemSpacing="3">
