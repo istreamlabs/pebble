@@ -313,11 +313,11 @@ class Block extends React.Component {
       ...props
     } = this.props;
 
-    const mtClasses = marginTop !== undefined ? getDimensionClasses('mt', marginTop) : null;
-    const mbClasses = marginBottom !== undefined ? getDimensionClasses('mb', marginBottom) : null;
-    const pClasses = padding !== undefined ? getDimensionClasses('p', padding) : null;
-    const phClasses = paddingHorizontal !== undefined ? getDimensionClasses('ph', paddingHorizontal) : null;
-    const pvClasses = paddingVertical !== undefined ? getDimensionClasses('pv', paddingVertical) : null;
+    const mtClasses = getDimensionClasses('mt', marginTop);
+    const mbClasses = getDimensionClasses('mb', marginBottom);
+    const pClasses = getDimensionClasses('p', padding);
+    const phClasses = getDimensionClasses('ph', paddingHorizontal);
+    const pvClasses = getDimensionClasses('pv', paddingVertical);
     const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
     const directionClasses = getFlexPropertyClasses('flex', direction);
@@ -347,31 +347,24 @@ class Block extends React.Component {
       ...flexStyle, ...basisStyle, ...styles,
     };
 
-    // widthStyles is a style
-    if (typeof widthStyles === 'object') {
-      Object.assign(mergedStyle, widthStyles);
-    }
-
-    if (typeof heightStyles === 'object') {
-      Object.assign(mergedStyle, heightStyles);
-    }
+    Object.assign(mergedStyle, { width: widthStyles.styles });
+    Object.assign(mergedStyle, { height: heightStyles.styles });
 
     const classes = classNames(
       directionClasses,
       overflowClasses,
-      mbClasses,
-      mtClasses,
-      pClasses,
-      phClasses,
-      pvClasses,
+      mbClasses.classes,
+      mtClasses.classes,
+      pClasses.classes,
+      phClasses.classes,
+      pvClasses.classes,
       radiusClass,
       justifyClasses,
       alignContentClasses,
       alignItemsClasses,
       alignSelfClasses,
-      Array.isArray(heightStyles) && heightStyles.length && heightStyles,
-      typeof heightStyles === 'string' && heightStyles,
-      Array.isArray(widthStyles) && widthStyles.length && widthStyles, // width is responsive
+      widthStyles.classes,
+      heightStyles.classes,
       typeof widthStyles === 'string' && widthStyles, { // width is percentage
         flex: !truncate,
         [`bg-${background}`]: background,
