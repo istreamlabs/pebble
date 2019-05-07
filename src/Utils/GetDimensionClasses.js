@@ -3,12 +3,18 @@ export default (dimension, value) => {
 
   let classPrefix = getPrefix(dimension, value);
 
-  if (typeof value === 'string' && (value.includes('px') || value.includes('em') || value.includes('rem') || value.includes('%'))) {
-    return { [dimension]: value };
-  }
+  const dimensionCss = {
+    styles: null,
+    classes: null,
+  };
 
-  if (typeof value === 'string' || typeof value === 'number') {
+  // set to a specific width
+  if (typeof value === 'string' && (value.includes('px') || value.includes('em') || value.includes('rem') || value.includes('%'))) {
+    dimensionCss.styles = value;
+  // set to a css class
+  } else if (typeof value === 'string' || typeof value === 'number') {
     classes = `${classPrefix}${value}`;
+  // set to responsive css classes
   } else if (Array.isArray(value) && value.length) {
     classes = [];
     classPrefix = getPrefix(dimension, value[0]);
@@ -28,10 +34,10 @@ export default (dimension, value) => {
       classPrefix = getPrefix(dimension, value[3]);
       classes.push(`${classPrefix}${value[3]}-l`);
     }
-  } else {
-    return undefined;
   }
-  return classes;
+  dimensionCss.classes = classes;
+
+  return dimensionCss;
 };
 
 function getPrefix(dimension, value) {
