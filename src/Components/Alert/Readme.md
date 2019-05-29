@@ -5,16 +5,16 @@
 Choose the appropriate `type` for your use case.
 
 ```js
-<Alert title="Default Alert">
+<Alert className="mb-4" title="Default Alert">
   <p>Something you should know about.</p>
 </Alert>
-<Alert type="info" title="Info Alert">
+<Alert className="mb-4" type="info" title="Info Alert">
   <p>Regions have been updated.</p>
 </Alert>
-<Alert type="warn"title="Warn Alert">
+<Alert className="mb-4" type="warn"title="Warn Alert">
   <p>This change might impact another asset.</p>
 </Alert>
-<Alert type="danger"title="Danger Alert">
+<Alert className="mb-4" type="danger"title="Danger Alert">
   <p>This change may have result in unintended consequences.</p>
 </Alert>
 <Alert type="success"title="Success Alert">
@@ -34,7 +34,7 @@ Alerts should be dismissible unless they contain critical information or a requi
 
 ### Custom Icon
 
-For most cases, use the default icon for success, info, warning, critical and default statuses. However, you may pass the name of an `icon` if the situation is appropriate. 
+For most cases, use the default icon for success, info, warning, critical and default statuses. However, you may pass the name of an `icon` if the situation is appropriate.
 
 ```js
 <Alert title="Custom Icon" icon="ticket">

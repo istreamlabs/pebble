@@ -8,22 +8,22 @@ import Alert from './Alert';
 storiesOf('Alert', module)
   .add('all', () => (
     <>
-      <Alert title="Default Alert">
+      <Alert className="mb-4" title="Default Alert">
         <p>Something you should know about.</p>
       </Alert>
-      <Alert type="info" title="Info Alert">
+      <Alert className="mb-4" type="info" title="Info Alert">
         <p>Regions have been updated.</p>
       </Alert>
-      <Alert type="warn" title="Warn Alert">
+      <Alert className="mb-4" type="warn" title="Warn Alert">
         <p>This change might impact another asset.</p>
       </Alert>
-      <Alert type="danger" title="Danger Alert">
+      <Alert className="mb-4" type="danger" title="Danger Alert">
         <p>This change may have result in unintended consequences.</p>
       </Alert>
-      <Alert type="success" title="Success Alert">
+      <Alert className="mb-4" type="success" title="Success Alert">
         <p>Changes have been successfully saved</p>
       </Alert>
-      <Alert title="Dismissible Alert" onDismiss={action('dismiss button pressed')}>
+      <Alert className="mb-4" title="Dismissible Alert" onDismiss={action('dismiss button pressed')}>
         <p>Pass a function to onDismiss and a close button will be rendered.</p>
       </Alert>
       <Alert title="Custom Icon" icon="ticket">

@@ -55,7 +55,6 @@ const Alert = (
     <Block
       paddingHorizontal="4"
       paddingVertical="4"
-      marginBottom="4"
       className={classes}
       role={type === 'danger' || type === 'warn' ? 'alert' : undefined}
       aria-live={type === 'default' || type === 'info' || type === 'success' ? 'polite' : undefined}
