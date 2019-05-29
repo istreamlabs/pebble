@@ -9,6 +9,7 @@ import Block from '../Block/Block';
 import Button from '../Button/Button';
 import MainMenu from '../MainMenu/MainMenu';
 import Modal from '../Modal/Modal';
+import Toast from '../Toast/Toast';
 
 const TENANT_NAME = 'Frame Example';
 
@@ -55,6 +56,8 @@ const MENU = [
 function FrameExample() {
   const [showModal, setShowModal] = useState(false);
 
+  const toast = Toast();
+
   const mainNavigationToggled = (isOpen) => {
     console.log(`menu has been toggled to a ${isOpen ? 'Expanded': 'Collapsed'} state.`)
   }
@@ -92,7 +95,15 @@ function FrameExample() {
         <Block background="blue-lighter" alignItems="start" flex direction="column" height="100%" padding="6">
           <p>Main Content goes here</p>
           <Button onClick={() => setShowModal(!showModal)}>Open Modal</Button>
+          <Button onClick={() => {
+          toast({
+            title: "My primary message for the user.",
+            textMsg: "Details to report to the user.",
+            type: "info",
+          })
+        }}>Show Toast</Button>
         </Block>
+
       </Frame>
     </DemoBrowserRouter>
   )

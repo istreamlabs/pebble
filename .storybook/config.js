@@ -3,6 +3,8 @@ import { addDecorator, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import 'storybook-chromatic';
 
+import '../src/Styles/foundation.scss';
+
 // automatically import all files ending in *.stories.js
 const req = require.context('../src/Components/', true, /.stories.js$/);
 function loadStories() {

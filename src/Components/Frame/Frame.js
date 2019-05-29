@@ -6,6 +6,9 @@ import FocusTrap from 'focus-trap-react';
 import Button from '../Button/Button';
 import Overlay from '../Overlay/Overlay';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import './Frame.scss';
 
 export const APP_FRAME_MAIN = 'AppFrameMain';
@@ -188,6 +191,13 @@ export class Frame extends React.PureComponent {
           ref={this.mainContent}
           onBlur={this.handleBlurMain}
         >
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            pauseOnHover
+            closeButton={false}
+          />
           {children}
         </main>
       </div>
