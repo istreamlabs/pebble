@@ -16,8 +16,9 @@ const APP_FRAME_NAV = 'AppFrameNav';
 
 /**
  * The frame component provides UI structure for iStreamPlanet applications.
- * It wraps [main navigation](/#/Components/MainMenu) and main content,
- * and adds a header with a navigation toggle button for mobile-sized viewports.
+ * * It wraps [main navigation](/#/Components/MainMenu) and main content
+ * * Includes a container for displaying [Toast](/#/Components/Toast) notifications
+ * * Adds a header with a navigation toggle button for mobile-sized viewports
  *
  * ---
  */
@@ -160,6 +161,16 @@ export class Frame extends React.PureComponent {
     return null;
   }
 
+  renderToastContainer = () => (
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar
+      pauseOnHover
+      closeButton={false}
+    />
+  )
+
   handleOnClick = ({ target }) => {
     if (target.tagName.toLowerCase() === 'a' && target.href) {
       this.handleNavigationDismiss();
@@ -191,13 +202,7 @@ export class Frame extends React.PureComponent {
           ref={this.mainContent}
           onBlur={this.handleBlurMain}
         >
-          <ToastContainer
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar
-            pauseOnHover
-            closeButton={false}
-          />
+          {this.renderToastContainer()}
           {children}
         </main>
       </div>

@@ -1,9 +1,14 @@
-A toast is used to give feedback to users about an event or action they have taken. We use the [react-toastify](https://github.com/fkhadra/react-toastify)under the hood, but apply styles and settings that are most appropriate for our use case.
+<div className="styleguide__callout">
+#### Toasts are exposed as a hook!
+
+A toast is used to give feedback to users about an event or action they have taken. We use the [react-toastify](https://github.com/fkhadra/react-toastify) under the hood, but apply styles and settings that are most appropriate for our use case.
 
 It is exposed as a hook instead of a React component so that it can be called with onClick handlers or with something like [redux](https://github.com/fkhadra/react-toastify#usage-with-redux).
 
+</div>
+
 * Toasts are displayed for 5000 milliseconds (5 secs) by default before disappearing
-* A `<ToastContainer>`, which is where the toast notification will appear, is included as part of the `<Frame>` component.
+* A `<ToastContainer />`, which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
 
 ---
 
@@ -42,7 +47,6 @@ Toast should primarily be used for success messages or non-critical errors. Alth
 ```js
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
-import { ToastContainer } from 'react-toastify';
 import { useToast } from '../../Hooks';
 
 function Example() {
@@ -50,15 +54,6 @@ function Example() {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        pauseOnHover
-        closeButton={false}
-        closeOnClick={false}
-        width="500"
-      />
       <ButtonGroup>
         <Button onClick={() => {
           toast({
@@ -99,7 +94,6 @@ function Example() {
           toast({
             title: 'Server error',
             type: 'danger',
-            autoClose: false
           });
         }}
         >
@@ -151,6 +145,13 @@ function Example() {
           })
         }}>No Autoclose</Button>
       </ButtonGroup>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        pauseOnHover
+        closeButton={false}
+      />
     </>
   )
 }
