@@ -10,6 +10,11 @@ describe('Modal', () => {
     expect(() => { shallow(<Modal showing>content</Modal>); }).not.toThrow();
   });
 
+  it('renders nothing when showing is false', () => {
+    const instance = shallow(<Modal showing={false}>content</Modal>);
+    expect(instance.isEmptyRender()).toEqual(true);
+  });
+
   describe('className', () => {
     it('passes in class name', () => {
       const instance = shallow(<Modal showing className="my-class">content</Modal>);
