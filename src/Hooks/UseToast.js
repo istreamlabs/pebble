@@ -66,7 +66,7 @@ export default () => {
       {
         className: 'p-0 bg-transparent',
         autoClose,
-        onClose: () => onClose()
+        onClose: onClose ? () => onClose() : null
       }
     );
   }
