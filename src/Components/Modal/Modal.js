@@ -49,7 +49,7 @@ const Modal = (
     type,
   }
 ) => {
-  useLockBodyScroll();
+  useLockBodyScroll(showing);
   useKeyBoardEvent('Escape', onRequestClose);
 
   const closeBtn = (
@@ -129,6 +129,11 @@ const Modal = (
     },
     className
   );
+
+  // only render modal if showing is true
+  if (!showing) {
+    return null;
+  }
 
   return (
     <Overlay
