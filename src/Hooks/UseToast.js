@@ -20,28 +20,19 @@ const propTypes = {
    */
   textMsg: PropTypes.string,
   /**
-   * Where the toast will appear
-   */
-  position: PropTypes.string,
-  /**
    * Type of message to be displayed
    * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
    */
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
-  /**
-   * Callback when Toast is dismissed
-   */
-  closeToast: PropTypes.func,
 };
 
 const ToastAlert = ({
-  closeToast, title, textMsg, type
+  title, textMsg, type
 }) => (
   <Alert
     type={type}
     className="mb-0"
     title={title}
-    onDismiss={closeToast}
   >
     {textMsg && <div>{textMsg}</div>}
   </Alert>
@@ -64,12 +55,18 @@ export default () => {
     textMsg,
     type,
     autoClose,
+    onClose,
   }) {
     toast(
-      <ToastAlert title={title} textMsg={textMsg} type={type} />,
+      <ToastAlert
+        textMsg={textMsg}
+        title={title}
+        type={type}
+      />,
       {
         className: 'p-0 bg-transparent',
-        autoClose
+        autoClose,
+        onClose: () => onClose()
       }
     );
   }

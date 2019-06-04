@@ -25,13 +25,21 @@ The useToast hook accepts the following parameters:
   </thead>
   <tbody>
     <tr>
-      <td class="rsg--cell-36"><code class="rsg--name-37">duration</code></td><td class="rsg--cell-36"><span class="rsg--type-39">number</span></td><td class="rsg--cell-36">5000</td><td class="rsg--cell-36"><div><p class="rsg--para-29">Length the toast notification is displayed in milliseconds</p></div></td>
+      <td class="rsg--cell-36"><code class="rsg--name-37">autoClose</code></td><td class="rsg--cell-36"><span class="rsg--type-39">number, `false`</span></td><td class="rsg--cell-36">5000</td>
+      <td class="rsg--cell-36"><div><p class="rsg--para-29">Length the toast notification is displayed in milliseconds. Set to `false` to prevent the toast from closing.</p></div></td>
     </tr>
     <tr>
-      <td class="rsg--cell-36"><code class="rsg--name-37">title</code></td><td class="rsg--cell-36"><span class="rsg--type-39">string</span></td><td class="rsg--cell-36"></td><td class="rsg--cell-36"><div><p class="rsg--para-29">The text of the toast</p></div></td>
+      <td class="rsg--cell-36"><code class="rsg--name-37">onClose</code></td><td class="rsg--cell-36"><span class="rsg--type-39">func</span></td><td class="rsg--cell-36"></td>
+      <td class="rsg--cell-36"><div><p class="rsg--para-29">Callback function called after toast is closed</p></div></td>
     </tr>
     <tr>
-      <td class="rsg--cell-36"><code class="rsg--name-37">type</code></td><td class="rsg--cell-36"><span class="rsg--type-39">enum</span></td><td class="rsg--cell-36"><code class="rsg--code-40">default</code></td><td class="rsg--cell-36"><div><p class="rsg--para-29">Type of message to be displayed</p><div class="rsg--para-29"><span>One of: <code class="rsg--code-40">default</code>, <code class="rsg--code-40">info</code>, <code class="rsg--code-40">warn</code>, <code class="rsg--code-40">danger</code>, <code class="rsg--code-40">success</code></span></div></div></td>
+      <td class="rsg--cell-36"><code class="rsg--name-37">title</code></td><td class="rsg--cell-36"><span class="rsg--type-39">string</span></td><td class="rsg--cell-36"></td>
+      <td class="rsg--cell-36"><div><p class="rsg--para-29">The text of the toast</p></div></td>
+    </tr>
+    <tr>
+      <td class="rsg--cell-36"><code class="rsg--name-37">type</code></td>
+      <td class="rsg--cell-36"><span class="rsg--type-39">enum</span></td>
+      <td class="rsg--cell-36"><code class="rsg--code-40">default</code></td><td class="rsg--cell-36"><div><p class="rsg--para-29">Type of message to be displayed</p><div class="rsg--para-29"><span>One of: <code class="rsg--code-40">default</code>, <code class="rsg--code-40">info</code>, <code class="rsg--code-40">warn</code>, <code class="rsg--code-40">danger</code>, <code class="rsg--code-40">success</code></span></div></div></td>
     </tr>
   </tbody>
 </table>
@@ -58,7 +66,7 @@ function Example() {
         <Button onClick={() => {
           toast({
             title: 'Product updated',
-            type: 'success'
+            type: 'success',
           });
         }}
         >
@@ -110,7 +118,7 @@ function Example() {
 
 ### Set autoclose delay or disable it
 
-For cases where you need to display a toast for something other than 5000 milliseconds, set the `autoClose` parameter to a value in milliseconds. Set `autoClose` to `false` to disable autoclose entirely.
+For cases where you need to display a toast for something other than 5000 milliseconds, set the `autoClose` parameter to a value in milliseconds. Set `autoClose` to `false` to disable autoclose entirely. Read more at [react-toastify](https://github.com/fkhadra/react-toastify#set-autoclose-delay-or-disable-it).
 
 
 ```js
@@ -158,6 +166,25 @@ function Example() {
 
 <Example />
 
+```
+
+### onClose Callback
+
+Pass a function to be called after the toast is closed
+
+```jsx
+import Button from '../Button/Button';
+import { useToast } from '../../Hooks';
+
+const toast = useToast();
+
+<Button onClick={() => {
+  toast({
+    title: 'Product updated',
+    type: 'success',
+    onClose: () => window.alert('onClose callback')
+  });
+}}>show toast</Button>
 ```
 
 ## Best Practices
