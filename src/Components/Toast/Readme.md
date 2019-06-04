@@ -25,8 +25,8 @@ The useToast hook accepts the following parameters:
   </thead>
   <tbody>
     <tr>
-      <td class="rsg--cell-36"><code class="rsg--name-37">autoClose</code></td><td class="rsg--cell-36"><span class="rsg--type-39">number, `false`</span></td><td class="rsg--cell-36">5000</td>
-      <td class="rsg--cell-36"><div><p class="rsg--para-29">Length the toast notification is displayed in milliseconds. Set to `false` to prevent the toast from closing.</p></div></td>
+      <td class="rsg--cell-36"><code class="rsg--name-37">autoClose</code></td><td class="rsg--cell-36"><span class="rsg--type-39">number</span></td><td class="rsg--cell-36">5000</td>
+      <td class="rsg--cell-36"><div><p class="rsg--para-29">Length the toast notification is displayed in milliseconds.</p></div></td>
     </tr>
     <tr>
       <td class="rsg--cell-36"><code class="rsg--name-37">onClose</code></td><td class="rsg--cell-36"><span class="rsg--type-39">func</span></td><td class="rsg--cell-36"></td>
@@ -116,7 +116,7 @@ function Example() {
 ```
 
 
-### Set autoclose delay or disable it
+### Set autoclose delay
 
 For cases where you need to display a toast for something other than 5000 milliseconds, set the `autoClose` parameter to a value in milliseconds. Set `autoClose` to `false` to disable autoclose entirely. Read more at [react-toastify](https://github.com/fkhadra/react-toastify#set-autoclose-delay-or-disable-it).
 
@@ -146,12 +146,6 @@ function Example() {
             autoClose: 3000
           })
         }}>3 second Toast</Button>
-        <Button onClick={() => {
-          toast({
-            title: "Does not autoclose",
-            autoClose: false
-          })
-        }}>No Autoclose</Button>
       </ButtonGroup>
       <ToastContainer
         position="top-right"
@@ -198,5 +192,3 @@ Toast should:
   * VOD updated
   * Live event created
   * User updated
-* Be dismissible unless they contain critical information or a required step.
-* Use the default icon for `success`, `info`, `warn` and `danger` types.
