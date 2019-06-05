@@ -55,7 +55,6 @@ const Alert = (
     <Block
       paddingHorizontal="4"
       paddingVertical="4"
-      marginBottom="4"
       className={classes}
       role={type === 'danger' || type === 'warn' ? 'alert' : undefined}
       aria-live={type === 'default' || type === 'info' || type === 'success' ? 'polite' : undefined}
@@ -82,7 +81,7 @@ Alert.propTypes = {
   /**
    * Elements to be rendered as children of this component
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * An `<Icon>` component to be rendered instead of the default icon.
    * See the [Icon component documentation](/#/Components/Icon) for available components
