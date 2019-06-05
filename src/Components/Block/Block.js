@@ -94,7 +94,7 @@ const propTypes = {
   /**
    * Elements to be rendered as children of this component
    */
-  children: PropTypes.node,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
   /**
    * Orientation to layout children
    *
