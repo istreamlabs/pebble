@@ -5,6 +5,7 @@ import onClickOutside from 'react-onclickoutside';
 import FocusTrap from 'focus-trap-react';
 import { Manager, Reference, Popper } from 'react-popper';
 
+import { placementType } from '../../Types';
 import Button from '../Button/Button';
 
 import './DropdownMenu.scss';
@@ -52,6 +53,13 @@ const propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * Where the overlay menu will appear relative to the toggle
+   *
+   * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
+   * @type {PropTypes.Requireable<PlacementType>}
+   */
+  placement: placementType,
+  /**
    * trap focus when the dropdown is open
    */
   trapFocus: PropTypes.bool,
@@ -67,8 +75,8 @@ const propTypes = {
 const defaultProps = {
   trapFocus: true,
   open: false,
+  placement: 'bottom-start'
 };
-
 
 /**
  * Creates a dropdown menu with optional groups with headings.
@@ -168,6 +176,7 @@ export class DropdownMenu extends React.PureComponent {
       className,
       fullWidth,
       overlayClassName,
+      placement,
       trapFocus
     } = this.props;
     const classes = classNames('dropdown-container', {
@@ -197,30 +206,26 @@ export class DropdownMenu extends React.PureComponent {
             </Reference>
             {isOverlayOpen && (
             <Popper
-              placement="bottom"
-              modifiers={
-                {
-                  preventOverflow: {
-                    enabled: true,
-                    boundariesElement: 'viewport',
-                    padding: 20
-                  }
-                }
-              }
+              placement={placement}
+              modifiers={{
+                preventOverflow: {
+                  enabled: true,
+                },
+              }}
             >
               {({
                 ref, placement, style
               }) => (
-                <div ref={ref} data-placement={placement}>
-                  <div
-                    className={overlayClasses}
-                    role="menu"
-                    aria-hidden={!isOverlayOpen}
-                    aria-expanded={!isOverlayOpen}
-                    style={style}
-                  >
-                    {children}
-                  </div>
+                <div
+                  className={overlayClasses}
+                  role="menu"
+                  aria-hidden={!isOverlayOpen}
+                  aria-expanded={!isOverlayOpen}
+                  ref={ref}
+                  data-placement={placement}
+                  style={style}
+                >
+                  {children}
                 </div>
               )}
             </Popper>

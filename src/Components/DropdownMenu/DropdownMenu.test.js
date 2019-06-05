@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
 import Button from '../Button/Button';
 import FocusTrap from 'focus-trap-react';
@@ -26,7 +26,7 @@ describe('DropdownMenu', () => {
       const onOpen = jest.fn();
       const onClose = jest.fn();
 
-      const wrapper = shallow(<DropdownMenu toggle="click me" onOpen={onOpen} onClose={onClose}><div>overlay</div></DropdownMenu>);
+      const wrapper = mount(<DropdownMenu toggle="click me" onOpen={onOpen} onClose={onClose}><div>overlay</div></DropdownMenu>);
       const toggleButton = wrapper.find(Button);
       toggleButton.simulate('click');
       expect(wrapper.state().isOverlayOpen).toBe(true);
@@ -93,7 +93,7 @@ describe('DropdownMenu', () => {
 
   describe('renderToggle', () => {
     it('should set onClick to onToggle', () => {
-      const wrapper = shallow(<DropdownMenu open={false} toggle="click me"><div>overlay</div></DropdownMenu>);
+      const wrapper = mount(<DropdownMenu open={false} toggle="click me"><div>overlay</div></DropdownMenu>);
       const toggleButton = wrapper.find(Button);
       toggleButton.simulate('click');
       expect(wrapper.state().isOverlayOpen).toBe(true);
@@ -103,7 +103,7 @@ describe('DropdownMenu', () => {
       const customTrigger = <Button>click me</Button>;
       const onOpen = jest.fn();
 
-      const wrapper = shallow(<DropdownMenu toggle={customTrigger} onOpen={onOpen}><div>overlay</div></DropdownMenu>);
+      const wrapper = mount(<DropdownMenu toggle={customTrigger} onOpen={onOpen}><div>overlay</div></DropdownMenu>);
       const toggleButton = wrapper.find(Button);
       toggleButton.simulate('click');
       expect(onOpen).toHaveBeenCalled();

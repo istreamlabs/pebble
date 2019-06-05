@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Input from './Input';
+import Button from '../Button/Button';
 
 describe('Input', () => {
   it('renders without crashing', () => {
@@ -96,7 +97,7 @@ describe('Input', () => {
     it('displays a clear button if passed a clearBtnFunc and value is set', () => {
       const mock = jest.fn();
       const wrapper = shallow(<Input clearBtnFunc={mock} value="test" />);
-      expect(wrapper.find('Button').prop('onClick')).toBe(mock);
+      expect(wrapper.find(Button).prop('onClick')).toBe(mock);
     });
 
     it('does not display a clear button if input has no value', () => {

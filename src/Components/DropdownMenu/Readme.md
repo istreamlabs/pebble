@@ -7,6 +7,8 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
+import Block from '../Block/Block';
+
 function handleOpen() {
   console.log('open');
 }
@@ -28,6 +30,8 @@ function handleItemClick() {
 
 ### Sizes
 
+Change the size of the default toggle button. The `size` value does not impact the overlay menu.
+
 ```jsx
 
 import DropdownItem from './Components/DropdownItem';
@@ -45,6 +49,21 @@ import DropdownItem from './Components/DropdownItem';
     <DropdownItem>item</DropdownItem>
   </DropdownMenu>
 </>
+```
+
+### Overlay Menu Placement
+
+Pass a placement prop to set where the overlay menu should appear relative to the toggle.
+
+```jsx
+import DropdownItem from './Components/DropdownItem';
+import Block from '../Block/Block';
+
+<Block justify="between">
+  <DropdownMenu toggle="bottom-end placement" placement="bottom-end">
+    <DropdownItem>item</DropdownItem>
+  </DropdownMenu>
+</Block>
 ```
 
 ### Full width
