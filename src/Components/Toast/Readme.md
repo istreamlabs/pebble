@@ -1,14 +1,14 @@
-<div className="styleguide__callout">
-#### Toasts are exposed as a hook!
+* A toast should be primarily used to give success messages or non-critical information.
+* Toasts are displayed for 5000 milliseconds (5 secs) before disappearing and therefore should not be used for critical information. Use an [Alert](/#/Components/Alert) instead.
+* [React-toastify](https://github.com/fkhadra/react-toastify) is used under the hood, but styles and settings are applied that are appropriate for our use case.
+* A `<ToastContainer />`, which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
 
-A toast is used to give feedback to users about an event or action they have taken. We use the [react-toastify](https://github.com/fkhadra/react-toastify) under the hood, but apply styles and settings that are most appropriate for our use case.
+<div className="styleguide__callout">
+#### Toasts are exposed as a hook
 
 It is exposed as a hook instead of a React component so that it can be called with onClick handlers or with something like [redux](https://github.com/fkhadra/react-toastify#usage-with-redux).
 
 </div>
-
-* Toasts are displayed for 5000 milliseconds (5 secs) by default before disappearing
-* A `<ToastContainer />`, which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
 
 ---
 
@@ -184,7 +184,7 @@ const toast = useToast();
 ## Best Practices
 
 Toast should:
-* Primarily be used for success messages or non-critical errors
+* Primarily be used for success messages or non-critical information
 * Not be used for error messages. Instead, use an inline [Alert](/#/Components/Alert) to prominently inform users about persistent errors.
 * Be used thoughtfully and sparingly.
 * Focus on a single subject, piece of information, or required action.
