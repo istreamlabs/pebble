@@ -15,7 +15,7 @@ describe('ToastAlert', () => {
     expect(ToastAlert.defaultProps.type).toBe('default');
     expect(ToastAlert.defaultProps.position).toBe('bottom');
   });
-  it('', () => {
+  it('calls alert component', () => {
     const wrapper = shallow(<ToastAlert type="warn" title="Product updated" />);
     // renders single element
     expect(wrapper.children().length).toEqual(0);
@@ -28,13 +28,35 @@ describe('ToastAlert', () => {
 });
 
 describe('Hooks > UseToast', () => {
-  it('calls react-notify toast with the correct options', () => {
-    const hook = useToast()({
+  it('calls react-notify toast with autoClose and onClose', () => {
+    const options = {
       title: 'New Features Added',
       type: 'info',
       autoClose: 1000,
-    });
-    console.log(hook);
-    expect(toast).toHaveBeenCalled();
+      onClose: jest.fn()
+    };
+    useToast()(options);
+    const param1 = <ToastAlert title="New Features Added" type="info" />;
+    const param2 = {
+      className: 'p-0 bg-transparent',
+      autoClose: options.autoClose,
+      onClose: options.onClose
+    };
+
+    expect(toast).toHaveBeenCalledWith(param1, param2);
+  });
+
+  it('calls react-notify toast without autoClose and onClose', () => {
+    const options = {
+      title: 'New Features Added',
+      type: 'info',
+    };
+    useToast()(options);
+    const param1 = <ToastAlert title="New Features Added" type="info" />;
+    const param2 = {
+      className: 'p-0 bg-transparent',
+    };
+
+    expect(toast).toHaveBeenCalledWith(param1, param2);
   });
 });
