@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
 import FocusTrap from 'focus-trap-react';
+import { Manager, Reference, Popper } from 'react-popper';
 
-import Block from '../Block/Block';
 import Button from '../Button/Button';
 
 import './DropdownMenu.scss';
@@ -125,7 +125,7 @@ export class DropdownMenu extends React.PureComponent {
     }
   }
 
-  renderToggle() {
+  renderToggle = (ref) => {
     const {
       fullWidth,
       size,
@@ -137,6 +137,7 @@ export class DropdownMenu extends React.PureComponent {
     if (typeof toggle === 'string') {
       return (
         <Button
+          type="button"
           onClick={this.onToggle}
           icon="arrow-small-down"
           iconAfterText
@@ -145,6 +146,7 @@ export class DropdownMenu extends React.PureComponent {
           aria-haspopup
           fullWidth={fullWidth}
           size={size}
+          ref={ref}
         >
           {toggle}
         </Button>
@@ -155,37 +157,24 @@ export class DropdownMenu extends React.PureComponent {
       onClick: () => this.onToggle(),
       disabled,
       'aria-haspopup': true,
+      ref
     });
-  }
-
-  renderOverlay = () => {
-    const { isOverlayOpen } = this.state;
-    const { children, overlayClassName } = this.props;
-
-    const classes = classNames('dropdown-overlay', overlayClassName);
-
-    const overlayContents = (
-      <Block
-        direction="column"
-        className={classes}
-        paddingVertical="2"
-        role="menu"
-        aria-hidden={!isOverlayOpen}
-        aria-expanded={!isOverlayOpen}
-      >
-        {children}
-      </Block>
-    );
-
-    return isOverlayOpen ? overlayContents : null;
   }
 
   render() {
     const { isOverlayOpen } = this.state;
-    const { className, fullWidth, trapFocus } = this.props;
+    const {
+      children,
+      className,
+      fullWidth,
+      overlayClassName,
+      trapFocus
+    } = this.props;
     const classes = classNames('dropdown-container', {
       'w-100': fullWidth,
     }, className);
+
+    const overlayClasses = classNames('dropdown-overlay', 'pv-2', overlayClassName);
 
     const enableFocusTrap = trapFocus ? isOverlayOpen : false;
 
@@ -200,8 +189,43 @@ export class DropdownMenu extends React.PureComponent {
           className={classes}
           onKeyDown={this.handleKeydown}
         >
-          {this.renderToggle()}
-          {this.renderOverlay()}
+          <Manager>
+            <Reference>
+              {({ ref }) => (
+                this.renderToggle(ref)
+              )}
+            </Reference>
+            {isOverlayOpen && (
+            <Popper
+              placement="bottom"
+              modifiers={
+                {
+                  preventOverflow: {
+                    enabled: true,
+                    boundariesElement: 'viewport',
+                    padding: 20
+                  }
+                }
+              }
+            >
+              {({
+                ref, placement, style
+              }) => (
+                <div ref={ref} data-placement={placement}>
+                  <div
+                    className={overlayClasses}
+                    role="menu"
+                    aria-hidden={!isOverlayOpen}
+                    aria-expanded={!isOverlayOpen}
+                    style={style}
+                  >
+                    {children}
+                  </div>
+                </div>
+              )}
+            </Popper>
+            )}
+          </Manager>
         </div>
       </FocusTrap>
     );

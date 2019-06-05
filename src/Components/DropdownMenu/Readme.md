@@ -19,14 +19,11 @@ function handleItemClick() {
   console.log('item clicked');
 }
 
-<DemoBrowserRouter>
-  <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
-    <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
-    <DropdownItem href="/">link</DropdownItem>
-    <DropdownMenuSeparator />
-    <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
-  </DropdownMenu>
-</DemoBrowserRouter>
+<DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
+  <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
+  <DropdownMenuSeparator />
+  <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
+</DropdownMenu>
 ```
 
 ### Sizes
