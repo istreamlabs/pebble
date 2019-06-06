@@ -18,8 +18,8 @@ import './Button.scss';
 
 // see https://github.com/yannickcr/eslint-plugin-react/issues/1555
 // eslint-disable-next-line react/button-has-type
-const Button = (
-  {
+const Button = React.forwardRef((props, ref) => {
+  const {
     id,
     children,
     className,
@@ -42,8 +42,8 @@ const Button = (
     ariaExpanded,
     ariaPressed,
     ...otherProps
-  }
-) => {
+  } = props;
+
   const isDisabled = loading || disabled;
 
   const classes = classNames('btn', className, {
@@ -100,13 +100,14 @@ const Button = (
       aria-expanded={ariaExpanded}
       aria-pressed={ariaPressed}
       aria-busy={loading ? true : undefined}
+      ref={ref}
       {...otherProps}
     >
       {content}
     </button>
     /* eslint-enable react/button-has-type */
   );
-};
+});
 
 Button.defaultProps = {
   type: 'button',

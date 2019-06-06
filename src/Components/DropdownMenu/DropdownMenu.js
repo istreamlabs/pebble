@@ -1,13 +1,14 @@
-import React from 'react';
+import './DropdownMenu.scss';
+
+import { Manager, Popper, Reference } from 'react-popper';
+
+import Button from '../Button/Button';
+import FocusTrap from 'focus-trap-react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
-import FocusTrap from 'focus-trap-react';
-
-import Block from '../Block/Block';
-import Button from '../Button/Button';
-
-import './DropdownMenu.scss';
+import { placementType } from '../../Types';
 
 const propTypes = {
   /**
@@ -52,6 +53,13 @@ const propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * Where the overlay menu will appear relative to the toggle
+   *
+   * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
+   * @type {PropTypes.Requireable<PlacementType>}
+   */
+  placement: placementType,
+  /**
    * trap focus when the dropdown is open
    */
   trapFocus: PropTypes.bool,
@@ -67,8 +75,8 @@ const propTypes = {
 const defaultProps = {
   trapFocus: true,
   open: false,
+  placement: 'bottom-start'
 };
-
 
 /**
  * Creates a dropdown menu with optional groups with headings.
@@ -125,7 +133,7 @@ export class DropdownMenu extends React.PureComponent {
     }
   }
 
-  renderToggle() {
+  renderToggle = (ref) => {
     const {
       fullWidth,
       size,
@@ -137,6 +145,7 @@ export class DropdownMenu extends React.PureComponent {
     if (typeof toggle === 'string') {
       return (
         <Button
+          type="button"
           onClick={this.onToggle}
           icon="arrow-small-down"
           iconAfterText
@@ -145,6 +154,7 @@ export class DropdownMenu extends React.PureComponent {
           aria-haspopup
           fullWidth={fullWidth}
           size={size}
+          ref={ref}
         >
           {toggle}
         </Button>
@@ -152,40 +162,28 @@ export class DropdownMenu extends React.PureComponent {
     }
 
     return React.cloneElement(toggle, {
-      onClick: () => this.onToggle(),
+      onClick: this.onToggle,
       disabled,
       'aria-haspopup': true,
+      ref
     });
-  }
-
-  renderOverlay = () => {
-    const { isOverlayOpen } = this.state;
-    const { children, overlayClassName } = this.props;
-
-    const classes = classNames('dropdown-overlay', overlayClassName);
-
-    const overlayContents = (
-      <Block
-        direction="column"
-        className={classes}
-        paddingVertical="2"
-        role="menu"
-        aria-hidden={!isOverlayOpen}
-        aria-expanded={!isOverlayOpen}
-      >
-        {children}
-      </Block>
-    );
-
-    return isOverlayOpen ? overlayContents : null;
   }
 
   render() {
     const { isOverlayOpen } = this.state;
-    const { className, fullWidth, trapFocus } = this.props;
+    const {
+      children,
+      className,
+      fullWidth,
+      overlayClassName,
+      placement,
+      trapFocus
+    } = this.props;
     const classes = classNames('dropdown-container', {
       'w-100': fullWidth,
     }, className);
+
+    const overlayClasses = classNames('dropdown-overlay', 'pv-2', overlayClassName);
 
     const enableFocusTrap = trapFocus ? isOverlayOpen : false;
 
@@ -200,8 +198,39 @@ export class DropdownMenu extends React.PureComponent {
           className={classes}
           onKeyDown={this.handleKeydown}
         >
-          {this.renderToggle()}
-          {this.renderOverlay()}
+          <Manager>
+            <Reference>
+              {({ ref }) => (
+                this.renderToggle(ref)
+              )}
+            </Reference>
+            {isOverlayOpen && (
+            <Popper
+              placement={placement}
+              modifiers={{
+                preventOverflow: {
+                  enabled: true,
+                },
+              }}
+            >
+              {({
+                ref, placement, style
+              }) => (
+                <div
+                  className={overlayClasses}
+                  role="menu"
+                  aria-hidden={!isOverlayOpen}
+                  aria-expanded={!isOverlayOpen}
+                  ref={ref}
+                  data-placement={placement}
+                  style={style}
+                >
+                  {children}
+                </div>
+              )}
+            </Popper>
+            )}
+          </Manager>
         </div>
       </FocusTrap>
     );

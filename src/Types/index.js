@@ -32,3 +32,21 @@ export const dimensionType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.arrayOf(PropTypes.oneOf(validDimensions))
 ]);
+
+export const placementType = PropTypes.oneOf([
+  'auto',
+  'auto-start',
+  'auto-end',
+  'top',
+  'top-start',
+  'top-end',
+  'right',
+  'right-start',
+  'right-end',
+  'bottom',
+  'bottom-start',
+  'bottom-end',
+  'left',
+  'left-start',
+  'left-end',
+]);

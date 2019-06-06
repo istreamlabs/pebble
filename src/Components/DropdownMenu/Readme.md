@@ -7,6 +7,8 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
+import Block from '../Block/Block';
+
 function handleOpen() {
   console.log('open');
 }
@@ -19,17 +21,16 @@ function handleItemClick() {
   console.log('item clicked');
 }
 
-<DemoBrowserRouter>
-  <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
-    <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
-    <DropdownItem href="/">link</DropdownItem>
-    <DropdownMenuSeparator />
-    <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
-  </DropdownMenu>
-</DemoBrowserRouter>
+<DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
+  <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
+  <DropdownMenuSeparator />
+  <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
+</DropdownMenu>
 ```
 
 ### Sizes
+
+Change the size of the default toggle button. The `size` value does not impact the overlay menu.
 
 ```jsx
 
@@ -48,6 +49,21 @@ import DropdownItem from './Components/DropdownItem';
     <DropdownItem>item</DropdownItem>
   </DropdownMenu>
 </>
+```
+
+### Overlay Menu Placement
+
+Pass a placement prop to set where the overlay menu should appear relative to the toggle.
+
+```jsx
+import DropdownItem from './Components/DropdownItem';
+import Block from '../Block/Block';
+
+<Block justify="between">
+  <DropdownMenu toggle="bottom-end placement" placement="bottom-end">
+    <DropdownItem>item</DropdownItem>
+  </DropdownMenu>
+</Block>
 ```
 
 ### Full width

@@ -1,8 +1,9 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
+
 import Button from '../Button/Button';
+import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
 import FocusTrap from 'focus-trap-react';
+import React from 'react';
 
 describe('DropdownMenu', () => {
   it('renders without crashing', () => {
@@ -22,18 +23,28 @@ describe('DropdownMenu', () => {
   });
 
   describe('onToggle', () => {
-    it('should toggle the dropdown open and call onOpen and onClose', () => {
+    it('should toggle the dropdown open and call onOpen ', () => {
       const onOpen = jest.fn();
       const onClose = jest.fn();
 
-      const wrapper = shallow(<DropdownMenu toggle="click me" onOpen={onOpen} onClose={onClose}><div>overlay</div></DropdownMenu>);
-      const toggleButton = wrapper.find(Button);
-      toggleButton.simulate('click');
-      expect(wrapper.state().isOverlayOpen).toBe(true);
+      const instance = new DropdownMenu({ onOpen, onClose });
+      const spy = jest.spyOn(instance, 'setState').mockImplementation((state, callback) => callback());
+      instance.onToggle();
+      expect(spy).toHaveBeenCalledWith({ isOverlayOpen: true }, expect.any(Function));
       expect(onOpen).toHaveBeenCalled();
-      toggleButton.simulate('click');
+      expect(onClose).not.toHaveBeenCalled();
+    });
+
+    it('should toggle the dropdown closed and call onClose ', () => {
+      const onOpen = jest.fn();
+      const onClose = jest.fn();
+
+      const instance = new DropdownMenu({ onOpen, onClose, open: true });
+      const spy = jest.spyOn(instance, 'setState').mockImplementation((state, callback) => callback());
+      instance.onToggle();
+      expect(spy).toHaveBeenCalledWith({ isOverlayOpen: false }, expect.any(Function));
       expect(onClose).toHaveBeenCalled();
-      expect(wrapper.state().isOverlayOpen).toBe(false);
+      expect(onOpen).not.toHaveBeenCalled();
     });
   });
 
@@ -93,20 +104,17 @@ describe('DropdownMenu', () => {
 
   describe('renderToggle', () => {
     it('should set onClick to onToggle', () => {
-      const wrapper = shallow(<DropdownMenu open={false} toggle="click me"><div>overlay</div></DropdownMenu>);
-      const toggleButton = wrapper.find(Button);
-      toggleButton.simulate('click');
-      expect(wrapper.state().isOverlayOpen).toBe(true);
+      const instance = new DropdownMenu({ toggle: 'hello' });
+      const result = instance.renderToggle(React.createRef());
+      expect(result.props.onClick).toEqual(instance.onToggle);
     });
 
     it('adds an onClick handler to a custom trigger', () => {
       const customTrigger = <Button>click me</Button>;
-      const onOpen = jest.fn();
-
-      const wrapper = shallow(<DropdownMenu toggle={customTrigger} onOpen={onOpen}><div>overlay</div></DropdownMenu>);
-      const toggleButton = wrapper.find(Button);
-      toggleButton.simulate('click');
-      expect(onOpen).toHaveBeenCalled();
+      const instance = new DropdownMenu({ toggle: customTrigger });
+      const result = instance.renderToggle(React.createRef());
+      expect(result.props.onClick).toEqual(instance.onToggle);
+      expect(result.props.children).toContain('click me');
     });
   });
 });
