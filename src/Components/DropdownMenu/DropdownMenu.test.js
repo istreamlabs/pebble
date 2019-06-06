@@ -1,4 +1,4 @@
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Button from '../Button/Button';
 import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
