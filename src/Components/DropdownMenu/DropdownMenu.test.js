@@ -1,8 +1,9 @@
-import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
+
 import Button from '../Button/Button';
+import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
 import FocusTrap from 'focus-trap-react';
+import React from 'react';
 
 describe('DropdownMenu', () => {
   it('renders without crashing', () => {
@@ -103,20 +104,17 @@ describe('DropdownMenu', () => {
 
   describe('renderToggle', () => {
     it('should set onClick to onToggle', () => {
-      const wrapper = mount(<DropdownMenu open={false} toggle="click me"><div>overlay</div></DropdownMenu>);
-      const toggleButton = wrapper.find(Button);
-      toggleButton.simulate('click');
-      expect(wrapper.state().isOverlayOpen).toBe(true);
+      const instance = new DropdownMenu({ toggle: 'hello' });
+      const result = instance.renderToggle(React.createRef());
+      expect(result.props.onClick).toEqual(instance.onToggle);
     });
 
     it('adds an onClick handler to a custom trigger', () => {
       const customTrigger = <Button>click me</Button>;
-      const onOpen = jest.fn();
-
-      const wrapper = mount(<DropdownMenu toggle={customTrigger} onOpen={onOpen}><div>overlay</div></DropdownMenu>);
-      const toggleButton = wrapper.find(Button);
-      toggleButton.simulate('click');
-      expect(onOpen).toHaveBeenCalled();
+      const instance = new DropdownMenu({ toggle: customTrigger });
+      const result = instance.renderToggle(React.createRef());
+      expect(result.props.onClick).toEqual(instance.onToggle);
+      expect(result.props.children).toContain('click me');
     });
   });
 });

@@ -1,14 +1,14 @@
-import React from 'react';
+import './DropdownMenu.scss';
+
+import { Manager, Popper, Reference } from 'react-popper';
+
+import Button from '../Button/Button';
+import FocusTrap from 'focus-trap-react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import onClickOutside from 'react-onclickoutside';
-import FocusTrap from 'focus-trap-react';
-import { Manager, Reference, Popper } from 'react-popper';
-
 import { placementType } from '../../Types';
-import Button from '../Button/Button';
-
-import './DropdownMenu.scss';
 
 const propTypes = {
   /**
@@ -162,7 +162,7 @@ export class DropdownMenu extends React.PureComponent {
     }
 
     return React.cloneElement(toggle, {
-      onClick: () => this.onToggle(),
+      onClick: this.onToggle,
       disabled,
       'aria-haspopup': true,
       ref
