@@ -1,0 +1,146 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { Manager, Popper, Reference } from 'react-popper';
+import { placementType } from '../../Types';
+
+const propTypes = {
+  /**
+   * The string or node that triggers the tooltip
+   */
+  children: PropTypes.node,
+  /**
+   * Additional classes to add to the tooltip overlay
+   */
+  className: PropTypes.string,
+  /**
+   * Text displayed inside the tooltip
+   */
+  content: PropTypes.string,
+  /**
+   * Where the overlay menu will appear relative to the toggle
+   *
+   * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
+   * @type {PropTypes.Requireable<PlacementType>}
+   */
+  placement: placementType,
+};
+
+const defaultProps = {
+  placement: 'top',
+};
+
+/**
+* Tooltips provide additional information on hover or focus.
+*
+* ---
+*/
+
+export class Tooltip extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tooltipVisible: false,
+    };
+  }
+
+  handleMouseEnter = () => {
+    this.setState({ tooltipVisible: true });
+  }
+
+  handleMouseLeave = () => {
+    this.setState({ tooltipVisible: false });
+  }
+
+  handleFocus = () => {
+    this.setState({ tooltipVisible: true });
+  }
+
+  handleBlur = () => {
+    this.setState({ tooltipVisible: false });
+  }
+
+  renderTrigger = (ref) => {
+    const { children } = this.props;
+
+    if (typeof children === 'string') {
+      return (
+        <span
+          ref={ref}
+          onMouseEnter={this.handleMouseEnter}
+          onFocus={this.handleFocus}
+          onMouseLeave={this.handleMouseLeave}
+          onBlur={this.handleBlur}
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          tabIndex="0"
+        >
+          {children}
+        </span>
+      );
+    }
+
+    return (React.cloneElement(children, {
+      ref,
+      onMouseEnter: this.handleMouseEnter,
+      onFocus: this.handleFocus,
+      onMouseLeave: this.handleMouseLeave,
+      onBlur: this.handleBlur,
+      tabIndex: 0,
+    }));
+  };
+
+  render() {
+    const {
+      className,
+      content,
+      placement
+    } = this.props;
+
+    const { tooltipVisible } = this.state;
+
+    const classes = classNames('bg-black-90 br1 p-2 white fs-6 mw5 shadow-1', className);
+
+    return (
+      <Manager>
+        <Reference>
+          {({ ref }) => (
+            this.renderTrigger(ref)
+          )}
+        </Reference>
+        {tooltipVisible && (
+        <Popper
+          placement={placement}
+          modifiers={{
+            preventOverflow: {
+              enabled: true,
+            },
+            offset: {
+              offset: '0, 5px'
+            }
+          }}
+        >
+          {({
+            ref, placement, style
+          }) => (
+            <div
+              className={classes}
+              data-placement={placement}
+              ref={ref}
+              role="tooltip"
+              style={style}
+            >
+              {content}
+            </div>
+          )}
+        </Popper>
+        )}
+      </Manager>
+    );
+  }
+}
+
+Tooltip.propTypes = propTypes;
+Tooltip.defaultProps = defaultProps;
+
+export default Tooltip;
