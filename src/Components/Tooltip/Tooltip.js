@@ -4,7 +4,13 @@ import classNames from 'classnames';
 import { Manager, Popper, Reference } from 'react-popper';
 import { placementType } from '../../Types';
 
+import './Tooltip.scss';
+
 const propTypes = {
+  /**
+   * Show the tooltip when the component is initially mounted
+   */
+  active: PropTypes.bool,
   /**
    * The string or node that triggers the tooltip
    */
@@ -27,6 +33,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  active: false,
   placement: 'top',
 };
 
@@ -40,8 +47,10 @@ export class Tooltip extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    const { active } = this.props;
+
     this.state = {
-      tooltipVisible: false,
+      tooltipVisible: active,
     };
   }
 
@@ -99,7 +108,7 @@ export class Tooltip extends React.PureComponent {
 
     const { tooltipVisible } = this.state;
 
-    const classes = classNames('bg-black-90 br1 p-2 white fs-6 mw5 shadow-1', className);
+    const classes = classNames('tooltip', className);
 
     return (
       <Manager>
@@ -123,7 +132,7 @@ export class Tooltip extends React.PureComponent {
           {({
             ref, placement, style
           }) => (
-            <div
+            <span
               className={classes}
               data-placement={placement}
               ref={ref}
@@ -131,7 +140,7 @@ export class Tooltip extends React.PureComponent {
               style={style}
             >
               {content}
-            </div>
+            </span>
           )}
         </Popper>
         )}

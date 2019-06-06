@@ -2,15 +2,11 @@
 
 ```jsx
 <p>
-Here is some body copy with a
+Here is some copy with a
 <Tooltip content="i'm the content of a tooltip. i'm the content of a tooltip">
-  tooltip
+  <span className="link">tooltip</span>
 </Tooltip>
 inside of it.</p>
-
-<Tooltip content="i'm the content of a tooltip. i'm the content of a tooltip">
-  String - Hover me
-</Tooltip>
 ```
 
 ### Placement
@@ -19,10 +15,22 @@ Placement of the tooltip is will automatically adjust itself based on the browse
 
 ```jsx
 import Button from '../Button/Button';
+import ButtonGroup from '../ButtonGroup/ButtonGroup';
 
-<Tooltip content="i'm the content of a tooltip. i'm the content of a tooltip" placement="right">
-  <Button>Tooltip Right</Button>
-</Tooltip>
+<ButtonGroup>
+  <Tooltip content="top" placement="top">
+    <Button>top</Button>
+  </Tooltip>
+  <Tooltip content="right" placement="right">
+    <Button>right</Button>
+  </Tooltip>
+  <Tooltip content="bottom" placement="bottom">
+    <Button>bottom</Button>
+  </Tooltip>
+  <Tooltip content="left" placement="left">
+    <Button>left</Button>
+  </Tooltip>
+</ButtonGroup>
 ```
 
 ## Best Practices

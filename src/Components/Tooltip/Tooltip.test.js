@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Popper, Reference } from 'react-popper';
+import { Reference } from 'react-popper';
 
 
 import Tooltip from './Tooltip';
@@ -10,6 +10,7 @@ describe('Tooltip', () => {
     expect(() => { shallow(<Tooltip />); }).not.toThrow();
   });
   it('defaults', () => {
+    expect(Tooltip.defaultProps.active).toBe(false);
     expect(Tooltip.defaultProps.placement).toBe('top');
   });
 
