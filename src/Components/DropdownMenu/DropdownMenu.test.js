@@ -117,4 +117,17 @@ describe('DropdownMenu', () => {
       expect(result.props.children).toContain('click me');
     });
   });
+
+  describe('renderOverlay', () => {
+    it('sets correct properties on the overlay', () => {
+      const instance = new DropdownMenu({ toggle: 'hello' });
+      instance.state.isOverlayOpen = true;
+      const result = instance.renderOverlay({
+        ref: React.createRef(), placement: 'bottom-end'
+      });
+      expect(result.props['aria-hidden']).toEqual(false);
+      expect(result.props['aria-expanded']).toEqual(true);
+      expect(result.props['data-placement']).toEqual('bottom-end');
+    });
+  });
 });
