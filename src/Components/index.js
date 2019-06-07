@@ -40,4 +40,5 @@ export { default as Tab } from './Tabs/Components/Tab';
 export { default as TabPanel } from './Tabs/Components/TabPanel';
 export { default as Text } from './Text/Text';
 export { default as TextContainer } from './TextContainer/TextContainer';
+export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as VisuallyHidden } from './VisuallyHidden/VisuallyHidden';
