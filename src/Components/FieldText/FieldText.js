@@ -61,9 +61,9 @@ const propTypes = {
    */
   isReadOnly: PropTypes.bool,
   /**
-   * Additional hint displayed beneath the label
+   * Additional hint displayed beneath the input
    */
-  helpText: PropTypes.string,
+  helpText: PropTypes.node,
   /**
    * Visually hide the label
    */

@@ -14,7 +14,7 @@ const propTypes = {
   /**
    * Additional hint displayed beneath the label
    */
-  helpText: PropTypes.string,
+  helpText: PropTypes.node,
   /**
    * The label for the group of radios
    */
@@ -25,7 +25,7 @@ const propTypes = {
   radios: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    helpText: PropTypes.string,
+    helpText: PropTypes.node,
     value: PropTypes.string.isRequired,
   })),
   /**
