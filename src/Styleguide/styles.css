@@ -9,7 +9,7 @@
 }
 
 .styleguide__buttons .btn {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .styleguide__frame {
@@ -38,11 +38,11 @@
 }
 
 .styleguide__callout {
-  background: #FEF9EB;
+  background: #fef9eb;
   border-radius: 4px;
-  border: 1px solid #FFE39C;
+  border: 1px solid #ffe39c;
   margin-bottom: 1rem;
-  padding: 1.5rem 2rem .5rem;
+  padding: 1.5rem 2rem 0.5rem;
 }
 
 .styleguide__menubutton {
