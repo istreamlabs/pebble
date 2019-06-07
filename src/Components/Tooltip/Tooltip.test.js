@@ -1,7 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Reference } from 'react-popper';
-
 
 import Tooltip from './Tooltip';
 
@@ -71,26 +69,28 @@ describe('Tooltip', () => {
     });
   });
 
-  describe('render', () => {
+  describe('renderTooltip', () => {
     it('renders a node with the correct props', () => {
+      const trigger = <span>test</span>;
+      const content = 'tooltip content';
+      const testStyle = 'color: #000';
       const testRef = React.createRef();
-      const wrapper = shallow(<Tooltip><div>test</div></Tooltip>)
-        .find(Reference)
-        .renderProp('children')(testRef);
-
-      expect(wrapper.find('div')).toHaveLength(1);
-      expect(wrapper.find('div').prop('children')).toEqual('test');
-      expect(wrapper.find('div').prop('tabIndex')).toEqual(0);
+      const instance = new Tooltip({ children: trigger, content });
+      const result = instance.renderTooltip({ ref: testRef, placement: 'top', style: testStyle });
+      expect(result.props['data-placement']).toEqual('top');
+      expect(result.props.children).toEqual(content);
+      expect(result.props.style).toEqual(testStyle);
     });
-    it('renders a string with the correct props', () => {
-      const testRef = React.createRef();
-      const wrapper = shallow(<Tooltip>test</Tooltip>)
-        .find(Reference)
-        .renderProp('children')(testRef);
+  });
 
-      expect(wrapper.find('span')).toHaveLength(1);
-      expect(wrapper.find('span').prop('children')).toEqual('test');
-      expect(wrapper.find('span').prop('tabIndex')).toEqual('0');
+  describe('render', () => {
+    it('renders the Popper when active', () => {
+      const wrapper = shallow(<Tooltip content="tooltip content" active>test</Tooltip>);
+      expect(wrapper.find('Popper')).toHaveLength(1);
+    });
+    it('does not render Popper when inactive', () => {
+      const wrapper = shallow(<Tooltip content="tooltip content">test</Tooltip>);
+      expect(wrapper.find('Popper')).toHaveLength(0);
     });
   });
 });

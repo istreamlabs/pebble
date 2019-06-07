@@ -1,12 +1,10 @@
 ## Examples
 
 ```jsx
-<p>
-Here is some copy with a
-<Tooltip content="i'm the content of a tooltip. i'm the content of a tooltip">
+<p>Here is some text copy with an inline
+<Tooltip content="Tooltips provide additional information on hover or focus">
   <span className="link">tooltip</span>
-</Tooltip>
-inside of it.</p>
+</Tooltip></p>
 ```
 
 ### Placement

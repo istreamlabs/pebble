@@ -29,19 +29,19 @@ const propTypes = {
    * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
    * @type {PropTypes.Requireable<PlacementType>}
    */
-  placement: placementType,
+  placement: placementType
 };
 
 const defaultProps = {
   active: false,
-  placement: 'top',
+  placement: 'top'
 };
 
 /**
-* Tooltips provide additional information on hover or focus.
-*
-* ---
-*/
+ * Tooltips provide additional information on hover or focus.
+ *
+ * ---
+ */
 
 export class Tooltip extends React.PureComponent {
   constructor(props) {
@@ -50,27 +50,27 @@ export class Tooltip extends React.PureComponent {
     const { active } = this.props;
 
     this.state = {
-      tooltipVisible: active,
+      tooltipVisible: active
     };
   }
 
   handleMouseEnter = () => {
     this.setState({ tooltipVisible: true });
-  }
+  };
 
   handleMouseLeave = () => {
     this.setState({ tooltipVisible: false });
-  }
+  };
 
   handleFocus = () => {
     this.setState({ tooltipVisible: true });
-  }
+  };
 
   handleBlur = () => {
     this.setState({ tooltipVisible: false });
-  }
+  };
 
-  renderTrigger = (ref) => {
+  renderTrigger = ({ ref }) => {
     const { children } = this.props;
 
     if (typeof children === 'string') {
@@ -89,60 +89,48 @@ export class Tooltip extends React.PureComponent {
       );
     }
 
-    return (React.cloneElement(children, {
+    return React.cloneElement(children, {
       ref,
       onMouseEnter: this.handleMouseEnter,
       onFocus: this.handleFocus,
       onMouseLeave: this.handleMouseLeave,
       onBlur: this.handleBlur,
-      tabIndex: 0,
-    }));
+      tabIndex: 0
+    });
   };
 
-  render() {
-    const {
-      className,
-      content,
-      placement
-    } = this.props;
-
-    const { tooltipVisible } = this.state;
-
+  renderTooltip = ({ ref, placement, style }) => {
+    const { className, content } = this.props;
     const classes = classNames('tooltip', className);
 
     return (
+      <span className={classes} data-placement={placement} ref={ref} role="tooltip" style={style}>
+        {content}
+      </span>
+    );
+  };
+
+  render() {
+    const { placement } = this.props;
+    const { tooltipVisible } = this.state;
+
+    return (
       <Manager>
-        <Reference>
-          {({ ref }) => (
-            this.renderTrigger(ref)
-          )}
-        </Reference>
+        <Reference>{this.renderTrigger}</Reference>
         {tooltipVisible && (
-        <Popper
-          placement={placement}
-          modifiers={{
-            preventOverflow: {
-              enabled: true,
-            },
-            offset: {
-              offset: '0, 5px'
-            }
-          }}
-        >
-          {({
-            ref, placement, style
-          }) => (
-            <span
-              className={classes}
-              data-placement={placement}
-              ref={ref}
-              role="tooltip"
-              style={style}
-            >
-              {content}
-            </span>
-          )}
-        </Popper>
+          <Popper
+            placement={placement}
+            modifiers={{
+              preventOverflow: {
+                enabled: true
+              },
+              offset: {
+                offset: '0, 5px'
+              }
+            }}
+          >
+            {this.renderTooltip}
+          </Popper>
         )}
       </Manager>
     );
