@@ -3,11 +3,16 @@ export default (overflowProp) => {
 
   // setting 'overflow'
   if (typeof overflowProp === 'string') {
-    if (overflowProp !== 'visible' && overflowProp !== 'hidden' && overflowProp !== 'scroll' && overflowProp !== 'auto') {
+    if (
+      overflowProp !== 'visible' &&
+      overflowProp !== 'hidden' &&
+      overflowProp !== 'scroll' &&
+      overflowProp !== 'auto'
+    ) {
       return;
     }
     overflowClasses = `overflow-${overflowProp}`;
-  // responsive overflow
+    // responsive overflow
   } else if (Array.isArray(overflowProp) && overflowProp.length) {
     overflowClasses = [];
     overflowClasses.push(getOverflowClass(overflowProp[0]));
@@ -23,8 +28,12 @@ export default (overflowProp) => {
     if (overflowProp[3] !== undefined) {
       overflowClasses.push(getOverflowClass(overflowProp[3], '-l'));
     }
-  // setting 'overflow-x' and/or 'overflow-y'
-  } else if (overflowProp && typeof overflowProp === 'object' && overflowProp.constructor === Object) {
+    // setting 'overflow-x' and/or 'overflow-y'
+  } else if (
+    overflowProp &&
+    typeof overflowProp === 'object' &&
+    overflowProp.constructor === Object
+  ) {
     overflowClasses = getOverflowClass(overflowProp);
   } else {
     return undefined;
@@ -51,7 +60,5 @@ function getOverflowClass(overflowProp, breakpoint) {
   if (overflowProp.vertical) {
     vClass = `overflow-y-${overflowProp.vertical}${breakpoint}`;
   }
-  return hClass !== '' && vClass !== '' ? `${hClass} ${vClass}`
-    : hClass !== '' ? hClass
-      : vClass;
+  return hClass !== '' && vClass !== '' ? `${hClass} ${vClass}` : hClass !== '' ? hClass : vClass;
 }
