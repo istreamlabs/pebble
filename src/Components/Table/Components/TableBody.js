@@ -23,8 +23,7 @@ function TableBody({
     <Block
       role="rowgroup"
       direction="column"
-      overflow={{ vertical: 'scroll', horizontal: 'scroll' }}
-      className="relative"
+      className="relative overflow-auto overflow-overlay"
     >
       {children}
     </Block>
