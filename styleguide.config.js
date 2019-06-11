@@ -21,7 +21,7 @@ module.exports = {
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
     if (name === 'Toast') {
-      return `import { use${name} } from '@istreamplanet/pebble`;
+      return `import { use${name} } from '@istreamplanet/pebble/dist/Hooks/`;
     }
     return `import { ${name} } from '@istreamplanet/pebble';`;
   },
