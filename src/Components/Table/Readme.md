@@ -32,9 +32,11 @@ import TableCell from './Components/TableCell'; //import { TableCell } from '@is
 
 ```
 
-### Custom Cells
+### Custom Cells and Scrolling
 
 More commonly, you may want to combine properties into the same cell, or your data structure is more complex. For these cases, use the `<TableRow>` and `<TableCell>` components to customize how a row in your table is rendered.
+
+If the Table has a height or width constraint, pass the overflow behavior on the `TableBody` to enable scrolling. The `overflow` prop accepts the same values as the `overflow` prop on the [Block component](/#/Components/Block).
 
 ```js
 import Block from '../Block/Block';
@@ -58,7 +60,7 @@ function CustomCellTable() {
         <TableHeaderCell>Contact</TableHeaderCell>
         <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
-      <TableBody>
+      <TableBody overflow={{ vertical: 'scroll' }}>
         {
           PEOPLE_DATA_2.map((row, index) => (
             <TableRow key={index}>
@@ -309,7 +311,7 @@ function PaginationTableSample() {
           <TableHeaderCell>Column 3</TableHeaderCell>
           <TableHeaderCell>Column 4</TableHeaderCell>
         </TableHeader>
-        <TableBody>
+        <TableBody overflow={{ vertical: 'scroll' }}>
           {
             visibleData().map((row, index) => (
               <TableRow key={index}>

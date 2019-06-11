@@ -22,7 +22,7 @@ function CustomCellTable() {
         <TableHeaderCell>Contact</TableHeaderCell>
         <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
-      <TableBody>
+      <TableBody overflow={{ vertical: 'scroll' }}>
         {
           PEOPLE_DATA_2.map((row, index) => (
             <TableRow key={index}>
