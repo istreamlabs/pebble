@@ -23,8 +23,7 @@ function TableBody({
     <Block
       role="rowgroup"
       direction="column"
-      className="relative"
-      overflow="auto"
+      className="relative overflow-auto overflow-overlay"
     >
       {children}
     </Block>
