@@ -18,14 +18,13 @@ const propTypes = {
 
 function TableBody({
   children,
-  ...rest
 }) {
   return (
     <Block
       role="rowgroup"
       direction="column"
       className="relative"
-      {...rest}
+      overflow="auto"
     >
       {children}
     </Block>

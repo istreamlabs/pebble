@@ -39,10 +39,10 @@ function TableRow({
 
   const classes = classNames(
     'table-row',
-    'flex w-100',
+    'flex w-100 bb b-neutral-300',
     {
       'bg-hover bg-blue-lighter-hover': hoverHighlight,
-      'bb b-neutral-300 pb-4 ph-4': isMobileLayout
+      'pb-4 ph-4': isMobileLayout
     },
     className
   );

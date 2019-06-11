@@ -73,9 +73,6 @@ function TableHeaderCell({
 
   const classes = classNames(
     'word-wrap fw-700 fs-6',
-    {
-      'bb b-neutral-300': !isMobileLayout,
-    },
     className,
   );
 
