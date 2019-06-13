@@ -10,6 +10,7 @@ export { default as DropdownMenuSeparator } from './DropdownMenu/Components/Drop
 export { default as DropdownItem } from './DropdownMenu/Components/DropdownItem';
 export { default as DropdownItemGroup } from './DropdownMenu/Components/DropdownItemGroup';
 export { default as FieldCheckbox } from './FieldCheckbox/FieldCheckbox';
+export { default as FieldDateTime } from './FieldDateTime/FieldDateTime';
 export { default as FieldRadioGroup } from './FieldRadioGroup/FieldRadioGroup';
 export { default as FieldSelect } from './FieldSelect/FieldSelect';
 export { default as FieldText } from './FieldText/FieldText';
