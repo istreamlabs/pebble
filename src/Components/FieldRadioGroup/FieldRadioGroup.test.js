@@ -78,13 +78,13 @@ describe('FieldRadioGroup', () => {
       expect(radios.at(1).prop('isSelected')).toBe(true);
     });
 
-    it('checks specified radio', () => {
+    it('checks specified radio is disabled', () => {
       const items = [
         {
           id: '1', value: '1', label: '1'
         },
         {
-          id: '2', value: '2', label: '2'
+          id: '2', value: '2', label: '2', disabled: true
         },
         {
           id: '3', value: '3', label: '3'
@@ -92,7 +92,7 @@ describe('FieldRadioGroup', () => {
       ];
       const wrapper = mount(<FieldRadioGroup value="2" radios={items} />);
       const radios = wrapper.find(Radio);
-      expect(radios.at(1).prop('isSelected')).toBe(true);
+      expect(radios.at(1).prop('disabled')).toBe(true);
     });
   });
 });

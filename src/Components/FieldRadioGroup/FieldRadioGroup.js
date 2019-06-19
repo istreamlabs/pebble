@@ -75,6 +75,7 @@ function FieldRadioGroup({
     if (radios) {
       return radios.map(radio => (
         <Radio
+          {...radio}
           key={radio.id}
           id={radio.id}
           label={radio.label}
