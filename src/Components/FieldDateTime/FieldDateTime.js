@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import DatePicker from 'react-datepicker';
-import Block from '../Block/Block';
-import Label from '../Label/Label';
-import Text from '../Text/Text';
-import { dimensionType } from '../../Types';
-
 import './FieldDateTime.scss';
-import 'react-datepicker/dist/react-datepicker.css';
+
+import Block from '../Block/Block';
+import DatePicker from 'react-datepicker';
+import Label from '../Label/Label';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Text from '../Text/Text';
+import classNames from 'classnames';
+import { dimensionType } from '../../Types';
 import { isValid } from 'ipaddr.js';
 
 const propTypes = {
@@ -178,7 +177,17 @@ class FieldDateTime extends React.PureComponent {
     return (
       <Block direction="column" className={classes} width={width}>
         {FieldDateTime.generateLabel(this.props)}
-        <DatePicker disabledKeyboardNavigation adjustDateOnChange={false} showTimeSelect={includeTime} timeFormat={timeFormat} dateFormat={FieldDateTime.getDateFormat(includeTime, dateFormat)} selected={value} className={inputClasses} onChange={onChange} />
+        <DatePicker
+          disabledKeyboardNavigation
+          adjustDateOnChange={false}
+          showTimeSelect={includeTime}
+          timeFormat={timeFormat}
+          dateFormat={FieldDateTime.getDateFormat(includeTime, dateFormat)}
+          selected={value}
+          className={inputClasses}
+          calendarClassName="FieldDatePickerCalendar"
+          onChange={onChange}
+        />
         {FieldDateTime.generateHelpTextMarkup(helpText)}
         {FieldDateTime.generateValidationTextMarkup(isValid, validationText)}
         {FieldDateTime.foo(value)}
