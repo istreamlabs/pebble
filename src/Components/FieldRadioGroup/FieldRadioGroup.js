@@ -27,6 +27,7 @@ const propTypes = {
     label: PropTypes.string.isRequired,
     helpText: PropTypes.node,
     value: PropTypes.string.isRequired,
+    disabled: PropTypes.bool
   })),
   /**
    * Currently selected option value
