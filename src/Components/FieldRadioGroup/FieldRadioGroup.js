@@ -27,6 +27,7 @@ const propTypes = {
     label: PropTypes.string.isRequired,
     helpText: PropTypes.node,
     value: PropTypes.string.isRequired,
+    disabled: PropTypes.bool
   })),
   /**
    * Currently selected option value
@@ -75,6 +76,7 @@ function FieldRadioGroup({
     if (radios) {
       return radios.map(radio => (
         <Radio
+          disabled={radio.disabled}
           key={radio.id}
           id={radio.id}
           label={radio.label}

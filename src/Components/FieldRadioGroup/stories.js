@@ -18,6 +18,9 @@ const group1 = [
   {
     id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days',
   },
+  {
+    id: 'neutrino', value: 'neutrino', label: 'Neutrino', helpText: 'Neutrino messaging technology is not available yet', disabled: true
+  },
 ];
 
 const group2 = [
