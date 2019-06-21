@@ -57,9 +57,6 @@ function TableCell({
 
   const classes = classNames(
     'word-wrap',
-    {
-      'bb b-neutral-300': !isMobileLayout
-    },
     className,
   );
 

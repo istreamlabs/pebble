@@ -8,36 +8,40 @@ storiesOf('Icon', module)
   .add('all', () => (
     <>
       <div className="__icon">
-        <Icon name="add-circle" accessibilityLabel="add-circle" />
-        <div>add-circle</div>
+        <Icon name="add-bold" accessibilityLabel="add-bold" />
+        <div>add-bold</div>
       </div>
       <div className="__icon">
         <Icon name="add" accessibilityLabel="add" />
         <div>add</div>
       </div>
       <div className="__icon">
-        <Icon name="add-bold" accessibilityLabel="add-bold" />
-        <div>add-bold</div>
+        <Icon name="add-circle" accessibilityLabel="add-circle" />
+        <div>add-circle</div>
       </div>
       <div className="__icon">
-        <Icon name="arrow-small-left" accessibilityLabel="arrow-small-left" />
-        <div>arrow-small-left</div>
+        <Icon name="arrow-small-down" accessibilityLabel="arrow-small-down" />
+        <div>arrow-small-down</div>
       </div>
       <div className="__icon">
         <Icon name="arrow-small-right" accessibilityLabel="arrow-small-right" />
         <div>arrow-small-right</div>
       </div>
       <div className="__icon">
-        <Icon name="arrow-small-triangle-down" accessibilityLabel="arrow-small-triangle-down" />
-        <div>arrow-small-triangle-down</div>
-      </div>
-      <div className="__icon">
         <Icon name="arrow-small-triangle-left" accessibilityLabel="arrow-small-triangle-left" />
         <div>arrow-small-triangle-left</div>
       </div>
       <div className="__icon">
-        <Icon name="arrow-small-down" accessibilityLabel="arrow-small-down" />
-        <div>arrow-small-down</div>
+        <Icon name="arrow-small-left" accessibilityLabel="arrow-small-left" />
+        <div>arrow-small-left</div>
+      </div>
+      <div className="__icon">
+        <Icon name="arrow-small-triangle-down" accessibilityLabel="arrow-small-triangle-down" />
+        <div>arrow-small-triangle-down</div>
+      </div>
+      <div className="__icon">
+        <Icon name="arrow-small-triangle-right" accessibilityLabel="arrow-small-triangle-right" />
+        <div>arrow-small-triangle-right</div>
       </div>
       <div className="__icon">
         <Icon name="arrow-small-triangle-up" accessibilityLabel="arrow-small-triangle-up" />
@@ -48,48 +52,48 @@ storiesOf('Icon', module)
         <div>arrow-small-up</div>
       </div>
       <div className="__icon">
-        <Icon name="carousel" accessibilityLabel="carousel" />
-        <div>carousel</div>
-      </div>
-      <div className="__icon">
-        <Icon name="arrow-small-triangle-right" accessibilityLabel="arrow-small-triangle-right" />
-        <div>arrow-small-triangle-right</div>
-      </div>
-      <div className="__icon">
-        <Icon name="ban" accessibilityLabel="ban" />
-        <div>ban</div>
-      </div>
-      <div className="__icon">
-        <Icon name="check-circle-outline" accessibilityLabel="check-circle-outline" />
-        <div>check-circle-outline</div>
+        <Icon name="calendar" accessibilityLabel="calendar" />
+        <div>calendar</div>
       </div>
       <div className="__icon">
         <Icon name="check-circle" accessibilityLabel="check-circle" />
         <div>check-circle</div>
       </div>
       <div className="__icon">
-        <Icon name="circle" accessibilityLabel="circle" />
-        <div>circle</div>
+        <Icon name="ban" accessibilityLabel="ban" />
+        <div>ban</div>
       </div>
       <div className="__icon">
-        <Icon name="close" accessibilityLabel="close" />
-        <div>close</div>
+        <Icon name="carousel" accessibilityLabel="carousel" />
+        <div>carousel</div>
+      </div>
+      <div className="__icon">
+        <Icon name="check-circle-outline" accessibilityLabel="check-circle-outline" />
+        <div>check-circle-outline</div>
+      </div>
+      <div className="__icon">
+        <Icon name="circle" accessibilityLabel="circle" />
+        <div>circle</div>
       </div>
       <div className="__icon">
         <Icon name="check-list" accessibilityLabel="check-list" />
         <div>check-list</div>
       </div>
       <div className="__icon">
-        <Icon name="crosshair" accessibilityLabel="crosshair" />
-        <div>crosshair</div>
+        <Icon name="close" accessibilityLabel="close" />
+        <div>close</div>
       </div>
       <div className="__icon">
-        <Icon name="copy" accessibilityLabel="copy" />
-        <div>copy</div>
+        <Icon name="checkbox" accessibilityLabel="checkbox" />
+        <div>checkbox</div>
       </div>
       <div className="__icon">
-        <Icon name="edit" accessibilityLabel="edit" />
-        <div>edit</div>
+        <Icon name="date-time" accessibilityLabel="date-time" />
+        <div>date-time</div>
+      </div>
+      <div className="__icon">
+        <Icon name="checkbox-checked" accessibilityLabel="checkbox-checked" />
+        <div>checkbox-checked</div>
       </div>
       <div className="__icon">
         <Icon name="dashboard" accessibilityLabel="dashboard" />
@@ -100,16 +104,20 @@ storiesOf('Icon', module)
         <div>event</div>
       </div>
       <div className="__icon">
+        <Icon name="copy" accessibilityLabel="copy" />
+        <div>copy</div>
+      </div>
+      <div className="__icon">
+        <Icon name="crosshair" accessibilityLabel="crosshair" />
+        <div>crosshair</div>
+      </div>
+      <div className="__icon">
+        <Icon name="edit" accessibilityLabel="edit" />
+        <div>edit</div>
+      </div>
+      <div className="__icon">
         <Icon name="flag" accessibilityLabel="flag" />
         <div>flag</div>
-      </div>
-      <div className="__icon">
-        <Icon name="full-screen" accessibilityLabel="full-screen" />
-        <div>full-screen</div>
-      </div>
-      <div className="__icon">
-        <Icon name="grid-interface" accessibilityLabel="grid-interface" />
-        <div>grid-interface</div>
       </div>
       <div className="__icon">
         <Icon name="info-circle" accessibilityLabel="info-circle" />
@@ -118,6 +126,14 @@ storiesOf('Icon', module)
       <div className="__icon">
         <Icon name="logout" accessibilityLabel="logout" />
         <div>logout</div>
+      </div>
+      <div className="__icon">
+        <Icon name="full-screen" accessibilityLabel="full-screen" />
+        <div>full-screen</div>
+      </div>
+      <div className="__icon">
+        <Icon name="grid-interface" accessibilityLabel="grid-interface" />
+        <div>grid-interface</div>
       </div>
       <div className="__icon">
         <Icon name="mail" accessibilityLabel="mail" />
@@ -152,72 +168,84 @@ storiesOf('Icon', module)
         <div>package</div>
       </div>
       <div className="__icon">
-        <Icon name="pause" accessibilityLabel="pause" />
-        <div>pause</div>
+        <Icon name="menu-dots" accessibilityLabel="menu-dots" />
+        <div>menu-dots</div>
       </div>
       <div className="__icon">
-        <Icon name="play" accessibilityLabel="play" />
-        <div>play</div>
+        <Icon name="pause" accessibilityLabel="pause" />
+        <div>pause</div>
       </div>
       <div className="__icon">
         <Icon name="player" accessibilityLabel="player" />
         <div>player</div>
       </div>
       <div className="__icon">
-        <Icon name="profile-square" accessibilityLabel="profile-square" />
-        <div>profile-square</div>
+        <Icon name="play" accessibilityLabel="play" />
+        <div>play</div>
       </div>
       <div className="__icon">
         <Icon name="profile-circle" accessibilityLabel="profile-circle" />
         <div>profile-circle</div>
       </div>
       <div className="__icon">
+        <Icon name="profile-square" accessibilityLabel="profile-square" />
+        <div>profile-square</div>
+      </div>
+      <div className="__icon">
         <Icon name="pulse" accessibilityLabel="pulse" />
         <div>pulse</div>
+      </div>
+      <div className="__icon">
+        <Icon name="phone" accessibilityLabel="phone" />
+        <div>phone</div>
       </div>
       <div className="__icon">
         <Icon name="question-circle" accessibilityLabel="question-circle" />
         <div>question-circle</div>
       </div>
       <div className="__icon">
+        <Icon name="refresh" accessibilityLabel="refresh" />
+        <div>refresh</div>
+      </div>
+      <div className="__icon">
         <Icon name="radio-selected" accessibilityLabel="radio-selected" />
         <div>radio-selected</div>
       </div>
       <div className="__icon">
-        <Icon name="radio" accessibilityLabel="radio" />
-        <div>radio</div>
-      </div>
-      <div className="__icon">
-        <Icon name="refresh" accessibilityLabel="refresh" />
-        <div>refresh</div>
+        <Icon name="remove" accessibilityLabel="remove" />
+        <div>remove</div>
       </div>
       <div className="__icon">
         <Icon name="remove-circle" accessibilityLabel="remove-circle" />
         <div>remove-circle</div>
       </div>
       <div className="__icon">
+        <Icon name="search" accessibilityLabel="search" />
+        <div>search</div>
+      </div>
+      <div className="__icon">
         <Icon name="s-check" accessibilityLabel="s-check" />
         <div>s-check</div>
       </div>
       <div className="__icon">
-        <Icon name="settings-gear" accessibilityLabel="settings-gear" />
-        <div>settings-gear</div>
+        <Icon name="radio" accessibilityLabel="radio" />
+        <div>radio</div>
       </div>
       <div className="__icon">
         <Icon name="settings" accessibilityLabel="settings" />
         <div>settings</div>
       </div>
       <div className="__icon">
-        <Icon name="shop" accessibilityLabel="shop" />
-        <div>shop</div>
+        <Icon name="settings-gear" accessibilityLabel="settings-gear" />
+        <div>settings-gear</div>
       </div>
       <div className="__icon">
         <Icon name="shopping-bag" accessibilityLabel="shopping-bag" />
         <div>shopping-bag</div>
       </div>
       <div className="__icon">
-        <Icon name="spinner" accessibilityLabel="spinner" />
-        <div>spinner</div>
+        <Icon name="shop" accessibilityLabel="shop" />
+        <div>shop</div>
       </div>
       <div className="__icon">
         <Icon name="shopping-tag" accessibilityLabel="shopping-tag" />
@@ -228,6 +256,10 @@ storiesOf('Icon', module)
         <div>sports</div>
       </div>
       <div className="__icon">
+        <Icon name="spinner" accessibilityLabel="spinner" />
+        <div>spinner</div>
+      </div>
+      <div className="__icon">
         <Icon name="stack" accessibilityLabel="stack" />
         <div>stack</div>
       </div>
@@ -236,20 +268,16 @@ storiesOf('Icon', module)
         <div>stop</div>
       </div>
       <div className="__icon">
-        <Icon name="ticket" accessibilityLabel="ticket" />
-        <div>ticket</div>
-      </div>
-      <div className="__icon">
         <Icon name="tag" accessibilityLabel="tag" />
         <div>tag</div>
       </div>
       <div className="__icon">
-        <Icon name="users" accessibilityLabel="users" />
-        <div>users</div>
+        <Icon name="ticket" accessibilityLabel="ticket" />
+        <div>ticket</div>
       </div>
       <div className="__icon">
-        <Icon name="vod" accessibilityLabel="vod" />
-        <div>vod</div>
+        <Icon name="users" accessibilityLabel="users" />
+        <div>users</div>
       </div>
       <div className="__icon">
         <Icon name="warning-circle-outline" accessibilityLabel="warning-circle-outline" />
@@ -258,6 +286,14 @@ storiesOf('Icon', module)
       <div className="__icon">
         <Icon name="warning-circle" accessibilityLabel="warning-circle" />
         <div>warning-circle</div>
+      </div>
+      <div className="__icon">
+        <Icon name="vod" accessibilityLabel="vod" />
+        <div>vod</div>
+      </div>
+      <div className="__icon">
+        <Icon name="source" accessibilityLabel="source" />
+        <div>source</div>
       </div>
       <div className="__icon">
         <Icon name="warning-triangle" accessibilityLabel="warning-triangle" />

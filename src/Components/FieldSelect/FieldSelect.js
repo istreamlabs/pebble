@@ -104,9 +104,9 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.object)
   ]),
   /**
-   * Additional hint displayed beneath the label
+   * Additional hint displayed beneath the input
    */
-  helpText: PropTypes.string,
+  helpText: PropTypes.node,
   /**
    * The label for the checkbox
    */

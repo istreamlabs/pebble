@@ -47,11 +47,12 @@ function TableHeader({
       role="row"
       width="100%"
       background="white"
-      className={isMobileLayout ? 'bb b-neutral-300' : undefined}
+      className="bb b-neutral-300"
       direction={isMobileLayout ? 'column' : 'row'}
       styles={{ flexShrink: 0, minHeight: '50px' }}
       justify={isMobileLayout ? 'center' : 'start'}
       padding={isMobileLayout ? '4' : null}
+
     >
       {childrenMarkup()}
     </Block>

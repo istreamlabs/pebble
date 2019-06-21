@@ -14,7 +14,7 @@ const propTypes = {
   /**
    * Additional hint displayed beneath the label
    */
-  helpText: PropTypes.string,
+  helpText: PropTypes.node,
   /**
    * The label for the group of radios
    */
@@ -25,8 +25,9 @@ const propTypes = {
   radios: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    helpText: PropTypes.string,
+    helpText: PropTypes.node,
     value: PropTypes.string.isRequired,
+    disabled: PropTypes.bool
   })),
   /**
    * Currently selected option value
@@ -75,6 +76,7 @@ function FieldRadioGroup({
     if (radios) {
       return radios.map(radio => (
         <Radio
+          disabled={radio.disabled}
           key={radio.id}
           id={radio.id}
           label={radio.label}

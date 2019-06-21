@@ -23,7 +23,6 @@
   }
 }
 
-
 @keyframes slideInRight {
   from {
     transform: translate3d(100%, 0, 0);
@@ -37,10 +36,10 @@
 
 @keyframes spin {
   from {
-      transform:rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-      transform:rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 

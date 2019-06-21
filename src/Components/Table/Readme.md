@@ -32,9 +32,11 @@ import TableCell from './Components/TableCell'; //import { TableCell } from '@is
 
 ```
 
-### Custom Cells
+### Custom Cells and Table Body Scrolling
 
 More commonly, you may want to combine properties into the same cell, or your data structure is more complex. For these cases, use the `<TableRow>` and `<TableCell>` components to customize how a row in your table is rendered.
+
+If the Table has a height or width constraint, the `TableBody` will automatically scroll.
 
 ```js
 import Block from '../Block/Block';

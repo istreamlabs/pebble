@@ -32,8 +32,14 @@ const propTypes = {
    * Set the radio as selected
    */
   isSelected: PropTypes.bool,
+  /**
+   * The label for the radio
+   */
   label: PropTypes.string.isRequired,
-  helpText: PropTypes.string,
+  /**
+   * Additional hint displayed beneath the label
+   */
+  helpText: PropTypes.node,
   /**
    * The name attribute of the input
    */
