@@ -143,12 +143,13 @@ class FieldDateTime extends React.PureComponent {
   }
 
   static foo(value) {
-    console.log(value.toISOString());
-    return (
-      <Block marginTop="3">
-        {value.toISOString()}
-      </Block>
-    );
+    if ((new Date(value)).getTime() > 0) {
+      return (
+        <Block marginTop="3">
+          {value.toISOString()}
+        </Block>
+      );
+    }
   }
 
   render() {

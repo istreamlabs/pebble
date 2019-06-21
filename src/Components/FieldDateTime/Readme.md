@@ -1,3 +1,5 @@
+This component uses [react date picker](https://reactdatepicker.com/) under the hood. See their documentation for additional props.
+
 ```jsx
 import { useState } from 'react';
 import Block from '../Block/Block';
@@ -61,6 +63,37 @@ function FieldDateTimeExample() {
 }
 
 <FieldDateTimeExample />
+```
 
+### Excluding Dates or Times
 
+Depending on the use case, there are a few ways to exclude dates and times from being selectable.
+
+```jsx
+import { useState } from 'react';
+
+function FieldDateTimeExample() {
+  const [selectedDate, setSelectedDate] = useState();
+
+  const handleChange = (value) => {
+    console.log('Value is:', value);
+    setSelectedDate(value);
+  };
+
+  // do we show
+
+  return (
+    <FieldDateTime
+      id="future"
+      timeFormat="HH:mm"
+      label="Exclude past days"
+      placeholderText="Select a date in the future"
+      value={selectedDate}
+      onChange={handleChange}
+      minDate={new Date()}
+    />
+  )
+}
+
+<FieldDateTimeExample />
 ```
