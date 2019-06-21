@@ -97,6 +97,9 @@ const defaultProps = {
   includeTime: true,
 };
 
+/**
+ * Allows for choosing a date and/or time with a visual calendar.
+ */
 
 class FieldDateTime extends React.PureComponent {
   static generateLabel({
@@ -141,6 +144,11 @@ class FieldDateTime extends React.PureComponent {
 
   static foo(value) {
     console.log(value.toISOString());
+    return (
+      <Block marginTop="3">
+        {value.toISOString()}
+      </Block>
+    );
   }
 
   render() {
@@ -187,6 +195,7 @@ class FieldDateTime extends React.PureComponent {
           className={inputClasses}
           calendarClassName="FieldDatePickerCalendar"
           onChange={onChange}
+          {...rest}
         />
         {FieldDateTime.generateHelpTextMarkup(helpText)}
         {FieldDateTime.generateValidationTextMarkup(isValid, validationText)}

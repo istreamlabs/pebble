@@ -17,6 +17,7 @@ $TIME_CONTAINER_WIDTH: 8rem;
   display: inline-block;
   position: relative;
   box-shadow: $box-shadow-1;
+  border: 1px solid $neutral-300;
 }
 
 
@@ -326,10 +327,9 @@ $TIME_CONTAINER_WIDTH: 8rem;
 .react-datepicker__time-name {
   color: $neutral-600;
   display: inline-block;
-  width: 2.5rem;
-  line-height: 2.5rem;
+  width: 3rem;
+  line-height: 3rem;
   text-align: center;
-  margin: $spacing-1;
 }
 
 .react-datepicker__day-name {
@@ -365,7 +365,7 @@ $TIME_CONTAINER_WIDTH: 8rem;
 .react-datepicker__day:hover,
 .react-datepicker__month-text:hover {
   border-radius: $border-radius-1;
-  background-color: #f0f0f0;
+  background-color: $neutral-300;
 }
 
 .react-datepicker__day--today,
@@ -379,21 +379,6 @@ $TIME_CONTAINER_WIDTH: 8rem;
   border-radius: $border-radius-1;
   background-color: #3dcc4a;
   color: #fff;
-}
-
-.react-datepicker__day--highlighted:hover,
-.react-datepicker__month-text--highlighted:hover {
-  background-color: #32be3f;
-}
-
-.react-datepicker__day--highlighted-custom-1,
-.react-datepicker__month-text--highlighted-custom-1 {
-  color: magenta;
-}
-
-.react-datepicker__day--highlighted-custom-2,
-.react-datepicker__month-text--highlighted-custom-2 {
-  color: green;
 }
 
 .react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range,
