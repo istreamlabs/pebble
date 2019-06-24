@@ -214,7 +214,6 @@ function FieldSelect({
   const classes = classNames('relative',
     {
       invalid: isInvalid,
-      'o-50': disabled
     },
     className);
 
