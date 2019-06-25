@@ -8,7 +8,7 @@ import React from 'react';
 import Text from '../Text/Text';
 import classNames from 'classnames';
 import { dimensionType } from '../../Types';
-import { isValid } from 'ipaddr.js';
+import moment from 'moment';
 
 const propTypes = {
   /**
