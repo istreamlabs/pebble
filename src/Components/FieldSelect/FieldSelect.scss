@@ -1,5 +1,16 @@
 @import '../../Styles/foundation/variables.scss';
 
+.fieldSelect.pebble--is-disabled {
+  .pebble__control {
+    border: $INPUT_BORDER_DISABLED;
+    transition: none;
+    color: $INPUT_COLOR_DISABLED;
+    cursor: not-allowed;
+    box-shadow: none;
+    background: $INPUT_BG_DISABLED;
+  }
+}
+
 .fieldSelect.invalid .pebble__control {
   border: $INPUT_BORDER_ERROR;
   background: $INPUT_BG_ERROR;
