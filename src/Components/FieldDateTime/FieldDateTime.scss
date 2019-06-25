@@ -443,6 +443,12 @@ $TIME_CONTAINER_WIDTH: 8rem;
 .react-datepicker__input-container {
   position: relative;
   display: block;
+
+  .input[disabled] {
+    border-color: $neutral-300;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 
 .react-datepicker__year-read-view,

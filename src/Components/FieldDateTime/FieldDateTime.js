@@ -169,6 +169,9 @@ class FieldDateTime extends React.PureComponent {
           className="bl bb b-neutral-400 justify-end fw-700 fs-6 br0"
           alignItems="center"
           width="60px"
+          styles={{
+            borderBottomLeftRadius: '.125rem',
+          }}
         >
           {`${selectLocalDateTime ? 'UTC' : 'Local'}`}
         </Block>
