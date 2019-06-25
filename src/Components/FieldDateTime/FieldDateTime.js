@@ -1,5 +1,7 @@
 import './FieldDateTime.scss';
 
+import moment from 'moment';
+
 import Block from '../Block/Block';
 import DatePicker from 'react-datepicker';
 import Label from '../Label/Label';
@@ -25,6 +27,7 @@ const propTypes = {
   dateFormat: PropTypes.string,
   /**
    * If the input should be disabled and not focusable
+   * @see https://momentjs.com/docs/#/parsing/string-format/
    */
   disabled: PropTypes.bool,
   /**
@@ -35,6 +38,10 @@ const propTypes = {
    * Visually hide the label
    */
   hideLabel: PropTypes.bool,
+  /**
+   * The id attribute of the input
+   */
+  id: PropTypes.string.isRequired,
   /**
    * Allow the user to pick a time as well as a date
    */
@@ -52,7 +59,8 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Callback function when input is changed
+   * Callback function when input is changed\
+   * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
   onChange: PropTypes.func,
   /**
@@ -67,11 +75,11 @@ const propTypes = {
   /**
    * select time in UTC
    */
-  useUTC: PropTypes.bool,
+  selectLocalDateTime: PropTypes.bool,
   /**
    * The value can be dateTime object or a string
    */
-  value: PropTypes.object,
+  value: PropTypes.string,
   /**
    * Text to display if the input is invalid.
    * The text should explain why the input is invalid.
@@ -95,20 +103,24 @@ const defaultProps = {
   isReadOnly: false,
   size: 'medium',
   includeTime: true,
+  selectLocalDateTime: false,
+  timeFormat: 'HH:mm ',
 };
 
 /**
  * Allows for choosing a date and/or time with a visual calendar.
  */
-
 class FieldDateTime extends React.PureComponent {
-  static generateLabel({
-    isInvalid,
-    disabled,
-    id,
-    hideLabel,
-    label
-  }) {
+
+  renderLabel() {
+    const {
+      isInvalid,
+      disabled,
+      id,
+      hideLabel,
+      selectLocalDateTime,
+      label
+    } = this.props;
     return (
       <Label
         id={id}
@@ -116,25 +128,27 @@ class FieldDateTime extends React.PureComponent {
         disabled={disabled}
         hide={hideLabel}
       >
-        {label}
+        {`${label} (${selectLocalDateTime ? 'Local' : 'UTC'})`}
       </Label>
     );
   }
 
-  static getDateFormat(includeTime, dateFormat) {
-    return dateFormat !== undefined ? dateFormat : (includeTime ? 'MMMM d, yyyy h:mm aa' : 'MMMM d, yyyy');
+  getDateFormat() {
+    const { includeTime, dateFormat, timeFormat } = this.props;
+    return dateFormat !== undefined ? dateFormat : (includeTime ? `YYYY-MM-DD ${timeFormat}` : 'YYYY-MM-DD');
   }
 
 
-  static generateHelpTextMarkup(helpText) {
-    // todo: UTC support should make this show opposite || maybe it's something else too
+  renderHelpTextMarkup() {
+    const { helpText } = this.props;
     if (helpText === undefined) return;
     return (
       <Text size="6" className="db mt-2">{helpText}</Text>
     );
   }
 
-  static generateValidationTextMarkup(isInvalid, validationText) {
+  generateValidationTextMarkup() {
+    const { isInvalid, validationText } = this.props;
     if (!isInvalid || validationText === undefined) return;
 
     return (
@@ -142,15 +156,26 @@ class FieldDateTime extends React.PureComponent {
     );
   }
 
-  static foo(value) {
-    if ((new Date(value)).getTime() > 0) {
-      return (
-        <Block marginTop="3">
-          {value.toISOString()}
-        </Block>
-      );
-    }
+  renderAlternativeDateTimeDisplay() {
+    // TODO: if we are not displaying the time what do we do here?
+    const { value, selectLocalDateTime } = this.props;
+    const momentValue = moment(value);
+    // This is confusing but these methods modify the reference instead of returning a new value
+    selectLocalDateTime ? momentValue.utc() : momentValue.local();
+    return (
+      <Block marginTop="3">
+        {`${momentValue.format(this.getDateFormat())} (${selectLocalDateTime ? 'UTC' : 'Local'})`}
+      </Block>
+    );
   }
+
+  onChange = (value) => {
+    const { onChange } = this.props;
+    // TODO: currently this has a non 0 second value. Should we change this?
+    // TODO: change label and remove help text for date only. Also clear out time set to 0?
+    onChange(value.toISOString());
+  }
+
 
   render() {
     const {
@@ -158,10 +183,11 @@ class FieldDateTime extends React.PureComponent {
       label,
       className,
       dateFormat,
+      disabled,
+      id,
       includeTime,
       isInvalid,
       isReadOnly,
-      helpText,
       hideLabel,
       onChange,
       size,
@@ -169,8 +195,12 @@ class FieldDateTime extends React.PureComponent {
       validationText,
       value,
       width,
+      selectLocalDateTime,
       ...rest
     } = this.props;
+
+    const momentValue = moment(value);
+    selectLocalDateTime ? momentValue.local() : momentValue.utc();
 
     const classes = classNames('field-text', className);
 
@@ -185,22 +215,24 @@ class FieldDateTime extends React.PureComponent {
 
     return (
       <Block direction="column" className={classes} width={width}>
-        {FieldDateTime.generateLabel(this.props)}
+        {this.renderLabel()}
         <DatePicker
           disabledKeyboardNavigation
+          disabled={disabled}
           adjustDateOnChange={false}
           showTimeSelect={includeTime}
-          timeFormat={timeFormat}
-          dateFormat={FieldDateTime.getDateFormat(includeTime, dateFormat)}
-          selected={value}
+          selected={momentValue}
           className={inputClasses}
+          utcOffset={0}
+          dateFormat={this.getDateFormat()}
+          timeFormat={timeFormat}
           calendarClassName="FieldDatePickerCalendar"
-          onChange={onChange}
+          onChange={this.onChange}
           {...rest}
         />
-        {FieldDateTime.generateHelpTextMarkup(helpText)}
-        {FieldDateTime.generateValidationTextMarkup(isValid, validationText)}
-        {FieldDateTime.foo(value)}
+        {this.renderHelpTextMarkup()}
+        {this.generateValidationTextMarkup()}
+        {this.renderAlternativeDateTimeDisplay()}
       </Block>
     );
   }

@@ -4676,11 +4676,6 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@^2.0.0-alpha.23:
-  version "2.0.0-alpha.31"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.31.tgz#51bcfdca25dfc9bea334a556ab33dfc0bb00421c"
-  integrity sha512-S19PwMqnbYsqcbCg02Yj9gv4veVNZ0OX7v2+zcd+Mq0RI7LoDKJipJjnMrTZ3Cc6blDuTce5G/pHXcVIGRwJWQ==
-
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -9181,7 +9176,7 @@ mkdirp@0.5.1, mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdi
   dependencies:
     minimist "0.0.8"
 
-moment@^2.18.1:
+moment@^2.18.1, moment@^2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
 
@@ -11211,13 +11206,12 @@ react-clientside-effect@^1.2.0:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-react-datepicker@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-2.7.0.tgz#5084556e997781d620b50ae953a4017cb8e3a8f2"
-  integrity sha512-hGe55tPi+ZWqv8GZ4TLKR8J1iCd/DNFM3JA9b5s51nsv+flfWCwrPyPDLxZGnO2aAPZbOazcHpUisCswlYManQ==
+react-datepicker@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-1.8.0.tgz#ee46148aa10234d42e22ab969d1110f74263ba56"
+  integrity sha512-N4LdVTtqJCsZyKXBQ/AqSEcH6FyhgsY1gD07zECNu60nGt5s4ngRlhYdHoE34VNFO+ZY+pvljZRLwSC8LS9RxQ==
   dependencies:
     classnames "^2.2.5"
-    date-fns "^2.0.0-alpha.23"
     prop-types "^15.6.0"
     react-onclickoutside "^6.7.1"
     react-popper "^1.0.2"
