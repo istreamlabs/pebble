@@ -247,6 +247,7 @@ class FieldDateTime extends React.PureComponent {
             timeFormat={timeFormat}
             calendarClassName="FieldDatePickerCalendar"
             onChange={this.onChange}
+            popperPlacement="bottom-start"
             {...rest}
           />
         </Block>
