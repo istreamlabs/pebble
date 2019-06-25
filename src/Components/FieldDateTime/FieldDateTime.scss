@@ -6,7 +6,8 @@ $MONTH_ARROW_COLOR_HOVER: $neutral-600;
 $TIME_CONTAINER_WIDTH: 8rem;
 
 .react-datepicker-wrapper {
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
 .react-datepicker {

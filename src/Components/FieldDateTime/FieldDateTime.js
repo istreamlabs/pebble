@@ -1,7 +1,5 @@
 import './FieldDateTime.scss';
 
-import moment from 'moment';
-
 import Block from '../Block/Block';
 import DatePicker from 'react-datepicker';
 import Label from '../Label/Label';
@@ -92,7 +90,7 @@ const propTypes = {
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width: dimensionType,
+  width: dimensionType
 };
 
 const defaultProps = {
@@ -104,46 +102,38 @@ const defaultProps = {
   size: 'medium',
   includeTime: true,
   selectLocalDateTime: false,
-  timeFormat: 'HH:mm ',
+  timeFormat: 'HH:mm '
 };
 
 /**
  * Allows for choosing a date and/or time with a visual calendar.
  */
 class FieldDateTime extends React.PureComponent {
-
   renderLabel() {
-    const {
-      isInvalid,
-      disabled,
-      id,
-      hideLabel,
-      selectLocalDateTime,
-      label
-    } = this.props;
+    const { isInvalid, disabled, id, hideLabel, label } = this.props;
     return (
-      <Label
-        id={id}
-        invalid={isInvalid}
-        disabled={disabled}
-        hide={hideLabel}
-      >
-        {`${label} (${selectLocalDateTime ? 'Local' : 'UTC'})`}
+      <Label id={id} invalid={isInvalid} disabled={disabled} hide={hideLabel}>
+        {label}
       </Label>
     );
   }
 
   getDateFormat() {
     const { includeTime, dateFormat, timeFormat } = this.props;
-    return dateFormat !== undefined ? dateFormat : (includeTime ? `YYYY-MM-DD ${timeFormat}` : 'YYYY-MM-DD');
+    return dateFormat !== undefined
+      ? dateFormat
+      : includeTime
+        ? `YYYY-MM-DD ${timeFormat}`
+        : 'YYYY-MM-DD';
   }
-
 
   renderHelpTextMarkup() {
     const { helpText } = this.props;
     if (helpText === undefined) return;
     return (
-      <Text size="6" className="db mt-2">{helpText}</Text>
+      <Text size="6" className="db mt-2">
+        {helpText}
+      </Text>
     );
   }
 
@@ -152,19 +142,46 @@ class FieldDateTime extends React.PureComponent {
     if (!isInvalid || validationText === undefined) return;
 
     return (
-      <Text appearance="danger" size="6" className="db pt-2">{validationText}</Text>
+      <Text appearance="danger" size="6" className="db pt-2">
+        {validationText}
+      </Text>
     );
   }
 
   renderAlternativeDateTimeDisplay() {
     // TODO: if we are not displaying the time what do we do here?
-    const { value, selectLocalDateTime } = this.props;
+    const { disabled, value, selectLocalDateTime } = this.props;
     const momentValue = moment(value);
+
+    const alternativeDateTimeClasses = classNames('bl bb br',
+      {
+        'b-neutral-400': !disabled,
+        'b-neutral-300 neutral-500': disabled,
+      });
+
     // This is confusing but these methods modify the reference instead of returning a new value
     selectLocalDateTime ? momentValue.utc() : momentValue.local();
     return (
-      <Block marginTop="3">
-        {`${momentValue.format(this.getDateFormat())} (${selectLocalDateTime ? 'UTC' : 'Local'})`}
+      <Block height="34px">
+        <Block
+          background="neutral-200"
+          paddingHorizontal="2"
+          className="bl bb b-neutral-400 justify-end fw-700 fs-6 br0"
+          alignItems="center"
+          width="60px"
+        >
+          {`${selectLocalDateTime ? 'UTC' : 'Local'}`}
+        </Block>
+        <Block
+          background={disabled ? 'neutral-300' : 'neutral-200'}
+          flex
+          paddingVertical="2"
+          paddingHorizontal="3"
+          className={alternativeDateTimeClasses}
+          styles={disabled ? { borderLeft: 0 } : null}
+        >
+          {`${momentValue.format(this.getDateFormat())}`}
+        </Block>
       </Block>
     );
   }
@@ -174,8 +191,7 @@ class FieldDateTime extends React.PureComponent {
     // TODO: currently this has a non 0 second value. Should we change this?
     // TODO: change label and remove help text for date only. Also clear out time set to 0?
     onChange(value.toISOString());
-  }
-
+  };
 
   render() {
     const {
@@ -204,35 +220,40 @@ class FieldDateTime extends React.PureComponent {
 
     const classes = classNames('field-text', className);
 
-    const inputClasses = classNames('input',
-      {
-        'input-error': isInvalid,
-        'input-s': size === 'small',
-        'input-m': size === 'medium',
-        'input-l': size === 'large',
-        'bg-neutral-200': isReadOnly,
-      });
+    const inputClasses = classNames('input', {
+      'input-error': isInvalid,
+      'input-s': size === 'small',
+      'input-m': size === 'medium',
+      'input-l': size === 'large',
+      'bg-neutral-200': isReadOnly
+    });
 
     return (
       <Block direction="column" className={classes} width={width}>
         {this.renderLabel()}
-        <DatePicker
-          disabledKeyboardNavigation
-          disabled={disabled}
-          adjustDateOnChange={false}
-          showTimeSelect={includeTime}
-          selected={momentValue}
-          className={inputClasses}
-          utcOffset={0}
-          dateFormat={this.getDateFormat()}
-          timeFormat={timeFormat}
-          calendarClassName="FieldDatePickerCalendar"
-          onChange={this.onChange}
-          {...rest}
-        />
+        <Block width="100">
+          <Block className="input-prefix justify-end fw-700 fs-6" alignItems="center" width="60px">
+            {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
+          </Block>
+          <DatePicker
+            disabledKeyboardNavigation
+            disabled={disabled}
+            adjustDateOnChange={false}
+            showTimeSelect={includeTime}
+            selected={momentValue}
+            className={inputClasses}
+            utcOffset={0}
+            dateFormat={this.getDateFormat()}
+            timeFormat={timeFormat}
+            calendarClassName="FieldDatePickerCalendar"
+            onChange={this.onChange}
+            {...rest}
+          />
+        </Block>
+
+        {this.renderAlternativeDateTimeDisplay()}
         {this.renderHelpTextMarkup()}
         {this.generateValidationTextMarkup()}
-        {this.renderAlternativeDateTimeDisplay()}
       </Block>
     );
   }

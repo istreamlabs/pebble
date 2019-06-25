@@ -1,5 +1,7 @@
 This component uses [react date picker](https://reactdatepicker.com/) under the hood. See their documentation for additional props.
 
+## States and Options
+
 ```jsx
 import { useState } from 'react';
 import Block from '../Block/Block';
@@ -32,6 +34,14 @@ function FieldDateTimeExample() {
       />
 
       <FieldDateTime
+        id="ampm"
+        timeFormat="h:mm a"
+        label="Date and 12 hour am/pm time"
+        value={selectedDate}
+        onChange={handleChange}
+      />
+
+      <FieldDateTime
         id="disabled"
         label="Disabled"
         value={selectedDate}
@@ -51,6 +61,7 @@ function FieldDateTimeExample() {
       <FieldDateTime
         id="dateTime"
         timeFormat="HH:mm"
+        helpText="help text"
         label="Invalid Date and Time"
         value={selectedDate}
         onChange={handleChange}
@@ -63,6 +74,36 @@ function FieldDateTimeExample() {
 }
 
 <FieldDateTimeExample />
+
+```
+
+### Setting Local Time
+
+Too allow for entering a date/time in the browser's local time zone, set `selectLocalDateTime` to `true`.
+
+```jsx
+import { useState } from 'react';
+
+function FieldDateTimeLocal() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleChange = (value) => {
+    setSelectedDate(value);
+  };
+
+  return (
+    <FieldDateTime
+      selectLocalDateTime
+      id="localDateTime"
+      timeFormat="HH:mm"
+      label="Date and Time"
+      value={selectedDate}
+      onChange={handleChange}
+    />
+  )
+}
+
+<FieldDateTimeLocal />
 ```
 
 ### Excluding Dates or Times
