@@ -288,6 +288,11 @@ class FieldDateTime extends React.PureComponent {
       'bg-neutral-200': isReadOnly
     });
 
+    const iconClasses = classNames('FieldDateTime-icon', {
+      'neutral-400': !isInvalid,
+      red: isInvalid,
+    });
+
     return (
       <Block direction="column" className={classes} width={width}>
         {this.renderLabel()}
@@ -322,7 +327,7 @@ class FieldDateTime extends React.PureComponent {
             <Icon
               name={includeTime ? 'date-time' : 'calendar'}
               accessabilityLabel="open picker"
-              className="FieldDateTime-icon"
+              className={iconClasses}
             />
           </label>
         </Block>
