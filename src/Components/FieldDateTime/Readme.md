@@ -26,7 +26,7 @@ function FieldDateTimeExample() {
 
       <FieldDateTime
         id="dateOnly"
-        includeTime={false}
+        excludeTime
         label="Date Only"
         value={selectedDate}
         onChange={handleChange}
@@ -75,8 +75,6 @@ function FieldDateTimeExample() {
 <FieldDateTimeExample />
 
 ```
-
-
 
 ### Set Time in Local Time Zone
 

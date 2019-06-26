@@ -22,11 +22,11 @@ const propTypes = {
   className: PropTypes.string,
   /**
    * Format used to display text in the input box
+   * @see https://momentjs.com/docs/#/parsing/string-format/
    */
   dateFormat: PropTypes.string,
   /**
    * If the input should be disabled and not focusable
-   * @see https://momentjs.com/docs/#/parsing/string-format/
    */
   disabled: PropTypes.bool,
   /**
@@ -36,7 +36,7 @@ const propTypes = {
    */
   filterDate: PropTypes.func,
   /**
-   * Additional hint displayed beneath the label
+   * Additional hint displayed beneath the input
    */
   helpText: PropTypes.string,
   /**
@@ -48,9 +48,9 @@ const propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
-   * Allow the user to pick a time as well as a date
+   * Do not include the ability to pick a time, just the day
    */
-  includeTime: PropTypes.bool,
+  excludeTime: PropTypes.bool,
   /**
    * Applies styling to indicate the input is invalid
    */
@@ -129,7 +129,7 @@ const defaultProps = {
   hideLabel: false,
   isReadOnly: false,
   size: 'medium',
-  includeTime: true,
+  excludeTime: false,
   selectLocalDateTime: false,
   timeFormat: 'HH:mm ',
   withPortal: false,
@@ -163,10 +163,10 @@ class FieldDateTime extends React.PureComponent {
   }
 
   getDateFormat() {
-    const { includeTime, dateFormat, timeFormat } = this.props;
+    const { excludeTime, dateFormat, timeFormat } = this.props;
     return dateFormat !== undefined
       ? dateFormat
-      : includeTime
+      : !excludeTime
         ? `YYYY-MM-DD ${timeFormat}`
         : 'YYYY-MM-DD';
   }
@@ -197,9 +197,9 @@ class FieldDateTime extends React.PureComponent {
       disabled,
       value,
       selectLocalDateTime,
-      includeTime
+      excludeTime
     } = this.props;
-    if (!includeTime) return;
+    if (excludeTime) return;
     const momentValue = moment(value);
 
     const alternativeDateTimeClasses = classNames('FieldDateTime-alternativeDateTime',
@@ -238,10 +238,10 @@ class FieldDateTime extends React.PureComponent {
   }
 
   onChange = (value) => {
-    const { onChange, includeTime } = this.props;
+    const { onChange, excludeTime } = this.props;
     // this code either clears out the time complete, e.g. 00:00:00.000
     // or clears out the seconds since we don't provide that level of granularity in our picker
-    if (!includeTime) {
+    if (excludeTime) {
       value.startOf('day');
     } else {
       value.startOf('minute');
@@ -261,7 +261,7 @@ class FieldDateTime extends React.PureComponent {
       className,
       disabled,
       id,
-      includeTime,
+      excludeTime,
       isInvalid,
       isReadOnly,
       size,
@@ -313,7 +313,7 @@ class FieldDateTime extends React.PureComponent {
             disabledKeyboardNavigation
             disabled={disabled}
             adjustDateOnChange={false}
-            showTimeSelect={includeTime}
+            showTimeSelect={!excludeTime}
             selected={momentValue}
             className={inputClasses}
             utcOffset={0}
@@ -329,7 +329,7 @@ class FieldDateTime extends React.PureComponent {
           />
           <label htmlFor={id}>
             <Icon
-              name={includeTime ? 'date-time' : 'calendar'}
+              name={excludeTime ? 'calendar' : 'date-time'}
               accessabilityLabel="open picker"
               className={iconClasses}
             />

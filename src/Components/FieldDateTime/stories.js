@@ -28,7 +28,7 @@ const filterDate = (value) => {
 storiesOf('FieldDateTime', module)
   .add('date and time', () => <FieldDateTimeExample />)
   .add('date and time select local', () => <FieldDateTimeExample selectLocalDateTime />)
-  .add('date only', () => <FieldDateTimeExample includeTime={false} label="start date" />)
+  .add('date only', () => <FieldDateTimeExample excludeTime label="start date" />)
   .add('validation', () => <FieldDateTimeExample isInvalid validationText="validation message text" />)
   .add('am/pm time', () => <FieldDateTimeExample timeFormat="h:mm a" />)
   .add('disabled', () => <FieldDateTimeExample disabled />)
