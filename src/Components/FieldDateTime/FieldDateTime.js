@@ -13,10 +13,6 @@ import moment from 'moment';
 
 const propTypes = {
   /**
-   * Automatically focus the input
-   */
-  autoFocus: PropTypes.bool,
-  /**
    * Additional classNames to add
    */
   className: PropTypes.string,
@@ -123,7 +119,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  autoFocus: false,
   disabled: false,
   isInvalid: false,
   hideLabel: false,
