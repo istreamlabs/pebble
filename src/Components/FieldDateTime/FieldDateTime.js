@@ -137,6 +137,7 @@ const defaultProps = {
 
 /**
  * Allows for choosing a date and/or time with a visual calendar.
+ * Presumes UTC as the primary time zone for date/time entry
  */
 class FieldDateTime extends React.PureComponent {
   // static clientOffset = `UTC + ${new Date().getTimezoneOffset() / 60}`;

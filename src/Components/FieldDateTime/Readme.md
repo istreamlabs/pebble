@@ -1,7 +1,3 @@
-This component uses [react date picker](https://reactdatepicker.com/) under the hood. See their documentation for additional props.
-
-## Common Examples
-
 ```jsx
 import { useState } from 'react';
 import Block from '../Block/Block';
@@ -23,7 +19,6 @@ function FieldDateTimeExample() {
         value={selectedDate}
         onChange={handleChange}
       />
-
       <FieldDateTime
         id="dateOnly"
         excludeTime
@@ -32,7 +27,6 @@ function FieldDateTimeExample() {
         onChange={handleChange}
         helpText="Only allows for date selection"
       />
-
       <FieldDateTime
         id="ampm"
         timeFormat="h:mm a"
@@ -40,7 +34,6 @@ function FieldDateTimeExample() {
         value={selectedDate}
         onChange={handleChange}
       />
-
       <FieldDateTime
         id="disabled"
         label="Disabled"
@@ -48,7 +41,6 @@ function FieldDateTimeExample() {
         onChange={handleChange}
         disabled
       />
-
       <FieldDateTime
         id="timeOnly"
         label="Select Time Only"
@@ -57,7 +49,6 @@ function FieldDateTimeExample() {
         onChange={handleChange}
         showTimeSelectOnly
       />
-
       <FieldDateTime
         id="invalidDateTime"
         timeFormat="HH:mm"
@@ -67,7 +58,6 @@ function FieldDateTimeExample() {
         isInvalid
         validationText="Select a date and time"
       />
-
     </Block>
   )
 }
