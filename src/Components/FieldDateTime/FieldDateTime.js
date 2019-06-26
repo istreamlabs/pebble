@@ -270,6 +270,7 @@ class FieldDateTime extends React.PureComponent {
       selectLocalDateTime,
       minDate,
       maxDate,
+      withPortal,
     } = this.props;
 
     const momentValue = moment(value);
@@ -322,6 +323,7 @@ class FieldDateTime extends React.PureComponent {
             filterDate={this.filterDate}
             minDate={momentMinDate}
             maxDate={momentMaxDate}
+            withPortal={withPortal}
           />
           <label htmlFor={id}>
             <Icon
