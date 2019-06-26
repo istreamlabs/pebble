@@ -13,6 +13,10 @@ import moment from 'moment';
 
 const propTypes = {
   /**
+   * Automatically focus the input
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * Additional classNames to add
    */
   className: PropTypes.string,
@@ -119,6 +123,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autoFocus: false,
   disabled: false,
   isInvalid: false,
   hideLabel: false,
@@ -252,6 +257,7 @@ class FieldDateTime extends React.PureComponent {
 
   render() {
     const {
+      autoFocus,
       className,
       disabled,
       id,
@@ -302,6 +308,7 @@ class FieldDateTime extends React.PureComponent {
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
           <DatePicker
+            autoFocus={autoFocus}
             id={id}
             disabledKeyboardNavigation
             disabled={disabled}
