@@ -29,6 +29,12 @@ const propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Filter the selectable dates based on custom criteria
+   * @param {string} date a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
+   * @returns {boolean} true to allow the date to be selected
+   */
+  filterDate: PropTypes.func,
+  /**
    * Additional hint displayed beneath the label
    */
   helpText: PropTypes.string,
@@ -56,6 +62,38 @@ const propTypes = {
    * label for the input
    */
   label: PropTypes.string.isRequired,
+  /**
+   * Earliest date allowed to be selected. Note: the time of the value is ignored. Can be anything that can be converted to a valid javascript date object
+   * @example
+   * <FieldDateTime minDate='2019-06-25T12:00:00.000Z' ... />
+   * @example
+   * <FieldDateTime minDate={subDays(new Date(), 5)} ... />
+   */
+  minDate: PropTypes.object,
+  /**
+   * Latest date allowed to be selected. Note: the time of the value is ignored. Can be anything that can be converted to a valid javascript date object
+   * @example
+   * <FieldDateTime maxDate='2019-06-26T12:00:00.000Z' ... />
+   * @example
+   * <FieldDateTime maxDate={addDays(new Date(), 5)} ... />
+   */
+  maxDate: PropTypes.object,
+  /**
+   * Earliest time allowed to be selected. Note: the date of the value is ignored. Can be anything that can be converted to a valid javascript date object
+   * @example
+   * <FieldDateTime minDate='2019-06-25T9:00:00.000Z' ... />
+   * @example
+   * <FieldDateTime minDate={setHours(setMinutes(new Date(), 0), 17)} ... />
+   */
+  minTime: PropTypes.object,
+  /**
+   * Latest time allowed to be selected. Note: the date of the value is ignored. Can be anything that can be converted to a valid javascript date object
+   * @example
+   * <FieldDateTime maxDate='2019-06-26T17:00:00.000Z' ... />
+   * @example
+   * <FieldDateTime maxDate={setHours(setMinutes(new Date(), 30), 20)} ... />
+   */
+  maxTime: PropTypes.object,
   /**
    * Callback function when input is changed\
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
@@ -90,7 +128,13 @@ const propTypes = {
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  width: dimensionType
+  width: dimensionType,
+  /**
+   * Whether to use a portal
+   *
+   * An example can be found https://react-select.com/advanced#portaling
+   */
+  withPortal: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -110,9 +154,21 @@ const defaultProps = {
  */
 class FieldDateTime extends React.PureComponent {
   renderLabel() {
-    const { isInvalid, disabled, id, hideLabel, label } = this.props;
+    const {
+      isInvalid,
+      disabled,
+      id,
+      hideLabel,
+      label
+    } = this.props;
+
     return (
-      <Label id={id} invalid={isInvalid} disabled={disabled} hide={hideLabel}>
+      <Label
+        id={id}
+        invalid={isInvalid}
+        disabled={disabled}
+        hide={hideLabel}
+      >
         {label}
       </Label>
     );
@@ -137,7 +193,7 @@ class FieldDateTime extends React.PureComponent {
     );
   }
 
-  generateValidationTextMarkup() {
+  renderValidationTextMarkup() {
     const { isInvalid, validationText } = this.props;
     if (!isInvalid || validationText === undefined) return;
 
@@ -149,8 +205,13 @@ class FieldDateTime extends React.PureComponent {
   }
 
   renderAlternativeDateTimeDisplay() {
-    // TODO: if we are not displaying the time what do we do here?
-    const { disabled, value, selectLocalDateTime } = this.props;
+    const {
+      disabled,
+      value,
+      selectLocalDateTime,
+      includeTime
+    } = this.props;
+    if (!includeTime) return;
     const momentValue = moment(value);
 
     const alternativeDateTimeClasses = classNames('bl bb br',
@@ -190,10 +251,21 @@ class FieldDateTime extends React.PureComponent {
   }
 
   onChange = (value) => {
-    const { onChange } = this.props;
-    // TODO: currently this has a non 0 second value. Should we change this?
-    // TODO: change label and remove help text for date only. Also clear out time set to 0?
+    const { onChange, includeTime } = this.props;
+    // this code either clear out the time complete, e.g. 00:00:00.000
+    // or clears out the seconds since we don't provide that level of granularity in our picker
+    if (!includeTime) {
+      value.startOf('day');
+    } else {
+      value.startOf('minute');
+    }
+
     onChange(value.toISOString());
+  };
+
+  filterDate = (value) => {
+    const { filterDate } = this.props;
+    return filterDate ? filterDate(value.toISOString()) : true;
   };
 
   render() {
@@ -215,6 +287,7 @@ class FieldDateTime extends React.PureComponent {
       value,
       width,
       selectLocalDateTime,
+      filterDate,
       ...rest
     } = this.props;
 
@@ -251,13 +324,14 @@ class FieldDateTime extends React.PureComponent {
             calendarClassName="FieldDatePickerCalendar"
             onChange={this.onChange}
             popperPlacement="bottom-start"
+            filterDate={this.filterDate}
             {...rest}
           />
         </Block>
 
         {this.renderAlternativeDateTimeDisplay()}
         {this.renderHelpTextMarkup()}
-        {this.generateValidationTextMarkup()}
+        {this.renderValidationTextMarkup()}
       </Block>
     );
   }
