@@ -1,9 +1,47 @@
 @import '../../Styles/foundation/variables.scss';
+@import '../Input/Input.scss';
 
 $MONTH_ARROW_COLOR: $neutral-500;
 $MONTH_ARROW_COLOR_HOVER: $neutral-600;
 
 $TIME_CONTAINER_WIDTH: 8rem;
+
+.FieldDateTime-icon {
+  position: absolute;
+  right: $spacing-2;
+  top: $spacing-2;
+  color: $neutral-400;
+}
+
+.FieldDateTime-input {
+  @extend .input;
+  border-top-right-radius: $INPUT_BORDER_RADIUS;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.FieldDateTime-alternativeDateTime {
+  border-right: $INPUT_BORDER;
+  border-left: $INPUT_BORDER;
+  border-bottom: $INPUT_BORDER;
+  border-bottom-right-radius: $border-radius-1;
+
+  &.disabled {
+    border: none;
+    color: $neutral-500;
+  }
+}
+
+.FieldDateTime-timezone.input-prefix {
+  border-bottom-left-radius: 0;
+}
+
+// when withPortal is set to true, react-select puts the input inside an extra div
+// this is to target that div so that the input takes up full width
+.FieldDateTime-timezone + div {
+  width: 100%;
+}
 
 .react-datepicker-wrapper {
   display: block;
@@ -19,8 +57,8 @@ $TIME_CONTAINER_WIDTH: 8rem;
   position: relative;
   box-shadow: $box-shadow-1;
   border: 1px solid $neutral-300;
+  overflow: hidden;
 }
-
 
 .react-datepicker--time-only .react-datepicker__time-container {
   border-left: 0;
@@ -444,6 +482,7 @@ $TIME_CONTAINER_WIDTH: 8rem;
 .react-datepicker__input-container {
   position: relative;
   display: block;
+  width: 100%;
 
   .input[disabled] {
     border-color: $neutral-300;
@@ -621,6 +660,8 @@ $TIME_CONTAINER_WIDTH: 8rem;
   z-index: 2147483647;
 }
 
+
+
 .react-datepicker__portal .react-datepicker__day-name,
 .react-datepicker__portal .react-datepicker__day,
 .react-datepicker__portal .react-datepicker__time-name {
@@ -635,10 +676,6 @@ $TIME_CONTAINER_WIDTH: 8rem;
     width: 2rem;
     line-height: 2rem;
   }
-}
-
-.react-datepicker__portal .react-datepicker__navigation {
-  border: 0.81rem solid transparent;
 }
 
 .react-datepicker__portal .react-datepicker__navigation--previous {

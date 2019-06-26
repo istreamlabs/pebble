@@ -1,6 +1,6 @@
 This component uses [react date picker](https://reactdatepicker.com/) under the hood. See their documentation for additional props.
 
-## States and Options
+## Common Examples
 
 ```jsx
 import { useState } from 'react';
@@ -59,10 +59,9 @@ function FieldDateTimeExample() {
       />
 
       <FieldDateTime
-        id="dateTime"
+        id="invalidDateTime"
         timeFormat="HH:mm"
-        helpText="help text"
-        label="Invalid Date and Time"
+        label="Invalid"
         value={selectedDate}
         onChange={handleChange}
         isInvalid
@@ -77,9 +76,11 @@ function FieldDateTimeExample() {
 
 ```
 
-### Setting Local Time
 
-Too allow for entering a date/time in the browser's local time zone, set `selectLocalDateTime` to `true`.
+
+### Set Time in Local Time Zone
+
+Too allow for entering a date/time in the browser's local time zone instead of UTC, set `selectLocalDateTime` to `true`.
 
 ```jsx
 import { useState } from 'react';
@@ -106,7 +107,7 @@ function FieldDateTimeLocal() {
 <FieldDateTimeLocal />
 ```
 
-### Excluding Dates or Times
+### Min/Max Dates
 
 Depending on the use case, there are a few ways to exclude dates and times from being selectable.
 
@@ -124,17 +125,73 @@ function FieldDateTimeExample() {
   // do we show
 
   return (
-    <FieldDateTime
-      id="future"
-      timeFormat="HH:mm"
-      label="Exclude past days"
-      placeholderText="Select a date in the future"
-      value={selectedDate}
-      onChange={handleChange}
-      minDate={new Date()}
-    />
+    <>
+      <FieldDateTime
+        id="future"
+        timeFormat="HH:mm"
+        label="Exclude past days"
+        helpText="Set a minDate to allow selection of days going forward"
+        placeholderText="Select a date in the future"
+        value={selectedDate}
+        onChange={handleChange}
+        minDate={new Date()}
+        className="mb-5"
+      />
+
+      <FieldDateTime
+        id="past"
+        timeFormat="HH:mm"
+        label="Exclude future days"
+        placeholderText="Select a date in the past"
+        helpText="Set a maxDate to allow selection of previous days"
+        value={selectedDate}
+        onChange={handleChange}
+        maxDate={new Date()}
+      />
+    </>
   )
 }
 
 <FieldDateTimeExample />
+```
+
+
+### Calendar Modal (Portal)
+
+If a `FieldDateTime` component is contained within a block element that has overflow: hidden, use the `withPortal` prop to render the calendar as an modal overlay.
+
+```js
+import { useState } from 'react';
+import Card from '../Card/Card';
+
+function PortalExample() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleChange = (value) => {
+    setSelectedDate(value);
+  };
+
+  return (
+    <Card sectioned>
+      <FieldDateTime
+        withPortal
+        id="portal"
+        timeFormat="HH:mm"
+        label="With Portal"
+        value={selectedDate}
+        onChange={handleChange}
+      />
+      <FieldDateTime
+        id="withoutPortal"
+        timeFormat="HH:mm"
+        label="Without Portal"
+        value={selectedDate}
+        onChange={handleChange}
+      />
+    </Card>
+  )
+}
+
+<PortalExample />
+
 ```

@@ -1,6 +1,7 @@
 import './FieldDateTime.scss';
 
 import Block from '../Block/Block';
+import Icon from '../Icon/Icon';
 import DatePicker from 'react-datepicker';
 import Label from '../Label/Label';
 import PropTypes from 'prop-types';
@@ -146,7 +147,8 @@ const defaultProps = {
   size: 'medium',
   includeTime: true,
   selectLocalDateTime: false,
-  timeFormat: 'HH:mm '
+  timeFormat: 'HH:mm ',
+  withPortal: false,
 };
 
 /**
@@ -214,10 +216,9 @@ class FieldDateTime extends React.PureComponent {
     if (!includeTime) return;
     const momentValue = moment(value);
 
-    const alternativeDateTimeClasses = classNames('bl bb br',
+    const alternativeDateTimeClasses = classNames('FieldDateTime-alternativeDateTime',
       {
-        'b-neutral-400': !disabled,
-        'b-neutral-300 neutral-500': disabled,
+        disabled
       });
 
     // This is confusing but these methods modify the reference instead of returning a new value
@@ -296,7 +297,7 @@ class FieldDateTime extends React.PureComponent {
 
     const classes = classNames('field-text', className);
 
-    const inputClasses = classNames('input', {
+    const inputClasses = classNames('FieldDateTime-input', {
       'input-error': isInvalid,
       'input-s': size === 'small',
       'input-m': size === 'medium',
@@ -307,11 +308,16 @@ class FieldDateTime extends React.PureComponent {
     return (
       <Block direction="column" className={classes} width={width}>
         {this.renderLabel()}
-        <Block width="100">
-          <Block className="input-prefix justify-end fw-700 fs-6" alignItems="center" width="60px">
+        <Block width="100" className="relative">
+          <Block
+            className="FieldDateTime-timezone input-prefix justify-end fw-700 fs-6"
+            alignItems="center"
+            width="60px"
+          >
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
           <DatePicker
+            id={id}
             disabledKeyboardNavigation
             disabled={disabled}
             adjustDateOnChange={false}
@@ -327,6 +333,13 @@ class FieldDateTime extends React.PureComponent {
             filterDate={this.filterDate}
             {...rest}
           />
+          <label htmlFor={id}>
+            <Icon
+              name={includeTime ? 'date-time' : 'calendar'}
+              accessabilityLabel="open picker"
+              className="FieldDateTime-icon"
+            />
+          </label>
         </Block>
 
         {this.renderAlternativeDateTimeDisplay()}
