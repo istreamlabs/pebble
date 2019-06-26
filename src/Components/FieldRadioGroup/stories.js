@@ -85,6 +85,15 @@ function FieldRadioGroupExample() {
         value="no"
         disabled
       />
+      <Radio
+        label="selected and disabled"
+        isSelected
+        name="group3"
+        onChange={() => {}}
+        id="group3-selecteddisabled"
+        value="no"
+        disabled
+      />
     </>
   );
 }
