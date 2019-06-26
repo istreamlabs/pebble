@@ -7,7 +7,6 @@ import { storiesOf } from '@storybook/react';
 const FieldDateTimeExample = (props) => {
   const [selectedDate, setSelectedDate] = useState('2019-06-26T12:00:00.000Z');
   const handleChange = (value) => {
-    console.log('Value is:', value);
     setSelectedDate(value);
   };
   return (
@@ -35,10 +34,5 @@ storiesOf('FieldDateTime', module)
   .add('disabled', () => <FieldDateTimeExample disabled />)
   .add('portal', () => <FieldDateTimeExample withPortal />)
   .add('Date Range', () => <FieldDateTimeExample minDate="2019-06-25T12:00:00.000Z" maxDate="2019-06-27T12:00:00.000Z" />)
-  .add('Time Range', () => <FieldDateTimeExample minTime={new Date('2019-06-25T09:00:00.000Z')} maxTime={new Date('2019-06-27T17:00:00.000Z')} />)
   .add('Filter Dates (weekdays only)', () => <FieldDateTimeExample filterDate={filterDate} />)
   .add('with help text', () => <FieldDateTimeExample helpText="Some more information about this field" />);
-
-
-  // TODO: min and max props
-  // TODO: Consider show timezone rather than "local"

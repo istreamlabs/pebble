@@ -80,22 +80,6 @@ const propTypes = {
    */
   maxDate: PropTypes.object,
   /**
-   * Earliest time allowed to be selected. Note: the date of the value is ignored. Can be anything that can be converted to a valid javascript date object
-   * @example
-   * <FieldDateTime minDate='2019-06-25T9:00:00.000Z' ... />
-   * @example
-   * <FieldDateTime minDate={setHours(setMinutes(new Date(), 0), 17)} ... />
-   */
-  minTime: PropTypes.object,
-  /**
-   * Latest time allowed to be selected. Note: the date of the value is ignored. Can be anything that can be converted to a valid javascript date object
-   * @example
-   * <FieldDateTime maxDate='2019-06-26T17:00:00.000Z' ... />
-   * @example
-   * <FieldDateTime maxDate={setHours(setMinutes(new Date(), 30), 20)} ... />
-   */
-  maxTime: PropTypes.object,
-  /**
    * Callback function when input is changed\
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
@@ -155,6 +139,8 @@ const defaultProps = {
  * Allows for choosing a date and/or time with a visual calendar.
  */
 class FieldDateTime extends React.PureComponent {
+  // static clientOffset = `UTC + ${new Date().getTimezoneOffset() / 60}`;
+
   renderLabel() {
     const {
       isInvalid,
@@ -253,7 +239,7 @@ class FieldDateTime extends React.PureComponent {
 
   onChange = (value) => {
     const { onChange, includeTime } = this.props;
-    // this code either clear out the time complete, e.g. 00:00:00.000
+    // this code either clears out the time complete, e.g. 00:00:00.000
     // or clears out the seconds since we don't provide that level of granularity in our picker
     if (!includeTime) {
       value.startOf('day');
@@ -271,29 +257,26 @@ class FieldDateTime extends React.PureComponent {
 
   render() {
     const {
-      autoFocus,
-      label,
       className,
-      dateFormat,
       disabled,
       id,
       includeTime,
       isInvalid,
       isReadOnly,
-      hideLabel,
-      onChange,
       size,
       timeFormat,
-      validationText,
       value,
       width,
       selectLocalDateTime,
-      filterDate,
-      ...rest
+      minDate,
+      maxDate,
     } = this.props;
 
     const momentValue = moment(value);
     selectLocalDateTime ? momentValue.local() : momentValue.utc();
+
+    const momentMinDate = minDate ? moment(minDate) : undefined;
+    const momentMaxDate = maxDate ? moment(maxDate) : undefined;
 
     const classes = classNames('field-text', className);
 
@@ -313,6 +296,7 @@ class FieldDateTime extends React.PureComponent {
             className="FieldDateTime-timezone input-prefix justify-end fw-700 fs-6"
             alignItems="center"
             width="60px"
+            onClick={() => {}}
           >
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
@@ -331,7 +315,8 @@ class FieldDateTime extends React.PureComponent {
             onChange={this.onChange}
             popperPlacement="bottom-start"
             filterDate={this.filterDate}
-            {...rest}
+            minDate={momentMinDate}
+            maxDate={momentMaxDate}
           />
           <label htmlFor={id}>
             <Icon
@@ -341,7 +326,6 @@ class FieldDateTime extends React.PureComponent {
             />
           </label>
         </Block>
-
         {this.renderAlternativeDateTimeDisplay()}
         {this.renderHelpTextMarkup()}
         {this.renderValidationTextMarkup()}
@@ -355,3 +339,6 @@ FieldDateTime.propTypes = propTypes;
 FieldDateTime.defaultProps = defaultProps;
 
 export default FieldDateTime;
+
+
+// TODO: clicking utc or local opens picker
