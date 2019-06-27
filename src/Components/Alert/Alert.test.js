@@ -25,7 +25,7 @@ describe('Alert', () => {
   });
 
   it('renders a title', () => {
-    const wrapper = mount(<Alert title="test" title="test title">test</Alert>);
+    const wrapper = mount(<Alert title="test">test</Alert>);
     expect(wrapper.contains(Heading)).toBeTruthy();
   });
 
