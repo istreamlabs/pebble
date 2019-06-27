@@ -60,14 +60,6 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Earliest date allowed to be selected. Note: the time of the value is ignored. Can be anything that can be converted to a valid javascript date object
-   * @example
-   * <FieldDateTime minDate='2019-06-25T12:00:00.000Z' ... />
-   * @example
-   * <FieldDateTime minDate={subDays(new Date(), 5)} ... />
-   */
-  minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  /**
    * Latest date allowed to be selected. Note: the time of the value is ignored. Can be anything that can be converted to a valid javascript date object
    * @example
    * <FieldDateTime maxDate='2019-06-26T12:00:00.000Z' ... />
@@ -75,6 +67,14 @@ const propTypes = {
    * <FieldDateTime maxDate={addDays(new Date(), 5)} ... />
    */
   maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  /**
+   * Earliest date allowed to be selected. Note: the time of the value is ignored. Can be anything that can be converted to a valid javascript date object
+   * @example
+   * <FieldDateTime minDate='2019-06-25T12:00:00.000Z' ... />
+   * @example
+   * <FieldDateTime minDate={subDays(new Date(), 5)} ... />
+   */
+  minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /**
    * Callback function when input is changed
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
@@ -121,10 +121,10 @@ const propTypes = {
 const defaultProps = {
   autoFocus: false,
   disabled: false,
-  isInvalid: false,
-  hideLabel: false,
-  size: 'medium',
   excludeTime: false,
+  hideLabel: false,
+  isInvalid: false,
+  size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm ',
   withPortal: false,
@@ -137,19 +137,19 @@ const defaultProps = {
 class FieldDateTime extends React.PureComponent {
   renderLabel() {
     const {
-      isInvalid,
       disabled,
-      id,
       hideLabel,
+      id,
+      isInvalid,
       label
     } = this.props;
 
     return (
       <Label
-        id={id}
-        invalid={isInvalid}
         disabled={disabled}
         hide={hideLabel}
+        id={id}
+        invalid={isInvalid}
       >
         {label}
       </Label>
@@ -157,7 +157,7 @@ class FieldDateTime extends React.PureComponent {
   }
 
   getDateFormat() {
-    const { excludeTime, dateFormat, timeFormat } = this.props;
+    const { dateFormat, excludeTime, timeFormat } = this.props;
     return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
@@ -169,7 +169,7 @@ class FieldDateTime extends React.PureComponent {
     const { helpText } = this.props;
     if (helpText === undefined) return;
     return (
-      <Text size="6" className="db mt-2">
+      <Text className="db mt-2" size="6">
         {helpText}
       </Text>
     );
@@ -180,7 +180,7 @@ class FieldDateTime extends React.PureComponent {
     if (!isInvalid || validationText === undefined) return;
 
     return (
-      <Text appearance="danger" size="6" className="db pt-2">
+      <Text appearance="danger" className="db pt-2" size="6">
         {validationText}
       </Text>
     );
@@ -189,9 +189,9 @@ class FieldDateTime extends React.PureComponent {
   renderAlternativeDateTimeDisplay() {
     const {
       disabled,
-      value,
+      excludeTime,
       selectLocalDateTime,
-      excludeTime
+      value,
     } = this.props;
     if (excludeTime) return;
     const momentValue = moment(value);
@@ -206,23 +206,23 @@ class FieldDateTime extends React.PureComponent {
     return (
       <Block height="34px">
         <Block
-          background="neutral-200"
-          paddingHorizontal="2"
-          className="bl bb b-neutral-400 justify-end fw-700 fs-6 br0"
           alignItems="center"
-          width="60px"
+          background="neutral-200"
+          className="bl bb b-neutral-400 justify-end fw-700 fs-6 br0"
+          paddingHorizontal="2"
           styles={{
             borderBottomLeftRadius: '.125rem',
           }}
+          width="60px"
         >
           {`${selectLocalDateTime ? 'UTC' : 'Local'}`}
         </Block>
         <Block
           background={disabled ? 'neutral-300' : 'neutral-200'}
+          className={alternativeDateTimeClasses}
           flex
           paddingVertical="2"
           paddingHorizontal="3"
-          className={alternativeDateTimeClasses}
           styles={disabled ? { borderLeft: 0 } : null}
         >
           {`${momentValue.format(this.getDateFormat())}`}
@@ -232,7 +232,7 @@ class FieldDateTime extends React.PureComponent {
   }
 
   onChange = (value) => {
-    const { onChange, excludeTime } = this.props;
+    const { excludeTime, onChange } = this.props;
     // this code either clears out the time complete, e.g. 00:00:00.000
     // or clears out the seconds since we don't provide that level of granularity in our picker
     if (excludeTime) {
@@ -254,16 +254,16 @@ class FieldDateTime extends React.PureComponent {
       autoFocus,
       className,
       disabled,
-      id,
       excludeTime,
+      id,
       isInvalid,
+      maxDate,
+      minDate,
+      selectLocalDateTime,
       size,
       timeFormat,
       value,
       width,
-      selectLocalDateTime,
-      minDate,
-      maxDate,
       withPortal,
     } = this.props;
 
@@ -304,30 +304,30 @@ class FieldDateTime extends React.PureComponent {
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
           <DatePicker
+            adjustDateOnChange={false}
             autoFocus={autoFocus}
-            id={id}
+            className={inputClasses}
+            calendarClassName="FieldDatePickerCalendar"
+            dateFormat={this.getDateFormat()}
             disabledKeyboardNavigation
             disabled={disabled}
-            adjustDateOnChange={false}
-            showTimeSelect={!excludeTime}
-            selected={momentValue}
-            className={inputClasses}
-            utcOffset={0}
-            dateFormat={this.getDateFormat()}
-            timeFormat={timeFormat}
-            calendarClassName="FieldDatePickerCalendar"
-            onChange={this.onChange}
-            popperPlacement="bottom-start"
             filterDate={this.filterDate}
+            id={id}
             minDate={momentMinDate}
             maxDate={momentMaxDate}
+            onChange={this.onChange}
+            popperPlacement="bottom-start"
+            selected={momentValue}
+            showTimeSelect={!excludeTime}
+            timeFormat={timeFormat}
+            utcOffset={0}
             withPortal={withPortal}
           />
           <label htmlFor={id}>
             <Icon
-              name={excludeTime ? 'calendar' : 'date-time'}
               accessabilityLabel="open picker"
               className={iconClasses}
+              name={excludeTime ? 'calendar' : 'date-time'}
             />
           </label>
         </Block>
@@ -344,6 +344,3 @@ FieldDateTime.propTypes = propTypes;
 FieldDateTime.defaultProps = defaultProps;
 
 export default FieldDateTime;
-
-
-// TODO: clicking utc or local opens picker
