@@ -83,7 +83,7 @@ const propTypes = {
    * Callback function when input is changed\
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
@@ -140,8 +140,6 @@ const defaultProps = {
  * Presumes UTC as the primary time zone for date/time entry
  */
 class FieldDateTime extends React.PureComponent {
-  // static clientOffset = `UTC + ${new Date().getTimezoneOffset() / 60}`;
-
   renderLabel() {
     const {
       isInvalid,
