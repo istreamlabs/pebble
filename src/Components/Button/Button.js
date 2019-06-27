@@ -111,7 +111,7 @@ const defaultProps = {
   fullWidth: false,
   icon: '',
   iconAfterText: '',
-  id: '',
+  id: undefined,
   loading: false,
   onClick: undefined,
   onBlur: undefined,
