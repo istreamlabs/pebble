@@ -22,6 +22,7 @@ const propTypes = {
   className: PropTypes.string,
   /**
    * Format used to display text in the input box
+   * default is default YYYY-MM-DD or YYYY-MM-DD{timeFormat}
    * @see https://momentjs.com/docs/#/parsing/string-format/
    */
   dateFormat: PropTypes.string,
@@ -94,7 +95,7 @@ const propTypes = {
    */
   selectLocalDateTime: PropTypes.bool,
   /**
-   * The value can be dateTime object or a string
+   * The value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601)
    */
   value: PropTypes.string,
   /**
@@ -126,7 +127,7 @@ const defaultProps = {
   isInvalid: false,
   size: 'medium',
   selectLocalDateTime: false,
-  timeFormat: 'HH:mm ',
+  timeFormat: 'HH:mm',
   withPortal: false,
 };
 
