@@ -56,10 +56,6 @@ const propTypes = {
    */
   isInvalid: PropTypes.bool,
   /**
-   * If the value of the input can be read, but not changed
-   */
-  isReadOnly: PropTypes.bool,
-  /**
    * label for the input
    */
   label: PropTypes.string.isRequired,
@@ -70,7 +66,7 @@ const propTypes = {
    * @example
    * <FieldDateTime minDate={subDays(new Date(), 5)} ... />
    */
-  minDate: PropTypes.object,
+  minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /**
    * Latest date allowed to be selected. Note: the time of the value is ignored. Can be anything that can be converted to a valid javascript date object
    * @example
@@ -78,7 +74,7 @@ const propTypes = {
    * @example
    * <FieldDateTime maxDate={addDays(new Date(), 5)} ... />
    */
-  maxDate: PropTypes.object,
+  maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /**
    * Callback function when input is changed\
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
@@ -127,7 +123,6 @@ const defaultProps = {
   disabled: false,
   isInvalid: false,
   hideLabel: false,
-  isReadOnly: false,
   size: 'medium',
   excludeTime: false,
   selectLocalDateTime: false,
@@ -262,7 +257,6 @@ class FieldDateTime extends React.PureComponent {
       id,
       excludeTime,
       isInvalid,
-      isReadOnly,
       size,
       timeFormat,
       value,
@@ -286,7 +280,7 @@ class FieldDateTime extends React.PureComponent {
       'input-s': size === 'small',
       'input-m': size === 'medium',
       'input-l': size === 'large',
-      'bg-neutral-200': isReadOnly
+      'bg-neutral-200': disabled
     });
 
     const iconClasses = classNames('FieldDateTime-icon', {
@@ -302,7 +296,6 @@ class FieldDateTime extends React.PureComponent {
             className="FieldDateTime-timezone input-prefix justify-end fw-700 fs-6"
             alignItems="center"
             width="60px"
-            onClick={() => {}}
           >
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
