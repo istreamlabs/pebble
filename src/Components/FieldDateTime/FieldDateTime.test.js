@@ -287,6 +287,7 @@ describe('FieldDateTime', () => {
       expect(picker.props().utcOffset).toEqual(0);
       expect(picker.props().calendarClassName).toEqual('FieldDatePickerCalendar');
       expect(picker.props().popperPlacement).toEqual('bottom-start');
+      expect(picker.props().adjustDateOnChange).toBeFalsy();
     });
 
     it('uses date-time icon by default', () => {
@@ -343,16 +344,6 @@ describe('FieldDateTime', () => {
       expect(wrapper.find(DatePicker).props().className).toContain('input-error');
       expect(wrapper.find(Icon).props().className).toContain('red');
       expect(wrapper.find(Icon).props().className).not.toContain('neutral-400');
-    });
-
-    it('sets correct classes and properties when read only', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-        disabled
-      />);
-
-      expect(wrapper.find(DatePicker).props().className).toContain('bg-neutral-200');
-      expect(wrapper.find(DatePicker).props().disabled).toBeTruthy();
     });
   });
 });

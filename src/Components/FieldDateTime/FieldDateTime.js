@@ -76,7 +76,7 @@ const propTypes = {
    */
   maxDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /**
-   * Callback function when input is changed\
+   * Callback function when input is changed
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
   onChange: PropTypes.func.isRequired,
@@ -288,6 +288,10 @@ class FieldDateTime extends React.PureComponent {
       red: isInvalid,
     });
 
+    // Because we are using an old version of the picker and we would
+    // at some point like to replace it we do not want to expose the
+    // datepicker API to our consumers so we are selective about what
+    // we pass through to the component instead of doing {...rest}
     return (
       <Block direction="column" className={classes} width={width}>
         {this.renderLabel()}
