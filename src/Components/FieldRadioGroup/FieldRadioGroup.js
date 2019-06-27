@@ -68,7 +68,7 @@ function FieldRadioGroup({
 }) {
   // set the selected radio button or the first one
   const getRadioItems = () => {
-    if (radios) {
+    if (radios && radios.length > 0) {
       const selected = value === '' || value === undefined
         ? radios[0].value
         : radios[radios.findIndex(radio => radio.value === value)].value;
@@ -81,7 +81,7 @@ function FieldRadioGroup({
   };
 
   const radioMarkup = (radios) => {
-    if (radios) {
+    if (radios && radios.length > 0) {
       return radios.map(radio => (
         <Radio
           disabled={radio.disabled}

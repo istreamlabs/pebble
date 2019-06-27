@@ -9,6 +9,64 @@ import MenuItem from './MenuItem/MenuItem';
 
 import './MainMenu.scss';
 
+const propTypes = {
+  /**
+   * Additional ClassNames to add to button group
+   */
+  className: PropTypes.string,
+  /**
+   * Automatically passed from [withRouter higher-order-component](https://reacttraining.com/react-router/web/api/withRouter).
+   */
+  location: PropTypes.object.isRequired,
+  /**
+   * Menu items for the upper portion of the menu
+   */
+  menu: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    href: PropTypes.string,
+    icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
+    }))
+  })).isRequired,
+  /**
+   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   */
+  auxMenu: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    href: PropTypes.string,
+    icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
+    items: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
+    }))
+  })),
+  /**
+   * Text that appears at the top of the menu
+   */
+  title: PropTypes.string,
+  /**
+   * On page load, expand items in the menu that contain child items
+   */
+  startMenuExpanded: PropTypes.bool,
+  /**
+   * On page load, expand items in the auxMenu that contain child items
+   */
+  startAuxMenuExpanded: PropTypes.bool,
+};
+
+const defaultProps = {
+  className: '',
+  startAuxMenuExpanded: false,
+  startMenuExpanded: false,
+  title: 'Portal',
+};
+
 /**
  * MainMenu provides a way for users to navigate from one site section to another.
  * It contains a top (`menu`) and bottom (`auxMenu`) set of menu items, with each
@@ -79,59 +137,7 @@ class MainMenu extends React.Component {
   }
 }
 
-MainMenu.defaultProps = {
-  title: 'Portal',
-};
-
-MainMenu.propTypes = {
-  /**
-   * Additional ClassNames to add to button group
-   */
-  className: PropTypes.string,
-  /**
-   * Automatically passed from [withRouter higher-order-component](https://reacttraining.com/react-router/web/api/withRouter).
-   */
-  location: PropTypes.object.isRequired,
-  /**
-   * Menu items for the upper portion of the menu
-   */
-  menu: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    href: PropTypes.string,
-    icon: PropTypes.string,
-    aliases: PropTypes.arrayOf(PropTypes.string),
-    items: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string,
-      aliases: PropTypes.arrayOf(PropTypes.string),
-    }))
-  })).isRequired,
-  /**
-   * Menu items for the lower portion of the menu (e.g. Profile, Support)
-   */
-  auxMenu: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    href: PropTypes.string,
-    icon: PropTypes.string,
-    aliases: PropTypes.arrayOf(PropTypes.string),
-    items: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string,
-      aliases: PropTypes.arrayOf(PropTypes.string),
-    }))
-  })),
-  /**
-   * Text that appears at the top of the menu
-   */
-  title: PropTypes.string,
-  /**
-   * On page load, expand items in the menu that contain child items
-   */
-  startMenuExpanded: PropTypes.bool,
-  /**
-   * On page load, expand items in the auxMenu that contain child items
-   */
-  startAuxMenuExpanded: PropTypes.bool,
-};
+MainMenu.propTypes = propTypes;
+MainMenu.defaultProps = defaultProps;
 
 export default withRouter(MainMenu);

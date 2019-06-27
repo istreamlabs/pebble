@@ -25,6 +25,12 @@ const propTypes = {
   onPageChange: PropTypes.func,
 };
 
+const defaultProps = {
+  className: '',
+  numPages: undefined,
+  onPageChange: undefined
+};
+
 /**
 * Provides a way to navigate ordered content that has been divided into pages.
 *
@@ -111,5 +117,6 @@ class Pagination extends React.Component {
 }
 
 Pagination.propTypes = propTypes;
+Pagination.defaultProps = defaultProps;
 
 export default Pagination;

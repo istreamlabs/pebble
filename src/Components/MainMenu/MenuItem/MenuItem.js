@@ -9,6 +9,26 @@ import Icon from '../../Icon/Icon';
 
 import './MenuItem.scss';
 
+const propTypes = {
+  /**
+   * A child item is the currently selected item
+   */
+  containsActiveItem: PropTypes.bool,
+  /**
+   * the menu that gets rendered
+   */
+  item: PropTypes.object.isRequired,
+  /**
+   * start with the item expanded
+   */
+  startExpanded: PropTypes.bool,
+};
+
+const defaultProps = {
+  containsActiveItem: false,
+  startExpanded: false,
+};
+
 class MenuItem extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +56,6 @@ class MenuItem extends React.Component {
     }
     (item.items || []).forEach(sub => MenuItem.generateAndAddIsActiveHandler(sub));
   }
-
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.containsActiveItem) {
@@ -162,19 +181,7 @@ class MenuItem extends React.Component {
   }
 }
 
-MenuItem.propTypes = {
-  /**
-   * A child item is the currently selected item
-   */
-  containsActiveItem: PropTypes.bool,
-  /**
-   * the menu that gets rendered
-   */
-  item: PropTypes.object.isRequired,
-  /**
-   * start with the item expanded
-   */
-  startExpanded: PropTypes.bool,
-};
+MenuItem.propTypes = propTypes;
+MenuItem.defaultProps = defaultProps;
 
 export default MenuItem;

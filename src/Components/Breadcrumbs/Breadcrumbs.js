@@ -8,7 +8,13 @@ import Icon from '../Icon/Icon';
 import './Breadcrumbs.scss';
 
 const propTypes = {
+  /**
+   * Elements to be rendered as children of this component
+   */
   children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
   className: PropTypes.string,
 };
 

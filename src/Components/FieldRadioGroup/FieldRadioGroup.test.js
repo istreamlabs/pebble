@@ -44,6 +44,11 @@ describe('FieldRadioGroup', () => {
   });
 
   describe('getRadioItems', () => {
+    it('returns null if there are no radios', () => {
+      const wrapper = shallow(<FieldRadioGroup name="test" radios={[]} />);
+      const radios = wrapper.find(Radio);
+      expect(radios.length).toEqual(0);
+    });
     it('checks the first radio if not specified', () => {
       const items = [
         {

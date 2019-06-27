@@ -6,6 +6,21 @@ import Block from '../Block/Block';
 
 import './Overlay.scss';
 
+const propTypes = {
+  /**
+   * The contents of the overlay
+   */
+  children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Callback when backdrop is dismissed
+   */
+  onClick: PropTypes.func,
+};
+
 /**
  * Darkens the main body content so that another component,
  * such as a modal, becomes the primary focus of the UI.
@@ -13,14 +28,12 @@ import './Overlay.scss';
  * ---
  */
 
-const Overlay = (
-  {
-    children,
-    className,
-    onClick,
-    ...rest,
-  }
-) => {
+function Overlay({
+  children,
+  className,
+  onClick,
+  ...rest
+}) {
   const classes = classNames('overlay', className);
 
   return (
@@ -32,15 +45,8 @@ const Overlay = (
       {children}
     </Block>
   );
-};
+}
 
-Overlay.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  /**
-   * Callback when backdrop is dismissed
-   */
-  onClick: PropTypes.func,
-};
+Overlay.propTypes = propTypes;
 
 export default Overlay;

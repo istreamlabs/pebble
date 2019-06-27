@@ -20,18 +20,22 @@ const DEFAULT_ICONS = {
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * An `<Icon>` component to be rendered instead of the default icon.
    * See the [Icon component documentation](/#/Components/Icon) for available components
    */
   icon: PropTypes.string,
+  /**
+   * Callback when alert is dismissed
+   */
+  onDismiss: PropTypes.func,
   /**
    * The header of the alert
    */
@@ -41,10 +45,6 @@ const propTypes = {
    * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
    */
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
-  /**
-   * Callback when alert is dismissed
-   */
-  onDismiss: PropTypes.func,
 };
 
 const defaultProps = {
