@@ -90,6 +90,15 @@ function FieldSelectExamples() {
         placeholder="hidden label"
         className="mb-5"
       />
+
+      <FieldSelect
+        disabled
+        id="disabled"
+        options={options}
+        label="Disabled"
+        placeholder="can not edit this"
+        className="mb-5"
+      />
     </>
   )
 }

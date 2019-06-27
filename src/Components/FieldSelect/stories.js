@@ -75,6 +75,15 @@ function FieldSelectExamples() {
         isSearchable
         label="Hidden Label"
         placeholder="hidden label"
+        className="mb-5"
+      />
+
+      <FieldSelect
+        disabled
+        id="disabled"
+        options={options}
+        label="Disabled"
+        placeholder="can not edit this"
       />
     </>
   );

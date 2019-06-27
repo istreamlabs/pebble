@@ -86,7 +86,7 @@ function Radio({
 
   const radioIconMarkup = () => {
     if (isSelected) {
-      return <Icon size="20" className="blue" name="radio-selected" />;
+      return <Icon size="20" className={disabled ? 'neutral-500' : 'blue'} name="radio-selected" />;
     }
     if (disabled) {
       return <Icon size="20" className="neutral-300" name="radio" />;
@@ -139,7 +139,7 @@ function Radio({
       {labelMarkup()}
     </Block>
   );
-};
+}
 
 Radio.defaultPros = {
   disabled: false,
