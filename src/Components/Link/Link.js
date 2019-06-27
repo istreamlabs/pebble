@@ -6,46 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import './Link.scss';
 
-/**
- * A Link is a wrapper for Links from react-router-dom that applies Pebble styling.
- * Pebble assumes your application uses `react-router-dom`,
- * therefore we have optimized for this usecase.
- *
- * ---
- */
-
-const Link = (
-  {
-    children,
-    className,
-    external,
-    href,
-    unstyled,
-    ...rest
-  }
-) => {
-  const classes = classNames({ link: !unstyled }, className);
-
-  return external ? (
-    <a
-      className={classes}
-      href={href}
-      {...rest}
-    >
-      {children}
-    </a>
-  ) : (
-    <RouterLink
-      className={classes}
-      to={href}
-      {...rest}
-    >
-      {children}
-    </RouterLink>
-  );
-};
-
-Link.propTypes = {
+const propTypes = {
   /**
    * Additional classNames to add
    */
@@ -67,5 +28,51 @@ Link.propTypes = {
    */
   unstyled: PropTypes.bool,
 };
+
+const defaultProps = {
+  className: '',
+  external: false,
+  unstyled: false,
+};
+
+/**
+ * A Link is a wrapper for Links from react-router-dom that applies Pebble styling.
+ * Pebble assumes your application uses `react-router-dom`,
+ * therefore we have optimized for this usecase.
+ *
+ * ---
+ */
+
+function Link({
+  children,
+  className,
+  external,
+  href,
+  unstyled,
+  ...rest
+}) {
+  const classes = classNames({ link: !unstyled }, className);
+
+  return external ? (
+    <a
+      className={classes}
+      href={href}
+      {...rest}
+    >
+      {children}
+    </a>
+  ) : (
+    <RouterLink
+      className={classes}
+      to={href}
+      {...rest}
+    >
+      {children}
+    </RouterLink>
+  );
+}
+
+Link.propTypes = propTypes;
+Link.defaultProps = defaultProps;
 
 export default Link;

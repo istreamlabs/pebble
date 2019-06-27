@@ -6,36 +6,7 @@ import TextContainer from '../TextContainer/TextContainer';
 
 import './List.scss';
 
-/**
- * A typographical list of related content.
- * * Lists begin with a bullet or number
- * * Lists break up related content to make information easier to scan
- *
- * ---
- */
-
-const List = (
-  {
-    ordered,
-    children,
-    className,
-    size,
-  }
-) => {
-  const classes = classNames('list',
-    { 'list-ordered': ordered, },
-    className);
-
-  const Element = ordered ? 'ol' : 'ul';
-
-  const List = <Element className={classes}>{children}</Element>;
-
-  return (
-    size ? <TextContainer size={size}>{List}</TextContainer> : List
-  );
-};
-
-List.propTypes = {
+const propTypes = {
   /**
    * Whether this is an ordered list.
    */
@@ -54,5 +25,41 @@ List.propTypes = {
    */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
 };
+
+const defaultProps = {
+  ordered: false,
+  className: '',
+  size: 5
+};
+
+/**
+ * A typographical list of related content.
+ * * Lists begin with a bullet or number
+ * * Lists break up related content to make information easier to scan
+ *
+ * ---
+ */
+
+function List({
+  ordered,
+  children,
+  className,
+  size,
+}) {
+  const classes = classNames('list',
+    { 'list-ordered': ordered, },
+    className);
+
+  const Element = ordered ? 'ol' : 'ul';
+
+  const List = <Element className={classes}>{children}</Element>;
+
+  return (
+    size ? <TextContainer size={size}>{List}</TextContainer> : List
+  );
+}
+
+List.propTypes = propTypes;
+List.defaultProps = defaultProps;
 
 export default List;

@@ -73,9 +73,18 @@ const propTypes = {
 };
 
 const defaultProps = {
-  trapFocus: true,
+  children: null,
+  className: '',
+  disabled: false,
+  fullWidth: false,
+  onOpen: undefined,
+  onClose: undefined,
   open: false,
-  placement: 'bottom-start'
+  overlayClassName: '',
+  placement: 'bottom-start',
+  size: 'medium',
+  toggleClassName: '',
+  trapFocus: true,
 };
 
 /**
@@ -240,7 +249,6 @@ export class DropdownMenu extends React.PureComponent {
 }
 
 DropdownMenu.defaultProps = defaultProps;
-
 DropdownMenu.propTypes = propTypes;
 
 export { DropdownMenu as DropdownMenuWithoutOnClickOutside };

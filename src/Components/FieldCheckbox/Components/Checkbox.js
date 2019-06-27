@@ -12,21 +12,9 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Sets aria-label attribute.
-   */
-  ariaLabel: PropTypes.string,
-  /**
-   * Sets aria-labelledby attribute.
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
    * If the input should be disabled and not focusable
    */
   disabled: PropTypes.bool,
-  /**
-   * If the value of the input can be read, but not changed
-   */
-  isReadOnly: PropTypes.bool,
   /**
    * Applies styling to indicate the input is invalid
    */
@@ -51,6 +39,15 @@ const propTypes = {
    * Make the checkbox look like a toggle switch
    */
   toggle: PropTypes.bool
+};
+
+const defaultProps = {
+  className: '',
+  isInvalid: false,
+  isSelected: false,
+  onChange: undefined,
+  value: '',
+  toggle: false,
 };
 
 function Checkbox({
@@ -116,5 +113,6 @@ Checkbox.defaultPros = {
 };
 
 Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

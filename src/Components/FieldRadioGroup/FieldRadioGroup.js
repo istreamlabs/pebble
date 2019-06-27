@@ -10,7 +10,7 @@ const propTypes = {
   /**
    * Name attribute applied to all radios
    */
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   /**
    * Additional hint displayed beneath the label
    */
@@ -28,7 +28,7 @@ const propTypes = {
     helpText: PropTypes.node,
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool
-  })),
+  })).isRequired,
   /**
    * Currently selected option value
    */
@@ -41,6 +41,14 @@ const propTypes = {
    * Callback function when a radio is changed
    */
   onChange: PropTypes.func,
+};
+
+const defaultProps = {
+  className: '',
+  helpText: '',
+  onChange: undefined,
+  title: '',
+  value: undefined,
 };
 
 /**
@@ -115,5 +123,6 @@ function FieldRadioGroup({
 }
 
 FieldRadioGroup.propTypes = propTypes;
+FieldRadioGroup.defaultProps = defaultProps;
 
 export default FieldRadioGroup;

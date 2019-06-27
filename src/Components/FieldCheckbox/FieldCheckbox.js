@@ -14,7 +14,7 @@ const propTypes = {
   /**
    * Additional hint displayed beneath the label
    */
-  helpText: PropTypes.string,
+  helpText: PropTypes.node,
   /**
    * The label for the checkbox
    */
@@ -52,6 +52,18 @@ const propTypes = {
    * The text should explain why the input is invalid.
    */
   validationText: PropTypes.string,
+};
+
+const defaultProps = {
+  className: '',
+  disabled: false,
+  helpText: '',
+  isInvalid: false,
+  isSelected: false,
+  onChange: undefined,
+  toggle: false,
+  validationText: '',
+  value: ''
 };
 
 /**
@@ -136,7 +148,7 @@ function FieldCheckbox({
   };
 
   const helpTextMarkup = () => {
-    if (helpText === undefined) return;
+    if (helpText === undefined || helpText === '') return;
     return (
       <Text size="6" appearance="muted" className="db mt-1">{helpText}</Text>
     );
@@ -167,5 +179,6 @@ function FieldCheckbox({
 }
 
 FieldCheckbox.propTypes = propTypes;
+FieldCheckbox.defaultProps = defaultProps;
 
 export default FieldCheckbox;

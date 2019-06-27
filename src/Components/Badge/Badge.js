@@ -15,45 +15,7 @@ function getSize(size) {
   }
 }
 
-/**
- * A way to communicate status of an object.
- *
- * ---
- */
-
-const Badge = (
-  {
-    children,
-    className,
-    icon,
-    size,
-    type,
-  }
-) => {
-  const classes = classNames('badge', {
-    [`badge-${type}`]: type !== 'default',
-    [`badge-${size}`]: type !== 'medium',
-    baseline: icon,
-  }, className);
-
-  return (
-    <Text
-      className={classes}
-      size={getSize(size)}
-      bold
-    >
-      {icon && <Icon name={icon} className="badge-icon" />}
-      {children}
-    </Text>
-  );
-};
-
-Badge.defaultProps = {
-  size: 'medium',
-  type: 'default',
-};
-
-Badge.propTypes = {
+const propTypes = {
   /**
    * Text to be rendered
    */
@@ -79,5 +41,47 @@ Badge.propTypes = {
    */
   type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
 };
+
+const defaultProps = {
+  className: '',
+  children: null,
+  icon: '',
+  size: 'medium',
+  type: 'default',
+};
+
+/**
+ * A way to communicate status of an object.
+ *
+ * ---
+ */
+
+function Badge({
+  children,
+  className,
+  icon,
+  size,
+  type,
+}) {
+  const classes = classNames('badge', {
+    [`badge-${type}`]: type !== 'default',
+    [`badge-${size}`]: type !== 'medium',
+    baseline: icon,
+  }, className);
+
+  return (
+    <Text
+      className={classes}
+      size={getSize(size)}
+      bold
+    >
+      {icon && <Icon name={icon} className="badge-icon" />}
+      {children}
+    </Text>
+  );
+}
+
+Badge.propTypes = propTypes;
+Badge.defaultProps = defaultProps;
 
 export default Badge;

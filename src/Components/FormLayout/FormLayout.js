@@ -40,6 +40,14 @@ const propTypes = {
   width: dimensionType,
 };
 
+const defaultProps = {
+  className: '',
+  children: null,
+  tight: false,
+  direction: 'column',
+  width: '100',
+};
+
 /**
  * Arranges input fields within a [Form](/#/Components/Form) with standard spacing.
  *
@@ -72,11 +80,7 @@ class FormLayout extends React.Component {
   }
 }
 
-FormLayout.defaultProps = {
-  direction: 'column',
-  width: '100',
-};
-
 FormLayout.propTypes = propTypes;
+FormLayout.defaultProps = defaultProps;
 
 export default FormLayout;

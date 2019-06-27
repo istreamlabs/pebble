@@ -20,63 +20,7 @@ export const parseSize = (size) => {
 
 const viewBoxSize = 16;
 
-/**
- * Icons provide visual context and enhance usability.
- * Be mindful that not everyone is able to see icons.
- * When necessary, use alt text (`accessibilityLabel` prop or `aria-label` attribute)
- * to communicate icon meaning for assistive technologies
- *
- * ---
- *
- * @example ./IconExamples.md
- */
-const Icon = (props) => {
-  const {
-    size,
-    ariaHidden,
-    accessibilityLabel,
-    className
-  } = props;
-
-  let { name } = props;
-  /* istanbul ignore next */
-  name = ((typeof name) === 'string' ? name : '').toLowerCase();
-
-  const parsedSize = parseSize(size);
-
-  let iconElements = icons[name];
-  let iconFound = true;
-
-  if (!iconElements) {
-    iconElements = notFoundIcon;
-    iconFound = false;
-  }
-
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden={ariaHidden}
-      className={classNames('icon', {
-        'not-found': !iconFound,
-        'animate spin infinite': (name === 'spinner')
-      }, className)}
-      viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-      height={`${parsedSize}px`}
-      width={`${parsedSize}px`}
-      fill="currentColor"
-    >
-      {!!accessibilityLabel && <title>{accessibilityLabel}</title>}
-      {iconElements}
-    </svg>
-  );
-};
-
-Icon.defaultProps = {
-  size: 16,
-  ariaHidden: true
-};
-
-Icon.propTypes = {
+const propTypes = {
   /**
    * Additional classNames to add to the icon
    */
@@ -98,8 +42,67 @@ Icon.propTypes = {
    * The name of the icon to display
    * @type {PropTypes.Requireable<keyof icons>}
    */
-  name: PropTypes.string
+  name: PropTypes.string.isRequired
 };
 
+const defaultProps = {
+  size: 16,
+  ariaHidden: true,
+  className: '',
+  accessibilityLabel: '',
+};
+
+/**
+ * Icons provide visual context and enhance usability.
+ * Be mindful that not everyone is able to see icons.
+ * When necessary, use alt text (`accessibilityLabel` prop or `aria-label` attribute)
+ * to communicate icon meaning for assistive technologies
+ *
+ * ---
+ *
+ * @example ./IconExamples.md
+ */
+function Icon({
+  size,
+  ariaHidden,
+  accessibilityLabel,
+  className,
+  name,
+}) {
+  let iconName = name;
+  /* istanbul ignore next */
+  iconName = ((typeof iconName) === 'string' ? iconName : '').toLowerCase();
+
+  const parsedSize = parseSize(size);
+
+  let iconElements = icons[iconName];
+  let iconFound = true;
+
+  if (!iconElements) {
+    iconElements = notFoundIcon;
+    iconFound = false;
+  }
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden={ariaHidden}
+      className={classNames('icon', {
+        'not-found': !iconFound,
+        'animate spin infinite': (iconName === 'spinner')
+      }, className)}
+      viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+      height={`${parsedSize}px`}
+      width={`${parsedSize}px`}
+      fill="currentColor"
+    >
+      {!!accessibilityLabel && <title>{accessibilityLabel}</title>}
+      {iconElements}
+    </svg>
+  );
+}
+
+Icon.propTypes = propTypes;
+Icon.defaultProps = defaultProps;
 
 export default Icon;

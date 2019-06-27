@@ -12,6 +12,11 @@ const propTypes = {
   className: PropTypes.string,
 };
 
+const defaultProps = {
+  className: '',
+  children: null,
+};
+
 /**
 * Secondary form of navigation that helps orient users in an application within hierarchical content.
 *
@@ -51,5 +56,6 @@ function Breadcrumbs({
 }
 
 Breadcrumbs.propTypes = propTypes;
+Breadcrumbs.defaultProps = defaultProps;
 
 export default Breadcrumbs;

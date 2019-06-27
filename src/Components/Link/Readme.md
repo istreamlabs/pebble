@@ -30,6 +30,6 @@ Don't include the default styles by adding the `unstyled` prop.
 import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 
 <DemoBrowserRouter>
-  <Link to="/#/Components/Link" unstyled>Link</Link>
+  <Link href="/#/Components/Link" unstyled>Link</Link>
 </DemoBrowserRouter>
 ```

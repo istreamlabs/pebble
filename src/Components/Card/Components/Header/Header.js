@@ -6,6 +6,26 @@ import Heading from '../../../Heading/Heading';
 
 import '../../Card.scss';
 
+const propTypes = {
+  /**
+   * button(s) to be displayed on the right side
+   */
+  actions: PropTypes.node,
+  /**
+   * Additional classNames to add to card title
+   */
+  className: PropTypes.string,
+  /**
+   * Contents of the card title
+   */
+  children: PropTypes.node,
+};
+
+const defaultProps = {
+  actions: null,
+  className: '',
+  children: null,
+};
 
 const Header = (
   {
@@ -30,19 +50,7 @@ const Header = (
   );
 };
 
-Header.propTypes = {
-  /**
-   * button(s) to be displayed on the right side
-   */
-  actions: PropTypes.node,
-  /**
-   * Additional classNames to add to card title
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the card title
-   */
-  children: PropTypes.node,
-};
+Header.propTypes = propTypes;
+Header.defaultProps = defaultProps;
 
 export default Header;

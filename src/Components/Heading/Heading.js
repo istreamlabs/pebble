@@ -28,59 +28,7 @@ export const parseElement = (element) => {
   return element;
 };
 
-/**
- * Headings are labels for sections or areas that make up an interface.
- * They can label an entire page, or sections of related content.
- * Our `Heading` component allows you to select an appropriate semantic
- * element (h1-h6) and independently set its size so that it is
- * appropriate for the surrounding content.
-
- * If you do not pass an explicit size, the Heading will pick the
- * size based on the element. By default headings will scale for mobile,
- * tablet and desktop [viewports](.//#/Styles/Media%20Query).
- *
- * ---
- */
-
-const Heading = (
-  {
-    children,
-    className,
-    element,
-    responsive,
-    textAlign,
-    truncate,
-    size,
-  }
-) => {
-  const parsedElement = parseElement(element);
-  const Element = `h${parsedElement}`;
-
-  const parsedSize = size ? parseSize(size, parsedElement) : parsedElement;
-  const headingSizeClass = responsive ? `heading-${parsedSize}-responsive` : `heading-${parsedSize}`;
-
-  const classes = classNames('heading', headingSizeClass, {
-    truncate,
-    [`text-${textAlign}`]: textAlign
-  }, className);
-
-  return (
-    <Element className={classes}>
-      {children}
-    </Element>
-  );
-};
-
-Heading.defaultProps = {
-  element: 2,
-  responsive: true,
-  textAlign: 'left',
-};
-
-/**
- * @typedef {(1|2|3|4|5|6|"1"|"2"|"3"|"4"|"5"|"6")} ElementSizeLike
- */
-Heading.propTypes = {
+const propTypes = {
   /**
    * Additional classNames to add
    */
@@ -113,5 +61,56 @@ Heading.propTypes = {
    */
   size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
 };
+
+const defaultProps = {
+  className: '',
+  element: 2,
+  responsive: true,
+  textAlign: 'left',
+};
+
+/**
+ * Headings are labels for sections or areas that make up an interface.
+ * They can label an entire page, or sections of related content.
+ * Our `Heading` component allows you to select an appropriate semantic
+ * element (h1-h6) and independently set its size so that it is
+ * appropriate for the surrounding content.
+
+ * If you do not pass an explicit size, the Heading will pick the
+ * size based on the element. By default headings will scale for mobile,
+ * tablet and desktop [viewports](.//#/Styles/Media%20Query).
+ *
+ * ---
+ */
+
+function Heading({
+  children,
+  className,
+  element,
+  responsive,
+  textAlign,
+  truncate,
+  size,
+}) {
+  const parsedElement = parseElement(element);
+  const Element = `h${parsedElement}`;
+
+  const parsedSize = size ? parseSize(size, parsedElement) : parsedElement;
+  const headingSizeClass = responsive ? `heading-${parsedSize}-responsive` : `heading-${parsedSize}`;
+
+  const classes = classNames('heading', headingSizeClass, {
+    truncate,
+    [`text-${textAlign}`]: textAlign
+  }, className);
+
+  return (
+    <Element className={classes}>
+      {children}
+    </Element>
+  );
+}
+
+Heading.propTypes = propTypes;
+Heading.defaultProps = defaultProps;
 
 export default Heading;

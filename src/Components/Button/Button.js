@@ -8,6 +8,121 @@ import Icon from '../Icon/Icon';
 
 import './Button.scss';
 
+const propTypes = {
+  /**
+   * Optional prop to specify the type of the Button
+   * @see see [W3C](https://www.w3.org/TR/2011/WD-html5-20110525/the-button-element.html)
+   * @type {PropTypes.Requireable<'button' | 'submit' | 'reset'>}
+   */
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  /**
+   * Additional ClassNames to add to button
+   */
+  className: PropTypes.string,
+  /**
+   * Contents of the button
+   */
+  children: PropTypes.node,
+  /**
+   * A unique identifier for the button
+   */
+  id: PropTypes.string,
+  /**
+   * The name of the [icon](/#/Components/Icon) to add inside the button
+   */
+  icon: PropTypes.string,
+  /**
+   * Boolean for placing the icon to the right of the button text
+   */
+  iconAfterText: boolRequiresOtherProp('icon'),
+  /**
+   * Disables the button, making it inoperable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Replaces button contents with a spinner icon while a background action is being performed
+   */
+  loading: PropTypes.bool,
+  /**
+   * Changes the size of the button, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Make the button have more visual weight to identify the primary call to action
+   */
+  primary: PropTypes.bool,
+  /**
+   * Indicate pressing the button will perform a destructive action
+   */
+  danger: PropTypes.bool,
+  /**
+   * Render the button as inline text without padding
+   */
+  plain: PropTypes.bool,
+  /**
+   * Button takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Specify the tabIndex of the button
+   */
+  tabIndex: PropTypes.number,
+  /**
+   * Visually hidden text for screen readers
+   */
+  accessibilityLabel: PropTypes.string,
+  /**
+   * Id of the element the button controls
+  */
+  ariaControls: PropTypes.string,
+  /**
+   * Tells screen reader the controlled element is expanded
+  */
+  ariaExpanded: PropTypes.bool,
+  /**
+   * Tells screen reader the element is pressed
+   */
+  ariaPressed: PropTypes.bool,
+  /**
+   * Callback when button is pressed
+   */
+  onClick: PropTypes.func,
+  /**
+   * Callback when button receives focus
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Callback when focus leaves button
+   */
+  onBlur: PropTypes.func,
+};
+
+
+const defaultProps = {
+  accessibilityLabel: '',
+  ariaControls: '',
+  ariaExpanded: false,
+  ariaPressed: false,
+  className: '',
+  children: null,
+  danger: false,
+  disabled: false,
+  fullWidth: false,
+  icon: '',
+  iconAfterText: '',
+  id: '',
+  loading: false,
+  onClick: undefined,
+  onBlur: undefined,
+  onFocus: undefined,
+  plain: false,
+  primary: false,
+  tabIndex: 0,
+  type: 'button',
+  size: 'medium',
+};
+
 /**
  * Buttons are used as triggers for actions. They are used in forms,
  * toolbars, modal dialogs and as stand-alone action triggers. Actions
@@ -109,104 +224,7 @@ const Button = React.forwardRef((props, ref) => {
   );
 });
 
-Button.defaultProps = {
-  type: 'button',
-  size: 'medium',
-  disabled: false,
-};
-
-Button.propTypes = {
-  /**
-   * A button can show it is currently the active user selection
-   */
-  active: PropTypes.bool,
-  /**
-   * Optional prop to specify the type of the Button
-   * @see see [W3C](https://www.w3.org/TR/2011/WD-html5-20110525/the-button-element.html)
-   * @type {PropTypes.Requireable<'button' | 'submit' | 'reset'>}
-   */
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  /**
-   * Additional ClassNames to add to button
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the button
-   */
-  children: PropTypes.node,
-  /**
-   * A unique identifier for the button
-   */
-  id: PropTypes.string,
-  /**
-   * The name of the [icon](/#/Components/Icon) to add inside the button
-   */
-  icon: PropTypes.string,
-  /**
-   * Boolean for placing the icon to the right of the button text
-   */
-  iconAfterText: boolRequiresOtherProp('icon'),
-  /**
-   * Disables the button, making it inoperable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Replaces button contents with a spinner icon while a background action is being performed
-   */
-  loading: PropTypes.bool,
-  /**
-   * Changes the size of the button, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Make the button have more visual weight to identify the primary call to action
-   */
-  primary: PropTypes.bool,
-  /**
-   * Indicate pressing the button will perform a destructive action
-   */
-  danger: PropTypes.bool,
-  /**
-   * Render the button as inline text without padding
-   */
-  plain: PropTypes.bool,
-  /**
-   * Button takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * Specify the tabIndex of the button
-   */
-  tabIndex: PropTypes.number,
-  /**
-   * Visually hidden text for screen readers
-   */
-  accessibilityLabel: PropTypes.string,
-  /**
-   * Id of the element the button controls
-  */
-  ariaControls: PropTypes.string,
-  /**
-   * Tells screen reader the controlled element is expanded
-  */
-  ariaExpanded: PropTypes.bool,
-  /**
-   * Tells screen reader the element is pressed
-   */
-  ariaPressed: PropTypes.bool,
-  /**
-   * Callback when button is pressed
-   */
-  onClick: PropTypes.func,
-  /**
-   * Callback when button receives focus
-   */
-  onFocus: PropTypes.func,
-  /**
-   * Callback when focus leaves button
-   */
-  onBlur: PropTypes.func,
-};
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default Button;

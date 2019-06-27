@@ -33,7 +33,7 @@ const propTypes = {
   /**
    * Close the menu when a user selects an option
    */
-  closeMenuOnSelect: PropTypes.string,
+  closeMenuOnSelect: PropTypes.bool,
   /**
    * Sets aria-label attribute.
    */
@@ -134,6 +134,27 @@ const propTypes = {
   width: dimensionType,
 };
 
+const defaultProps = {
+  autoFocus: false,
+  className: '',
+  closeMenuOnSelect: true,
+  disabled: false,
+  helpText: '',
+  hideLabel: false,
+  isInvalid: false,
+  isReadOnly: false,
+  loading: false,
+  loadingMessage: '',
+  menuPlacement: 'bottom',
+  multiSelect: false,
+  onBlur: undefined,
+  onChange: undefined,
+  onFocus: undefined,
+  options: [],
+  showCheckbox: false,
+  width: '100%',
+};
+
 /**
  * Allows for the selection of item(s) from a set of options.
  * This is a wrapper of [React Select](https://react-select.com).
@@ -175,7 +196,7 @@ function FieldSelect({
       classNamePrefix="pebble"
       isMulti={multiSelect}
       isDisabled={disabled}
-      closeMenuOnSelect={closeMenuOnSelect || (!multiSelect)}
+      closeMenuOnSelect={!multiSelect ? closeMenuOnSelect : !multiSelect}
       hideSelectedOptions={false}
       menuPortalTarget={menuPortalTarget}
       menuPlacement={menuPlacement}
@@ -228,5 +249,6 @@ function FieldSelect({
 }
 
 FieldSelect.propTypes = propTypes;
+FieldSelect.defaultProps = defaultProps;
 
 export default FieldSelect;

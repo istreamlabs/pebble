@@ -67,6 +67,12 @@ const propTypes = {
   value: PropTypes.string,
 };
 
+const defaultProps = {
+  disabled: false,
+  isSelected: false,
+  onChange: undefined,
+};
+
 function Radio({
   className,
   disabled,
@@ -141,12 +147,7 @@ function Radio({
   );
 }
 
-Radio.defaultPros = {
-  disabled: false,
-  isSelected: false,
-  onChange: () => {}
-};
-
 Radio.propTypes = propTypes;
+Radio.defaultProps = defaultProps;
 
 export default Radio;

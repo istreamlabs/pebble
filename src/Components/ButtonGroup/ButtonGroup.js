@@ -4,6 +4,38 @@ import classNames from 'classnames';
 
 import './ButtonGroup.scss';
 
+const propTypes = {
+  /**
+   * Additional ClassNames to add to button group
+   */
+  className: PropTypes.string,
+  /**
+   * Contents of the group
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Changes the size of all buttons in the group
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Removes space between buttons and combines them into a button bar
+   */
+  toolbar: PropTypes.bool,
+};
+
+const defaultProps = {
+  className: '',
+  children: null,
+  fullWidth: false,
+  size: 'medium',
+  toolbar: false,
+};
+
 /**
  * Display related [Buttons](/#/Components/Button) or
  * [LinkButtons](/#/Components/LinkButton) in a horizontal
@@ -37,28 +69,7 @@ function ButtonGroup(props) {
   );
 }
 
-ButtonGroup.propTypes = {
-  /**
-   * Additional ClassNames to add to button group
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the group
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * Changes the size of all buttons in the group
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Removes space between buttons and combines them into a button bar
-   */
-  toolbar: PropTypes.bool,
-};
+ButtonGroup.propTypes = propTypes;
+ButtonGroup.defaultProps = defaultProps;
 
 export default ButtonGroup;
