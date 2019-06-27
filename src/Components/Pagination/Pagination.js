@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
+  className: undefined,
   numPages: undefined,
   onPageChange: undefined
 };

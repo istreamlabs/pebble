@@ -22,19 +22,16 @@ const propTypes = {
 function ListItem({
   children,
   className,
-}
-) {
+}) {
   const classes = classNames('list-item',
     className);
 
   return (
-    <li
-      className={classes}
-    >
+    <li className={classes}>
       {children}
     </li>
   );
-};
+}
 
 ListItem.propTypes = propTypes;
 

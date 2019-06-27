@@ -48,8 +48,8 @@ const propTypes = {
 const defaultProps = {
   size: 16,
   ariaHidden: true,
-  className: '',
-  accessibilityLabel: '',
+  className: undefined,
+  accessibilityLabel: undefined,
 };
 
 /**

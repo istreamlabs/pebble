@@ -48,9 +48,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
+  className: undefined,
   children: null,
-  icon: '',
+  icon: undefined,
   type: 'default',
   onDismiss: undefined
 };

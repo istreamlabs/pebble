@@ -28,8 +28,8 @@ const propTypes = {
 
 const defaultProps = {
   ordered: false,
-  className: '',
-  size: 5
+  className: undefined,
+  size: undefined,
 };
 
 /**

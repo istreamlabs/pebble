@@ -23,7 +23,7 @@ const propTypes = {
 
 const defaultProps = {
   actions: null,
-  className: '',
+  className: undefined,
   children: null,
 };
 

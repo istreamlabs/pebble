@@ -26,9 +26,4 @@ describe('List', () => {
     const wrapper = mount(<List size="1">test</List>);
     expect(wrapper.find('.text-container').prop('className')).toContain('fs-1');
   });
-
-  it('sets the default text size', () => {
-    const wrapper = mount(<List>test</List>);
-    expect(wrapper.find('.text-container').prop('className')).toContain('fs-5');
-  });
 });

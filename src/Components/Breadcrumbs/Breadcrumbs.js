@@ -19,7 +19,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
+  className: undefined,
   children: null,
 };
 

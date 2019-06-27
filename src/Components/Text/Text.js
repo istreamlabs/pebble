@@ -33,7 +33,7 @@ const propTypes = {
 
 const defaultProps = {
   bold: false,
-  className: '',
+  className: undefined,
   size: 5,
 };
 

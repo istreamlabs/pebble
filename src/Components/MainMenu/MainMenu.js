@@ -61,7 +61,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
+  className: undefined,
   startAuxMenuExpanded: false,
   startMenuExpanded: false,
   title: 'Portal',

@@ -29,10 +29,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
+  className: undefined,
   children: null,
   fullWidth: false,
-  size: 'medium',
   toolbar: false,
 };
 

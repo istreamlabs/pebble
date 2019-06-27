@@ -27,7 +27,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
+  className: undefined,
   size: 5,
   tight: false,
 };

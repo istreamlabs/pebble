@@ -44,10 +44,10 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: '',
-  helpText: '',
+  className: undefined,
+  helpText: undefined,
   onChange: undefined,
-  title: '',
+  title: undefined,
   value: undefined,
 };
 

@@ -136,15 +136,15 @@ const propTypes = {
 
 const defaultProps = {
   autoFocus: false,
-  className: '',
+  className: undefined,
   closeMenuOnSelect: true,
   disabled: false,
-  helpText: '',
+  helpText: undefined,
   hideLabel: false,
   isInvalid: false,
   isReadOnly: false,
   loading: false,
-  loadingMessage: '',
+  loadingMessage: undefined,
   menuPlacement: 'bottom',
   multiSelect: false,
   onBlur: undefined,
@@ -218,10 +218,10 @@ function FieldSelect({
   );
 
   const helpTextMarkup = () => {
-    if (helpText === undefined) return;
-    return (
-      <Text size="6" className="db mt-2">{helpText}</Text>
-    );
+    if (helpText) {
+      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+    }
+    return null;
   };
 
   const getValidationTextMarkup = () => {

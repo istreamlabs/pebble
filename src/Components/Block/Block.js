@@ -273,7 +273,7 @@ const propTypes = {
 
 const defaultProps = {
   as: 'div',
-  className: '',
+  className: undefined,
   direction: 'row',
 };
 
