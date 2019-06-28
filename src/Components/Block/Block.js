@@ -287,7 +287,7 @@ const defaultProps = {
  * of custom CSS.
  */
 
-class Block extends React.Component {
+class Block extends React.PureComponent {
   render() {
     const {
       alignContent,

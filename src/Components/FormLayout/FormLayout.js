@@ -52,32 +52,28 @@ const defaultProps = {
  * Arranges input fields within a [Form](/#/Components/Form) with standard spacing.
  *
  */
-class FormLayout extends React.Component {
-  render() {
-    const {
-      children,
-      className,
-      direction,
-      tight,
-      ...rest
-    } = this.props;
-
-    return (
-      <Block
-        direction={direction}
-        itemSpacing={tight ? 3 : 5}
-        className={classNames(className)}
-        {...rest}
-      >
-        {React.Children.map(children, (child) => {
-          if (child.type === FormLayoutRow) {
-            return React.cloneElement(child, { tight });
-          }
-          return child;
-        })}
-      </Block>
-    );
-  }
+function FormLayout({
+  children,
+  className,
+  direction,
+  tight,
+  ...rest
+}) {
+  return (
+    <Block
+      direction={direction}
+      itemSpacing={tight ? 3 : 5}
+      className={classNames(className)}
+      {...rest}
+    >
+      {React.Children.map(children, (child) => {
+        if (child.type === FormLayoutRow) {
+          return React.cloneElement(child, { tight });
+        }
+        return child;
+      })}
+    </Block>
+  );
 }
 
 FormLayout.propTypes = propTypes;

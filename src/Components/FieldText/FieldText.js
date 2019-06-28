@@ -139,7 +139,7 @@ const defaultProps = {
  * ---
  */
 
-class FieldText extends React.Component {
+class FieldText extends React.PureComponent {
   getLabel() {
     const {
       isInvalid, disabled, id, hideLabel, label

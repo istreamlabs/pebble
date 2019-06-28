@@ -26,7 +26,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
+  className: '',
   numPages: undefined,
   onPageChange: undefined
 };
@@ -37,7 +37,7 @@ const defaultProps = {
 * ---
 */
 
-class Pagination extends React.Component {
+class Pagination extends React.PureComponent {
   getMenuOptions = (numPages) => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
