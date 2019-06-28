@@ -75,10 +75,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   mobileFullScreen: false,
   onRequestClose: undefined,
-  title: undefined,
   type: 'default'
 };
 

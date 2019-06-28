@@ -41,7 +41,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   children: null,
   tight: false,
   direction: 'column',

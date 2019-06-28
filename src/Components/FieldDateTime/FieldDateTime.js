@@ -121,16 +121,13 @@ const propTypes = {
 
 const defaultProps = {
   autoFocus: false,
-  className: undefined,
   disabled: false,
   excludeTime: false,
-  helpText: undefined,
   hideLabel: false,
   isInvalid: false,
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
-  validationText: undefined,
   width: '100',
   withPortal: false,
 };

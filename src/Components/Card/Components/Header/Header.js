@@ -22,7 +22,6 @@ const propTypes = {
 
 const defaultProps = {
   actions: null,
-  className: undefined,
   children: null,
 };
 

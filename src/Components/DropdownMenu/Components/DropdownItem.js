@@ -21,8 +21,6 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  className: undefined,
-  href: undefined,
 };
 
 /**

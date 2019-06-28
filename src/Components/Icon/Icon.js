@@ -46,10 +46,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  size: 16,
   ariaHidden: true,
-  className: undefined,
-  accessibilityLabel: undefined,
+  size: 16,
 };
 
 /**

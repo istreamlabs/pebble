@@ -30,7 +30,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   external: false,
   unstyled: false,
 };

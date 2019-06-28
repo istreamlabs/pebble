@@ -63,7 +63,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   element: 2,
   responsive: true,
   textAlign: 'left',

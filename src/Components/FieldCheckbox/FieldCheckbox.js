@@ -54,15 +54,11 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   disabled: false,
-  helpText: undefined,
   isInvalid: false,
   isSelected: false,
   onChange: undefined,
   toggle: false,
-  validationText: undefined,
-  value: undefined
 };
 
 /**

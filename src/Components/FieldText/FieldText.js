@@ -113,23 +113,16 @@ const propTypes = {
 
 const defaultProps = {
   autoFocus: false,
-  className: undefined,
   disabled: false,
   isInvalid: false,
-  helpText: undefined,
   hideLabel: false,
   ignoreSpellCheck: false,
   isReadOnly: false,
-  name: undefined,
   onBlur: undefined,
   onChange: undefined,
   onFocus: undefined,
-  placeholder: undefined,
-  prefix: undefined,
-  suffix: undefined,
   size: 'medium',
   type: 'text',
-  validationText: undefined,
   width: '100'
 };
 

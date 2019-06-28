@@ -35,9 +35,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   children: null,
-  title: undefined,
   sectioned: false,
   muted: false,
 };

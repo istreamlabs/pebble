@@ -74,16 +74,13 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  className: undefined,
   disabled: false,
   fullWidth: false,
   onOpen: undefined,
   onClose: undefined,
   open: false,
-  overlayclassName: undefined,
   placement: 'bottom-start',
   size: 'medium',
-  toggleclassName: undefined,
   trapFocus: true,
 };
 

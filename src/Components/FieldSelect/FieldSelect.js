@@ -136,15 +136,12 @@ const propTypes = {
 
 const defaultProps = {
   autoFocus: false,
-  className: undefined,
   closeMenuOnSelect: true,
   disabled: false,
-  helpText: undefined,
   hideLabel: false,
   isInvalid: false,
   isReadOnly: false,
   loading: false,
-  loadingMessage: undefined,
   menuPlacement: 'bottom',
   multiSelect: false,
   onBlur: undefined,

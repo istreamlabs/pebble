@@ -67,13 +67,9 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  accessibilityLabel: undefined,
-  className: undefined,
   danger: false,
   disabled: false,
   fullWidth: false,
-  icon: undefined,
-  id: undefined,
   primary: false,
   size: 'medium',
   tabIndex: 0,

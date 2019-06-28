@@ -41,11 +41,9 @@ const propTypes = {
 };
 
 const defaultProps = {
-  className: undefined,
   isInvalid: false,
   isSelected: false,
   onChange: undefined,
-  value: undefined,
   toggle: false,
 };
 

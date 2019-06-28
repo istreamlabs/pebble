@@ -100,18 +100,12 @@ const propTypes = {
 
 
 const defaultProps = {
-  accessibilityLabel: undefined,
-  ariaControls: undefined,
   ariaExpanded: false,
   ariaPressed: false,
-  className: undefined,
   children: null,
   danger: false,
   disabled: false,
   fullWidth: false,
-  icon: undefined,
-  iconAfterText: undefined,
-  id: undefined,
   loading: false,
   onClick: undefined,
   onBlur: undefined,
