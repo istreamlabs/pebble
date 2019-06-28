@@ -1,24 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 import Block from '../Block/Block';
 import Radio from './Components/Radio';
 import Text from '../Text/Text';
 
 const propTypes = {
   /**
-   * Name attribute applied to all radios
+   * Additional classes to add
    */
-  name: PropTypes.string.isRequired,
+  className: PropTypes.string,
   /**
    * Additional hint displayed beneath the label
    */
   helpText: PropTypes.node,
   /**
-   * The label for the group of radios
+   * Name attribute applied to all radios
    */
-  title: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  /**
+   * Callback function when a radio is changed
+   */
+  onChange: PropTypes.func,
   /**
    * Radio options
    */
@@ -30,17 +33,13 @@ const propTypes = {
     disabled: PropTypes.bool
   })).isRequired,
   /**
+   * The label for the group of radios
+   */
+  title: PropTypes.string,
+  /**
    * Currently selected option value
    */
   value: PropTypes.string,
-  /**
-   * Additional classes to add
-   */
-  className: PropTypes.string,
-  /**
-   * Callback function when a radio is changed
-   */
-  onChange: PropTypes.func,
 };
 
 const defaultProps = {

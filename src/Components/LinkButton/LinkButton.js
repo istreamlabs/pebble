@@ -11,21 +11,33 @@ import '../Button/Button.scss';
 
 const propTypes = {
   /**
+   * Visually hidden text for screen readers
+   */
+  accessibilityLabel: PropTypes.string,
+  /**
    * A unique identifier for the Link
    */
   id: PropTypes.string,
-  /**
-   * Additional ClassNames to add to button
-   */
-  className: PropTypes.string,
   /**
    * Contents of the button
    */
   children: PropTypes.node.isRequired,
   /**
+   * Additional ClassNames to add to button
+   */
+  className: PropTypes.string,
+  /**
+   * Indicate pressing the button will perform a destructive action
+   */
+  danger: PropTypes.bool,
+  /**
    * Disables the button, making it inoperable
    */
   disabled: PropTypes.bool,
+  /**
+   * Button takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
   /**
    * Partial or full url the Link goes to
    */
@@ -39,30 +51,18 @@ const propTypes = {
    */
   iconAfterText: boolRequiresOtherProp('icon'),
   /**
+   * Make the button have more visual weight to identify the primary call to action
+   */
+  primary: PropTypes.bool,
+  /**
    * Changes the size of the button, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
-   * Make the button have more visual weight to identify the primary call to action
-   */
-  primary: PropTypes.bool,
-  /**
-   * Indicate pressing the button will perform a destructive action
-   */
-  danger: PropTypes.bool,
-  /**
-   * Button takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
    * Specify the tabIndex of the button
    */
   tabIndex: PropTypes.number,
-  /**
-   * Visually hidden text for screen readers
-   */
-  accessibilityLabel: PropTypes.string,
 };
 
 const defaultProps = {

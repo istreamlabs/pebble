@@ -8,17 +8,17 @@ import './List.scss';
 
 const propTypes = {
   /**
-   * Whether this is an ordered list.
+   * Elements to be rendered as children of this component
    */
-  ordered: PropTypes.bool,
+  children: PropTypes.node.isRequired,
   /**
    * Additional classNames to add
    */
   className: PropTypes.string,
   /**
-   * Elements to be rendered as children of this component
+   * Whether this is an ordered list.
    */
-  children: PropTypes.node.isRequired,
+  ordered: PropTypes.bool,
   /**
    * font size to apply to the list based on the [typography scale](/#/Styles/Typography)
    * @type {PropTypes.Requireable<FontSizeLike>}

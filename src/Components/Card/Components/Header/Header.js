@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-
-import Heading from '../../../Heading/Heading';
-
 import '../../Card.scss';
+
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import Heading from '../../../Heading/Heading';
 
 const propTypes = {
   /**
@@ -12,13 +11,13 @@ const propTypes = {
    */
   actions: PropTypes.node,
   /**
-   * Additional classNames to add to card title
-   */
-  className: PropTypes.string,
-  /**
    * Contents of the card title
    */
   children: PropTypes.node,
+  /**
+   * Additional classNames to add to card title
+   */
+  className: PropTypes.string,
 };
 
 const defaultProps = {

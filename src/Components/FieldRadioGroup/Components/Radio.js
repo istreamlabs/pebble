@@ -1,13 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
 import Text from '../../Text/Text';
 
 const propTypes = {
-  className: PropTypes.string,
   /**
    * Sets aria-label attribute.
    */
@@ -17,17 +15,25 @@ const propTypes = {
    */
   ariaLabelledby: PropTypes.string,
   /**
+   * additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
    * If the input should be disabled and not focusable
    */
   disabled: PropTypes.bool,
   /**
-   * If the value of the input can be read, but not changed
+   * Additional hint displayed beneath the label
    */
-  isReadOnly: PropTypes.bool,
+  helpText: PropTypes.node,
   /**
    * The id attribute of the input
    */
   id: PropTypes.string.isRequired,
+  /**
+   * If the value of the input can be read, but not changed
+   */
+  isReadOnly: PropTypes.bool,
   /**
    * Set the radio as selected
    */
@@ -36,10 +42,6 @@ const propTypes = {
    * The label for the radio
    */
   label: PropTypes.string.isRequired,
-  /**
-   * Additional hint displayed beneath the label
-   */
-  helpText: PropTypes.node,
   /**
    * The name attribute of the input
    */

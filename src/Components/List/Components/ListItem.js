@@ -6,13 +6,13 @@ import './ListItem.scss';
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
 };
 
 /**

@@ -9,17 +9,13 @@ import FormLayoutRow from './Components/FormLayoutRow';
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Content to display inside the form
    */
   children: PropTypes.node,
   /**
-   * Decrease the spacing between inputs
+   * Additional classNames to add
    */
-  tight: PropTypes.bool,
+  className: PropTypes.string,
   /**
    * Orientation to layout children
    *
@@ -30,6 +26,10 @@ const propTypes = {
     PropTypes.oneOf(['row', 'column']),
     PropTypes.array,
   ]),
+  /**
+   * Decrease the spacing between inputs
+   */
+  tight: PropTypes.bool,
   /**
    * A valid css width (%, px, em, rem).
    *

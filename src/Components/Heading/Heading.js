@@ -30,13 +30,13 @@ export const parseElement = (element) => {
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Contents of the heading
    */
   children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * Semantic heading level, can passed as int or string
    * @type {PropTypes.Requireable<ElementSizeLike>}
@@ -47,6 +47,11 @@ const propTypes = {
    */
   responsive: PropTypes.bool,
   /**
+   * appearance level, can passed as int or string
+   * @type {PropTypes.Requireable<ElementSizeLike>}
+   */
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
+  /**
    * text alignment
    * @type {PropTypes.Requireable<TextAlign>}
    */
@@ -55,11 +60,6 @@ const propTypes = {
    * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
    */
   truncate: PropTypes.bool,
-  /**
-   * appearance level, can passed as int or string
-   * @type {PropTypes.Requireable<ElementSizeLike>}
-   */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
 };
 
 const defaultProps = {

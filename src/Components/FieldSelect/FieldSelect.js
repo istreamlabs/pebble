@@ -19,9 +19,13 @@ import Text from '../Text/Text';
 
 const propTypes = {
   /**
-   * Display a checkbox before each option
+   * Sets aria-label attribute.
    */
-  showCheckbox: PropTypes.bool,
+  ariaLabel: PropTypes.string,
+  /**
+   * Sets aria-labelledby attribute.
+   */
+  ariaLabelledby: PropTypes.string,
   /**
    * Automatically focus the select box
    */
@@ -35,17 +39,21 @@ const propTypes = {
    */
   closeMenuOnSelect: PropTypes.bool,
   /**
-   * Sets aria-label attribute.
-   */
-  ariaLabel: PropTypes.string,
-  /**
-   * Sets aria-labelledby attribute.
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
    * If the select should be disabled and not focusable
    */
   disabled: PropTypes.bool,
+  /**
+   * Additional hint displayed beneath the input
+   */
+  helpText: PropTypes.node,
+  /**
+   * visually hide the label, but keep it accessible for screenreaders
+   */
+  hideLabel: PropTypes.bool,
+  /**
+   * Applies styling to indicate the input is invalid
+   */
+  isInvalid: PropTypes.bool,
   /**
    * If the value of the select can be read, but not changed
    */
@@ -54,6 +62,10 @@ const propTypes = {
    * The id attribute of the container
    */
   id: PropTypes.string.isRequired,
+  /**
+   * The label for the checkbox
+   */
+  label: PropTypes.string.isRequired,
   /**
    * is the select in a loading state
    */
@@ -97,33 +109,21 @@ const propTypes = {
    */
   options: PropTypes.arrayOf(PropTypes.object),
   /**
+   * Display a checkbox before each option
+   */
+  showCheckbox: PropTypes.bool,
+  /**
+   * Text to display if the input is invalid.
+   * The text should explain why the input is invalid.
+   */
+  validationText: PropTypes.string,
+  /**
    * The value(s) of select
    */
   value: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.arrayOf(PropTypes.object)
   ]),
-  /**
-   * Additional hint displayed beneath the input
-   */
-  helpText: PropTypes.node,
-  /**
-   * The label for the checkbox
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * visually hide the label, but keep it accessible for screenreaders
-   */
-  hideLabel: PropTypes.bool,
-  /**
-   * Applies styling to indicate the input is invalid
-   */
-  isInvalid: PropTypes.bool,
-  /**
-   * Text to display if the input is invalid.
-   * The text should explain why the input is invalid.
-   */
-  validationText: PropTypes.string,
   /**
    * A valid css width (%, px, em, rem).
    *

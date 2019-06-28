@@ -22,15 +22,6 @@ const viewBoxSize = 16;
 
 const propTypes = {
   /**
-   * Additional classNames to add to the icon
-   */
-  className: PropTypes.string,
-  /**
-   * Changes the size of the icon, passed as a string or int
-   * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
-   */
-  size: PropTypes.oneOf([10, 12, 16, 20, 24, 32, 48, 56, 64, '10', '12', '16', '20', '24', '32', '48', '56', '64']),
-  /**
    * keeps the svg markup from being read aloud by assistive technologies
    */
   ariaHidden: PropTypes.bool,
@@ -39,10 +30,19 @@ const propTypes = {
    */
   accessibilityLabel: PropTypes.string,
   /**
+   * Additional classNames to add to the icon
+   */
+  className: PropTypes.string,
+  /**
    * The name of the icon to display
    * @type {PropTypes.Requireable<keyof icons>}
    */
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  /**
+   * Changes the size of the icon, passed as a string or int
+   * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
+   */
+  size: PropTypes.oneOf([10, 12, 16, 20, 24, 32, 48, 56, 64, '10', '12', '16', '20', '24', '32', '48', '56', '64']),
 };
 
 const defaultProps = {

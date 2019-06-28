@@ -1,9 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 import Block from '../../Block/Block';
 import Heading from '../../Heading/Heading';
+
+const propTypes = {
+  /**
+   * The content of the item
+   */
+  children: PropTypes.any,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Text that appears as header of the group
+   */
+  title: PropTypes.string,
+};
+
+const defaultProps = {
+  children: null,
+  className: undefined,
+  title: undefined,
+};
 
 /**
  * A child of [DropdownMenu](/#/Components/DropdownMenu).
@@ -12,13 +32,11 @@ import Heading from '../../Heading/Heading';
  * ---
  */
 
-const DropdownItemGroup = (
-  {
-    children,
-    className,
-    title,
-  }
-) => {
+function DropdownItemGroup({
+  children,
+  className,
+  title,
+}) {
   const classes = classNames('dropdown-item-group', className);
   return (
     <Block marginBottom="4" direction="column" className={classes} role="menu">
@@ -33,21 +51,9 @@ const DropdownItemGroup = (
       {children}
     </Block>
   );
-};
+}
 
-DropdownItemGroup.propTypes = {
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * The content of the item
-   */
-  children: PropTypes.any,
-  /**
-   * Text that appears as header of the group
-   */
-  title: PropTypes.string,
-};
+DropdownItemGroup.propTypes = propTypes;
+DropdownItemGroup.defaultProps = defaultProps;
 
 export default DropdownItemGroup;

@@ -16,6 +16,10 @@ const APP_FRAME_NAV = 'AppFrameNav';
 
 const propTypes = {
   /**
+  * Contents of the frame
+  */
+  children: PropTypes.node,
+  /**
    * Component that will be rendered in the left sidebar of an application frame
    */
   navigation: PropTypes.node.isRequired,
@@ -23,10 +27,6 @@ const propTypes = {
    * A callback function that is called when the navigation is toggled
    */
   onNavigationToggle: PropTypes.func,
-  /**
-  * Contents of the frame
-  */
-  children: PropTypes.node,
   /**
    * Title text that appears in header and MainMenu
    */

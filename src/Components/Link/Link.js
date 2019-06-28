@@ -8,13 +8,13 @@ import './Link.scss';
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * render an `<a>` for links to external sites
    */

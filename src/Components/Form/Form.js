@@ -6,13 +6,13 @@ import FormLayout from '../FormLayout/FormLayout';
 
 const propTypes = {
   /**
-   * Additional css classes to apply to the Form
-   */
-  className: PropTypes.string,
-  /**
    * Contents of the form
    */
   children: PropTypes.node,
+  /**
+   * Additional css classes to apply to the Form
+   */
+  className: PropTypes.string,
   /**
    * Method used to submit the form
    */

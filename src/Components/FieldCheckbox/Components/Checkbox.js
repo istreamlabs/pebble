@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import './Checkbox.scss';
 
 import Icon from '../../Icon/Icon';
-
-import './Checkbox.scss';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
   /**
@@ -16,13 +15,13 @@ const propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Applies styling to indicate the input is invalid
-   */
-  isInvalid: PropTypes.bool,
-  /**
    * The id attribute of the input
    */
   id: PropTypes.string.isRequired,
+  /**
+   * Applies styling to indicate the input is invalid
+   */
+  isInvalid: PropTypes.bool,
   /**
    * Set the checkbox as selected
    */
@@ -32,13 +31,13 @@ const propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Make the checkbox look like a toggle switch
+   */
+  toggle: PropTypes.bool,
+  /**
    * The value of the input
    */
   value: PropTypes.string,
-  /**
-   * Make the checkbox look like a toggle switch
-   */
-  toggle: PropTypes.bool
 };
 
 const defaultProps = {

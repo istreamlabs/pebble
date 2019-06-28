@@ -1,36 +1,37 @@
-import React from 'react';
+import './Card.scss';
+
+import { Header, Section } from './Components';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import { requiresOtherProp } from '../../Types';
 
-import { Header, Section } from './Components';
-import './Card.scss';
-
 const propTypes = {
-  /**
-   * Additional ClassNames to add to button
-   */
-  className: PropTypes.string,
   /**
    * Contents of the Card
    */
   children: PropTypes.node.isRequired,
   /**
+   * Additional ClassNames to add to button
+   */
+  className: PropTypes.string,
+  /**
    * button(s) to be displayed in the upper right of the Card. A title must be provided in order to display headerActions.
    */
   headerActions: requiresOtherProp('title'),
   /**
-   * Title content of the card
+   * Make the card less visually prominent
    */
-  title: PropTypes.string,
+  muted: PropTypes.bool,
   /**
    * Auto-wrap children in a padded section
    */
   sectioned: PropTypes.bool,
   /**
-   * Make the card less visually prominent
+   * Title content of the card
    */
-  muted: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 const defaultProps = {
