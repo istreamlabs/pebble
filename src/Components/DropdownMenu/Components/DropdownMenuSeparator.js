@@ -9,9 +9,6 @@ const propTypes = {
   className: PropTypes.string,
 };
 
-const defaultProps = {
-};
-
 /**
  * A child of [DropdownMenu](/#/Components/DropdownMenu).
  * Used to add a visual divider between [DropdownItems](/#/Components/DropdownItem).
@@ -36,6 +33,5 @@ function DropdownMenuSeparator({
 }
 
 DropdownMenuSeparator.propTypes = propTypes;
-DropdownMenuSeparator.defaultProps = defaultProps;
 
 export default DropdownMenuSeparator;
