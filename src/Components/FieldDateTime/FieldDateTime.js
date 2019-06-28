@@ -121,13 +121,17 @@ const propTypes = {
 
 const defaultProps = {
   autoFocus: false,
+  className: undefined,
   disabled: false,
   excludeTime: false,
+  helpText: undefined,
   hideLabel: false,
   isInvalid: false,
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
+  validationText: undefined,
+  width: '100',
   withPortal: false,
 };
 
@@ -168,12 +172,9 @@ class FieldDateTime extends React.PureComponent {
 
   renderHelpTextMarkup() {
     const { helpText } = this.props;
-    if (helpText === undefined) return;
-    return (
-      <Text className="db mt-2" size="6">
-        {helpText}
-      </Text>
-    );
+    if (helpText) {
+      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+    }
   }
 
   renderValidationTextMarkup() {
