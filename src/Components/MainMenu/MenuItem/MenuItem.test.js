@@ -143,7 +143,7 @@ describe('MenuItem', () => {
 
   it('sets isOpen to false when there are no sub-items', () => {
     const item = shallow(<MenuItem item={noItems} />);
-    expect(item.state().isOpen).toEqual(undefined);
+    expect(item.state().isOpen).toEqual(false);
   });
 
   it('displays item as text if there are no sub-items and no href', () => {

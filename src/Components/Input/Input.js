@@ -8,6 +8,125 @@ import Text from '../Text/Text';
 
 import './Input.scss';
 
+const propTypes = {
+  /**
+   * Sets aria-label attribute.
+   */
+  ariaLabel: PropTypes.string,
+  /**
+   * Sets aria-labelledby attribute.
+   */
+  ariaLabelledby: PropTypes.string,
+  /**
+   * Sets aria-describedby attribute.
+   */
+  ariaDescribedBy: PropTypes.string,
+  /**
+   * The autofocus attribute of the input
+   */
+  autoFocus: PropTypes.bool,
+  /**
+   * If the input should be disabled and not focusable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If the input should appear invalid
+   */
+  isInvalid: PropTypes.bool,
+  /**
+   * If the value of the input can be read, but not changed
+   */
+  isReadOnly: PropTypes.bool,
+  /**
+   * The id attribute of the input
+   */
+  id: PropTypes.string,
+  /**
+   * Maximum length the input value can be
+   */
+  maxLength: PropTypes.number,
+  /**
+   * The name attribute of the input
+   */
+  name: PropTypes.string,
+  /**
+   * Callback function when input is blurred
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback function when input is changed
+   */
+  onChange: PropTypes.func,
+  /**
+   * Callback function when input is focused
+   */
+  onFocus: PropTypes.func,
+  /**
+   * A short hint that is displayed when there is no value
+   */
+  placeholder: PropTypes.string,
+  /**
+   * Text to display before the value
+   */
+  prefix: PropTypes.string,
+  /**
+   * Is the input required
+   */
+  required: PropTypes.bool,
+  /**
+   * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
+   */
+  spellCheck: PropTypes.bool,
+  /**
+   * Text to display after the value
+   */
+  suffix: PropTypes.string,
+  /**
+   * Changes the size of the input, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Input type attribute
+   */
+  type: PropTypes.string,
+  /**
+   * The value of the input on mount
+   */
+  defaultValue: PropTypes.string,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Elements to be rendered as children of this component
+   */
+  children: PropTypes.node,
+  /**
+   * The value of the input
+   */
+  value: PropTypes.string,
+  /**
+   * If defined, a clear button will be rendered and will call this function when pressed
+   */
+  clearBtnFunc: PropTypes.func,
+  /**
+   * Display character count of the input value
+   */
+  showCharacterCount: PropTypes.bool,
+};
+
+const defaultProps = {
+  autoFocus: false,
+  disabled: false,
+  isInvalid: false,
+  // prevents React propType warning about read-only input
+  onChange: () => {},
+  required: false,
+  size: 'medium',
+  spellCheck: true,
+  type: 'text',
+};
 
 /**
  * Input field that people can type values into.
@@ -15,7 +134,7 @@ import './Input.scss';
  * ---
  */
 
-class Input extends React.Component {
+class Input extends React.PureComponent {
   getInputProps = () => {
     const {
       ariaLabel,
@@ -143,124 +262,7 @@ class Input extends React.Component {
   }
 }
 
-Input.defaultProps = {
-  autoFocus: false,
-  disabled: false,
-  isInvalid: false,
-  // prevents React propType warning about read-only input
-  onChange: () => {},
-  required: false,
-  size: 'medium',
-  spellCheck: true,
-  type: 'text',
-};
-
-Input.propTypes = {
-  /**
-   * Sets aria-label attribute.
-   */
-  ariaLabel: PropTypes.string,
-  /**
-   * Sets aria-labelledby attribute.
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
-   * Sets aria-describedby attribute.
-   */
-  ariaDescribedBy: PropTypes.string,
-  /**
-   * The autofocus attribute of the input
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * If the input should be disabled and not focusable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * If the input should appear invalid
-   */
-  isInvalid: PropTypes.bool,
-  /**
-   * If the value of the input can be read, but not changed
-   */
-  isReadOnly: PropTypes.bool,
-  /**
-   * The id attribute of the input
-   */
-  id: PropTypes.string,
-  /**
-   * Maximum length the input value can be
-   */
-  maxLength: PropTypes.number,
-  /**
-   * The name attribute of the input
-   */
-  name: PropTypes.string,
-  /**
-   * Callback function when input is blurred
-   */
-  onBlur: PropTypes.func,
-  /**
-   * Callback function when input is changed
-   */
-  onChange: PropTypes.func,
-  /**
-   * Callback function when input is focused
-   */
-  onFocus: PropTypes.func,
-  /**
-   * A short hint that is displayed when there is no value
-   */
-  placeholder: PropTypes.string,
-  /**
-   * Text to display before the value
-   */
-  prefix: PropTypes.string,
-  /**
-   * Is the input required
-   */
-  required: PropTypes.bool,
-  /**
-   * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
-   */
-  spellCheck: PropTypes.bool,
-  /**
-   * Text to display after the value
-   */
-  suffix: PropTypes.string,
-  /**
-   * Changes the size of the input, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Input type attribute
-   */
-  type: PropTypes.string,
-  /**
-   * The value of the input on mount
-   */
-  defaultValue: PropTypes.string,
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Elements to be rendered as children of this component
-   */
-  children: PropTypes.node,
-  /**
-   * The value of the input
-   */
-  value: PropTypes.string,
-  /**
-   * If defined, a clear button will be rendered and will call this function when pressed
-   */
-  clearBtnFunc: PropTypes.func,
-  /**
-   * Display character count of the input value
-   */
-  showCharacterCount: PropTypes.bool,
-};
+Input.propTypes = propTypes;
+Input.defaultProps = defaultProps;
 
 export default Input;

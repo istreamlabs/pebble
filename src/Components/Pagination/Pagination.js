@@ -31,7 +31,7 @@ const propTypes = {
 * ---
 */
 
-class Pagination extends React.Component {
+class Pagination extends React.PureComponent {
   getMenuOptions = (numPages) => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {

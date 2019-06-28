@@ -1,44 +1,39 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 import Block from '../Block/Block';
 import Checkbox from './Components/Checkbox';
 import Text from '../Text/Text';
 
 const propTypes = {
   /**
-   * The id attribute of the checkbox
+   * Additional classes to add
    */
-  id: PropTypes.string.isRequired,
-  /**
-   * Additional hint displayed beneath the label
-   */
-  helpText: PropTypes.string,
-  /**
-   * The label for the checkbox
-   */
-  label: PropTypes.string.isRequired,
+  className: PropTypes.string,
   /**
    * If the input should be disabled and not focusable
    */
   disabled: PropTypes.bool,
   /**
-   * Set the checkbox as selected
+   * Additional hint displayed beneath the label
    */
-  isSelected: PropTypes.bool,
+  helpText: PropTypes.node,
+  /**
+   * The id attribute of the checkbox
+   */
+  id: PropTypes.string.isRequired,
   /**
    * Applies styling to indicate the input is invalid
    */
   isInvalid: PropTypes.bool,
   /**
-   * Currently selected option value
+   * Set the checkbox as selected
    */
-  value: PropTypes.string,
+  isSelected: PropTypes.bool,
   /**
-   * Additional classes to add
+   * The label for the checkbox
    */
-  className: PropTypes.string,
+  label: PropTypes.string.isRequired,
   /**
    * Callback function when a checkbox is changed
    */
@@ -52,6 +47,18 @@ const propTypes = {
    * The text should explain why the input is invalid.
    */
   validationText: PropTypes.string,
+  /**
+   * Currently selected option value
+   */
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  disabled: false,
+  isInvalid: false,
+  isSelected: false,
+  onChange: undefined,
+  toggle: false,
 };
 
 /**
@@ -136,7 +143,7 @@ function FieldCheckbox({
   };
 
   const helpTextMarkup = () => {
-    if (helpText === undefined) return;
+    if (helpText === undefined || helpText === '') return;
     return (
       <Text size="6" appearance="muted" className="db mt-1">{helpText}</Text>
     );
@@ -167,5 +174,6 @@ function FieldCheckbox({
 }
 
 FieldCheckbox.propTypes = propTypes;
+FieldCheckbox.defaultProps = defaultProps;
 
 export default FieldCheckbox;

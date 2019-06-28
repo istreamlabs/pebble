@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Block from '../../Block/Block';
+
+const propTypes = {
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+};
 
 /**
  * A child of [DropdownMenu](/#/Components/DropdownMenu).
@@ -10,27 +16,22 @@ import Block from '../../Block/Block';
  * ---
  */
 
-const DropdownMenuSeparator = (
-  {
-    className,
-  }
-) => (
-  <Block
-    className={className}
-    marginTop="2"
-    marginBottom="2"
-    background="neutral-200"
-    height="2px"
-    width="100%"
-    role="separator"
-  />
-);
+function DropdownMenuSeparator({
+  className,
+}) {
+  return (
+    <Block
+      className={className}
+      marginTop="2"
+      marginBottom="2"
+      background="neutral-200"
+      height="2px"
+      width="100%"
+      role="separator"
+    />
+  );
+}
 
-DropdownMenuSeparator.propTypes = {
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-};
+DropdownMenuSeparator.propTypes = propTypes;
 
 export default DropdownMenuSeparator;

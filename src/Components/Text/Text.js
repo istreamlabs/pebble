@@ -6,6 +6,36 @@ import { fontSizeType } from '../../Types';
 
 import './Text.scss';
 
+const propTypes = {
+  /**
+   * color of the text
+   * @type {PropTypes.Requireable<'success'|'warn'|'danger'|'muted'|'info'|'code'>}
+   */
+  appearance: PropTypes.oneOf(['success', 'warn', 'danger', 'muted', 'info', 'code']),
+  /**
+   * Give the text a bold appearance
+   */
+  bold: PropTypes.bool,
+  /**
+   * Elements to be rendered as children of this component
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * set font size based on the [typography scale](/#/Styles/Typography)
+   * @type {PropTypes.Requireable<FontSizeLike>}
+   */
+  size: fontSizeType,
+};
+
+const defaultProps = {
+  bold: false,
+  size: 5,
+};
+
 /**
  * The Text component renders a span. It is a convenient
  * way to enforce consistency of supported text colors
@@ -13,16 +43,14 @@ import './Text.scss';
  * so it can inherit styles of its parent.
  */
 
-const Text = (
-  {
-    bold,
-    children,
-    className,
-    appearance,
-    size,
-    ...rest
-  }
-) => {
+function Text({
+  bold,
+  children,
+  className,
+  appearance,
+  size,
+  ...rest
+}) {
   const parsedSize = parseTextSize(size);
 
   const Element = appearance === 'code' ? 'code' : 'span';
@@ -38,35 +66,9 @@ const Text = (
       {children}
     </Element>
   );
-};
+}
 
-Text.defaultProps = {
-  size: 5,
-};
-
-Text.propTypes = {
-  /**
-   * Give the text a bold appearance
-   */
-  bold: PropTypes.bool,
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Elements to be rendered as children of this component
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * color of the text
-   * @type {PropTypes.Requireable<'success'|'warn'|'danger'|'muted'|'info'|'code'>}
-   */
-  appearance: PropTypes.oneOf(['success', 'warn', 'danger', 'muted', 'info', 'code']),
-  /**
-   * set font size based on the [typography scale](/#/Styles/Typography)
-   * @type {PropTypes.Requireable<FontSizeLike>}
-   */
-  size: fontSizeType,
-};
+Text.propTypes = propTypes;
+Text.defaultProps = defaultProps;
 
 export default Text;

@@ -7,19 +7,15 @@ An example of using state in a parent to manage the Pagination control.
 ```js
 import { useState } from 'react'
 
-import Card from '../Card/Card';
-
 function PaginationExample() {
   const [currentPage, setCurrentPage] = useState(1);
 
   return (
-    <Card>
     <Pagination
       onPageChange={setCurrentPage}
       currentPage={currentPage}
       numPages={5}
     />
-    </Card>
   )
 }
 

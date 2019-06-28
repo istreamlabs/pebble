@@ -271,6 +271,11 @@ const propTypes = {
   wrap: PropTypes.bool,
 };
 
+const defaultProps = {
+  as: 'div',
+  direction: 'row',
+};
+
 /**
  * A `<Block>` is a layout component to build UIs with consistent
  * padding and vertical spacing between components. Use it to also set `font-size`.
@@ -281,7 +286,7 @@ const propTypes = {
  * of custom CSS.
  */
 
-class Block extends React.Component {
+class Block extends React.PureComponent {
   render() {
     const {
       alignContent,
@@ -399,11 +404,7 @@ class Block extends React.Component {
   }
 }
 
-Block.defaultProps = {
-  as: 'div',
-  direction: 'row',
-};
-
 Block.propTypes = propTypes;
+Block.defaultProps = defaultProps;
 
 export default Block;

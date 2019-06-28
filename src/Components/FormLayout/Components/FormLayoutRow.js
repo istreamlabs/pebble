@@ -6,13 +6,13 @@ import Block from '../../Block/Block';
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Content to display inside a row
    */
   children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * Orientation to layout children
    *

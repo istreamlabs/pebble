@@ -31,6 +31,10 @@ const propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Do not include the ability to pick a time, just the day
+   */
+  excludeTime: PropTypes.bool,
+  /**
    * Filter the selectable dates based on custom criteria
    * @param {string} date a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    * @returns {boolean} true to allow the date to be selected
@@ -48,10 +52,6 @@ const propTypes = {
    * The id attribute of the input
    */
   id: PropTypes.string.isRequired,
-  /**
-   * Do not include the ability to pick a time, just the day
-   */
-  excludeTime: PropTypes.bool,
   /**
    * Applies styling to indicate the input is invalid
    */
@@ -82,6 +82,10 @@ const propTypes = {
    */
   onChange: PropTypes.func.isRequired,
   /**
+   * select time in browser's local time zone instead of UTC
+   */
+  selectLocalDateTime: PropTypes.bool,
+  /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
    */
@@ -90,10 +94,6 @@ const propTypes = {
    * Format used to display time in the time column in the popover
    */
   timeFormat: PropTypes.string,
-  /**
-   * select time in UTC
-   */
-  selectLocalDateTime: PropTypes.bool,
   /**
    * The value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601)
    */
@@ -128,6 +128,7 @@ const defaultProps = {
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
+  width: '100',
   withPortal: false,
 };
 
@@ -168,12 +169,9 @@ class FieldDateTime extends React.PureComponent {
 
   renderHelpTextMarkup() {
     const { helpText } = this.props;
-    if (helpText === undefined) return;
-    return (
-      <Text className="db mt-2" size="6">
-        {helpText}
-      </Text>
-    );
+    if (helpText) {
+      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+    }
   }
 
   renderValidationTextMarkup() {

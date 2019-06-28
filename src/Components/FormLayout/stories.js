@@ -13,7 +13,7 @@ function FormLayoutExample() {
     <FormLayout width={[100, 100, 6, 7]}>
       <FormLayoutRow>
         <FieldText id="first" label="First Name" />
-        <FieldText id="middle" className="w4" label="Middle" />
+        <FieldText id="middle" width="80px" label="Middle" />
         <FieldText id="last" label="Last Name" />
       </FormLayoutRow>
       <FieldText id="businessEmail" label="Email" helpText="business email address" />

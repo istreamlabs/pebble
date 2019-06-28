@@ -1,11 +1,29 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-
-import Heading from '../../../Heading/Heading';
-
 import '../../Card.scss';
 
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import Heading from '../../../Heading/Heading';
+
+const propTypes = {
+  /**
+   * button(s) to be displayed on the right side
+   */
+  actions: PropTypes.node,
+  /**
+   * Contents of the card title
+   */
+  children: PropTypes.node,
+  /**
+   * Additional classNames to add to card title
+   */
+  className: PropTypes.string,
+};
+
+const defaultProps = {
+  actions: null,
+  children: null,
+};
 
 const Header = (
   {
@@ -30,19 +48,7 @@ const Header = (
   );
 };
 
-Header.propTypes = {
-  /**
-   * button(s) to be displayed on the right side
-   */
-  actions: PropTypes.node,
-  /**
-   * Additional classNames to add to card title
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the card title
-   */
-  children: PropTypes.node,
-};
+Header.propTypes = propTypes;
+Header.defaultProps = defaultProps;
 
 export default Header;

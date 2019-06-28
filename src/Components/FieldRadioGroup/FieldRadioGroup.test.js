@@ -19,18 +19,18 @@ const testRadios = [
 
 describe('FieldRadioGroup', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<FieldRadioGroup />); }).not.toThrow();
+    expect(() => { shallow(<FieldRadioGroup name="test" radios={testRadios} />); }).not.toThrow();
   });
 
   it('renders the correct number of radios', () => {
-    const wrapper = shallow(<FieldRadioGroup radios={testRadios} />);
+    const wrapper = shallow(<FieldRadioGroup name="test" radios={testRadios} />);
     expect(wrapper.find(Radio).length).toBe(3);
   });
 
   describe('titleMarkup', () => {
     it('renders title if set', () => {
       const text = 'I am title text';
-      const wrapper = shallow(<FieldRadioGroup radios={testRadios} title={text} />);
+      const wrapper = shallow(<FieldRadioGroup name="test" radios={testRadios} title={text} />);
       expect(wrapper.contains(text)).toBe(true);
     });
   });
@@ -38,12 +38,17 @@ describe('FieldRadioGroup', () => {
   describe('helpTextMarkup', () => {
     it('renders helpText if set', () => {
       const text = 'I am help text';
-      const wrapper = shallow(<FieldRadioGroup radios={testRadios} helpText={text} />);
+      const wrapper = shallow(<FieldRadioGroup name="test" radios={testRadios} helpText={text} />);
       expect(wrapper.contains(text)).toBe(true);
     });
   });
 
   describe('getRadioItems', () => {
+    it('returns null if there are no radios', () => {
+      const wrapper = shallow(<FieldRadioGroup name="test" radios={[]} />);
+      const radios = wrapper.find(Radio);
+      expect(radios.length).toEqual(0);
+    });
     it('checks the first radio if not specified', () => {
       const items = [
         {
@@ -56,7 +61,7 @@ describe('FieldRadioGroup', () => {
           id: '3', value: '3', label: '3'
         },
       ];
-      const wrapper = mount(<FieldRadioGroup radios={items} />);
+      const wrapper = mount(<FieldRadioGroup name="test" radios={items} />);
       const radios = wrapper.find(Radio);
       expect(radios.at(0).prop('isSelected')).toBe(true);
     });
@@ -73,7 +78,7 @@ describe('FieldRadioGroup', () => {
           id: '3', value: '3', label: '3'
         },
       ];
-      const wrapper = mount(<FieldRadioGroup value="2" radios={items} />);
+      const wrapper = mount(<FieldRadioGroup name="test" value="2" radios={items} />);
       const radios = wrapper.find(Radio);
       expect(radios.at(1).prop('isSelected')).toBe(true);
     });
@@ -90,7 +95,7 @@ describe('FieldRadioGroup', () => {
           id: '3', value: '3', label: '3'
         },
       ];
-      const wrapper = mount(<FieldRadioGroup value="2" radios={items} />);
+      const wrapper = mount(<FieldRadioGroup name="test" value="2" radios={items} />);
       const radios = wrapper.find(Radio);
       expect(radios.at(1).prop('disabled')).toBe(true);
     });

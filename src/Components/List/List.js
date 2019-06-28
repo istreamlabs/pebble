@@ -6,6 +6,30 @@ import TextContainer from '../TextContainer/TextContainer';
 
 import './List.scss';
 
+const propTypes = {
+  /**
+   * Elements to be rendered as children of this component
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Whether this is an ordered list.
+   */
+  ordered: PropTypes.bool,
+  /**
+   * font size to apply to the list based on the [typography scale](/#/Styles/Typography)
+   * @type {PropTypes.Requireable<FontSizeLike>}
+   */
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
+};
+
+const defaultProps = {
+  ordered: false,
+};
+
 /**
  * A typographical list of related content.
  * * Lists begin with a bullet or number
@@ -14,14 +38,12 @@ import './List.scss';
  * ---
  */
 
-const List = (
-  {
-    ordered,
-    children,
-    className,
-    size,
-  }
-) => {
+function List({
+  ordered,
+  children,
+  className,
+  size,
+}) {
   const classes = classNames('list',
     { 'list-ordered': ordered, },
     className);
@@ -33,26 +55,9 @@ const List = (
   return (
     size ? <TextContainer size={size}>{List}</TextContainer> : List
   );
-};
+}
 
-List.propTypes = {
-  /**
-   * Whether this is an ordered list.
-   */
-  ordered: PropTypes.bool,
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Elements to be rendered as children of this component
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * font size to apply to the list based on the [typography scale](/#/Styles/Typography)
-   * @type {PropTypes.Requireable<FontSizeLike>}
-   */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
-};
+List.propTypes = propTypes;
+List.defaultProps = defaultProps;
 
 export default List;

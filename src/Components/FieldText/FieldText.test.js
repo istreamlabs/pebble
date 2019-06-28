@@ -31,7 +31,7 @@ describe('FieldText', () => {
 
     it('returns undefined if no helptext is set', () => {
       const instance = new FieldText({ label: 'test' });
-      expect(instance.getHelpTextMarkup()).toBe(undefined);
+      expect(instance.getHelpTextMarkup()).toBe(null);
     });
   });
 

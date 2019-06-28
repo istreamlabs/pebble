@@ -18,22 +18,54 @@ const DEFAULT_ICONS = {
   success: 'check-circle-outline',
 };
 
+const propTypes = {
+  /**
+   * Elements to be rendered as children of this component
+   */
+  children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * An `<Icon>` component to be rendered instead of the default icon.
+   * See the [Icon component documentation](/#/Components/Icon) for available components
+   */
+  icon: PropTypes.string,
+  /**
+   * Callback when alert is dismissed
+   */
+  onDismiss: PropTypes.func,
+  /**
+   * The header of the alert
+   */
+  title: PropTypes.string.isRequired,
+  /**
+   * Type of message to be displayed
+   * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
+   */
+  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
+};
+
+const defaultProps = {
+  children: null,
+  type: 'default',
+};
+
 /**
  * Used to communicate an important and usually time-sensitive message to the user.
  *
  * ---
  */
 
-const Alert = (
-  {
-    children,
-    className,
-    icon,
-    onDismiss,
-    type,
-    title,
-  }
-) => {
+function Alert({
+  children,
+  className,
+  icon,
+  onDismiss,
+  type,
+  title,
+}) {
   const classes = classNames('alert', {
     [`alert-${type}`]: type,
   }, className);
@@ -67,39 +99,9 @@ const Alert = (
       {dismissMarkup}
     </Block>
   );
-};
+}
 
-Alert.defaultProps = {
-  type: 'default',
-};
-
-Alert.propTypes = {
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Elements to be rendered as children of this component
-   */
-  children: PropTypes.node,
-  /**
-   * An `<Icon>` component to be rendered instead of the default icon.
-   * See the [Icon component documentation](/#/Components/Icon) for available components
-   */
-  icon: PropTypes.string,
-  /**
-   * The header of the alert
-   */
-  title: PropTypes.string,
-  /**
-   * Type of message to be displayed
-   * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
-   */
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
-  /**
-   * Callback when alert is dismissed
-   */
-  onDismiss: PropTypes.func,
-};
+Alert.propTypes = propTypes;
+Alert.defaultProps = defaultProps;
 
 export default Alert;

@@ -14,6 +14,30 @@ import './Frame.scss';
 export const APP_FRAME_MAIN = 'AppFrameMain';
 const APP_FRAME_NAV = 'AppFrameNav';
 
+const propTypes = {
+  /**
+  * Contents of the frame
+  */
+  children: PropTypes.node,
+  /**
+   * Component that will be rendered in the left sidebar of an application frame
+   */
+  navigation: PropTypes.node.isRequired,
+  /**
+   * A callback function that is called when the navigation is toggled
+   */
+  onNavigationToggle: PropTypes.func,
+  /**
+   * Title text that appears in header and MainMenu
+   */
+  title: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+  children: null,
+  onNavigationToggle: () => {}
+};
+
 /**
  * The frame component provides UI structure for iStreamPlanet applications.
  * * It wraps [main navigation](/#/Components/MainMenu) and main content
@@ -210,23 +234,7 @@ export class Frame extends React.PureComponent {
   }
 }
 
-Frame.propTypes = {
-  /**
-   * Component that will be rendered in the left sidebar of an application frame
-   */
-  navigation: PropTypes.node.isRequired,
-  /**
-   * A callback function that is called when the navigation is toggled
-   */
-  onNavigationToggle: PropTypes.func,
-  /**
-  * Contents of the frame
-  */
-  children: PropTypes.node,
-  /**
-   * Title text that appears in header and MainMenu
-   */
-  title: PropTypes.string.isRequired,
-};
+Frame.propTypes = propTypes;
+Frame.defaultProps = defaultProps;
 
 export default Frame;

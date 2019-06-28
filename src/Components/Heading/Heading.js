@@ -28,6 +28,46 @@ export const parseElement = (element) => {
   return element;
 };
 
+const propTypes = {
+  /**
+   * Contents of the heading
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Semantic heading level, can passed as int or string
+   * @type {PropTypes.Requireable<ElementSizeLike>}
+   */
+  element: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']).isRequired,
+  /**
+   * should the font size be reduced for smaller viewports
+   */
+  responsive: PropTypes.bool,
+  /**
+   * appearance level, can passed as int or string
+   * @type {PropTypes.Requireable<ElementSizeLike>}
+   */
+  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
+  /**
+   * text alignment
+   * @type {PropTypes.Requireable<TextAlign>}
+   */
+  textAlign: textAlignType,
+  /**
+   * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
+   */
+  truncate: PropTypes.bool,
+};
+
+const defaultProps = {
+  element: 2,
+  responsive: true,
+  textAlign: 'left',
+};
+
 /**
  * Headings are labels for sections or areas that make up an interface.
  * They can label an entire page, or sections of related content.
@@ -42,17 +82,15 @@ export const parseElement = (element) => {
  * ---
  */
 
-const Heading = (
-  {
-    children,
-    className,
-    element,
-    responsive,
-    textAlign,
-    truncate,
-    size,
-  }
-) => {
+function Heading({
+  children,
+  className,
+  element,
+  responsive,
+  textAlign,
+  truncate,
+  size,
+}) {
   const parsedElement = parseElement(element);
   const Element = `h${parsedElement}`;
 
@@ -69,49 +107,9 @@ const Heading = (
       {children}
     </Element>
   );
-};
+}
 
-Heading.defaultProps = {
-  element: 2,
-  responsive: true,
-  textAlign: 'left',
-};
-
-/**
- * @typedef {(1|2|3|4|5|6|"1"|"2"|"3"|"4"|"5"|"6")} ElementSizeLike
- */
-Heading.propTypes = {
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the heading
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Semantic heading level, can passed as int or string
-   * @type {PropTypes.Requireable<ElementSizeLike>}
-   */
-  element: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']).isRequired,
-  /**
-   * should the font size be reduced for smaller viewports
-   */
-  responsive: PropTypes.bool,
-  /**
-   * text alignment
-   * @type {PropTypes.Requireable<TextAlign>}
-   */
-  textAlign: textAlignType,
-  /**
-   * Restrict the heading text to a single line and truncate with ellipsis if it is too long to all fit.
-   */
-  truncate: PropTypes.bool,
-  /**
-   * appearance level, can passed as int or string
-   * @type {PropTypes.Requireable<ElementSizeLike>}
-   */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
-};
+Heading.propTypes = propTypes;
+Heading.defaultProps = defaultProps;
 
 export default Heading;

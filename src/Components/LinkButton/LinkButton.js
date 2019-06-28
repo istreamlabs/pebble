@@ -9,6 +9,72 @@ import Link from '../Link/Link';
 
 import '../Button/Button.scss';
 
+const propTypes = {
+  /**
+   * Visually hidden text for screen readers
+   */
+  accessibilityLabel: PropTypes.string,
+  /**
+   * A unique identifier for the Link
+   */
+  id: PropTypes.string,
+  /**
+   * Contents of the button
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Additional ClassNames to add to button
+   */
+  className: PropTypes.string,
+  /**
+   * Indicate pressing the button will perform a destructive action
+   */
+  danger: PropTypes.bool,
+  /**
+   * Disables the button, making it inoperable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Button takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Partial or full url the Link goes to
+   */
+  href: PropTypes.string,
+  /**
+   * The name of the [icon](/#/Components/Icon) to add inside the button
+   */
+  icon: PropTypes.string,
+  /**
+   * Boolean for placing the icon to the right of the button text
+   */
+  iconAfterText: boolRequiresOtherProp('icon'),
+  /**
+   * Make the button have more visual weight to identify the primary call to action
+   */
+  primary: PropTypes.bool,
+  /**
+   * Changes the size of the button, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Specify the tabIndex of the button
+   */
+  tabIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  children: null,
+  danger: false,
+  disabled: false,
+  fullWidth: false,
+  primary: false,
+  size: 'medium',
+  tabIndex: 0,
+};
+
 /**
  * A LinkButton is a hyperlink that looks like a button.
  * It applies the same styles from [Button](/#/Components/Button) to a [Link](/#/Components/Link) component.
@@ -16,24 +82,22 @@ import '../Button/Button.scss';
  * ---
  */
 
-const LinkButton = (
-  {
-    id,
-    children,
-    className,
-    disabled,
-    href,
-    size,
-    primary,
-    danger,
-    fullWidth,
-    icon,
-    iconAfterText,
-    tabIndex,
-    accessibilityLabel,
-    ...rest,
-  }
-) => {
+function LinkButton({
+  id,
+  children,
+  className,
+  disabled,
+  href,
+  size,
+  primary,
+  danger,
+  fullWidth,
+  icon,
+  iconAfterText,
+  tabIndex,
+  accessibilityLabel,
+  ...rest
+}) {
   const classes = classNames('btn', className, {
     'btn-lg': caseInsensitiveStringCompare(size, 'large'),
     'btn-sm': caseInsensitiveStringCompare(size, 'small'),
@@ -92,66 +156,9 @@ const LinkButton = (
       {content}
     </Link>
   );
-};
+}
 
-LinkButton.defaultProps = {
-  size: 'medium',
-};
-
-LinkButton.propTypes = {
-  /**
-   * A unique identifier for the Link
-   */
-  id: PropTypes.string,
-  /**
-   * Additional ClassNames to add to button
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the button
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Disables the button, making it inoperable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Partial or full url the Link goes to
-   */
-  href: PropTypes.string,
-  /**
-   * The name of the [icon](/#/Components/Icon) to add inside the button
-   */
-  icon: PropTypes.string,
-  /**
-   * Boolean for placing the icon to the right of the button text
-   */
-  iconAfterText: boolRequiresOtherProp('icon'),
-  /**
-   * Changes the size of the button, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Make the button have more visual weight to identify the primary call to action
-   */
-  primary: PropTypes.bool,
-  /**
-   * Indicate pressing the button will perform a destructive action
-   */
-  danger: PropTypes.bool,
-  /**
-   * Button takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * Specify the tabIndex of the button
-   */
-  tabIndex: PropTypes.number,
-  /**
-   * Visually hidden text for screen readers
-   */
-  accessibilityLabel: PropTypes.string,
-};
+LinkButton.propTypes = propTypes;
+LinkButton.defaultProps = defaultProps;
 
 export default LinkButton;

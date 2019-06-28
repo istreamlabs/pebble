@@ -20,6 +20,36 @@ export const parseSize = (size) => {
 
 const viewBoxSize = 16;
 
+const propTypes = {
+  /**
+   * keeps the svg markup from being read aloud by assistive technologies
+   */
+  ariaHidden: PropTypes.bool,
+  /**
+   * descriptive text that will not be displayed but will provide context to assistive technologies
+   */
+  accessibilityLabel: PropTypes.string,
+  /**
+   * Additional classNames to add to the icon
+   */
+  className: PropTypes.string,
+  /**
+   * The name of the icon to display
+   * @type {PropTypes.Requireable<keyof icons>}
+   */
+  name: PropTypes.string.isRequired,
+  /**
+   * Changes the size of the icon, passed as a string or int
+   * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
+   */
+  size: PropTypes.oneOf([10, 12, 16, 20, 24, 32, 48, 56, 64, '10', '12', '16', '20', '24', '32', '48', '56', '64']),
+};
+
+const defaultProps = {
+  ariaHidden: true,
+  size: 16,
+};
+
 /**
  * Icons provide visual context and enhance usability.
  * Be mindful that not everyone is able to see icons.
@@ -30,21 +60,20 @@ const viewBoxSize = 16;
  *
  * @example ./IconExamples.md
  */
-const Icon = (props) => {
-  const {
-    size,
-    ariaHidden,
-    accessibilityLabel,
-    className
-  } = props;
-
-  let { name } = props;
+function Icon({
+  size,
+  ariaHidden,
+  accessibilityLabel,
+  className,
+  name,
+}) {
+  let iconName = name;
   /* istanbul ignore next */
-  name = ((typeof name) === 'string' ? name : '').toLowerCase();
+  iconName = ((typeof iconName) === 'string' ? iconName : '').toLowerCase();
 
   const parsedSize = parseSize(size);
 
-  let iconElements = icons[name];
+  let iconElements = icons[iconName];
   let iconFound = true;
 
   if (!iconElements) {
@@ -58,7 +87,7 @@ const Icon = (props) => {
       aria-hidden={ariaHidden}
       className={classNames('icon', {
         'not-found': !iconFound,
-        'animate spin infinite': (name === 'spinner')
+        'animate spin infinite': (iconName === 'spinner')
       }, className)}
       viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       height={`${parsedSize}px`}
@@ -69,37 +98,9 @@ const Icon = (props) => {
       {iconElements}
     </svg>
   );
-};
+}
 
-Icon.defaultProps = {
-  size: 16,
-  ariaHidden: true
-};
-
-Icon.propTypes = {
-  /**
-   * Additional classNames to add to the icon
-   */
-  className: PropTypes.string,
-  /**
-   * Changes the size of the icon, passed as a string or int
-   * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
-   */
-  size: PropTypes.oneOf([10, 12, 16, 20, 24, 32, 48, 56, 64, '10', '12', '16', '20', '24', '32', '48', '56', '64']),
-  /**
-   * keeps the svg markup from being read aloud by assistive technologies
-   */
-  ariaHidden: PropTypes.bool,
-  /**
-   * descriptive text that will not be displayed but will provide context to assistive technologies
-   */
-  accessibilityLabel: PropTypes.string,
-  /**
-   * The name of the icon to display
-   * @type {PropTypes.Requireable<keyof icons>}
-   */
-  name: PropTypes.string
-};
-
+Icon.propTypes = propTypes;
+Icon.defaultProps = defaultProps;
 
 export default Icon;

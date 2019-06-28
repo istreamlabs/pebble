@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import './Checkbox.scss';
 
 import Icon from '../../Icon/Icon';
-
-import './Checkbox.scss';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
   /**
@@ -12,29 +11,17 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Sets aria-label attribute.
-   */
-  ariaLabel: PropTypes.string,
-  /**
-   * Sets aria-labelledby attribute.
-   */
-  ariaLabelledby: PropTypes.string,
-  /**
    * If the input should be disabled and not focusable
    */
   disabled: PropTypes.bool,
   /**
-   * If the value of the input can be read, but not changed
+   * The id attribute of the input
    */
-  isReadOnly: PropTypes.bool,
+  id: PropTypes.string.isRequired,
   /**
    * Applies styling to indicate the input is invalid
    */
   isInvalid: PropTypes.bool,
-  /**
-   * The id attribute of the input
-   */
-  id: PropTypes.string.isRequired,
   /**
    * Set the checkbox as selected
    */
@@ -44,13 +31,20 @@ const propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * Make the checkbox look like a toggle switch
+   */
+  toggle: PropTypes.bool,
+  /**
    * The value of the input
    */
   value: PropTypes.string,
-  /**
-   * Make the checkbox look like a toggle switch
-   */
-  toggle: PropTypes.bool
+};
+
+const defaultProps = {
+  isInvalid: false,
+  isSelected: false,
+  onChange: undefined,
+  toggle: false,
 };
 
 function Checkbox({
@@ -116,5 +110,6 @@ Checkbox.defaultPros = {
 };
 
 Checkbox.propTypes = propTypes;
+Checkbox.defaultProps = defaultProps;
 
 export default Checkbox;

@@ -9,17 +9,13 @@ import FormLayoutRow from './Components/FormLayoutRow';
 
 const propTypes = {
   /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
    * Content to display inside the form
    */
   children: PropTypes.node,
   /**
-   * Decrease the spacing between inputs
+   * Additional classNames to add
    */
-  tight: PropTypes.bool,
+  className: PropTypes.string,
   /**
    * Orientation to layout children
    *
@@ -31,6 +27,10 @@ const propTypes = {
     PropTypes.array,
   ]),
   /**
+   * Decrease the spacing between inputs
+   */
+  tight: PropTypes.bool,
+  /**
    * A valid css width (%, px, em, rem).
    *
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
@@ -40,43 +40,42 @@ const propTypes = {
   width: dimensionType,
 };
 
-/**
- * Arranges input fields within a [Form](/#/Components/Form) with standard spacing.
- *
- */
-class FormLayout extends React.Component {
-  render() {
-    const {
-      children,
-      className,
-      direction,
-      tight,
-      ...rest
-    } = this.props;
-
-    return (
-      <Block
-        direction={direction}
-        itemSpacing={tight ? 3 : 5}
-        className={classNames(className)}
-        {...rest}
-      >
-        {React.Children.map(children, (child) => {
-          if (child.type === FormLayoutRow) {
-            return React.cloneElement(child, { tight });
-          }
-          return child;
-        })}
-      </Block>
-    );
-  }
-}
-
-FormLayout.defaultProps = {
+const defaultProps = {
+  children: null,
+  tight: false,
   direction: 'column',
   width: '100',
 };
 
+/**
+ * Arranges input fields within a [Form](/#/Components/Form) with standard spacing.
+ *
+ */
+function FormLayout({
+  children,
+  className,
+  direction,
+  tight,
+  ...rest
+}) {
+  return (
+    <Block
+      direction={direction}
+      itemSpacing={tight ? 3 : 5}
+      className={classNames(className)}
+      {...rest}
+    >
+      {React.Children.map(children, (child) => {
+        if (child.type === FormLayoutRow) {
+          return React.cloneElement(child, { tight });
+        }
+        return child;
+      })}
+    </Block>
+  );
+}
+
 FormLayout.propTypes = propTypes;
+FormLayout.defaultProps = defaultProps;
 
 export default FormLayout;

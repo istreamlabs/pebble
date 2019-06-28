@@ -8,118 +8,7 @@ import Icon from '../Icon/Icon';
 
 import './Button.scss';
 
-/**
- * Buttons are used as triggers for actions. They are used in forms,
- * toolbars, modal dialogs and as stand-alone action triggers. Actions
- * almost always occur on the same page.
- *
- * ---
- */
-
-// see https://github.com/yannickcr/eslint-plugin-react/issues/1555
-// eslint-disable-next-line react/button-has-type
-const Button = React.forwardRef((props, ref) => {
-  const {
-    id,
-    children,
-    className,
-    size,
-    primary,
-    danger,
-    plain,
-    fullWidth,
-    icon,
-    iconAfterText,
-    onClick,
-    onFocus,
-    onBlur,
-    disabled,
-    tabIndex,
-    loading,
-    type,
-    accessibilityLabel,
-    ariaControls,
-    ariaExpanded,
-    ariaPressed,
-    ...otherProps
-  } = props;
-
-  const isDisabled = loading || disabled;
-
-  const classes = classNames('btn', className, {
-    'btn-loading': loading,
-    'btn-lg': caseInsensitiveStringCompare(size, 'large'),
-    'btn-sm': caseInsensitiveStringCompare(size, 'small'),
-    'btn-primary': primary,
-    'btn-danger': danger,
-    'btn-plain': plain,
-    'w-100': fullWidth,
-  });
-
-  const spinnerSVGMarkup = loading ? (
-    <Icon name="spinner" className="btn-loading-spinner" />
-  ) : null;
-
-  const iconElement = function (name) {
-    const iconSize = caseInsensitiveStringCompare(size, 'large') ? 20 : 16;
-
-    return (
-      <Icon name={name} size={iconSize} className="btn-icon" />
-    );
-  };
-
-  const leftIcon = !iconAfterText && icon && iconElement(icon);
-  const rightIcon = icon && iconAfterText && iconElement(icon);
-
-  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
-    'justify-center': fullWidth,
-  });
-
-  const content = (
-    <div className={contentClasses}>
-      {spinnerSVGMarkup}
-      {leftIcon}
-      {children && <span className="btn-label">{children}</span>}
-      {rightIcon}
-    </div>
-  );
-
-  return (
-    /* eslint-disable react/button-has-type */
-    <button
-      disabled={isDisabled}
-      id={id}
-      type={type}
-      className={classes}
-      onClick={onClick}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      tabIndex={tabIndex}
-      aria-label={accessibilityLabel}
-      aria-controls={ariaControls}
-      aria-expanded={ariaExpanded}
-      aria-pressed={ariaPressed}
-      aria-busy={loading ? true : undefined}
-      ref={ref}
-      {...otherProps}
-    >
-      {content}
-    </button>
-    /* eslint-enable react/button-has-type */
-  );
-});
-
-Button.defaultProps = {
-  type: 'button',
-  size: 'medium',
-  disabled: false,
-};
-
-Button.propTypes = {
-  /**
-   * A button can show it is currently the active user selection
-   */
-  active: PropTypes.bool,
+const propTypes = {
   /**
    * Optional prop to specify the type of the Button
    * @see see [W3C](https://www.w3.org/TR/2011/WD-html5-20110525/the-button-element.html)
@@ -208,5 +97,127 @@ Button.propTypes = {
    */
   onBlur: PropTypes.func,
 };
+
+
+const defaultProps = {
+  ariaExpanded: false,
+  ariaPressed: false,
+  children: null,
+  danger: false,
+  disabled: false,
+  fullWidth: false,
+  loading: false,
+  onClick: undefined,
+  onBlur: undefined,
+  onFocus: undefined,
+  plain: false,
+  primary: false,
+  tabIndex: 0,
+  type: 'button',
+};
+
+/**
+ * Buttons are used as triggers for actions. They are used in forms,
+ * toolbars, modal dialogs and as stand-alone action triggers. Actions
+ * almost always occur on the same page.
+ *
+ * ---
+ */
+
+// see https://github.com/yannickcr/eslint-plugin-react/issues/1555
+// eslint-disable-next-line react/button-has-type
+const Button = React.forwardRef((props, ref) => {
+  const {
+    id,
+    children,
+    className,
+    danger,
+    disabled,
+    fullWidth,
+    icon,
+    iconAfterText,
+    onClick,
+    onFocus,
+    onBlur,
+    loading,
+    plain,
+    primary,
+    size,
+    tabIndex,
+    type,
+    accessibilityLabel,
+    ariaControls,
+    ariaExpanded,
+    ariaPressed,
+    ...otherProps
+  } = props;
+
+  const isDisabled = loading || disabled;
+
+  const classes = classNames('btn', className, {
+    'btn-loading': loading,
+    'btn-lg': caseInsensitiveStringCompare(size, 'large'),
+    'btn-sm': caseInsensitiveStringCompare(size, 'small'),
+    'btn-primary': primary,
+    'btn-danger': danger,
+    'btn-plain': plain,
+    'w-100': fullWidth,
+  });
+
+  const spinnerSVGMarkup = loading ? (
+    <Icon name="spinner" className="btn-loading-spinner" />
+  ) : null;
+
+  const iconElement = function (name) {
+    const iconSize = caseInsensitiveStringCompare(size, 'large') ? 20 : 16;
+
+    return (
+      <Icon name={name} size={iconSize} className="btn-icon" />
+    );
+  };
+
+  const leftIcon = !iconAfterText && icon && iconElement(icon);
+  const rightIcon = icon && iconAfterText && iconElement(icon);
+
+  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
+    'justify-center': fullWidth,
+  });
+
+  const content = (
+    <div className={contentClasses}>
+      {spinnerSVGMarkup}
+      {leftIcon}
+      {children && <span className="btn-label">{children}</span>}
+      {rightIcon}
+    </div>
+  );
+
+  return (
+    /* eslint-disable react/button-has-type */
+    <button
+      disabled={isDisabled}
+      id={id}
+      type={type}
+      className={classes}
+      onClick={onClick}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      tabIndex={tabIndex}
+      aria-label={accessibilityLabel}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
+      aria-pressed={ariaPressed}
+      aria-busy={loading ? true : undefined}
+      ref={ref}
+      {...otherProps}
+    >
+      {content}
+    </button>
+    /* eslint-enable react/button-has-type */
+  );
+});
+
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default Button;

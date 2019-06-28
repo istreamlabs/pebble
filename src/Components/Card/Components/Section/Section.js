@@ -4,6 +4,25 @@ import classNames from 'classnames';
 
 import '../../Card.scss';
 
+const propTypes = {
+  /**
+   * Additional ClassNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Contents of the button
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Make the section less visually prominent
+   */
+  subdued: PropTypes.bool,
+};
+
+const defaultProps = {
+  children: null,
+  subdued: false,
+};
 
 const Section = (
   {
@@ -23,19 +42,7 @@ const Section = (
   );
 };
 
-Section.propTypes = {
-  /**
-   * Additional ClassNames to add to button
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the button
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * Make the section less visually prominent
-   */
-  subdued: PropTypes.bool,
-};
+Section.propTypes = propTypes;
+Section.defaultProps = defaultProps;
 
 export default Section;

@@ -69,14 +69,9 @@ const propTypes = {
    */
   hideLabel: PropTypes.bool,
   /**
-   * Text to display if the input is invalid.
-   * The text should explain why the input is invalid.
-   */
-  validationText: PropTypes.string,
-  /**
    * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
    */
-  spellCheck: PropTypes.bool,
+  ignoreSpellCheck: PropTypes.bool,
   /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
@@ -102,6 +97,11 @@ const propTypes = {
    */
   suffix: PropTypes.string,
   /**
+   * Text to display if the input is invalid.
+   * The text should explain why the input is invalid.
+   */
+  validationText: PropTypes.string,
+  /**
    * A valid css width (%, px, em, rem).
    *
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
@@ -116,9 +116,14 @@ const defaultProps = {
   disabled: false,
   isInvalid: false,
   hideLabel: false,
+  ignoreSpellCheck: false,
   isReadOnly: false,
+  onBlur: undefined,
+  onChange: undefined,
+  onFocus: undefined,
   size: 'medium',
-  type: 'text'
+  type: 'text',
+  width: '100'
 };
 
 /**
@@ -127,7 +132,7 @@ const defaultProps = {
  * ---
  */
 
-class FieldText extends React.Component {
+class FieldText extends React.PureComponent {
   getLabel() {
     const {
       isInvalid, disabled, id, hideLabel, label
@@ -161,11 +166,10 @@ class FieldText extends React.Component {
   getHelpTextMarkup() {
     const { helpText } = this.props;
 
-    if (helpText === undefined) return;
-
-    return (
-      <Text size="6" className="field-text-help mt-2">{helpText}</Text>
-    );
+    if (helpText) {
+      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+    }
+    return null;
   }
 
   renderChildren() {
@@ -173,12 +177,13 @@ class FieldText extends React.Component {
       className,
       hideLabel,
       label,
+      ignoreSpellCheck,
       ...rest
     } = this.props;
 
     const ariaLabelValue = hideLabel ? label : '';
 
-    const shouldSpellCheck = rest.type === 'text';
+    const shouldSpellCheck = !ignoreSpellCheck;
 
     return (
       <Input

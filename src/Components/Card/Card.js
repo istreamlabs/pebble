@@ -1,10 +1,44 @@
-import React from 'react';
+import './Card.scss';
+
+import { Header, Section } from './Components';
+
 import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
 import { requiresOtherProp } from '../../Types';
 
-import { Header, Section } from './Components';
-import './Card.scss';
+const propTypes = {
+  /**
+   * Contents of the Card
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Additional ClassNames to add to button
+   */
+  className: PropTypes.string,
+  /**
+   * button(s) to be displayed in the upper right of the Card. A title must be provided in order to display headerActions.
+   */
+  headerActions: requiresOtherProp('title'),
+  /**
+   * Make the card less visually prominent
+   */
+  muted: PropTypes.bool,
+  /**
+   * Auto-wrap children in a padded section
+   */
+  sectioned: PropTypes.bool,
+  /**
+   * Title content of the card
+   */
+  title: PropTypes.string,
+};
+
+const defaultProps = {
+  children: null,
+  sectioned: false,
+  muted: false,
+};
 
 /**
  * Cards are used to display content related to single subject,
@@ -15,16 +49,14 @@ import './Card.scss';
  * ---
  */
 
-const Card = (
-  {
-    children,
-    className,
-    headerActions,
-    sectioned,
-    muted,
-    title,
-  }
-) => {
+function Card({
+  children,
+  className,
+  headerActions,
+  sectioned,
+  muted,
+  title,
+}) {
   const classes = classNames('card', className, {
     muted,
   });
@@ -48,33 +80,9 @@ const Card = (
       {content}
     </div>
   );
-};
+}
 
-Card.propTypes = {
-  /**
-   * Additional ClassNames to add to button
-   */
-  className: PropTypes.string,
-  /**
-   * Contents of the Card
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * button(s) to be displayed in the upper right of the Card. A title must be provided in order to display headerActions.
-   */
-  headerActions: requiresOtherProp('title'),
-  /**
-   * Title content of the card
-   */
-  title: PropTypes.string,
-  /**
-   * Auto-wrap children in a padded section
-   */
-  sectioned: PropTypes.bool,
-  /**
-   * Make the card less visually prominent
-   */
-  muted: PropTypes.bool,
-};
+Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
 
 export default Card;

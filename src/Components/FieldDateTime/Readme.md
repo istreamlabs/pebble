@@ -84,7 +84,6 @@ function FieldDateTimeLocal() {
     <FieldDateTime
       selectLocalDateTime
       id="localDateTime"
-      timeFormat="HH:mm"
       label="Date and Time"
       value={selectedDate}
       onChange={handleChange}
@@ -116,7 +115,6 @@ function FieldDateTimeExample() {
     <>
       <FieldDateTime
         id="future"
-        timeFormat="HH:mm"
         label="Exclude past days"
         helpText="Set a minDate to allow selection of days going forward"
         placeholderText="Select a date in the future"
@@ -128,7 +126,6 @@ function FieldDateTimeExample() {
 
       <FieldDateTime
         id="past"
-        timeFormat="HH:mm"
         label="Exclude future days"
         placeholderText="Select a date in the past"
         helpText="Set a maxDate to allow selection of previous days"
@@ -164,14 +161,12 @@ function PortalExample() {
       <FieldDateTime
         withPortal
         id="portal"
-        timeFormat="HH:mm"
         label="With Portal"
         value={selectedDate}
         onChange={handleChange}
       />
       <FieldDateTime
         id="withoutPortal"
-        timeFormat="HH:mm"
         label="Without Portal"
         value={selectedDate}
         onChange={handleChange}

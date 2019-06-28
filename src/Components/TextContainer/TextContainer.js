@@ -6,36 +6,7 @@ import { fontSizeType } from '../../Types';
 
 import './TextContainer.scss';
 
-/**
- * The TextContainer wraps text elements such as [Headings](/#/Components/Heading),
- * paragraphs and lists to apply the proper vertical
- * spacing between them. This vertical spacing is
- * known as "vertical rhythm".
- */
-
-const TextContainer = (
-  {
-    children,
-    className,
-    tight,
-    size,
-  }
-) => {
-  const parsedSize = size ? parseTextSize(size) : null;
-
-  const classes = classNames('text-container', {
-    [`fs-${parsedSize}`]: parsedSize,
-    'text-container-tight': tight
-  }, className);
-
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
-};
-
-TextContainer.propTypes = {
+const propTypes = {
   /**
    * Additional classNames to add
    */
@@ -54,5 +25,40 @@ TextContainer.propTypes = {
    */
   tight: PropTypes.bool,
 };
+
+const defaultProps = {
+  size: 5,
+  tight: false,
+};
+
+/**
+ * The TextContainer wraps text elements such as [Headings](/#/Components/Heading),
+ * paragraphs and lists to apply the proper vertical
+ * spacing between them. This vertical spacing is
+ * known as "vertical rhythm".
+ */
+
+function TextContainer({
+  children,
+  className,
+  tight,
+  size,
+}) {
+  const parsedSize = size ? parseTextSize(size) : null;
+
+  const classes = classNames('text-container', {
+    [`fs-${parsedSize}`]: parsedSize,
+    'text-container-tight': tight
+  }, className);
+
+  return (
+    <div className={classes}>
+      {children}
+    </div>
+  );
+}
+
+TextContainer.propTypes = propTypes;
+TextContainer.defaultProps = defaultProps;
 
 export default TextContainer;

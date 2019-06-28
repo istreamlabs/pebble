@@ -1,24 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import PropTypes from 'prop-types';
 import Block from '../Block/Block';
 import Radio from './Components/Radio';
 import Text from '../Text/Text';
 
 const propTypes = {
   /**
-   * Name attribute applied to all radios
+   * Additional classes to add
    */
-  name: PropTypes.string,
+  className: PropTypes.string,
   /**
    * Additional hint displayed beneath the label
    */
   helpText: PropTypes.node,
   /**
-   * The label for the group of radios
+   * Name attribute applied to all radios
    */
-  title: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  /**
+   * Callback function when a radio is changed
+   */
+  onChange: PropTypes.func,
   /**
    * Radio options
    */
@@ -28,19 +31,19 @@ const propTypes = {
     helpText: PropTypes.node,
     value: PropTypes.string.isRequired,
     disabled: PropTypes.bool
-  })),
+  })).isRequired,
+  /**
+   * The label for the group of radios
+   */
+  title: PropTypes.string,
   /**
    * Currently selected option value
    */
   value: PropTypes.string,
-  /**
-   * Additional classes to add
-   */
-  className: PropTypes.string,
-  /**
-   * Callback function when a radio is changed
-   */
-  onChange: PropTypes.func,
+};
+
+const defaultProps = {
+  onChange: undefined,
 };
 
 /**
@@ -60,7 +63,7 @@ function FieldRadioGroup({
 }) {
   // set the selected radio button or the first one
   const getRadioItems = () => {
-    if (radios) {
+    if (radios && radios.length > 0) {
       const selected = value === '' || value === undefined
         ? radios[0].value
         : radios[radios.findIndex(radio => radio.value === value)].value;
@@ -73,7 +76,7 @@ function FieldRadioGroup({
   };
 
   const radioMarkup = (radios) => {
-    if (radios) {
+    if (radios && radios.length > 0) {
       return radios.map(radio => (
         <Radio
           disabled={radio.disabled}
@@ -115,5 +118,6 @@ function FieldRadioGroup({
 }
 
 FieldRadioGroup.propTypes = propTypes;
+FieldRadioGroup.defaultProps = defaultProps;
 
 export default FieldRadioGroup;

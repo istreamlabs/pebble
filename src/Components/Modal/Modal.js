@@ -29,26 +29,75 @@ const ICON_COLOR_MAP = {
   danger: 'red',
 };
 
+const propTypes = {
+  /**
+   * Elements to be rendered as children of this component
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * A button, or an array of buttons. If an array, the nodes render right to left.
+   */
+  footer: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  /**
+   * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
+   */
+  icon: requiresOtherProp('title'),
+  /**
+   * increase the height and width of the modal
+   */
+  large: PropTypes.bool,
+  /**
+   * Controls whether the modal is showing or not
+   */
+  showing: PropTypes.bool.isRequired,
+  /**
+   * When open, take up the entire screen on a mobile device
+   */
+  mobileFullScreen: PropTypes.bool,
+  /**
+   * callback function when modal is closed
+   * the `escape` key is also automatically assigned this callback when the modal is showing
+   */
+  onRequestClose: PropTypes.func,
+  /**
+   * optional title of the modal. If set, a header will be added to the dialog
+   */
+  title: PropTypes.string,
+  /**
+   * Type of message to be displayed
+   * @type {PropTypes.Requireable<AppearanceType>}
+   */
+  type: PropTypes.oneOf(['default', 'warn', 'danger']),
+};
+
+const defaultProps = {
+  mobileFullScreen: false,
+  onRequestClose: undefined,
+  type: 'default'
+};
+
 /**
  * A modal, sometimes referred to as a "dialog", is used to display information that requires the user's immediate attention or response.
  *
  * ---
  */
 
-const Modal = (
-  {
-    children,
-    className,
-    footer,
-    icon,
-    large,
-    mobileFullScreen,
-    showing,
-    onRequestClose,
-    title,
-    type,
-  }
-) => {
+function Modal({
+  children,
+  className,
+  footer,
+  icon,
+  large,
+  mobileFullScreen,
+  showing,
+  onRequestClose,
+  title,
+  type,
+}) {
   useLockBodyScroll(showing);
   useKeyBoardEvent('Escape', onRequestClose);
 
@@ -170,55 +219,9 @@ const Modal = (
       </FocusTrap>
     </Overlay>
   );
-};
+}
 
-Modal.defaultProps = {
-  type: 'default'
-};
-
-Modal.propTypes = {
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * A button, or an array of buttons. If an array, the nodes render right to left.
-   */
-  footer: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
-  /**
-   * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
-   */
-  icon: requiresOtherProp('title'),
-  /**
-   * increase the height and width of the modal
-   */
-  large: PropTypes.bool,
-  /**
-   * Controls whether the modal is showing or not
-   */
-  showing: PropTypes.bool.isRequired,
-  /**
-   * When open, take up the entire screen on a mobile device
-   */
-  mobileFullScreen: PropTypes.bool,
-  /**
-   * optional title of the modal. If set, a header will be added to the dialog
-   */
-  title: PropTypes.string,
-  /**
-   * Type of message to be displayed
-   * @type {PropTypes.Requireable<AppearanceType>}
-   */
-  type: PropTypes.oneOf(['default', 'warn', 'danger']),
-  /**
-   * callback function when modal is closed
-   * the `escape` key is also automatically assigned this callback when the modal is showing
-   */
-  onRequestClose: PropTypes.func,
-  /**
-   * Elements to be rendered as children of this component
-   */
-  children: PropTypes.node.isRequired,
-};
+Modal.propTypes = propTypes;
+Modal.defaultProps = defaultProps;
 
 export default Modal;
