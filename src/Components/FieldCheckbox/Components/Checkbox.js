@@ -96,6 +96,7 @@ function Checkbox({
         type="checkbox"
         className={inputClasses}
         value={value}
+        style={{ width: '24px', height: '24px' }}
         {...rest}
       />
       {checkboxIconMarkup()}
