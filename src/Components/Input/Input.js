@@ -105,7 +105,7 @@ const propTypes = {
   /**
    * The value of the input
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * If defined, a clear button will be rendered and will call this function when pressed
    */
