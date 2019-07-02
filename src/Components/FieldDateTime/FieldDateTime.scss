@@ -9,7 +9,18 @@ $TIME_CONTAINER_WIDTH: 7rem;
 .FieldDateTime-icon {
   position: absolute;
   right: $spacing-2;
-  top: $spacing-2;
+
+  &.FieldDateTime-icon-s {
+    top: $spacing-1;
+  }
+
+  &.FieldDateTime-icon-m {
+   top: $spacing-2;
+  }
+
+  &.FieldDateTime-icon-l {
+    top: $spacing-4;
+  }
 }
 
 .FieldDateTime-input {

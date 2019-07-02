@@ -52,7 +52,6 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 .input-l {
-
   padding: $INPUT_PADDING_L;
   font-size: $INPUT_FONT_SIZE_L;
 }
@@ -70,8 +69,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .input-prefix {
   background: $neutral-200;
-  padding: $spacing-2;
-  height: 34px;
   border-top-left-radius: $border-radius-1;
   border-bottom-left-radius: $border-radius-1;
   border: $INPUT_BORDER;
@@ -88,8 +85,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .input-suffix {
   background: $neutral-200;
-  padding: $spacing-2;
-  height: 34px;
   border-top-right-radius: $border-radius-1;
   border-bottom-right-radius: $border-radius-1;
   border: $INPUT_BORDER;
