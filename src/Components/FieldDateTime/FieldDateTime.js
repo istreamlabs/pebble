@@ -190,6 +190,7 @@ class FieldDateTime extends React.PureComponent {
       disabled,
       excludeTime,
       selectLocalDateTime,
+      size,
       value,
     } = this.props;
     if (excludeTime) return;
@@ -197,22 +198,29 @@ class FieldDateTime extends React.PureComponent {
 
     const alternativeDateTimeClasses = classNames('FieldDateTime-alternativeDateTime',
       {
-        disabled
+        disabled,
+        'input-s': size === 'small',
+        'input-m': size === 'medium',
+        'input-l': size === 'large',
       });
+
+    const alternativeDateTimeLabelClasses = classNames('bl bb b-neutral-400 justify-end fw-700 fs-6 br0', {
+      'input-s w3': size === 'small',
+      'input-m w3': size === 'medium',
+      'input-l w4': size === 'large',
+    });
 
     // This is confusing but these methods modify the reference instead of returning a new value
     selectLocalDateTime ? momentValue.utc() : momentValue.local();
     return (
-      <Block height="34px">
+      <Block>
         <Block
           alignItems="center"
           background="neutral-200"
-          className="bl bb b-neutral-400 justify-end fw-700 fs-6 br0"
-          paddingHorizontal="2"
+          className={alternativeDateTimeLabelClasses}
           styles={{
             borderBottomLeftRadius: '.125rem',
           }}
-          width="60px"
         >
           {`${selectLocalDateTime ? 'UTC' : 'Local'}`}
         </Block>
@@ -220,8 +228,6 @@ class FieldDateTime extends React.PureComponent {
           background={disabled ? 'neutral-300' : 'neutral-200'}
           className={alternativeDateTimeClasses}
           flex
-          paddingVertical="2"
-          paddingHorizontal="3"
           styles={disabled ? { borderLeft: 0 } : null}
         >
           {`${momentValue.format(this.getDateFormat())}`}
@@ -283,8 +289,17 @@ class FieldDateTime extends React.PureComponent {
     });
 
     const iconClasses = classNames('FieldDateTime-icon', {
+      'FieldDateTime-icon-s': size === 'small',
+      'FieldDateTime-icon-m': size === 'medium',
+      'FieldDateTime-icon-l': size === 'large',
       'neutral-400': !isInvalid,
       red: isInvalid,
+    });
+
+    const prefixClasses = classNames('FieldDateTime-timezone input-prefix justify-end fw-700 fs-6', {
+      'input-s w3': size === 'small',
+      'input-m w3': size === 'medium',
+      'input-l w4': size === 'large',
     });
 
     // Because we are using an old version of the picker and we would
@@ -296,9 +311,8 @@ class FieldDateTime extends React.PureComponent {
         {this.renderLabel()}
         <Block width="100" className="relative">
           <Block
-            className="FieldDateTime-timezone input-prefix justify-end fw-700 fs-6"
+            className={prefixClasses}
             alignItems="center"
-            width="60px"
           >
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>

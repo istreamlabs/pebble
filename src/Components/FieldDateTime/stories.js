@@ -36,4 +36,11 @@ storiesOf('FieldDateTime', module)
   .add('Date Range', () => <FieldDateTimeExample minDate="2019-06-25T12:00:00.000Z" maxDate="2019-06-27T12:00:00.000Z" />)
   .add('Filter Dates (weekdays only)', () => <FieldDateTimeExample filterDate={filterDate} />)
   .add('with help text', () => <FieldDateTimeExample helpText="Some more information about this field" />)
-  .add('autoFocus', () => <FieldDateTimeExample autoFocus />);
+  .add('autoFocus', () => <FieldDateTimeExample autoFocus />)
+  .add('sizes', () => (
+    <>
+      <FieldDateTimeExample id="smallpicker" size="small" className="mb-5" />
+      <FieldDateTimeExample id="defaultPicker" className="mb-5" />
+      <FieldDateTimeExample id="largePicker" size="large" className="mb-7" />
+    </>
+  ));

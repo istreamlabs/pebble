@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
 import FieldText from './FieldText';
+import Icon from '../Icon/Icon';
 
 function FieldTextExample() {
   const [eventResult, setEventResult] = useState('');
@@ -186,6 +187,102 @@ function FieldTextExample() {
   );
 }
 
+function PrefixSuffixExample() {
+  const [prefixInput, setPrefixInput] = useState('');
+  const [suffixInput, setSuffixInput] = useState('');
+  const [prefixSuffixInput, setPrefixSuffixInput] = useState('istreamplanet');
+  const [iconInput, setIconInput] = useState('icon');
+
+  return (
+    <>
+      <FieldText
+        prefix="$"
+        label="With a prefix"
+        id="prefix-input"
+        value={prefixInput}
+        onChange={e => setPrefixInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        suffix=".99"
+        label="With a suffix"
+        id="suffix-input"
+        value={suffixInput}
+        onChange={e => setSuffixInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        size="small"
+        prefix="https://"
+        suffix=".com"
+        type="url"
+        label="With Prefix and Suffix"
+        id="suffix-input2"
+        value={prefixSuffixInput}
+        onChange={e => setPrefixSuffixInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        prefix="https://"
+        suffix=".com"
+        type="url"
+        label="With Prefix and Suffix"
+        id="suffix-input2"
+        value={prefixSuffixInput}
+        onChange={e => setPrefixSuffixInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        size="large"
+        prefix="https://"
+        suffix=".com"
+        type="url"
+        label="With Prefix and Suffix"
+        id="suffix-input2"
+        value={prefixSuffixInput}
+        onChange={e => setPrefixSuffixInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        size="small"
+        prefix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        suffix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        label="Small prefix icon"
+        id="small-prefix-icon-input"
+        value={iconInput}
+        onChange={e => setIconInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        prefix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        suffix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        label="Prefix icon"
+        id="prefix-icon-input"
+        value={iconInput}
+        onChange={e => setIconInput(e.target.value)}
+        className="mb-5"
+      />
+
+      <FieldText
+        size="large"
+        prefix={<Icon name="calendar" size="20" accessibilityLabel="calendar" />}
+        suffix={<Icon name="calendar" size="20" accessibilityLabel="calendar" />}
+        label="Large prefix icon"
+        id="large-prefix-icon-input"
+        value={iconInput}
+        onChange={e => setIconInput(e.target.value)}
+        className="mb-5"
+      />
+    </>
+  );
+}
+
 storiesOf('FieldText', module)
   .add('all', () => (
     <>
@@ -246,4 +343,7 @@ storiesOf('FieldText', module)
         className="mb-5"
       />
     </>
+  ))
+  .add('prefix and suffix', () => (
+    <PrefixSuffixExample />
   ));
