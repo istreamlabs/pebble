@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import FieldDateTime from './FieldDateTime';
+import Block from '../Block/Block';
 import Label from '../Label/Label';
 import Text from '../Text/Text';
 import moment from 'moment';
@@ -252,6 +253,17 @@ describe('FieldDateTime', () => {
       expect(result.contains('UTC')).toBeTruthy();
       expect(instance.getDateFormat).toHaveBeenCalled();
       expect(result.contains(momentDate.utc().format('YYYY-MM-DD HH:mm'))).toBeTruthy();
+    });
+
+    it('renders grayed background when disabled', () => {
+      const instance = new FieldDateTime({
+        ...requiredProps,
+        value: '1986-09-02T01:01:01.000Z',
+        disabled: true,
+      });
+
+      const result = shallow(instance.renderAlternativeDateTimeDisplay());
+      expect(result.find(Block).at(1).prop('styles')).toMatchObject({ borderLeft: 0 });
     });
   });
 
