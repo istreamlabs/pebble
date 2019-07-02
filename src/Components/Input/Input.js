@@ -193,10 +193,18 @@ class Input extends React.PureComponent {
   };
 
   getPrefixMarkup() {
-    const { prefix } = this.props;
-    if (prefix !== undefined) {
+    const { prefix, size } = this.props;
+
+    const classes = classNames('input-prefix',
+      {
+        'input-s': size === 'small',
+        'input-m': size === 'medium',
+        'input-l': size === 'large',
+      });
+
+    if (prefix) {
       return (
-        <div className="input-prefix">
+        <div className={classes}>
           {prefix}
         </div>
       );
@@ -204,10 +212,18 @@ class Input extends React.PureComponent {
   }
 
   getSuffixMarkup() {
-    const { suffix } = this.props;
-    if (suffix !== undefined) {
+    const { suffix, size } = this.props;
+
+    const classes = classNames('input-suffix',
+      {
+        'input-s': size === 'small',
+        'input-m': size === 'medium',
+        'input-l': size === 'large',
+      });
+
+    if (suffix) {
       return (
-        <div className="input-suffix">
+        <div className={classes}>
           {suffix}
         </div>
       );
