@@ -7,7 +7,7 @@ import DateTime from './DateTime';
 
 function DateTimeExample() {
   return (
-    <Block itemSpacing="5" direction="column">
+    <Block itemSpacing="6" direction="column">
       <DateTime
         value="2019-06-26T12:00:00.000Z"
       />
@@ -38,6 +38,12 @@ function DateTimeExample() {
 
       <DateTime
         dateFormat="ddd, MMMM D, YYYY - h:mm a"
+        showAlternativeTimeZone
+        value="2019-06-26T15:30:00.000Z"
+      />
+
+      <DateTime
+        hideTimeZone
         showAlternativeTimeZone
         value="2019-06-26T15:30:00.000Z"
       />

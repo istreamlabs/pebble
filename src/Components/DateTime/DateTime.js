@@ -5,6 +5,7 @@ import moment from 'moment';
 import Block from '../Block/Block';
 import Text from '../Text/Text';
 import TextContainer from '../TextContainer/TextContainer';
+import Tooltip from '../Tooltip/Tooltip';
 
 const TIME_ZONE_WIDTH = '40px';
 
@@ -28,6 +29,10 @@ const propTypes = {
    */
   excludeTime: PropTypes.bool,
   /**
+   * hide the time zone text
+   */
+  hideTimeZone: PropTypes.bool,
+  /**
    * A label for the time that is displayed
    */
   label: PropTypes.node,
@@ -36,7 +41,10 @@ const propTypes = {
    */
   timeFormat: PropTypes.string,
   /**
-   * Show local time zone
+   * Show local time zone beneath the UTC time.
+   * UTC time is displayed beneath the local time if `displayLocalDateTime` is true.
+   *
+   * When `false` a [Tooltip](/#/Components/Tooltip) will display the alternative date time on hover.
    */
   showAlternativeTimeZone: PropTypes.bool,
   /**
@@ -48,6 +56,7 @@ const propTypes = {
 const defaultProps = {
   displayLocalDateTime: false,
   excludeTime: false,
+  hideTimeZone: false,
   showAlternativeTimeZone: false,
   timeFormat: 'HH:mm',
 };
@@ -68,6 +77,23 @@ class DateTime extends React.PureComponent {
         : 'YYYY-MM-DD');
   }
 
+  getFormattedDateTime(timezone) {
+    const {
+      value
+    } = this.props;
+
+    const momentValue = moment(value);
+
+    // This is confusing but these methods modify the reference instead of returning a new value
+    if (timezone === 'UTC') {
+      momentValue.utc();
+    } else {
+      momentValue.local();
+    }
+
+    return momentValue.format(this.getDateFormat());
+  }
+
   renderLabel() {
     const { label } = this.props;
 
@@ -83,45 +109,62 @@ class DateTime extends React.PureComponent {
     const {
       excludeTime,
       displayLocalDateTime,
+      hideTimeZone,
       showAlternativeTimeZone,
-      value
     } = this.props;
 
     if (excludeTime || !showAlternativeTimeZone) return;
 
-    const alternativeMomentValue = moment(value);
-    // This is confusing but these methods modify the reference instead of returning a new value
-    displayLocalDateTime ? alternativeMomentValue.utc() : alternativeMomentValue.local();
-
     return (
       <Block alignItems="baseline">
-        <Block textSize="6" width={TIME_ZONE_WIDTH}>
-          {displayLocalDateTime ? 'UTC' : 'local'}
-        </Block>
-        <div>{`${alternativeMomentValue.format(this.getDateFormat())}`}</div>
+        {!hideTimeZone && (
+          <Block textSize="6" width={TIME_ZONE_WIDTH}>
+            {displayLocalDateTime ? 'UTC' : 'local'}
+          </Block>
+        )}
+        <div>{this.getFormattedDateTime(displayLocalDateTime ? 'UTC' : 'local')}</div>
       </Block>
     );
+  }
+
+  renderTime() {
+    const {
+      displayLocalDateTime,
+      showAlternativeTimeZone,
+    } = this.props;
+
+    const timeZone = displayLocalDateTime ? 'local' : 'UTC';
+    const altTimeZone = displayLocalDateTime ? 'UTC' : 'local';
+
+    if (!showAlternativeTimeZone) {
+      return (
+        <Tooltip content={`${this.getFormattedDateTime(altTimeZone)} ${altTimeZone}`}>
+          <span className="underline-dotted" style={{ textDecorationColor: '#C5CDD5' }}>{this.getFormattedDateTime(timeZone)}</span>
+        </Tooltip>
+      );
+    }
+
+    return <span>{this.getFormattedDateTime(timeZone)}</span>;
   }
 
   render() {
     const {
       className,
       displayLocalDateTime,
-      value,
+      hideTimeZone,
     } = this.props;
-
-    const momentValue = moment(value);
-    displayLocalDateTime ? momentValue.local() : momentValue.utc();
 
     return (
       <TextContainer tight className={className}>
         {this.renderLabel()}
         <Block alignItems="baseline">
-          <Block className="DateTime-timezone" textSize="6" width={TIME_ZONE_WIDTH}>
-            {displayLocalDateTime ? 'local' : 'UTC'}
-          </Block>
+          {!hideTimeZone && (
+            <Block className="DateTime-timezone" textSize="6" width={TIME_ZONE_WIDTH}>
+              {displayLocalDateTime ? 'local' : 'UTC'}
+            </Block>
+          )}
           <Block className="DateTime-value fw-700 fs-4-responsive">
-            {`${momentValue.format(this.getDateFormat())}`}
+            {this.renderTime()}
           </Block>
         </Block>
         {this.renderAlternativeDateTimeDisplay()}

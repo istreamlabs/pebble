@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import moment from 'moment';
 
 import Text from '../Text/Text';
+import Tooltip from '../Tooltip/Tooltip';
 
 import DateTime from './DateTime';
 
@@ -94,14 +95,40 @@ describe('DateTime', () => {
         displayLocalDateTime: true,
         showAlternativeTimeZone: true,
       });
-      const momentDate = moment('1986-09-02T01:01:01.000Z');
-      jest.spyOn(instance, 'getDateFormat').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
       const result = shallow(instance.renderAlternativeDateTimeDisplay());
 
       expect(result.contains('UTC')).toBeTruthy();
-      expect(instance.getDateFormat).toHaveBeenCalled();
-      expect(result.contains(momentDate.utc().format('YYYY-MM-DD HH:mm'))).toBeTruthy();
+      expect(instance.getFormattedDateTime).toHaveBeenCalled();
+    });
+  });
+
+  describe('renderTime', () => {
+    it('returns a tooltip with local time when using the default of utc and showAlternative time is false', () => {
+      const instance = new DateTime({
+        value: '1986-09-02T01:01:01.000Z',
+        showAlternativeTimeZone: false,
+      });
+      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+
+      const result = shallow(instance.renderTime());
+
+      expect(instance.getFormattedDateTime).toHaveBeenCalledWith('UTC');
+      expect(result.find({ content: 'YYYY-MM-DD HH:mm local' })).toBeTruthy();
+    });
+
+    it('returns utc time when using the default of utc and showAlternative time is true', () => {
+      const instance = new DateTime({
+        value: '1986-09-02T01:01:01.000Z',
+        showAlternativeTimeZone: true,
+      });
+      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+
+      const result = shallow(instance.renderTime());
+
+      expect(instance.getFormattedDateTime).toHaveBeenCalledWith('UTC');
+      expect(result.text()).toBe('YYYY-MM-DD HH:mm');
     });
   });
 
@@ -111,13 +138,13 @@ describe('DateTime', () => {
         value: '1986-09-02T01:01:01.000Z',
       });
       jest.spyOn(instance, 'renderLabel').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'getDateFormat').mockImplementation(jest.fn());
+      jest.spyOn(instance, 'renderTime').mockImplementation(jest.fn());
       jest.spyOn(instance, 'renderAlternativeDateTimeDisplay').mockImplementation(jest.fn());
 
       instance.render();
 
       expect(instance.renderLabel).toHaveBeenCalled();
-      expect(instance.getDateFormat).toHaveBeenCalled();
+      expect(instance.renderTime).toHaveBeenCalled();
       expect(instance.renderAlternativeDateTimeDisplay).toHaveBeenCalled();
     });
 

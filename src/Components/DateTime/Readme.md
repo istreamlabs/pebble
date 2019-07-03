@@ -12,7 +12,8 @@ Add a label to say what the time is for.
 ```jsx
 <DateTime
   label="start time"
-  value="2019-06-26T15:30:00.000Z" />
+  value="2019-06-26T15:30:00.000Z"
+/>
 ```
 
 ### Local Time
@@ -22,7 +23,8 @@ If it's more appropriate to display the browser's local time instead of UTC, pas
 ```jsx
 <DateTime
   value="2019-06-26T15:30:00.000Z"
-  displayLocalDateTime />
+  displayLocalDateTime
+/>
 ```
 
 ### Show Alternative Time Zone
