@@ -5,6 +5,7 @@ export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { default as Button } from './Button/Button';
 export { default as ButtonGroup } from './ButtonGroup/ButtonGroup';
 export { default as Card } from './Card/Card';
+export { default as DateTime } from './DateTime/DateTime';
 export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
 export { default as DropdownMenuSeparator } from './DropdownMenu/Components/DropdownMenuSeparator';
 export { default as DropdownItem } from './DropdownMenu/Components/DropdownItem';
