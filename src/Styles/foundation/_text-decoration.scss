@@ -1,0 +1,25 @@
+.no-underline     { text-decoration: none; }
+.strike           { text-decoration: line-through; }
+.underline        { text-decoration: underline; }
+.underline-dotted { text-decoration: underline; text-decoration-style: dotted }
+
+@include respond-above(sm) {
+  .no-underline-ns { text-decoration: none; }
+  .strike-ns       { text-decoration: line-through; }
+  .underline-ns    { text-decoration: underline; }
+  .underline-dotted-ns { text-decoration: underline; text-decoration-style: dotted }
+}
+
+@include respond-above(md) {
+  .no-underline-m { text-decoration: none; }
+  .strike-m       { text-decoration: line-through; }
+  .underline-m    { text-decoration: underline; }
+  .underline-dotted-m { text-decoration: underline; text-decoration-style: dotted }
+}
+
+@include respond-above(lg) {
+  .no-underline-l { text-decoration: none; }
+  .strike-l       { text-decoration: line-through; }
+  .underline-l {    text-decoration: underline; }
+  .underline-dotted-l { text-decoration: underline; text-decoration-style: dotted }
+}
