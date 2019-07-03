@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import moment from 'moment';
 
 import Text from '../Text/Text';
-import Tooltip from '../Tooltip/Tooltip';
 
 import DateTime from './DateTime';
 
@@ -128,6 +127,20 @@ describe('DateTime', () => {
       const result = shallow(instance.renderTime());
 
       expect(instance.getFormattedDateTime).toHaveBeenCalledWith('UTC');
+      expect(result.text()).toBe('YYYY-MM-DD HH:mm');
+    });
+
+    it('returns local time when displayLocalDateTime is true', () => {
+      const instance = new DateTime({
+        value: '1986-09-02T01:01:01.000Z',
+        displayLocalDateTime: true,
+        showAlternativeTimeZone: true,
+      });
+      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+
+      const result = shallow(instance.renderTime());
+
+      expect(instance.getFormattedDateTime).toHaveBeenCalledWith('local');
       expect(result.text()).toBe('YYYY-MM-DD HH:mm');
     });
   });
