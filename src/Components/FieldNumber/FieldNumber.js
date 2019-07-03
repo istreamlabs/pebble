@@ -9,8 +9,6 @@ import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Text from '../Text/Text';
 
-import './FieldText.scss';
-
 const propTypes = {
   /**
    * Automatically focus the input
@@ -24,10 +22,6 @@ const propTypes = {
    * Callback for a button to clear the input value
    */
   clearBtnFunc: PropTypes.func,
-  /**
-   * label for the input
-   */
-  label: PropTypes.string.isRequired,
   /**
    * Name attribute of the input
    */
@@ -73,25 +67,14 @@ const propTypes = {
    */
   hideLabel: PropTypes.bool,
   /**
-   * The [spellcheck](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck) attribute of the input
+   * label for the input
    */
-  ignoreSpellCheck: PropTypes.bool,
+  label: PropTypes.string.isRequired,
   /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Type attribute of the input
-   */
-  type: PropTypes.oneOf([
-    'email',
-    'password',
-    'search',
-    'tel',
-    'text',
-    'url'
-  ]),
   /**
    * Text to display before the value
    */
@@ -121,23 +104,21 @@ const defaultProps = {
   disabled: false,
   isInvalid: false,
   hideLabel: false,
-  ignoreSpellCheck: false,
   isReadOnly: false,
   onBlur: undefined,
   onChange: undefined,
   onFocus: undefined,
   size: 'medium',
-  type: 'text',
   width: '100'
 };
 
 /**
- * Stateless text fields.
+ * Stateless number input field.
  *
  * ---
  */
 
-class FieldText extends React.PureComponent {
+class FieldNumber extends React.PureComponent {
   getLabel() {
     const {
       isInvalid, disabled, id, hideLabel, label
@@ -182,18 +163,15 @@ class FieldText extends React.PureComponent {
       className,
       hideLabel,
       label,
-      ignoreSpellCheck,
       ...rest
     } = this.props;
 
     const ariaLabelValue = hideLabel ? label : '';
 
-    const shouldSpellCheck = !ignoreSpellCheck;
-
     return (
       <Input
         ariaLabel={ariaLabelValue}
-        spellCheck={shouldSpellCheck}
+        type="number"
         {...rest}
       />
     );
@@ -218,8 +196,8 @@ class FieldText extends React.PureComponent {
   }
 }
 
-FieldText.defaultProps = defaultProps;
+FieldNumber.defaultProps = defaultProps;
 
-FieldText.propTypes = propTypes;
+FieldNumber.propTypes = propTypes;
 
-export default FieldText;
+export default FieldNumber;
