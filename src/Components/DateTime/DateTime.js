@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import classNames from 'classnames';
 
 import Block from '../Block/Block';
 import Text from '../Text/Text';
@@ -48,6 +49,11 @@ const propTypes = {
    */
   showAlternativeTimeZone: PropTypes.bool,
   /**
+  * Changes the font size of the date time display value
+  * @type {PropTypes.Requireable<Size>}
+  */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * The value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601)
    */
   value: PropTypes.string,
@@ -58,6 +64,7 @@ const defaultProps = {
   excludeTime: false,
   hideTimeZone: false,
   showAlternativeTimeZone: false,
+  size: 'medium',
   timeFormat: 'HH:mm',
 };
 
@@ -111,18 +118,25 @@ class DateTime extends React.PureComponent {
       displayLocalDateTime,
       hideTimeZone,
       showAlternativeTimeZone,
+      size,
     } = this.props;
 
     if (excludeTime || !showAlternativeTimeZone) return;
 
+    const classes = classNames({
+      'fs-4-responsive': size === 'small',
+      'fs-5-responsive': size === 'medium',
+      'fs-6-responsive': size === 'large',
+    });
+
     return (
       <Block alignItems="baseline">
         {!hideTimeZone && (
-          <Block textSize="6" width={TIME_ZONE_WIDTH}>
+          <Block className="neutral-500" textSize="6" width={TIME_ZONE_WIDTH}>
             {displayLocalDateTime ? 'UTC' : 'local'}
           </Block>
         )}
-        <div>{this.getFormattedDateTime(displayLocalDateTime ? 'UTC' : 'local')}</div>
+        <div className={classes}>{this.getFormattedDateTime(displayLocalDateTime ? 'UTC' : 'local')}</div>
       </Block>
     );
   }
@@ -152,18 +166,27 @@ class DateTime extends React.PureComponent {
       className,
       displayLocalDateTime,
       hideTimeZone,
+      showAlternativeTimeZone,
+      size,
     } = this.props;
+
+    const classes = classNames('DateTime-value', {
+      'fs-4-responsive': size === 'small',
+      'fs-5-responsive': size === 'medium',
+      'fs-6-responsive': size === 'large',
+      ' fw-700': showAlternativeTimeZone,
+    });
 
     return (
       <TextContainer tight className={className}>
         {this.renderLabel()}
         <Block alignItems="baseline">
           {!hideTimeZone && (
-            <Block className="DateTime-timezone" textSize="6" width={TIME_ZONE_WIDTH}>
+            <Block className="DateTime-timezone neutral-500" textSize="6" width={TIME_ZONE_WIDTH}>
               {displayLocalDateTime ? 'local' : 'UTC'}
             </Block>
           )}
-          <Block className="DateTime-value fw-700 fs-4-responsive">
+          <Block className={classes}>
             {this.renderTime()}
           </Block>
         </Block>

@@ -47,6 +47,18 @@ function DateTimeExample() {
         showAlternativeTimeZone
         value="2019-06-26T15:30:00.000Z"
       />
+
+      <DateTime size="small" value="2019-06-26T12:00:00.000Z" />
+
+      <DateTime size="medium" value="2019-06-26T12:00:00.000Z" />
+
+      <DateTime size="large" value="2019-06-26T12:00:00.000Z" />
+
+      <DateTime size="small" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
+
+      <DateTime size="medium" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
+
+      <DateTime size="large" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
     </Block>
   );
 }
