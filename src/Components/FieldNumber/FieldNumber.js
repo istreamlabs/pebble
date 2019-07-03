@@ -104,7 +104,6 @@ const defaultProps = {
   disabled: false,
   isInvalid: false,
   hideLabel: false,
-  ignoreSpellCheck: false,
   isReadOnly: false,
   onBlur: undefined,
   onChange: undefined,
