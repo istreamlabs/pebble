@@ -5,7 +5,9 @@ import ButtonGroup from './ButtonGroup';
 
 describe('ButtonGroup', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<ButtonGroup>hello</ButtonGroup>); }).not.toThrow();
+    expect(() => {
+      shallow(<ButtonGroup>hello</ButtonGroup>);
+    }).not.toThrow();
   });
 
   describe('children', () => {
@@ -14,7 +16,7 @@ describe('ButtonGroup', () => {
         <ButtonGroup>
           <Button>button</Button>
           <Button primary>save</Button>
-        </ButtonGroup>
+        </ButtonGroup>,
       );
       expect(buttonGroup.find(Button)).toHaveLength(2);
     });
@@ -22,14 +24,20 @@ describe('ButtonGroup', () => {
 
   describe('className', () => {
     it('passes in class name', () => {
-      const buttonGroup = shallow(<ButtonGroup className="my-class">foo</ButtonGroup>);
+      const buttonGroup = shallow(
+        <ButtonGroup className="my-class">foo</ButtonGroup>,
+      );
       expect(buttonGroup.prop('className')).toContain('btn-group');
       expect(buttonGroup.prop('className')).toContain('my-class');
     });
 
     it('applies fullwidth', () => {
-      const buttonGroup = shallow(<ButtonGroup fullWidth>foo</ButtonGroup>);
-      expect(buttonGroup.prop('className')).toContain('btn-group-fullwidth');
+      const buttonGroup = shallow(
+        <ButtonGroup fullWidth>foo</ButtonGroup>,
+      );
+      expect(buttonGroup.prop('className')).toContain(
+        'btn-group-fullwidth',
+      );
     });
   });
 
@@ -38,7 +46,7 @@ describe('ButtonGroup', () => {
       <ButtonGroup toolbar>
         <Button>button 1</Button>
         <Button>button 2</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     expect(buttonGroup.find('div.btn-toolbar-item')).toHaveLength(2);
   });
@@ -47,7 +55,7 @@ describe('ButtonGroup', () => {
     const buttonGroup = shallow(
       <ButtonGroup size="large">
         <Button>button 1</Button>
-      </ButtonGroup>
+      </ButtonGroup>,
     );
     expect(buttonGroup.find(Button).prop('size')).toBe('large');
   });

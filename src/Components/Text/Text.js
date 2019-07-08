@@ -11,7 +11,14 @@ const propTypes = {
    * color of the text
    * @type {PropTypes.Requireable<'success'|'warn'|'danger'|'muted'|'info'|'code'>}
    */
-  appearance: PropTypes.oneOf(['success', 'warn', 'danger', 'muted', 'info', 'code']),
+  appearance: PropTypes.oneOf([
+    'success',
+    'warn',
+    'danger',
+    'muted',
+    'info',
+    'code',
+  ]),
   /**
    * Give the text a bold appearance
    */
@@ -55,11 +62,15 @@ function Text({
 
   const Element = appearance === 'code' ? 'code' : 'span';
 
-  const classes = classNames('text', {
-    [`fs-${parsedSize}`]: parsedSize,
-    'fw-700': bold,
-    [`appearance-${appearance}`]: appearance,
-  }, className);
+  const classes = classNames(
+    'text',
+    {
+      [`fs-${parsedSize}`]: parsedSize,
+      'fw-700': bold,
+      [`appearance-${appearance}`]: appearance,
+    },
+    className,
+  );
 
   return (
     <Element className={classes} {...rest}>

@@ -30,17 +30,12 @@ const defaultProps = {
 };
 
 /**
-* Display tabular data in a grid
-*
-* ---
-*/
+ * Display tabular data in a grid
+ *
+ * ---
+ */
 
-function Table({
-  children,
-  className,
-  width,
-  ...rest
-}) {
+function Table({ children, className, width, ...rest }) {
   const classes = classNames('table ba b-neutral-300', className);
 
   return (

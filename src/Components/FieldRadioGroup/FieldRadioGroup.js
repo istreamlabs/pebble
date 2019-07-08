@@ -25,13 +25,15 @@ const propTypes = {
   /**
    * Radio options
    */
-  radios: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    helpText: PropTypes.node,
-    value: PropTypes.string.isRequired,
-    disabled: PropTypes.bool
-  })).isRequired,
+  radios: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      helpText: PropTypes.node,
+      value: PropTypes.string.isRequired,
+      disabled: PropTypes.bool,
+    }),
+  ).isRequired,
   /**
    * The label for the group of radios
    */
@@ -59,23 +61,26 @@ function FieldRadioGroup({
   title,
   value,
   onChange,
-  name
+  name,
 }) {
   // set the selected radio button or the first one
   const getRadioItems = () => {
     if (radios && radios.length > 0) {
-      const selected = value === '' || value === undefined
-        ? radios[0].value
-        : radios[radios.findIndex(radio => radio.value === value)].value;
+      const selected =
+        value === '' || value === undefined
+          ? radios[0].value
+          : radios[radios.findIndex(radio => radio.value === value)]
+              .value;
 
-      return radios.map(radio => (
+      return radios.map(radio =>
         selected === radio.value
           ? { ...radio, ...{ isSelected: true, name } }
-          : radio));
+          : radio,
+      );
     }
   };
 
-  const radioMarkup = (radios) => {
+  const radioMarkup = radios => {
     if (radios && radios.length > 0) {
       return radios.map(radio => (
         <Radio
@@ -95,14 +100,20 @@ function FieldRadioGroup({
 
   const titleMarkup = () => {
     if (title) {
-      return (<Text bold className="db mb-2">{title}</Text>);
+      return (
+        <Text bold className="db mb-2">
+          {title}
+        </Text>
+      );
     }
   };
 
   const helpTextMarkup = () => {
     if (helpText === undefined) return;
     return (
-      <Text size="6" className="db mb-3">{helpText}</Text>
+      <Text size="6" className="db mb-3">
+        {helpText}
+      </Text>
     );
   };
 

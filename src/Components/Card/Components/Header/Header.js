@@ -25,13 +25,7 @@ const defaultProps = {
   children: null,
 };
 
-const Header = (
-  {
-    actions,
-    children,
-    className,
-  }
-) => {
+function Header({ actions, children, className }) {
   const classes = classNames('card-title', className);
 
   return (
@@ -39,14 +33,10 @@ const Header = (
       <Heading element={2} size="4" className="card-title-heading">
         {children}
       </Heading>
-      {actions && (
-        <div>
-          {actions}
-        </div>
-      )}
+      {actions && <div>{actions}</div>}
     </div>
   );
-};
+}
 
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;

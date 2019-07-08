@@ -28,20 +28,11 @@ const propTypes = {
  * ---
  */
 
-function Overlay({
-  children,
-  className,
-  onClick,
-  ...rest
-}) {
+function Overlay({ children, className, onClick, ...rest }) {
   const classes = classNames('overlay', className);
 
   return (
-    <Block
-      className={classes}
-      onClick={onClick}
-      {...rest}
-    >
+    <Block className={classes} onClick={onClick} {...rest}>
       {children}
     </Block>
   );

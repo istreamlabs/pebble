@@ -16,8 +16,8 @@ const APP_FRAME_NAV = 'AppFrameNav';
 
 const propTypes = {
   /**
-  * Contents of the frame
-  */
+   * Contents of the frame
+   */
   children: PropTypes.node,
   /**
    * Component that will be rendered in the left sidebar of an application frame
@@ -35,7 +35,7 @@ const propTypes = {
 
 const defaultProps = {
   children: null,
-  onNavigationToggle: () => {}
+  onNavigationToggle: () => {},
 };
 
 /**
@@ -53,36 +53,44 @@ export class Frame extends React.PureComponent {
 
     this.state = {
       isSkipFocused: false,
-      isShowingMobileNav: false
+      isShowingMobileNav: false,
     };
 
     this.mainContent = React.createRef();
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleNavKeydown, false);
+    document.addEventListener(
+      'keydown',
+      this.handleNavKeydown,
+      false,
+    );
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleNavKeydown, false);
+    document.removeEventListener(
+      'keydown',
+      this.handleNavKeydown,
+      false,
+    );
   }
 
   handleSkipToMain = () => {
     this.mainContent.current.setAttribute('tabindex', '-1');
     this.mainContent.current.focus();
-  }
+  };
 
   handleBlurMain = () => {
     this.mainContent.current.removeAttribute('tabindex');
-  }
+  };
 
   handleFocus = () => {
     this.setState({ isSkipFocused: true });
-  }
+  };
 
   handleBlur = () => {
     this.setState({ isSkipFocused: false });
-  }
+  };
 
   handleNavigationToggle = () => {
     const { onNavigationToggle } = this.props;
@@ -92,7 +100,7 @@ export class Frame extends React.PureComponent {
         onNavigationToggle(!isShowingMobileNav);
       }
     });
-  }
+  };
 
   handleNavigationDismiss = () => {
     const { onNavigationToggle } = this.props;
@@ -104,19 +112,17 @@ export class Frame extends React.PureComponent {
         }
       });
     }
-  }
+  };
 
-  handleNavKeydown = (event) => {
+  handleNavKeydown = event => {
     const { key } = event;
     if (key === 'Escape') {
       this.handleNavigationDismiss();
     }
-  }
+  };
 
   renderSkipToContent = () => {
-    const {
-      isSkipFocused,
-    } = this.state;
+    const { isSkipFocused } = this.state;
 
     const skipClassName = classNames(
       'skip',
@@ -135,14 +141,14 @@ export class Frame extends React.PureComponent {
         </Button>
       </div>
     );
-  }
+  };
 
   renderNavigation = () => {
     const { navigation } = this.props;
     const { isShowingMobileNav } = this.state;
 
     const navigationClasses = classNames('navigation', {
-      open: isShowingMobileNav
+      open: isShowingMobileNav,
     });
 
     return (
@@ -161,29 +167,34 @@ export class Frame extends React.PureComponent {
         >
           {navigation}
           {isShowingMobileNav && (
-          <Button
-            className="frame-close-nav"
-            icon="remove-circle"
-            onClick={this.handleNavigationDismiss}
-            accessibilityLabel="close menu"
-            plain
-            size="large"
-          />
+            <Button
+              className="frame-close-nav"
+              icon="remove-circle"
+              onClick={this.handleNavigationDismiss}
+              accessibilityLabel="close menu"
+              plain
+              size="large"
+            />
           )}
         </div>
       </FocusTrap>
     );
-  }
+  };
 
   renderOverlay = () => {
     const { navigation } = this.props;
     const { isShowingMobileNav } = this.state;
 
     if (navigation && isShowingMobileNav) {
-      return <Overlay onClick={this.handleNavigationDismiss} styles={{ zIndex: 99 }} />;
+      return (
+        <Overlay
+          onClick={this.handleNavigationDismiss}
+          styles={{ zIndex: 99 }}
+        />
+      );
     }
     return null;
-  }
+  };
 
   renderToastContainer = () => (
     <ToastContainer
@@ -193,19 +204,16 @@ export class Frame extends React.PureComponent {
       pauseOnHover
       closeButton={false}
     />
-  )
+  );
 
   handleOnClick = ({ target }) => {
     if (target.tagName.toLowerCase() === 'a' && target.href) {
       this.handleNavigationDismiss();
     }
-  }
+  };
 
   render() {
-    const {
-      children,
-      title,
-    } = this.props;
+    const { children, title } = this.props;
 
     return (
       <div className="frame">

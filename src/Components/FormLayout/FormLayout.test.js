@@ -6,7 +6,9 @@ import FormLayoutRow from './Components/FormLayoutRow';
 
 describe('FormLayout', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<FormLayout />); }).not.toThrow();
+    expect(() => {
+      shallow(<FormLayout />);
+    }).not.toThrow();
   });
 
   it('tightens spacing between fields', () => {
@@ -15,12 +17,20 @@ describe('FormLayout', () => {
   });
 
   it('adds the tight prop to child FormLayoutRow', () => {
-    const wrapper = shallow(<FormLayout tight><FormLayoutRow /></FormLayout>);
+    const wrapper = shallow(
+      <FormLayout tight>
+        <FormLayoutRow />
+      </FormLayout>,
+    );
     expect(wrapper.find(FormLayoutRow).prop('tight')).toBe(true);
   });
 
   it('renders children that are not FormLayoutRow', () => {
-    const wrapper = shallow(<FormLayout tight><div /></FormLayout>);
+    const wrapper = shallow(
+      <FormLayout tight>
+        <div />
+      </FormLayout>,
+    );
     expect(wrapper.children()).toHaveLength(1);
   });
 });

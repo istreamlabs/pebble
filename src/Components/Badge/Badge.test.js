@@ -6,7 +6,9 @@ import Text from '../Text/Text';
 
 describe('Badge', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Badge>hello</Badge>); }).not.toThrow();
+    expect(() => {
+      shallow(<Badge>hello</Badge>);
+    }).not.toThrow();
   });
 
   it('renders correct text', () => {
@@ -15,12 +17,20 @@ describe('Badge', () => {
   });
 
   it('renders an icon', () => {
-    const wrapper = mount(<Badge type="danger" icon="circle">Hello Pebble</Badge>);
+    const wrapper = mount(
+      <Badge type="danger" icon="circle">
+        Hello Pebble
+      </Badge>,
+    );
     expect(wrapper.contains(Icon)).toBeTruthy();
   });
 
   it('renders correct icon', () => {
-    const wrapper = mount(<Badge type="danger" icon="circle">Hello Pebble</Badge>);
+    const wrapper = mount(
+      <Badge type="danger" icon="circle">
+        Hello Pebble
+      </Badge>,
+    );
     expect(wrapper.find(Icon).prop('name')).toBe('circle');
   });
 

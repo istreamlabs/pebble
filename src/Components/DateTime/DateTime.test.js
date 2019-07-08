@@ -8,13 +8,15 @@ import DateTime from './DateTime';
 
 describe('DateTime', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<DateTime />); }).not.toThrow();
+    expect(() => {
+      shallow(<DateTime />);
+    }).not.toThrow();
   });
 
   describe('getDateFormat', () => {
     it('returns a user specified format', () => {
       const instance = new DateTime({
-        dateFormat: 'YY-M-D'
+        dateFormat: 'YY-M-D',
       });
 
       const result = instance.getDateFormat();
@@ -23,7 +25,7 @@ describe('DateTime', () => {
     });
     it('returns default with a user specified time format', () => {
       const instance = new DateTime({
-        timeFormat: 'H:m'
+        timeFormat: 'H:m',
       });
 
       const result = instance.getDateFormat();
@@ -32,7 +34,7 @@ describe('DateTime', () => {
     });
     it('returns default without time format', () => {
       const instance = new DateTime({
-        excludeTime: true
+        excludeTime: true,
       });
 
       const result = instance.getDateFormat();
@@ -46,7 +48,7 @@ describe('DateTime', () => {
       const testLabel = 'test label';
       const instance = new DateTime({
         value: '1986-09-02T01:01:01.000Z',
-        label: testLabel
+        label: testLabel,
       });
       const result = instance.renderLabel();
 
@@ -64,7 +66,7 @@ describe('DateTime', () => {
       const testLabel = 'test label';
       const instance = new DateTime({
         value: '1986-09-02T01:01:01.000Z',
-        label: testLabel
+        label: testLabel,
       });
 
       const result = shallow(instance.renderLabel());
@@ -79,13 +81,21 @@ describe('DateTime', () => {
         showAlternativeTimeZone: true,
       });
       const momentDate = moment('1986-09-02T01:01:01.000Z');
-      jest.spyOn(instance, 'getDateFormat').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getDateFormat')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
-      const result = shallow(instance.renderAlternativeDateTimeDisplay());
+      const result = shallow(
+        instance.renderAlternativeDateTimeDisplay(),
+      );
 
       expect(result.contains('local')).toBeTruthy();
       expect(instance.getDateFormat).toHaveBeenCalled();
-      expect(result.contains(momentDate.local().format('YYYY-MM-DD HH:mm'))).toBeTruthy();
+      expect(
+        result.contains(
+          momentDate.local().format('YYYY-MM-DD HH:mm'),
+        ),
+      ).toBeTruthy();
     });
 
     it('renders utc when using the local', () => {
@@ -94,9 +104,13 @@ describe('DateTime', () => {
         displayLocalDateTime: true,
         showAlternativeTimeZone: true,
       });
-      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getFormattedDateTime')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
-      const result = shallow(instance.renderAlternativeDateTimeDisplay());
+      const result = shallow(
+        instance.renderAlternativeDateTimeDisplay(),
+      );
 
       expect(result.contains('UTC')).toBeTruthy();
       expect(instance.getFormattedDateTime).toHaveBeenCalled();
@@ -109,12 +123,18 @@ describe('DateTime', () => {
         value: '1986-09-02T01:01:01.000Z',
         showAlternativeTimeZone: false,
       });
-      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getFormattedDateTime')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
       const result = shallow(instance.renderTime());
 
-      expect(instance.getFormattedDateTime).toHaveBeenCalledWith('UTC');
-      expect(result.find({ content: 'YYYY-MM-DD HH:mm local' })).toBeTruthy();
+      expect(instance.getFormattedDateTime).toHaveBeenCalledWith(
+        'UTC',
+      );
+      expect(
+        result.find({ content: 'YYYY-MM-DD HH:mm local' }),
+      ).toBeTruthy();
     });
 
     it('returns utc time when using the default of utc and showAlternative time is true', () => {
@@ -122,11 +142,15 @@ describe('DateTime', () => {
         value: '1986-09-02T01:01:01.000Z',
         showAlternativeTimeZone: true,
       });
-      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getFormattedDateTime')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
       const result = shallow(instance.renderTime());
 
-      expect(instance.getFormattedDateTime).toHaveBeenCalledWith('UTC');
+      expect(instance.getFormattedDateTime).toHaveBeenCalledWith(
+        'UTC',
+      );
       expect(result.text()).toBe('YYYY-MM-DD HH:mm');
     });
 
@@ -136,11 +160,15 @@ describe('DateTime', () => {
         displayLocalDateTime: true,
         showAlternativeTimeZone: true,
       });
-      jest.spyOn(instance, 'getFormattedDateTime').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getFormattedDateTime')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
       const result = shallow(instance.renderTime());
 
-      expect(instance.getFormattedDateTime).toHaveBeenCalledWith('local');
+      expect(instance.getFormattedDateTime).toHaveBeenCalledWith(
+        'local',
+      );
       expect(result.text()).toBe('YYYY-MM-DD HH:mm');
     });
   });
@@ -150,36 +178,54 @@ describe('DateTime', () => {
       const instance = new DateTime({
         value: '1986-09-02T01:01:01.000Z',
       });
-      jest.spyOn(instance, 'renderLabel').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'renderTime').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'renderAlternativeDateTimeDisplay').mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderLabel')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderTime')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderAlternativeDateTimeDisplay')
+        .mockImplementation(jest.fn());
 
       instance.render();
 
       expect(instance.renderLabel).toHaveBeenCalled();
       expect(instance.renderTime).toHaveBeenCalled();
-      expect(instance.renderAlternativeDateTimeDisplay).toHaveBeenCalled();
+      expect(
+        instance.renderAlternativeDateTimeDisplay,
+      ).toHaveBeenCalled();
     });
 
     it('adds UTC prefix to input by default', () => {
-      const wrapper = shallow(<DateTime
-        value="1986-09-02T01:01:01.000Z"
-      />);
-      expect(wrapper.find('.DateTime-timezone').contains('UTC')).toBeDefined();
+      const wrapper = shallow(
+        <DateTime value="1986-09-02T01:01:01.000Z" />,
+      );
+      expect(
+        wrapper.find('.DateTime-timezone').contains('UTC'),
+      ).toBeDefined();
     });
     it('adds local prefix to if displayLocalDateTime is true', () => {
-      const wrapper = shallow(<DateTime
-        displayLocalDateTime
-        value="1986-09-02T01:01:01.000Z"
-      />);
-      expect(wrapper.find('.DateTime-timezone').contains('local')).toBeDefined();
+      const wrapper = shallow(
+        <DateTime
+          displayLocalDateTime
+          value="1986-09-02T01:01:01.000Z"
+        />,
+      );
+      expect(
+        wrapper.find('.DateTime-timezone').contains('local'),
+      ).toBeDefined();
     });
 
     it('adds displays default date-time format when value is valid date', () => {
-      const wrapper = shallow(<DateTime
-        value="1986-09-02T01:01:01.000Z"
-      />);
-      expect(wrapper.find('.DateTime-value').contains('1986-09-02 01:01:01')).toBeDefined();
+      const wrapper = shallow(
+        <DateTime value="1986-09-02T01:01:01.000Z" />,
+      );
+      expect(
+        wrapper
+          .find('.DateTime-value')
+          .contains('1986-09-02 01:01:01'),
+      ).toBeDefined();
     });
   });
 });

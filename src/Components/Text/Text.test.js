@@ -4,7 +4,9 @@ import Text from './Text';
 
 describe('Text', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Text>hello</Text>); }).not.toThrow();
+    expect(() => {
+      shallow(<Text>hello</Text>);
+    }).not.toThrow();
   });
 
   it('renders children', () => {
@@ -19,7 +21,9 @@ describe('Text', () => {
 
   it('allows for custom classes', () => {
     const wrapper = shallow(<Text className="myClass">test</Text>);
-    expect(wrapper.find('span').prop('className')).toContain('myClass');
+    expect(wrapper.find('span').prop('className')).toContain(
+      'myClass',
+    );
   });
 
   it('renders a code element when code appearance is set', () => {

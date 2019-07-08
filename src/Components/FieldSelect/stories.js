@@ -90,9 +90,7 @@ function FieldSelectExamples() {
 }
 
 storiesOf('FieldSelect', module)
-  .add('all', () => (
-    <FieldSelectExamples />
-  ))
+  .add('all', () => <FieldSelectExamples />)
   .add('open single', () => (
     <FieldSelect
       id="openSingle"

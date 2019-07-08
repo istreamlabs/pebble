@@ -4,9 +4,11 @@ import React, { useState } from 'react';
 import FieldDateTime from './FieldDateTime';
 import { storiesOf } from '@storybook/react';
 
-const FieldDateTimeExample = (props) => {
-  const [selectedDate, setSelectedDate] = useState('2019-06-26T12:00:00.000Z');
-  const handleChange = (value) => {
+const FieldDateTimeExample = props => {
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
+  const handleChange = value => {
     setSelectedDate(value);
   };
   return (
@@ -20,27 +22,55 @@ const FieldDateTimeExample = (props) => {
   );
 };
 
-const filterDate = (value) => {
+const filterDate = value => {
   const date = new Date(value);
   return date.getDay() < 5;
 };
 
 storiesOf('FieldDateTime', module)
   .add('date and time', () => <FieldDateTimeExample />)
-  .add('date and time select local', () => <FieldDateTimeExample selectLocalDateTime />)
-  .add('date only', () => <FieldDateTimeExample excludeTime label="start date" />)
-  .add('validation', () => <FieldDateTimeExample isInvalid validationText="validation message text" />)
-  .add('am/pm time', () => <FieldDateTimeExample timeFormat="h:mm a" />)
+  .add('date and time select local', () => (
+    <FieldDateTimeExample selectLocalDateTime />
+  ))
+  .add('date only', () => (
+    <FieldDateTimeExample excludeTime label="start date" />
+  ))
+  .add('validation', () => (
+    <FieldDateTimeExample
+      isInvalid
+      validationText="validation message text"
+    />
+  ))
+  .add('am/pm time', () => (
+    <FieldDateTimeExample timeFormat="h:mm a" />
+  ))
   .add('disabled', () => <FieldDateTimeExample disabled />)
   .add('portal', () => <FieldDateTimeExample withPortal />)
-  .add('Date Range', () => <FieldDateTimeExample minDate="2019-06-25T12:00:00.000Z" maxDate="2019-06-27T12:00:00.000Z" />)
-  .add('Filter Dates (weekdays only)', () => <FieldDateTimeExample filterDate={filterDate} />)
-  .add('with help text', () => <FieldDateTimeExample helpText="Some more information about this field" />)
+  .add('Date Range', () => (
+    <FieldDateTimeExample
+      minDate="2019-06-25T12:00:00.000Z"
+      maxDate="2019-06-27T12:00:00.000Z"
+    />
+  ))
+  .add('Filter Dates (weekdays only)', () => (
+    <FieldDateTimeExample filterDate={filterDate} />
+  ))
+  .add('with help text', () => (
+    <FieldDateTimeExample helpText="Some more information about this field" />
+  ))
   .add('autoFocus', () => <FieldDateTimeExample autoFocus />)
   .add('sizes', () => (
     <>
-      <FieldDateTimeExample id="smallpicker" size="small" className="mb-5" />
+      <FieldDateTimeExample
+        id="smallpicker"
+        size="small"
+        className="mb-5"
+      />
       <FieldDateTimeExample id="defaultPicker" className="mb-5" />
-      <FieldDateTimeExample id="largePicker" size="large" className="mb-7" />
+      <FieldDateTimeExample
+        id="largePicker"
+        size="large"
+        className="mb-7"
+      />
     </>
   ));

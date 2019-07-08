@@ -24,7 +24,7 @@ const MENU = [
         label: 'Sub-item 1',
         href: '/',
       },
-    ]
+    ],
   },
   {
     id: '3',
@@ -40,7 +40,7 @@ const MENU = [
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
       },
-    ]
+    ],
   },
 ];
 
@@ -49,22 +49,19 @@ class FrameExample extends React.Component {
     super();
     this.state = {
       activeMainMenuItem: '1',
-      showMobileNavigation: false
+      showMobileNavigation: false,
     };
     this.toggleMainNav = this.toggleMainNav.bind(this);
   }
 
   toggleMainNav() {
     this.setState(prevState => ({
-      showMobileNavigation: !prevState.showMobileNavigation
+      showMobileNavigation: !prevState.showMobileNavigation,
     }));
   }
 
   render() {
-    const {
-      activeMainMenuItem,
-      showMobileNavigation
-    } = this.state;
+    const { activeMainMenuItem, showMobileNavigation } = this.state;
 
     const mainMenu = (
       <MainMenu
@@ -76,7 +73,13 @@ class FrameExample extends React.Component {
     );
 
     const bodyContent = (
-      <Block background="blue-lighter" flex direction="column" height="100%" padding="6">
+      <Block
+        background="blue-lighter"
+        flex
+        direction="column"
+        height="100%"
+        padding="6"
+      >
         Main Content goes here
       </Block>
     );
@@ -95,11 +98,10 @@ class FrameExample extends React.Component {
   }
 }
 
-storiesOf('Frame', module)
-  .add('all', () => (
-    <BrowserRouter>
-      <div style={{ height: '400px', overflow: 'auto' }}>
-        <FrameExample />
-      </div>
-    </BrowserRouter>
-  ));
+storiesOf('Frame', module).add('all', () => (
+  <BrowserRouter>
+    <div style={{ height: '400px', overflow: 'auto' }}>
+      <FrameExample />
+    </div>
+  </BrowserRouter>
+));

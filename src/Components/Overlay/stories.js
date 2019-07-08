@@ -10,15 +10,18 @@ function OverlayExample() {
 
   return (
     <>
-      {openOverlay && <Overlay onClick={() => setOpenOverlay(!openOverlay)} />}
-      <Button onClick={() => setOpenOverlay(!openOverlay)}>Show Overlay</Button>
+      {openOverlay && (
+        <Overlay onClick={() => setOpenOverlay(!openOverlay)} />
+      )}
+      <Button onClick={() => setOpenOverlay(!openOverlay)}>
+        Show Overlay
+      </Button>
     </>
   );
 }
 
-storiesOf('Overlay', module)
-  .add('all', () => (
-    <>
-      <OverlayExample />
-    </>
-  ));
+storiesOf('Overlay', module).add('all', () => (
+  <>
+    <OverlayExample />
+  </>
+));

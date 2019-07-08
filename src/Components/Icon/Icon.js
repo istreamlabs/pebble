@@ -5,9 +5,14 @@ import icons from './Icons';
 
 import './Icon.scss';
 
-const notFoundIcon = <path fill="currentColor" d="M16 10V8h-2c-.1-.8-.3-1.5-.6-2.2l2-1.7-1.3-1.5-1.8 1.5-.9-.9C11.5 1.7 9.8 0 8 0S4.5 1.7 4.5 3.2c-.3.3-.6.5-.9.9L1.9 2.6.6 4.1l2 1.7c-.3.7-.5 1.4-.6 2.2H0v2h2c.1 1 .5 2 .9 2.9l-1.6 1.4 1.3 1.5 1.5-1.3c1 1 2.4 1.6 3.8 1.6s2.8-.6 3.8-1.6l1.5 1.3 1.3-1.5-1.6-1.4c.7-.9 1-1.9 1.1-2.9h2z" />;
+const notFoundIcon = (
+  <path
+    fill="currentColor"
+    d="M16 10V8h-2c-.1-.8-.3-1.5-.6-2.2l2-1.7-1.3-1.5-1.8 1.5-.9-.9C11.5 1.7 9.8 0 8 0S4.5 1.7 4.5 3.2c-.3.3-.6.5-.9.9L1.9 2.6.6 4.1l2 1.7c-.3.7-.5 1.4-.6 2.2H0v2h2c.1 1 .5 2 .9 2.9l-1.6 1.4 1.3 1.5 1.5-1.3c1 1 2.4 1.6 3.8 1.6s2.8-.6 3.8-1.6l1.5 1.3 1.3-1.5-1.6-1.4c.7-.9 1-1.9 1.1-2.9h2z"
+  />
+);
 
-export const parseSize = (size) => {
+export const parseSize = size => {
   if (typeof size !== 'number') {
     size = parseInt(size, 10);
   }
@@ -42,7 +47,26 @@ const propTypes = {
    * Changes the size of the icon, passed as a string or int
    * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
    */
-  size: PropTypes.oneOf([10, 12, 16, 20, 24, 32, 48, 56, 64, '10', '12', '16', '20', '24', '32', '48', '56', '64']),
+  size: PropTypes.oneOf([
+    10,
+    12,
+    16,
+    20,
+    24,
+    32,
+    48,
+    56,
+    64,
+    '10',
+    '12',
+    '16',
+    '20',
+    '24',
+    '32',
+    '48',
+    '56',
+    '64',
+  ]),
 };
 
 const defaultProps = {
@@ -69,7 +93,10 @@ function Icon({
 }) {
   let iconName = name;
   /* istanbul ignore next */
-  iconName = ((typeof iconName) === 'string' ? iconName : '').toLowerCase();
+  iconName = (typeof iconName === 'string'
+    ? iconName
+    : ''
+  ).toLowerCase();
 
   const parsedSize = parseSize(size);
 
@@ -85,10 +112,14 @@ function Icon({
     <svg
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden={ariaHidden}
-      className={classNames('icon', {
-        'not-found': !iconFound,
-        'animate spin infinite': (iconName === 'spinner')
-      }, className)}
+      className={classNames(
+        'icon',
+        {
+          'not-found': !iconFound,
+          'animate spin infinite': iconName === 'spinner',
+        },
+        className,
+      )}
       viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
       height={`${parsedSize}px`}
       width={`${parsedSize}px`}

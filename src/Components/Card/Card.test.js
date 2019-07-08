@@ -6,19 +6,25 @@ import Section from './Components/Section';
 
 describe('Card', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Card>hello</Card>); }).not.toThrow();
+    expect(() => {
+      shallow(<Card>hello</Card>);
+    }).not.toThrow();
   });
 
   it('allows for custom classes', () => {
     const wrapper = shallow(<Card className="myClass">test</Card>);
-    expect(wrapper.find('div').prop('className')).toContain('myClass');
+    expect(wrapper.find('div').prop('className')).toContain(
+      'myClass',
+    );
   });
 
   it('wraps children in Section if sectioned', () => {
-    const wrapper = mount(<Card sectioned>
-      <p>child 1</p>
-      <p>child 2</p>
-    </Card>);
+    const wrapper = mount(
+      <Card sectioned>
+        <p>child 1</p>
+        <p>child 2</p>
+      </Card>,
+    );
     expect(wrapper.find(Section)).toHaveLength(2);
   });
 

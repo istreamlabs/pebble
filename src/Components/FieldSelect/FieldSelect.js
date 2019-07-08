@@ -122,7 +122,7 @@ const propTypes = {
    */
   value: PropTypes.oneOfType([
     PropTypes.object,
-    PropTypes.arrayOf(PropTypes.object)
+    PropTypes.arrayOf(PropTypes.object),
   ]),
   /**
    * A valid css width (%, px, em, rem).
@@ -182,7 +182,10 @@ function FieldSelect({
   });
 
   const components = {
-    ...((showCheckbox && multiSelect) && { Option }), ClearIndicator, DropdownIndicator, MultiValueRemove
+    ...(showCheckbox && multiSelect && { Option }),
+    ClearIndicator,
+    DropdownIndicator,
+    MultiValueRemove,
   };
 
   const selectMarkup = () => (
@@ -193,7 +196,9 @@ function FieldSelect({
       classNamePrefix="pebble"
       isMulti={multiSelect}
       isDisabled={disabled}
-      closeMenuOnSelect={!multiSelect ? closeMenuOnSelect : !multiSelect}
+      closeMenuOnSelect={
+        !multiSelect ? closeMenuOnSelect : !multiSelect
+      }
       hideSelectedOptions={false}
       menuPortalTarget={menuPortalTarget}
       menuPlacement={menuPlacement}
@@ -216,7 +221,11 @@ function FieldSelect({
 
   const helpTextMarkup = () => {
     if (helpText) {
-      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+      return (
+        <Text size="6" className="db mt-2">
+          {helpText}
+        </Text>
+      );
     }
     return null;
   };
@@ -225,15 +234,19 @@ function FieldSelect({
     if (!isInvalid || validationText === undefined) return;
 
     return (
-      <Text appearance="danger" size="6" className="db pt-2">{validationText}</Text>
+      <Text appearance="danger" size="6" className="db pt-2">
+        {validationText}
+      </Text>
     );
   };
 
-  const classes = classNames('relative',
+  const classes = classNames(
+    'relative',
     {
       invalid: isInvalid,
     },
-    className);
+    className,
+  );
 
   return (
     <Block direction="column" className={classes} width={width}>

@@ -1,4 +1,3 @@
-
 // THIS FILE IS AUTO GENERATED
 import React from 'react';
 /* eslint-disable */

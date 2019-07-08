@@ -107,21 +107,26 @@ function LinkButton({
     disabled,
   });
 
-  const iconElement = function (name) {
-    const iconSize = caseInsensitiveStringCompare(size, 'large') ? 20 : 16;
+  const iconElement = function(name) {
+    const iconSize = caseInsensitiveStringCompare(size, 'large')
+      ? 20
+      : 16;
 
-    return (
-      <Icon name={name} size={iconSize} className="btn-icon" />
-    );
+    return <Icon name={name} size={iconSize} className="btn-icon" />;
   };
 
   const leftIcon = !iconAfterText && icon && iconElement(icon);
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
-  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
-    'justify-between': icon && fullWidth,
-    'justify-center': (!icon && fullWidth),
-  });
+  const contentClasses = classNames(
+    'btn-content',
+    'flex',
+    'items-center',
+    {
+      'justify-between': icon && fullWidth,
+      'justify-center': !icon && fullWidth,
+    },
+  );
 
   const content = (
     <div className={contentClasses}>

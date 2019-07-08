@@ -62,17 +62,14 @@ function Card({
   });
 
   const header = title ? (
-    <Header actions={headerActions}>
-      {title}
-    </Header>
+    <Header actions={headerActions}>{title}</Header>
   ) : null;
 
   const content = sectioned
-    ? (React.Children.map(children, child => (
-      <Section>
-        {child}
-      </Section>
-    ))) : children;
+    ? React.Children.map(children, child => (
+        <Section>{child}</Section>
+      ))
+    : children;
 
   return (
     <div className={classes}>

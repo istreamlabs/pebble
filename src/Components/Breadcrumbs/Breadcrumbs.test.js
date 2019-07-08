@@ -6,7 +6,9 @@ import Icon from '../Icon/Icon';
 
 describe('Breadcrumbs', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Breadcrumbs />); }).not.toThrow();
+    expect(() => {
+      shallow(<Breadcrumbs />);
+    }).not.toThrow();
   });
 
   describe('Children', () => {
@@ -20,7 +22,7 @@ describe('Breadcrumbs', () => {
           <div />
           <div />
           <div />
-        </Breadcrumbs>
+        </Breadcrumbs>,
       );
       expect(wrapper.children()).toHaveLength(5);
       expect(wrapper.find(Icon)).toHaveLength(2);

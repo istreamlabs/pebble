@@ -138,13 +138,7 @@ const defaultProps = {
  */
 class FieldDateTime extends React.PureComponent {
   renderLabel() {
-    const {
-      disabled,
-      hideLabel,
-      id,
-      isInvalid,
-      label
-    } = this.props;
+    const { disabled, hideLabel, id, isInvalid, label } = this.props;
 
     return (
       <Label
@@ -163,14 +157,18 @@ class FieldDateTime extends React.PureComponent {
     return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
-        ? `YYYY-MM-DD ${timeFormat}`
-        : 'YYYY-MM-DD';
+      ? `YYYY-MM-DD ${timeFormat}`
+      : 'YYYY-MM-DD';
   }
 
   renderHelpTextMarkup() {
     const { helpText } = this.props;
     if (helpText) {
-      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+      return (
+        <Text size="6" className="db mt-2">
+          {helpText}
+        </Text>
+      );
     }
   }
 
@@ -196,19 +194,24 @@ class FieldDateTime extends React.PureComponent {
     if (excludeTime) return;
     const momentValue = moment(value);
 
-    const alternativeDateTimeClasses = classNames('FieldDateTime-alternativeDateTime',
+    const alternativeDateTimeClasses = classNames(
+      'FieldDateTime-alternativeDateTime',
       {
         disabled,
         'input-s': size === 'small',
         'input-m': size === 'medium',
         'input-l': size === 'large',
-      });
+      },
+    );
 
-    const alternativeDateTimeLabelClasses = classNames('bl bb b-neutral-400 justify-end fw-700 fs-6 br0', {
-      'input-s w3': size === 'small',
-      'input-m w3': size === 'medium',
-      'input-l w4': size === 'large',
-    });
+    const alternativeDateTimeLabelClasses = classNames(
+      'bl bb b-neutral-400 justify-end fw-700 fs-6 br0',
+      {
+        'input-s w3': size === 'small',
+        'input-m w3': size === 'medium',
+        'input-l w4': size === 'large',
+      },
+    );
 
     // This is confusing but these methods modify the reference instead of returning a new value
     selectLocalDateTime ? momentValue.utc() : momentValue.local();
@@ -236,7 +239,7 @@ class FieldDateTime extends React.PureComponent {
     );
   }
 
-  onChange = (value) => {
+  onChange = value => {
     const { excludeTime, onChange } = this.props;
     // this code either clears out the time complete, e.g. 00:00:00.000
     // or clears out the seconds since we don't provide that level of granularity in our picker
@@ -249,7 +252,7 @@ class FieldDateTime extends React.PureComponent {
     onChange(value.toISOString());
   };
 
-  filterDate = (value) => {
+  filterDate = value => {
     const { filterDate } = this.props;
     return filterDate ? filterDate(value.toISOString()) : true;
   };
@@ -285,7 +288,7 @@ class FieldDateTime extends React.PureComponent {
       'input-s': size === 'small',
       'input-m': size === 'medium',
       'input-l': size === 'large',
-      'bg-neutral-200': disabled
+      'bg-neutral-200': disabled,
     });
 
     const iconClasses = classNames('FieldDateTime-icon', {
@@ -296,11 +299,14 @@ class FieldDateTime extends React.PureComponent {
       red: isInvalid,
     });
 
-    const prefixClasses = classNames('FieldDateTime-timezone input-prefix justify-end fw-700 fs-6', {
-      'input-s w3': size === 'small',
-      'input-m w3': size === 'medium',
-      'input-l w4': size === 'large',
-    });
+    const prefixClasses = classNames(
+      'FieldDateTime-timezone input-prefix justify-end fw-700 fs-6',
+      {
+        'input-s w3': size === 'small',
+        'input-m w3': size === 'medium',
+        'input-l w4': size === 'large',
+      },
+    );
 
     // Because we are using an old version of the picker and we would
     // at some point like to replace it we do not want to expose the
@@ -310,10 +316,7 @@ class FieldDateTime extends React.PureComponent {
       <Block direction="column" className={classes} width={width}>
         {this.renderLabel()}
         <Block width="100" className="relative">
-          <Block
-            className={prefixClasses}
-            alignItems="center"
-          >
+          <Block className={prefixClasses} alignItems="center">
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
           <DatePicker

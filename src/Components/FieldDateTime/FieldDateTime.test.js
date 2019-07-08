@@ -12,12 +12,14 @@ import Icon from '../Icon/Icon';
 const requiredProps = {
   id: 'myDateTimePicker',
   label: 'select a time',
-  onChange: jest.fn()
+  onChange: jest.fn(),
 };
 
 describe('FieldDateTime', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<FieldDateTime {...requiredProps} />); }).not.toThrow();
+    expect(() => {
+      shallow(<FieldDateTime {...requiredProps} />);
+    }).not.toThrow();
   });
 
   describe('renderLabel', () => {
@@ -27,7 +29,7 @@ describe('FieldDateTime', () => {
         disabled: true,
         id: 'myID',
         hideLabel: true,
-        label: 'myLabel'
+        label: 'myLabel',
       });
 
       const result = instance.renderLabel();
@@ -40,7 +42,7 @@ describe('FieldDateTime', () => {
         disabled: true,
         id: 'myID',
         hideLabel: true,
-        label: 'myLabel'
+        label: 'myLabel',
       });
 
       const result = instance.renderLabel();
@@ -57,7 +59,7 @@ describe('FieldDateTime', () => {
     it('returns a user specified format', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
-        dateFormat: 'YY-M-D'
+        dateFormat: 'YY-M-D',
       });
 
       const result = instance.getDateFormat();
@@ -67,7 +69,7 @@ describe('FieldDateTime', () => {
     it('returns default with a user specified time format', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
-        timeFormat: 'H:m'
+        timeFormat: 'H:m',
       });
 
       const result = instance.getDateFormat();
@@ -77,7 +79,7 @@ describe('FieldDateTime', () => {
     it('returns default without time format', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
-        excludeTime: true
+        excludeTime: true,
       });
 
       const result = instance.getDateFormat();
@@ -99,7 +101,7 @@ describe('FieldDateTime', () => {
     it('uses pebble text component', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
-        helpText: 'help text...'
+        helpText: 'help text...',
       });
 
       const result = instance.renderHelpTextMarkup();
@@ -109,7 +111,7 @@ describe('FieldDateTime', () => {
     it('Sets the correct properties', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
-        helpText: 'help text...'
+        helpText: 'help text...',
       });
 
       const result = instance.renderHelpTextMarkup();
@@ -125,7 +127,7 @@ describe('FieldDateTime', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
         isInvalid: false,
-        validationText: 'validation text...'
+        validationText: 'validation text...',
       });
 
       const result = instance.renderValidationTextMarkup();
@@ -146,7 +148,7 @@ describe('FieldDateTime', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
         isInvalid: true,
-        validationText: 'validation text...'
+        validationText: 'validation text...',
       });
 
       const result = instance.renderValidationTextMarkup();
@@ -157,7 +159,7 @@ describe('FieldDateTime', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
         isInvalid: true,
-        validationText: 'validation text...'
+        validationText: 'validation text...',
       });
 
       const result = instance.renderValidationTextMarkup();
@@ -174,26 +176,30 @@ describe('FieldDateTime', () => {
       const mockChange = jest.fn();
       const instance = new FieldDateTime({
         ...requiredProps,
-        onChange: mockChange
+        onChange: mockChange,
       });
       const value = moment('1986-09-02T01:01:01.000Z');
 
       instance.onChange(value);
 
-      expect(mockChange).toHaveBeenCalledWith(value.startOf('minute').toISOString());
+      expect(mockChange).toHaveBeenCalledWith(
+        value.startOf('minute').toISOString(),
+      );
     });
     it('trims time and converts to ISO string', () => {
       const mockChange = jest.fn();
       const instance = new FieldDateTime({
         ...requiredProps,
         excludeTime: true,
-        onChange: mockChange
+        onChange: mockChange,
       });
       const value = moment('1986-09-02T01:01:01.000Z');
 
       instance.onChange(value);
 
-      expect(mockChange).toHaveBeenCalledWith(value.startOf('day').toISOString());
+      expect(mockChange).toHaveBeenCalledWith(
+        value.startOf('day').toISOString(),
+      );
     });
   });
 
@@ -230,13 +236,21 @@ describe('FieldDateTime', () => {
         value: '1986-09-02T01:01:01.000Z',
       });
       const momentDate = moment('1986-09-02T01:01:01.000Z');
-      jest.spyOn(instance, 'getDateFormat').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getDateFormat')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
-      const result = shallow(instance.renderAlternativeDateTimeDisplay());
+      const result = shallow(
+        instance.renderAlternativeDateTimeDisplay(),
+      );
 
       expect(result.contains('Local')).toBeTruthy();
       expect(instance.getDateFormat).toHaveBeenCalled();
-      expect(result.contains(momentDate.local().format('YYYY-MM-DD HH:mm'))).toBeTruthy();
+      expect(
+        result.contains(
+          momentDate.local().format('YYYY-MM-DD HH:mm'),
+        ),
+      ).toBeTruthy();
     });
 
     it('renders utc when using the local', () => {
@@ -246,13 +260,19 @@ describe('FieldDateTime', () => {
         selectLocalDateTime: true,
       });
       const momentDate = moment('1986-09-02T01:01:01.000Z');
-      jest.spyOn(instance, 'getDateFormat').mockImplementation(() => 'YYYY-MM-DD HH:mm');
+      jest
+        .spyOn(instance, 'getDateFormat')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
 
-      const result = shallow(instance.renderAlternativeDateTimeDisplay());
+      const result = shallow(
+        instance.renderAlternativeDateTimeDisplay(),
+      );
 
       expect(result.contains('UTC')).toBeTruthy();
       expect(instance.getDateFormat).toHaveBeenCalled();
-      expect(result.contains(momentDate.utc().format('YYYY-MM-DD HH:mm'))).toBeTruthy();
+      expect(
+        result.contains(momentDate.utc().format('YYYY-MM-DD HH:mm')),
+      ).toBeTruthy();
     });
 
     it('renders grayed background when disabled', () => {
@@ -262,8 +282,15 @@ describe('FieldDateTime', () => {
         disabled: true,
       });
 
-      const result = shallow(instance.renderAlternativeDateTimeDisplay());
-      expect(result.find(Block).at(1).prop('styles')).toMatchObject({ borderLeft: 0 });
+      const result = shallow(
+        instance.renderAlternativeDateTimeDisplay(),
+      );
+      expect(
+        result
+          .find(Block)
+          .at(1)
+          .prop('styles'),
+      ).toMatchObject({ borderLeft: 0 });
     });
   });
 
@@ -273,89 +300,104 @@ describe('FieldDateTime', () => {
         ...requiredProps,
         value: '1986-09-02T01:01:01.000Z',
       });
-      jest.spyOn(instance, 'renderLabel').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'getDateFormat').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'renderAlternativeDateTimeDisplay').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'renderHelpTextMarkup').mockImplementation(jest.fn());
-      jest.spyOn(instance, 'renderValidationTextMarkup').mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderLabel')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'getDateFormat')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderAlternativeDateTimeDisplay')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderHelpTextMarkup')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderValidationTextMarkup')
+        .mockImplementation(jest.fn());
 
       instance.render();
 
       expect(instance.renderLabel).toHaveBeenCalled();
       expect(instance.getDateFormat).toHaveBeenCalled();
-      expect(instance.renderAlternativeDateTimeDisplay).toHaveBeenCalled();
+      expect(
+        instance.renderAlternativeDateTimeDisplay,
+      ).toHaveBeenCalled();
       expect(instance.renderHelpTextMarkup).toHaveBeenCalled();
       expect(instance.renderValidationTextMarkup).toHaveBeenCalled();
     });
 
     it('uses the react date picker and passes correct non configurable options', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-      />);
+      const wrapper = shallow(<FieldDateTime {...requiredProps} />);
 
       const picker = wrapper.find(DatePicker);
       expect(picker).toBeDefined();
       expect(picker.props().disabledKeyboardNavigation).toEqual(true);
       expect(picker.props().utcOffset).toEqual(0);
-      expect(picker.props().calendarClassName).toEqual('FieldDatePickerCalendar');
+      expect(picker.props().calendarClassName).toEqual(
+        'FieldDatePickerCalendar',
+      );
       expect(picker.props().popperPlacement).toEqual('bottom-start');
       expect(picker.props().adjustDateOnChange).toBeFalsy();
     });
 
     it('uses date-time icon by default', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-      />);
+      const wrapper = shallow(<FieldDateTime {...requiredProps} />);
 
       expect(wrapper.find(Icon).props().name).toEqual('date-time');
     });
 
     it('uses calendar icon when excluding time', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-        excludeTime
-      />);
+      const wrapper = shallow(
+        <FieldDateTime {...requiredProps} excludeTime />,
+      );
 
       expect(wrapper.find(Icon).props().name).toEqual('calendar');
     });
 
     it('passes a min and max date when provided', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-        minDate="1986-09-02T01:01:01.000Z"
-        maxDate="1986-09-03T01:01:01.000Z"
-      />);
+      const wrapper = shallow(
+        <FieldDateTime
+          {...requiredProps}
+          minDate="1986-09-02T01:01:01.000Z"
+          maxDate="1986-09-03T01:01:01.000Z"
+        />,
+      );
 
       expect(wrapper.find(DatePicker).props().minDate).toBeDefined();
       expect(wrapper.find(DatePicker).props().maxDate).toBeDefined();
     });
 
     it('adds UTC prefix to input by default', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-      />);
+      const wrapper = shallow(<FieldDateTime {...requiredProps} />);
 
-      expect(wrapper.find('.FieldDateTime-timezone').contains('UTC')).toBeDefined();
+      expect(
+        wrapper.find('.FieldDateTime-timezone').contains('UTC'),
+      ).toBeDefined();
     });
 
     it('adds local prefix to input when selecting local time', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-        selectLocalDateTime
-      />);
+      const wrapper = shallow(
+        <FieldDateTime {...requiredProps} selectLocalDateTime />,
+      );
 
-      expect(wrapper.find('.FieldDateTime-timezone').contains('Local')).toBeDefined();
+      expect(
+        wrapper.find('.FieldDateTime-timezone').contains('Local'),
+      ).toBeDefined();
     });
 
     it('sets correct classes and properties when invalid', () => {
-      const wrapper = shallow(<FieldDateTime
-        {...requiredProps}
-        isInvalid
-      />);
+      const wrapper = shallow(
+        <FieldDateTime {...requiredProps} isInvalid />,
+      );
 
-      expect(wrapper.find(DatePicker).props().className).toContain('input-error');
+      expect(wrapper.find(DatePicker).props().className).toContain(
+        'input-error',
+      );
       expect(wrapper.find(Icon).props().className).toContain('red');
-      expect(wrapper.find(Icon).props().className).not.toContain('neutral-400');
+      expect(wrapper.find(Icon).props().className).not.toContain(
+        'neutral-400',
+      );
     });
   });
 });

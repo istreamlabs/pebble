@@ -24,12 +24,12 @@ const propTypes = {
    */
   overlayClassName: PropTypes.string,
   /**
-  * Contents of the component
-  */
+   * Contents of the component
+   */
   children: PropTypes.node,
   /**
-  * Whether dropdown is disabled
-  */
+   * Whether dropdown is disabled
+   */
   disabled: PropTypes.bool,
   /**
    * Takes up the full width of its parent container
@@ -66,10 +66,8 @@ const propTypes = {
   /**
    * Content that will open and close the dropdown menu. Passing a string will render a Button with a down arrow.
    */
-  toggle: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.node,
-  ]).isRequired,
+  toggle: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
+    .isRequired,
 };
 
 const defaultProps = {
@@ -104,13 +102,19 @@ export class DropdownMenu extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeydown, false);
+    document.removeEventListener(
+      'keydown',
+      this.handleKeydown,
+      false,
+    );
   }
 
   onToggle = () => {
     const { isOverlayOpen } = this.state;
-    this.setState({ isOverlayOpen: !isOverlayOpen }, () => (isOverlayOpen ? this.handleClose() : this.handleOpen()));
-  }
+    this.setState({ isOverlayOpen: !isOverlayOpen }, () =>
+      isOverlayOpen ? this.handleClose() : this.handleOpen(),
+    );
+  };
 
   // used by onClickOutside HOC
   handleClickOutside = () => {
@@ -124,20 +128,20 @@ export class DropdownMenu extends React.PureComponent {
   handleClose = () => {
     const { onClose } = this.props;
     onClose && onClose();
-  }
+  };
 
   handleOpen = () => {
     const { onOpen } = this.props;
     onOpen && onOpen();
-  }
+  };
 
-  handleKeydown = (event) => {
+  handleKeydown = event => {
     const { isOverlayOpen } = this.state;
     const { key } = event;
     if (key === 'Escape' && isOverlayOpen) {
       this.setState({ isOverlayOpen: false }, this.handleClose());
     }
-  }
+  };
 
   renderToggle = ({ ref }) => {
     const {
@@ -145,7 +149,7 @@ export class DropdownMenu extends React.PureComponent {
       size,
       toggle,
       toggleClassName,
-      disabled
+      disabled,
     } = this.props;
 
     if (typeof toggle === 'string') {
@@ -171,18 +175,19 @@ export class DropdownMenu extends React.PureComponent {
       onClick: this.onToggle,
       disabled,
       'aria-haspopup': true,
-      ref
+      ref,
     });
-  }
+  };
 
   renderOverlay = ({ ref, placement, style }) => {
     const { isOverlayOpen } = this.state;
-    const {
-      children,
-      overlayClassName,
-    } = this.props;
+    const { children, overlayClassName } = this.props;
 
-    const overlayClasses = classNames('dropdown-overlay', 'pv-2', overlayClassName);
+    const overlayClasses = classNames(
+      'dropdown-overlay',
+      'pv-2',
+      overlayClassName,
+    );
 
     return (
       <div
@@ -197,20 +202,19 @@ export class DropdownMenu extends React.PureComponent {
         {children}
       </div>
     );
-  }
+  };
 
   render() {
     const { isOverlayOpen } = this.state;
-    const {
-      className,
-      fullWidth,
-      placement,
-      trapFocus
-    } = this.props;
+    const { className, fullWidth, placement, trapFocus } = this.props;
 
-    const classes = classNames('dropdown-container', {
-      'w-100': fullWidth,
-    }, className);
+    const classes = classNames(
+      'dropdown-container',
+      {
+        'w-100': fullWidth,
+      },
+      className,
+    );
     const enableFocusTrap = trapFocus ? isOverlayOpen : false;
 
     return (
@@ -220,23 +224,20 @@ export class DropdownMenu extends React.PureComponent {
           clickOutsideDeactivates: true,
         }}
       >
-        <div
-          className={classes}
-          onKeyDown={this.handleKeydown}
-        >
+        <div className={classes} onKeyDown={this.handleKeydown}>
           <Manager>
             <Reference>{this.renderToggle}</Reference>
             {isOverlayOpen && (
-            <Popper
-              placement={placement}
-              modifiers={{
-                preventOverflow: {
-                  enabled: true,
-                },
-              }}
-            >
-              {this.renderOverlay}
-            </Popper>
+              <Popper
+                placement={placement}
+                modifiers={{
+                  preventOverflow: {
+                    enabled: true,
+                  },
+                }}
+              >
+                {this.renderOverlay}
+              </Popper>
             )}
           </Manager>
         </div>

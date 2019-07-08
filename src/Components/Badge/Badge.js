@@ -9,9 +9,12 @@ import './Badge.scss';
 
 function getSize(size) {
   switch (size) {
-    case 'small': return 7;
-    case 'large': return 5;
-    default: return 6;
+    case 'small':
+      return 7;
+    case 'large':
+      return 5;
+    default:
+      return 6;
   }
 }
 
@@ -39,7 +42,14 @@ const propTypes = {
    * Type of message to be displayed
    * @type {PropTypes.Requireable<AppearanceType>}
    */
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success', 'special']),
+  type: PropTypes.oneOf([
+    'default',
+    'info',
+    'warn',
+    'danger',
+    'success',
+    'special',
+  ]),
 };
 
 const defaultProps = {
@@ -54,25 +64,19 @@ const defaultProps = {
  * ---
  */
 
-function Badge({
-  children,
-  className,
-  icon,
-  size,
-  type,
-}) {
-  const classes = classNames('badge', {
-    [`badge-${type}`]: type !== 'default',
-    [`badge-${size}`]: type !== 'medium',
-    baseline: icon,
-  }, className);
+function Badge({ children, className, icon, size, type }) {
+  const classes = classNames(
+    'badge',
+    {
+      [`badge-${type}`]: type !== 'default',
+      [`badge-${size}`]: type !== 'medium',
+      baseline: icon,
+    },
+    className,
+  );
 
   return (
-    <Text
-      className={classes}
-      size={getSize(size)}
-      bold
-    >
+    <Text className={classes} size={getSize(size)} bold>
       {icon && <Icon name={icon} className="badge-icon" />}
       {children}
     </Text>

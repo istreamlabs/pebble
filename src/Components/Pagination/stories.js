@@ -21,11 +21,7 @@ function PaginationNoNumPagesExample() {
 
   return (
     <>
-      <div className="mb-5">
-        current page:
-        {' '}
-        {currentPage}
-      </div>
+      <div className="mb-5">current page: {currentPage}</div>
       <Pagination
         onPageChange={setCurrentPage}
         currentPage={currentPage}

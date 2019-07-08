@@ -11,17 +11,24 @@ import FieldText from '../FieldText/FieldText';
 function FormExample() {
   return (
     <Form>
-      <FieldText id="name" label="Name" placeholder="your name here" />
-      <FieldText id="email" label="Email" placeholder="jane@example.com" />
+      <FieldText
+        id="name"
+        label="Name"
+        placeholder="your name here"
+      />
+      <FieldText
+        id="email"
+        label="Email"
+        placeholder="jane@example.com"
+      />
       <ButtonGroup>
-        <Button type="submit" primary>Submit</Button>
+        <Button type="submit" primary>
+          Submit
+        </Button>
         <Button type="reset">Reset</Button>
       </ButtonGroup>
     </Form>
   );
 }
 
-storiesOf('Form', module)
-  .add('all', () => (
-    <FormExample />
-  ));
+storiesOf('Form', module).add('all', () => <FormExample />);

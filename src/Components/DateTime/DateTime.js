@@ -49,9 +49,9 @@ const propTypes = {
    */
   showAlternativeTimeZone: PropTypes.bool,
   /**
-  * Changes the font size of the date time display value
-  * @type {PropTypes.Requireable<Size>}
-  */
+   * Changes the font size of the date time display value
+   * @type {PropTypes.Requireable<Size>}
+   */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601)
@@ -77,17 +77,15 @@ class DateTime extends React.PureComponent {
   getDateFormat() {
     const { dateFormat, excludeTime, timeFormat } = this.props;
 
-    return (dateFormat !== undefined
+    return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
-        ? `YYYY-MM-DD ${timeFormat}`
-        : 'YYYY-MM-DD');
+      ? `YYYY-MM-DD ${timeFormat}`
+      : 'YYYY-MM-DD';
   }
 
   getFormattedDateTime(timezone) {
-    const {
-      value
-    } = this.props;
+    const { value } = this.props;
 
     const momentValue = moment(value);
 
@@ -106,7 +104,9 @@ class DateTime extends React.PureComponent {
 
     if (label) {
       return (
-        <Text className="db" size="6">{label}</Text>
+        <Text className="db" size="6">
+          {label}
+        </Text>
       );
     }
     return null;
@@ -132,11 +132,19 @@ class DateTime extends React.PureComponent {
     return (
       <Block alignItems="baseline">
         {!hideTimeZone && (
-          <Block className="neutral-500" textSize="6" width={TIME_ZONE_WIDTH}>
+          <Block
+            className="neutral-500"
+            textSize="6"
+            width={TIME_ZONE_WIDTH}
+          >
             {displayLocalDateTime ? 'UTC' : 'local'}
           </Block>
         )}
-        <div className={classes}>{this.getFormattedDateTime(displayLocalDateTime ? 'UTC' : 'local')}</div>
+        <div className={classes}>
+          {this.getFormattedDateTime(
+            displayLocalDateTime ? 'UTC' : 'local',
+          )}
+        </div>
       </Block>
     );
   }
@@ -152,8 +160,17 @@ class DateTime extends React.PureComponent {
 
     if (!showAlternativeTimeZone) {
       return (
-        <Tooltip content={`${this.getFormattedDateTime(altTimeZone)} ${altTimeZone}`}>
-          <span className="underline-dotted" style={{ textDecorationColor: '#C5CDD5' }}>{this.getFormattedDateTime(timeZone)}</span>
+        <Tooltip
+          content={`${this.getFormattedDateTime(
+            altTimeZone,
+          )} ${altTimeZone}`}
+        >
+          <span
+            className="underline-dotted"
+            style={{ textDecorationColor: '#C5CDD5' }}
+          >
+            {this.getFormattedDateTime(timeZone)}
+          </span>
         </Tooltip>
       );
     }
@@ -182,13 +199,15 @@ class DateTime extends React.PureComponent {
         {this.renderLabel()}
         <Block alignItems="baseline">
           {!hideTimeZone && (
-            <Block className="DateTime-timezone neutral-500" textSize="6" width={TIME_ZONE_WIDTH}>
+            <Block
+              className="DateTime-timezone neutral-500"
+              textSize="6"
+              width={TIME_ZONE_WIDTH}
+            >
               {displayLocalDateTime ? 'local' : 'UTC'}
             </Block>
           )}
-          <Block className={classes}>
-            {this.renderTime()}
-          </Block>
+          <Block className={classes}>{this.renderTime()}</Block>
         </Block>
         {this.renderAlternativeDateTimeDisplay()}
       </TextContainer>

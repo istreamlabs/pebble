@@ -23,16 +23,12 @@ const defaultProps = {
 };
 
 /**
-* Secondary form of navigation that helps orient users in an application within hierarchical content.
-*
-* ---
-*/
+ * Secondary form of navigation that helps orient users in an application within hierarchical content.
+ *
+ * ---
+ */
 
-function Breadcrumbs({
-  className,
-  children,
-  ...rest
-}) {
+function Breadcrumbs({ className, children, ...rest }) {
   const classes = classNames('breadcrumbs', className);
   const childrenWithDividers = [];
   const numChildren = React.Children.count(children);
@@ -41,7 +37,13 @@ function Breadcrumbs({
     child && childrenWithDividers.push(child);
 
     if (i !== numChildren - 1) {
-      childrenWithDividers.push(<Icon key={i} name="arrow-small-triangle-right" className="ml-2 mr-2 ml-3-ns mr-3-ns neutral-500" />);
+      childrenWithDividers.push(
+        <Icon
+          key={i}
+          name="arrow-small-triangle-right"
+          className="ml-2 mr-2 ml-3-ns mr-3-ns neutral-500"
+        />,
+      );
     }
   });
 

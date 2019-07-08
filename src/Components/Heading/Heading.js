@@ -17,7 +17,7 @@ export const parseSize = (size, element) => {
   return size;
 };
 
-export const parseElement = (element) => {
+export const parseElement = element => {
   if (typeof element !== 'number') {
     element = parseInt(element, 10);
   }
@@ -41,7 +41,20 @@ const propTypes = {
    * Semantic heading level, can passed as int or string
    * @type {PropTypes.Requireable<ElementSizeLike>}
    */
-  element: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']).isRequired,
+  element: PropTypes.oneOf([
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+  ]).isRequired,
   /**
    * should the font size be reduced for smaller viewports
    */
@@ -50,7 +63,20 @@ const propTypes = {
    * appearance level, can passed as int or string
    * @type {PropTypes.Requireable<ElementSizeLike>}
    */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, '1', '2', '3', '4', '5', '6']),
+  size: PropTypes.oneOf([
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+  ]),
   /**
    * text alignment
    * @type {PropTypes.Requireable<TextAlign>}
@@ -94,19 +120,24 @@ function Heading({
   const parsedElement = parseElement(element);
   const Element = `h${parsedElement}`;
 
-  const parsedSize = size ? parseSize(size, parsedElement) : parsedElement;
-  const headingSizeClass = responsive ? `heading-${parsedSize}-responsive` : `heading-${parsedSize}`;
+  const parsedSize = size
+    ? parseSize(size, parsedElement)
+    : parsedElement;
+  const headingSizeClass = responsive
+    ? `heading-${parsedSize}-responsive`
+    : `heading-${parsedSize}`;
 
-  const classes = classNames('heading', headingSizeClass, {
-    truncate,
-    [`text-${textAlign}`]: textAlign
-  }, className);
-
-  return (
-    <Element className={classes}>
-      {children}
-    </Element>
+  const classes = classNames(
+    'heading',
+    headingSizeClass,
+    {
+      truncate,
+      [`text-${textAlign}`]: textAlign,
+    },
+    className,
   );
+
+  return <Element className={classes}>{children}</Element>;
 }
 
 Heading.propTypes = propTypes;

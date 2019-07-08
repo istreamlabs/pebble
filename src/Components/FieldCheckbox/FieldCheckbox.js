@@ -98,20 +98,24 @@ function FieldCheckbox({
 
   const labelMarkup = () => {
     if (toggle) {
-      const labelClasses = classNames(
-        'flex', {
-          'items-center': toggle && !isInvalid,
-          red: isInvalid,
-        }
-      );
+      const labelClasses = classNames('flex', {
+        'items-center': toggle && !isInvalid,
+        red: isInvalid,
+      });
 
       return (
         <label className={labelClasses} htmlFor={id}>
           <div className="toggle-switch" aria-hidden="true">
-            <div className="toggle-text-left relative text-center fw-700 text-transform-uppercase" aria-hidden="true">
+            <div
+              className="toggle-text-left relative text-center fw-700 text-transform-uppercase"
+              aria-hidden="true"
+            >
               on
             </div>
-            <div className="toggle-text-right relative text-center fw-700 text-transform-uppercase" aria-hidden="true">
+            <div
+              className="toggle-text-right relative text-center fw-700 text-transform-uppercase"
+              aria-hidden="true"
+            >
               off
             </div>
           </div>
@@ -125,11 +129,9 @@ function FieldCheckbox({
     }
 
     // normal checkbox
-    const labelClasses = classNames(
-      'db mb-2', {
-        red: isInvalid,
-      }
-    );
+    const labelClasses = classNames('db mb-2', {
+      red: isInvalid,
+    });
 
     return (
       <Block direction="column" className="ml-2">
@@ -145,7 +147,9 @@ function FieldCheckbox({
   const helpTextMarkup = () => {
     if (helpText === undefined || helpText === '') return;
     return (
-      <Text size="6" appearance="muted" className="db mt-1">{helpText}</Text>
+      <Text size="6" appearance="muted" className="db mt-1">
+        {helpText}
+      </Text>
     );
   };
 
@@ -153,17 +157,21 @@ function FieldCheckbox({
     if (!isInvalid || validationText === undefined) return;
 
     return (
-      <Text appearance="danger" size="6" className="db pt-2">{validationText}</Text>
+      <Text appearance="danger" size="6" className="db pt-2">
+        {validationText}
+      </Text>
     );
   };
 
-  const classes = classNames('relative',
+  const classes = classNames(
+    'relative',
     {
       toggle,
       invalid: isInvalid,
-      'o-50': disabled
+      'o-50': disabled,
     },
-    className);
+    className,
+  );
 
   return (
     <Block className={classes}>

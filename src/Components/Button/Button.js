@@ -74,11 +74,11 @@ const propTypes = {
   accessibilityLabel: PropTypes.string,
   /**
    * Id of the element the button controls
-  */
+   */
   ariaControls: PropTypes.string,
   /**
    * Tells screen reader the controlled element is expanded
-  */
+   */
   ariaExpanded: PropTypes.bool,
   /**
    * Tells screen reader the element is pressed
@@ -97,7 +97,6 @@ const propTypes = {
    */
   onBlur: PropTypes.func,
 };
-
 
 const defaultProps = {
   ariaExpanded: false,
@@ -168,20 +167,25 @@ const Button = React.forwardRef((props, ref) => {
     <Icon name="spinner" className="btn-loading-spinner" />
   ) : null;
 
-  const iconElement = function (name) {
-    const iconSize = caseInsensitiveStringCompare(size, 'large') ? 20 : 16;
+  const iconElement = function(name) {
+    const iconSize = caseInsensitiveStringCompare(size, 'large')
+      ? 20
+      : 16;
 
-    return (
-      <Icon name={name} size={iconSize} className="btn-icon" />
-    );
+    return <Icon name={name} size={iconSize} className="btn-icon" />;
   };
 
   const leftIcon = !iconAfterText && icon && iconElement(icon);
   const rightIcon = icon && iconAfterText && iconElement(icon);
 
-  const contentClasses = classNames('btn-content', 'flex', 'items-center', {
-    'justify-center': fullWidth,
-  });
+  const contentClasses = classNames(
+    'btn-content',
+    'flex',
+    'items-center',
+    {
+      'justify-center': fullWidth,
+    },
+  );
 
   const content = (
     <div className={contentClasses}>

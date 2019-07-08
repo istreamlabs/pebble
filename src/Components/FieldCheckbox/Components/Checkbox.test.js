@@ -6,12 +6,16 @@ import Icon from '../../Icon/Icon';
 
 describe('Checkbox', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Checkbox id="test" />); }).not.toThrow();
+    expect(() => {
+      shallow(<Checkbox id="test" />);
+    }).not.toThrow();
   });
 
   describe('checkboxIconMarkup', () => {
     it('if toggle, should not return anything', () => {
-      const wrapper = mount(<Checkbox id="test" onChange={() => {}} toggle />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={() => {}} toggle />,
+      );
       expect(wrapper.exists('svg')).toBe(false);
     });
 
@@ -25,32 +29,46 @@ describe('Checkbox', () => {
     });
 
     it('isSelected and disabled should be reflected in the input', () => {
-      const wrapper = mount(<Checkbox id="test" isSelected disabled />);
+      const wrapper = mount(
+        <Checkbox id="test" isSelected disabled />,
+      );
       expect(wrapper.find('input').prop('disabled')).toBe(true);
       expect(wrapper.find('input').prop('checked')).toBe(true);
-      expect(wrapper.find(Icon).prop('name')).toBe('checkbox-checked');
+      expect(wrapper.find(Icon).prop('name')).toBe(
+        'checkbox-checked',
+      );
     });
 
     it('isSelected should be reflected in the input', () => {
-      const wrapper = mount(<Checkbox id="test" onChange={() => {}} isSelected />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={() => {}} isSelected />,
+      );
       expect(wrapper.find('input').prop('checked')).toBe(true);
-      expect(wrapper.find(Icon).prop('name')).toBe('checkbox-checked');
+      expect(wrapper.find(Icon).prop('name')).toBe(
+        'checkbox-checked',
+      );
     });
 
     it('isSelected should be reflected in the input', () => {
-      const wrapper = mount(<Checkbox id="test" onChange={() => {}} isSelected={false} />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={() => {}} isSelected={false} />,
+      );
       expect(wrapper.find('input').prop('checked')).toBe(false);
       expect(wrapper.find(Icon).prop('name')).toBe('checkbox');
     });
 
     it('disabled should be reflected in the input', () => {
-      const wrapper = mount(<Checkbox id="test" onChange={() => {}} disabled />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={() => {}} disabled />,
+      );
       expect(wrapper.find('input').prop('disabled')).toBe(true);
       expect(wrapper.find(Icon).prop('name')).toBe('checkbox');
     });
 
     it('isInvalid should be reflected in the input', () => {
-      const wrapper = mount(<Checkbox id="test" onChange={() => {}} isInvalid />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={() => {}} isInvalid />,
+      );
       expect(wrapper.find('svg').prop('className')).toContain('red');
       expect(wrapper.find(Icon).prop('name')).toBe('checkbox');
     });
@@ -58,7 +76,9 @@ describe('Checkbox', () => {
 
   describe('className', () => {
     it('passes in class name', () => {
-      const instance = shallow(<Checkbox id="test" className="my-class" />);
+      const instance = shallow(
+        <Checkbox id="test" className="my-class" />,
+      );
       expect(instance.html()).toContain('my-class');
     });
   });
@@ -66,21 +86,27 @@ describe('Checkbox', () => {
   describe('handleChange', () => {
     it('calls onChange', () => {
       const onChange = jest.fn();
-      const wrapper = mount(<Checkbox id="test" onChange={onChange} />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={onChange} />,
+      );
       wrapper.find('input').simulate('change');
       expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it('sets isSelected to opposite of isSelected', () => {
       const onChange = jest.fn();
-      const wrapper = mount(<Checkbox id="test" onChange={onChange} isSelected={false} />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={onChange} isSelected={false} />,
+      );
       wrapper.find('input').simulate('change');
       expect(onChange).toHaveBeenCalledWith(true);
     });
 
     it('sets isSelected to opposite of isSelected', () => {
       const onChange = jest.fn();
-      const wrapper = mount(<Checkbox id="test" onChange={onChange} isSelected />);
+      const wrapper = mount(
+        <Checkbox id="test" onChange={onChange} isSelected />,
+      );
       wrapper.find('input').simulate('change');
       expect(onChange).toHaveBeenCalledWith(false);
     });
@@ -89,7 +115,9 @@ describe('Checkbox', () => {
   describe('passes other props', () => {
     it('passes in class name', () => {
       const mockFun = jest.fn();
-      const instance = shallow(<Checkbox id="test" className="my-class" onBlur={mockFun} />);
+      const instance = shallow(
+        <Checkbox id="test" className="my-class" onBlur={mockFun} />,
+      );
       expect(instance.find('input').prop('onBlur')).toBe(mockFun);
     });
   });
