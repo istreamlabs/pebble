@@ -26,15 +26,19 @@ function PlacementExample() {
 
 storiesOf('Tooltip', module)
   .add('node', () => (
-    <Tooltip active content="i'm the content of a tooltip. i'm the content of a tooltip">
+    <Tooltip
+      active
+      content="i'm the content of a tooltip. i'm the content of a tooltip"
+    >
       <span className="link">tooltip</span>
     </Tooltip>
   ))
   .add('string', () => (
-    <Tooltip active content="i'm the content of a tooltip. i'm the content of a tooltip">
+    <Tooltip
+      active
+      content="i'm the content of a tooltip. i'm the content of a tooltip"
+    >
       string
     </Tooltip>
   ))
-  .add('placement', () => (
-    <PlacementExample />
-  ));
+  .add('placement', () => <PlacementExample />);

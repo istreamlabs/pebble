@@ -9,7 +9,11 @@ import Text from '../Text/Text';
 
 storiesOf('Block', module)
   .add('responsive justify', () => (
-    <Block width="100%" justify={['start', 'evenly', 'end', 'center']} background="blue">
+    <Block
+      width="100%"
+      justify={['start', 'evenly', 'end', 'center']}
+      background="blue"
+    >
       <Block width="80px" padding="3" background="blue-light">
         1/3
       </Block>
@@ -94,49 +98,108 @@ storiesOf('Block', module)
       </Block>
 
       <Block justify="start" itemSpacing="3" marginBottom="4">
-        <Block width="243px" padding="3" background="blue-light" marginBottom="4">
+        <Block
+          width="243px"
+          padding="3"
+          background="blue-light"
+          marginBottom="4"
+        >
           233px
         </Block>
-        <Block width="10rem" padding="3" background="blue-light" marginBottom="4">
+        <Block
+          width="10rem"
+          padding="3"
+          background="blue-light"
+          marginBottom="4"
+        >
           10rem (160px)
         </Block>
-        <Block width="25%" padding="3" background="blue-light" marginBottom="4">
+        <Block
+          width="25%"
+          padding="3"
+          background="blue-light"
+          marginBottom="4"
+        >
           25%
         </Block>
       </Block>
 
       <Block itemSpacing="3" marginBottom="4">
-        <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">
+        <Block
+          width={[10, 33, 25, 10]}
+          padding="3"
+          background="blue-light"
+        >
           10%, 33%, 25%, 10%
         </Block>
-        <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">
+        <Block
+          width={[80, 33, 50, 10]}
+          padding="3"
+          background="blue-light"
+        >
           80%, 33%, 50%, 10%
         </Block>
-        <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">
+        <Block
+          width={[10, 34, 25, 80]}
+          padding="3"
+          background="blue-light"
+        >
           10%, 34%, 25%, 80%
         </Block>
       </Block>
 
       <Block itemSpacing="3" height="100px" marginBottom="4">
-        <Block height="44px" padding="3" background="blue-light" marginBottom="4">
+        <Block
+          height="44px"
+          padding="3"
+          background="blue-light"
+          marginBottom="4"
+        >
           44px
         </Block>
-        <Block height="4rem" padding="3" background="blue-light" marginBottom="4">
+        <Block
+          height="4rem"
+          padding="3"
+          background="blue-light"
+          marginBottom="4"
+        >
           4rem (64px)
         </Block>
-        <Block height="80%" padding="3" background="blue-light" marginBottom="4">
+        <Block
+          height="80%"
+          padding="3"
+          background="blue-light"
+          marginBottom="4"
+        >
           80%
         </Block>
       </Block>
 
-      <Block direction="column" itemSpacing="3" height="300px" marginBottom="4">
-        <Block height={[10, 33, 25, 10]} padding="3" background="blue-light">
+      <Block
+        direction="column"
+        itemSpacing="3"
+        height="300px"
+        marginBottom="4"
+      >
+        <Block
+          height={[10, 33, 25, 10]}
+          padding="3"
+          background="blue-light"
+        >
           10%, 33%, 25%, 10%
         </Block>
-        <Block height={[80, 33, 50, 10]} padding="3" background="blue-light">
+        <Block
+          height={[80, 33, 50, 10]}
+          padding="3"
+          background="blue-light"
+        >
           80%, 33%, 50%, 10%
         </Block>
-        <Block height={[10, 34, 25, 80]} padding="3" background="blue-light">
+        <Block
+          height={[10, 34, 25, 80]}
+          padding="3"
+          background="blue-light"
+        >
           10%, 34%, 25%, 80%
         </Block>
       </Block>
@@ -146,13 +209,28 @@ storiesOf('Block', module)
           <Text size="2">A tall column with variable height</Text>
         </Block>
         <Badge type="info">badge</Badge>
-        <Block height="100px" background="blue-light" padding="3" alignItems="center">
+        <Block
+          height="100px"
+          background="blue-light"
+          padding="3"
+          alignItems="center"
+        >
           100px height
         </Block>
-        <Block height="75px" background="blue-light" padding="3" alignItems="center">
+        <Block
+          height="75px"
+          background="blue-light"
+          padding="3"
+          alignItems="center"
+        >
           75px height
         </Block>
-        <Block height="50px" background="blue-light" padding="3" alignItems="center">
+        <Block
+          height="50px"
+          background="blue-light"
+          padding="3"
+          alignItems="center"
+        >
           50px height
         </Block>
       </Block>
@@ -301,7 +379,7 @@ storiesOf('Block', module)
           2, // spacing-2 by default
           4, // spacing-4 30rem and up
           6, // spacing-6 60rem and up
-          8 // spacing-8 90rem and up
+          8, // spacing-8 90rem and up
         ]}
       >
         Padding of 2 and 8
@@ -418,39 +496,50 @@ storiesOf('Block', module)
           { vertical: 'auto' }, // overflow-y is auto at 30rem and up
           {
             vertical: 'auto',
-            horizontal: 'auto'
+            horizontal: 'auto',
           }, // overflow-x and overflow-y is auto at 60rem and up
-          'hidden'
+          'hidden',
         ]} // overflow is hidden at 90rem and up
         height="200px"
         width="100px"
         background="blue-light"
       >
         <p>
-          iStreamPlanet creates leading-edge technology to solve the core challenges of OTT media.
-          We deliver the end-to-end video workflow from signal acquisition to the streaming app
+          iStreamPlanet creates leading-edge technology to solve the
+          core challenges of OTT media. We deliver the end-to-end
+          video workflow from signal acquisition to the streaming app
           experience — all focused on the fan.
         </p>
 
         <p>
-          iStreamPlanet has earned the trust of leading sports and entertainment brands through
-          innovation, dedication to high quality video, and exceptional customer service.
+          iStreamPlanet has earned the trust of leading sports and
+          entertainment brands through innovation, dedication to high
+          quality video, and exceptional customer service.
         </p>
       </Block>
 
       <Block truncate>
-        This Block has truncate set to true. Therefore it's content is limited to a single line, and
-        overflow content truncated with an ellipsis.
+        This Block has truncate set to true. Therefore it's content is
+        limited to a single line, and overflow content truncated with
+        an ellipsis.
       </Block>
 
       <Block direction="column" itemSpacing="3">
         <Block background="blue-light" direction="column">
           Left Aligned
         </Block>
-        <Block background="blue-light" direction="column" textAlign="center">
+        <Block
+          background="blue-light"
+          direction="column"
+          textAlign="center"
+        >
           Centered
         </Block>
-        <Block background="blue-light" direction="column" textAlign="right">
+        <Block
+          background="blue-light"
+          direction="column"
+          textAlign="right"
+        >
           Right Aligned
         </Block>
       </Block>

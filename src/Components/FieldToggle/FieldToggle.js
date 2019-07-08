@@ -11,12 +11,8 @@ import FieldCheckbox from '../FieldCheckbox/FieldCheckbox';
  * -----
  */
 
-function FieldToggle({
-  ...props
-}) {
-  return (
-    <FieldCheckbox toggle {...props} />
-  );
+function FieldToggle({ ...props }) {
+  return <FieldCheckbox toggle {...props} />;
 }
 
 export default FieldToggle;

@@ -7,11 +7,21 @@ import React from 'react';
 
 describe('DropdownMenu', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<DropdownMenu toggle="click me"><div>overlay</div></DropdownMenu>); }).not.toThrow();
+    expect(() => {
+      shallow(
+        <DropdownMenu toggle="click me">
+          <div>overlay</div>
+        </DropdownMenu>,
+      );
+    }).not.toThrow();
   });
 
   it('should apply false FocusTrap prop even if its open', () => {
-    const wrapper = shallow(<DropdownMenu trapFocus={false} open toggle="click me"><div>overlay</div></DropdownMenu>);
+    const wrapper = shallow(
+      <DropdownMenu trapFocus={false} open toggle="click me">
+        <div>overlay</div>
+      </DropdownMenu>,
+    );
     expect(wrapper.find(FocusTrap).prop('active')).toBe(false);
   });
 
@@ -19,7 +29,11 @@ describe('DropdownMenu', () => {
     document.removeEventListener = jest.fn();
     const instance = new DropdownMenu({});
     instance.componentWillUnmount();
-    expect(document.removeEventListener).toHaveBeenCalledWith('keydown', instance.handleKeydown, false);
+    expect(document.removeEventListener).toHaveBeenCalledWith(
+      'keydown',
+      instance.handleKeydown,
+      false,
+    );
   });
 
   describe('onToggle', () => {
@@ -28,9 +42,14 @@ describe('DropdownMenu', () => {
       const onClose = jest.fn();
 
       const instance = new DropdownMenu({ onOpen, onClose });
-      const spy = jest.spyOn(instance, 'setState').mockImplementation((state, callback) => callback());
+      const spy = jest
+        .spyOn(instance, 'setState')
+        .mockImplementation((state, callback) => callback());
       instance.onToggle();
-      expect(spy).toHaveBeenCalledWith({ isOverlayOpen: true }, expect.any(Function));
+      expect(spy).toHaveBeenCalledWith(
+        { isOverlayOpen: true },
+        expect.any(Function),
+      );
       expect(onOpen).toHaveBeenCalled();
       expect(onClose).not.toHaveBeenCalled();
     });
@@ -39,10 +58,19 @@ describe('DropdownMenu', () => {
       const onOpen = jest.fn();
       const onClose = jest.fn();
 
-      const instance = new DropdownMenu({ onOpen, onClose, open: true });
-      const spy = jest.spyOn(instance, 'setState').mockImplementation((state, callback) => callback());
+      const instance = new DropdownMenu({
+        onOpen,
+        onClose,
+        open: true,
+      });
+      const spy = jest
+        .spyOn(instance, 'setState')
+        .mockImplementation((state, callback) => callback());
       instance.onToggle();
-      expect(spy).toHaveBeenCalledWith({ isOverlayOpen: false }, expect.any(Function));
+      expect(spy).toHaveBeenCalledWith(
+        { isOverlayOpen: false },
+        expect.any(Function),
+      );
       expect(onClose).toHaveBeenCalled();
       expect(onOpen).not.toHaveBeenCalled();
     });
@@ -51,7 +79,11 @@ describe('DropdownMenu', () => {
   describe('handleClickOutside', () => {
     it('should close the overlay if it is open', () => {
       const onClose = jest.fn();
-      const wrapper = shallow(<DropdownMenu open toggle="click me" onClose={onClose}><div>overlay</div></DropdownMenu>);
+      const wrapper = shallow(
+        <DropdownMenu open toggle="click me" onClose={onClose}>
+          <div>overlay</div>
+        </DropdownMenu>,
+      );
       wrapper.instance().handleClickOutside();
       expect(onClose).toHaveBeenCalled();
     });
@@ -123,7 +155,8 @@ describe('DropdownMenu', () => {
       const instance = new DropdownMenu({ toggle: 'hello' });
       instance.state.isOverlayOpen = true;
       const result = instance.renderOverlay({
-        ref: React.createRef(), placement: 'bottom-end'
+        ref: React.createRef(),
+        placement: 'bottom-end',
       });
       expect(result.props['aria-hidden']).toEqual(false);
       expect(result.props['aria-expanded']).toEqual(true);

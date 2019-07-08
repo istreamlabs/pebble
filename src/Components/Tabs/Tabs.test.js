@@ -10,25 +10,31 @@ const tabs = [
     id: 'one',
     label: 'One',
     panelId: 'one-content',
-    content: 'one content'
+    content: 'one content',
   },
   {
     id: 'two',
     label: 'Two',
     panelId: 'two-content',
-    content: 'two content'
+    content: 'two content',
   },
 ];
 
 describe('Tabs', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Tabs selectedId="one" tabs={tabs}>hello</Tabs>); }).not.toThrow();
+    expect(() => {
+      shallow(
+        <Tabs selectedId="one" tabs={tabs}>
+          hello
+        </Tabs>,
+      );
+    }).not.toThrow();
   });
 
   it('renders Tabs prop array', () => {
-    expect(shallow(
-      <Tabs selectedId="one" tabs={tabs} />
-    ).find(Tab)).toHaveLength(2);
+    expect(
+      shallow(<Tabs selectedId="one" tabs={tabs} />).find(Tab),
+    ).toHaveLength(2);
   });
 
   describe('getTabsMarkup', () => {
@@ -46,12 +52,14 @@ describe('Tabs', () => {
 
     it('selects the selected Tab when passed children', () => {
       const wrapper = shallow(
-        <Tabs
-          selectedId="panel-2"
-        >
-          <TabPanel id="1" label="1" tabId="panel-1">panel 1</TabPanel>
-          <TabPanel id="2" label="2" tabId="panel-2">panel 1</TabPanel>
-        </Tabs>
+        <Tabs selectedId="panel-2">
+          <TabPanel id="1" label="1" tabId="panel-1">
+            panel 1
+          </TabPanel>
+          <TabPanel id="2" label="2" tabId="panel-2">
+            panel 1
+          </TabPanel>
+        </Tabs>,
       );
       expect(wrapper.find('#panel-2').prop('isSelected')).toBe(true);
     });
@@ -59,9 +67,13 @@ describe('Tabs', () => {
     it('selects the first Tab by default passed children', () => {
       const wrapper = shallow(
         <Tabs>
-          <TabPanel id="1" label="1" tabId="panel-1">panel 1</TabPanel>
-          <TabPanel id="2" label="2" tabId="panel-2">panel 1</TabPanel>
-        </Tabs>
+          <TabPanel id="1" label="1" tabId="panel-1">
+            panel 1
+          </TabPanel>
+          <TabPanel id="2" label="2" tabId="panel-2">
+            panel 1
+          </TabPanel>
+        </Tabs>,
       );
       const TabsArray = wrapper.find(Tab);
       expect(TabsArray.at(0).prop('isSelected')).toBe(true);

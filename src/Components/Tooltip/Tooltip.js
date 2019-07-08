@@ -29,12 +29,12 @@ const propTypes = {
    * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
    * @type {PropTypes.Requireable<PlacementType>}
    */
-  placement: placementType
+  placement: placementType,
 };
 
 const defaultProps = {
   active: false,
-  placement: 'top'
+  placement: 'top',
 };
 
 /**
@@ -50,7 +50,7 @@ export class Tooltip extends React.PureComponent {
     const { active } = this.props;
 
     this.state = {
-      tooltipVisible: active
+      tooltipVisible: active,
     };
   }
 
@@ -95,7 +95,7 @@ export class Tooltip extends React.PureComponent {
       onFocus: this.handleFocus,
       onMouseLeave: this.handleMouseLeave,
       onBlur: this.handleBlur,
-      tabIndex: 0
+      tabIndex: 0,
     });
   };
 
@@ -104,7 +104,13 @@ export class Tooltip extends React.PureComponent {
     const classes = classNames('tooltip', className);
 
     return (
-      <span className={classes} data-placement={placement} ref={ref} role="tooltip" style={style}>
+      <span
+        className={classes}
+        data-placement={placement}
+        ref={ref}
+        role="tooltip"
+        style={style}
+      >
         {content}
       </span>
     );
@@ -122,11 +128,11 @@ export class Tooltip extends React.PureComponent {
             placement={placement}
             modifiers={{
               preventOverflow: {
-                enabled: true
+                enabled: true,
               },
               offset: {
-                offset: '0, 5px'
-              }
+                offset: '0, 5px',
+              },
             }}
           >
             {this.renderTooltip}

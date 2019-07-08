@@ -4,7 +4,9 @@ import Button from './Button';
 
 describe('Button', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Button>hello</Button>); }).not.toThrow();
+    expect(() => {
+      shallow(<Button>hello</Button>);
+    }).not.toThrow();
   });
   describe('children', () => {
     it('renders child elements', () => {
@@ -44,7 +46,9 @@ describe('Button', () => {
 
   describe('className', () => {
     it('passes in class name', () => {
-      const button = shallow(<Button className="my-class">foo</Button>);
+      const button = shallow(
+        <Button className="my-class">foo</Button>,
+      );
       expect(button.html()).toContain('btn');
       expect(button.html()).toContain('my-class');
     });
@@ -58,7 +62,9 @@ describe('Button', () => {
 
     it('renders a spinner into the button', () => {
       const button = shallow(<Button loading>foo</Button>);
-      expect(button.find('Icon').prop('className')).toBe('btn-loading-spinner');
+      expect(button.find('Icon').prop('className')).toBe(
+        'btn-loading-spinner',
+      );
     });
 
     it('sets aria-busy on the button', () => {
@@ -94,7 +100,9 @@ describe('Button', () => {
   describe('tabIndex', () => {
     it('is passed into button', () => {
       const myTabIndex = 5;
-      const button = shallow(<Button tabIndex={myTabIndex}>foo</Button>);
+      const button = shallow(
+        <Button tabIndex={myTabIndex}>foo</Button>,
+      );
       expect(button.find('button').prop('tabIndex')).toBe(myTabIndex);
     });
   });
@@ -118,7 +126,9 @@ describe('Button', () => {
   describe('ariaExpanded', () => {
     it('sets an aria-expended on the button', () => {
       const button = shallow(<Button ariaExpanded>foo</Button>);
-      expect(button.find('button').prop('aria-expanded')).toBeTruthy();
+      expect(
+        button.find('button').prop('aria-expanded'),
+      ).toBeTruthy();
     });
   });
 
@@ -131,20 +141,44 @@ describe('Button', () => {
 
   describe('icon', () => {
     it('sets the correct icon', () => {
-      const button = shallow(<Button icon="add-circle">add button</Button>);
+      const button = shallow(
+        <Button icon="add-circle">add button</Button>,
+      );
       expect(button.find('Icon').prop('name')).toBe('add-circle');
     });
     it('sets the correct icon size', () => {
-      const button = shallow(<Button icon="add-circle" size="large">add button</Button>);
+      const button = shallow(
+        <Button icon="add-circle" size="large">
+          add button
+        </Button>,
+      );
       expect(button.find('Icon').prop('size')).toBe(20);
     });
     it('it places icon to left of button text by default', () => {
-      const button = shallow(<Button icon="add-circle">add button</Button>);
-      expect(button.find('.btn-content').children().first().prop('className')).toContain('btn-icon');
+      const button = shallow(
+        <Button icon="add-circle">add button</Button>,
+      );
+      expect(
+        button
+          .find('.btn-content')
+          .children()
+          .first()
+          .prop('className'),
+      ).toContain('btn-icon');
     });
     it('positions the icon on the right side', () => {
-      const button = shallow(<Button icon="add-circle" iconAfterText>add button</Button>);
-      expect(button.find('.btn-content').children().last().prop('className')).toContain('btn-icon');
+      const button = shallow(
+        <Button icon="add-circle" iconAfterText>
+          add button
+        </Button>,
+      );
+      expect(
+        button
+          .find('.btn-content')
+          .children()
+          .last()
+          .prop('className'),
+      ).toContain('btn-icon');
     });
   });
 });

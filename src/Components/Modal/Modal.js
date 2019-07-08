@@ -11,7 +11,11 @@ import Icon from '../Icon/Icon';
 import Overlay from '../Overlay/Overlay';
 import TextContainer from '../TextContainer/TextContainer';
 
-import { useKeyBoardEvent, useWindowSize, useLockBodyScroll } from '../../Hooks';
+import {
+  useKeyBoardEvent,
+  useWindowSize,
+  useLockBodyScroll,
+} from '../../Hooks';
 import { requiresOtherProp } from '../../Types';
 
 import './Modal.scss';
@@ -41,7 +45,10 @@ const propTypes = {
   /**
    * A button, or an array of buttons. If an array, the nodes render right to left.
    */
-  footer: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+  footer: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
   /**
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
@@ -77,7 +84,7 @@ const propTypes = {
 const defaultProps = {
   mobileFullScreen: false,
   onRequestClose: undefined,
-  type: 'default'
+  type: 'default',
 };
 
 /**
@@ -108,15 +115,16 @@ function Modal({
       plain
       accessibilityLabel="close modal"
       onClick={onRequestClose}
-      className={classNames('modal-close-btn', { 'modal-close-btn-no-title': title === undefined })}
+      className={classNames('modal-close-btn', {
+        'modal-close-btn-no-title': title === undefined,
+      })}
     />
   );
 
   const headerMarkup = () => {
     const headerClass = HEADER_STYLES_MAP[type];
 
-    const headerClasses = classNames({
-    }, headerClass);
+    const headerClasses = classNames({}, headerClass);
 
     const iconClass = ICON_COLOR_MAP[type];
 
@@ -132,12 +140,20 @@ function Modal({
         className={headerClasses}
       >
         <Block className="mr-3">
-          {icon && <Icon name={icon} size="24" className={iconClasses} />}
-          {title && <Heading element="4" responsive={false}>{title}</Heading>}
+          {icon && (
+            <Icon name={icon} size="24" className={iconClasses} />
+          )}
+          {title && (
+            <Heading element="4" responsive={false}>
+              {title}
+            </Heading>
+          )}
         </Block>
         {closeBtn}
       </Block>
-    ) : closeBtn;
+    ) : (
+      closeBtn
+    );
   };
 
   const windowSize = useWindowSize();
@@ -147,8 +163,8 @@ function Modal({
     const hasFooter = footer !== undefined;
 
     const footerContent = Array.isArray(footer)
-      ? footer.map((item, i) => (React.cloneElement(item, { key: i })
-      )) : footer;
+      ? footer.map((item, i) => React.cloneElement(item, { key: i }))
+      : footer;
 
     if (hasFooter) {
       footerMarkup = (
@@ -174,9 +190,9 @@ function Modal({
     'neutral-700',
     {
       'mobile-full-screen': mobileFullScreen,
-      'modal-large': large
+      'modal-large': large,
     },
-    className
+    className,
   );
 
   // only render modal if showing is true
@@ -185,10 +201,7 @@ function Modal({
   }
 
   return (
-    <Overlay
-      className="modal-container"
-      justify="center"
-    >
+    <Overlay className="modal-container" justify="center">
       <FocusTrap
         active={showing}
         focusTrapOptions={{

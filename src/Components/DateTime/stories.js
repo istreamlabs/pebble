@@ -8,14 +8,9 @@ import DateTime from './DateTime';
 function DateTimeExample() {
   return (
     <Block itemSpacing="6" direction="column">
-      <DateTime
-        value="2019-06-26T12:00:00.000Z"
-      />
+      <DateTime value="2019-06-26T12:00:00.000Z" />
 
-      <DateTime
-        label="start time"
-        value="2019-06-26T15:30:00.000Z"
-      />
+      <DateTime label="start time" value="2019-06-26T15:30:00.000Z" />
 
       <DateTime
         value="2019-06-26T15:30:00.000Z"
@@ -54,18 +49,29 @@ function DateTimeExample() {
 
       <DateTime size="large" value="2019-06-26T12:00:00.000Z" />
 
-      <DateTime size="small" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
+      <DateTime
+        size="small"
+        showAlternativeTimeZone
+        value="2019-06-26T12:00:00.000Z"
+      />
 
-      <DateTime size="medium" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
+      <DateTime
+        size="medium"
+        showAlternativeTimeZone
+        value="2019-06-26T12:00:00.000Z"
+      />
 
-      <DateTime size="large" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
+      <DateTime
+        size="large"
+        showAlternativeTimeZone
+        value="2019-06-26T12:00:00.000Z"
+      />
     </Block>
   );
 }
 
-storiesOf('DateTime', module)
-  .add('all', () => (
-    <>
-      <DateTimeExample />
-    </>
-  ));
+storiesOf('DateTime', module).add('all', () => (
+  <>
+    <DateTimeExample />
+  </>
+));

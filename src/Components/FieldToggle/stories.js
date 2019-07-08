@@ -55,9 +55,8 @@ function FieldToggleExample() {
   );
 }
 
-storiesOf('FieldToggle', module)
-  .add('all', () => (
-    <>
-      <FieldToggleExample />
-    </>
-  ));
+storiesOf('FieldToggle', module).add('all', () => (
+  <>
+    <FieldToggleExample />
+  </>
+));

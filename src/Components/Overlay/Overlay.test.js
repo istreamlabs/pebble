@@ -4,7 +4,9 @@ import Overlay from './Overlay';
 
 describe('Overlay', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Overlay>hello</Overlay>); }).not.toThrow();
+    expect(() => {
+      shallow(<Overlay>hello</Overlay>);
+    }).not.toThrow();
   });
 
   it('onClick is called when the Overlay is clicked', () => {

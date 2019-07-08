@@ -9,7 +9,7 @@ const mockMenuData = [
   {
     label: 'Dashboard',
     href: '/',
-    icon: 'dashboard'
+    icon: 'dashboard',
   },
   {
     label: 'Content',
@@ -31,8 +31,8 @@ const mockMenuData = [
         label: 'VOD',
         href: '/content/vod',
       },
-    ]
-  }
+    ],
+  },
 ];
 
 describe('shouldBeOpen', () => {
@@ -41,39 +41,64 @@ describe('shouldBeOpen', () => {
     expect(result).toBeFalsy();
   });
   it('returns false if an item in the items array has href not equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/' }, { items: [{ href: '/different' }] });
+    const result = MainMenu.shouldBeOpen(
+      { pathname: '/' },
+      { items: [{ href: '/different' }] },
+    );
     expect(result).toBe(false);
   });
   it('returns true if an item has href equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/a' }, { href: '/a', items: [{ href: '/page' }] });
+    const result = MainMenu.shouldBeOpen(
+      { pathname: '/a' },
+      { href: '/a', items: [{ href: '/page' }] },
+    );
     expect(result).toBe(true);
   });
   it('returns true if an item in the items array has href equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/page' }, { href: '', items: [{ href: '/page' }] });
+    const result = MainMenu.shouldBeOpen(
+      { pathname: '/page' },
+      { href: '', items: [{ href: '/page' }] },
+    );
     expect(result).toBe(true);
   });
   it('returns true if an item has alias equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/a' }, { aliases: ['/a'], items: [{ href: '/page' }] });
+    const result = MainMenu.shouldBeOpen(
+      { pathname: '/a' },
+      { aliases: ['/a'], items: [{ href: '/page' }] },
+    );
     expect(result).toBe(true);
   });
   it('returns true if an item in the items array has alias equal to current path ', () => {
-    const result = MainMenu.shouldBeOpen({ pathname: '/page' }, { href: '', items: [{ aliases: ['/page'] }] });
+    const result = MainMenu.shouldBeOpen(
+      { pathname: '/page' },
+      { href: '', items: [{ aliases: ['/page'] }] },
+    );
     expect(result).toBe(true);
   });
 });
 
 describe('MainMenu', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<MainMenu menu={mockMenuData} />); }).not.toThrow();
+    expect(() => {
+      shallow(<MainMenu menu={mockMenuData} />);
+    }).not.toThrow();
   });
 
   it('renders the correct number of menuitems', () => {
-    const menu = mount(<BrowserRouter><MainMenu menu={mockMenuData} /></BrowserRouter>);
+    const menu = mount(
+      <BrowserRouter>
+        <MainMenu menu={mockMenuData} />
+      </BrowserRouter>,
+    );
     expect(menu.find(MenuItem)).toHaveLength(2);
   });
 
   it('renders the auxMenu items', () => {
-    const menu = mount(<BrowserRouter><MainMenu menu={mockMenuData} auxMenu={mockMenuData} /></BrowserRouter>);
+    const menu = mount(
+      <BrowserRouter>
+        <MainMenu menu={mockMenuData} auxMenu={mockMenuData} />
+      </BrowserRouter>,
+    );
     expect(menu.find(MenuItem)).toHaveLength(4);
   });
 

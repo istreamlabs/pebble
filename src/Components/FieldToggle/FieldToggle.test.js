@@ -5,6 +5,8 @@ import FieldToggle from './FieldToggle';
 
 describe('FieldToggle', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<FieldToggle id="test" label="test toggle" />); }).not.toThrow();
+    expect(() => {
+      shallow(<FieldToggle id="test" label="test toggle" />);
+    }).not.toThrow();
   });
 });

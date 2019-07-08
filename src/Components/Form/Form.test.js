@@ -5,7 +5,9 @@ import Form from './Form';
 
 describe('Form', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Form />); }).not.toThrow();
+    expect(() => {
+      shallow(<Form />);
+    }).not.toThrow();
   });
 
   describe('onChange', () => {

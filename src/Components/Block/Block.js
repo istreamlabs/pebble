@@ -10,7 +10,12 @@ import {
   parseTextSize,
 } from '../../Utils';
 import {
-  colorType, fontSizeType, textAlignType, radiusType, spacingType, dimensionType
+  colorType,
+  fontSizeType,
+  textAlignType,
+  radiusType,
+  spacingType,
+  dimensionType,
 } from '../../Types';
 
 import './Block.scss';
@@ -47,8 +52,15 @@ const propTypes = {
    * @type {PropTypes.Requireable<AlignContent>}
    */
   alignContent: PropTypes.oneOfType([
-    PropTypes.oneOf(['start', 'center', 'end', 'between', 'around', 'stretch']),
-    PropTypes.array
+    PropTypes.oneOf([
+      'start',
+      'center',
+      'end',
+      'between',
+      'around',
+      'stretch',
+    ]),
+    PropTypes.array,
   ]),
   /**
    * Alignment of flex items laid out along the cross axis on the current line
@@ -59,8 +71,14 @@ const propTypes = {
    * @type {PropTypes.Requireable<AlignItems>}
    */
   alignItems: PropTypes.oneOfType([
-    PropTypes.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
-    PropTypes.array
+    PropTypes.oneOf([
+      'start',
+      'center',
+      'end',
+      'stretch',
+      'baseline',
+    ]),
+    PropTypes.array,
   ]),
   /**
    * Alignment along the cross axis when contained in another Block
@@ -71,8 +89,14 @@ const propTypes = {
    * @type {PropTypes.Requireable<AlignSelf>}
    */
   alignSelf: PropTypes.oneOfType([
-    PropTypes.oneOf(['start', 'center', 'end', 'stretch', 'baseline']),
-    PropTypes.array
+    PropTypes.oneOf([
+      'start',
+      'center',
+      'end',
+      'stretch',
+      'baseline',
+    ]),
+    PropTypes.array,
   ]),
   /**
    * [Color](/#/Styles/Color) identifier
@@ -84,8 +108,16 @@ const propTypes = {
    * @type {PropTypes.Requireable<Basis>}
    */
   basis: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 'full', '1/2', '1/4', '3/4', '1/3', '2/3']),
-    PropTypes.string
+    PropTypes.oneOf([
+      'auto',
+      'full',
+      '1/2',
+      '1/4',
+      '3/4',
+      '1/3',
+      '2/3',
+    ]),
+    PropTypes.string,
   ]),
   /**
    * Additional classNames to add
@@ -114,7 +146,7 @@ const propTypes = {
     PropTypes.shape({
       grow: PropTypes.number,
       shrink: PropTypes.number,
-    })
+    }),
   ]),
   /**
    * A valid css width (%, px, em, rem).
@@ -133,7 +165,14 @@ const propTypes = {
    * @type {PropTypes.Requireable<Justify>}
    */
   justify: PropTypes.oneOfType([
-    PropTypes.oneOf(['around', 'between', 'center', 'evenly', 'start', 'end']),
+    PropTypes.oneOf([
+      'around',
+      'between',
+      'center',
+      'evenly',
+      'start',
+      'end',
+    ]),
     PropTypes.array,
   ]),
   /**
@@ -172,32 +211,72 @@ const propTypes = {
   overflow: PropTypes.oneOfType([
     PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
     PropTypes.shape({
-      horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
-      vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+      horizontal: PropTypes.oneOf([
+        'auto',
+        'visible',
+        'hidden',
+        'scroll',
+      ]),
+      vertical: PropTypes.oneOf([
+        'auto',
+        'visible',
+        'hidden',
+        'scroll',
+      ]),
     }),
     PropTypes.shape({
-      horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+      horizontal: PropTypes.oneOf([
+        'auto',
+        'visible',
+        'hidden',
+        'scroll',
+      ]),
     }),
     PropTypes.shape({
-      vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+      vertical: PropTypes.oneOf([
+        'auto',
+        'visible',
+        'hidden',
+        'scroll',
+      ]),
     }),
     PropTypes.arrayOf(
       PropTypes.oneOfType([
         PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
         PropTypes.arrayOf(
           PropTypes.shape({
-            horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
-            vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
-          })
+            horizontal: PropTypes.oneOf([
+              'auto',
+              'visible',
+              'hidden',
+              'scroll',
+            ]),
+            vertical: PropTypes.oneOf([
+              'auto',
+              'visible',
+              'hidden',
+              'scroll',
+            ]),
+          }),
         ),
         PropTypes.shape({
-          horizontal: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+          horizontal: PropTypes.oneOf([
+            'auto',
+            'visible',
+            'hidden',
+            'scroll',
+          ]),
         }),
         PropTypes.shape({
-          vertical: PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+          vertical: PropTypes.oneOf([
+            'auto',
+            'visible',
+            'hidden',
+            'scroll',
+          ]),
         }),
-      ])
-    )
+      ]),
+    ),
   ]),
   /**
    * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
@@ -323,33 +402,53 @@ class Block extends React.PureComponent {
     const pClasses = getDimensionClasses('p', padding);
     const phClasses = getDimensionClasses('ph', paddingHorizontal);
     const pvClasses = getDimensionClasses('pv', paddingVertical);
-    const radiusClass = radius !== undefined ? getBorderRadiusClasses(radius) : null;
-    const overflowClasses = overflow !== undefined ? getOverflowClasses(overflow) : null;
-    const directionClasses = getFlexPropertyClasses('flex', direction);
+    const radiusClass =
+      radius !== undefined ? getBorderRadiusClasses(radius) : null;
+    const overflowClasses =
+      overflow !== undefined ? getOverflowClasses(overflow) : null;
+    const directionClasses = getFlexPropertyClasses(
+      'flex',
+      direction,
+    );
     const widthStyles = getDimensionClasses('width', width);
     const heightStyles = getDimensionClasses('height', height);
     const justifyClasses = getFlexPropertyClasses('justify', justify);
-    const alignContentClasses = getFlexPropertyClasses('content', alignContent);
-    const alignItemsClasses = getFlexPropertyClasses('items', alignItems);
-    const alignSelfClasses = getFlexPropertyClasses('self', alignSelf);
+    const alignContentClasses = getFlexPropertyClasses(
+      'content',
+      alignContent,
+    );
+    const alignItemsClasses = getFlexPropertyClasses(
+      'items',
+      alignItems,
+    );
+    const alignSelfClasses = getFlexPropertyClasses(
+      'self',
+      alignSelf,
+    );
 
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
-    const basisStyle = basis ? { flexBasis: BASIS_MAP[basis] || basis } : null;
+    const basisStyle = basis
+      ? { flexBasis: BASIS_MAP[basis] || basis }
+      : null;
 
-    const flexGrowShrinkProp = (flex) => {
+    const flexGrowShrinkProp = flex => {
       if (typeof flex === 'boolean' || typeof flex === 'string') {
         return FLEX_MAP[flex];
       }
       if (typeof flex === 'object') {
-        return `${flex.grow ? flex.grow : 0} ${flex.shrink ? flex.shrink : 0}`;
+        return `${flex.grow ? flex.grow : 0} ${
+          flex.shrink ? flex.shrink : 0
+        }`;
       }
     };
 
     const flexStyle = { flex: `${flexGrowShrinkProp(flex)}` };
 
     const mergedStyle = {
-      ...flexStyle, ...basisStyle, ...styles,
+      ...flexStyle,
+      ...basisStyle,
+      ...styles,
     };
 
     Object.assign(mergedStyle, { width: widthStyles.styles });
@@ -377,21 +476,35 @@ class Block extends React.PureComponent {
         [`fs-${parsedTextSize}`]: parsedTextSize,
         [`text-${textAlign}`]: textAlign,
         'truncate db': truncate,
-      }, className
+      },
+      className,
     );
 
-    const spacingClasses = itemSpacing !== undefined ? getItemSpacingClasses(direction, itemSpacing) : null;
+    const spacingClasses =
+      itemSpacing !== undefined
+        ? getItemSpacingClasses(direction, itemSpacing)
+        : null;
 
     let blockChildren;
 
     if (typeof children === 'string') {
       blockChildren = children;
     } else {
-      blockChildren = itemSpacing !== undefined
-        ? React.Children.map(children, child => child && React.cloneElement(
-          child,
-          { className: classNames(child.props.className, 'block-item', spacingClasses) }
-        )) : children;
+      blockChildren =
+        itemSpacing !== undefined
+          ? React.Children.map(
+              children,
+              child =>
+                child &&
+                React.cloneElement(child, {
+                  className: classNames(
+                    child.props.className,
+                    'block-item',
+                    spacingClasses,
+                  ),
+                }),
+            )
+          : children;
     }
 
     const Element = as;

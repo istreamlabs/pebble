@@ -10,17 +10,14 @@ const navToggleMock = jest.fn();
 const menu = [
   {
     label: 'Dashboard',
-    icon: 'dashboard'
+    icon: 'dashboard',
   },
 ];
 
 const mainMenu = <MainMenu menu={menu} />;
 
 const testFrame = (
-  <Frame
-    title="test frame"
-    navigation={mainMenu}
-  >
+  <Frame title="test frame" navigation={mainMenu}>
     body content
   </Frame>
 );
@@ -31,7 +28,9 @@ describe('Frame', () => {
   });
 
   it('renders without crashing', () => {
-    expect(() => { shallow(testFrame); }).not.toThrow();
+    expect(() => {
+      shallow(testFrame);
+    }).not.toThrow();
   });
 
   it('renders a navigation wrapped in a FocusTrap with active set to false, when passed a navigation', () => {
@@ -51,7 +50,7 @@ describe('Frame', () => {
 
   it('handleNavigationToggle calls setState with opposite state', () => {
     const instance = new Frame({
-      onNavigationToggle: navToggleMock
+      onNavigationToggle: navToggleMock,
     });
 
     instance.setState = jest.fn();
@@ -65,7 +64,7 @@ describe('Frame', () => {
 
   it('handleNavigationToggle calls onNavigationToggle with opposite state', () => {
     const instance = new Frame({
-      onNavigationToggle: navToggleMock
+      onNavigationToggle: navToggleMock,
     });
 
     instance.setState = jest.fn();
@@ -80,7 +79,7 @@ describe('Frame', () => {
 
   it('handleNavigationDismiss does nothing if already false', () => {
     const instance = new Frame({
-      onNavigationToggle: navToggleMock
+      onNavigationToggle: navToggleMock,
     });
     instance.setState = jest.fn();
 
@@ -90,12 +89,12 @@ describe('Frame', () => {
 
   it('handleNavigationDismiss calls setState', () => {
     const instance = new Frame({
-      onNavigationToggle: navToggleMock
+      onNavigationToggle: navToggleMock,
     });
 
     instance.state = {
       isSkipFocused: true,
-      isShowingMobileNav: true
+      isShowingMobileNav: true,
     };
 
     instance.setState = jest.fn();
@@ -110,12 +109,12 @@ describe('Frame', () => {
 
   it('handleNavigationDismiss calls onNavigationToggle', () => {
     const instance = new Frame({
-      onNavigationToggle: navToggleMock
+      onNavigationToggle: navToggleMock,
     });
 
     instance.state = {
       isSkipFocused: true,
-      isShowingMobileNav: true
+      isShowingMobileNav: true,
     };
 
     instance.setState = jest.fn();
@@ -131,26 +130,40 @@ describe('Frame', () => {
     document.removeEventListener = jest.fn();
     const instance = new Frame({});
     instance.componentWillUnmount();
-    expect(document.removeEventListener).toHaveBeenCalledWith('keydown', instance.handleNavKeydown, false);
+    expect(document.removeEventListener).toHaveBeenCalledWith(
+      'keydown',
+      instance.handleNavKeydown,
+      false,
+    );
   });
 
   describe('handleOnClick', () => {
     it('does nothing if target is not a tag', () => {
       const instance = new Frame({});
-      const spy = jest.spyOn(instance, 'handleNavigationDismiss').mockImplementation(() => {});
-      instance.handleOnClick({ target: { tagName: 'div', href: '/foo' } });
+      const spy = jest
+        .spyOn(instance, 'handleNavigationDismiss')
+        .mockImplementation(() => {});
+      instance.handleOnClick({
+        target: { tagName: 'div', href: '/foo' },
+      });
       expect(spy).not.toHaveBeenCalled();
     });
     it('does nothing if target does not have href', () => {
       const instance = new Frame({});
-      const spy = jest.spyOn(instance, 'handleNavigationDismiss').mockImplementation(() => { });
+      const spy = jest
+        .spyOn(instance, 'handleNavigationDismiss')
+        .mockImplementation(() => {});
       instance.handleOnClick({ target: { tagName: 'a' } });
       expect(spy).not.toHaveBeenCalled();
     });
     it('dismisses nav if click was on something that would navigate', () => {
       const instance = new Frame({});
-      const spy = jest.spyOn(instance, 'handleNavigationDismiss').mockImplementation(() => { });
-      instance.handleOnClick({ target: { tagName: 'a', href: '/foo' } });
+      const spy = jest
+        .spyOn(instance, 'handleNavigationDismiss')
+        .mockImplementation(() => {});
+      instance.handleOnClick({
+        target: { tagName: 'a', href: '/foo' },
+      });
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -161,14 +174,17 @@ describe('Frame', () => {
       const mock = {
         current: {
           setAttribute: jest.fn(),
-          focus: jest.fn()
-        }
+          focus: jest.fn(),
+        },
       };
       instance.mainContent = mock;
 
       instance.handleSkipToMain();
 
-      expect(mock.current.setAttribute).toHaveBeenCalledWith('tabindex', '-1');
+      expect(mock.current.setAttribute).toHaveBeenCalledWith(
+        'tabindex',
+        '-1',
+      );
       expect(mock.current.focus).toHaveBeenCalledTimes(1);
     });
   });
@@ -178,14 +194,16 @@ describe('Frame', () => {
       const instance = new Frame({});
       const mock = {
         current: {
-          removeAttribute: jest.fn()
-        }
+          removeAttribute: jest.fn(),
+        },
       };
       instance.mainContent = mock;
 
       instance.handleBlurMain();
 
-      expect(mock.current.removeAttribute).toHaveBeenCalledWith('tabindex');
+      expect(mock.current.removeAttribute).toHaveBeenCalledWith(
+        'tabindex',
+      );
     });
   });
 
@@ -198,7 +216,9 @@ describe('Frame', () => {
       const instance = new Frame();
       instance.setState = jest.fn();
       instance.handleFocus();
-      expect(instance.setState).toBeCalledWith({ isSkipFocused: true });
+      expect(instance.setState).toBeCalledWith({
+        isSkipFocused: true,
+      });
     });
   });
 
@@ -211,7 +231,9 @@ describe('Frame', () => {
       const instance = new Frame();
       instance.setState = jest.fn();
       instance.handleBlur();
-      expect(instance.setState).toBeCalledWith({ isSkipFocused: false });
+      expect(instance.setState).toBeCalledWith({
+        isSkipFocused: false,
+      });
     });
   });
 
@@ -225,10 +247,14 @@ describe('Frame', () => {
       instance.handleNavigationDismiss = jest.fn();
 
       instance.handleNavKeydown({ event: 'keydown', key: 'Enter' });
-      expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(0);
+      expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(
+        0,
+      );
 
       instance.handleNavKeydown({ event: 'keydown', key: 'Escape' });
-      expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(1);
+      expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(
+        1,
+      );
     });
   });
 
@@ -236,13 +262,17 @@ describe('Frame', () => {
     it('adds focus class to skip-to-content button when focused', () => {
       const wrapper = shallow(testFrame);
       wrapper.setState({ isSkipFocused: true });
-      expect(wrapper.find('.skip').prop('className')).toContain('focused');
+      expect(wrapper.find('.skip').prop('className')).toContain(
+        'focused',
+      );
     });
 
     it('adds focus class to skip-to-content button when focused', () => {
       const wrapper = shallow(testFrame);
       wrapper.instance().handleFocus();
-      expect(wrapper.find('.skip').prop('className')).toBe('skip focused');
+      expect(wrapper.find('.skip').prop('className')).toBe(
+        'skip focused',
+      );
     });
   });
 });

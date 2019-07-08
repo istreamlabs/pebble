@@ -19,7 +19,9 @@ storiesOf('DropdownMenu', module)
           <DropdownItem icon="add-bold">default button</DropdownItem>
           <DropdownItem href="/">link</DropdownItem>
           <DropdownMenuSeparator />
-          <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
+          <DropdownItem danger icon="remove-circle">
+            danger button
+          </DropdownItem>
         </DropdownMenu>
         <DropdownMenu toggle="Disabled Dropdown" disabled>
           <DropdownItem>disabled</DropdownItem>
@@ -33,7 +35,9 @@ storiesOf('DropdownMenu', module)
         <DropdownItem icon="add-bold">default button</DropdownItem>
         <DropdownItem href="/">link</DropdownItem>
         <DropdownMenuSeparator />
-        <DropdownItem danger icon="remove-circle">danger button</DropdownItem>
+        <DropdownItem danger icon="remove-circle">
+          danger button
+        </DropdownItem>
       </DropdownMenu>
     </DemoBrowserRouter>
   ))
@@ -47,7 +51,9 @@ storiesOf('DropdownMenu', module)
           <DropdownItem disabled>disabled</DropdownItem>
         </DropdownItemGroup>
         <DropdownItemGroup title="Components">
-          <DropdownItem href="#/Components/Button">Button</DropdownItem>
+          <DropdownItem href="#/Components/Button">
+            Button
+          </DropdownItem>
           <DropdownItem href="#/Components/Frame">Frame</DropdownItem>
           <DropdownItem href="#/Components/Text">Text</DropdownItem>
         </DropdownItemGroup>

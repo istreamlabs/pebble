@@ -21,31 +21,39 @@ const propTypes = {
   /**
    * Menu items for the upper portion of the menu
    */
-  menu: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    href: PropTypes.string,
-    icon: PropTypes.string,
-    aliases: PropTypes.arrayOf(PropTypes.string),
-    items: PropTypes.arrayOf(PropTypes.shape({
+  menu: PropTypes.arrayOf(
+    PropTypes.shape({
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
+      icon: PropTypes.string,
       aliases: PropTypes.arrayOf(PropTypes.string),
-    }))
-  })).isRequired,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          href: PropTypes.string,
+          aliases: PropTypes.arrayOf(PropTypes.string),
+        }),
+      ),
+    }),
+  ).isRequired,
   /**
    * Menu items for the lower portion of the menu (e.g. Profile, Support)
    */
-  auxMenu: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    href: PropTypes.string,
-    icon: PropTypes.string,
-    aliases: PropTypes.arrayOf(PropTypes.string),
-    items: PropTypes.arrayOf(PropTypes.shape({
+  auxMenu: PropTypes.arrayOf(
+    PropTypes.shape({
       label: PropTypes.string.isRequired,
       href: PropTypes.string,
+      icon: PropTypes.string,
       aliases: PropTypes.arrayOf(PropTypes.string),
-    }))
-  })),
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          href: PropTypes.string,
+          aliases: PropTypes.arrayOf(PropTypes.string),
+        }),
+      ),
+    }),
+  ),
   /**
    * Text that appears at the top of the menu
    */
@@ -79,15 +87,21 @@ const defaultProps = {
 
 class MainMenu extends React.Component {
   static shouldBeOpen(location, item) {
-    return (!!item.href && matchPath(location.pathname, { path: item.href, strict: true }) !== null)
-    || (item.aliases || []).some(path => matchPath(location.pathname, { path }) !== null)
-    || (item.items || []).some(i => MainMenu.shouldBeOpen(location, i));
+    return (
+      (!!item.href &&
+        matchPath(location.pathname, {
+          path: item.href,
+          strict: true,
+        }) !== null) ||
+      (item.aliases || []).some(
+        path => matchPath(location.pathname, { path }) !== null,
+      ) ||
+      (item.items || []).some(i => MainMenu.shouldBeOpen(location, i))
+    );
   }
 
   renderItem(menu, startExpanded) {
-    const {
-      location,
-    } = this.props;
+    const { location } = this.props;
 
     return menu.map((item, i) => (
       <MenuItem
@@ -110,7 +124,10 @@ class MainMenu extends React.Component {
     } = this.props;
 
     return (
-      <nav className={classNames('main-menu', className)} aria-label="Main navigation">
+      <nav
+        className={classNames('main-menu', className)}
+        aria-label="Main navigation"
+      >
         <div className="main-menu-top">
           <Block
             className="main-menu-title"

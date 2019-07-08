@@ -159,7 +159,8 @@ class Input extends React.PureComponent {
       value,
     } = this.props;
 
-    const classes = classNames('input',
+    const classes = classNames(
+      'input',
       {
         'input-error': isInvalid,
         'input-s': size === 'small',
@@ -167,7 +168,8 @@ class Input extends React.PureComponent {
         'input-l': size === 'large',
         'bg-neutral-200': isReadOnly,
       },
-      className);
+      className,
+    );
 
     return {
       'aria-label': ariaLabel,
@@ -195,38 +197,28 @@ class Input extends React.PureComponent {
   getPrefixMarkup() {
     const { prefix, size } = this.props;
 
-    const classes = classNames('input-prefix',
-      {
-        'input-s': size === 'small',
-        'input-m': size === 'medium',
-        'input-l': size === 'large',
-      });
+    const classes = classNames('input-prefix', {
+      'input-s': size === 'small',
+      'input-m': size === 'medium',
+      'input-l': size === 'large',
+    });
 
     if (prefix) {
-      return (
-        <div className={classes}>
-          {prefix}
-        </div>
-      );
+      return <div className={classes}>{prefix}</div>;
     }
   }
 
   getSuffixMarkup() {
     const { suffix, size } = this.props;
 
-    const classes = classNames('input-suffix',
-      {
-        'input-s': size === 'small',
-        'input-m': size === 'medium',
-        'input-l': size === 'large',
-      });
+    const classes = classNames('input-suffix', {
+      'input-s': size === 'small',
+      'input-m': size === 'medium',
+      'input-l': size === 'large',
+    });
 
     if (suffix) {
-      return (
-        <div className={classes}>
-          {suffix}
-        </div>
-      );
+      return <div className={classes}>{suffix}</div>;
     }
   }
 
@@ -259,7 +251,9 @@ class Input extends React.PureComponent {
       : `${characterCount}/${maxLength}`;
 
     return (
-      <Text size="6" className="pt-2">{characterCountText}</Text>
+      <Text size="6" className="pt-2">
+        {characterCountText}
+      </Text>
     );
   }
 

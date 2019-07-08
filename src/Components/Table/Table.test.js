@@ -5,7 +5,9 @@ import Table from './Table';
 
 describe('Table', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Table />); }).not.toThrow();
+    expect(() => {
+      shallow(<Table />);
+    }).not.toThrow();
   });
 
   describe('table width', () => {

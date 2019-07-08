@@ -26,13 +26,13 @@ const propTypes = {
 };
 
 /**
-* Provides a way to navigate ordered content that has been divided into pages.
-*
-* ---
-*/
+ * Provides a way to navigate ordered content that has been divided into pages.
+ *
+ * ---
+ */
 
 class Pagination extends React.PureComponent {
-  getMenuOptions = (numPages) => {
+  getMenuOptions = numPages => {
     const menuOptions = [];
     for (let i = 1; i <= numPages; i++) {
       menuOptions.push({ value: i, label: `${i}` });
@@ -40,10 +40,11 @@ class Pagination extends React.PureComponent {
     return menuOptions;
   };
 
-  onPageSelect = (selected) => {
+  onPageSelect = selected => {
     const { currentPage, onPageChange } = this.props;
     // call coming from the next/prev button, or from the FieldSelect
-    const page = typeof selected === 'number' ? selected : selected.value;
+    const page =
+      typeof selected === 'number' ? selected : selected.value;
     if (page !== currentPage) {
       onPageChange && onPageChange(page);
     }
@@ -69,25 +70,27 @@ class Pagination extends React.PureComponent {
             width="96px"
             className="mr-2"
           />
-          <Block textSize="6">
-            {`of ${numPages}`}
-          </Block>
+          <Block textSize="6">{`of ${numPages}`}</Block>
         </Block>
       );
     }
-  }
+  };
 
   render() {
-    const {
-      className,
-      currentPage,
-      numPages,
-    } = this.props;
+    const { className, currentPage, numPages } = this.props;
 
-    const classes = classNames('pagination ba b-neutral-300', className);
+    const classes = classNames(
+      'pagination ba b-neutral-300',
+      className,
+    );
 
     return (
-      <Block background="neutral-200" padding="3" alignItems="center" className={classes}>
+      <Block
+        background="neutral-200"
+        padding="3"
+        alignItems="center"
+        className={classes}
+      >
         <Button
           disabled={currentPage === 1}
           onClick={() => this.onPageSelect(currentPage - 1)}

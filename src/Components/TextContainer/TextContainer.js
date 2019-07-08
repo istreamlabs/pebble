@@ -38,24 +38,19 @@ const defaultProps = {
  * known as "vertical rhythm".
  */
 
-function TextContainer({
-  children,
-  className,
-  tight,
-  size,
-}) {
+function TextContainer({ children, className, tight, size }) {
   const parsedSize = size ? parseTextSize(size) : null;
 
-  const classes = classNames('text-container', {
-    [`fs-${parsedSize}`]: parsedSize,
-    'text-container-tight': tight
-  }, className);
-
-  return (
-    <div className={classes}>
-      {children}
-    </div>
+  const classes = classNames(
+    'text-container',
+    {
+      [`fs-${parsedSize}`]: parsedSize,
+      'text-container-tight': tight,
+    },
+    className,
   );
+
+  return <div className={classes}>{children}</div>;
 }
 
 TextContainer.propTypes = propTypes;

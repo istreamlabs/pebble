@@ -20,7 +20,7 @@ const menu = [
       {
         label: 'Sub-item 1',
         href: '/#/Components/MainMenu',
-        aliases: ['/iframe.html']
+        aliases: ['/iframe.html'],
       },
       {
         label: 'Sub-item 2',
@@ -29,8 +29,8 @@ const menu = [
       {
         label: 'Sub-item 3',
         href: '/#/Components/MainMenu',
-      }
-    ]
+      },
+    ],
   },
   {
     label: 'Link & Sub',
@@ -48,14 +48,14 @@ const menu = [
         href: '/#/Components/MainMenu',
         icon: '',
       },
-    ]
+    ],
   },
 ];
 const auxMenu = [
   {
     label: 'Support',
     href: '/#/Components/MainMenu',
-    icon: 'ticket'
+    icon: 'ticket',
   },
   {
     label: 'Trent Anderson',
@@ -71,12 +71,12 @@ const auxMenu = [
         href: '/#/Components/MainMenu',
         icon: '',
       },
-    ]
+    ],
   },
   {
     id: 'version',
     label: 'v1.2.3.4',
-  }
+  },
 ];
 
 storiesOf('MainMenu', module)

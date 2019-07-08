@@ -16,21 +16,32 @@ function FormLayoutExample() {
         <FieldText id="middle" width="80px" label="Middle" />
         <FieldText id="last" label="Last Name" />
       </FormLayoutRow>
-      <FieldText id="businessEmail" label="Email" helpText="business email address" />
+      <FieldText
+        id="businessEmail"
+        label="Email"
+        helpText="business email address"
+      />
       <FormLayoutRow>
         <FieldText type="password" id="password" label="Password" />
-        <FieldText type="password" id="passwordConfirm" label="Confirm Password" />
+        <FieldText
+          type="password"
+          id="passwordConfirm"
+          label="Confirm Password"
+        />
       </FormLayoutRow>
       <FormLayoutRow>
         <FieldText width={[100, 33, 40]} id="city" label="City" />
         <FieldSelect width={[100, 34, 40]} id="state" label="State" />
-        <FieldText width={[50, 33, 20]} id="zip" label="Postal Code" />
+        <FieldText
+          width={[50, 33, 20]}
+          id="zip"
+          label="Postal Code"
+        />
       </FormLayoutRow>
     </FormLayout>
   );
 }
 
-storiesOf('FormLayout', module)
-  .add('all', () => (
-    <FormLayoutExample />
-  ));
+storiesOf('FormLayout', module).add('all', () => (
+  <FormLayoutExample />
+));

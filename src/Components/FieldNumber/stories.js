@@ -10,7 +10,7 @@ function FieldNumberExample() {
   const [disabledInput, setDisabledInput] = useState('');
   const [errorInput, setErrorInput] = useState('');
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setEventResult(`handleChange called with '${e.target.value}'`);
     setBasic(e.target.value);
   };
@@ -42,8 +42,7 @@ function FieldNumberExample() {
       />
 
       <div className="fs-6 mt-3 mb-5">
-        event handler result:
-        {' '}
+        event handler result:{' '}
         <span className="fw-700">{eventResult}</span>
       </div>
 
@@ -65,34 +64,31 @@ function FieldNumberExample() {
         onChange={e => setErrorInput(e.target.value)}
         className="mb-5"
       />
-
     </>
   );
 }
 
-
-storiesOf('FieldNumber', module)
-  .add('all', () => (
-    <>
-      <FieldNumberExample />
-      <FieldNumber
-        id="smallSize"
-        size="small"
-        label="small"
-        placeholder="small-sized"
-        className="mb-5"
-      />
-      <FieldNumber
-        id="defaultSize"
-        label="medium (default)"
-        placeholder="medium sized"
-        className="mb-5"
-      />
-      <FieldNumber
-        id="largeSize"
-        size="large"
-        label="large"
-        placeholder="large-sized"
-      />
-    </>
-  ));
+storiesOf('FieldNumber', module).add('all', () => (
+  <>
+    <FieldNumberExample />
+    <FieldNumber
+      id="smallSize"
+      size="small"
+      label="small"
+      placeholder="small-sized"
+      className="mb-5"
+    />
+    <FieldNumber
+      id="defaultSize"
+      label="medium (default)"
+      placeholder="medium sized"
+      className="mb-5"
+    />
+    <FieldNumber
+      id="largeSize"
+      size="large"
+      label="large"
+      placeholder="large-sized"
+    />
+  </>
+));

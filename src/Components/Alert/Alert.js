@@ -44,7 +44,13 @@ const propTypes = {
    * Type of message to be displayed
    * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
    */
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
+  type: PropTypes.oneOf([
+    'default',
+    'info',
+    'warn',
+    'danger',
+    'success',
+  ]),
 };
 
 const defaultProps = {
@@ -66,21 +72,35 @@ function Alert({
   type,
   title,
 }) {
-  const classes = classNames('alert', {
-    [`alert-${type}`]: type,
-  }, className);
+  const classes = classNames(
+    'alert',
+    {
+      [`alert-${type}`]: type,
+    },
+    className,
+  );
 
   const iconName = icon || DEFAULT_ICONS[type];
 
   const iconMarkup = (
     <div className="alert-icon-container">
       <Icon name={iconName} className="alert-icon" />
-      {type !== 'default' && <div className="alert-icon-white-fill" />}
+      {type !== 'default' && (
+        <div className="alert-icon-white-fill" />
+      )}
     </div>
   );
 
   const dismissMarkup = onDismiss ? (
-    <div><Button plain onClick={onDismiss} icon="close" accessibilityLabel="dismiss" className="alert-dismiss-btn" /></div>
+    <div>
+      <Button
+        plain
+        onClick={onDismiss}
+        icon="close"
+        accessibilityLabel="dismiss"
+        className="alert-dismiss-btn"
+      />
+    </div>
   ) : null;
 
   return (
@@ -88,8 +108,14 @@ function Alert({
       paddingHorizontal="4"
       paddingVertical="4"
       className={classes}
-      role={type === 'danger' || type === 'warn' ? 'alert' : undefined}
-      aria-live={type === 'default' || type === 'info' || type === 'success' ? 'polite' : undefined}
+      role={
+        type === 'danger' || type === 'warn' ? 'alert' : undefined
+      }
+      aria-live={
+        type === 'default' || type === 'info' || type === 'success'
+          ? 'polite'
+          : undefined
+      }
     >
       {iconMarkup}
       <TextContainer tight size="6" className="alert-content">

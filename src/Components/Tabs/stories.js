@@ -10,26 +10,26 @@ const tabData = [
     id: 'one',
     label: 'One',
     panelId: 'one-content',
-    content: 'one content'
+    content: 'one content',
   },
   {
     id: 'two',
     label: 'Two',
     panelId: 'two-content',
-    content: 'two content'
+    content: 'two content',
   },
   {
     id: 'three',
     label: 'Three',
     panelId: 'three-content',
-    content: 'three content'
+    content: 'three content',
   },
   {
     id: 'disabled',
     label: 'Disabled',
     panelId: 'disabled-content',
     content: 'disabled content',
-    disabled: true
+    disabled: true,
   },
 ];
 
@@ -38,7 +38,9 @@ function TabsExample() {
   const [selectedTab, setSelectedTab] = useState('one');
   const [selectedLargeTab, setSelectedLargeTab] = useState('');
   const [selectedFWTab, setSelectedFWTab] = useState('one');
-  const [selectedPanelTab, setSelectedPanelTab] = useState('panel-1-tab');
+  const [selectedPanelTab, setSelectedPanelTab] = useState(
+    'panel-1-tab',
+  );
   return (
     <>
       <Tabs
@@ -77,23 +79,43 @@ function TabsExample() {
         onSelect={setSelectedPanelTab}
         paddingHorizontal={[0, 4, 5]}
       >
-        <TabPanel id="panel-1" background="white" label="Panel 1" tabId="panel-1-tab" paddingVertical="4" paddingHorizontal={[3, 4, 5]}>
-        Panel 1 Content
+        <TabPanel
+          id="panel-1"
+          background="white"
+          label="Panel 1"
+          tabId="panel-1-tab"
+          paddingVertical="4"
+          paddingHorizontal={[3, 4, 5]}
+        >
+          Panel 1 Content
         </TabPanel>
-        <TabPanel id="panel-2" background="white" label="Panel 2" tabId="panel-2-tab" paddingVertical="4" paddingHorizontal={[3, 4, 5]}>
-        Panel 2 Content
+        <TabPanel
+          id="panel-2"
+          background="white"
+          label="Panel 2"
+          tabId="panel-2-tab"
+          paddingVertical="4"
+          paddingHorizontal={[3, 4, 5]}
+        >
+          Panel 2 Content
         </TabPanel>
-        <TabPanel id="panel-3" background="white" label="Panel 3" tabId="panel-3-tab" paddingVertical="4" paddingHorizontal={[3, 4, 5]}>
-        Panel 3 Content
+        <TabPanel
+          id="panel-3"
+          background="white"
+          label="Panel 3"
+          tabId="panel-3-tab"
+          paddingVertical="4"
+          paddingHorizontal={[3, 4, 5]}
+        >
+          Panel 3 Content
         </TabPanel>
       </Tabs>
     </>
   );
 }
 
-storiesOf('Tabs', module)
-  .add('all', () => (
-    <>
-      <TabsExample />
-    </>
-  ));
+storiesOf('Tabs', module).add('all', () => (
+  <>
+    <TabsExample />
+  </>
+));

@@ -23,7 +23,6 @@ function PaginationNoNumPagesExample() {
     <>
       <div className="mb-5">
         current page:
-        {' '}
         {currentPage}
       </div>
       <Pagination

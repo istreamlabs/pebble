@@ -23,40 +23,46 @@ function CustomCellTable() {
         <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
       <TableBody>
-        {
-          PEOPLE_DATA_2.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell width="56px">
-                <Icon name="profile-circle" size="24" className="neutral-300" />
-              </TableCell>
-              <TableCell width="300px">
-                <Text size="4" bold>{row.name}</Text>
-              </TableCell>
-              <TableCell>
-                <div className="mb-2">
-                  <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
-                </div>
-                <div>{row.phone}</div>
-              </TableCell>
-              <TableCell>{row.age}</TableCell>
-            </TableRow>
-          ))
-        }
+        {PEOPLE_DATA_2.map((row, index) => (
+          <TableRow key={index}>
+            <TableCell width="56px">
+              <Icon
+                name="profile-circle"
+                size="24"
+                className="neutral-300"
+              />
+            </TableCell>
+            <TableCell width="300px">
+              <Text size="4" bold>
+                {row.name}
+              </Text>
+            </TableCell>
+            <TableCell>
+              <div className="mb-2">
+                <a className="blue" href={`mailto:${row.email}`}>
+                  {row.email}
+                </a>
+              </div>
+              <div>{row.phone}</div>
+            </TableCell>
+            <TableCell>{row.age}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
 }
 function compare(key) {
-  return function (a, b) {
+  return function(a, b) {
     // property does not exist
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0;
     }
 
-    const varA = (typeof a[key] === 'string')
-      ? a[key].toUpperCase() : a[key];
-    const varB = (typeof b[key] === 'string')
-      ? b[key].toUpperCase() : b[key];
+    const varA =
+      typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    const varB =
+      typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
 
     let comparison = 0;
     if (varA > varB) {
@@ -99,7 +105,7 @@ function SortableTable() {
     }
   };
 
-  const getSortedData = (DATA) => {
+  const getSortedData = DATA => {
     if (nameSortDirection) {
       const sorted = DATA.sort(compare('name'));
 
@@ -142,21 +148,21 @@ function SortableTable() {
         </TableHeaderCell>
       </TableHeader>
       <TableBody>
-        {
-          getSortedData(PEOPLE_DATA_2).map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.age}</TableCell>
-            </TableRow>
-          ))
-        }
+        {getSortedData(PEOPLE_DATA_2).map((row, index) => (
+          <TableRow key={index}>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.age}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
 }
 
 storiesOf('Table', module)
-  .addDecorator(storyFn => <div style={{ width: '900px' }}>{storyFn()}</div>)
+  .addDecorator(storyFn => (
+    <div style={{ width: '900px' }}>{storyFn()}</div>
+  ))
   .add('tabular data', () => (
     <Table>
       <TableHeader mobileLabel="Contacts">
@@ -181,9 +187,5 @@ storiesOf('Table', module)
       </TableBody>
     </Table>
   ))
-  .add('custom cells', () => (
-    <CustomCellTable />
-  ))
-  .add('sortable table', () => (
-    <SortableTable />
-  ));
+  .add('custom cells', () => <CustomCellTable />)
+  .add('sortable table', () => <SortableTable />);

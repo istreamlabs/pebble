@@ -23,7 +23,22 @@ const propTypes = {
    * font size to apply to the list based on the [typography scale](/#/Styles/Typography)
    * @type {PropTypes.Requireable<FontSizeLike>}
    */
-  size: PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, '1', '2', '3', '4', '5', '6', '7']),
+  size: PropTypes.oneOf([
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+  ]),
 };
 
 const defaultProps = {
@@ -38,22 +53,21 @@ const defaultProps = {
  * ---
  */
 
-function List({
-  ordered,
-  children,
-  className,
-  size,
-}) {
-  const classes = classNames('list',
-    { 'list-ordered': ordered, },
-    className);
+function List({ ordered, children, className, size }) {
+  const classes = classNames(
+    'list',
+    { 'list-ordered': ordered },
+    className,
+  );
 
   const Element = ordered ? 'ol' : 'ul';
 
   const List = <Element className={classes}>{children}</Element>;
 
-  return (
-    size ? <TextContainer size={size}>{List}</TextContainer> : List
+  return size ? (
+    <TextContainer size={size}>{List}</TextContainer>
+  ) : (
+    List
   );
 }
 

@@ -43,12 +43,7 @@ const defaultProps = {
  */
 
 function ButtonGroup(props) {
-  const {
-    children,
-    className,
-    toolbar,
-    ...otherProps
-  } = props;
+  const { children, className, toolbar, ...otherProps } = props;
 
   const classes = classNames(className, {
     'btn-group': !toolbar,
@@ -59,7 +54,10 @@ function ButtonGroup(props) {
   return (
     <div className={classes}>
       {React.Children.map(children, child => (
-        <div key={child.key} className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}>
+        <div
+          key={child.key}
+          className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}
+        >
           {React.cloneElement(child, otherProps)}
         </div>
       ))}

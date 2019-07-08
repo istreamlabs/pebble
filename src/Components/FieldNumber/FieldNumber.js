@@ -109,7 +109,7 @@ const defaultProps = {
   onChange: undefined,
   onFocus: undefined,
   size: 'medium',
-  width: '100'
+  width: '100',
 };
 
 /**
@@ -120,9 +120,7 @@ const defaultProps = {
 
 class FieldNumber extends React.PureComponent {
   getLabel() {
-    const {
-      isInvalid, disabled, id, hideLabel, label
-    } = this.props;
+    const { isInvalid, disabled, id, hideLabel, label } = this.props;
 
     return (
       <Label
@@ -137,15 +135,18 @@ class FieldNumber extends React.PureComponent {
   }
 
   getValidationTextMarkup() {
-    const {
-      isInvalid,
-      validationText,
-    } = this.props;
+    const { isInvalid, validationText } = this.props;
 
     if (!isInvalid || validationText === undefined) return;
 
     return (
-      <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>
+      <Text
+        appearance="danger"
+        size="6"
+        className="field-text-validation pt-2"
+      >
+        {validationText}
+      </Text>
     );
   }
 
@@ -153,35 +154,27 @@ class FieldNumber extends React.PureComponent {
     const { helpText } = this.props;
 
     if (helpText) {
-      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+      return (
+        <Text size="6" className="db mt-2">
+          {helpText}
+        </Text>
+      );
     }
     return null;
   }
 
   renderChildren() {
-    const {
-      className,
-      hideLabel,
-      label,
-      ...rest
-    } = this.props;
+    const { className, hideLabel, label, ...rest } = this.props;
 
     const ariaLabelValue = hideLabel ? label : '';
 
     return (
-      <Input
-        ariaLabel={ariaLabelValue}
-        type="number"
-        {...rest}
-      />
+      <Input ariaLabel={ariaLabelValue} type="number" {...rest} />
     );
   }
 
   render() {
-    const {
-      className,
-      width,
-    } = this.props;
+    const { className, width } = this.props;
 
     const classes = classNames('field-text', className);
 

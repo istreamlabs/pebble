@@ -33,23 +33,18 @@ const propTypes = {
 };
 
 /**
-* Renders an html label element
-*
-* ---
-*/
+ * Renders an html label element
+ *
+ * ---
+ */
 
-function Label({
-  className,
-  children,
-  disabled,
-  hide,
-  id,
-  invalid,
-}) {
+function Label({ className, children, disabled, hide, id, invalid }) {
   if (hide) {
     return (
       <VisuallyHidden>
-        <label id={`${id}Label`} htmlFor={id}>{children}</label>
+        <label id={`${id}Label`} htmlFor={id}>
+          {children}
+        </label>
       </VisuallyHidden>
     );
   }
@@ -58,7 +53,8 @@ function Label({
     'db',
     'mb-2',
     'fs-6',
-    'fw-700', {
+    'fw-700',
+    {
       'neutral-500': disabled,
       red: invalid,
     },

@@ -7,31 +7,53 @@ import FieldRadioGroup from './FieldRadioGroup';
 
 const group1 = [
   {
-    id: 'text', value: 'text', label: 'Text', helpText: '1 hour turn around'
+    id: 'text',
+    value: 'text',
+    label: 'Text',
+    helpText: '1 hour turn around',
   },
   {
-    id: 'email', value: 'email', label: 'Email', helpText: '24 hour turn around'
+    id: 'email',
+    value: 'email',
+    label: 'Email',
+    helpText: '24 hour turn around',
   },
   {
-    id: 'phone', value: 'phone', label: 'Phone', helpText: '48 hour turn around'
+    id: 'phone',
+    value: 'phone',
+    label: 'Phone',
+    helpText: '48 hour turn around',
   },
   {
-    id: 'mail', value: 'mail', label: 'Mail', helpText: '5 business days',
+    id: 'mail',
+    value: 'mail',
+    label: 'Mail',
+    helpText: '5 business days',
   },
   {
-    id: 'neutrino', value: 'neutrino', label: 'Neutrino', helpText: 'Neutrino messaging technology is not available yet', disabled: true
+    id: 'neutrino',
+    value: 'neutrino',
+    label: 'Neutrino',
+    helpText: 'Neutrino messaging technology is not available yet',
+    disabled: true,
   },
 ];
 
 const group2 = [
   {
-    id: 'small', value: 'small', label: 'Small'
+    id: 'small',
+    value: 'small',
+    label: 'Small',
   },
   {
-    id: 'medium', value: 'medium', label: 'Medium'
+    id: 'medium',
+    value: 'medium',
+    label: 'Medium',
   },
   {
-    id: 'large', value: 'large', label: 'Large'
+    id: 'large',
+    value: 'large',
+    label: 'Large',
   },
 ];
 
@@ -98,9 +120,8 @@ function FieldRadioGroupExample() {
   );
 }
 
-storiesOf('FieldRadioGroup', module)
-  .add('all', () => (
-    <>
-      <FieldRadioGroupExample />
-    </>
-  ));
+storiesOf('FieldRadioGroup', module).add('all', () => (
+  <>
+    <FieldRadioGroupExample />
+  </>
+));

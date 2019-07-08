@@ -90,7 +90,7 @@ const propTypes = {
     'search',
     'tel',
     'text',
-    'url'
+    'url',
   ]),
   /**
    * Text to display before the value
@@ -128,7 +128,7 @@ const defaultProps = {
   onFocus: undefined,
   size: 'medium',
   type: 'text',
-  width: '100'
+  width: '100',
 };
 
 /**
@@ -139,9 +139,7 @@ const defaultProps = {
 
 class FieldText extends React.PureComponent {
   getLabel() {
-    const {
-      isInvalid, disabled, id, hideLabel, label
-    } = this.props;
+    const { isInvalid, disabled, id, hideLabel, label } = this.props;
 
     return (
       <Label
@@ -156,15 +154,18 @@ class FieldText extends React.PureComponent {
   }
 
   getValidationTextMarkup() {
-    const {
-      isInvalid,
-      validationText,
-    } = this.props;
+    const { isInvalid, validationText } = this.props;
 
     if (!isInvalid || validationText === undefined) return;
 
     return (
-      <Text appearance="danger" size="6" className="field-text-validation pt-2">{validationText}</Text>
+      <Text
+        appearance="danger"
+        size="6"
+        className="field-text-validation pt-2"
+      >
+        {validationText}
+      </Text>
     );
   }
 
@@ -172,7 +173,11 @@ class FieldText extends React.PureComponent {
     const { helpText } = this.props;
 
     if (helpText) {
-      return (<Text size="6" className="db mt-2">{helpText}</Text>);
+      return (
+        <Text size="6" className="db mt-2">
+          {helpText}
+        </Text>
+      );
     }
     return null;
   }
@@ -200,10 +205,7 @@ class FieldText extends React.PureComponent {
   }
 
   render() {
-    const {
-      className,
-      width,
-    } = this.props;
+    const { className, width } = this.props;
 
     const classes = classNames('field-text', className);
 

@@ -24,23 +24,13 @@ const defaultProps = {
   subdued: false,
 };
 
-const Section = (
-  {
-    children,
-    className,
-    subdued,
-  }
-) => {
+function Section({ children, className, subdued }) {
   const classes = classNames('card-section', className, {
     subdued,
   });
 
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
-};
+  return <div className={classes}>{children}</div>;
+}
 
 Section.propTypes = propTypes;
 Section.defaultProps = defaultProps;

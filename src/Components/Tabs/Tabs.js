@@ -34,9 +34,10 @@ export class Tabs extends React.PureComponent {
 
     const getTabsMarkup = () => {
       if (tabs) {
-        const selected = selectedId === '' || selectedId === undefined
-          ? tabs[0].id
-          : tabs[tabs.findIndex(tab => tab.id === selectedId)].id;
+        const selected =
+          selectedId === '' || selectedId === undefined
+            ? tabs[0].id
+            : tabs[tabs.findIndex(tab => tab.id === selectedId)].id;
 
         return tabs.map(tab => (
           <Tab
@@ -52,9 +53,10 @@ export class Tabs extends React.PureComponent {
           />
         ));
       }
-      const selected = selectedId === '' || selectedId === undefined
-        ? children[0].props.tabId
-        : selectedId;
+      const selected =
+        selectedId === '' || selectedId === undefined
+          ? children[0].props.tabId
+          : selectedId;
 
       return React.Children.map(children, child => (
         <Tab
@@ -73,9 +75,10 @@ export class Tabs extends React.PureComponent {
 
     const getSelectedTabContent = () => {
       if (tabs) {
-        const selectedIndex = selectedId === '' || selectedId === undefined
-          ? 0
-          : tabs.findIndex(tab => selectedId === tab.id);
+        const selectedIndex =
+          selectedId === '' || selectedId === undefined
+            ? 0
+            : tabs.findIndex(tab => selectedId === tab.id);
 
         return (
           <Block
@@ -90,9 +93,12 @@ export class Tabs extends React.PureComponent {
       }
       const childArray = React.Children.toArray(children);
 
-      const selectedIndex = selectedId === '' || selectedId === undefined
-        ? 0
-        : childArray.findIndex(child => selectedId === child.props.tabId);
+      const selectedIndex =
+        selectedId === '' || selectedId === undefined
+          ? 0
+          : childArray.findIndex(
+              child => selectedId === child.props.tabId,
+            );
 
       return childArray[selectedIndex];
     };

@@ -21,48 +21,53 @@ function Example() {
         width="500"
       />
       <ButtonGroup>
-        <Button onClick={() => {
-          toast({
-            title: 'Product updated',
-            type: 'success'
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Product updated',
+              type: 'success',
+            });
+          }}
         >
           Success Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'Product updated',
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Product updated',
+            });
+          }}
         >
           Default Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'New Features Added',
-            type: 'info'
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'New Features Added',
+              type: 'info',
+            });
+          }}
         >
           Info Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'Changes not saved',
-            type: 'warn'
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Changes not saved',
+              type: 'warn',
+            });
+          }}
         >
           Warning Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'Server error',
-            type: 'danger',
-            autoClose: false
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Server error',
+              type: 'danger',
+              autoClose: false,
+            });
+          }}
         >
           Danger Toast
         </Button>
@@ -71,9 +76,8 @@ function Example() {
   );
 }
 
-storiesOf('Toast', module)
-  .add('all', () => (
-    <>
-      <Example />
-    </>
-  ));
+storiesOf('Toast', module).add('all', () => (
+  <>
+    <Example />
+  </>
+));

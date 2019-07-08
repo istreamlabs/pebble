@@ -9,20 +9,26 @@ function FieldTextExample() {
   const [eventResult, setEventResult] = useState('');
   const [basic, setBasic] = useState('');
   const [autoFocus, setAutoFocus] = useState('');
-  const [disabledInput, setDisabledInput] = useState('can not edit this');
+  const [disabledInput, setDisabledInput] = useState(
+    'can not edit this',
+  );
   const [placeholderInput, setPlaceholderInput] = useState('');
   const [helpTextInput, setHelpTextInput] = useState('');
   const [errorInput, setErrorInput] = useState('');
   const [spellcheckInput, setSpellcheckInput] = useState('');
   const [maxLengthInput, setMaxLengthInput] = useState('');
   const [clearBtnInput, setClearBtnInput] = useState('clear me!');
-  const [readOnlyInput, setReadOnlyInput] = useState('I am read only');
+  const [readOnlyInput, setReadOnlyInput] = useState(
+    'I am read only',
+  );
   const [prefixInput, setPrefixInput] = useState('');
   const [suffixInput, setSuffixInput] = useState('');
   const [prefixSuffixInput, setPrefixSuffixInput] = useState('');
-  const [characterCountInput, setCharacterCountInput] = useState('13 characters');
+  const [characterCountInput, setCharacterCountInput] = useState(
+    '13 characters',
+  );
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setEventResult(`handleChange called with '${e.target.value}'`);
     setBasic(e.target.value);
   };
@@ -51,8 +57,7 @@ function FieldTextExample() {
       />
 
       <div className="fs-6 mt-3 mb-5">
-        event handler result:
-        {' '}
+        event handler result:{' '}
         <span className="fw-700">{eventResult}</span>
       </div>
 
@@ -190,7 +195,9 @@ function FieldTextExample() {
 function PrefixSuffixExample() {
   const [prefixInput, setPrefixInput] = useState('');
   const [suffixInput, setSuffixInput] = useState('');
-  const [prefixSuffixInput, setPrefixSuffixInput] = useState('istreamplanet');
+  const [prefixSuffixInput, setPrefixSuffixInput] = useState(
+    'istreamplanet',
+  );
   const [iconInput, setIconInput] = useState('icon');
 
   return (
@@ -250,8 +257,12 @@ function PrefixSuffixExample() {
 
       <FieldText
         size="small"
-        prefix={<Icon name="calendar" accessibilityLabel="calendar" />}
-        suffix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        prefix={
+          <Icon name="calendar" accessibilityLabel="calendar" />
+        }
+        suffix={
+          <Icon name="calendar" accessibilityLabel="calendar" />
+        }
         label="Small prefix icon"
         id="small-prefix-icon-input"
         value={iconInput}
@@ -260,8 +271,12 @@ function PrefixSuffixExample() {
       />
 
       <FieldText
-        prefix={<Icon name="calendar" accessibilityLabel="calendar" />}
-        suffix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        prefix={
+          <Icon name="calendar" accessibilityLabel="calendar" />
+        }
+        suffix={
+          <Icon name="calendar" accessibilityLabel="calendar" />
+        }
         label="Prefix icon"
         id="prefix-icon-input"
         value={iconInput}
@@ -271,8 +286,20 @@ function PrefixSuffixExample() {
 
       <FieldText
         size="large"
-        prefix={<Icon name="calendar" size="20" accessibilityLabel="calendar" />}
-        suffix={<Icon name="calendar" size="20" accessibilityLabel="calendar" />}
+        prefix={
+          <Icon
+            name="calendar"
+            size="20"
+            accessibilityLabel="calendar"
+          />
+        }
+        suffix={
+          <Icon
+            name="calendar"
+            size="20"
+            accessibilityLabel="calendar"
+          />
+        }
         label="Large prefix icon"
         id="large-prefix-icon-input"
         value={iconInput}
@@ -344,6 +371,4 @@ storiesOf('FieldText', module)
       />
     </>
   ))
-  .add('prefix and suffix', () => (
-    <PrefixSuffixExample />
-  ));
+  .add('prefix and suffix', () => <PrefixSuffixExample />);

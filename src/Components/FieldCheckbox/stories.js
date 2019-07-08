@@ -104,9 +104,8 @@ function FieldCheckboxExample() {
   );
 }
 
-storiesOf('FieldCheckbox', module)
-  .add('all', () => (
-    <>
-      <FieldCheckboxExample />
-    </>
-  ));
+storiesOf('FieldCheckbox', module).add('all', () => (
+  <>
+    <FieldCheckboxExample />
+  </>
+));

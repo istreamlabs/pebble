@@ -53,19 +53,11 @@ function Link({
   const classes = classNames({ link: !unstyled }, className);
 
   return external ? (
-    <a
-      className={classes}
-      href={href}
-      {...rest}
-    >
+    <a className={classes} href={href} {...rest}>
       {children}
     </a>
   ) : (
-    <RouterLink
-      className={classes}
-      to={href}
-      {...rest}
-    >
+    <RouterLink className={classes} to={href} {...rest}>
       {children}
     </RouterLink>
   );

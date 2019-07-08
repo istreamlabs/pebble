@@ -4,6 +4,8 @@ import VisuallyHidden from './VisuallyHidden';
 
 describe('VisuallyHidden', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<VisuallyHidden>hello</VisuallyHidden>); }).not.toThrow();
+    expect(() => {
+      shallow(<VisuallyHidden>hello</VisuallyHidden>);
+    }).not.toThrow();
   });
 });
