@@ -5,7 +5,9 @@ import { Header, Section } from './Components';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import { requiresOtherProp } from '../../Types';
+import { overflowType, requiresOtherProp } from '../../Types';
+
+import Block from '../Block/Block';
 
 const propTypes = {
   /**
@@ -25,6 +27,17 @@ const propTypes = {
    */
   muted: PropTypes.bool,
   /**
+   * Overflow behavior
+   *
+   * One of: 'auto', 'visible', 'hidden', 'scroll'
+   *
+   * or {"vertical": "...", "horizontal": "..."}
+   *
+   * For responsive behavior, pass an array with length up to 4, with a valid value for each element.
+   * @type {PropTypes.Requireable<Overflow>}
+   */
+  overflow: overflowType,
+  /**
    * Auto-wrap children in a padded section
    */
   sectioned: PropTypes.bool,
@@ -38,6 +51,7 @@ const defaultProps = {
   children: null,
   sectioned: false,
   muted: false,
+  overflow: 'hidden',
 };
 
 /**
@@ -55,6 +69,7 @@ function Card({
   headerActions,
   sectioned,
   muted,
+  overflow,
   title,
 }) {
   const classes = classNames('card', className, {
@@ -72,10 +87,10 @@ function Card({
     : children;
 
   return (
-    <div className={classes}>
+    <Block direction="column" overflow={overflow} className={classes}>
       {header}
       {content}
-    </div>
+    </Block>
   );
 }
 

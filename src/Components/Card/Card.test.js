@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import Card from './Card';
 import Header from './Components/Header';
 import Section from './Components/Section';
+import Block from '../Block/Block';
 
 describe('Card', () => {
   it('renders without crashing', () => {
@@ -13,7 +14,7 @@ describe('Card', () => {
 
   it('allows for custom classes', () => {
     const wrapper = shallow(<Card className="myClass">test</Card>);
-    expect(wrapper.find('div').prop('className')).toContain(
+    expect(wrapper.find(Block).prop('className')).toContain(
       'myClass',
     );
   });
