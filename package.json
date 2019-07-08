@@ -46,14 +46,18 @@
     "cpx": "^1.5.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.12.3",
     "eslint-plugin-react-hooks": "^1.6.0",
     "fs-extra": "^7.0.1",
     "glob": "^7.1.3",
     "node-sass": "^4.11.0",
+    "prettier": "1.18.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
@@ -86,9 +90,13 @@
     "dist/**/*.js"
   ],
   "eslintConfig": {
-    "extends": "airbnb",
+    "extends": [
+      "airbnb",
+      "prettier"
+    ],
     "parser": "babel-eslint",
     "plugins": [
+      "prettier",
       "react-hooks"
     ],
     "env": {
@@ -164,7 +172,10 @@
       "prefer-spread": 0,
       "import/no-dynamic-require": 0,
       "global-require": 0,
-      "func-names": 0
+      "func-names": 0,
+      "prettier/prettier": [
+        "error"
+      ]
     }
   },
   "browserslist": [
