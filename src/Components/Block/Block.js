@@ -16,6 +16,7 @@ import {
   radiusType,
   spacingType,
   dimensionType,
+  overflowType,
 } from '../../Types';
 
 import './Block.scss';
@@ -208,76 +209,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with a valid value for each element.
    * @type {PropTypes.Requireable<Overflow>}
    */
-  overflow: PropTypes.oneOfType([
-    PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
-    PropTypes.shape({
-      horizontal: PropTypes.oneOf([
-        'auto',
-        'visible',
-        'hidden',
-        'scroll',
-      ]),
-      vertical: PropTypes.oneOf([
-        'auto',
-        'visible',
-        'hidden',
-        'scroll',
-      ]),
-    }),
-    PropTypes.shape({
-      horizontal: PropTypes.oneOf([
-        'auto',
-        'visible',
-        'hidden',
-        'scroll',
-      ]),
-    }),
-    PropTypes.shape({
-      vertical: PropTypes.oneOf([
-        'auto',
-        'visible',
-        'hidden',
-        'scroll',
-      ]),
-    }),
-    PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
-        PropTypes.arrayOf(
-          PropTypes.shape({
-            horizontal: PropTypes.oneOf([
-              'auto',
-              'visible',
-              'hidden',
-              'scroll',
-            ]),
-            vertical: PropTypes.oneOf([
-              'auto',
-              'visible',
-              'hidden',
-              'scroll',
-            ]),
-          }),
-        ),
-        PropTypes.shape({
-          horizontal: PropTypes.oneOf([
-            'auto',
-            'visible',
-            'hidden',
-            'scroll',
-          ]),
-        }),
-        PropTypes.shape({
-          vertical: PropTypes.oneOf([
-            'auto',
-            'visible',
-            'hidden',
-            'scroll',
-          ]),
-        }),
-      ]),
-    ),
-  ]),
+  overflow: overflowType,
   /**
    * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
    *
