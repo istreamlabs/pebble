@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { textAlignType } from '../../Types';
+import { colorType, textAlignType } from '../../Types';
 
 import './Heading.scss';
 
@@ -37,6 +37,11 @@ const propTypes = {
    * Additional classNames to add
    */
   className: PropTypes.string,
+  /**
+   * [Color identifier](/#/Styles/Color) of the text color
+   * @type {PropTypes.Requireable<Color>}
+   */
+  color: colorType,
   /**
    * Semantic heading level, can passed as int or string
    * @type {PropTypes.Requireable<ElementSizeLike>}
@@ -89,6 +94,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  color: 'neutral-700',
   element: 2,
   responsive: true,
   textAlign: 'left',
@@ -111,6 +117,7 @@ const defaultProps = {
 function Heading({
   children,
   className,
+  color,
   element,
   responsive,
   textAlign,
@@ -129,6 +136,7 @@ function Heading({
 
   const classes = classNames(
     'heading',
+    color,
     headingSizeClass,
     {
       truncate,
