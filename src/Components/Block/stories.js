@@ -8,6 +8,166 @@ import Badge from '../Badge/Badge';
 import Text from '../Text/Text';
 
 storiesOf('Block', module)
+  .add('text color', () => (
+    <>
+      <Block color="neutral-100">neutral-100</Block>
+      <Block color="neutral-200">neutral-200</Block>
+      <Block color="neutral-300">neutral-300</Block>
+      <Block color="neutral-400">neutral-400</Block>
+      <Block color="neutral-500">neutral-500</Block>
+      <Block color="neutral-600">neutral-600</Block>
+      <Block color="neutral-700">neutral-700</Block>
+      <Block color="neutral-800">neutral-800</Block>
+      <Block color="blue-lighter">blue-lighter</Block>
+      <Block color="blue-light">blue-light</Block>
+      <Block color="blue">blue</Block>
+      <Block color="blue-dark">blue-dark</Block>
+      <Block color="blue-darker">blue-darker</Block>
+      <Block color="yellow-lighter">yellow-lighter</Block>
+      <Block color="yellow-light">yellow-light</Block>
+      <Block color="yellow">yellow</Block>
+      <Block color="yellow-dark">yellow-dark</Block>
+      <Block color="yellow-darker">yellow-darker</Block>
+      <Block color="green-lighter">green-lighter</Block>
+      <Block color="green-light">green-light</Block>
+      <Block color="green">green</Block>
+      <Block color="green-dark">green-dark</Block>
+      <Block color="green-darker">green-darker</Block>
+      <Block color="red-lighter">red-lighter</Block>
+      <Block color="red-light">red-light</Block>
+      <Block color="red">red</Block>
+      <Block color="red-dark">red-dark</Block>
+      <Block color="red-darker">red-darker</Block>
+      <Block color="indigo-lighter">indigo-lighter</Block>
+      <Block color="indigo-light">indigo-light</Block>
+      <Block color="indigo">indigo</Block>
+      <Block color="indigo-dark">indigo-dark</Block>
+      <Block color="indigo-darker">indigo-darker</Block>
+    </>
+  ))
+  .add('background color', () => (
+    <Block itemSpacing="3">
+      <Block direction="column">
+        <Block width="100px" height="50px" background="neutral-100">
+          neutral-100
+        </Block>
+        <Block width="100px" height="50px" background="neutral-200">
+          neutral-200
+        </Block>
+        <Block width="100px" height="50px" background="neutral-300">
+          neutral-300
+        </Block>
+        <Block width="100px" height="50px" background="neutral-400">
+          neutral-400
+        </Block>
+        <Block width="100px" height="50px" background="neutral-500">
+          neutral-500
+        </Block>
+        <Block width="100px" height="50px" background="neutral-600">
+          neutral-600
+        </Block>
+        <Block width="100px" height="50px" background="neutral-700">
+          neutral-700
+        </Block>
+        <Block width="100px" height="50px" background="neutral-800">
+          neutral-800
+        </Block>
+      </Block>
+      <Block direction="column">
+        <Block width="100px" height="50px" background="blue-lighter">
+          blue-lighter
+        </Block>
+        <Block width="100px" height="50px" background="blue-light">
+          blue-light
+        </Block>
+        <Block width="100px" height="50px" background="blue">
+          blue
+        </Block>
+        <Block width="100px" height="50px" background="blue-dark">
+          blue-dark
+        </Block>
+        <Block width="100px" height="50px" background="blue-darker">
+          blue-darker
+        </Block>
+      </Block>
+      <Block direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          background="yellow-lighter"
+        >
+          yellow-lighter
+        </Block>
+        <Block width="100px" height="50px" background="yellow-light">
+          yellow-light
+        </Block>
+        <Block width="100px" height="50px" background="yellow">
+          yellow
+        </Block>
+        <Block width="100px" height="50px" background="yellow-dark">
+          yellow-dark
+        </Block>
+        <Block width="100px" height="50px" background="yellow-darker">
+          yellow-darker
+        </Block>
+      </Block>
+      <Block direction="column">
+        <Block width="100px" height="50px" background="green-lighter">
+          green-lighter
+        </Block>
+        <Block width="100px" height="50px" background="green-light">
+          green-light
+        </Block>
+        <Block width="100px" height="50px" background="green">
+          green
+        </Block>
+        <Block width="100px" height="50px" background="green-dark">
+          green-dark
+        </Block>
+        <Block width="100px" height="50px" background="green-darker">
+          green-darker
+        </Block>
+      </Block>
+      <Block direction="column">
+        <Block width="100px" height="50px" background="red-lighter">
+          red-lighter
+        </Block>
+        <Block width="100px" height="50px" background="red-light">
+          red-light
+        </Block>
+        <Block width="100px" height="50px" background="red">
+          red
+        </Block>
+        <Block width="100px" height="50px" background="red-dark">
+          red-dark
+        </Block>
+        <Block width="100px" height="50px" background="red-darker">
+          red-darker
+        </Block>
+      </Block>
+      <Block direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          background="indigo-lighter"
+        >
+          indigo-lighter
+        </Block>
+        <Block width="100px" height="50px" background="indigo-light">
+          indigo-light
+        </Block>
+        <Block width="100px" height="50px" background="indigo">
+          indigo
+        </Block>
+        <Block width="100px" height="50px" background="indigo-dark">
+          indigo-dark
+        </Block>
+        <Block width="100px" height="50px" background="indigo-darker">
+          indigo-darker
+        </Block>
+      </Block>
+    </Block>
+  ))
   .add('responsive justify', () => (
     <Block
       width="100%"

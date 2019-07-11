@@ -100,7 +100,7 @@ const propTypes = {
     PropTypes.array,
   ]),
   /**
-   * [Color](/#/Styles/Color) identifier
+   * [Color identifier](/#/Styles/Color) of the background color
    * @type {PropTypes.Requireable<Color>}
    */
   background: colorType,
@@ -128,6 +128,11 @@ const propTypes = {
    * Elements to be rendered as children of this component
    */
   children: PropTypes.node,
+  /**
+   * [Color identifier](/#/Styles/Color) of the text color
+   * @type {PropTypes.Requireable<Color>}
+   */
+  color: colorType,
   /**
    * Orientation to layout children
    *
@@ -306,6 +311,7 @@ class Block extends React.PureComponent {
       as,
       background,
       basis,
+      color,
       children,
       className,
       direction,
@@ -401,6 +407,7 @@ class Block extends React.PureComponent {
       alignSelfClasses,
       widthStyles.classes,
       heightStyles.classes,
+      color,
       {
         flex: !truncate,
         [`bg-${background}`]: background,
