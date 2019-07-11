@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { parseTextSize } from '../../Utils';
-import { fontSizeType } from '../../Types';
+import { colorType, fontSizeType } from '../../Types';
 
 import './Text.scss';
 
 const propTypes = {
   /**
-   * color of the text
+   * Convenience values to style the text
    * @type {PropTypes.Requireable<'success'|'warn'|'danger'|'muted'|'info'|'code'>}
    */
   appearance: PropTypes.oneOf([
@@ -32,6 +32,11 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
+   * [Color identifier](/#/Styles/Color) of the text color
+   * @type {PropTypes.Requireable<Color>}
+   */
+  color: colorType,
+  /**
    * set font size based on the [typography scale](/#/Styles/Typography)
    * @type {PropTypes.Requireable<FontSizeLike>}
    */
@@ -51,10 +56,11 @@ const defaultProps = {
  */
 
 function Text({
+  appearance,
   bold,
   children,
   className,
-  appearance,
+  color,
   size,
   ...rest
 }) {
@@ -64,6 +70,7 @@ function Text({
 
   const classes = classNames(
     'text',
+    color,
     {
       [`fs-${parsedSize}`]: parsedSize,
       'fw-700': bold,
