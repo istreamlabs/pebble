@@ -57,7 +57,7 @@ steps:
     - AWS_ACCESS_KEY_ID=${{DEVELOPMENT_AWS_ACCESS_KEY}}
     - AWS_SECRET_ACCESS_KEY=${{DEVELOPMENT_AWS_SECRET}}
     commands:
-    - ./deploy.sh "pebble-dev"
+    - ./deploy.sh "pebble.istreamplanet.com"
     when:
       branch:
         only:

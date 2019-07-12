@@ -4,7 +4,7 @@ steps:
     title: Prepping...
     image: codefresh/cli
     environment:
-    - BUCKET_NAME=pebble-dev
+    - BUCKET_NAME=pebble.istreamplanet.com
     # This is the ID of the github integration in codefresh
     - GITHUB_CONTEXT_NAME=github-oauth
     commands:

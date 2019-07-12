@@ -8,4 +8,4 @@ steps:
     - AWS_SECRET_ACCESS_KEY=${{DEVELOPMENT_AWS_SECRET}}
     - AWS_DEFAULT_REGION=us-west-2
     commands:
-    - aws s3 rm "s3://pebble-dev/$CF_PULL_REQUEST_NUMBER" --recursive
+    - aws s3 rm "s3://pebble.istreamplanet.com/$CF_PULL_REQUEST_NUMBER" --recursive
