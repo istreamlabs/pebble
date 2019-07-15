@@ -76,6 +76,52 @@ describe('DropdownMenu', () => {
     });
   });
 
+  describe('handleOverClick', () => {
+    it('should do nothing if event is not a real event object', () => {
+      const instance = new DropdownMenu({
+        open: true,
+        toggle: 'click me',
+      });
+      jest.spyOn(instance, 'setState').mockImplementation(jest.fn());
+
+      instance.handleOverlayClick();
+      expect(instance.setState).not.toHaveBeenCalled();
+      instance.handleOverlayClick({});
+      expect(instance.setState).not.toHaveBeenCalled();
+    });
+    it('should do nothing if closest does not return node', () => {
+      const instance = new DropdownMenu({
+        open: true,
+        toggle: 'click me',
+      });
+      jest.spyOn(instance, 'setState').mockImplementation(jest.fn());
+
+      instance.handleOverlayClick({
+        target: {
+          closest: () => null,
+        },
+      });
+      expect(instance.setState).not.toHaveBeenCalled();
+    });
+    it('should call set state if menuItem clicked', () => {
+      const instance = new DropdownMenu({
+        open: true,
+        toggle: 'click me',
+      });
+      jest.spyOn(instance, 'setState').mockImplementation(jest.fn());
+
+      instance.handleOverlayClick({
+        target: {
+          closest: () => <Button role="menuitem">item</Button>,
+        },
+      });
+      expect(instance.setState).toHaveBeenCalledWith(
+        { isOverlayOpen: false },
+        instance.handleClose,
+      );
+    });
+  });
+
   describe('handleClickOutside', () => {
     it('should close the overlay if it is open', () => {
       const onClose = jest.fn();

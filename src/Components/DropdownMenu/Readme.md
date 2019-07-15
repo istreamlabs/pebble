@@ -21,11 +21,18 @@ function handleItemClick() {
   console.log('item clicked');
 }
 
-<DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
-  <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
-  <DropdownMenuSeparator />
-  <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
-</DropdownMenu>
+<Block>
+  <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
+    <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
+  </DropdownMenu>
+  <Block>
+    <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
+      <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
+      <DropdownMenuSeparator />
+      <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
+    </DropdownMenu>
+  </Block>
+</Block>
 ```
 
 ### Sizes

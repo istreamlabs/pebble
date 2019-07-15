@@ -116,12 +116,22 @@ class DropdownMenu extends React.PureComponent {
     );
   };
 
+  handleOverlayClick = event => {
+    const hasMenuItemInTree =
+      event &&
+      event.target &&
+      event.target.closest('[role=menuitem]');
+    if (hasMenuItemInTree) {
+      this.setState({ isOverlayOpen: false }, this.handleClose);
+    }
+  };
+
   // used by onClickOutside HOC
   handleClickOutside = () => {
     const { isOverlayOpen } = this.state;
 
     if (isOverlayOpen) {
-      this.setState({ isOverlayOpen: false }, this.handleClose());
+      this.setState({ isOverlayOpen: false }, this.handleClose);
     }
   };
 
@@ -198,6 +208,8 @@ class DropdownMenu extends React.PureComponent {
         ref={ref}
         data-placement={placement}
         style={style}
+        onClick={this.handleOverlayClick}
+        tabIndex="-1"
       >
         {children}
       </div>
