@@ -17,7 +17,23 @@ const propTypes = {
   /**
    * the menu that gets rendered
    */
-  item: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    href: PropTypes.string,
+    icon: PropTypes.string,
+    aliases: PropTypes.arrayOf(PropTypes.string),
+    exact: PropTypes.bool,
+    activeHandler: PropTypes.bool,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        href: PropTypes.string,
+        aliases: PropTypes.arrayOf(PropTypes.string),
+        exact: PropTypes.bool,
+        activeHandler: PropTypes.bool,
+      }),
+    ),
+  }).isRequired,
   /**
    * start with the item expanded
    */
