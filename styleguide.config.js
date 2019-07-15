@@ -7,14 +7,14 @@ module.exports = {
   webpackConfig: require('react-scripts/config/webpack.config.js'),
   require: [
     path.resolve(__dirname, 'src/Styleguide/Setup.js'),
-    path.join(__dirname, 'src/Styleguide/styles.css')
+    path.join(__dirname, 'src/Styleguide/styles.css'),
   ],
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
     webpackConfig.entry.push('./src/Styles/foundation.scss');
 
     webpackConfig.output = {
       ...webpackConfig.output,
-      publicPath: process.env.PUBLIC_URL || ''
+      publicPath: process.env.PUBLIC_URL || '',
     };
     return webpackConfig;
   },
@@ -30,10 +30,10 @@ module.exports = {
       links: [
         {
           rel: 'stylesheet',
-          href: 'src/Styleguide/styles.css'
-        }
-      ]
-    }
+          href: 'src/Styleguide/styles.css',
+        },
+      ],
+    },
   },
   theme: {
     space: [
@@ -46,7 +46,8 @@ module.exports = {
       spaceFactor * 8, // 128
     ],
     fontFamily: {
-      base: '-apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif'
+      base:
+        '-apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
     },
     fontSize: {
       base: 16,
@@ -125,11 +126,12 @@ module.exports = {
     },
   },
   styleguideComponents: {
-    ToolbarButtonRenderer: path.join(__dirname, 'src/Styleguide/ToolbarButtonRenderer')
+    ToolbarButtonRenderer: path.join(
+      __dirname,
+      'src/Styleguide/ToolbarButtonRenderer',
+    ),
   },
-  components: [
-    'src/components/**/[A-Z]*.js'
-  ],
+  components: ['src/components/**/[A-Z]*.js'],
   ignore: [
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
@@ -156,49 +158,49 @@ module.exports = {
         {
           name: 'Border',
           content: 'src/Styleguide/Docs/Border.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Color',
           content: 'src/Styleguide/Docs/Color.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Media Query',
           content: 'src/Styleguide/Docs/Mediaquery.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Shadow',
           content: 'src/Styleguide/Docs/Shadow.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Sizing',
           content: 'src/Styleguide/Docs/Sizing.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Spacing',
           content: 'src/Styleguide/Docs/Spacing.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Typography',
           content: 'src/Styleguide/Docs/Typography.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'Width',
           content: 'src/Styleguide/Docs/Width.md',
-          exampleMode: 'hide'
+          exampleMode: 'hide',
         },
         {
           name: 'CSS Reset',
           content: 'src/Styleguide/Docs/Reset.md',
-          exampleMode: 'hide'
-        }
-      ]
+          exampleMode: 'hide',
+        },
+      ],
     },
     {
       name: 'Components',
@@ -207,10 +209,10 @@ module.exports = {
       exampleMode: 'expand',
       usageMode: 'expand',
       sectionDepth: 2,
-    }
+    },
   ],
   ribbon: {
     url: 'https://github.com/iStreamPlanet/pebble',
-    text: 'GitHub Repo'
-  }
+    text: 'GitHub Repo',
+  },
 };

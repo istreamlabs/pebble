@@ -1,7 +1,35 @@
-## General Component Docs
+## Installation
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Add the package to your package.json using your package manager of choice.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```shell
+$ yarn add @istreamplanet/pebble node-sass
+```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Include the Pebble foundation stylesheet in your layout template.
+
+```shell
+import '@istreamplanet/pebble/dist/Styles/foundation.scss';
+```
+
+
+## Using Components
+
+Import the components into your application
+
+```shell
+import { Button, Card } from '@istreamplanet/pebble'`
+```
+
+Then add them in your React component as you would any other:
+
+```shell
+const MyComponent = () => (
+  <Card>
+    <Button>Submit</Button>
+  </Card>
+)
+```
+
+Have a look at the docs available for each component for further details on how to use each component.
+

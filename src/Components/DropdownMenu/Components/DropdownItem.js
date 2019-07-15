@@ -30,13 +30,13 @@ const defaultProps = {
  * ---
  */
 
-function DropdownItem({
-  children,
-  className,
-  href,
-  ...props
-}) {
-  const classes = classNames('dropdown-item', 'text-left', 'ws-normal', className);
+function DropdownItem({ children, className, href, ...props }) {
+  const classes = classNames(
+    'dropdown-item',
+    'text-left',
+    'ws-normal',
+    className,
+  );
 
   if (href) {
     return (
@@ -52,11 +52,7 @@ function DropdownItem({
   }
 
   return (
-    <Button
-      {...props}
-      role="menuitem"
-      className={classes}
-    >
+    <Button {...props} role="menuitem" className={classes}>
       {children}
     </Button>
   );
