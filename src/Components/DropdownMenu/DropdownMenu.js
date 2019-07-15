@@ -88,7 +88,7 @@ const defaultProps = {
  * ---
  */
 
-export class DropdownMenu extends React.PureComponent {
+class DropdownMenu extends React.PureComponent {
   constructor(props) {
     super(props);
 
