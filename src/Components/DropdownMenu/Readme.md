@@ -21,17 +21,17 @@ function handleItemClick() {
   console.log('item clicked');
 }
 
-<Block>
-  <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
-    <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
+<Block itemSpacing="5" direction="column" onClick={() => console.log('foo')}>
+  <DropdownMenu toggle="Dropdown" overlayClassName="w5">
+    <DropdownItem icon="add-bold">default button</DropdownItem>
+    <DropdownMenuSeparator />
+    <DropdownItem danger icon="remove-circle">
+      danger button
+    </DropdownItem>
   </DropdownMenu>
-  <Block>
-    <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
-      <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
-      <DropdownMenuSeparator />
-      <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
-    </DropdownMenu>
-  </Block>
+  <DropdownMenu toggle="Disabled Dropdown" disabled>
+    <DropdownItem>disabled</DropdownItem>
+  </DropdownMenu>
 </Block>
 ```
 
