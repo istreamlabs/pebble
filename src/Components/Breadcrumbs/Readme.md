@@ -14,7 +14,7 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 <DemoBrowserRouter>
   <Breadcrumbs>
     <Link href="#">Parent</Link>
-    <DropdownMenu toggle={<Button plain iconAfterText icon="arrow-small-down">Level 1</Button>}>
+    <DropdownMenu toggle={<Button plain iconAfterText="arrow-small-down">Level 1</Button>}>
       <DropdownItem>Level 1a</DropdownItem>
       <DropdownItem>Level 1b</DropdownItem>
     </DropdownMenu>
