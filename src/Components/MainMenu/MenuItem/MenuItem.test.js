@@ -131,8 +131,10 @@ describe('MenuItem', () => {
 
   it('renders without crashing', () => {
     expect(() => { shallow(<MenuItem item={mockData} />); }).not.toThrow();
+  it('renders exact if present', () => {
+    const item = shallow(<MenuItem item={linkSubItems} />);
+    expect(item.find('.menu-item').prop('exact')).toBe(true);
   });
-
   it('generates a unique key for each item from the subItem label and index', () => {
     const item = shallow(<MenuItem item={mockData} />);
     item.find('.sub-menu-items li').forEach((item, index) => {
