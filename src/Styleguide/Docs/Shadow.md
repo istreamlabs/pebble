@@ -28,9 +28,38 @@ Use shadow tokens to set a box shadow.
 </table>
 
 ```js
+import Block from '../../Components/Block/Block';
+
 <Block justify="around" marginTop="7">
-    <Block width="175px" height="100px" className="shadow-1" background="white" alignItems="center" justify="center">.shadow-1</Block>
-    <Block width="175px" height="100px" className="shadow-2" background="white" alignItems="center" justify="center">.shadow-2</Block>
-    <Block width="175px" height="100px" className="shadow-3" background="white" alignItems="center" justify="center">.shadow-3</Block>
-</Block>
+  <Block
+    width="175px"
+    height="100px"
+    className="shadow-1"
+    background="white"
+    alignItems="center"
+    justify="center"
+  >
+    .shadow-1
+  </Block>
+  <Block
+    width="175px"
+    height="100px"
+    className="shadow-2"
+    background="white"
+    alignItems="center"
+    justify="center"
+  >
+    .shadow-2
+  </Block>
+  <Block
+    width="175px"
+    height="100px"
+    className="shadow-3"
+    background="white"
+    alignItems="center"
+    justify="center"
+  >
+    .shadow-3
+  </Block>
+</Block>;
 ```
