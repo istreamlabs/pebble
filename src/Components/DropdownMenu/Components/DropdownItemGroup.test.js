@@ -4,11 +4,21 @@ import DropdownItemGroup from './DropdownItemGroup';
 
 describe('DropdownItemGroup', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<DropdownItemGroup title="test group">hello</DropdownItemGroup>); }).not.toThrow();
+    expect(() => {
+      shallow(
+        <DropdownItemGroup title="test group">
+          hello
+        </DropdownItemGroup>,
+      );
+    }).not.toThrow();
   });
 
   it('passes in the className if passed a href', () => {
-    const wrapper = shallow(<DropdownItemGroup title="test group" className="test-class">link</DropdownItemGroup>);
+    const wrapper = shallow(
+      <DropdownItemGroup title="test group" className="test-class">
+        link
+      </DropdownItemGroup>,
+    );
     expect(wrapper.prop('className')).toContain('test-class');
   });
 });
