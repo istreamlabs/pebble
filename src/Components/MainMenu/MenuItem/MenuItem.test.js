@@ -17,6 +17,7 @@ const mockData = {
     {
       label: 'Live',
       href: '/test',
+      exact: true,
     },
   ],
 };
@@ -35,6 +36,7 @@ const linkSubItems = {
   label: 'Content',
   icon: 'player',
   href: '/test',
+  exact: true,
   items: [
     {
       label: 'Channels',
@@ -141,13 +143,29 @@ describe('MenuItem', () => {
       shallow(<MenuItem item={mockData} />);
     }).not.toThrow();
   });
-
-  it('generates a unique key for each item from the subItem label and index', () => {
+  it('renders exact if present', () => {
+    const item = shallow(<MenuItem item={linkSubItems} />);
+    expect(item.find('.menu-item').prop('exact')).toBe(true);
+  });
+  it('generates a unique key for each item from the subItem label and index and renders correct number of subItems', () => {
     const item = shallow(<MenuItem item={mockData} />);
     item.find('.sub-menu-items li').forEach((item, index) => {
       const expectedKey = `${index}`;
       expect(item.key()).toBe(expectedKey);
     });
+    expect(item.find('.sub-menu-item').length).toBe(2);
+    expect(
+      item
+        .find('.sub-menu-item')
+        .at(1)
+        .prop('exact'),
+    ).toBe(true);
+    expect(
+      item
+        .find('.sub-menu-item')
+        .at(0)
+        .prop('exact'),
+    ).toBeUndefined;
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
