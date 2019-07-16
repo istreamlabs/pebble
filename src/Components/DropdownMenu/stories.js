@@ -18,6 +18,9 @@ storiesOf('DropdownMenu', module)
         <DropdownMenu toggle="Dropdown" overlayClassName="w5">
           <DropdownItem icon="add-bold">default button</DropdownItem>
           <DropdownItem href="/">link</DropdownItem>
+          <DropdownItem external href="https://www.istreamplanet.com">
+            www.istreamplanet.com
+          </DropdownItem>
           <DropdownMenuSeparator />
           <DropdownItem danger icon="remove-circle">
             danger button
@@ -34,6 +37,9 @@ storiesOf('DropdownMenu', module)
       <DropdownMenu open toggle="Dropdown" overlayClassName="w5">
         <DropdownItem icon="add-bold">default button</DropdownItem>
         <DropdownItem href="/">link</DropdownItem>
+        <DropdownItem external href="https://www.istreamplanet.com">
+          www.istreamplanet.com
+        </DropdownItem>
         <DropdownMenuSeparator />
         <DropdownItem danger icon="remove-circle">
           danger button
@@ -49,6 +55,9 @@ storiesOf('DropdownMenu', module)
           <DropdownItem icon="stop">stop</DropdownItem>
           <DropdownItem icon="refresh">restart</DropdownItem>
           <DropdownItem disabled>disabled</DropdownItem>
+          <DropdownItem external href="https://www.istreamplanet.com">
+            www.istreamplanet.com
+          </DropdownItem>
         </DropdownItemGroup>
         <DropdownItemGroup title="Components">
           <DropdownItem href="#/Components/Button">

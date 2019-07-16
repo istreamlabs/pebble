@@ -21,13 +21,28 @@ function handleItemClick() {
   console.log('item clicked');
 }
 <DemoBrowserRouter>
-  <DropdownMenu toggle="Dropdown" onOpen={handleOpen} onClose={handleClose}  overlayClassName="w5">
-    <DropdownItem icon="add-bold" onClick={handleItemClick}>default button</DropdownItem>
-    <DropdownItem href="/#/Introduction">Anchor link to homepage</DropdownItem>
+  <DropdownMenu
+    toggle="Dropdown"
+    onOpen={handleOpen}
+    onClose={handleClose}
+    overlayClassName="w5"
+  >
+    <DropdownItem icon="add-bold" onClick={handleItemClick}>
+      default button
+    </DropdownItem>
+    <DropdownItem href="/#/Introduction">
+      Anchor link to homepage
+    </DropdownItem>
     <DropdownMenuSeparator />
-    <DropdownItem danger icon="remove-circle" onClick={handleItemClick}>danger button</DropdownItem>
+    <DropdownItem
+      danger
+      icon="remove-circle"
+      onClick={handleItemClick}
+    >
+      danger button
+    </DropdownItem>
   </DropdownMenu>
-</DemoBrowserRouter>
+</DemoBrowserRouter>;
 ```
 
 ### Sizes
@@ -35,22 +50,19 @@ function handleItemClick() {
 Change the size of the default toggle button. The `size` value does not impact the overlay menu.
 
 ```jsx
-
 import DropdownItem from './Components/DropdownItem';
 
 <>
   <DropdownMenu size="small" toggle="small">
     <DropdownItem>item</DropdownItem>
-  </DropdownMenu>
-  {' '}
+  </DropdownMenu>{' '}
   <DropdownMenu size="medium" toggle="medium">
     <DropdownItem>item</DropdownItem>
-  </DropdownMenu>
-  {' '}
+  </DropdownMenu>{' '}
   <DropdownMenu size="large" toggle="large">
     <DropdownItem>item</DropdownItem>
   </DropdownMenu>
-</>
+</>;
 ```
 
 ### Overlay Menu Placement
@@ -65,7 +77,7 @@ import Block from '../Block/Block';
   <DropdownMenu toggle="bottom-end placement" placement="bottom-end">
     <DropdownItem>item</DropdownItem>
   </DropdownMenu>
-</Block>
+</Block>;
 ```
 
 ### Full width
@@ -73,12 +85,11 @@ import Block from '../Block/Block';
 Use for dropdowns placed in a narrow column.
 
 ```jsx
-
 import DropdownItem from './Components/DropdownItem';
 
 <DropdownMenu fullWidth toggle="medium">
   <DropdownItem>item</DropdownItem>
-</DropdownMenu>
+</DropdownMenu>;
 ```
 
 ### Dropdown Item Groups
@@ -104,7 +115,7 @@ import Block from '../Block/Block';
       <DropdownItem href="#/Components/Text">Text</DropdownItem>
     </DropdownItemGroup>
   </DropdownMenu>
-</DemoBrowserRouter>
+</DemoBrowserRouter>;
 ```
 
 ### Custom Trigger and Classes
@@ -112,39 +123,54 @@ import Block from '../Block/Block';
 Pass a node as the `trigger` to allow it to open and close a dropdown menu when clicked.
 
 ```jsx
-
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 import Button from '../Button/Button';
 
 <DropdownMenu
-  toggle={<Button size="large" plain className="bg-transparent">custom trigger</Button>}
-  className="bg-blue-lighter p-4" overlayClassName="bg-black-90"
+  toggle={
+    <Button size="large" plain className="bg-transparent">
+      custom trigger
+    </Button>
+  }
+  className="bg-blue-lighter p-4"
+  overlayClassName="bg-black-90"
 >
   <DropdownItem className="neutral-100">item 1</DropdownItem>
   <DropdownItem className="neutral-100">item 2</DropdownItem>
-</DropdownMenu>
+</DropdownMenu>;
 ```
 
 ### Disabled
 
 ```jsx
-
 import DropdownItem from './Components/DropdownItem';
 import DropdownMenuSeparator from './Components/DropdownMenuSeparator';
 
 <DropdownMenu toggle="Disabled Dropdown" disabled>
   <DropdownItem>disabled</DropdownItem>
   <DropdownItem>disabled</DropdownItem>
-</DropdownMenu>
+</DropdownMenu>;
+```
 
+### External Links
+
+To make an item within the DropdownMenu link to an external link, add the `external` prop to the `<DropdownItem>`.
+
+```jsx
+import DropdownItem from './Components/DropdownItem';
+<DropdownMenu toggle="External Link">
+  <DropdownItem external href="https://www.istreamplanet.com">
+    www.istreamplanet.com
+  </DropdownItem>
+</DropdownMenu>;
 ```
 
 ## Best Practices
 
 DropdownMenus should:
 
-* Be triggered by a clearly labeled button that allows for keyboard navigation.
-* Contain items that are related.
-* Be used as a way to de-clutter UI if there are too many options.
-* Should typically contain no more than 15 items.
+- Be triggered by a clearly labeled button that allows for keyboard navigation.
+- Contain items that are related.
+- Be used as a way to de-clutter UI if there are too many options.
+- Should typically contain no more than 15 items.
