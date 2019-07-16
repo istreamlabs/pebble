@@ -17,6 +17,7 @@
   "dependencies": {
     "@reach/visually-hidden": "^0.1.2",
     "classnames": "^2.2.6",
+    "cross-env": "^5.2.0",
     "focus-trap-react": "^6.0.0",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
@@ -78,7 +79,7 @@
     "lint": "eslint src/Components/**/*.js",
     "genIcons": "node ./src/Icons/generateIcons.js",
     "prepack": "yarn build",
-    "preversion": "yarn cover",
+    "preversion": "cross-env CI=1 yarn cover",
     "postversion": "git push --follow-tags",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
