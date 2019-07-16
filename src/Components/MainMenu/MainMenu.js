@@ -27,6 +27,7 @@ const propTypes = {
       href: PropTypes.string,
       icon: PropTypes.string,
       aliases: PropTypes.arrayOf(PropTypes.string),
+      exact: PropTypes.bool,
       items: PropTypes.arrayOf(
         PropTypes.shape({
           label: PropTypes.string.isRequired,
@@ -46,6 +47,7 @@ const propTypes = {
       href: PropTypes.string,
       icon: PropTypes.string,
       aliases: PropTypes.arrayOf(PropTypes.string),
+      exact: PropTypes.bool,
       items: PropTypes.arrayOf(
         PropTypes.shape({
           label: PropTypes.string.isRequired,
