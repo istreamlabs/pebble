@@ -127,6 +127,7 @@ class MenuItem extends React.Component {
           role="menuitem"
           activeClassName="active"
           isActive={subItem.activeHandler}
+          exact={subItem.exact}
         >
           {subItem.label}
         </NavLink>
