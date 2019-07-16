@@ -9,8 +9,8 @@
   },
   "author": "iStreamPlanet",
   "license": "Apache-2.0",
-  "main": "dist/Components/index.js",
-  "module": "dist/Components/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
     "dist/*"
   ],
@@ -72,8 +72,8 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils && babel src/Types -d dist/Types && babel src/Hooks -d dist/Hooks",
-    "start": "react-scripts start",
+    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/index.js -d dist/ && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils && babel src/Types -d dist/Types && babel src/Hooks -d dist/Hooks",
+    "start": "yarn storybook",
     "test": "react-scripts test",
     "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server --open",
