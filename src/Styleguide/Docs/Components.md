@@ -9,7 +9,7 @@ $ yarn add @istreamplanet/pebble node-sass
 Include the Pebble foundation stylesheet in your layout template.
 
 ```shell
-import '@istreamplanet/pebble/dist/Styles/foundation.scss';
+import '@istreamplanet/pebble/Styles/foundation.scss';
 ```
 
 
