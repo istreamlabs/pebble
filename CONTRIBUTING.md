@@ -37,11 +37,11 @@ Components have the following folder structure:
 src
 └─Components
   └─ComponentName
-    ComponentName.js
-    ComponentName.scss
-    ComponentName.test.js
-    Readme.md
-    stories.js
+      ComponentName.js
+      ComponentName.scss
+      ComponentName.test.js
+      Readme.md
+      stories.js
 ```
 
 - The Readme.js file used by style-guidist to auto-generate the docs page. Please be sure to provide common cases of the component in use.
