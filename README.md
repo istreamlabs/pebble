@@ -16,7 +16,7 @@ Before opening an issue or pull request, please read the [Contributing](/#/Contr
 
 ## Development
 
-See the [Development](/#/Development)) guide for instructions on how to run Pebble locally for development.
+See the [Development](/#/Development) guide for instructions on how to run Pebble locally for development.
 
 ## Installation and Usage
 
