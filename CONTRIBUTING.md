@@ -1,13 +1,11 @@
-# Contributing
-
 ## Become a Contributor
 
-Hey, it's why you're here, so we here's how you can contribute to Pebble:
+Here's how you can contribute to Pebble:
 
+1. Report bugs or propose new features by [filing a Github issue](https://github.com/iStreamPlanet/pebble/issues).
 1. Code something and make a pull request.
 1. Design a new component or update the styles.
 1. Submit updates to the documentation.
-1. Report bugs or propose new features by [filing a Github issue](https://github.com/iStreamPlanet/pebble/issues).
 
 ## How to Contribute
 
@@ -25,20 +23,24 @@ To make a pull request you will need a GitHub account. See GitHub’s documentat
 
 After an issue is created or a pull request is submitted, contributors and/or maintainers will offer feedback. If the pull request passes review, a maintainer will accept it with a comment.
 
-When a pull request for code contribution fails testing, the author is expected to update the pull request to address the failure(s) until it passes testing and the pull request can merge cleanly.
+When a pull request is submitted, lint, unit tests, and visual regression testing will automatically run on the pr.
+
+When a pull request for code contribution fails unit testing, the author is expected to update the pull request to address the failure(s) until it passes testing and the pull request can merge cleanly.
+
+Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://storybook.js.org/) for visual regression testing. Each push to the build service will run the Chromatic service. If there are visual changes detected in any component story, a maintainer will be required to review and approve/deny the difference in the [Chromatic App](https://www.chromaticqa.com/builds?appId=5c893af34635b40020991b72).
 
 At least one review from a maintainer is required for all patches.
 
 Components have the following folder structure:
 
-```
+```shell
 src
 └─Components
   └─ComponentName
     ComponentName.js
     ComponentName.scss
     ComponentName.test.js
-    Readme.js
+    Readme.md
     stories.js
 ```
 
@@ -51,55 +53,3 @@ src
 Pebble currently uses [react-styleguidist](https://react-styleguidist.js.org/) for most of its documentation. Each component folder has a `Readme.md` file that contains the documentation for that component. These files are used to generate [pebble.istreamplanet.net](https://pebble.istreamplanet.net).
 
 If you find an error or have a question about the documentation, please [file an issue](https://github.com/iStreamPlanet/pebble/issues).
-
-## Development
-
-#### Restore NPM Packages
-
-```shell
-$ yarn
-```
-
-#### Start Development Server
-
-```shell
-$ yarn start
-```
-
-#### Run tests
-
-```shell
-$ yarn test
-```
-
-#### Visual Regression Testing
-
-Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://storybook.js.org/) for visual regression testing. Each push to the build service will run the Chromatic service. If there are visual changes detected in any component story, you will be required to review and approve the difference in the [Chromatic App](https://www.chromaticqa.com/builds?appId=5c893af34635b40020991b72).
-
-To run Chromatic on a local build, get Pebble's [Chromatic app code](https://www.chromaticqa.com/manage) and run the following command.
-
-```shell
-./node_modules/.bin/chromatic test --app-code=<your-app-code>
-```
-
-For more information, see the [Chromatic Documentation](http://docs.chromaticqa.com/test).
-
-Otherwise, Chromatic will run automatically when you push to a remote branch.
-
-#### Run Documentation Site (React Styleguidist)
-
-```shell
-$ yarn styleguide
-```
-
-#### Run Storybook Site
-
-```shell
-$ yarn storybook
-```
-
-#### Build Documentation Site
-
-```shell
-$ yarn styleguide:build
-```
