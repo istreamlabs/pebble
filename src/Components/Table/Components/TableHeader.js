@@ -23,16 +23,15 @@ const propTypes = {
  * ---
  */
 
-function TableHeader({
-  children,
-  mobileLabel,
-}) {
+function TableHeader({ children, mobileLabel }) {
   const isMobileLayout = useMobileLayout();
 
   const childrenMarkup = () => {
     if (isMobileLayout) {
       return (
-        <Heading element="4" size="3">{mobileLabel}</Heading>
+        <Heading element="4" size="3">
+          {mobileLabel}
+        </Heading>
       );
     }
     return children;
@@ -52,7 +51,6 @@ function TableHeader({
       styles={{ flexShrink: 0, minHeight: '50px' }}
       justify={isMobileLayout ? 'center' : 'start'}
       padding={isMobileLayout ? '4' : null}
-
     >
       {childrenMarkup()}
     </Block>

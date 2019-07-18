@@ -46,25 +46,18 @@ const defaultProps = {
  * ---
  */
 
-function TableCell({
-  children,
-  className,
-  padding,
-  width,
-  ...rest
-}) {
+function TableCell({ children, className, padding, width, ...rest }) {
   const isMobileLayout = useMobileLayout();
 
-  const classes = classNames(
-    'word-wrap',
-    className,
-  );
+  const classes = classNames('word-wrap', className);
 
   return (
     <Block
       role="gridcell"
       flex={width === '100%' ? 'grow' : undefined}
-      width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
+      width={
+        isMobileLayout ? '100%' : width !== '100%' ? width : null
+      }
       direction="column"
       className={classes}
       padding={padding}
