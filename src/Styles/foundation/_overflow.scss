@@ -1,77 +1,236 @@
-.overflow-visible { overflow: visible; }
-.overflow-hidden { overflow: hidden; }
-.overflow-scroll { overflow: scroll; }
-.overflow-auto { overflow: auto; }
-.overflow-overlay { overflow: overlay; }
+.overflow-visible {
+  overflow: visible;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-overlay {
+  overflow: overlay;
+}
+.overflow-initial {
+  overflow: initial;
+}
 
-.overflow-x-visible { overflow-x: visible; }
-.overflow-x-hidden { overflow-x: hidden; }
-.overflow-x-scroll { overflow-x: scroll; }
-.overflow-x-auto { overflow-x: auto; }
-.overflow-x-overlay { overflow-x: overlay }
+.overflow-x-visible {
+  overflow-x: visible;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
+.overflow-x-overlay {
+  overflow-x: overlay;
+}
+.overflow-x-initial {
+  overflow: initial;
+}
 
-.overflow-y-visible { overflow-y: visible; }
-.overflow-y-hidden { overflow-y: hidden; }
-.overflow-y-scroll { overflow-y: scroll; }
-.overflow-y-auto { overflow-y: auto; }
-.overflow-y-overlay { overflow-y: overlay }
+.overflow-y-visible {
+  overflow-y: visible;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.overflow-y-overlay {
+  overflow-y: overlay;
+}
+.overflow-y-initial {
+  overflow: initial;
+}
 
 @include respond-above(sm) {
-  .overflow-visible-ns { overflow: visible; }
-  .overflow-hidden-ns { overflow: hidden; }
-  .overflow-scroll-ns { overflow: scroll; }
-  .overflow-auto-ns { overflow: auto; }
-  .overflow-overlay-ns { overflow: overlay; }
+  .overflow-visible-ns {
+    overflow: visible;
+  }
+  .overflow-hidden-ns {
+    overflow: hidden;
+  }
+  .overflow-scroll-ns {
+    overflow: scroll;
+  }
+  .overflow-auto-ns {
+    overflow: auto;
+  }
+  .overflow-overlay-ns {
+    overflow: overlay;
+  }
+  .overflow-initial-ns {
+    overflow: initial;
+  }
 
-  .overflow-x-visible-ns { overflow-x: visible; }
-  .overflow-x-hidden-ns { overflow-x: hidden; }
-  .overflow-x-scroll-ns { overflow-x: scroll; }
-  .overflow-x-auto-ns { overflow-x: auto; }
-  .overflow-x-overlay-ns { overflow-x: overlay }
+  .overflow-x-visible-ns {
+    overflow-x: visible;
+  }
+  .overflow-x-hidden-ns {
+    overflow-x: hidden;
+  }
+  .overflow-x-scroll-ns {
+    overflow-x: scroll;
+  }
+  .overflow-x-auto-ns {
+    overflow-x: auto;
+  }
+  .overflow-x-overlay-ns {
+    overflow-x: overlay;
+  }
+  .overflow-x-initial-ns {
+    overflow: initial;
+  }
 
-  .overflow-y-visible-ns { overflow-y: visible; }
-  .overflow-y-hidden-ns { overflow-y: hidden; }
-  .overflow-y-scroll-ns { overflow-y: scroll; }
-  .overflow-y-auto-ns { overflow-y: auto; }
-  .overflow-y-overlay-ns { overflow-y: overlay }
+  .overflow-y-visible-ns {
+    overflow-y: visible;
+  }
+  .overflow-y-hidden-ns {
+    overflow-y: hidden;
+  }
+  .overflow-y-scroll-ns {
+    overflow-y: scroll;
+  }
+  .overflow-y-auto-ns {
+    overflow-y: auto;
+  }
+  .overflow-y-overlay-ns {
+    overflow-y: overlay;
+  }
+  .overflow-y-initial-ns {
+    overflow: initial;
+  }
 }
 
 @include respond-above(md) {
-  .overflow-visible-m { overflow: visible; }
-  .overflow-hidden-m { overflow: hidden; }
-  .overflow-scroll-m { overflow: scroll; }
-  .overflow-auto-m { overflow: auto; }
-  .overflow-overlay { overflow: overlay; }
+  .overflow-visible-m {
+    overflow: visible;
+  }
+  .overflow-hidden-m {
+    overflow: hidden;
+  }
+  .overflow-scroll-m {
+    overflow: scroll;
+  }
+  .overflow-auto-m {
+    overflow: auto;
+  }
+  .overflow-overlay-m {
+    overflow: overlay;
+  }
+  .overflow-initial-m {
+    overflow: initial;
+  }
 
-  .overflow-x-visible-m { overflow-x: visible; }
-  .overflow-x-hidden-m { overflow-x: hidden; }
-  .overflow-x-scroll-m { overflow-x: scroll; }
-  .overflow-x-auto-m { overflow-x: auto; }
-  .overflow-x-overlay-m { overflow-x: overlay }
+  .overflow-x-visible-m {
+    overflow-x: visible;
+  }
+  .overflow-x-hidden-m {
+    overflow-x: hidden;
+  }
+  .overflow-x-scroll-m {
+    overflow-x: scroll;
+  }
+  .overflow-x-auto-m {
+    overflow-x: auto;
+  }
+  .overflow-x-overlay-m {
+    overflow-x: overlay;
+  }
+  .overflow-x-initial-m {
+    overflow: initial;
+  }
 
-  .overflow-y-visible-m { overflow-y: visible; }
-  .overflow-y-hidden-m { overflow-y: hidden; }
-  .overflow-y-scroll-m { overflow-y: scroll; }
-  .overflow-y-auto-m { overflow-y: auto; }
-  .overflow-y-overlay-m { overflow-y: overlay }
+  .overflow-y-visible-m {
+    overflow-y: visible;
+  }
+  .overflow-y-hidden-m {
+    overflow-y: hidden;
+  }
+  .overflow-y-scroll-m {
+    overflow-y: scroll;
+  }
+  .overflow-y-auto-m {
+    overflow-y: auto;
+  }
+  .overflow-y-overlay-m {
+    overflow-y: overlay;
+  }
+  .overflow-y-initial {
+    overflow: initial;
+  }
 }
 
 @include respond-above(lg) {
-  .overflow-visible-l { overflow: visible; }
-  .overflow-hidden-l { overflow: hidden; }
-  .overflow-scroll-l { overflow: scroll; }
-  .overflow-auto-l { overflow: auto; }
-  .overflow-overlay-l { overflow: overlay; }
+  .overflow-visible-l {
+    overflow: visible;
+  }
+  .overflow-initial {
+    overflow: initial;
+  }
+  .overflow-hidden-l {
+    overflow: hidden;
+  }
+  .overflow-scroll-l {
+    overflow: scroll;
+  }
+  .overflow-auto-l {
+    overflow: auto;
+  }
+  .overflow-overlay-l {
+    overflow: overlay;
+  }
+  .overflow-initial-l {
+    overflow: initial;
+  }
 
-  .overflow-x-visible-l { overflow-x: visible; }
-  .overflow-x-hidden-l { overflow-x: hidden; }
-  .overflow-x-scroll-l { overflow-x: scroll; }
-  .overflow-x-auto-l { overflow-x: auto; }
-  .overflow-x-overlay-l { overflow-x: overlay }
+  .overflow-x-visible-l {
+    overflow-x: visible;
+  }
+  .overflow-x-hidden-l {
+    overflow-x: hidden;
+  }
+  .overflow-x-scroll-l {
+    overflow-x: scroll;
+  }
+  .overflow-x-auto-l {
+    overflow-x: auto;
+  }
+  .overflow-x-overlay-l {
+    overflow-x: overlay;
+  }
+  .overflow-x-initial-l {
+    overflow: initial;
+  }
 
-  .overflow-y-visible-l { overflow-y: visible; }
-  .overflow-y-hidden-l { overflow-y: hidden; }
-  .overflow-y-scroll-l { overflow-y: scroll; }
-  .overflow-y-auto-l { overflow-y: auto; }
-  .overflow-y-overlay-l { overflow-y: overlay }
+  .overflow-y-visible-l {
+    overflow-y: visible;
+  }
+  .overflow-y-hidden-l {
+    overflow-y: hidden;
+  }
+  .overflow-y-scroll-l {
+    overflow-y: scroll;
+  }
+  .overflow-y-auto-l {
+    overflow-y: auto;
+  }
+  .overflow-y-overlay-l {
+    overflow-y: overlay;
+  }
+  .overflow-y-initial-l {
+    overflow: initial;
+  }
 }
