@@ -12,11 +12,11 @@ Visit the [Pebble documentation](https://pebble.istreamplanet.net) site for info
 
 ## Contribution and Support
 
-Before opening an issue or pull request, please read the [Contributing](/#/Contributing) guide.
+Before opening an issue or pull request, please read the [Contributing](https://pebble.istreamplanet.net/#/Contributing) guide.
 
 ## Development
 
-See the [Development](/#/Development) guide for instructions on how to run Pebble locally for development.
+See the [Development](https://pebble.istreamplanet.net/#/Development) guide for instructions on how to run Pebble locally for development.
 
 ## Installation and Usage
 
