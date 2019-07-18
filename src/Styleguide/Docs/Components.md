@@ -2,8 +2,16 @@
 
 Add the package to your package.json using your package manager of choice.
 
+For yarn users:
+
 ```shell
-$ yarn add @istreamplanet/pebble node-sass
+$ yarn add @istreamplanet/pebble node-sass react-router-dom
+```
+
+For npm users:
+
+```shell
+npm install @istreamplanet/pebble node-sass react-router-dom --save
 ```
 
 Include the Pebble foundation stylesheet in your layout template.

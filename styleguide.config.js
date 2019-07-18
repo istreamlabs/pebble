@@ -148,6 +148,14 @@ module.exports = {
       usageMode: 'expand',
     },
     {
+      name: 'Components',
+      content: 'src/Styleguide/Docs/Components.md',
+      components: 'src/Components/*/*.js',
+      exampleMode: 'expand',
+      usageMode: 'expand',
+      sectionDepth: 2,
+    },
+    {
       name: 'Styles',
       content: 'src/Styleguide/Docs/Styles.md',
       sectionDepth: 2,
@@ -200,12 +208,16 @@ module.exports = {
       ],
     },
     {
-      name: 'Components',
-      content: 'src/Styleguide/Docs/Components.md',
-      components: 'src/Components/*/*.js',
-      exampleMode: 'expand',
+      name: 'Contributing',
+      content: 'CONTRIBUTING.md',
+      exampleMode: 'hide',
       usageMode: 'expand',
-      sectionDepth: 2,
+    },
+    {
+      name: 'Development',
+      content: 'DEVELOPMENT.md',
+      exampleMode: 'hide',
+      usageMode: 'expand',
     },
   ],
   ribbon: {
