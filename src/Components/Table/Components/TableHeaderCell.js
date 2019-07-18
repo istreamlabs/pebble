@@ -53,10 +53,10 @@ const defaultProps = {
 };
 
 /**
-* A column header in a Table
-*
-* ---
-*/
+ * A column header in a Table
+ *
+ * ---
+ */
 
 function TableHeaderCell({
   children,
@@ -71,10 +71,7 @@ function TableHeaderCell({
 
   const isSortable = onSort !== null;
 
-  const classes = classNames(
-    'word-wrap fw-700 fs-6',
-    className,
-  );
+  const classes = classNames('word-wrap fw-700 fs-6', className);
 
   const getSortDirectionArrow = () => {
     if (sortDirection === 'ASC') {
@@ -100,14 +97,12 @@ function TableHeaderCell({
         className={classes}
         padding={padding}
         flex={width === '100%' ? 'grow' : undefined}
-        width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
+        width={
+          isMobileLayout ? '100%' : width !== '100%' ? width : null
+        }
         {...rest}
       >
-        <Button
-          plain
-          onClick={onSortClick}
-          width="100%"
-        >
+        <Button plain onClick={onSortClick} width="100%">
           {getSortDirectionArrow()}
           {children}
         </Button>
@@ -120,7 +115,9 @@ function TableHeaderCell({
       role="columnheader"
       alignItems="center"
       flex={width === '100%' ? 'grow' : undefined}
-      width={isMobileLayout ? '100%' : width !== '100%' ? width : null}
+      width={
+        isMobileLayout ? '100%' : width !== '100%' ? width : null
+      }
       className={classes}
       padding={padding}
       {...rest}
