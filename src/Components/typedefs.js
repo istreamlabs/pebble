@@ -13,7 +13,7 @@
  * @typedef {'start'|'center'|'end'|'stretch'|'baseline'} AlignSelf
  * @typedef {'auto'|'full'|'1/2'|'1/4'|'3/4'|'1/3'|'2/3'} Basis
  * @typedef {'row'|'column'} Direction
- * @typedef {'auto'|'hidden'|'scroll'|'visible'} Overflow
+ * @typedef {'auto'|'hidden'|'scroll'|'visible'|'overlay'|'initial'} Overflow
  * @typedef {'default'|'info'|'warn'|'danger'|'success'|'special'} AppearanceType
  * @typedef {'auto'|'auto-start'|'auto-end'|'top'|'top-start'|'top-end'|'right'|'right-start'|'right-end'|'bottom'|'bottom-start'|'bottom-end'|'left'|'left-start'|'left-end'} PlacementType
  */

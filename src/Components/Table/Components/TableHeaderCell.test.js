@@ -11,14 +11,16 @@ jest.mock('../../../Hooks/UseMobileLayout');
 describe('TableHeaderCell', () => {
   beforeEach(() => {
     useMobileLayout.mockClear();
-    useMobileLayout.mockImplementation(() => (false));
+    useMobileLayout.mockImplementation(() => false);
   });
   it('renders without crashing', () => {
-    expect(() => { shallow(<TableHeaderCell />); }).not.toThrow();
+    expect(() => {
+      shallow(<TableHeaderCell />);
+    }).not.toThrow();
   });
 
   it('sets the width to 100% if viewed in mobile sized viewport, even if specified', () => {
-    useMobileLayout.mockImplementation(() => (true));
+    useMobileLayout.mockImplementation(() => true);
     const wrapper = shallow(<TableHeaderCell width="20px" />);
     expect(wrapper.prop('width')).toBe('100%');
   });
@@ -34,12 +36,20 @@ describe('TableHeaderCell', () => {
 
   describe('getSortDirectionArrow()', () => {
     it('sets arrow to up when sortDirection is ASC', () => {
-      const wrapper = shallow(<TableHeaderCell onSort={() => {}} sortDirection="ASC" />);
-      expect(wrapper.find(Icon).prop('name')).toContain('arrow-small-up');
+      const wrapper = shallow(
+        <TableHeaderCell onSort={() => {}} sortDirection="ASC" />,
+      );
+      expect(wrapper.find(Icon).prop('name')).toContain(
+        'arrow-small-up',
+      );
     });
     it('sets arrow to down when sortDirection is DESC', () => {
-      const wrapper = shallow(<TableHeaderCell onSort={() => {}} sortDirection="DESC" />);
-      expect(wrapper.find(Icon).prop('name')).toContain('arrow-small-down');
+      const wrapper = shallow(
+        <TableHeaderCell onSort={() => {}} sortDirection="DESC" />,
+      );
+      expect(wrapper.find(Icon).prop('name')).toContain(
+        'arrow-small-down',
+      );
     });
     it('does not have an direction icon when sortDirection is null', () => {
       const wrapper = shallow(<TableHeaderCell onSort={() => {}} />);
@@ -50,14 +60,16 @@ describe('TableHeaderCell', () => {
   describe('onSortClick()', () => {
     const mockFunc = jest.fn();
     it('sets onSort to the Button', () => {
-      const wrapper = mount(<TableHeaderCell onSort={mockFunc} sortDirection="ASC" />);
+      const wrapper = mount(
+        <TableHeaderCell onSort={mockFunc} sortDirection="ASC" />,
+      );
       wrapper.find(Button).simulate('click');
       expect(mockFunc).toBeCalledTimes(1);
     });
   });
 
   it('sets the width to 100% if viewed in mobile sized viewport, even if specified', () => {
-    useMobileLayout.mockImplementation(() => (true));
+    useMobileLayout.mockImplementation(() => true);
     const wrapper = shallow(<TableHeaderCell width="20px" />);
     expect(wrapper.prop('width')).toBe('100%');
   });

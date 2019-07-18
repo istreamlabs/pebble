@@ -5,6 +5,8 @@ import TableBody from './TableBody';
 
 describe('TableBody', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<TableBody />); }).not.toThrow();
+    expect(() => {
+      shallow(<TableBody />);
+    }).not.toThrow();
   });
 });
