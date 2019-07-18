@@ -49,7 +49,7 @@ storiesOf('LinkButton', module).add('all', () => (
       <LinkButton href="#" icon="arrow-small-left">
         prev
       </LinkButton>
-      <LinkButton href="#" icon="arrow-small-right" iconAfterText>
+      <LinkButton href="#" iconAfterText="arrow-small-right">
         next
       </LinkButton>
     </ButtonGroup>

@@ -34,10 +34,44 @@ storiesOf('Button', module).add('all', () => (
       </Button>
     </ButtonGroup>
     <ButtonGroup>
-      <Button icon="arrow-small-left">prev</Button>
-      <Button icon="arrow-small-right" iconAfterText>
-        next
+      <Button primary size="small" iconAfterText="add-circle">
+        small
       </Button>
+      <Button primary iconAfterText="add-circle">
+        medium
+      </Button>
+      <Button primary size="large" iconAfterText="add-circle">
+        large
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup>
+      <Button
+        primary
+        size="small"
+        icon="add-circle"
+        iconAfterText="arrow-small-down"
+      >
+        small
+      </Button>
+      <Button
+        primary
+        icon="add-circle"
+        iconAfterText="arrow-small-down"
+      >
+        medium
+      </Button>
+      <Button
+        primary
+        size="large"
+        icon="add-circle"
+        iconAfterText="arrow-small-down"
+      >
+        large
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup>
+      <Button icon="arrow-small-left">prev</Button>
+      <Button iconAfterText="arrow-small-right">next</Button>
     </ButtonGroup>
     <ButtonGroup>
       <Button disabled>default</Button>
@@ -70,7 +104,7 @@ storiesOf('Button', module).add('all', () => (
       <Button fullWidth primary className="mb-2">
         full width
       </Button>
-      <Button fullWidth primary icon="arrow-small-down" iconAfterText>
+      <Button fullWidth primary iconAfterText="arrow-small-down">
         full width
       </Button>
     </ButtonGroup>

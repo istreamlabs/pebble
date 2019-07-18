@@ -51,7 +51,7 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 <DemoBrowserRouter>
   <div className="styleguide__buttons">
     <LinkButton href="/#/Components/LinkButton" icon="arrow-small-left">prev</LinkButton>
-    <LinkButton href="/#/Components/LinkButton" icon="arrow-small-right" iconAfterText>next</LinkButton>
+    <LinkButton href="/#/Components/LinkButton" iconAfterText="arrow-small-right">next</LinkButton>
   </div>
 </DemoBrowserRouter>
 ```
