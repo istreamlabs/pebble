@@ -59,8 +59,8 @@ ToastContainer.propTypes = {
    */
   enableMultiContainer: PropTypes.bool,
   /**
-  * When using multiple container you must give each container an ID.
-  */
+   * When using multiple container you must give each container an ID.
+   */
   containerId: PropTypes.string,
 };
 
