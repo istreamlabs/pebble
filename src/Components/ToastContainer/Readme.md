@@ -1,6 +1,8 @@
 ## Examples
 
 ## Multiple Containers
+
+The Frame component automatically includes a ToastContainer, but if you are not using the Frame component, or want to display a Toast in a position other than the upper right, then include a ToastContainer in your layout.
 ```js
 import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 
