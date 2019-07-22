@@ -5,9 +5,7 @@ import FocusTrap from 'focus-trap-react';
 
 import Button from '../Button/Button';
 import Overlay from '../Overlay/Overlay';
-
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import ToastContainer from '../ToastContainer/ToastContainer';
 
 import './Frame.scss';
 
@@ -196,16 +194,6 @@ export class Frame extends React.PureComponent {
     return null;
   };
 
-  renderToastContainer = () => (
-    <ToastContainer
-      position="top-right"
-      autoClose={5000}
-      hideProgressBar
-      pauseOnHover
-      closeButton={false}
-    />
-  );
-
   handleOnClick = ({ target }) => {
     if (target.tagName.toLowerCase() === 'a' && target.href) {
       this.handleNavigationDismiss();
@@ -234,7 +222,7 @@ export class Frame extends React.PureComponent {
           ref={this.mainContent}
           onBlur={this.handleBlurMain}
         >
-          {this.renderToastContainer()}
+          <ToastContainer />
           {children}
         </main>
       </div>
