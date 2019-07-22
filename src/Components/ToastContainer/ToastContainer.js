@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 /**
  * In order to use `useToast` the page must have a toastContainer on it.
  * If you are using the `Frame` component one is added automatically.
- * However, if the applicaiton is not using the `frame` component
+ * However, if the application is not using the `frame` component
  * and/or there is a need for multiple containers `ToastContainer`
  * can be used.
  */
