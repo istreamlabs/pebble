@@ -1,7 +1,7 @@
 * A toast should be primarily used to give success messages or non-critical information.
 * Toasts are displayed for 5000 milliseconds (5 secs) before disappearing and therefore should not be used for critical information. Use an [Alert](/#/Components/Alert) instead.
-* [React-toastify](https://github.com/fkhadra/react-toastify) is used under the hood, but styles and settings are applied that are appropriate for our use case.
-* A `<ToastContainer />`, which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
+* [React-toastify](https://github.com/fkhadra/react-toastify) is used under the hood, but styles and settings are applied that are appropriate for our use case. *IMPORTANT* do not count on `React-toastify` as we may choose to change the implementation at any point.
+* A [`<ToastContainer />`](/#/Components/ToastContainer), which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
 
 <div className="styleguide__callout">
 #### Toasts are exposed as a hook
@@ -125,7 +125,7 @@ For cases where you need to display a toast for something other than 5000 millis
 
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
-import { ToastContainer } from 'react-toastify';
+import ToastContainer from '../ToastContainer/ToastContainer';
 import { useToast } from '../../Hooks';
 
 function Example() {
@@ -147,13 +147,7 @@ function Example() {
           })
         }}>3 second Toast</Button>
       </ButtonGroup>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        pauseOnHover
-        closeButton={false}
-      />
+      <ToastContainer />
     </>
   )
 }
