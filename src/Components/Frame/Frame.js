@@ -222,7 +222,7 @@ export class Frame extends React.PureComponent {
           ref={this.mainContent}
           onBlur={this.handleBlurMain}
         >
-          <ToastContainer />
+          <ToastContainer enableMultiContainer />
           {children}
         </main>
       </div>
