@@ -36,11 +36,14 @@ Responsive font size scaling can be turned off.
 Add the `truncate` prop to restrict text to a single line and truncate with an ellipsis if it&apos;s too long.
 
 ```js
-<Heading element="1" size="3" truncate>This heading text should be truncated with an ellipsis because it is too long to fit on one line</Heading>
-
+<Heading element="1" size="3" truncate>
+  This heading text should be truncated with an ellipsis because it is
+  too long to fit on one line
+</Heading>
 ```
 
 ### Text Alignment
+
 ```js
 <Heading element="2" size="4" textAlign="right">Right Align</Heading>
 <Heading element="2" size="4" textAlign="center">Center Align</Heading>

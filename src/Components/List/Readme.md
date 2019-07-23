@@ -1,6 +1,7 @@
 ## Examples
 
 ### Unordered List
+
 ```js
 import ListItem from './Components/ListItem';
 
@@ -9,10 +10,11 @@ import ListItem from './Components/ListItem';
   <ListItem>CNN</ListItem>
   <ListItem>TBS</ListItem>
   <ListItem>TNT</ListItem>
-</List>
+</List>;
 ```
 
 ### Ordered List
+
 ```js
 import ListItem from './Components/ListItem';
 
@@ -21,10 +23,11 @@ import ListItem from './Components/ListItem';
   <ListItem>CNN</ListItem>
   <ListItem>TBS</ListItem>
   <ListItem>TNT</ListItem>
-</List>
+</List>;
 ```
 
 ### Size
+
 ```js
 import ListItem from './Components/ListItem';
 
@@ -33,5 +36,5 @@ import ListItem from './Components/ListItem';
   <ListItem>CNN</ListItem>
   <ListItem>TBS</ListItem>
   <ListItem>TNT</ListItem>
-</List>
+</List>;
 ```

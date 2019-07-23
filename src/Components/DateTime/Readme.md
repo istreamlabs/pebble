@@ -1,9 +1,7 @@
 By default, times are displayed in UTC.
 
 ```jsx
-
 <DateTime value="2019-06-26T12:00:00.000Z" />
-
 ```
 
 ### Without a Time Zone
@@ -11,9 +9,7 @@ By default, times are displayed in UTC.
 Useful when DateTime is used inside a table or grid view, and a time zone label is displayed elsewhere on the page.
 
 ```jsx
-
 <DateTime hideTimeZone value="2019-06-26T12:00:00.000Z" />
-
 ```
 
 ### Label
@@ -21,10 +17,7 @@ Useful when DateTime is used inside a table or grid view, and a time zone label 
 Add a label to say what the time is for.
 
 ```jsx
-<DateTime
-  label="start time"
-  value="2019-06-26T15:30:00.000Z"
-/>
+<DateTime label="start time" value="2019-06-26T15:30:00.000Z" />
 ```
 
 ### Local Time
@@ -32,10 +25,7 @@ Add a label to say what the time is for.
 If it's more appropriate to display the browser's local time instead of UTC, pass `displayLocalDateTime`.
 
 ```jsx
-<DateTime
-  value="2019-06-26T15:30:00.000Z"
-  displayLocalDateTime
-/>
+<DateTime value="2019-06-26T15:30:00.000Z" displayLocalDateTime />
 ```
 
 ### Show Alternative Time Zone
@@ -79,14 +69,13 @@ Control how the date and/or time is formatted with `dateFormat`.
 `small`, `medium`, `large` size options are available to suit your use case.
 
 ```jsx
-
 import Block from '../Block/Block';
 
 <Block itemSpacing="5" marginBottom="5" direction="column">
   <DateTime size="small" value="2019-06-26T12:00:00.000Z" />
   <DateTime size="medium" value="2019-06-26T12:00:00.000Z" />
   <DateTime size="large" value="2019-06-26T12:00:00.000Z" />
-</Block>
+</Block>;
 ```
 
 With `showAlternativeTimeZone`
@@ -95,8 +84,20 @@ With `showAlternativeTimeZone`
 import Block from '../Block/Block';
 
 <Block itemSpacing="5" marginBottom="5" direction="column">
-  <DateTime size="small" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
-  <DateTime size="medium" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
-  <DateTime size="large" showAlternativeTimeZone value="2019-06-26T12:00:00.000Z" />
-</Block>
+  <DateTime
+    size="small"
+    showAlternativeTimeZone
+    value="2019-06-26T12:00:00.000Z"
+  />
+  <DateTime
+    size="medium"
+    showAlternativeTimeZone
+    value="2019-06-26T12:00:00.000Z"
+  />
+  <DateTime
+    size="large"
+    showAlternativeTimeZone
+    value="2019-06-26T12:00:00.000Z"
+  />
+</Block>;
 ```

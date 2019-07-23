@@ -28,7 +28,9 @@ Alerts should be dismissible unless they contain critical information or a requi
 
 ```js
 <Alert title="Dismissible Alert" onDismiss={() => {}}>
-  <p>Pass a function to onDismiss and a close button will be rendered.</p>
+  <p>
+    Pass a function to onDismiss and a close button will be rendered.
+  </p>
 </Alert>
 ```
 
@@ -38,17 +40,21 @@ For most cases, use the default icon for success, info, warning, critical and de
 
 ```js
 <Alert title="Custom Icon" icon="ticket">
-  <p>Generally, the default icons for the default, info, warn, danger and success status should be used.</p>
+  <p>
+    Generally, the default icons for the default, info, warn, danger
+    and success status should be used.
+  </p>
 </Alert>
 ```
 
 ## Best Practices
 
 Alerts should:
-* Be used for information that requires the user's immediate attention.
-* Be used thoughtfully and sparingly.
-* Be placed at the top of page or section they apply to.
-* Focus on a single subject, piece of information, or required action.
-* Be dismissible unless they contain critical information or a required step.
-* Use the default icon for `success`, `info`, `warn` and `danger` types.
-* Be concise&mdash;users shouldn't need to spend a lot of time figuring out what to do
+
+- Be used for information that requires the user's immediate attention.
+- Be used thoughtfully and sparingly.
+- Be placed at the top of page or section they apply to.
+- Focus on a single subject, piece of information, or required action.
+- Be dismissible unless they contain critical information or a required step.
+- Use the default icon for `success`, `info`, `warn` and `danger` types.
+- Be concise&mdash;users shouldn't need to spend a lot of time figuring out what to do
