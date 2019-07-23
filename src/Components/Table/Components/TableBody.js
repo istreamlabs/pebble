@@ -16,9 +16,7 @@ const propTypes = {
  * ---
  */
 
-function TableBody({
-  children,
-}) {
+function TableBody({ children }) {
   return (
     <Block
       role="rowgroup"

@@ -29,12 +29,7 @@ const propTypes = {
  * ---
  */
 
-function TableRow({
-  children,
-  className,
-  hoverHighlight,
-  ...rest
-}) {
+function TableRow({ children, className, hoverHighlight, ...rest }) {
   const isMobileLayout = useMobileLayout();
 
   const classes = classNames(
@@ -42,19 +37,20 @@ function TableRow({
     'flex w-100 bb b-neutral-300',
     {
       'bg-hover bg-blue-lighter-hover': hoverHighlight,
-      'pb-4 ph-4': isMobileLayout
+      'pb-4 ph-4': isMobileLayout,
     },
-    className
+    className,
   );
 
-  const childrenMarkup = () => (
-    React.Children.map(children, (child, i) => child && React.cloneElement(
-      child,
-      {
-        'aria-colindex': i + 1
-      }
-    ))
-  );
+  const childrenMarkup = () =>
+    React.Children.map(
+      children,
+      (child, i) =>
+        child &&
+        React.cloneElement(child, {
+          'aria-colindex': i + 1,
+        }),
+    );
 
   return (
     <Block

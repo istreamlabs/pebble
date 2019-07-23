@@ -30,24 +30,19 @@ const propTypes = {
 };
 
 const defaultProps = {
-  direction: ['column', 'row']
+  direction: ['column', 'row'],
 };
 
-
-function FormLayoutRow({
-  className,
-  children,
-  direction,
-  tight
-}) {
-  const itemMarkup = React.Children.map(children, child => React.cloneElement(
-    child,
-    {
+function FormLayoutRow({ className, children, direction, tight }) {
+  const itemMarkup = React.Children.map(children, child =>
+    React.cloneElement(child, {
       className: classNames(child.props.className, {
-        'w-100': child.props.className === undefined && child.props.width === undefined
-      })
-    }
-  ));
+        'w-100':
+          child.props.className === undefined &&
+          child.props.width === undefined,
+      }),
+    }),
+  );
 
   return (
     <Block

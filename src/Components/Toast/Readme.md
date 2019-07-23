@@ -1,7 +1,7 @@
-* A toast should be primarily used to give success messages or non-critical information.
-* Toasts are displayed for 5000 milliseconds (5 secs) before disappearing and therefore should not be used for critical information. Use an [Alert](/#/Components/Alert) instead.
-* [React-toastify](https://github.com/fkhadra/react-toastify) is used under the hood, but styles and settings are applied that are appropriate for our use case. *IMPORTANT* do not count on `React-toastify` as we may choose to change the implementation at any point.
-* A [`<ToastContainer />`](/#/Components/ToastContainer), which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
+- A toast should be primarily used to give success messages or non-critical information.
+- Toasts are displayed for 5000 milliseconds (5 secs) before disappearing and therefore should not be used for critical information. Use an [Alert](/#/Components/Alert) instead.
+- [React-toastify](https://github.com/fkhadra/react-toastify) is used under the hood, but styles and settings are applied that are appropriate for our use case.
+- A `<ToastContainer />`, which is where the toast notification will appear, is included as part of the [Frame](/#/Components/Frame) component.
 
 <div className="styleguide__callout">
 #### Toasts are exposed as a hook
@@ -63,66 +63,68 @@ function Example() {
   return (
     <>
       <ButtonGroup>
-        <Button onClick={() => {
-          toast({
-            title: 'Product updated',
-            type: 'success',
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Product updated',
+              type: 'success',
+            });
+          }}
         >
           Success Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'Product updated',
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Product updated',
+            });
+          }}
         >
           Default Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'New Features Added',
-            type: 'info'
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'New Features Added',
+              type: 'info',
+            });
+          }}
         >
           Info Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'Changes not saved',
-            type: 'warn'
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Changes not saved',
+              type: 'warn',
+            });
+          }}
         >
           Warning Toast
         </Button>
-        <Button onClick={() => {
-          toast({
-            title: 'Server error',
-            type: 'danger',
-          });
-        }}
+        <Button
+          onClick={() => {
+            toast({
+              title: 'Server error',
+              type: 'danger',
+            });
+          }}
         >
           Danger Toast
         </Button>
       </ButtonGroup>
     </>
-  )
+  );
 }
 
-<Example />
+<Example />;
 ```
-
 
 ### Set autoclose delay
 
 For cases where you need to display a toast for something other than 5000 milliseconds, set the `autoClose` parameter to a value in milliseconds. Set `autoClose` to `false` to disable autoclose entirely. Read more at [react-toastify](https://github.com/fkhadra/react-toastify#set-autoclose-delay-or-disable-it).
 
-
 ```js
-
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import ToastContainer from '../ToastContainer/ToastContainer';
@@ -134,26 +136,33 @@ function Example() {
   return (
     <>
       <ButtonGroup>
-        <Button onClick={() => {
-          toast({
-            title: "1 second",
-            autoClose: 1000
-          })
-        }}>1 second Toast</Button>
-        <Button onClick={() => {
-          toast({
-            title: "3 seconds",
-            autoClose: 3000
-          })
-        }}>3 second Toast</Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: '1 second',
+              autoClose: 1000,
+            });
+          }}
+        >
+          1 second Toast
+        </Button>
+        <Button
+          onClick={() => {
+            toast({
+              title: '3 seconds',
+              autoClose: 3000,
+            });
+          }}
+        >
+          3 second Toast
+        </Button>
       </ButtonGroup>
       <ToastContainer />
     </>
-  )
+  );
 }
 
-<Example />
-
+<Example />;
 ```
 
 ### onClose Callback
@@ -166,23 +175,28 @@ import { useToast } from '../../Hooks';
 
 const toast = useToast();
 
-<Button onClick={() => {
-  toast({
-    title: 'Product updated',
-    type: 'success',
-    onClose: () => window.alert('onClose callback')
-  });
-}}>show toast</Button>
+<Button
+  onClick={() => {
+    toast({
+      title: 'Product updated',
+      type: 'success',
+      onClose: () => window.alert('onClose callback'),
+    });
+  }}
+>
+  show toast
+</Button>;
 ```
 
 ## Best Practices
 
 Toast should:
-* Primarily be used for success messages or non-critical information
-* Not be used for error messages. Instead, use an inline [Alert](/#/Components/Alert) to prominently inform users about persistent errors.
-* Be used thoughtfully and sparingly.
-* Focus on a single subject, piece of information, or required action.
-* Be short and affirmative. The written pattern of noun + verb
-  * VOD updated
-  * Live event created
-  * User updated
+
+- Primarily be used for success messages or non-critical information
+- Not be used for error messages. Instead, use an inline [Alert](/#/Components/Alert) to prominently inform users about persistent errors.
+- Be used thoughtfully and sparingly.
+- Focus on a single subject, piece of information, or required action.
+- Be short and affirmative. The written pattern of noun + verb
+  - VOD updated
+  - Live event created
+  - User updated

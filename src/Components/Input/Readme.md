@@ -1,6 +1,7 @@
 ## Examples
 
 ### Input States
+
 ```js
 <Input />
 <Input autoFocus />

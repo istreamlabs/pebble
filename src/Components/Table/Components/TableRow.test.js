@@ -9,19 +9,25 @@ jest.mock('../../../Hooks/UseMobileLayout');
 describe('TableRow', () => {
   beforeEach(() => {
     useMobileLayout.mockClear();
-    useMobileLayout.mockImplementation(() => (false));
+    useMobileLayout.mockImplementation(() => false);
   });
 
   it('renders without crashing', () => {
-    expect(() => { shallow(<TableRow />); }).not.toThrow();
+    expect(() => {
+      shallow(<TableRow />);
+    }).not.toThrow();
   });
 
   it('renders blank children without crashing', () => {
-    const wrapper = shallow(<TableRow>
-      {null}
-      <div></div>
-    </TableRow>)
-  })
+    expect(() => {
+      shallow(
+        <TableRow>
+          {null}
+          <div />
+        </TableRow>,
+      );
+    }).not.toThrow();
+  });
 
   it('sets the direction to row when not mobile', () => {
     const wrapper = shallow(<TableRow />);
@@ -30,7 +36,7 @@ describe('TableRow', () => {
   });
 
   it('sets the direction and top margin if viewed in mobile sized viewport', () => {
-    useMobileLayout.mockImplementation(() => (true));
+    useMobileLayout.mockImplementation(() => true);
     const wrapper = shallow(<TableRow />);
     expect(wrapper.prop('direction')).toBe('column');
     expect(wrapper.prop('marginTop')).toBe('4');

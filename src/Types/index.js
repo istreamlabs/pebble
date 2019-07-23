@@ -172,19 +172,30 @@ export const placementType = PropTypes.oneOf([
 ]);
 
 export const overflowType = PropTypes.oneOfType([
-  PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+  PropTypes.oneOf([
+    'auto',
+    'visible',
+    'hidden',
+    'scroll',
+    'overlay',
+    'initial',
+  ]),
   PropTypes.shape({
     horizontal: PropTypes.oneOf([
       'auto',
       'visible',
       'hidden',
       'scroll',
+      'overlay',
+      'initial',
     ]),
     vertical: PropTypes.oneOf([
       'auto',
       'visible',
       'hidden',
       'scroll',
+      'overlay',
+      'initial',
     ]),
   }),
   PropTypes.shape({
@@ -193,6 +204,8 @@ export const overflowType = PropTypes.oneOfType([
       'visible',
       'hidden',
       'scroll',
+      'overlay',
+      'initial',
     ]),
   }),
   PropTypes.shape({
@@ -201,11 +214,20 @@ export const overflowType = PropTypes.oneOfType([
       'visible',
       'hidden',
       'scroll',
+      'overlay',
+      'initial',
     ]),
   }),
   PropTypes.arrayOf(
     PropTypes.oneOfType([
-      PropTypes.oneOf(['auto', 'visible', 'hidden', 'scroll']),
+      PropTypes.oneOf([
+        'auto',
+        'visible',
+        'hidden',
+        'scroll',
+        'overlay',
+        'initial',
+      ]),
       PropTypes.arrayOf(
         PropTypes.shape({
           horizontal: PropTypes.oneOf([
@@ -213,12 +235,16 @@ export const overflowType = PropTypes.oneOfType([
             'visible',
             'hidden',
             'scroll',
+            'overlay',
+            'initial',
           ]),
           vertical: PropTypes.oneOf([
             'auto',
             'visible',
             'hidden',
             'scroll',
+            'overlay',
+            'initial',
           ]),
         }),
       ),
@@ -228,6 +254,8 @@ export const overflowType = PropTypes.oneOfType([
           'visible',
           'hidden',
           'scroll',
+          'overlay',
+          'initial',
         ]),
       }),
       PropTypes.shape({
@@ -236,6 +264,8 @@ export const overflowType = PropTypes.oneOfType([
           'visible',
           'hidden',
           'scroll',
+          'overlay',
+          'initial',
         ]),
       }),
     ]),

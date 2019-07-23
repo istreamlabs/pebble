@@ -11,6 +11,12 @@ describe('FormLayout', () => {
     }).not.toThrow();
   });
 
+  it('does not crash when one of its children is null', () => {
+    expect(() => {
+      shallow(<FormLayout>{['test', null, 'test']}</FormLayout>);
+    }).not.toThrow();
+  });
+
   it('tightens spacing between fields', () => {
     const wrapper = shallow(<FormLayout tight />);
     expect(wrapper.prop('itemSpacing')).toBe(3);

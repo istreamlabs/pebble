@@ -1,4 +1,4 @@
-export default (overflowProp) => {
+export default overflowProp => {
   let overflowClasses;
 
   // setting 'overflow'
@@ -60,5 +60,9 @@ function getOverflowClass(overflowProp, breakpoint) {
   if (overflowProp.vertical) {
     vClass = `overflow-y-${overflowProp.vertical}${breakpoint}`;
   }
-  return hClass !== '' && vClass !== '' ? `${hClass} ${vClass}` : hClass !== '' ? hClass : vClass;
+  return hClass !== '' && vClass !== ''
+    ? `${hClass} ${vClass}`
+    : hClass !== ''
+    ? hClass
+    : vClass;
 }

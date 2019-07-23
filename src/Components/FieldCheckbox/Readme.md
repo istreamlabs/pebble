@@ -58,19 +58,20 @@ function FieldCheckboxExample() {
   );
 }
 
-<FieldCheckboxExample />
+<FieldCheckboxExample />;
 ```
 
 <div className="styleguide__callout">
 ### Toggle vs Checkbox
 
 Toggles should not require users to press a button to apply the settings. When you require users to press a submit button with a toggle, you may confuse them because it’s not the expected next step. If you need to apply a setting instantly, use [toggle](/#/Components/FieldToggle) instead.
+
 </div>
 
 ## Best Practices
 
 FieldCheckbox should:
 
-* Work independently from other checkboxes
-* Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
-* Should be applied when the user presses a form "submit" button
+- Work independently from other checkboxes
+- Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
+- Should be applied when the user presses a form "submit" button
