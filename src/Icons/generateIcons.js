@@ -109,8 +109,7 @@ async function main() {
     });
     await Promise.all(promises);
 
-    const fileToWrite = `
-// THIS FILE IS AUTO GENERATED
+    const fileToWrite = `// THIS FILE IS AUTO GENERATED
 import React from 'react';
 /* eslint-disable */
 export default {
