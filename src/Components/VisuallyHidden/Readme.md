@@ -1,6 +1,6 @@
-* Provides text for screen readers that is visually hidden.
-* It is the logical opposite of the `aria-hidden` attribute.
-* For full documentation, see [https://ui.reach.tech/visually-hidden/](https://ui.reach.tech/visually-hidden/)
+- Provides text for screen readers that is visually hidden.
+- It is the logical opposite of the `aria-hidden` attribute.
+- For full documentation, see [https://ui.reach.tech/visually-hidden/](https://ui.reach.tech/visually-hidden/)
 
 ### Example
 
@@ -12,5 +12,5 @@ import Button from '../Button/Button';
 <Button type="button">
   <VisuallyHidden>Add Item</VisuallyHidden>
   <Icon name="add-circle" />
-</Button>
+</Button>;
 ```

@@ -11,13 +11,15 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
   <ButtonGroup>
     <Button primary>publish</Button>
     <Button>cancel</Button>
-    <LinkButton href="/#/Components/ButtonGroup">LinkButton</LinkButton>
+    <LinkButton href="/#/Components/ButtonGroup">
+      LinkButton
+    </LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
       <DropdownItem href="/">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
-</DemoBrowserRouter>
+</DemoBrowserRouter>;
 ```
 
 ### Group Size
@@ -37,7 +39,9 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">
+        link
+      </DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
@@ -46,7 +50,9 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">
+        link
+      </DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
@@ -55,10 +61,12 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">
+        link
+      </DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
-</DemoBrowserRouter>
+</DemoBrowserRouter>;
 ```
 
 ### Toolbar
@@ -76,12 +84,16 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
   <ButtonGroup toolbar className="mb-4">
     <Button>button</Button>
     <Button primary>primary</Button>
-    <Button primary danger>primary danger</Button>
+    <Button primary danger>
+      primary danger
+    </Button>
     <Button danger>danger</Button>
     <LinkButton href="/#/Components/ButtonGroup">link</LinkButton>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
-      <DropdownItem href="/#/Components/ButtonGroup">link</DropdownItem>
+      <DropdownItem href="/#/Components/ButtonGroup">
+        link
+      </DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
 
@@ -89,20 +101,24 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button icon="arrow-small-left">prev</Button>
     <Button icon="play">play</Button>
     <Button icon="stop">stop</Button>
-    <Button icon="arrow-small-right" iconAfterText>next</Button>
+    <Button icon="arrow-small-right" iconAfterText>
+      next
+    </Button>
   </ButtonGroup>
 
   <ButtonGroup toolbar size="small">
     <Button icon="arrow-small-left">prev</Button>
     <Button icon="play">play</Button>
     <Button icon="stop">stop</Button>
-    <Button icon="arrow-small-right" iconAfterText>next</Button>
+    <Button icon="arrow-small-right" iconAfterText>
+      next
+    </Button>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
       <DropdownItem href="/">link</DropdownItem>
     </DropdownMenu>
   </ButtonGroup>
-</DemoBrowserRouter>
+</DemoBrowserRouter>;
 ```
 
 ### Full Width
@@ -129,16 +145,18 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button icon="arrow-small-left">prev</Button>
     <Button icon="play">play</Button>
     <Button icon="stop">stop</Button>
-    <Button icon="arrow-small-right" iconAfterText>next</Button>
+    <Button icon="arrow-small-right" iconAfterText>
+      next
+    </Button>
   </ButtonGroup>
-</>
+</>;
 ```
 
 ## Best Practices
 
 Button Groups should:
 
-* Contain [Buttons](/#/Components/Button) or [DropdownMenu](/#/Components/DropdownMenu)
-* Can occasionally contain [LinkButtons](/#/Components/LinkButton)
-* Only group buttons that have a relationship
-* Contain only a limited number of buttons. Be judicious in the number of items in a button group
+- Contain [Buttons](/#/Components/Button) or [DropdownMenu](/#/Components/DropdownMenu)
+- Can occasionally contain [LinkButtons](/#/Components/LinkButton)
+- Only group buttons that have a relationship
+- Contain only a limited number of buttons. Be judicious in the number of items in a button group

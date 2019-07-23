@@ -1,10 +1,12 @@
 ## Examples
 
 ```jsx
-<p>Here is some text copy with an inline
-<Tooltip content="Tooltips provide additional information on hover or focus">
-  <span className="link">tooltip</span>
-</Tooltip></p>
+<p>
+  Here is some text copy with an inline
+  <Tooltip content="Tooltips provide additional information on hover or focus">
+    <span className="link">tooltip</span>
+  </Tooltip>
+</p>
 ```
 
 ### Placement
@@ -28,16 +30,16 @@ import ButtonGroup from '../ButtonGroup/ButtonGroup';
   <Tooltip content="left" placement="left">
     <Button>left</Button>
   </Tooltip>
-</ButtonGroup>
+</ButtonGroup>;
 ```
 
 ## Best Practices
 
 Tooltips should:
 
-* Contain useful, supplemental information or clarification.
-* Be used thoughtfully and sparingly
-* If the information within a tooltip is really important,  perhaps it should not be in a tooltip
-* Be concise
-* Not be used for errors or warnings
-* Not contain interactive elements like links, inputs or buttons
+- Contain useful, supplemental information or clarification.
+- Be used thoughtfully and sparingly
+- If the information within a tooltip is really important, perhaps it should not be in a tooltip
+- Be concise
+- Not be used for errors or warnings
+- Not contain interactive elements like links, inputs or buttons

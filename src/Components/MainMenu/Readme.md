@@ -8,7 +8,7 @@ const menu = [
   {
     label: 'Link',
     href: '/#/Components/MainMenu',
-    icon: 'dashboard'
+    icon: 'dashboard',
   },
   {
     label: 'Subs Only',
@@ -25,8 +25,8 @@ const menu = [
       {
         label: 'Sub-item 3',
         href: '/#/Components/MainMenu',
-      }
-    ]
+      },
+    ],
   },
   {
     label: 'Link & Sub',
@@ -41,14 +41,14 @@ const menu = [
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
       },
-    ]
+    ],
   },
 ];
 const auxMenu = [
   {
     label: 'Support',
     href: '/#/Components/MainMenu',
-    icon: 'ticket'
+    icon: 'ticket',
   },
   {
     label: 'Trent Anderson',
@@ -62,24 +62,20 @@ const auxMenu = [
         label: 'Sign Out',
         href: '/#/Components/MainMenu',
       },
-    ]
+    ],
   },
   {
     label: 'v1.2.3.4',
-  }
+  },
 ];
 
-initialState = { activeItem: "2", showMenu: false };
+initialState = { activeItem: '2', showMenu: false };
 
 <DemoBrowserRouter>
   <Block overflow="auto">
     <Block>
-      <MainMenu
-        menu={menu}
-        startMenuExpanded
-        auxMenu={auxMenu} />
+      <MainMenu menu={menu} startMenuExpanded auxMenu={auxMenu} />
     </Block>
   </Block>
-</DemoBrowserRouter>
-
+</DemoBrowserRouter>;
 ```
