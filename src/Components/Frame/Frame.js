@@ -185,7 +185,7 @@ export class Frame extends React.PureComponent {
               onMouseOver={() =>
                 this.setState({ navCollapsed: false })
               }
-              onFocus
+              onFocus={() => {}}
             />
           )}
           {navigation}
