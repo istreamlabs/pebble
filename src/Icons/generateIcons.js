@@ -149,6 +149,7 @@ async function main() {
     await Promise.all(promises);
 
     const storiesFileToWrite = `// THIS FILE IS AUTO GENERATED
+/* eslint-disable */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
