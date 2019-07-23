@@ -45,7 +45,7 @@ const defaultProps = {
 function ButtonGroup(props) {
   const { children, className, toolbar, ...otherProps } = props;
 
-  const classes = classNames(className, {
+  const classes = classNames('br2', className, {
     'btn-group': !toolbar,
     'btn-toolbar': toolbar,
     'btn-group-fullwidth': otherProps.fullWidth,
