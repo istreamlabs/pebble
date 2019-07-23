@@ -48,82 +48,86 @@ describe('Frame', () => {
     expect(wrapper.find(FocusTrap).prop('active')).toBe(true);
   });
 
-  it('handleNavigationToggle calls setState with opposite state', () => {
-    const instance = new Frame({
-      onNavigationToggle: navToggleMock,
+  describe('handleNavigationToggle', () => {
+    it('calls setState with opposite state', () => {
+      const instance = new Frame({
+        onNavigationToggle: navToggleMock,
+      });
+
+      instance.setState = jest.fn();
+      instance.handleNavigationToggle();
+
+      expect(instance.setState).toHaveBeenCalled();
+
+      const args = instance.setState.mock.calls[0];
+      expect(args[0]).toEqual({ isShowingMobileNav: true });
     });
 
-    instance.setState = jest.fn();
-    instance.handleNavigationToggle();
+    it('calls onNavigationToggle with opposite state', () => {
+      const instance = new Frame({
+        onNavigationToggle: navToggleMock,
+      });
 
-    expect(instance.setState).toHaveBeenCalled();
+      instance.setState = jest.fn();
+      instance.handleNavigationToggle();
 
-    const args = instance.setState.mock.calls[0];
-    expect(args[0]).toEqual({ isShowingMobileNav: true });
+      expect(instance.setState).toHaveBeenCalled();
+
+      const args = instance.setState.mock.calls[0];
+      args[1]();
+      expect(navToggleMock).toHaveBeenCalledWith(true);
+    });
   });
 
-  it('handleNavigationToggle calls onNavigationToggle with opposite state', () => {
-    const instance = new Frame({
-      onNavigationToggle: navToggleMock,
+  describe('handleNavigationDismiss', () => {
+    it('does nothing if already false', () => {
+      const instance = new Frame({
+        onNavigationToggle: navToggleMock,
+      });
+      instance.setState = jest.fn();
+
+      instance.handleNavigationDismiss();
+      expect(instance.setState).not.toHaveBeenCalled();
     });
 
-    instance.setState = jest.fn();
-    instance.handleNavigationToggle();
+    it('calls setState', () => {
+      const instance = new Frame({
+        onNavigationToggle: navToggleMock,
+      });
 
-    expect(instance.setState).toHaveBeenCalled();
+      instance.state = {
+        isSkipFocused: true,
+        isShowingMobileNav: true,
+      };
 
-    const args = instance.setState.mock.calls[0];
-    args[1]();
-    expect(navToggleMock).toHaveBeenCalledWith(true);
-  });
+      instance.setState = jest.fn();
 
-  it('handleNavigationDismiss does nothing if already false', () => {
-    const instance = new Frame({
-      onNavigationToggle: navToggleMock,
-    });
-    instance.setState = jest.fn();
+      instance.handleNavigationDismiss();
 
-    instance.handleNavigationDismiss();
-    expect(instance.setState).not.toHaveBeenCalled();
-  });
-
-  it('handleNavigationDismiss calls setState', () => {
-    const instance = new Frame({
-      onNavigationToggle: navToggleMock,
+      const args = instance.setState.mock.calls[0];
+      expect(args[0]).toEqual({ isShowingMobileNav: false });
+      args[1]();
+      expect(navToggleMock).toHaveBeenCalledWith(false);
     });
 
-    instance.state = {
-      isSkipFocused: true,
-      isShowingMobileNav: true,
-    };
+    it('calls onNavigationToggle', () => {
+      const instance = new Frame({
+        onNavigationToggle: navToggleMock,
+      });
 
-    instance.setState = jest.fn();
+      instance.state = {
+        isSkipFocused: true,
+        isShowingMobileNav: true,
+      };
 
-    instance.handleNavigationDismiss();
+      instance.setState = jest.fn();
 
-    const args = instance.setState.mock.calls[0];
-    expect(args[0]).toEqual({ isShowingMobileNav: false });
-    args[1]();
-    expect(navToggleMock).toHaveBeenCalledWith(false);
-  });
+      instance.handleNavigationDismiss();
 
-  it('handleNavigationDismiss calls onNavigationToggle', () => {
-    const instance = new Frame({
-      onNavigationToggle: navToggleMock,
+      const args = instance.setState.mock.calls[0];
+      args[1]();
+      expect(navToggleMock).toHaveBeenCalledWith(false);
     });
-
-    instance.state = {
-      isSkipFocused: true,
-      isShowingMobileNav: true,
-    };
-
-    instance.setState = jest.fn();
-
-    instance.handleNavigationDismiss();
-
-    const args = instance.setState.mock.calls[0];
-    args[1]();
-    expect(navToggleMock).toHaveBeenCalledWith(false);
   });
 
   it('should cleanup event listener when unmounted', () => {
@@ -132,7 +136,7 @@ describe('Frame', () => {
     instance.componentWillUnmount();
     expect(document.removeEventListener).toHaveBeenCalledWith(
       'keydown',
-      instance.handleNavKeydown,
+      instance.handleKeyDown,
       false,
     );
   });
@@ -165,6 +169,39 @@ describe('Frame', () => {
         target: { tagName: 'a', href: '/foo' },
       });
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('handleNavigationMinimize', () => {
+    it('correctly calls setState when nav is not collapsed', () => {
+      const instance = new Frame();
+
+      instance.state = {
+        navCollapsed: false,
+      };
+
+      instance.setState = jest.fn();
+
+      instance.handleNavigationMinimize();
+
+      expect(instance.setState).toHaveBeenCalledWith({
+        navCollapsed: true,
+      });
+    });
+    it('correctly calls setState when nav is collapsed', () => {
+      const instance = new Frame();
+
+      instance.state = {
+        navCollapsed: true,
+      };
+
+      instance.setState = jest.fn();
+
+      instance.handleNavigationMinimize();
+
+      expect(instance.setState).toHaveBeenCalledWith({
+        navCollapsed: false,
+      });
     });
   });
 
@@ -237,7 +274,7 @@ describe('Frame', () => {
     });
   });
 
-  describe('handleNavKeydown', () => {
+  describe('handleKeyDown', () => {
     beforeEach(() => {
       jest.restoreAllMocks();
     });
@@ -245,14 +282,20 @@ describe('Frame', () => {
     it('calls handleNavigationDismiss when Escape key is pressed', () => {
       const instance = new Frame();
       instance.handleNavigationDismiss = jest.fn();
-
-      instance.handleNavKeydown({ event: 'keydown', key: 'Enter' });
+      instance.handleKeyDown({ event: 'keydown', code: 'Enter' });
       expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(
         0,
       );
-
-      instance.handleNavKeydown({ event: 'keydown', key: 'Escape' });
+      instance.handleKeyDown({ event: 'keydown', code: 'Escape' });
       expect(instance.handleNavigationDismiss).toHaveBeenCalledTimes(
+        1,
+      );
+    });
+    it('calls handleNavigationMinimize when Backslash key is pressed', () => {
+      const instance = new Frame();
+      instance.handleNavigationMinimize = jest.fn();
+      instance.handleKeyDown({ event: 'keydown', code: 'Backslash' });
+      expect(instance.handleNavigationMinimize).toHaveBeenCalledTimes(
         1,
       );
     });

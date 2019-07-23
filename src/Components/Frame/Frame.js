@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
 
+import Block from '../Block/Block';
 import Button from '../Button/Button';
 import Overlay from '../Overlay/Overlay';
 import ToastContainer from '../ToastContainer/ToastContainer';
@@ -52,23 +53,20 @@ export class Frame extends React.PureComponent {
     this.state = {
       isSkipFocused: false,
       isShowingMobileNav: false,
+      navCollapsed: false,
     };
 
     this.mainContent = React.createRef();
   }
 
   componentDidMount() {
-    document.addEventListener(
-      'keydown',
-      this.handleNavKeydown,
-      false,
-    );
+    document.addEventListener('keydown', this.handleKeyDown, false);
   }
 
   componentWillUnmount() {
     document.removeEventListener(
       'keydown',
-      this.handleNavKeydown,
+      this.handleKeyDown,
       false,
     );
   }
@@ -112,11 +110,20 @@ export class Frame extends React.PureComponent {
     }
   };
 
-  handleNavKeydown = event => {
-    const { key } = event;
-    if (key === 'Escape') {
+  handleKeyDown = event => {
+    const { code } = event;
+
+    if (code === 'Escape') {
       this.handleNavigationDismiss();
     }
+    if (code === 'Backslash') {
+      this.handleNavigationMinimize();
+    }
+  };
+
+  handleNavigationMinimize = () => {
+    const { navCollapsed } = this.state;
+    this.setState({ navCollapsed: !navCollapsed });
   };
 
   renderSkipToContent = () => {
@@ -143,10 +150,11 @@ export class Frame extends React.PureComponent {
 
   renderNavigation = () => {
     const { navigation } = this.props;
-    const { isShowingMobileNav } = this.state;
+    const { isShowingMobileNav, navCollapsed } = this.state;
 
     const navigationClasses = classNames('navigation', {
       open: isShowingMobileNav,
+      relative: !isShowingMobileNav,
     });
 
     return (
@@ -158,15 +166,32 @@ export class Frame extends React.PureComponent {
       >
         <div
           className={navigationClasses}
-          onKeyDown={this.handleNavKeydown}
+          onKeyDown={this.handleKeyDown}
           onClick={this.handleOnClick}
           id={APP_FRAME_NAV}
           key="NavContent"
         >
+          {navCollapsed && (
+            <Block
+              styles={{
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                position: 'absolute',
+                zIndex: 1,
+              }}
+              tabIndex="-1"
+              onMouseOver={() =>
+                this.setState({ navCollapsed: false })
+              }
+              onFocus
+            />
+          )}
           {navigation}
           {isShowingMobileNav && (
             <Button
-              className="frame-close-nav"
+              className="frame-close-nav shadow-2"
               icon="remove-circle"
               onClick={this.handleNavigationDismiss}
               accessibilityLabel="close menu"
@@ -202,9 +227,14 @@ export class Frame extends React.PureComponent {
 
   render() {
     const { children, title } = this.props;
+    const { navCollapsed } = this.state;
+
+    const frameClasses = classNames('frame', {
+      'frame-collapse-main-menu': navCollapsed,
+    });
 
     return (
-      <div className="frame">
+      <div className={frameClasses}>
         {this.renderSkipToContent()}
         <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
           <Button

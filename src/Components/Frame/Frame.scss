@@ -8,16 +8,27 @@ $FRAME_HEADER_HEIGHT: 60px;
   height: 100vh;
   position: relative;
   grid-template-areas:
-    "header"
-    "main";
+    'header'
+    'main';
   grid-template-rows: $FRAME_HEADER_HEIGHT 0 auto;
   position: relative;
   overflow: hidden;
+  transition: grid-template-columns 0.2s ease-out;
 
   @include respond-above(md) {
     grid-template-columns: $NAV_LG_WIDTH auto;
-    grid-template-areas: "nav main";
+    grid-template-areas: 'nav main';
     grid-template-rows: auto;
+  }
+}
+
+.frame-collapse-main-menu {
+  @include respond-above(md) {
+    grid-template-columns: $NAV_COLLAPSED_WIDTH auto;
+
+    .main-menu {
+      width: $NAV_COLLAPSED_WIDTH;
+    }
   }
 }
 
@@ -31,8 +42,7 @@ $FRAME_HEADER_HEIGHT: 60px;
   max-width: 310px;
   width: 100%;
   z-index: $z-nav;
-
-  animation: slideInLeft .2s ease-out;
+  animation: slideInLeft 0.2s ease-out;
 
   &.open {
     display: block;
@@ -107,5 +117,4 @@ main {
     height: 2rem;
     width: 2rem;
   }
-
 }
