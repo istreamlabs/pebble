@@ -228,6 +228,85 @@ describe('Block', () => {
     });
   });
 
+  describe('Border', () => {
+    it('sets correct styles when set to "all"', () => {
+      const wrapper = shallow(<Block border="all">border</Block>);
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderWidth',
+        '1px',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderStyle',
+        'solid',
+      );
+      expect(wrapper.prop('className')).toContain('b-neutral-300');
+    });
+    it('sets correct styles when set to "right"', () => {
+      const wrapper = shallow(<Block border="right">border</Block>);
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderRightWidth',
+        '1px',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderRightStyle',
+        'solid',
+      );
+      expect(wrapper.prop('className')).toContain('b-neutral-300');
+    });
+    it('sets correct styles when set to "vertical"', () => {
+      const wrapper = shallow(
+        <Block border="vertical">border</Block>,
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderRightWidth',
+        '1px',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderRightStyle',
+        'solid',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderLeftWidth',
+        '1px',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderLeftStyle',
+        'solid',
+      );
+      expect(wrapper.prop('className')).toContain('b-neutral-300');
+    });
+    it('sets correct styles when passed an object', () => {
+      const wrapper = shallow(
+        <Block border={{ width: '10px', color: 'green-lighter' }}>
+          border
+        </Block>,
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderWidth',
+        '10px',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderStyle',
+        'solid',
+      );
+      expect(wrapper.prop('className')).toContain('b-green-lighter');
+    });
+    it('sets correct styles when passed an object without color', () => {
+      const wrapper = shallow(
+        <Block border={{ width: '10px' }}>border</Block>,
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderWidth',
+        '10px',
+      );
+      expect(wrapper.prop('style')).toHaveProperty(
+        'borderStyle',
+        'solid',
+      );
+      expect(wrapper.prop('className')).toContain('b-neutral-300');
+    });
+  });
+
   describe('Margin', () => {
     it('sets all margin bottom', () => {
       const wrapper = shallow(<Block marginBottom="1">test</Block>);

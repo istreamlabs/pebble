@@ -34,7 +34,7 @@ function TableRow({ children, className, hoverHighlight, ...rest }) {
 
   const classes = classNames(
     'table-row',
-    'flex w-100 bb b-neutral-300',
+    'flex w-100',
     {
       'bg-hover bg-blue-lighter-hover': hoverHighlight,
       'pb-4 ph-4': isMobileLayout,
@@ -54,6 +54,7 @@ function TableRow({ children, className, hoverHighlight, ...rest }) {
 
   return (
     <Block
+      border="bottom"
       role="row"
       className={classes}
       direction={isMobileLayout ? 'column' : 'row'}
