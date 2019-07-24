@@ -3,9 +3,11 @@ import { useState } from 'react';
 import Block from '../Block/Block';
 
 function FieldDateTimeExample() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     console.log('Value is:', value);
     setSelectedDate(value);
   };
@@ -59,11 +61,10 @@ function FieldDateTimeExample() {
         validationText="Select a date and time"
       />
     </Block>
-  )
+  );
 }
 
-<FieldDateTimeExample />
-
+<FieldDateTimeExample />;
 ```
 
 ### Set Time in Local Time Zone
@@ -74,9 +75,11 @@ Too allow for entering a date/time in the browser's local time zone instead of U
 import { useState } from 'react';
 
 function FieldDateTimeLocal() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     setSelectedDate(value);
   };
 
@@ -88,10 +91,10 @@ function FieldDateTimeLocal() {
       value={selectedDate}
       onChange={handleChange}
     />
-  )
+  );
 }
 
-<FieldDateTimeLocal />
+<FieldDateTimeLocal />;
 ```
 
 ### Min/Max Dates
@@ -104,7 +107,7 @@ import { useState } from 'react';
 function FieldDateTimeExample() {
   const [selectedDate, setSelectedDate] = useState();
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     console.log('Value is:', value);
     setSelectedDate(value);
   };
@@ -134,12 +137,11 @@ function FieldDateTimeExample() {
         maxDate={new Date()}
       />
     </>
-  )
+  );
 }
 
-<FieldDateTimeExample />
+<FieldDateTimeExample />;
 ```
-
 
 ### Calendar Modal (Portal)
 
@@ -150,9 +152,11 @@ import { useState } from 'react';
 import Card from '../Card/Card';
 
 function PortalExample() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     setSelectedDate(value);
   };
 
@@ -172,9 +176,8 @@ function PortalExample() {
         onChange={handleChange}
       />
     </Card>
-  )
+  );
 }
 
-<PortalExample />
-
+<PortalExample />;
 ```
