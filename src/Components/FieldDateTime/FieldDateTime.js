@@ -321,6 +321,7 @@ class FieldDateTime extends React.PureComponent {
           </Block>
           <DatePicker
             adjustDateOnChange={false}
+            allowSameDay={!excludeTime}
             autoFocus={autoFocus}
             className={inputClasses}
             calendarClassName="FieldDatePickerCalendar"
