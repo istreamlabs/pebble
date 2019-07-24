@@ -36,10 +36,11 @@ const defaultProps = {
  */
 
 function Table({ children, className, width, ...rest }) {
-  const classes = classNames('table ba b-neutral-300', className);
+  const classes = classNames('table', className);
 
   return (
     <Block
+      border="all"
       className={classes}
       width={width}
       {...rest}

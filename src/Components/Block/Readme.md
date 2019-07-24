@@ -335,6 +335,41 @@ Apply padding to all four sides.
 <Block background="blue-light">No margin</Block>
 ```
 
+### Borders
+
+Setting the `border` prop to a string will apply teh default border style of `1px solid neutral-300`. You can also customize the border style by passing an object with the appropriate properties.
+
+```jsx
+<Block direction="row" itemSpacing="5">
+  <Block border="all" height="50px">
+    all
+  </Block>
+  <Block border="top" height="50px">
+    top
+  </Block>
+  <Block border="right" height="50px">
+    right
+  </Block>
+  <Block border="bottom" height="50px">
+    bottom
+  </Block>
+  <Block border="left" height="50px">
+    left
+  </Block>
+  <Block
+    border={{
+      side: 'all',
+      style: 'dashed',
+      width: '7px',
+      color: 'blue',
+    }}
+    height="50px"
+  >
+    7px dashed blue border
+  </Block>
+</Block>
+```
+
 ### Responsive Spacing
 
 Margin and padding props can be passed arrays as values for mobile-first responsive styles.

@@ -446,6 +446,19 @@ describe('FieldDateTime', () => {
       ).toEqual('my text');
     });
 
+    it('passes false allowSameDay prop to react date picker when excludeTime is true', () => {
+      const props = { ...requiredProps, excludeTime: true };
+      const wrapper = shallow(<FieldDateTime {...props} />);
+      const picker = wrapper.find(DatePicker);
+      expect(picker.props().allowSameDay).toEqual(false);
+    });
+
+    it('passes true allowSameDay prop to react date picker when excludeTime is false', () => {
+      const wrapper = shallow(<FieldDateTime {...requiredProps} />);
+      const picker = wrapper.find(DatePicker);
+      expect(picker.props().allowSameDay).toEqual(true);
+    });
+
     it('adds UTC prefix to input by default', () => {
       const wrapper = shallow(<FieldDateTime {...requiredProps} />);
 

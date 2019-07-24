@@ -46,7 +46,7 @@ function TableHeader({ children, mobileLabel }) {
       role="row"
       width="100%"
       background="white"
-      className="bb b-neutral-300"
+      border="bottom"
       direction={isMobileLayout ? 'column' : 'row'}
       styles={{ flexShrink: 0, minHeight: '50px' }}
       justify={isMobileLayout ? 'center' : 'start'}
