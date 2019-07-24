@@ -144,6 +144,7 @@ describe('FieldDateTime', () => {
 
       expect(result).toBeUndefined();
     });
+
     it('uses pebble text component', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
@@ -168,6 +169,27 @@ describe('FieldDateTime', () => {
       expect(result.props.appearance).toEqual('danger');
       expect(result.props.className).toEqual('db pt-2');
       expect(result.props.children).toEqual('validation text...');
+    });
+  });
+
+  describe('convertIsoStringToMoment', () => {
+    it('returns a value moment object', () => {
+      const instance = new FieldDateTime({
+        ...requiredProps,
+      });
+      const result = instance.convertIsoStringToMoment(
+        '2019-06-26T12:00:00.000Z',
+      );
+      expect(moment.isMoment(result)).toBeTruthy();
+    });
+
+    it('throws for invalid isoString', () => {
+      const instance = new FieldDateTime({
+        ...requiredProps,
+      });
+      expect(() =>
+        instance.convertIsoStringToMoment('2019-60-26T12:00:00.000Z'),
+      ).toThrow();
     });
   });
 
@@ -275,6 +297,24 @@ describe('FieldDateTime', () => {
       ).toBeTruthy();
     });
 
+    it('renders nothing if value is empty', () => {
+      const instance = new FieldDateTime({
+        ...requiredProps,
+        value: '',
+      });
+      jest
+        .spyOn(instance, 'getDateFormat')
+        .mockImplementation(() => 'YYYY-MM-DD HH:mm');
+
+      const result = shallow(
+        instance.renderAlternativeDateTimeDisplay(),
+      );
+
+      expect(result.contains('Local')).toBeTruthy();
+      expect(instance.getDateFormat).not.toHaveBeenCalled();
+      expect(result.text()).toEqual('<Block /><Block />');
+    });
+
     it('renders grayed background when disabled', () => {
       const instance = new FieldDateTime({
         ...requiredProps,
@@ -315,6 +355,9 @@ describe('FieldDateTime', () => {
       jest
         .spyOn(instance, 'renderValidationTextMarkup')
         .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'convertIsoStringToMoment')
+        .mockImplementation(jest.fn());
 
       instance.render();
 
@@ -325,6 +368,7 @@ describe('FieldDateTime', () => {
       ).toHaveBeenCalled();
       expect(instance.renderHelpTextMarkup).toHaveBeenCalled();
       expect(instance.renderValidationTextMarkup).toHaveBeenCalled();
+      expect(instance.convertIsoStringToMoment).toHaveBeenCalled();
     });
 
     it('uses the react date picker and passes correct non configurable options', () => {
@@ -366,6 +410,16 @@ describe('FieldDateTime', () => {
 
       expect(wrapper.find(DatePicker).props().minDate).toBeDefined();
       expect(wrapper.find(DatePicker).props().maxDate).toBeDefined();
+    });
+
+    it('passes undefined if value is empty', () => {
+      const wrapper = shallow(
+        <FieldDateTime {...requiredProps} value="" />,
+      );
+
+      expect(
+        wrapper.find(DatePicker).props().selected,
+      ).toBeUndefined();
     });
 
     it('adds UTC prefix to input by default', () => {

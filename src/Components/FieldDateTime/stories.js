@@ -22,6 +22,22 @@ const FieldDateTimeExample = props => {
   );
 };
 
+const FieldDateTimeEmptyExample = props => {
+  const [selectedDate, setSelectedDate] = useState('');
+  const handleChange = value => {
+    setSelectedDate(value);
+  };
+  return (
+    <FieldDateTime
+      id="myDatePicker"
+      label="start time"
+      value={selectedDate}
+      onChange={handleChange}
+      {...props}
+    />
+  );
+};
+
 const filterDate = value => {
   const date = new Date(value);
   return date.getDay() < 5;
@@ -34,6 +50,30 @@ storiesOf('FieldDateTime', module)
   ))
   .add('date only', () => (
     <FieldDateTimeExample excludeTime label="start date" />
+  ))
+  .add('Empty DateTime', () => (
+    <>
+      <FieldDateTimeEmptyExample
+        id="myDatePickerEnabled"
+        label="enabled"
+      />
+      <FieldDateTimeEmptyExample
+        id="myDatePickerDisabled"
+        label="disabled"
+        disabled
+      />
+      <FieldDateTimeEmptyExample
+        id="myDatePickerLocalEnabled"
+        label="local enabled"
+        selectLocalDateTime
+      />
+      <FieldDateTimeEmptyExample
+        id="myDatePickerLocalDisabled"
+        label="local disabled"
+        disabled
+        selectLocalDateTime
+      />
+    </>
   ))
   .add('validation', () => (
     <FieldDateTimeExample
