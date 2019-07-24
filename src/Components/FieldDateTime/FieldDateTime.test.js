@@ -422,6 +422,19 @@ describe('FieldDateTime', () => {
       ).toBeUndefined();
     });
 
+    it('passes placeholderText if value is empty', () => {
+      const wrapper = shallow(
+        <FieldDateTime
+          {...requiredProps}
+          placeholderText="my text"
+        />,
+      );
+
+      expect(
+        wrapper.find(DatePicker).props().placeholderText,
+      ).toEqual('my text');
+    });
+
     it('adds UTC prefix to input by default', () => {
       const wrapper = shallow(<FieldDateTime {...requiredProps} />);
 

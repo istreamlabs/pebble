@@ -84,7 +84,7 @@ const propTypes = {
   /**
    * Text to be displayed when there is no value
    */
-  placeHolderText: PropTypes.string,
+  placeholderText: PropTypes.string,
   /**
    * select time in browser's local time zone instead of UTC
    */
@@ -129,7 +129,7 @@ const defaultProps = {
   excludeTime: false,
   hideLabel: false,
   isInvalid: false,
-  placeHolderText: 'Not set',
+  placeholderText: 'Not set',
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
@@ -291,7 +291,7 @@ class FieldDateTime extends React.PureComponent {
       isInvalid,
       maxDate,
       minDate,
-      placeHolderText,
+      placeholderText,
       selectLocalDateTime,
       size,
       timeFormat,
@@ -365,7 +365,7 @@ class FieldDateTime extends React.PureComponent {
             timeFormat={timeFormat}
             utcOffset={0}
             withPortal={withPortal}
-            placeholderText={placeHolderText}
+            placeholderText={placeholderText}
           />
           <label htmlFor={id}>
             <Icon
