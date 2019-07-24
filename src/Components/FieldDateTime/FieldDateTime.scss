@@ -624,28 +624,23 @@ $TIME_CONTAINER_WIDTH: 7rem;
   position: absolute;
   height: 16px;
   width: 16px;
-  top: 25%;
-  right: 7px;
+  top: 1px;
+  right: 10px;
   margin-right: 23px;
+  color: $neutral-500;
 }
 
 .react-datepicker__close-icon::after {
-  background-color: $neutral-500;
-  border-radius: 50%;
-  bottom: 0;
-  box-sizing: border-box;
-  color: #fff;
-  content: "\00d7";
+  color: $neutral-500;
+  fill: $neutral-500;
+  content: '';
+  mask: url('../../Icons/remove-circle.svg');
   cursor: pointer;
-  font-size: 12px;
+  background-color: $neutral-600;
   height: 16px;
   width: 16px;
-  line-height: 1;
-  margin: -8px auto 0;
-  padding: 2px;
   position: absolute;
   right: 0px;
-  text-align: center;
 }
 
 .react-datepicker__today-button {
