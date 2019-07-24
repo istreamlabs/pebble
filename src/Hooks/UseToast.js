@@ -48,6 +48,7 @@ export default () => {
     type,
     autoClose,
     onClose,
+    containerId,
   }) {
     toast(
       <ToastAlert
@@ -57,7 +58,8 @@ export default () => {
       {
         className: 'p-0 bg-transparent',
         autoClose,
-        onClose
+        onClose,
+        containerId,
       }
     );
   }

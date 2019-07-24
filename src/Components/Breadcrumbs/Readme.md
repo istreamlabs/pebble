@@ -14,7 +14,13 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
 <DemoBrowserRouter>
   <Breadcrumbs>
     <Link href="#">Parent</Link>
-    <DropdownMenu toggle={<Button plain iconAfterText="arrow-small-down">Level 1</Button>}>
+    <DropdownMenu
+      toggle={
+        <Button plain iconAfterText="arrow-small-down">
+          Level 1
+        </Button>
+      }
+    >
       <DropdownItem>Level 1a</DropdownItem>
       <DropdownItem>Level 1b</DropdownItem>
     </DropdownMenu>
@@ -24,7 +30,11 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
       </div>
       <DropdownMenu
         toggle={
-          <Button plain accessibilityLabel="" icon="arrow-small-down" />
+          <Button
+            plain
+            accessibilityLabel=""
+            icon="arrow-small-down"
+          />
         }
       >
         <DropdownItem href="#">Level 2a</DropdownItem>
@@ -34,6 +44,5 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     </Block>
     <Link href="#">Level 3</Link>
   </Breadcrumbs>
-</DemoBrowserRouter>
+</DemoBrowserRouter>;
 ```
-

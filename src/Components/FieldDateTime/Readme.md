@@ -3,12 +3,9 @@ import { useState } from 'react';
 import Block from '../Block/Block';
 
 function FieldDateTimeExample() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleChange = (value) => {
-    console.log('Value is:', value);
-    setSelectedDate(value);
-  };
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
   return (
     <Block direction="column" itemSpacing="5">
@@ -17,14 +14,14 @@ function FieldDateTimeExample() {
         timeFormat="HH:mm"
         label="Date and Time"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
       />
       <FieldDateTime
         id="dateOnly"
         excludeTime
         label="Date Only"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
         helpText="Only allows for date selection"
       />
       <FieldDateTime
@@ -32,13 +29,13 @@ function FieldDateTimeExample() {
         timeFormat="h:mm a"
         label="Date and 12 hour am/pm time"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
       />
       <FieldDateTime
         id="disabled"
         label="Disabled"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
         disabled
       />
       <FieldDateTime
@@ -46,7 +43,7 @@ function FieldDateTimeExample() {
         label="Select Time Only"
         showTimeSelect
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
         showTimeSelectOnly
       />
       <FieldDateTime
@@ -54,31 +51,28 @@ function FieldDateTimeExample() {
         timeFormat="HH:mm"
         label="Invalid"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
         isInvalid
         validationText="Select a date and time"
       />
     </Block>
-  )
+  );
 }
 
-<FieldDateTimeExample />
-
+<FieldDateTimeExample />;
 ```
 
 ### Set Time in Local Time Zone
 
-Too allow for entering a date/time in the browser's local time zone instead of UTC, set `selectLocalDateTime` to `true`.
+To allow for entering a date/time in the browser's local time zone instead of UTC, set `selectLocalDateTime` to `true`.
 
 ```jsx
 import { useState } from 'react';
 
 function FieldDateTimeLocal() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleChange = (value) => {
-    setSelectedDate(value);
-  };
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
   return (
     <FieldDateTime
@@ -86,12 +80,39 @@ function FieldDateTimeLocal() {
       id="localDateTime"
       label="Date and Time"
       value={selectedDate}
-      onChange={handleChange}
+      onChange={setSelectedDate}
     />
-  )
+  );
 }
 
-<FieldDateTimeLocal />
+<FieldDateTimeLocal />;
+```
+
+### Clearable
+
+To show the clear button and show a no value message set `isClearable` and `placeholderText`
+
+```jsx
+import { useState } from 'react';
+
+function FieldDateTimeClear() {
+  const [selectedDate, setSelectedDate] = useState('2019-06-26T12:00:00.000Z');
+
+
+  return (
+    <FieldDateTime
+      selectLocalDateTime
+      id="clearDateTime"
+      label="Date and Time"
+      value={selectedDate}
+      placeholderText="value has been cleared"
+      isClearable
+      onChange={setSelectedDate}
+    />
+  );
+}
+
+<FieldDateTimeClear />
 ```
 
 ### Min/Max Dates
@@ -102,14 +123,9 @@ Depending on the use case, there are a few ways to exclude dates and times from 
 import { useState } from 'react';
 
 function FieldDateTimeExample() {
-  const [selectedDate, setSelectedDate] = useState();
-
-  const handleChange = (value) => {
-    console.log('Value is:', value);
-    setSelectedDate(value);
-  };
-
-  // do we show
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
   return (
     <>
@@ -119,7 +135,7 @@ function FieldDateTimeExample() {
         helpText="Set a minDate to allow selection of days going forward"
         placeholderText="Select a date in the future"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
         minDate={new Date()}
         className="mb-5"
       />
@@ -130,16 +146,39 @@ function FieldDateTimeExample() {
         placeholderText="Select a date in the past"
         helpText="Set a maxDate to allow selection of previous days"
         value={selectedDate}
-        onChange={handleChange}
+        onChange={setSelectedDate}
         maxDate={new Date()}
       />
     </>
-  )
+  );
 }
 
-<FieldDateTimeExample />
+<FieldDateTimeExample />;
 ```
 
+### Calendar Popup Placement
+
+Use `popperPlacement` to control the preferred calendar popup placement is relative to the input field. If there is a no room in the viewport to fit the calendar due to the field's location on the page, the calendar will pop up on the opposite side.
+
+```jsx
+<FieldDateTime
+  id="topStart"
+  timeFormat="HH:mm"
+  label="top-start placement"
+  popperPlacement="top-start"
+  className="mb-5"
+  value="2019-06-26T12:00:00.000Z"
+  onChange={() => {}}
+/>
+<FieldDateTime
+  id="bottomEnd"
+  timeFormat="HH:mm"
+  label="bottom-end placement"
+  popperPlacement="bottom-end"
+  value="2019-06-26T12:00:00.000Z"
+  onChange={() => {}}
+/>
+```
 
 ### Calendar Modal (Portal)
 
@@ -150,9 +189,11 @@ import { useState } from 'react';
 import Card from '../Card/Card';
 
 function PortalExample() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     setSelectedDate(value);
   };
 
@@ -172,9 +213,8 @@ function PortalExample() {
         onChange={handleChange}
       />
     </Card>
-  )
+  );
 }
 
-<PortalExample />
-
+<PortalExample />;
 ```

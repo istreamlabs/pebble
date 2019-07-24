@@ -1,7 +1,7 @@
 ### Examples
 
 ```js
-import { useState } from "react";
+import { useState } from 'react';
 
 function FieldNumberExample() {
   const [eventResult, setEventResult] = useState('');
@@ -9,22 +9,22 @@ function FieldNumberExample() {
   const [disabledInput, setDisabledInput] = useState('');
   const [errorInput, setErrorInput] = useState('');
 
-  const handleChange = (e) => {
-    setEventResult(`handleChange called with '${e.target.value}'`)
+  const handleChange = e => {
+    setEventResult(`handleChange called with '${e.target.value}'`);
     setBasic(e.target.value);
-  }
+  };
 
   const handleFocus = () => {
-    setEventResult('handleFocus called')
-  }
+    setEventResult('handleFocus called');
+  };
 
   const handleBlur = () => {
-    setEventResult('handleBlur called')
-  }
+    setEventResult('handleBlur called');
+  };
 
   const handleClear = () => {
     setBasic('');
-  }
+  };
 
   return (
     <>
@@ -41,7 +41,8 @@ function FieldNumberExample() {
       />
 
       <div className="fs-6 mt-3 mb-5">
-        event handler result: <span className="fw-700">{eventResult}</span>
+        event handler result:{' '}
+        <span className="fw-700">{eventResult}</span>
       </div>
 
       <FieldNumber
@@ -62,7 +63,6 @@ function FieldNumberExample() {
         onChange={e => setErrorInput(e.target.value)}
         className="mb-5"
       />
-
     </>
   );
 }

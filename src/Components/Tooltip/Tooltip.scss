@@ -6,9 +6,11 @@
   box-shadow: $box-shadow-1;
   color: $white;
   font-size: $font-size-6;
+  font-weight: 400;
   max-width: $width-5;
   padding: $spacing-2;
   text-align: center;
+  text-transform: unset;
   z-index: $z-overlay;
   word-break: normal;
 }
