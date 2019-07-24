@@ -26,6 +26,7 @@ Medium is the default size.
 ### Icons
 
 Pass the name of an icon for special badges (e.g. a live stream).
+
 ```js
 <Badge size="large" type="danger" icon="circle">LIVE</Badge>
 <Badge size="large" type="special" icon="add-circle">add circle</Badge>
@@ -35,6 +36,6 @@ Pass the name of an icon for special badges (e.g. a live stream).
 
 Badges should:
 
-* Be used to so that users can scan pages to quickly see status 
-* Be clearly labeled, most often with one word
-* Be positioned so that it is clear what object it refers to
+- Be used to so that users can scan pages to quickly see status
+- Be clearly labeled, most often with one word
+- Be positioned so that it is clear what object it refers to

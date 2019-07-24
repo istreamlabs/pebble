@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
-import { ToastContainer } from 'react-toastify';
+import ToastContainer from '../ToastContainer/ToastContainer';
 import { useToast } from '../../Hooks';
 
 function Example() {
@@ -11,15 +11,7 @@ function Example() {
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar
-        pauseOnHover
-        closeButton={false}
-        closeOnClick={false}
-        width="500"
-      />
+      <ToastContainer />
       <ButtonGroup>
         <Button
           onClick={() => {

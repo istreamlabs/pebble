@@ -94,18 +94,35 @@ function Radio({
 
   const radioIconMarkup = () => {
     if (isSelected) {
-      return <Icon size="20" className={disabled ? 'neutral-500' : 'blue'} name="radio-selected" />;
+      return (
+        <Icon
+          size="20"
+          className={disabled ? 'neutral-500' : 'blue'}
+          name="radio-selected"
+        />
+      );
     }
     if (disabled) {
       return <Icon size="20" className="neutral-300" name="radio" />;
     }
-    return <Icon size="20" className="neutral-500 neutral-700-hover" name="radio" />;
+    return (
+      <Icon
+        size="20"
+        className="neutral-500 neutral-700-hover"
+        name="radio"
+      />
+    );
   };
 
   const helpTextMarkup = () => {
     if (helpText) {
       return (
-        <Text size="7" appearance="muted" className="db mt-1" id={`${id}HelpText`}>
+        <Text
+          size="7"
+          appearance="muted"
+          className="db mt-1"
+          id={`${id}HelpText`}
+        >
           {helpText}
         </Text>
       );
@@ -116,10 +133,7 @@ function Radio({
   const labelMarkup = () => (
     <Block as="label" htmlFor={id} className="relative">
       {radioIconMarkup()}
-      <Block
-        direction="column"
-        className="ml-2"
-      >
+      <Block direction="column" className="ml-2">
         <span className="fs-6">{label}</span>
         {helpTextMarkup()}
       </Block>
