@@ -53,6 +53,10 @@ const propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
+   * Show the clear button
+   */
+  isClearable: PropTypes.bool,
+  /**
    * Applies styling to indicate the input is invalid
    */
   isInvalid: PropTypes.bool,
@@ -81,6 +85,10 @@ const propTypes = {
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Text to be displayed when there is no value
+   */
+  placeholderText: PropTypes.string,
   /**
    * select time in browser's local time zone instead of UTC
    */
@@ -124,7 +132,9 @@ const defaultProps = {
   disabled: false,
   excludeTime: false,
   hideLabel: false,
+  isClearable: false,
   isInvalid: false,
+  placeholderText: 'Not set',
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
@@ -192,7 +202,13 @@ class FieldDateTime extends React.PureComponent {
       value,
     } = this.props;
     if (excludeTime) return;
-    const momentValue = moment(value);
+
+    let formatedDate;
+    const momentValue = this.convertIsoStringToMoment(value);
+    if (momentValue) {
+      selectLocalDateTime ? momentValue.utc() : momentValue.local();
+      formatedDate = momentValue.format(this.getDateFormat());
+    }
 
     const alternativeDateTimeClasses = classNames(
       'FieldDateTime-alternativeDateTime',
@@ -213,8 +229,6 @@ class FieldDateTime extends React.PureComponent {
       },
     );
 
-    // This is confusing but these methods modify the reference instead of returning a new value
-    selectLocalDateTime ? momentValue.utc() : momentValue.local();
     return (
       <Block>
         <Block
@@ -233,23 +247,41 @@ class FieldDateTime extends React.PureComponent {
           flex
           styles={disabled ? { borderLeft: 0 } : null}
         >
-          {`${momentValue.format(this.getDateFormat())}`}
+          {formatedDate}
         </Block>
       </Block>
     );
   }
 
+  convertIsoStringToMoment(value) {
+    let momentValue;
+    if (value !== undefined && value !== null && value !== '') {
+      try {
+        momentValue = moment(value);
+        if (!momentValue.isValid()) {
+          throw new Error('invalid isoString');
+        }
+      } catch {
+        throw new Error('invalid isoString');
+      }
+    }
+    return momentValue;
+  }
+
   onChange = value => {
     const { excludeTime, onChange } = this.props;
-    // this code either clears out the time complete, e.g. 00:00:00.000
-    // or clears out the seconds since we don't provide that level of granularity in our picker
-    if (excludeTime) {
-      value.startOf('day');
+    if (moment.isMoment(value)) {
+      // this code either clears out the time complete, e.g. 00:00:00.000
+      // or clears out the seconds since we don't provide that level of granularity in our picker
+      if (excludeTime) {
+        value.startOf('day');
+      } else {
+        value.startOf('minute');
+      }
+      onChange(value.toISOString());
     } else {
-      value.startOf('minute');
+      onChange('');
     }
-
-    onChange(value.toISOString());
   };
 
   filterDate = value => {
@@ -264,9 +296,11 @@ class FieldDateTime extends React.PureComponent {
       disabled,
       excludeTime,
       id,
+      isClearable,
       isInvalid,
       maxDate,
       minDate,
+      placeholderText,
       selectLocalDateTime,
       size,
       timeFormat,
@@ -275,8 +309,10 @@ class FieldDateTime extends React.PureComponent {
       withPortal,
     } = this.props;
 
-    const momentValue = moment(value);
-    selectLocalDateTime ? momentValue.local() : momentValue.utc();
+    const momentValue = this.convertIsoStringToMoment(value);
+    if (momentValue) {
+      selectLocalDateTime ? momentValue.local() : momentValue.utc();
+    }
 
     const momentMinDate = minDate ? moment(minDate) : undefined;
     const momentMaxDate = maxDate ? moment(maxDate) : undefined;
@@ -330,6 +366,7 @@ class FieldDateTime extends React.PureComponent {
             disabled={disabled}
             filterDate={this.filterDate}
             id={id}
+            isClearable={isClearable}
             minDate={momentMinDate}
             maxDate={momentMaxDate}
             onChange={this.onChange}
@@ -339,6 +376,7 @@ class FieldDateTime extends React.PureComponent {
             timeFormat={timeFormat}
             utcOffset={0}
             withPortal={withPortal}
+            placeholderText={placeholderText}
           />
           <label htmlFor={id}>
             <Icon
