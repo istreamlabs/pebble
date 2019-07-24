@@ -85,10 +85,30 @@ const propTypes = {
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
   onChange: PropTypes.func.isRequired,
-  /**
+  /*
    * Text to be displayed when there is no value
    */
   placeholderText: PropTypes.string,
+  /**
+   * Placement of the calendar popup
+   */
+  popperPlacement: PropTypes.oneOf([
+    'auto-start',
+    'auto',
+    'auto-end',
+    'top-start',
+    'top',
+    'top-end',
+    'right-start',
+    'right',
+    'right-end',
+    'bottom-end',
+    'bottom',
+    'bottom-start',
+    'left-end',
+    'left',
+    'left-start',
+  ]),
   /**
    * select time in browser's local time zone instead of UTC
    */
@@ -135,6 +155,7 @@ const defaultProps = {
   isClearable: false,
   isInvalid: false,
   placeholderText: 'Not set',
+  popperPlacement: 'bottom-start',
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
@@ -301,6 +322,7 @@ class FieldDateTime extends React.PureComponent {
       maxDate,
       minDate,
       placeholderText,
+      popperPlacement,
       selectLocalDateTime,
       size,
       timeFormat,
@@ -370,7 +392,7 @@ class FieldDateTime extends React.PureComponent {
             minDate={momentMinDate}
             maxDate={momentMaxDate}
             onChange={this.onChange}
-            popperPlacement="bottom-start"
+            popperPlacement={popperPlacement}
             selected={momentValue}
             showTimeSelect={!excludeTime}
             timeFormat={timeFormat}

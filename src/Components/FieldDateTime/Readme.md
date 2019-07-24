@@ -96,7 +96,7 @@ To show the clear button and show a no value message set `isClearable` and `plac
 import { useState } from 'react';
 
 function FieldDateTimeClear() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState('2019-06-26T12:00:00.000Z');
 
 
   return (
@@ -109,7 +109,7 @@ function FieldDateTimeClear() {
       isClearable
       onChange={setSelectedDate}
     />
-  )
+  );
 }
 
 <FieldDateTimeClear />
@@ -123,7 +123,9 @@ Depending on the use case, there are a few ways to exclude dates and times from 
 import { useState } from 'react';
 
 function FieldDateTimeExample() {
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
   return (
     <>
@@ -152,6 +154,30 @@ function FieldDateTimeExample() {
 }
 
 <FieldDateTimeExample />;
+```
+
+### Calendar Popup Placement
+
+Use `popperPlacement` to control the preferred calendar popup placement is relative to the input field. If there is a no room in the viewport to fit the calendar due to the field's location on the page, the calendar will pop up on the opposite side.
+
+```jsx
+<FieldDateTime
+  id="topStart"
+  timeFormat="HH:mm"
+  label="top-start placement"
+  popperPlacement="top-start"
+  className="mb-5"
+  value="2019-06-26T12:00:00.000Z"
+  onChange={() => {}}
+/>
+<FieldDateTime
+  id="bottomEnd"
+  timeFormat="HH:mm"
+  label="bottom-end placement"
+  popperPlacement="bottom-end"
+  value="2019-06-26T12:00:00.000Z"
+  onChange={() => {}}
+/>
 ```
 
 ### Calendar Modal (Portal)

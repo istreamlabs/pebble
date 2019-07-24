@@ -410,6 +410,19 @@ describe('FieldDateTime', () => {
       expect(wrapper.find(Icon).props().name).toEqual('calendar');
     });
 
+    it('passes popperPlacement when provided', () => {
+      const wrapper = shallow(
+        <FieldDateTime
+          {...requiredProps}
+          popperPlacement="top-end"
+        />,
+      );
+
+      expect(
+        wrapper.find(DatePicker).props().popperPlacement,
+      ).toEqual('top-end');
+    });
+
     it('passes a min and max date when provided', () => {
       const wrapper = shallow(
         <FieldDateTime
