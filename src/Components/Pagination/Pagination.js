@@ -79,14 +79,12 @@ class Pagination extends React.PureComponent {
   render() {
     const { className, currentPage, numPages } = this.props;
 
-    const classes = classNames(
-      'pagination ba b-neutral-300',
-      className,
-    );
+    const classes = classNames('pagination', className);
 
     return (
       <Block
         background="neutral-200"
+        border="all"
         padding="3"
         alignItems="center"
         className={classes}

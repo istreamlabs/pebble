@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
+  getBorderStyle,
   getFlexPropertyClasses,
   getDimensionClasses,
   getItemSpacingClasses,
@@ -119,6 +120,59 @@ const propTypes = {
       '2/3',
     ]),
     PropTypes.string,
+  ]),
+  /**
+   *
+   * Apply a `solid 1px neutral-300` border to a specific side by passing one of the following strings:
+   *
+   * 'all', 'vertical', 'horizontal', 'top', 'right', 'bottom', 'left'
+   *
+   * or the pass the shape:
+   * ```
+   * {
+   *   color: "neutral-300",
+   *   side: "all",
+   *   size: "1px",
+   *   style: "solid",
+   * }
+   * ```
+   *
+   * `color` [color identifier](/#/Styles/Color) of the border color
+   */
+  border: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'top',
+      'left',
+      'bottom',
+      'right',
+      'horizontal',
+      'vertical',
+      'all',
+    ]),
+    PropTypes.shape({
+      width: PropTypes.string,
+      style: PropTypes.oneOf([
+        'solid',
+        'dashed',
+        'dotted',
+        'double',
+        'groove',
+        'ridge',
+        'inset',
+        'outset',
+        'hidden',
+      ]),
+      side: PropTypes.oneOf([
+        'top',
+        'left',
+        'bottom',
+        'right',
+        'horizontal',
+        'vertical',
+        'all',
+      ]),
+      color: colorType,
+    }),
   ]),
   /**
    * Additional classNames to add
@@ -311,6 +365,7 @@ class Block extends React.PureComponent {
       as,
       background,
       basis,
+      border,
       color,
       children,
       className,
@@ -383,9 +438,20 @@ class Block extends React.PureComponent {
 
     const flexStyle = { flex: `${flexGrowShrinkProp(flex)}` };
 
+    const borderWidthStyleObject = border
+      ? getBorderStyle(border)
+      : null;
+
+    const borderColor = border
+      ? typeof border === 'string'
+        ? 'neutral-300'
+        : border.color || 'neutral-300'
+      : null;
+
     const mergedStyle = {
       ...flexStyle,
       ...basisStyle,
+      ...borderWidthStyleObject,
       ...styles,
     };
 
@@ -415,6 +481,7 @@ class Block extends React.PureComponent {
         [`fs-${parsedTextSize}`]: parsedTextSize,
         [`text-${textAlign}`]: textAlign,
         'truncate db': truncate,
+        [`b-${borderColor}`]: border,
       },
       className,
     );

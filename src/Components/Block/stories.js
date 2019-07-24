@@ -7,7 +7,451 @@ import Block from './Block';
 import Badge from '../Badge/Badge';
 import Text from '../Text/Text';
 
+const borderWidth = '8px';
+
 storiesOf('Block', module)
+  .add('border sides', () => (
+    <Block direction="column" itemSpacing="3">
+      <Block border="all" width="100px" height="50px">
+        all
+      </Block>
+      <Block border="vertical" width="100px" height="50px">
+        vertical
+      </Block>
+      <Block border="horizontal" width="100px" height="50px">
+        horizontal
+      </Block>
+      <Block border="top" width="100px" height="50px">
+        top
+      </Block>
+      <Block border="right" width="100px" height="50px">
+        right
+      </Block>
+      <Block border="bottom" width="100px" height="50px">
+        bottom
+      </Block>
+      <Block border="left" width="100px" height="50px">
+        left
+      </Block>
+
+      <Block
+        border={{ side: 'all', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        all
+      </Block>
+      <Block
+        border={{ side: 'vertical', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        vertical
+      </Block>
+      <Block
+        border={{ side: 'horizontal', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        horizontal
+      </Block>
+      <Block
+        border={{ side: 'top', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        top
+      </Block>
+      <Block
+        border={{ side: 'right', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        right
+      </Block>
+      <Block
+        border={{ side: 'bottom', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        bottom
+      </Block>
+      <Block
+        border={{ side: 'left', width: '5px' }}
+        width="100px"
+        height="50px"
+      >
+        left
+      </Block>
+    </Block>
+  ))
+  .add('border colors', () => (
+    <Block itemSpacing="3">
+      <Block itemSpacing="3" direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-100',
+          }}
+        >
+          neutral-100
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-200',
+          }}
+        >
+          neutral-200
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-300',
+          }}
+        >
+          neutral-300
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-400',
+          }}
+        >
+          neutral-400
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-500',
+          }}
+        >
+          neutral-500
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-600',
+          }}
+        >
+          neutral-600
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-700',
+          }}
+        >
+          neutral-700
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'neutral-800',
+          }}
+        >
+          neutral-800
+        </Block>
+      </Block>
+      <Block itemSpacing="3" direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'blue-lighter',
+          }}
+        >
+          blue-lighter
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'blue-light',
+          }}
+        >
+          blue-light
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{ side: 'all', width: borderWidth, color: 'blue' }}
+        >
+          blue
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'blue-dark',
+          }}
+        >
+          blue-dark
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'blue-darker',
+          }}
+        >
+          blue-darker
+        </Block>
+      </Block>
+      <Block itemSpacing="3" direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'yellow-lighter',
+          }}
+        >
+          yellow-lighter
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'yellow-light',
+          }}
+        >
+          yellow-light
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'yellow',
+          }}
+        >
+          yellow
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'yellow-dark',
+          }}
+        >
+          yellow-dark
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'yellow-darker',
+          }}
+        >
+          yellow-darker
+        </Block>
+      </Block>
+      <Block itemSpacing="3" direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'green-lighter',
+          }}
+        >
+          green-lighter
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'green-light',
+          }}
+        >
+          green-light
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{ side: 'all', width: borderWidth, color: 'green' }}
+        >
+          green
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'green-dark',
+          }}
+        >
+          green-dark
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'green-darker',
+          }}
+        >
+          green-darker
+        </Block>
+      </Block>
+      <Block itemSpacing="3" direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'red-lighter',
+          }}
+        >
+          red-lighter
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'red-light',
+          }}
+        >
+          red-light
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{ side: 'all', width: borderWidth, color: 'red' }}
+        >
+          red
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'red-dark',
+          }}
+        >
+          red-dark
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'red-darker',
+          }}
+        >
+          red-darker
+        </Block>
+      </Block>
+      <Block itemSpacing="3" direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'indigo-lighter',
+          }}
+        >
+          indigo-lighter
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'indigo-light',
+          }}
+        >
+          indigo-light
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'indigo',
+          }}
+        >
+          indigo
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'indigo-dark',
+          }}
+        >
+          indigo-dark
+        </Block>
+        <Block
+          width="100px"
+          height="50px"
+          border={{
+            side: 'all',
+            width: borderWidth,
+            color: 'indigo-darker',
+          }}
+        >
+          indigo-darker
+        </Block>
+      </Block>
+    </Block>
+  ))
   .add('text color', () => (
     <>
       <Block color="neutral-100">neutral-100</Block>
