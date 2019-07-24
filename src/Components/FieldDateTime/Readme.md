@@ -3,9 +3,11 @@ import { useState } from 'react';
 import Block from '../Block/Block';
 
 function FieldDateTimeExample() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     console.log('Value is:', value);
     setSelectedDate(value);
   };
@@ -59,11 +61,10 @@ function FieldDateTimeExample() {
         validationText="Select a date and time"
       />
     </Block>
-  )
+  );
 }
 
-<FieldDateTimeExample />
-
+<FieldDateTimeExample />;
 ```
 
 ### Set Time in Local Time Zone
@@ -74,9 +75,11 @@ Too allow for entering a date/time in the browser's local time zone instead of U
 import { useState } from 'react';
 
 function FieldDateTimeLocal() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     setSelectedDate(value);
   };
 
@@ -88,10 +91,10 @@ function FieldDateTimeLocal() {
       value={selectedDate}
       onChange={handleChange}
     />
-  )
+  );
 }
 
-<FieldDateTimeLocal />
+<FieldDateTimeLocal />;
 ```
 
 ### Min/Max Dates
@@ -102,9 +105,11 @@ Depending on the use case, there are a few ways to exclude dates and times from 
 import { useState } from 'react';
 
 function FieldDateTimeExample() {
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     console.log('Value is:', value);
     setSelectedDate(value);
   };
@@ -134,12 +139,35 @@ function FieldDateTimeExample() {
         maxDate={new Date()}
       />
     </>
-  )
+  );
 }
 
-<FieldDateTimeExample />
+<FieldDateTimeExample />;
 ```
 
+### Calendar Popup Placement
+
+Use `popperPlacement` to control the preferred calendar popup placement is relative to the input field. If there is a no room in the viewport to fit the calendar due to the field's location on the page, the calendar will pop up on the opposite side.
+
+```jsx
+<FieldDateTime
+  id="topStart"
+  timeFormat="HH:mm"
+  label="top-start placement"
+  popperPlacement="top-start"
+  className="mb-5"
+  value="2019-06-26T12:00:00.000Z"
+  onChange={() => {}}
+/>
+<FieldDateTime
+  id="bottomEnd"
+  timeFormat="HH:mm"
+  label="bottom-end placement"
+  popperPlacement="bottom-end"
+  value="2019-06-26T12:00:00.000Z"
+  onChange={() => {}}
+/>
+```
 
 ### Calendar Modal (Portal)
 
@@ -150,9 +178,11 @@ import { useState } from 'react';
 import Card from '../Card/Card';
 
 function PortalExample() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     setSelectedDate(value);
   };
 
@@ -172,9 +202,8 @@ function PortalExample() {
         onChange={handleChange}
       />
     </Card>
-  )
+  );
 }
 
-<PortalExample />
-
+<PortalExample />;
 ```

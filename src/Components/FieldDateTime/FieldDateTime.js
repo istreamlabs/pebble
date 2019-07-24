@@ -82,6 +82,26 @@ const propTypes = {
    */
   onChange: PropTypes.func.isRequired,
   /**
+   * Placement of the calendar popup
+   */
+  popperPlacement: PropTypes.oneOf([
+    'auto-start',
+    'auto',
+    'auto-end',
+    'top-start',
+    'top',
+    'top-end',
+    'right-start',
+    'right',
+    'right-end',
+    'bottom-end',
+    'bottom',
+    'bottom-start',
+    'left-end',
+    'left',
+    'left-start',
+  ]),
+  /**
    * select time in browser's local time zone instead of UTC
    */
   selectLocalDateTime: PropTypes.bool,
@@ -125,6 +145,7 @@ const defaultProps = {
   excludeTime: false,
   hideLabel: false,
   isInvalid: false,
+  popperPlacement: 'bottom-start',
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
@@ -267,6 +288,7 @@ class FieldDateTime extends React.PureComponent {
       isInvalid,
       maxDate,
       minDate,
+      popperPlacement,
       selectLocalDateTime,
       size,
       timeFormat,
@@ -332,7 +354,7 @@ class FieldDateTime extends React.PureComponent {
             minDate={momentMinDate}
             maxDate={momentMaxDate}
             onChange={this.onChange}
-            popperPlacement="bottom-start"
+            popperPlacement={popperPlacement}
             selected={momentValue}
             showTimeSelect={!excludeTime}
             timeFormat={timeFormat}
