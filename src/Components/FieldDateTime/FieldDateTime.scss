@@ -614,7 +614,7 @@ $TIME_CONTAINER_WIDTH: 7rem;
   left: 15px;
 }
 
-.react-datepicker__close-icon {
+.react-datepicker__input-container .react-datepicker__close-icon {
   background-color: transparent;
   border: 0;
   cursor: pointer;
@@ -626,10 +626,11 @@ $TIME_CONTAINER_WIDTH: 7rem;
   width: 16px;
   top: 25%;
   right: 7px;
+  margin-right: 23px;
 }
 
 .react-datepicker__close-icon::after {
-  background-color: #216ba5;
+  background-color: $neutral-500;
   border-radius: 50%;
   bottom: 0;
   box-sizing: border-box;

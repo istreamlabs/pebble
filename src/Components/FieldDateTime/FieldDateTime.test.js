@@ -223,6 +223,17 @@ describe('FieldDateTime', () => {
         value.startOf('day').toISOString(),
       );
     });
+    it('returns empty string if value is cleared', () => {
+      const mockChange = jest.fn();
+      const instance = new FieldDateTime({
+        ...requiredProps,
+        onChange: mockChange,
+      });
+
+      instance.onChange(null);
+
+      expect(mockChange).toHaveBeenCalledWith('');
+    });
   });
 
   describe('FilterDate', () => {

@@ -53,6 +53,10 @@ const propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
+   * Show the clear button
+   */
+  isClearable: PropTypes.bool,
+  /**
    * Applies styling to indicate the input is invalid
    */
   isInvalid: PropTypes.bool,
@@ -128,6 +132,7 @@ const defaultProps = {
   disabled: false,
   excludeTime: false,
   hideLabel: false,
+  isClearable: false,
   isInvalid: false,
   placeholderText: 'Not set',
   size: 'medium',
@@ -265,15 +270,18 @@ class FieldDateTime extends React.PureComponent {
 
   onChange = value => {
     const { excludeTime, onChange } = this.props;
-    // this code either clears out the time complete, e.g. 00:00:00.000
-    // or clears out the seconds since we don't provide that level of granularity in our picker
-    if (excludeTime) {
-      value.startOf('day');
+    if (moment.isMoment(value)) {
+      // this code either clears out the time complete, e.g. 00:00:00.000
+      // or clears out the seconds since we don't provide that level of granularity in our picker
+      if (excludeTime) {
+        value.startOf('day');
+      } else {
+        value.startOf('minute');
+      }
+      onChange(value.toISOString());
     } else {
-      value.startOf('minute');
+      onChange('');
     }
-
-    onChange(value.toISOString());
   };
 
   filterDate = value => {
@@ -288,6 +296,7 @@ class FieldDateTime extends React.PureComponent {
       disabled,
       excludeTime,
       id,
+      isClearable,
       isInvalid,
       maxDate,
       minDate,
@@ -356,6 +365,7 @@ class FieldDateTime extends React.PureComponent {
             disabled={disabled}
             filterDate={this.filterDate}
             id={id}
+            isClearable={isClearable}
             minDate={momentMinDate}
             maxDate={momentMaxDate}
             onChange={this.onChange}

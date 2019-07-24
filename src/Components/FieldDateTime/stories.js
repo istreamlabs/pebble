@@ -51,6 +51,9 @@ storiesOf('FieldDateTime', module)
   .add('date only', () => (
     <FieldDateTimeExample excludeTime label="start date" />
   ))
+  .add('clearable', () => (
+    <FieldDateTimeExample label="Can be cleared" isClearable />
+  ))
   .add('Empty DateTime', () => (
     <>
       <FieldDateTimeEmptyExample
