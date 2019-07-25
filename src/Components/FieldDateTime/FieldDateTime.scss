@@ -58,6 +58,18 @@ $TIME_CONTAINER_WIDTH: 7rem;
   width: 100%;
 }
 
+.FieldDateTime-timezone.input-s
+  + .react-datepicker-wrapper
+  .react-datepicker__close-icon::after {
+  top: 5px;
+}
+
+.FieldDateTime-timezone.input-l
+  + .react-datepicker-wrapper
+  .react-datepicker__close-icon::after {
+  top: 1rem;
+}
+
 .react-datepicker {
   font-size: $font-size-6;
   background-color: $white;
@@ -634,13 +646,14 @@ $TIME_CONTAINER_WIDTH: 7rem;
   color: $neutral-500;
   fill: $neutral-500;
   content: '';
-  mask: url('../../Icons/remove-circle.svg');
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cg class='nc-icon-wrapper'%3E%3Cpath d='M8,0C3.6,0,0,3.6,0,8s3.6,8,8,8s8-3.6,8-8S12.4,0,8,0z M11.5,10.1l-1.4,1.4L8,9.4l-2.1,2.1l-1.4-1.4L6.6,8 L4.5,5.9l1.4-1.4L8,6.6l2.1-2.1l1.4,1.4L9.4,8L11.5,10.1z'/%3E%3C/g%3E%3C/svg%3E");
   cursor: pointer;
   background-color: $neutral-600;
   height: 16px;
   width: 16px;
   position: absolute;
   right: 0px;
+  top: 0.5rem;
 }
 
 .react-datepicker__today-button {
