@@ -187,7 +187,7 @@ export class Frame extends React.PureComponent {
       return (
         <Overlay
           onClick={this.handleNavigationDismiss}
-          styles={{ zIndex: 99 }}
+          style={{ zIndex: 99 }}
         />
       );
     }

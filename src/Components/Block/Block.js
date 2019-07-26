@@ -317,6 +317,10 @@ const propTypes = {
   /**
    * react css styles object
    */
+  style: PropTypes.object,
+  /**
+   * will be deprecated. use `style` prop instead
+   */
   styles: PropTypes.object,
   /**
    * Text alignment within this block.
@@ -381,6 +385,7 @@ class Block extends React.PureComponent {
       paddingHorizontal,
       paddingVertical,
       radius,
+      style,
       styles,
       textAlign,
       textSize,
@@ -448,11 +453,13 @@ class Block extends React.PureComponent {
         : border.color || 'neutral-300'
       : null;
 
+    const styleObj = styles || style;
+
     const mergedStyle = {
       ...flexStyle,
       ...basisStyle,
       ...borderWidthStyleObject,
-      ...styles,
+      ...styleObj,
     };
 
     Object.assign(mergedStyle, { width: widthStyles.styles });
