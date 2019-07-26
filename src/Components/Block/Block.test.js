@@ -35,49 +35,59 @@ describe('Block', () => {
     expect(wrapper.exists('li')).toEqual(true);
   });
 
-  describe('Flex', () => {
-    it('sets flex', () => {
-      const wrapper = shallow(<Block flex>test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '1 1');
-    });
-
-    it('sets flex false', () => {
-      const wrapper = shallow(<Block flex={false}>test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0');
-    });
-
-    it('sets grow', () => {
-      const wrapper = shallow(<Block flex="grow">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0');
-    });
-
-    it('sets flex', () => {
-      const wrapper = shallow(<Block flex="shrink">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '0 1');
-    });
-
-    it('sets flex when passed a string', () => {
-      const wrapper = shallow(<Block flex="grow">test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '1 0');
-    });
-
-    it('sets flex-grow and flex-shrink', () => {
+  describe('style', () => {
+    it('passes style through to style', () => {
       const wrapper = shallow(
-        <Block flex={{ grow: 5, shrink: 1 }}>test</Block>,
+        <Block style={{ color: 'red' }}>test</Block>,
       );
-      expect(wrapper.prop('style')).toHaveProperty('flex', '5 1');
-    });
-
-    it('sets default flex when passed an object', () => {
-      const wrapper = shallow(<Block flex={{}}>test</Block>);
-      expect(wrapper.prop('style')).toHaveProperty('flex', '0 0');
-    });
-
-    it('sets the flex-direction', () => {
-      const wrapper = shallow(<Block direction="column">test</Block>);
-      expect(wrapper.prop('className')).toContain('flex-column');
+      expect(wrapper.prop('style')).toMatchObject({ color: 'red' });
     });
   }),
+    describe('Flex', () => {
+      it('sets flex', () => {
+        const wrapper = shallow(<Block flex>test</Block>);
+        expect(wrapper.prop('style')).toHaveProperty('flex', '1 1');
+      });
+
+      it('sets flex false', () => {
+        const wrapper = shallow(<Block flex={false}>test</Block>);
+        expect(wrapper.prop('style')).toHaveProperty('flex', '0 0');
+      });
+
+      it('sets grow', () => {
+        const wrapper = shallow(<Block flex="grow">test</Block>);
+        expect(wrapper.prop('style')).toHaveProperty('flex', '1 0');
+      });
+
+      it('sets flex', () => {
+        const wrapper = shallow(<Block flex="shrink">test</Block>);
+        expect(wrapper.prop('style')).toHaveProperty('flex', '0 1');
+      });
+
+      it('sets flex when passed a string', () => {
+        const wrapper = shallow(<Block flex="grow">test</Block>);
+        expect(wrapper.prop('style')).toHaveProperty('flex', '1 0');
+      });
+
+      it('sets flex-grow and flex-shrink', () => {
+        const wrapper = shallow(
+          <Block flex={{ grow: 5, shrink: 1 }}>test</Block>,
+        );
+        expect(wrapper.prop('style')).toHaveProperty('flex', '5 1');
+      });
+
+      it('sets default flex when passed an object', () => {
+        const wrapper = shallow(<Block flex={{}}>test</Block>);
+        expect(wrapper.prop('style')).toHaveProperty('flex', '0 0');
+      });
+
+      it('sets the flex-direction', () => {
+        const wrapper = shallow(
+          <Block direction="column">test</Block>,
+        );
+        expect(wrapper.prop('className')).toContain('flex-column');
+      });
+    }),
     describe('itemSpacing', () => {
       it('does not add spacing if the child is a string', () => {
         const wrapper = shallow(

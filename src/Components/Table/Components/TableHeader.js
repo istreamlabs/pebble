@@ -48,7 +48,7 @@ function TableHeader({ children, mobileLabel }) {
       background="white"
       border="bottom"
       direction={isMobileLayout ? 'column' : 'row'}
-      styles={{ flexShrink: 0, minHeight: '50px' }}
+      style={{ flexShrink: 0, minHeight: '50px' }}
       justify={isMobileLayout ? 'center' : 'start'}
       padding={isMobileLayout ? '4' : null}
     >

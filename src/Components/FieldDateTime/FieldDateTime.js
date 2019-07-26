@@ -256,7 +256,7 @@ class FieldDateTime extends React.PureComponent {
           alignItems="center"
           background="neutral-200"
           className={alternativeDateTimeLabelClasses}
-          styles={{
+          style={{
             borderBottomLeftRadius: '.125rem',
           }}
         >
@@ -266,7 +266,7 @@ class FieldDateTime extends React.PureComponent {
           background={disabled ? 'neutral-300' : 'neutral-200'}
           className={alternativeDateTimeClasses}
           flex
-          styles={disabled ? { borderLeft: 0 } : null}
+          style={disabled ? { borderLeft: 0 } : null}
         >
           {formatedDate}
         </Block>
