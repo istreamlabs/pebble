@@ -154,7 +154,7 @@ describe('Button', () => {
       );
       expect(button.find('Icon').prop('size')).toBe(20);
     });
-    it('it places icon to left of button text by default', () => {
+    it('it places icon to left of button text', () => {
       const button = shallow(
         <Button icon="add-circle">add button</Button>,
       );
@@ -166,11 +166,9 @@ describe('Button', () => {
           .prop('className'),
       ).toContain('btn-icon');
     });
-    it('positions the icon on the right side', () => {
+    it('positions the iconAfterText on the right side of the label', () => {
       const button = shallow(
-        <Button icon="add-circle" iconAfterText>
-          add button
-        </Button>,
+        <Button iconAfterText="add-circle">add button</Button>,
       );
       expect(
         button
@@ -179,6 +177,14 @@ describe('Button', () => {
           .last()
           .prop('className'),
       ).toContain('btn-icon');
+    });
+    it('renders the 2 icons when set', () => {
+      const button = shallow(
+        <Button icon="add-circle" iconAfterText="add-circle">
+          add button
+        </Button>,
+      );
+      expect(button.find('.btn-icon')).toHaveLength(2);
     });
   });
 });

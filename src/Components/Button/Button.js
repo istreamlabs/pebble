@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { caseInsensitiveStringCompare } from '../../Utils';
-import { boolRequiresOtherProp } from '../../Types';
 
 import Icon from '../Icon/Icon';
 
@@ -28,13 +27,13 @@ const propTypes = {
    */
   id: PropTypes.string,
   /**
-   * The name of the [icon](/#/Components/Icon) to add inside the button
+   * Name of the [icon](/#/Components/Icon) to place before the button label text
    */
   icon: PropTypes.string,
   /**
-   * Boolean for placing the icon to the right of the button text
+   * Name of the [icon](/#/Components/Icon) to add after the button label text
    */
-  iconAfterText: boolRequiresOtherProp('icon'),
+  iconAfterText: PropTypes.string,
   /**
    * Disables the button, making it inoperable
    */
@@ -175,8 +174,8 @@ const Button = React.forwardRef((props, ref) => {
     return <Icon name={name} size={iconSize} className="btn-icon" />;
   };
 
-  const leftIcon = !iconAfterText && icon && iconElement(icon);
-  const rightIcon = icon && iconAfterText && iconElement(icon);
+  const leftIcon = icon && iconElement(icon);
+  const rightIcon = iconAfterText && iconElement(iconAfterText);
 
   const contentClasses = classNames(
     'btn-content',

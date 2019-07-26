@@ -101,8 +101,7 @@ class Pagination extends React.PureComponent {
         <Button
           disabled={currentPage === numPages}
           onClick={() => this.onPageSelect(currentPage + 1)}
-          icon="arrow-small-right"
-          iconAfterText
+          iconAfterText="arrow-small-right"
         >
           Next
         </Button>

@@ -26,6 +26,7 @@ function handleItemClick() {
     onOpen={handleOpen}
     onClose={handleClose}
     overlayClassName="w5"
+     icon="add-bold"
   >
     <DropdownItem icon="add-bold" onClick={handleItemClick}>
       default button

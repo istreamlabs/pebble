@@ -101,18 +101,14 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button icon="arrow-small-left">prev</Button>
     <Button icon="play">play</Button>
     <Button icon="stop">stop</Button>
-    <Button icon="arrow-small-right" iconAfterText>
-      next
-    </Button>
+    <Button iconAfterText="arrow-small-right">next</Button>
   </ButtonGroup>
 
   <ButtonGroup toolbar size="small">
     <Button icon="arrow-small-left">prev</Button>
     <Button icon="play">play</Button>
     <Button icon="stop">stop</Button>
-    <Button icon="arrow-small-right" iconAfterText>
-      next
-    </Button>
+    <Button iconAfterText="arrow-small-right">next</Button>
     <DropdownMenu toggle="dropdown">
       <DropdownItem>button</DropdownItem>
       <DropdownItem href="/">link</DropdownItem>
@@ -145,9 +141,7 @@ import DropdownItem from '../DropdownMenu/Components/DropdownItem';
     <Button icon="arrow-small-left">prev</Button>
     <Button icon="play">play</Button>
     <Button icon="stop">stop</Button>
-    <Button icon="arrow-small-right" iconAfterText>
-      next
-    </Button>
+    <Button iconAfterText="arrow-small-right">next</Button>
   </ButtonGroup>
 </>;
 ```
