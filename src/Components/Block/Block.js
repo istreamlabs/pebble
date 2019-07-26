@@ -315,13 +315,9 @@ const propTypes = {
    */
   itemSpacing: spacingType('itemSpacing'),
   /**
-   * react css styles object
+   * react css style object
    */
   style: PropTypes.object,
-  /**
-   * will be deprecated. use `style` prop instead
-   */
-  styles: PropTypes.object,
   /**
    * Text alignment within this block.
    * @type {PropTypes.Requireable<TextAlign>}
@@ -386,7 +382,6 @@ class Block extends React.PureComponent {
       paddingVertical,
       radius,
       style,
-      styles,
       textAlign,
       textSize,
       truncate,
@@ -453,13 +448,11 @@ class Block extends React.PureComponent {
         : border.color || 'neutral-300'
       : null;
 
-    const styleObj = styles || style;
-
     const mergedStyle = {
       ...flexStyle,
       ...basisStyle,
       ...borderWidthStyleObject,
-      ...styleObj,
+      ...style,
     };
 
     Object.assign(mergedStyle, { width: widthStyles.styles });

@@ -36,12 +36,6 @@ describe('Block', () => {
   });
 
   describe('style', () => {
-    it('passes styles through to style', () => {
-      const wrapper = shallow(
-        <Block styles={{ color: 'red' }}>test</Block>,
-      );
-      expect(wrapper.prop('style')).toMatchObject({ color: 'red' });
-    });
     it('passes style through to style', () => {
       const wrapper = shallow(
         <Block style={{ color: 'red' }}>test</Block>,
