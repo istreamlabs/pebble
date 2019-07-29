@@ -50,6 +50,13 @@ storiesOf('Block', module)
         <Block background="blue-light" width="50px" height="50px" />
         <Block background="blue-light" width="50px" height="50px" />
       </Block>
+      <Block direction={['column', 'row']} itemSpacing={[7, 3, 4, 5]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
     </Block>
   ))
   .add('border sides', () => (
