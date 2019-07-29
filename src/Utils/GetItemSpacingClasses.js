@@ -1,21 +1,46 @@
+import getDimensionClasses from './GetDimensionClasses';
+
+function getDirectionSpacing(direction, spacing) {
+  if (direction === 'row') return getDimensionClasses('mr', spacing);
+  return getDimensionClasses('mb', spacing);
+}
+
 export default (direction, spacing) => {
   let itemSpacing;
+  let spacingUnit;
   if (typeof direction === 'string') {
-    itemSpacing = direction === 'row' ? `mr-${spacing}` : `mb-${spacing}`;
+    itemSpacing = getDirectionSpacing(direction, spacing);
   } else if (Array.isArray(direction) && direction.length) {
-    itemSpacing = [];
-    itemSpacing.push(direction[0] === 'row' ? `mr-${spacing} mb-0` : `mb-${spacing} mr-0`);
+    spacingUnit = Array.isArray(spacing) ? spacing[0] : spacing;
+    itemSpacing = getDirectionSpacing(direction[0], spacingUnit);
+
+    let breakPointSpacing;
 
     if (direction[1] !== undefined) {
-      itemSpacing.push(direction[1] === 'row' ? `mr-${spacing}-ns mb-0-ns` : `mb-${spacing}-ns mr-0-ns`);
+      spacingUnit = Array.isArray(spacing) ? spacing[1] : spacing;
+      breakPointSpacing = getDirectionSpacing(
+        direction[1],
+        spacingUnit,
+      );
+      itemSpacing.classes.push(`${breakPointSpacing.classes[0]}-ns`);
     }
 
     if (direction[2] !== undefined) {
-      itemSpacing.push(direction[2] === 'row' ? `mr-${spacing}-m mb-0-m` : `mb-${spacing}-m mr-0-m`);
+      spacingUnit = Array.isArray(spacing) ? spacing[2] : spacing;
+      breakPointSpacing = getDirectionSpacing(
+        direction[2],
+        spacingUnit,
+      );
+      itemSpacing.classes.push(`${breakPointSpacing.classes[0]}-m`);
     }
 
     if (direction[3] !== undefined) {
-      itemSpacing.push(direction[3] === 'row' ? `mr-${spacing}-l mb-0-l` : `mb-${spacing}-l mr-0-l`);
+      spacingUnit = Array.isArray(spacing) ? spacing[3] : spacing;
+      breakPointSpacing = getDirectionSpacing(
+        direction[3],
+        spacingUnit,
+      );
+      itemSpacing.classes.push(`${breakPointSpacing.classes[0]}-l`);
     }
   } else {
     return undefined;

@@ -506,7 +506,7 @@ class Block extends React.PureComponent {
                   className: classNames(
                     child.props.className,
                     'block-item',
-                    spacingClasses,
+                    spacingClasses.classes,
                   ),
                 }),
             )

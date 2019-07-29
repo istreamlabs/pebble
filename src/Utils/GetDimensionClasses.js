@@ -1,22 +1,25 @@
 export default (dimension, value) => {
-  let classes;
+  let classes = [];
 
   let classPrefix = getPrefix(dimension, value);
 
   const dimensionCss = {
     styles: null,
-    classes: null
+    classes: [],
   };
 
   // set to a specific width
   if (
-    typeof value === 'string'
-    && (value.includes('px') || value.includes('em') || value.includes('rem') || value.includes('%'))
+    typeof value === 'string' &&
+    (value.includes('px') ||
+      value.includes('em') ||
+      value.includes('rem') ||
+      value.includes('%'))
   ) {
     dimensionCss.styles = value;
     // set to a css class
   } else if (typeof value === 'string' || typeof value === 'number') {
-    classes = `${classPrefix}${value}`;
+    classes.push(`${classPrefix}${value}`);
     // set to responsive css classes
   } else if (Array.isArray(value) && value.length) {
     classes = [];
