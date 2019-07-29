@@ -43,7 +43,15 @@ describe('Util > GetItemSpacingClasses', () => {
       expect(
         getItemSpacingClasses(['row', 'column', 'row', 'column'], 1),
       ).toMatchObject({
-        classes: ['mr-1', 'mb-1-ns', 'mr-1-m', 'mb-1-l'],
+        classes: [
+          'mr-1',
+          'mb-1-ns',
+          'mr-0-ns',
+          'mr-1-m',
+          'mb-0-m',
+          'mb-1-l',
+          'mr-0-l',
+        ],
         styles: null,
       });
     });
@@ -60,7 +68,7 @@ describe('Util > GetItemSpacingClasses', () => {
       expect(
         getItemSpacingClasses(['row', 'column'], [3, 7]),
       ).toMatchObject({
-        classes: ['mr-3', 'mb-7-ns'],
+        classes: ['mr-3', 'mb-7-ns', 'mr-0-ns'],
         styles: null,
       });
     });
@@ -71,7 +79,15 @@ describe('Util > GetItemSpacingClasses', () => {
           [3, 7, 4, 5],
         ),
       ).toMatchObject({
-        classes: ['mr-3', 'mb-7-ns', 'mr-4-m', 'mb-5-l'],
+        classes: [
+          'mr-3',
+          'mb-7-ns',
+          'mr-0-ns',
+          'mr-4-m',
+          'mb-0-m',
+          'mb-5-l',
+          'mr-0-l',
+        ],
         styles: null,
       });
     });

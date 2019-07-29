@@ -1,8 +1,27 @@
 import getDimensionClasses from './GetDimensionClasses';
 
-function getDirectionSpacing(direction, spacing) {
-  if (direction === 'row') return getDimensionClasses('mr', spacing);
-  return getDimensionClasses('mb', spacing);
+const BREAKPOINT_MAP = {
+  0: '',
+  1: '-ns',
+  2: '-m',
+  3: '-l',
+};
+
+function getDirectionSpacing(direction, spacing, breakpoint) {
+  let cssObj;
+
+  if (direction === 'row') {
+    cssObj = getDimensionClasses('mr', spacing);
+    if (breakpoint > 0) {
+      cssObj.classes.push('mb-0');
+    }
+  } else {
+    cssObj = getDimensionClasses('mb', spacing);
+    if (breakpoint > 0) {
+      cssObj.classes.push('mr-0');
+    }
+  }
+  return cssObj;
 }
 
 export default (direction, spacing) => {
@@ -12,7 +31,7 @@ export default (direction, spacing) => {
     itemSpacing = getDirectionSpacing(direction, spacing);
   } else if (Array.isArray(direction) && direction.length) {
     spacingUnit = Array.isArray(spacing) ? spacing[0] : spacing;
-    itemSpacing = getDirectionSpacing(direction[0], spacingUnit);
+    itemSpacing = getDirectionSpacing(direction[0], spacingUnit, 0);
 
     let breakPointSpacing;
 
@@ -21,8 +40,14 @@ export default (direction, spacing) => {
       breakPointSpacing = getDirectionSpacing(
         direction[1],
         spacingUnit,
+        1,
       );
-      itemSpacing.classes.push(`${breakPointSpacing.classes[0]}-ns`);
+
+      breakPointSpacing.classes.forEach((breakpoint, i) => {
+        itemSpacing.classes.push(
+          `${breakPointSpacing.classes[i]}${BREAKPOINT_MAP[1]}`,
+        );
+      });
     }
 
     if (direction[2] !== undefined) {
@@ -30,8 +55,13 @@ export default (direction, spacing) => {
       breakPointSpacing = getDirectionSpacing(
         direction[2],
         spacingUnit,
+        2,
       );
-      itemSpacing.classes.push(`${breakPointSpacing.classes[0]}-m`);
+      breakPointSpacing.classes.forEach((breakpoint, i) => {
+        itemSpacing.classes.push(
+          `${breakPointSpacing.classes[i]}${BREAKPOINT_MAP[2]}`,
+        );
+      });
     }
 
     if (direction[3] !== undefined) {
@@ -39,8 +69,13 @@ export default (direction, spacing) => {
       breakPointSpacing = getDirectionSpacing(
         direction[3],
         spacingUnit,
+        3,
       );
-      itemSpacing.classes.push(`${breakPointSpacing.classes[0]}-l`);
+      breakPointSpacing.classes.forEach((breakpoint, i) => {
+        itemSpacing.classes.push(
+          `${breakPointSpacing.classes[i]}${BREAKPOINT_MAP[3]}`,
+        );
+      });
     }
   } else {
     return undefined;

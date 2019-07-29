@@ -41,4 +41,10 @@ describe('Util > GetDimensionClasses', () => {
       classes: [],
     });
   });
+  it('returns correct style if passed css unit', () => {
+    expect(getDimensionClasses('width', '5px')).toMatchObject({
+      styles: '5px',
+      classes: [],
+    });
+  });
 });
