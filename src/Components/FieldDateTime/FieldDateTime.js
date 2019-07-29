@@ -22,7 +22,7 @@ const propTypes = {
   className: PropTypes.string,
   /**
    * Format used to display text in the input box
-   * default is default `YYYY-MM-DD` or `YYYY-MM-DD {timeFormat} Z`
+   * default is `YYYY-MM-DD` or `YYYY-MM-DD {timeFormat} Z`
    * to support correct handling of inputting UTC times the utc offset should be included in the format
    * @see https://momentjs.com/docs/#/parsing/string-format/
    */
