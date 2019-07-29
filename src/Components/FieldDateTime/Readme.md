@@ -1,3 +1,11 @@
+<div className="styleguide__callout">
+#### Note about custom date formats
+
+To correctly handle the experience of typing a UTC time, the
+dateFormat must include the UTC offset of 'Z'. If you are using the
+default dateFormat this is already included.
+</div>
+
 ```jsx
 import { useState } from 'react';
 import Block from '../Block/Block';
