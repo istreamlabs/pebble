@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { useMobileLayout } from '../../../Hooks';
 import { dimensionType, spacingType } from '../../../Types';
@@ -49,8 +48,6 @@ const defaultProps = {
 function TableCell({ children, className, padding, width, ...rest }) {
   const isMobileLayout = useMobileLayout();
 
-  const classes = classNames('word-wrap', className);
-
   return (
     <Block
       role="gridcell"
@@ -59,7 +56,7 @@ function TableCell({ children, className, padding, width, ...rest }) {
         isMobileLayout ? '100%' : width !== '100%' ? width : null
       }
       direction="column"
-      className={classes}
+      className={className}
       padding={padding}
       {...rest}
     >

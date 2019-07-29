@@ -15,7 +15,7 @@ describe('TableCell', () => {
       shallow(<TableCell />);
     }).not.toThrow();
   });
-  it('applies rowgroup as the role by default', () => {
+  it('applies gridcell as the role by default', () => {
     const wrapper = shallow(<TableCell />);
     expect(wrapper.prop('role')).toBe('gridcell');
   });
