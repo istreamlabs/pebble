@@ -8,6 +8,12 @@ describe('Util > GetItemSpacingClasses', () => {
         styles: null,
       });
     });
+    it('returns correct class if passed a single number and direction is row in an array', () => {
+      expect(getItemSpacingClasses(['row'], 1)).toMatchObject({
+        classes: ['mr-1'],
+        styles: null,
+      });
+    });
     it('returns correct class if passed a single number and direction is column', () => {
       expect(getItemSpacingClasses('column', 1)).toMatchObject({
         classes: ['mb-1'],
@@ -86,6 +92,30 @@ describe('Util > GetItemSpacingClasses', () => {
           'mr-4-m',
           'mb-0-m',
           'mb-5-l',
+          'mr-0-l',
+        ],
+        styles: null,
+      });
+    });
+    it('returns correct classes if 2 directions and 3 spacings', () => {
+      expect(
+        getItemSpacingClasses(['row', 'column'], [3, 7, 4]),
+      ).toMatchObject({
+        classes: ['mr-3', 'mb-7-ns', 'mr-0-ns', 'mb-4-m', 'mr-0-m'],
+        styles: null,
+      });
+    });
+    it('returns correct classes if 2 directions and 4 spacings', () => {
+      expect(
+        getItemSpacingClasses(['row', 'column'], [3, 7, 4, 1]),
+      ).toMatchObject({
+        classes: [
+          'mr-3',
+          'mb-7-ns',
+          'mr-0-ns',
+          'mb-4-m',
+          'mr-0-m',
+          'mb-1-l',
           'mr-0-l',
         ],
         styles: null,

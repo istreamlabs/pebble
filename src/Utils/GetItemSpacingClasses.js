@@ -10,15 +10,16 @@ const BREAKPOINT_MAP = {
 function getDirectionSpacing(direction, spacing, breakpoint) {
   let cssObj;
 
-  if (direction === 'row') {
-    cssObj = getDimensionClasses('mr', spacing);
-    if (breakpoint > 0) {
-      cssObj.classes.push('mb-0');
-    }
-  } else {
+  if (direction === 'column') {
     cssObj = getDimensionClasses('mb', spacing);
     if (breakpoint > 0) {
       cssObj.classes.push('mr-0');
+    }
+  } else {
+    // direction default is 'row'
+    cssObj = getDimensionClasses('mr', spacing);
+    if (breakpoint > 0) {
+      cssObj.classes.push('mb-0');
     }
   }
   return cssObj;
@@ -34,11 +35,14 @@ export default (direction, spacing) => {
     itemSpacing = getDirectionSpacing(direction[0], spacingUnit, 0);
 
     let breakPointSpacing;
+    let breakPointDirection;
 
-    if (direction[1] !== undefined) {
+    if (direction[1] !== undefined || spacing[1] !== undefined) {
       spacingUnit = Array.isArray(spacing) ? spacing[1] : spacing;
+      breakPointDirection =
+        direction[1] !== undefined ? direction[1] : direction[0];
       breakPointSpacing = getDirectionSpacing(
-        direction[1],
+        breakPointDirection,
         spacingUnit,
         1,
       );
@@ -50,10 +54,12 @@ export default (direction, spacing) => {
       });
     }
 
-    if (direction[2] !== undefined) {
+    if (direction[2] !== undefined || spacing[2] !== undefined) {
       spacingUnit = Array.isArray(spacing) ? spacing[2] : spacing;
+      breakPointDirection =
+        direction[2] !== undefined ? direction[2] : direction[1];
       breakPointSpacing = getDirectionSpacing(
-        direction[2],
+        breakPointDirection,
         spacingUnit,
         2,
       );
@@ -64,10 +70,16 @@ export default (direction, spacing) => {
       });
     }
 
-    if (direction[3] !== undefined) {
+    if (direction[3] !== undefined || spacing[3] !== undefined) {
       spacingUnit = Array.isArray(spacing) ? spacing[3] : spacing;
+      breakPointDirection =
+        direction[3] !== undefined
+          ? direction[3]
+          : direction[2] !== undefined
+          ? direction[2]
+          : direction[1];
       breakPointSpacing = getDirectionSpacing(
-        direction[3],
+        breakPointDirection,
         spacingUnit,
         3,
       );
