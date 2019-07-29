@@ -22,7 +22,8 @@ const propTypes = {
   className: PropTypes.string,
   /**
    * Format used to display text in the input box
-   * default is default YYYY-MM-DD or YYYY-MM-DD{timeFormat}
+   * default is `YYYY-MM-DD` or `YYYY-MM-DD {timeFormat} Z`
+   * To support correct handling of inputting UTC times, the UTC offset should be included in the format
    * @see https://momentjs.com/docs/#/parsing/string-format/
    */
   dateFormat: PropTypes.string,
@@ -188,7 +189,7 @@ class FieldDateTime extends React.PureComponent {
     return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
-      ? `YYYY-MM-DD ${timeFormat}`
+      ? `YYYY-MM-DD ${timeFormat} Z`
       : 'YYYY-MM-DD';
   }
 
