@@ -74,7 +74,7 @@ describe('FieldDateTime', () => {
 
       const result = instance.getDateFormat();
 
-      expect(result).toEqual('YYYY-MM-DD H:m');
+      expect(result).toEqual('YYYY-MM-DD H:m Z');
     });
     it('returns default without time format', () => {
       const instance = new FieldDateTime({
