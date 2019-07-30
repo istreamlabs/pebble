@@ -82,7 +82,7 @@ const auxMenu = [
 storiesOf('MainMenu', module)
   .add('all', () => (
     <DemoBrowserRouter>
-      <div styles={{ overflow: 'auto' }}>
+      <div style={{ overflow: 'auto' }}>
         <Block height="400px">
           <MainMenu menu={menu} auxMenu={auxMenu} />
         </Block>
@@ -91,7 +91,7 @@ storiesOf('MainMenu', module)
   ))
   .add('start expanded', () => (
     <DemoBrowserRouter>
-      <div styles={{ overflow: 'auto' }}>
+      <div style={{ overflow: 'auto' }}>
         <Block height="400px">
           <MainMenu menu={menu} auxMenu={auxMenu} startMenuExpanded />
         </Block>

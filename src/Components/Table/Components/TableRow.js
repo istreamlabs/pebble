@@ -60,7 +60,7 @@ function TableRow({ children, className, hoverHighlight, ...rest }) {
       direction={isMobileLayout ? 'column' : 'row'}
       marginTop={isMobileLayout ? '4' : null}
       width="100%"
-      styles={{ flexShrink: 0 }}
+      style={{ flexShrink: 0 }}
       {...rest}
     >
       {childrenMarkup()}

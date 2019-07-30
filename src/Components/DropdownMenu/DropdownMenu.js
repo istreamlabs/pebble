@@ -36,6 +36,10 @@ const propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
+   * The name of the [icon](/#/Components/Icon) to add before the toggle label
+   */
+  icon: PropTypes.string,
+  /**
    * Changes the size of all buttons in the group
    * @type {PropTypes.Requireable<Size>}
    */
@@ -156,6 +160,7 @@ class DropdownMenu extends React.PureComponent {
   renderToggle = ({ ref }) => {
     const {
       fullWidth,
+      icon,
       size,
       toggle,
       toggleClassName,
@@ -167,8 +172,8 @@ class DropdownMenu extends React.PureComponent {
         <Button
           type="button"
           onClick={this.onToggle}
-          icon="arrow-small-down"
-          iconAfterText
+          icon={icon}
+          iconAfterText="arrow-small-down"
           className={toggleClassName}
           disabled={disabled}
           aria-haspopup

@@ -88,8 +88,7 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
     </LinkButton>
     <LinkButton
       href="/#/Components/LinkButton"
-      icon="arrow-small-right"
-      iconAfterText
+      iconAfterText="arrow-small-right"
     >
       next
     </LinkButton>

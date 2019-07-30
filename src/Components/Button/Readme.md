@@ -51,6 +51,8 @@ Render a button that performs an action, but looks like inline clickable text be
 
 ### Icon and Text
 
+Icons can be placed on both sides of the button label.
+
 ```js
 <div className="styleguide__buttons">
   <Button primary size="small" icon="add-circle">
@@ -63,18 +65,28 @@ Render a button that performs an action, but looks like inline clickable text be
     large
   </Button>
 </div>
+
+<div className="styleguide__buttons">
+  <Button primary size="small" iconAfterText="add-circle">small</Button>
+  <Button primary iconAfterText="add-circle">medium</Button>
+  <Button primary size="large" iconAfterText="add-circle">large</Button>
+</div>
+
+<div className="styleguide__buttons">
+  <Button primary size="small" icon="add-circle" iconAfterText="arrow-small-down">small</Button>
+  <Button primary icon="add-circle" iconAfterText="arrow-small-down">medium</Button>
+  <Button primary size="large" icon="add-circle" iconAfterText="arrow-small-down">large</Button>
+</div>
 ```
 
 ### Icon Positioning
 
-Icons can be placed on either side of the button label to meet your usecase.
+Icons can be placed on either side, or both sides of the button label.
 
 ```js
 <div className="styleguide__buttons">
   <Button icon="arrow-small-left">prev</Button>
-  <Button icon="arrow-small-right" iconAfterText>
-    next
-  </Button>
+  <Button iconAfterText="arrow-small-right">next</Button>
 </div>
 ```
 
@@ -150,7 +162,7 @@ Use for buttons placed in a narrow column.
 
 ```js
 <Button fullWidth className="mb-2">full width</Button>
-<Button fullWidth icon="arrow-small-down" iconAfterText>full width</Button>
+<Button fullWidth iconAfterText="arrow-small-down">full width</Button>
 
 ```
 

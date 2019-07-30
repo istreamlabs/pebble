@@ -16,7 +16,7 @@ storiesOf('Breadcrumbs', module).add('all', () => (
       <Link href="#">Parent</Link>
       <DropdownMenu
         toggle={
-          <Button plain iconAfterText icon="arrow-small-down">
+          <Button plain iconAfterText="arrow-small-down">
             Level 1
           </Button>
         }

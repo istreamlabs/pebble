@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { caseInsensitiveStringCompare } from '../../Utils';
-import { boolRequiresOtherProp } from '../../Types';
 
 import Icon from '../Icon/Icon';
 import Link from '../Link/Link';
@@ -43,13 +42,13 @@ const propTypes = {
    */
   href: PropTypes.string,
   /**
-   * The name of the [icon](/#/Components/Icon) to add inside the button
+   * Name of the [icon](/#/Components/Icon) to place before the button label text
    */
   icon: PropTypes.string,
   /**
-   * Boolean for placing the icon to the right of the button text
+   * Name of the [icon](/#/Components/Icon) to add after the button label text
    */
-  iconAfterText: boolRequiresOtherProp('icon'),
+  iconAfterText: PropTypes.string,
   /**
    * Make the button have more visual weight to identify the primary call to action
    */
@@ -115,8 +114,8 @@ function LinkButton({
     return <Icon name={name} size={iconSize} className="btn-icon" />;
   };
 
-  const leftIcon = !iconAfterText && icon && iconElement(icon);
-  const rightIcon = icon && iconAfterText && iconElement(icon);
+  const leftIcon = icon && iconElement(icon);
+  const rightIcon = iconAfterText && iconElement(iconAfterText);
 
   const contentClasses = classNames(
     'btn-content',

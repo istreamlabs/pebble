@@ -1,6 +1,6 @@
 {
   "name": "@istreamplanet/pebble",
-  "version": "0.37.0",
+  "version": "1.0.0-beta.3",
   "description": "Pebble Design System",
   "private": false,
   "repository": {
@@ -9,12 +9,13 @@
   },
   "author": "iStreamPlanet",
   "license": "Apache-2.0",
-  "main": "dist/Components/index.js",
-  "module": "dist/Components/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
     "dist/*"
   ],
   "dependencies": {
+    "@babel/runtime": "^7.5.4",
     "@reach/visually-hidden": "^0.1.2",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
@@ -36,6 +37,7 @@
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.4.3",
     "@storybook/addon-a11y": "^5.0.10",
     "@storybook/addon-actions": "^5.0.10",
@@ -70,8 +72,8 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils && babel src/Types -d dist/Types && babel src/Hooks -d dist/Hooks",
-    "start": "react-scripts start",
+    "build": "yarn clean && cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/index.js -d dist/ && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils && babel src/Types -d dist/Types && babel src/Hooks -d dist/Hooks",
+    "start": "yarn storybook",
     "test": "react-scripts test",
     "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server --open",

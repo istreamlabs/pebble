@@ -340,7 +340,7 @@ describe('FieldDateTime', () => {
         result
           .find(Block)
           .at(1)
-          .prop('styles'),
+          .prop('style'),
       ).toMatchObject({ borderLeft: 0 });
     });
   });

@@ -51,9 +51,7 @@ storiesOf('ButtonGroup', module).add('all', () => (
       <Button icon="arrow-small-left">prev</Button>
       <Button icon="play">play</Button>
       <Button icon="stop">stop</Button>
-      <Button icon="arrow-small-right" iconAfterText>
-        next
-      </Button>
+      <Button iconAfterText="arrow-small-right">next</Button>
     </ButtonGroup>
 
     <ButtonGroup fullWidth toolbar className="mb-4">
@@ -66,9 +64,7 @@ storiesOf('ButtonGroup', module).add('all', () => (
       <Button icon="arrow-small-left">prev</Button>
       <Button icon="play">play</Button>
       <Button icon="stop">stop</Button>
-      <Button icon="arrow-small-right" iconAfterText>
-        next
-      </Button>
+      <Button iconAfterText="arrow-small-right">next</Button>
     </ButtonGroup>
   </DemoBrowserRouter>
 ));
