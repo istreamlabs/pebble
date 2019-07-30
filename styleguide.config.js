@@ -44,7 +44,7 @@ module.exports = {
     ],
     fontFamily: {
       base:
-        '-apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
+        '"Inter", -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif',
     },
     fontSize: {
       base: 16,
