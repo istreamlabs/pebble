@@ -248,7 +248,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginTop: spacingType('marginTop'),
+  marginTop: spacingType,
   /**
    * Margin [space](/#/Styles/Spacing) to be added below this block.
    *
@@ -257,7 +257,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  marginBottom: spacingType('marginBottom'),
+  marginBottom: spacingType,
   /**
    * Overflow behavior
    *
@@ -277,7 +277,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  padding: spacingType('padding'),
+  padding: spacingType,
   /**
    * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
    *
@@ -286,7 +286,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingHorizontal: spacingType('paddingHorizontal'),
+  paddingHorizontal: spacingType,
   /**
    * Set the [radius](/#/Styles/Border) of all corners
    *
@@ -295,7 +295,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Radius>}
    */
-  radius: radiusType('radius'),
+  radius: radiusType,
   /**
    * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
    *
@@ -304,7 +304,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  paddingVertical: spacingType('paddingVertical'),
+  paddingVertical: spacingType,
   /**
    * Amount of [space](/#/Styles/Spacing) between each block item
    *
@@ -313,7 +313,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  itemSpacing: spacingType('itemSpacing'),
+  itemSpacing: spacingType,
   /**
    * react css style object
    */
@@ -506,7 +506,7 @@ class Block extends React.PureComponent {
                   className: classNames(
                     child.props.className,
                     'block-item',
-                    spacingClasses,
+                    spacingClasses.classes,
                   ),
                 }),
             )

@@ -10,6 +10,55 @@ import Text from '../Text/Text';
 const borderWidth = '8px';
 
 storiesOf('Block', module)
+  .add('itemSpacing', () => (
+    <Block direction="column" itemSpacing="6">
+      <Block direction="row" itemSpacing="5">
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction="column" itemSpacing="5">
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction="row" itemSpacing={[2, 4, 6, 8]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction="column" itemSpacing={[7, 3, 1, 7]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block
+        direction={['column', 'row', 'column', 'row']}
+        itemSpacing={[7, 3, 1, 7]}
+      >
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction={['column', 'row']} itemSpacing={[7, 3, 4, 5]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+    </Block>
+  ))
   .add('border sides', () => (
     <Block direction="column" itemSpacing="3">
       <Block border="all" width="100px" height="50px">
