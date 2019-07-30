@@ -7,7 +7,9 @@ import Icon from '../../Icon/Icon';
 
 describe('Option', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Option />); }).not.toThrow();
+    expect(() => {
+      shallow(<Option />);
+    }).not.toThrow();
   });
 
   it('renders a unchecked checkbox by default', () => {
