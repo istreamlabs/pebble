@@ -24,7 +24,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  padding: spacingType('padding'),
+  padding: spacingType,
   /**
    * A valid css width (%, px, em, rem).
    *

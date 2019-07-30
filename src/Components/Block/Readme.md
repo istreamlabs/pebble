@@ -85,7 +85,7 @@ Basis defines the default size of an element before the remaining space is distr
 Width can be set to a valid css width value.
 
 ```js
-<Block width="243px" padding="3" background="blue-light" marginBottom="4">233px</Block>
+<Block width="243px" padding="3" background="blue-light" marginBottom="4">243px</Block>
 <Block width="10rem" padding="3" background="blue-light" marginBottom="4">10rem (160px)</Block>
 <Block width="25%" padding="3" background="blue-light" marginBottom="4">25%</Block>
 ```
