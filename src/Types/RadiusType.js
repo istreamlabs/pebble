@@ -1,4 +1,4 @@
-export default radiusType => (props, propName, componentName) => {
+export default (props, propName, componentName) => {
   componentName = componentName || 'ANONYMOUS';
 
   // eslint-disable-next-line react/destructuring-assignment
