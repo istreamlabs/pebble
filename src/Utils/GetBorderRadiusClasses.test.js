@@ -10,7 +10,12 @@ describe('Util > GetBorderRadiusClasses', () => {
   });
 
   it('returns correct array of responsive classes when passed an array', () => {
-    expect(getBorderRadiusClasses([0, 1, 2, 'pill'])).toMatchObject(['br0', 'br1-ns', 'br2-m', 'br-pill-l']);
+    expect(getBorderRadiusClasses([0, 1, 2, 'pill'])).toMatchObject([
+      'br0',
+      'br1-ns',
+      'br2-m',
+      'br-pill-l',
+    ]);
   });
 
   it('returns undefined if not passed an array, string, or number', () => {

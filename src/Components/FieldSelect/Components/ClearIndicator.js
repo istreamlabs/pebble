@@ -9,7 +9,9 @@ const propTypes = {
 };
 
 function ClearIndicator(props) {
-  const { innerProps: { ref, ...restInnerProps } } = props;
+  const {
+    innerProps: { ref, ...restInnerProps },
+  } = props;
   return (
     <Block {...restInnerProps} ref={ref} paddingHorizontal="3">
       <Icon name="remove-circle" />

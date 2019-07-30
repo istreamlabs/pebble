@@ -14,14 +14,15 @@ const propTypes = {
 };
 
 function Option(props) {
-  const {
-    innerProps, children, isSelected
-  } = props;
+  const { innerProps, children, isSelected } = props;
 
   return (
     <Block {...innerProps} alignItems="center">
       <components.Option {...props}>
-        <Icon name={isSelected ? 'checkbox-checked' : 'checkbox'} className="mr-2" />
+        <Icon
+          name={isSelected ? 'checkbox-checked' : 'checkbox'}
+          className="mr-2"
+        />
         {children}
       </components.Option>
     </Block>

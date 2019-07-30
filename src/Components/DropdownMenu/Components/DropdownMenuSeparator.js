@@ -16,9 +16,7 @@ const propTypes = {
  * ---
  */
 
-function DropdownMenuSeparator({
-  className,
-}) {
+function DropdownMenuSeparator({ className }) {
   return (
     <Block
       className={className}

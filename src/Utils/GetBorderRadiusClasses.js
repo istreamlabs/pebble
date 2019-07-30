@@ -1,4 +1,4 @@
-export default (radius) => {
+export default radius => {
   let borderRadiusClasses;
 
   if (typeof radius === 'string' || typeof radius === 'number') {
@@ -7,7 +7,9 @@ export default (radius) => {
     borderRadiusClasses = [];
     borderRadiusClasses.push(`br${getRadiusModifier(radius[0])}`);
     if (radius[1] !== undefined) {
-      borderRadiusClasses.push(`br${getRadiusModifier(radius[1])}-ns`);
+      borderRadiusClasses.push(
+        `br${getRadiusModifier(radius[1])}-ns`,
+      );
     }
     if (radius[2] !== undefined) {
       borderRadiusClasses.push(`br${getRadiusModifier(radius[2])}-m`);
