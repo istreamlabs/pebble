@@ -5,6 +5,8 @@ import DropdownIndicator from './DropdownIndicator';
 
 describe('DropdownIndicator', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<DropdownIndicator />); }).not.toThrow();
+    expect(() => {
+      shallow(<DropdownIndicator />);
+    }).not.toThrow();
   });
 });

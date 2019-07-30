@@ -30,14 +30,15 @@ const defaultProps = {
  * ---
  */
 
-function DropdownItemGroup({
-  children,
-  className,
-  title,
-}) {
+function DropdownItemGroup({ children, className, title }) {
   const classes = classNames('dropdown-item-group', className);
   return (
-    <Block marginBottom="4" direction="column" className={classes} role="menu">
+    <Block
+      marginBottom="4"
+      direction="column"
+      className={classes}
+      role="menu"
+    >
       <Heading
         element="4"
         size="6"
