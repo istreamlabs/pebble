@@ -60,6 +60,9 @@ storiesOf('Text', module)
       <div>
         <Text appearance="code">Code</Text>
       </div>
+      <div>
+        <Text appearance="mono">Mono</Text>
+      </div>
     </>
   ))
   .add('colors', () => (

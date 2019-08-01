@@ -6,10 +6,24 @@
   border-radius: $border-radius-2;
   background: $black-05;
   color: $neutral-700;
+  font-family: $mono-spaced;
 }
 
-.appearance-info     { color: $blue-dark }
-.appearance-warn   { color: $yellow-dark }
-.appearance-danger      { color: $red }
-.appearance-success    { color: $green-dark }
-.appearance-muted   { color: $neutral-500 }
+.appearance-info {
+  color: $blue-dark;
+}
+.appearance-warn {
+  color: $yellow-dark;
+}
+.appearance-danger {
+  color: $red;
+}
+.appearance-success {
+  color: $green-dark;
+}
+.appearance-muted {
+  color: $neutral-500;
+}
+.appearance-mono {
+  font-family: $mono-spaced;
+}

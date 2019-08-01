@@ -18,6 +18,7 @@ const propTypes = {
     'muted',
     'info',
     'code',
+    'mono',
   ]),
   /**
    * Give the text a bold appearance

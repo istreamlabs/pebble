@@ -40,4 +40,5 @@ Control the color of the text, or set the `appearance` prop to `code` to render 
 <div><Text appearance="warn">Warn</Text></div>
 <div><Text appearance="danger">Danger</Text></div>
 <div><Text appearance="code">Code</Text></div>
+<div><Text appearance="mono">Mono</Text></div>
 ```
