@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import FocusTrap from 'focus-trap-react';
 
 import Modal from './Modal';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
