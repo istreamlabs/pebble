@@ -286,7 +286,7 @@ function ModalExample() {
 <ModalExample />;
 ```
 
-## Not Dismissable/Blocking Modal
+### Not Dismissable/Blocking Modal
 
 To display a blocking modal, will not render the closing button when passed the notDismissable flag. Use the ESC key to dismiss this modal but ordinarily to make this a blocking modal onRequestClose should not be supplied.
 
