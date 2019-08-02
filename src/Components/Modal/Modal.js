@@ -97,7 +97,7 @@ const defaultProps = {
   mobileFullScreen: false,
   onRequestClose: () => {},
   type: 'default',
-  notDismissable: true,
+  notDismissable: false,
 };
 
 /**
