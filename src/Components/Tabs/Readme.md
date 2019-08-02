@@ -115,6 +115,8 @@ import { useState } from 'react';
 
 import TabPanel from './Components/TabPanel';
 
+import Badge from '../Badge/Badge';
+
 function TabExample() {
   const [selectedPanelTab, setSelectedPanelTab] = useState(
     'panel-1-tab',
@@ -139,7 +141,11 @@ function TabExample() {
       <TabPanel
         id="panel-2"
         background="white"
-        label="Panel 2"
+        label={
+          <>
+            Alerts <Badge type="danger">3</Badge>
+          </>
+        }
         tabId="panel-2-tab"
         paddingVertical="4"
         paddingHorizontal={[3, 4, 5]}
