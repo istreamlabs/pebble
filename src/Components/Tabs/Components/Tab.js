@@ -37,7 +37,7 @@ const Tab = ({
   );
 
   const tabClasses = classNames('tab-button', {
-    'text-transform-uppercase tracked': size === 'small',
+    'text-transform-uppercase tracked pv-2': size === 'small',
     'ph-5': size === 'medium',
     'ph-6': size === 'large',
   });
@@ -52,7 +52,6 @@ const Tab = ({
         aria-selected={isSelected}
         role="tab"
         onClick={handleClick}
-        value={label}
         size={size}
         disabled={disabled}
       >
