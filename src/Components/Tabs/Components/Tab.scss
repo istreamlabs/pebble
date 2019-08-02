@@ -19,6 +19,7 @@ $TAB_COLOR_SELECTED: $neutral-700;
   border-bottom: $TAB_BOTTOM_BORDER_HEIGHT solid transparent;
   transition: border 0.2s linear, background 0.2s linear;
   height: 100%;
+  min-height: 30px;
 
   &:focus,
   &:hover:not(:disabled) {
