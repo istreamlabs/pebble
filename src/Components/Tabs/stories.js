@@ -4,6 +4,7 @@ import '../../Styles/foundation.scss';
 
 import Tabs from './Tabs';
 import TabPanel from './Components/TabPanel';
+import Badge from '../Badge/Badge';
 
 const tabData = [
   {
@@ -92,7 +93,11 @@ function TabsExample() {
         <TabPanel
           id="panel-2"
           background="white"
-          label="Panel 2"
+          label={
+            <>
+              Alerts <Badge type="danger">3</Badge>
+            </>
+          }
           tabId="panel-2-tab"
           paddingVertical="4"
           paddingHorizontal={[3, 4, 5]}

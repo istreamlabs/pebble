@@ -17,7 +17,8 @@ $TAB_COLOR_SELECTED: $neutral-700;
   color: $TAB_COLOR;
   text-decoration: none;
   border-bottom: $TAB_BOTTOM_BORDER_HEIGHT solid transparent;
-  transition: border .2s linear, background .2s linear;
+  transition: border 0.2s linear, background 0.2s linear;
+  height: 100%;
 
   &:focus,
   &:hover:not(:disabled) {
@@ -34,7 +35,6 @@ $TAB_COLOR_SELECTED: $neutral-700;
 }
 
 .tab-selected {
-
   .tab-button {
     border-bottom: $TAB_BOTTOM_BORDER_HEIGHT solid $blue;
     color: $TAB_COLOR_SELECTED;
