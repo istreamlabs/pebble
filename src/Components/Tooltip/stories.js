@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import Tooltip from './Tooltip';
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 
 function PlacementExample() {
@@ -39,6 +40,14 @@ storiesOf('Tooltip', module)
       content="i'm the content of a tooltip. i'm the content of a tooltip"
     >
       string
+    </Tooltip>
+  ))
+  .add('icon', () => (
+    <Tooltip
+      active
+      content="i'm the content of a tooltip. i'm the content of a tooltip"
+    >
+      <Icon name="info-circle" />
     </Tooltip>
   ))
   .add('placement', () => <PlacementExample />);

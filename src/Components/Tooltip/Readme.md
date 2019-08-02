@@ -1,17 +1,25 @@
 ## Examples
 
 ```jsx
-<p>
-  Here is some text copy with an inline
-  <Tooltip content="Tooltips provide additional information on hover or focus">
-    <span className="link">tooltip</span>
-  </Tooltip>
-</p>
+import Icon from '../Icon/Icon';
+<>
+  <p>
+    Here is some text copy with an inline
+    <Tooltip content="Tooltips provide additional information on hover or focus">
+      <span className="link">tooltip</span>
+    </Tooltip>
+  </p>
+  <p>
+    <Tooltip content="Tooltip using an Icon">
+      <Icon name="info-circle" />
+    </Tooltip>
+  </p>
+</>;
 ```
 
 ### Placement
 
-Placement of the tooltip is will automatically adjust itself based on the browser viewport, but the `placement` prop can be set for specific usecases.
+Placement of the tooltip is will automatically adjust itself based on the browser viewport, but the `placement` prop can be set for specific use cases.
 
 ```jsx
 import Button from '../Button/Button';
