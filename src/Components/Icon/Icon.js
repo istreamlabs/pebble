@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import icons from './Icons';
@@ -84,13 +84,16 @@ const defaultProps = {
  *
  * @example ./IconExamples.md
  */
-function Icon({
-  size,
-  ariaHidden,
-  accessibilityLabel,
-  className,
-  name,
-}) {
+const Icon = forwardRef((props, ref) => {
+  const {
+    size,
+    ariaHidden,
+    accessibilityLabel,
+    className,
+    name,
+    ...rest
+  } = props;
+
   let iconName = name;
   /* istanbul ignore next */
   iconName = (typeof iconName === 'string'
@@ -124,12 +127,14 @@ function Icon({
       height={`${parsedSize}px`}
       width={`${parsedSize}px`}
       fill="currentColor"
+      ref={ref}
+      {...rest}
     >
       {!!accessibilityLabel && <title>{accessibilityLabel}</title>}
       {iconElements}
     </svg>
   );
-}
+});
 
 Icon.propTypes = propTypes;
 Icon.defaultProps = defaultProps;
