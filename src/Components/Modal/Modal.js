@@ -33,6 +33,14 @@ const ICON_COLOR_MAP = {
   danger: 'red',
 };
 
+// Small helper that is used to conditionally render the
+// FocusTrap component when notDismissable is true
+// this prevents situations where FocusTrap will throw
+// errors if all the children passed to it are not focusable elements
+// ref: https://blog.hackages.io/conditionally-wrap-an-element-in-react-a8b9a47fab2
+const ConditionalWrapper = ({ condition, wrapper, children }) =>
+  condition ? wrapper(children) : children;
+
 const propTypes = {
   /**
    * Elements to be rendered as children of this component
@@ -79,12 +87,17 @@ const propTypes = {
    * @type {PropTypes.Requireable<AppearanceType>}
    */
   type: PropTypes.oneOf(['default', 'warn', 'danger']),
+  /**
+   * Boolean flag used to make the modal not dismissable by the user when true
+   */
+  notDismissable: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
   mobileFullScreen: false,
-  onRequestClose: undefined,
+  onRequestClose: () => {},
   type: 'default',
+  notDismissable: true,
 };
 
 /**
@@ -104,11 +117,12 @@ function Modal({
   onRequestClose,
   title,
   type,
+  notDismissable,
 }) {
   useLockBodyScroll(showing);
   useKeyBoardEvent('Escape', onRequestClose);
 
-  const closeBtn = (
+  const closeBtn = !notDismissable ? (
     <Button
       icon="close"
       size="large"
@@ -119,7 +133,7 @@ function Modal({
         'modal-close-btn-no-title': title === undefined,
       })}
     />
-  );
+  ) : null;
 
   const headerMarkup = () => {
     const headerClass = HEADER_STYLES_MAP[type];
@@ -202,11 +216,18 @@ function Modal({
 
   return (
     <Overlay className="modal-container" justify="center">
-      <FocusTrap
-        active={showing}
-        focusTrapOptions={{
-          clickOutsideDeactivates: false,
-        }}
+      <ConditionalWrapper
+        condition={!notDismissable}
+        wrapper={children => (
+          <FocusTrap
+            active={showing}
+            focusTrapOptions={{
+              clickOutsideDeactivates: false,
+            }}
+          >
+            {children}
+          </FocusTrap>
+        )}
       >
         <Block
           direction="column"
@@ -229,7 +250,7 @@ function Modal({
           </Block>
           {footerMarkup()}
         </Block>
-      </FocusTrap>
+      </ConditionalWrapper>
     </Overlay>
   );
 }
