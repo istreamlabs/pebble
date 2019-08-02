@@ -42,9 +42,12 @@ storiesOf('Tooltip', module)
       string
     </Tooltip>
   ))
-  .add('Icon', () => {
-    <Tooltip content="Tooltip using an Icon">
+  .add('icon', () => (
+    <Tooltip
+      active
+      content="i'm the content of a tooltip. i'm the content of a tooltip"
+    >
       <Icon name="info-circle" />
-    </Tooltip>;
-  })
+    </Tooltip>
+  ))
   .add('placement', () => <PlacementExample />);
