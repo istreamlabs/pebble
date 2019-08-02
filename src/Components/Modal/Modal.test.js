@@ -100,7 +100,9 @@ describe('Modal', () => {
           <button type="button">Click me</button>
         </Modal>,
       );
-      expect(instance.children().filter(el => el.is(':focus'))).toHaveLength(0);
+      expect(
+        instance.children().filter(el => el.is(':focus')),
+      ).toHaveLength(0);
     });
   });
 });
