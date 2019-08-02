@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import FocusTrap from 'focus-trap-react';
 
 import Modal from './Modal';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
@@ -15,6 +16,11 @@ describe('Modal', () => {
   it('renders nothing when showing is false', () => {
     const instance = shallow(<Modal showing={false}>content</Modal>);
     expect(instance.isEmptyRender()).toEqual(true);
+  });
+
+  it('wraps the Modal with FocusTrap by default', () => {
+    const instance = mount(<Modal showing>content</Modal>);
+    expect(instance.find(FocusTrap).exists()).toBe(true);
   });
 
   describe('className', () => {
@@ -80,6 +86,26 @@ describe('Modal', () => {
           .at(0)
           .prop('name'),
       ).toBe('remove-circle');
+    });
+  });
+
+  describe('notDismissable', () => {
+    it('closeBtn will not render when notDismissable is true', () => {
+      const instance = shallow(
+        <Modal showing notDismissable>
+          content
+        </Modal>,
+      );
+      expect(instance.find('.modal-close-btn')).toHaveLength(0);
+    });
+
+    it('focus will not be added to focusable elements within modal', () => {
+      const instance = mount(
+        <Modal showing notDismissable>
+          <button type="button">Click me</button>
+        </Modal>,
+      );
+      expect(instance.find(FocusTrap).exists()).toBe(false);
     });
   });
 });
