@@ -323,6 +323,15 @@ describe('Block', () => {
       expect(wrapper.prop('className')).toContain('mb-1');
     });
 
+    it('sets responsive margin', () => {
+      const wrapper = shallow(
+        <Block marginTop={[1, 0, 2, 3]}>test</Block>,
+      );
+      expect(wrapper.prop('className')).toContain(
+        'mt-1 mt-0-ns mt-2-m mt-3-l',
+      );
+    });
+
     it('sets the margin top', () => {
       const wrapper = shallow(<Block marginTop="1">test</Block>);
       expect(wrapper.prop('className')).toContain('mt-1');
@@ -346,6 +355,15 @@ describe('Block', () => {
           <Block paddingVertical="1">test</Block>,
         );
         expect(wrapper.prop('className')).toContain('pv-1');
+      });
+
+      it('sets responsive padding', () => {
+        const wrapper = shallow(
+          <Block padding={[1, 0, 2, 3]}>test</Block>,
+        );
+        expect(wrapper.prop('className')).toContain(
+          'p-1 p-0-ns p-2-m p-3-l',
+        );
       });
     }),
     describe('Radius', () => {
