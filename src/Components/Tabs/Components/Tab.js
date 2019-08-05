@@ -95,9 +95,9 @@ Tab.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * Text to be rendered in the tab
+   * Content to be rendered in the tab
    */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /**
    * Changes the size of the tabs, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
