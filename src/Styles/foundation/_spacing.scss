@@ -14,7 +14,7 @@
      0 = none
 */
 
-.m-0 { margin :$spacing-0 }
+.m-0 { margin: 0 }
 .m-1 { margin: $spacing-1 }
 .m-2 { margin: $spacing-2 }
 .m-3 { margin: $spacing-3 }
@@ -84,6 +84,7 @@
 .ph-7 { padding-left: $spacing-7; padding-right: $spacing-7; }
 .ph-8 { padding-left: $spacing-8; padding-right: $spacing-8; }
 
+.pv-0 { padding-top: 0; padding-bottom: 0 }
 .pv-1 { padding-top: $spacing-1; padding-bottom: $spacing-1 }
 .pv-2 { padding-top: $spacing-2; padding-bottom: $spacing-2 }
 .pv-3 { padding-top: $spacing-3; padding-bottom: $spacing-3 }
@@ -93,6 +94,7 @@
 .pv-7 { padding-top: $spacing-7; padding-bottom: $spacing-7 }
 .pv-8 { padding-top: $spacing-8; padding-bottom: $spacing-8 }
 
+.pt-0 { padding-top: 0 }
 .pt-1 { padding-top: $spacing-1 }
 .pt-2 { padding-top: $spacing-2 }
 .pt-3 { padding-top: $spacing-3 }
@@ -102,6 +104,7 @@
 .pt-7 { padding-top: $spacing-7 }
 .pt-8 { padding-top: $spacing-8 }
 
+.pb-0 { padding-bottom: 0 }
 .pb-1 { padding-bottom: $spacing-1 }
 .pb-2 { padding-bottom: $spacing-2 }
 .pb-3 { padding-bottom: $spacing-3 }
@@ -111,6 +114,7 @@
 .pb-7 { padding-bottom: $spacing-7 }
 .pb-8 { padding-bottom: $spacing-8 }
 
+.pl-0 { padding-left: 0 }
 .pl-1 { padding-left: $spacing-1 }
 .pl-2 { padding-left: $spacing-2 }
 .pl-3 { padding-left: $spacing-3 }
@@ -120,6 +124,7 @@
 .pl-7 { padding-left: $spacing-7 }
 .pl-8 { padding-left: $spacing-8 }
 
+.pr-0 { padding-right: 0 }
 .pr-1 { padding-right: $spacing-1 }
 .pr-2 { padding-right: $spacing-2 }
 .pr-3 { padding-right: $spacing-3 }
@@ -130,7 +135,7 @@
 .pr-8 { padding-right: $spacing-8 }
 
 @include respond-above(sm) {
-  .m-0-ns { margin :$spacing-0 }
+  .m-0-ns { margin: 0 }
   .m-1-ns { margin: $spacing-1 }
   .m-2-ns { margin: $spacing-2 }
   .m-3-ns { margin: $spacing-3 }
@@ -200,6 +205,7 @@
   .ph-7-ns { padding-left: $spacing-7; padding-right: $spacing-7; }
   .ph-8-ns { padding-left: $spacing-8; padding-right: $spacing-8; }
 
+  .pv-0-ns { padding-top: 0; padding-bottom: 0 }
   .pv-1-ns { padding-top: $spacing-1; padding-bottom: $spacing-1 }
   .pv-2-ns { padding-top: $spacing-2; padding-bottom: $spacing-2 }
   .pv-3-ns { padding-top: $spacing-3; padding-bottom: $spacing-3 }
@@ -209,6 +215,7 @@
   .pv-7-ns { padding-top: $spacing-7; padding-bottom: $spacing-7 }
   .pv-8-ns { padding-top: $spacing-8; padding-bottom: $spacing-8 }
 
+  .pt-0-ns { padding-top: 0 }
   .pt-1-ns { padding-top: $spacing-1 }
   .pt-2-ns { padding-top: $spacing-2 }
   .pt-3-ns { padding-top: $spacing-3 }
@@ -218,6 +225,7 @@
   .pt-7-ns { padding-top: $spacing-7 }
   .pt-8-ns { padding-top: $spacing-8 }
 
+  .pb-0-ns { padding-bottom: 0 }
   .pb-1-ns { padding-bottom: $spacing-1 }
   .pb-2-ns { padding-bottom: $spacing-2 }
   .pb-3-ns { padding-bottom: $spacing-3 }
@@ -227,6 +235,7 @@
   .pb-7-ns { padding-bottom: $spacing-7 }
   .pb-8-ns { padding-bottom: $spacing-8 }
 
+  .pl-0-ns { padding-left: 0 }
   .pl-1-ns { padding-left: $spacing-1 }
   .pl-2-ns { padding-left: $spacing-2 }
   .pl-3-ns { padding-left: $spacing-3 }
@@ -236,6 +245,7 @@
   .pl-7-ns { padding-left: $spacing-7 }
   .pl-8-ns { padding-left: $spacing-8 }
 
+  .pr-0-ns { padding-right: 0 }
   .pr-1-ns { padding-right: $spacing-1 }
   .pr-2-ns { padding-right: $spacing-2 }
   .pr-3-ns { padding-right: $spacing-3 }
@@ -247,7 +257,7 @@
 }
 
 @include respond-above(md) {
-  .m-0-m { margin :$spacing-0 }
+  .m-0-m { margin: 0 }
   .m-1-m { margin: $spacing-1 }
   .m-2-m { margin: $spacing-2 }
   .m-3-m { margin: $spacing-3 }
@@ -317,6 +327,7 @@
   .ph-7-m { padding-left: $spacing-7; padding-right: $spacing-7; }
   .ph-8-m { padding-left: $spacing-8; padding-right: $spacing-8; }
 
+  .pv-0-m { padding-top: 0; padding-bottom: 0 }
   .pv-1-m { padding-top: $spacing-1; padding-bottom: $spacing-1 }
   .pv-2-m { padding-top: $spacing-2; padding-bottom: $spacing-2 }
   .pv-3-m { padding-top: $spacing-3; padding-bottom: $spacing-3 }
@@ -326,6 +337,7 @@
   .pv-7-m { padding-top: $spacing-7; padding-bottom: $spacing-7 }
   .pv-8-m { padding-top: $spacing-8; padding-bottom: $spacing-8 }
 
+  .pt-0-m { padding-top: 0 }
   .pt-1-m { padding-top: $spacing-1 }
   .pt-2-m { padding-top: $spacing-2 }
   .pt-3-m { padding-top: $spacing-3 }
@@ -335,6 +347,7 @@
   .pt-7-m { padding-top: $spacing-7 }
   .pt-8-m { padding-top: $spacing-8 }
 
+  .pb-0-m { padding-bottom: 0 }
   .pb-1-m { padding-bottom: $spacing-1 }
   .pb-2-m { padding-bottom: $spacing-2 }
   .pb-3-m { padding-bottom: $spacing-3 }
@@ -344,6 +357,7 @@
   .pb-7-m { padding-bottom: $spacing-7 }
   .pb-8-m { padding-bottom: $spacing-8 }
 
+  .pl-0-m { padding-left: 0 }
   .pl-1-m { padding-left: $spacing-1 }
   .pl-2-m { padding-left: $spacing-2 }
   .pl-3-m { padding-left: $spacing-3 }
@@ -353,6 +367,7 @@
   .pl-7-m { padding-left: $spacing-7 }
   .pl-8-m { padding-left: $spacing-8 }
 
+  .pr-0-m { padding-right: 0 }
   .pr-1-m { padding-right: $spacing-1 }
   .pr-2-m { padding-right: $spacing-2 }
   .pr-3-m { padding-right: $spacing-3 }
@@ -364,7 +379,7 @@
 }
 
 @include respond-above(lg) {
-  .m-0-l { margin :$spacing-0 }
+  .m-0-l { margin: 0 }
   .m-1-l { margin: $spacing-1 }
   .m-2-l { margin: $spacing-2 }
   .m-3-l { margin: $spacing-3 }
@@ -434,6 +449,7 @@
   .ph-7-l { padding-left: $spacing-7; padding-right: $spacing-7; }
   .ph-8-l { padding-left: $spacing-8; padding-right: $spacing-8; }
 
+  .pv-0-l { padding-top: 0; padding-bottom: 0 }
   .pv-1-l { padding-top: $spacing-1; padding-bottom: $spacing-1 }
   .pv-2-l { padding-top: $spacing-2; padding-bottom: $spacing-2 }
   .pv-3-l { padding-top: $spacing-3; padding-bottom: $spacing-3 }
@@ -443,6 +459,7 @@
   .pv-7-l { padding-top: $spacing-7; padding-bottom: $spacing-7 }
   .pv-8-l { padding-top: $spacing-8; padding-bottom: $spacing-8 }
 
+  .pt-0-l { padding-top: 0 }
   .pt-1-l { padding-top: $spacing-1 }
   .pt-2-l { padding-top: $spacing-2 }
   .pt-3-l { padding-top: $spacing-3 }
@@ -452,6 +469,7 @@
   .pt-7-l { padding-top: $spacing-7 }
   .pt-8-l { padding-top: $spacing-8 }
 
+  .pb-0-l { padding-bottom: 0 }
   .pb-1-l { padding-bottom: $spacing-1 }
   .pb-2-l { padding-bottom: $spacing-2 }
   .pb-3-l { padding-bottom: $spacing-3 }
@@ -461,6 +479,7 @@
   .pb-7-l { padding-bottom: $spacing-7 }
   .pb-8-l { padding-bottom: $spacing-8 }
 
+  .pl-0-l { padding-left: 0}
   .pl-1-l { padding-left: $spacing-1 }
   .pl-2-l { padding-left: $spacing-2 }
   .pl-3-l { padding-left: $spacing-3 }
@@ -470,6 +489,7 @@
   .pl-7-l { padding-left: $spacing-7 }
   .pl-8-l { padding-left: $spacing-8 }
 
+  .pr-0-l { padding-right: 0 }
   .pr-1-l { padding-right: $spacing-1 }
   .pr-2-l { padding-right: $spacing-2 }
   .pr-3-l { padding-right: $spacing-3 }
