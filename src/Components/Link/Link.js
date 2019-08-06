@@ -58,7 +58,12 @@ const Link = forwardRef((props, ref) => {
       {children}
     </a>
   ) : (
-    <RouterLink ref={ref} className={classes} to={href} {...rest}>
+    <RouterLink
+      innerRef={ref}
+      className={classes}
+      to={href}
+      {...rest}
+    >
       {children}
     </RouterLink>
   );

@@ -84,12 +84,10 @@ storiesOf('Tooltip', module)
       </div>
       <Tooltip
         active
-        placement="bottom"
+        placement="right"
         content="i'm the content of a tooltip. i'm the content of a tooltip"
       >
-        <Link className="db" href="/#">
-          Link component
-        </Link>
+        <Link href="/#">Link component</Link>
       </Tooltip>
     </DemoBrowserRouter>
   ))
