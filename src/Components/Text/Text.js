@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { parseTextSize } from '../../Utils';
@@ -56,15 +56,17 @@ const defaultProps = {
  * so it can inherit styles of its parent.
  */
 
-function Text({
-  appearance,
-  bold,
-  children,
-  className,
-  color,
-  size,
-  ...rest
-}) {
+const Text = forwardRef((props, ref) => {
+  const {
+    appearance,
+    bold,
+    children,
+    className,
+    color,
+    size,
+    ...rest
+  } = props;
+
   const parsedSize = parseTextSize(size);
 
   const Element = appearance === 'code' ? 'code' : 'span';
@@ -81,11 +83,11 @@ function Text({
   );
 
   return (
-    <Element className={classes} {...rest}>
+    <Element className={classes} ref={ref} {...rest}>
       {children}
     </Element>
   );
-}
+});
 
 Text.propTypes = propTypes;
 Text.defaultProps = defaultProps;

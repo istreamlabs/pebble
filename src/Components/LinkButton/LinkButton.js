@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { caseInsensitiveStringCompare } from '../../Utils';
@@ -81,22 +81,24 @@ const defaultProps = {
  * ---
  */
 
-function LinkButton({
-  id,
-  children,
-  className,
-  disabled,
-  href,
-  size,
-  primary,
-  danger,
-  fullWidth,
-  icon,
-  iconAfterText,
-  tabIndex,
-  accessibilityLabel,
-  ...rest
-}) {
+const LinkButton = forwardRef((props, ref) => {
+  const {
+    id,
+    children,
+    className,
+    disabled,
+    href,
+    size,
+    primary,
+    danger,
+    fullWidth,
+    icon,
+    iconAfterText,
+    tabIndex,
+    accessibilityLabel,
+    ...rest
+  } = props;
+
   const classes = classNames('btn', className, {
     'btn-lg': caseInsensitiveStringCompare(size, 'large'),
     'btn-sm': caseInsensitiveStringCompare(size, 'small'),
@@ -144,6 +146,7 @@ function LinkButton({
       className={classes}
       aria-label={accessibilityLabel}
       aria-disabled={disabled}
+      ref={ref}
     >
       {content}
     </a>
@@ -155,12 +158,13 @@ function LinkButton({
       href={href}
       tabIndex={tabIndex}
       aria-label={accessibilityLabel}
+      ref={ref}
       {...rest}
     >
       {content}
     </Link>
   );
-}
+});
 
 LinkButton.propTypes = propTypes;
 LinkButton.defaultProps = defaultProps;

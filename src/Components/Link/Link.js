@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -42,26 +42,27 @@ const defaultProps = {
  * ---
  */
 
-function Link({
-  children,
-  className,
-  external,
-  href,
-  unstyled,
-  ...rest
-}) {
+const Link = forwardRef((props, ref) => {
+  const {
+    children,
+    className,
+    external,
+    href,
+    unstyled,
+    ...rest
+  } = props;
   const classes = classNames({ link: !unstyled }, className);
 
   return external ? (
-    <a className={classes} href={href} {...rest}>
+    <a ref={ref} className={classes} href={href} {...rest}>
       {children}
     </a>
   ) : (
-    <RouterLink className={classes} to={href} {...rest}>
+    <RouterLink ref={ref} className={classes} to={href} {...rest}>
       {children}
     </RouterLink>
   );
-}
+});
 
 Link.propTypes = propTypes;
 Link.defaultProps = defaultProps;
