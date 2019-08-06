@@ -20,7 +20,7 @@ const propTypes = {
   /**
    * Contents of the button
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Additional ClassNames to add to button
    */
