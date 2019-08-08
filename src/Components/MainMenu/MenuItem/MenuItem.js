@@ -56,7 +56,7 @@ class MenuItem extends React.Component {
 
     // TODO: move this to getDerivedStateFromProps
     this.state = {
-      isOpen: !!containsActiveItem || startExpanded
+      isOpen: !!containsActiveItem || startExpanded,
     };
   }
 
@@ -67,10 +67,14 @@ class MenuItem extends React.Component {
         if (match) {
           return match;
         }
-        return item.aliases.some(path => matchPath(location.pathname, { path }) !== null);
+        return item.aliases.some(
+          path => matchPath(location.pathname, { path }) !== null,
+        );
       };
     }
-    (item.items || []).forEach(sub => MenuItem.generateAndAddIsActiveHandler(sub));
+    (item.items || []).forEach(sub =>
+      MenuItem.generateAndAddIsActiveHandler(sub),
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -88,37 +92,48 @@ class MenuItem extends React.Component {
   handleToggleOpen = () => {
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
-  }
+  };
 
   renderIconLabel = () => {
     const { item } = this.props;
 
     return (
       <div className="menu-item-label">
-        {item.icon ? <Icon name={item.icon} className="menu-item-icon" /> : null}
+        {item.icon ? (
+          <Icon name={item.icon} className="menu-item-icon" />
+        ) : null}
         {item.label}
       </div>
     );
-  }
+  };
 
   renderToggleButton = () => {
     const { isOpen } = this.state;
     const { item } = this.props;
 
-    const accessibilityLabel = isOpen ? `close ${item.label} sub items` : `show ${item.label} sub items`;
+    const accessibilityLabel = isOpen
+      ? `close ${item.label} sub items`
+      : `show ${item.label} sub items`;
 
     return (
-      <Button onClick={this.handleToggleOpen} className="menu-item-collapse-button" accessibilityLabel={accessibilityLabel}>
+      <Button
+        onClick={this.handleToggleOpen}
+        className="menu-item-collapse-button"
+        accessibilityLabel={accessibilityLabel}
+      >
         <Icon
           name="arrow-small-down"
           accessibilityLabel={accessibilityLabel}
-          className={classNames('menu-item-collapse', { opened: isOpen, closed: !isOpen })}
+          className={classNames('menu-item-collapse', {
+            opened: isOpen,
+            closed: !isOpen,
+          })}
         />
       </Button>
     );
-  }
+  };
 
-  renderSubItems = (items) => {
+  renderSubItems = items => {
     const subItems = items.map((subItem, i) => (
       <li key={i}>
         <NavLink
@@ -135,7 +150,7 @@ class MenuItem extends React.Component {
     ));
 
     return subItems;
-  }
+  };
 
   render() {
     const { item } = this.props;
@@ -152,7 +167,9 @@ class MenuItem extends React.Component {
               exact={item.exact}
               to={item.href}
               className="menu-item"
-              onClick={hasSubItems ? this.handleToggleOpen : undefined}
+              onClick={
+                hasSubItems ? this.handleToggleOpen : undefined
+              }
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
@@ -173,14 +190,26 @@ class MenuItem extends React.Component {
               <Icon
                 name="arrow-small-down"
                 accessibilityLabel={isOpen ? 'opened' : 'closed'}
-                className={classNames('menu-item-collapse', 'neutral-500', {
-                  opened: isOpen,
-                  closed: !isOpen
-                })}
+                className={classNames(
+                  'menu-item-collapse',
+                  'neutral-500',
+                  {
+                    opened: isOpen,
+                    closed: !isOpen,
+                  },
+                )}
               />
             </button>
           ) : (
-            <Block flex paddingVertical="3" paddingHorizontal="6" textSize="6" className="neutral-500">{item.label}</Block>
+            <Block
+              flex
+              paddingVertical="3"
+              paddingHorizontal="6"
+              textSize="6"
+              className="neutral-500"
+            >
+              {item.label}
+            </Block>
           )}
           {hasSubItems && item.href && this.renderToggleButton()}
         </div>
@@ -188,7 +217,10 @@ class MenuItem extends React.Component {
           <ul
             role="menu"
             aria-labelledby={`MenuItem-${item.label}`}
-            className={classNames('sub-menu-items', { opened: isOpen, closed: !isOpen })}
+            className={classNames('sub-menu-items', {
+              opened: isOpen,
+              closed: !isOpen,
+            })}
           >
             {this.renderSubItems(item.items)}
           </ul>
