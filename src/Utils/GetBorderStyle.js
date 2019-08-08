@@ -32,6 +32,10 @@ export default borderStyle => {
       borderBottomWidth: borderWidth,
       borderBottomStyle: style,
     };
+  } else if (side === 'none') {
+    styles = {
+      border: 'none',
+    };
   } else {
     styles = {
       borderStyle: style,

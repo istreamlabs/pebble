@@ -49,4 +49,9 @@ describe('Util > GetBorderStyle', () => {
       borderRightStyle: 'solid',
     });
   });
+  it('returns correct style object if passed "none"', () => {
+    expect(getBorderStyles('none')).toMatchObject({
+      border: 'none',
+    });
+  });
 });

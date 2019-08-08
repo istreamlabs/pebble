@@ -2,11 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { dimensionType } from '../../Types';
+import { borderType, dimensionType } from '../../Types';
 
 import Block from '../Block/Block';
 
 const propTypes = {
+  /**
+   *
+   * Apply a `solid 1px neutral-300` border to a specific side by passing one of the following strings:
+   *
+   * 'all', 'vertical', 'horizontal', 'top', 'right', 'bottom', 'left'
+   *
+   * or the pass the shape:
+   * ```
+   * {
+   *   color: "neutral-300",
+   *   side: "all",
+   *   size: "1px",
+   *   style: "solid",
+   * }
+   * ```
+   *
+   * `color` [color identifier](/#/Styles/Color) of the border color
+   */
+  border: borderType,
   /**
    * Content of the component
    */
@@ -26,6 +45,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  border: 'all',
   width: '100%',
 };
 
@@ -35,12 +55,12 @@ const defaultProps = {
  * ---
  */
 
-function Table({ children, className, width, ...rest }) {
+function Table({ border, children, className, width, ...rest }) {
   const classes = classNames('table', className);
 
   return (
     <Block
-      border="all"
+      border={border}
       className={classes}
       width={width}
       {...rest}
