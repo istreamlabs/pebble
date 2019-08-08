@@ -5,14 +5,14 @@ function isPhoneSize() {
 }
 
 /**
- * Returns true if the browser window is less than 960px
+ * Returns true if the browser window is less than 480px
  */
 
 export default () => {
-  const [mobile, setMobile] = useState(isPhoneSize());
+  const [phone, setPhone] = useState(isPhoneSize());
 
   function handleResize() {
-    setMobile(isPhoneSize());
+    setPhone(isPhoneSize());
   }
 
   useEffect(() => {
@@ -22,5 +22,5 @@ export default () => {
     };
   }, []);
 
-  return mobile;
+  return phone;
 };
