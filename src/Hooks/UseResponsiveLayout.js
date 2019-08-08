@@ -20,6 +20,11 @@ function getLayout() {
   }
 }
 
+/*
+ * Returns array where elements of the array correspond
+ * to breakpoints defined in _variables.scss
+ */
+
 export default () => {
   const [layout, setLayout] = useState(getLayout());
 
