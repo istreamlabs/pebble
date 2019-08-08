@@ -271,3 +271,41 @@ export const overflowType = PropTypes.oneOfType([
     ]),
   ),
 ]);
+
+export const borderType = PropTypes.oneOfType([
+  PropTypes.oneOf([
+    'none',
+    'top',
+    'left',
+    'bottom',
+    'right',
+    'horizontal',
+    'vertical',
+    'all',
+  ]),
+  PropTypes.shape({
+    width: PropTypes.string,
+    style: PropTypes.oneOf([
+      'solid',
+      'dashed',
+      'dotted',
+      'double',
+      'groove',
+      'ridge',
+      'inset',
+      'outset',
+      'hidden',
+    ]),
+    side: PropTypes.oneOf([
+      'top',
+      'left',
+      'bottom',
+      'right',
+      'horizontal',
+      'vertical',
+      'all',
+      'none',
+    ]),
+    color: colorType,
+  }),
+]);

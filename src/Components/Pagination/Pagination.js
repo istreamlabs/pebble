@@ -2,11 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import { borderType } from '../../Types';
+
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 import FieldSelect from '../FieldSelect/FieldSelect';
 
 const propTypes = {
+  /**
+   *
+   * Apply a `solid 1px neutral-300` border to a specific side by passing one of the following strings:
+   *
+   * 'all', 'vertical', 'horizontal', 'top', 'right', 'bottom', 'left'
+   *
+   * or the pass the shape:
+   * ```
+   * {
+   *   color: "neutral-300",
+   *   side: "all",
+   *   size: "1px",
+   *   style: "solid",
+   * }
+   * ```
+   *
+   * `color` [color identifier](/#/Styles/Color) of the border color
+   */
+  border: borderType,
   /**
    * Additional css classes to apply
    */
@@ -23,6 +44,10 @@ const propTypes = {
    * Callback when for when the page changes
    */
   onPageChange: PropTypes.func,
+};
+
+const defaultProps = {
+  border: 'all',
 };
 
 /**
@@ -77,14 +102,14 @@ class Pagination extends React.PureComponent {
   };
 
   render() {
-    const { className, currentPage, numPages } = this.props;
+    const { border, className, currentPage, numPages } = this.props;
 
     const classes = classNames('pagination', className);
 
     return (
       <Block
         background="neutral-200"
-        border="all"
+        border={border}
         padding="3"
         alignItems="center"
         className={classes}
@@ -111,5 +136,6 @@ class Pagination extends React.PureComponent {
 }
 
 Pagination.propTypes = propTypes;
+Pagination.defaultProps = defaultProps;
 
 export default Pagination;
