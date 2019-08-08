@@ -4,11 +4,32 @@ import classNames from 'classnames';
 
 import { useMobileLayout } from '../../../Hooks';
 
+import { borderType } from '../../../Types';
+
 import './TableRow.scss';
 
 import Block from '../../Block/Block';
 
 const propTypes = {
+  /**
+   *
+   * Apply a `solid 1px neutral-300` border to a specific side by passing one of the following strings:
+   *
+   * 'all', 'vertical', 'horizontal', 'top', 'right', 'bottom', 'left'
+   *
+   * or the pass the shape:
+   * ```
+   * {
+   *   color: "neutral-300",
+   *   side: "all",
+   *   size: "1px",
+   *   style: "solid",
+   * }
+   * ```
+   *
+   * `color` [color identifier](/#/Styles/Color) of the border color
+   */
+  border: borderType,
   /**
    * Contents of the component
    */
@@ -29,7 +50,17 @@ const propTypes = {
  * ---
  */
 
-function TableRow({ children, className, hoverHighlight, ...rest }) {
+const defaultProps = {
+  border: 'bottom',
+};
+
+function TableRow({
+  border,
+  children,
+  className,
+  hoverHighlight,
+  ...rest
+}) {
   const isMobileLayout = useMobileLayout();
 
   const classes = classNames(
@@ -54,7 +85,7 @@ function TableRow({ children, className, hoverHighlight, ...rest }) {
 
   return (
     <Block
-      border="bottom"
+      border={border}
       role="row"
       className={classes}
       direction={isMobileLayout ? 'column' : 'row'}
@@ -69,5 +100,6 @@ function TableRow({ children, className, hoverHighlight, ...rest }) {
 }
 
 TableRow.propTypes = propTypes;
+TableRow.defaultProps = defaultProps;
 
 export default TableRow;
