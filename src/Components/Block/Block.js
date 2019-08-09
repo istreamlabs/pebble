@@ -11,13 +11,14 @@ import {
   parseTextSize,
 } from '../../Utils';
 import {
+  borderType,
   colorType,
+  dimensionType,
   fontSizeType,
-  textAlignType,
+  overflowType,
   radiusType,
   spacingType,
-  dimensionType,
-  overflowType,
+  textAlignType,
 } from '../../Types';
 
 import './Block.scss';
@@ -139,41 +140,7 @@ const propTypes = {
    *
    * `color` [color identifier](/#/Styles/Color) of the border color
    */
-  border: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'top',
-      'left',
-      'bottom',
-      'right',
-      'horizontal',
-      'vertical',
-      'all',
-    ]),
-    PropTypes.shape({
-      width: PropTypes.string,
-      style: PropTypes.oneOf([
-        'solid',
-        'dashed',
-        'dotted',
-        'double',
-        'groove',
-        'ridge',
-        'inset',
-        'outset',
-        'hidden',
-      ]),
-      side: PropTypes.oneOf([
-        'top',
-        'left',
-        'bottom',
-        'right',
-        'horizontal',
-        'vertical',
-        'all',
-      ]),
-      color: colorType,
-    }),
-  ]),
+  border: borderType,
   /**
    * Additional classNames to add
    */

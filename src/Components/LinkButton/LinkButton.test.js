@@ -67,7 +67,12 @@ describe('LinkButton', () => {
           link button
         </LinkButton>,
       );
-      expect(button.find('Icon').prop('name')).toBe('add-circle');
+      expect(
+        button
+          .find('ForwardRef')
+          .at(1)
+          .prop('name'),
+      ).toBe('add-circle');
     });
     it('sets the correct icon size', () => {
       const button = shallow(
@@ -75,7 +80,12 @@ describe('LinkButton', () => {
           link button
         </LinkButton>,
       );
-      expect(button.find('Icon').prop('size')).toBe(20);
+      expect(
+        button
+          .find('ForwardRef')
+          .at(1)
+          .prop('size'),
+      ).toBe(20);
     });
     it('it places icon to left of button text', () => {
       const button = shallow(

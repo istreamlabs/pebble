@@ -104,7 +104,7 @@ export class Tooltip extends React.PureComponent {
     const classes = classNames('tooltip', className);
 
     return (
-      <span
+      <div
         className={classes}
         data-placement={placement}
         ref={ref}
@@ -112,7 +112,7 @@ export class Tooltip extends React.PureComponent {
         style={style}
       >
         {content}
-      </span>
+      </div>
     );
   };
 

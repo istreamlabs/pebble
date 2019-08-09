@@ -12,43 +12,38 @@ import './Tab.scss';
  * ---
  */
 
-const Tab = (
-  {
-    id,
-    className,
-    isSelected,
-    ariaControls,
-    onClick,
-    label,
-    fullWidth,
-    size,
-    disabled
-  }
-) => {
+const Tab = ({
+  id,
+  className,
+  isSelected,
+  ariaControls,
+  onClick,
+  label,
+  fullWidth,
+  size,
+  disabled,
+}) => {
   const handleClick = () => {
     onClick(id);
   };
 
   const classes = classNames(
-    'tab', {
+    'tab',
+    {
       'tab-selected': isSelected,
       'w-100': fullWidth,
-    }, className
+    },
+    className,
   );
 
-  const tabClasses = classNames(
-    'tab-button', {
-      'text-transform-uppercase tracked': size === 'small',
-      'ph-5': size === 'medium',
-      'ph-6': size === 'large',
-    }
-  );
+  const tabClasses = classNames('tab-button', {
+    'text-transform-uppercase tracked pv-2': size === 'small',
+    'ph-5': size === 'medium',
+    'ph-6': size === 'large',
+  });
 
   return (
-    <li
-      className={classes}
-      role="presentation"
-    >
+    <li className={classes} role="presentation">
       <Button
         id={id}
         className={tabClasses}
@@ -57,7 +52,6 @@ const Tab = (
         aria-selected={isSelected}
         role="tab"
         onClick={handleClick}
-        value={label}
         size={size}
         disabled={disabled}
       >
@@ -68,7 +62,7 @@ const Tab = (
 };
 
 Tab.defaultProps = {
-  size: 'medium'
+  size: 'medium',
 };
 
 Tab.propTypes = {
@@ -94,16 +88,16 @@ Tab.propTypes = {
   isSelected: PropTypes.bool,
   /**
    * Id of the element the button controls
-  */
+   */
   ariaControls: PropTypes.string,
   /**
    * Callback function when a tab is pressed
    */
   onClick: PropTypes.func,
   /**
-   * Text to be rendered in the tab
+   * Content to be rendered in the tab
    */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /**
    * Changes the size of the tabs, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}

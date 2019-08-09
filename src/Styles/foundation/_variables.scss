@@ -1,119 +1,124 @@
 // BORDERS
 $border-radius-none: 0;
-$border-radius-1: .125rem;      /* 2px */
-$border-radius-2: .25rem;       /* 4px */
-$border-radius-3: .5rem;        /* 8px */
-$border-radius-4: .75rem;       /* 12px */
-$border-radius-5: 1rem;         /* 16px */
+$border-radius-1: 0.125rem; /* 2px */
+$border-radius-2: 0.25rem; /* 4px */
+$border-radius-3: 0.5rem; /* 8px */
+$border-radius-4: 0.75rem; /* 12px */
+$border-radius-5: 1rem; /* 16px */
 $border-radius-circle: 100%;
 $border-radius-pill: 9999px;
 
 // BOX SHADOWS
-$box-shadow-1: 0 1px 1px rgba(0, 0, 0, .07), 0 1px 8px rgba(0, 0, 0, .1);
-$box-shadow-2: 0 1px 8px rgba(0, 0, 0, .07), 0 8px 20px rgba(0, 0, 0, .1);
-$box-shadow-3: 0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05);
+$box-shadow-1: 0 1px 1px rgba(0, 0, 0, 0.07),
+  0 1px 8px rgba(0, 0, 0, 0.1);
+$box-shadow-2: 0 1px 8px rgba(0, 0, 0, 0.07),
+  0 8px 20px rgba(0, 0, 0, 0.1);
+$box-shadow-3: 0 1px 8px rgba(0, 0, 0, 0.1),
+  0 16px 40px rgba(0, 0, 0, 0.07), 0 24px 56px rgba(0, 0, 0, 0.05);
 
 // BREAKPOINTS
 $breakpoints: (
-  sm: 30rem,    /* 480px */
-  md: 60rem,    /* 960px */
-  lg: 90rem     /* 1440px */
+  sm: 30rem, /* 480px */
+  md: 60rem, /* 960px */
+  lg: 90rem, /* 1440px */
 );
 
 // TYPOGRAPHY
 $sans-serif: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 
+$mono-spaced: Menlo, Monaco, Consolas, 'Liberation Mono',
+  'Courier New', monospace;
+
 $font-size-1: 3rem;
 $font-size-2: 2.25rem;
 $font-size-3: 1.5rem;
 $font-size-4: 1.25rem;
 $font-size-5: 1rem;
-$font-size-6: .875rem;
-$font-size-7: .75rem;
+$font-size-6: 0.875rem;
+$font-size-7: 0.75rem;
 
 $line-height-solid: 1;
 $line-height-title: 1.25;
 $line-height-copy: 1.5;
 
-$letter-spacing-tight:-.05em;
-$letter-spacing-1:.1em;
-$letter-spacing-2:.25em;
+$letter-spacing-tight: -0.05em;
+$letter-spacing-1: 0.1em;
+$letter-spacing-2: 0.25em;
 
 // COLORS
 // Update type definitions (../../Type/index.js and ../../Components/typedefs.js)
 // if a color is added or removed and it should be available as a prop value for a component
-$brand-orange: #F04E23;
+$brand-orange: #f04e23;
 
-$neutral-100: #FAFBFB;
-$neutral-200: #F4F6F8;
-$neutral-300: #DFE3E8;
-$neutral-400: #C5CDD5;
-$neutral-500: #929EAB;
+$neutral-100: #fafbfb;
+$neutral-200: #f4f6f8;
+$neutral-300: #dfe3e8;
+$neutral-400: #c5cdd5;
+$neutral-500: #929eab;
 $neutral-600: #647481;
-$neutral-700: #464F5B;
-$neutral-800: #222B36;
+$neutral-700: #464f5b;
+$neutral-800: #222b36;
 
-$blue-lighter: #EEF5FF;
-$blue-light: #B6D2F7;
+$blue-lighter: #eef5ff;
+$blue-light: #b6d2f7;
 $blue: #2872d6;
-$blue-dark: #1C4D90;
-$blue-darker: #0D2648;
+$blue-dark: #1c4d90;
+$blue-darker: #0d2648;
 
-$yellow-lighter: #FEF9EB;
-$yellow-light: #FFE39C;
-$yellow: #FBC029;
-$yellow-dark: #A67F19;
-$yellow-darker: #5A4009;
+$yellow-lighter: #fef9eb;
+$yellow-light: #ffe39c;
+$yellow: #fbc029;
+$yellow-dark: #a67f19;
+$yellow-darker: #5a4009;
 
-$green-lighter: #EBFEED;
-$green-light: #C3F3C9;
-$green: #50B25A;
-$green-dark: #33773A;
-$green-darker: #1B3E1F;
+$green-lighter: #ebfeed;
+$green-light: #c3f3c9;
+$green: #50b25a;
+$green-dark: #33773a;
+$green-darker: #1b3e1f;
 
-$red-lighter: #FDE9E8;
-$red-light: #FED0CB;
-$red: #DE3618;
-$red-dark: #A42710;
-$red-darker: #370C04;
+$red-lighter: #fde9e8;
+$red-light: #fed0cb;
+$red: #de3618;
+$red-dark: #a42710;
+$red-darker: #370c04;
 
-$indigo-lighter: #EEEAFD;
-$indigo-light: #AD9BF8;
-$indigo: #5823F0;
-$indigo-dark: #451BBC;
-$indigo-darker: #270F6C;
+$indigo-lighter: #eeeafd;
+$indigo-light: #ad9bf8;
+$indigo: #5823f0;
+$indigo-dark: #451bbc;
+$indigo-darker: #270f6c;
 
-$transparent:transparent;
+$transparent: transparent;
 
 $black: #000;
-$black-90: rgba(0,0,0,.9);
-$black-80: rgba(0,0,0,.8);
-$black-70: rgba(0,0,0,.7);
-$black-60: rgba(0,0,0,.6);
-$black-50: rgba(0,0,0,.5);
-$black-40: rgba(0,0,0,.4);
-$black-30: rgba(0,0,0,.3);
-$black-20: rgba(0,0,0,.2);
-$black-10: rgba(0,0,0,.1);
-$black-05: rgba(0,0,0,.05);
-$black-025: rgba(0,0,0,.025);
-$black-0125: rgba(0,0,0,.0125);
+$black-90: rgba(0, 0, 0, 0.9);
+$black-80: rgba(0, 0, 0, 0.8);
+$black-70: rgba(0, 0, 0, 0.7);
+$black-60: rgba(0, 0, 0, 0.6);
+$black-50: rgba(0, 0, 0, 0.5);
+$black-40: rgba(0, 0, 0, 0.4);
+$black-30: rgba(0, 0, 0, 0.3);
+$black-20: rgba(0, 0, 0, 0.2);
+$black-10: rgba(0, 0, 0, 0.1);
+$black-05: rgba(0, 0, 0, 0.05);
+$black-025: rgba(0, 0, 0, 0.025);
+$black-0125: rgba(0, 0, 0, 0.0125);
 
 $white: #fff;
-$white-90: rgba(255,255,255,.9);
-$white-80: rgba(255,255,255,.8);
-$white-70: rgba(255,255,255,.7);
-$white-60: rgba(255,255,255,.6);
-$white-50: rgba(255,255,255,.5);
-$white-40: rgba(255,255,255,.4);
-$white-30: rgba(255,255,255,.3);
-$white-20: rgba(255,255,255,.2);
-$white-10: rgba(255,255,255,.1);
-$white-05: rgba(255,255,255,.05);
-$white-025: rgba(255,255,255,.025);
-$white-0125: rgba(255,255,255,.0125);
-
+$white-90: rgba(255, 255, 255, 0.9);
+$white-80: rgba(255, 255, 255, 0.8);
+$white-70: rgba(255, 255, 255, 0.7);
+$white-60: rgba(255, 255, 255, 0.6);
+$white-50: rgba(255, 255, 255, 0.5);
+$white-40: rgba(255, 255, 255, 0.4);
+$white-30: rgba(255, 255, 255, 0.3);
+$white-20: rgba(255, 255, 255, 0.2);
+$white-10: rgba(255, 255, 255, 0.1);
+$white-05: rgba(255, 255, 255, 0.05);
+$white-025: rgba(255, 255, 255, 0.025);
+$white-0125: rgba(255, 255, 255, 0.0125);
 
 /* legacy gray colors. most likely these shouldn't be used.
 use the neutrals instead */
@@ -127,8 +132,8 @@ $gray-700: #555;
 $gray-800: #333;
 $gray-900: #111;
 $near-black: #111111;
-$dark-gray:#333333;
-$mid-gray:#555555;
+$dark-gray: #333333;
+$mid-gray: #555555;
 $gray: #777777;
 $silver: #999999;
 $light-silver: #aaaaaa;
@@ -138,36 +143,36 @@ $near-white: #f4f4f4;
 /* end legacy colors */
 
 // SPACING
-$spacing-0: 0;         /* 0px */
-$spacing-1: .25rem;    /* 4px */
-$spacing-2: .5rem;     /* 8px */
-$spacing-3: .75rem;    /* 12px */
-$spacing-4: 1rem;      /* 16px */
-$spacing-5: 1.5rem;    /* 24px */
-$spacing-6: 2rem;      /* 32px */
-$spacing-7: 4rem;      /* 64px */
-$spacing-8: 8rem;      /* 128px */
+$spacing-0: 0; /* 0px */
+$spacing-1: 0.25rem; /* 4px */
+$spacing-2: 0.5rem; /* 8px */
+$spacing-3: 0.75rem; /* 12px */
+$spacing-4: 1rem; /* 16px */
+$spacing-5: 1.5rem; /* 24px */
+$spacing-6: 2rem; /* 32px */
+$spacing-7: 4rem; /* 64px */
+$spacing-8: 8rem; /* 128px */
 
 // SIZING
-$height-1: 1rem;       /* 16px */
-$height-2: 2rem;       /* 32px */
-$height-3: 4rem;       /* 64px */
-$height-4: 8rem;       /* 128px */
-$height-5: 16rem;      /* 256px */
-$height-6: 32rem;      /* 512px */
-$height-7: 48rem;      /* 768px */
-$height-8: 64rem;      /* 1,024px */
-$height-9: 96rem;      /* 1,536px */
+$height-1: 1rem; /* 16px */
+$height-2: 2rem; /* 32px */
+$height-3: 4rem; /* 64px */
+$height-4: 8rem; /* 128px */
+$height-5: 16rem; /* 256px */
+$height-6: 32rem; /* 512px */
+$height-7: 48rem; /* 768px */
+$height-8: 64rem; /* 1,024px */
+$height-9: 96rem; /* 1,536px */
 
-$width-1: 1rem;       /* 16px */
-$width-2: 2rem;       /* 32px */
-$width-3: 4rem;       /* 64px */
-$width-4: 8rem;       /* 128px */
-$width-5: 16rem;      /* 256px */
-$width-6: 32rem;      /* 512px */
-$width-7: 48rem;      /* 768px */
-$width-8: 64rem;      /* 1,024px */
-$width-9: 96rem;      /* 1,536px */
+$width-1: 1rem; /* 16px */
+$width-2: 2rem; /* 32px */
+$width-3: 4rem; /* 64px */
+$width-4: 8rem; /* 128px */
+$width-5: 16rem; /* 256px */
+$width-6: 32rem; /* 512px */
+$width-7: 48rem; /* 768px */
+$width-8: 64rem; /* 1,024px */
+$width-9: 96rem; /* 1,536px */
 
 // Z-INDEX
 $z-nav: 100;
@@ -176,12 +181,10 @@ $z-skip: 500;
 $z-modal: 200;
 $z-modal-container: 400;
 
-
 $NAV_LG_WIDTH: 250px;
 $NAV_BG: $white;
 $NAV_BORDER_COLOR: $neutral-300;
 $NAV_ITEM_HOVER: $neutral-200;
-
 
 $INPUT_COLOR: $neutral-700;
 $INPUT_PLACEHOLDER_COLOR: $neutral-500;

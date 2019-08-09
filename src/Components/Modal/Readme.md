@@ -286,6 +286,44 @@ function ModalExample() {
 <ModalExample />;
 ```
 
+### Not Dismissable/Blocking Modal
+
+To display a blocking modal, will not render the closing button when passed the notDismissable flag. Use the ESC key to dismiss this modal but ordinarily to make this a blocking modal onRequestClose should not be supplied.
+
+```js
+import { useState } from 'react';
+import Button from '../Button/Button';
+
+function ModalExample() {
+  const [showModal, setShowModal] = useState(false);
+
+  const NonDismissableModal = (
+    <Modal
+      title="Not Dismissable"
+      onRequestClose={() => setShowModal(!showModal)}
+      showing={showModal}
+      notDismissable
+    >
+      Dismiss me with ESC
+    </Modal>
+  );
+
+  return (
+    <>
+      {showModal && NonDismissableModal }
+      <Button
+        primary
+        onClick={() => setShowModal(!showModal)}
+      >
+        Show Not Dismissable Modal
+      </Button>
+    </>
+  )
+}
+
+<ModalExample />;
+```
+
 ## Best Practices
 
 Modals should
