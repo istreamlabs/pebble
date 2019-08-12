@@ -52,8 +52,8 @@ function TenantMenu(props) {
     <motion.ul className="tenant-menu" variants={variants}>
       {tenants.options.map((tenant, i) => (
         <motion.li
-          whileFocus={{ x: 10 }}
-          whileHover={{ x: 10 }}
+          whileFocus={{ x: 8 }}
+          whileHover={{ x: 8 }}
           key={i}
           variants={variants}
         >
@@ -62,32 +62,30 @@ function TenantMenu(props) {
               alignItems="center"
               itemSpacing="2"
               paddingVertical={[3]}
-              paddingHorizontal={[4]}
+              paddingHorizontal={5}
             >
-              <Block
-                radius="2"
-                width="50px"
-                height="50px"
-                background="neutral-700"
-                justify="center"
-                alignItems="center"
-              />
               <Block direction="column" flex>
-                <Text color="neutral-300" bold>
-                  {tenant.name}
-                </Text>
-                <Text color="neutral-500" size="6">
-                  {tenant.realm}
+                <Text bold>{tenant.name}</Text>
+                <Text color="neutral-300" size="6">
+                  {tenant.id}
                 </Text>
               </Block>
 
               {tenant.id === currentTenantId && (
-                <Icon
-                  name="check-circle"
-                  className="brand-orange"
-                  accessibilityLabel="currently selected tenant"
-                  size="24"
-                />
+                <Block
+                  justify="center"
+                  alignItems="center"
+                  width="16px"
+                  height="16px"
+                  background="white"
+                >
+                  <Icon
+                    name="check-circle"
+                    className="brand-orange absolute"
+                    accessibilityLabel="currently selected tenant"
+                    size="24"
+                  />
+                </Block>
               )}
             </Block>
           </Link>

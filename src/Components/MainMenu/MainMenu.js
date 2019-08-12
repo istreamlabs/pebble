@@ -170,6 +170,7 @@ class MainMenu extends React.Component {
       <motion.div
         animate={showTenantMenu ? 'showTenant' : 'hideTenant'}
         className="relative"
+        style={{ height: '100vh' }}
       >
         <motion.nav
           variants={variants}
@@ -179,14 +180,26 @@ class MainMenu extends React.Component {
         >
           <div className="main-menu-top">
             {tenants && (
-              <button
-                type="button"
-                onClick={this.handleTenantToggle}
-                className="tenant-menu-open-btn"
+              <Block
+                paddingVertical="3"
+                paddingHorizontal="5"
+                alignItems="center"
+                justify="between"
               >
-                <span>{title}</span>
-                <Icon name="menu-dots" />
-              </button>
+                <div>
+                  <div>
+                    <Text bold>{tenants.current.name}</Text>
+                  </div>
+                  <Text size="6">{tenants.current.id}</Text>
+                </div>
+                <Button
+                  type="button"
+                  onClick={this.handleTenantToggle}
+                  size="small"
+                >
+                  <Icon name="menu-dots" />
+                </Button>
+              </Block>
             )}
             {!tenants && (
               <Block
@@ -230,7 +243,7 @@ class MainMenu extends React.Component {
               color="neutral-100"
               justify="between"
               background="black-30"
-              paddingHorizontal={[3, 4]}
+              paddingHorizontal={5}
               paddingVertical={[2, 3]}
               alignItems="center"
             >

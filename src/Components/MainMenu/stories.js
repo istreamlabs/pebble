@@ -7,51 +7,7 @@ import '../../Styles/foundation.scss';
 import MainMenu from './MainMenu';
 import Block from '../Block/Block';
 
-const tenants = {
-  current: 'dtvlatamStage',
-  options: [
-    {
-      name: 'DirecTV LATAM',
-      realm: 'development',
-      id: 'dtvlatamDev',
-    },
-    {
-      name: 'DirecTV LATAM',
-      realm: 'stage',
-      id: 'dtvlatamStage',
-    },
-    {
-      name: 'DirecTV LATAM',
-      realm: 'production',
-      id: 'dtvlatamProd',
-    },
-    {
-      name: 'iStreamPlanet',
-      realm: 'development',
-      id: 'ispDev',
-    },
-    {
-      name: 'iStreamPlanet',
-      realm: 'stage',
-      id: 'ispStage',
-    },
-    {
-      name: 'iStreamPlanet',
-      realm: 'production',
-      id: 'ispProd',
-    },
-    {
-      name: 'Spark',
-      realm: 'stage',
-      id: 'sparkStage',
-    },
-    {
-      name: 'Spark',
-      realm: 'production',
-      id: 'sparkProd',
-    },
-  ],
-};
+import { TENANTS } from '../../demo/data';
 
 const menu = [
   {
@@ -126,15 +82,16 @@ const auxMenu = [
 ];
 
 storiesOf('MainMenu', module)
-  .add('all', () => (
+  .add('with multiple tenants', () => (
     <DemoBrowserRouter>
       <div style={{ overflow: 'auto' }}>
         <Block height="400px">
           <MainMenu
             title="iStreamPlanet"
-            tenants={tenants}
+            tenants={TENANTS}
             menu={menu}
             auxMenu={auxMenu}
+            startMenuExpanded={false}
           />
         </Block>
       </div>

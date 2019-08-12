@@ -7,9 +7,10 @@
 }
 
 .tenant-link {
+  display: block;
+  color: $neutral-400;
   &:hover {
     color: $neutral-100;
-    background: $black-30;
     text-decoration: none;
   }
 }
