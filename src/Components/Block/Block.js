@@ -306,6 +306,7 @@ const propTypes = {
    * Wrap children if they can not fit along main axis
    */
   wrap: PropTypes.bool,
+  forwardRef: PropTypes.string,
 };
 
 const defaultProps = {
@@ -338,6 +339,7 @@ class Block extends React.PureComponent {
       className,
       direction,
       flex,
+      forwardRef,
       height,
       itemSpacing,
       justify,
@@ -483,7 +485,12 @@ class Block extends React.PureComponent {
     const Element = as;
 
     return (
-      <Element className={classes} {...props} style={mergedStyle}>
+      <Element
+        ref={forwardRef}
+        className={classes}
+        {...props}
+        style={mergedStyle}
+      >
         {blockChildren}
       </Element>
     );

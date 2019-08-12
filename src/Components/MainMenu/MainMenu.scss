@@ -7,6 +7,8 @@
   justify-content: flex-start;
   height: 100vh;
   width: 100%;
+  z-index: 1;
+  position: absolute;
 
   border-right: 1px solid $neutral-300;
   background-color: $NAV_BG;
@@ -23,11 +25,10 @@
     position: relative;
     display: flex;
     width: $NAV_LG_WIDTH;
-    box-shadow: inset -2px 0 4px -2px rgba(0,0,0,.1);
+    box-shadow: inset -2px 0 4px -2px rgba(0, 0, 0, 0.1);
   }
 
   &.opened {
-
     @include respond-above(md) {
       display: flex;
       justify-content: space-between;
@@ -44,7 +45,6 @@
 }
 
 .main-menu-top {
-
   @include respond-above(sm) {
     overflow-y: auto;
   }
@@ -64,5 +64,40 @@
 
   @include respond-above(md) {
     display: flex;
+  }
+}
+
+.tenant-menu-close-btn {
+  color: $neutral-300;
+  background: transparent;
+  border: 1px solid $neutral-500;
+
+  &:hover {
+    color: $neutral-100;
+    border-color: $neutral-300;
+  }
+}
+
+.tenant-menu-open-btn {
+  cursor: pointer;
+  appearance: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  padding: $spacing-3 $spacing-5;
+  width: 100%;
+  text-align: left;
+  font-size: $font-size-5;
+  color: $neutral-700;
+  font-weight: 700;
+  transition: all 0.5s;
+  border-bottom: 1px solid $neutral-300;
+
+  &:hover,
+  &:focus {
+    background-color: $blue-light;
+    outline: none;
   }
 }

@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter, matchPath } from 'react-router';
+import { motion } from 'framer-motion';
 
 import Block from '../Block/Block';
+import Button from '../Button/Button';
+import Heading from '../Heading/Heading';
+import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
 import MenuItem from './MenuItem/MenuItem';
+import TenantMenu from './TenantMenu';
 
 import './MainMenu.scss';
 
@@ -59,6 +64,15 @@ const propTypes = {
     }),
   ),
   /**
+   * A list of tenants the user has access to
+   */
+  tenants: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    }),
+  ),
+  /**
    * Text that appears at the top of the menu
    */
   title: PropTypes.string,
@@ -78,6 +92,15 @@ const defaultProps = {
   title: 'Portal',
 };
 
+const variants = {
+  hideTenant: {
+    x: 0,
+  },
+  showTenant: {
+    x: -310,
+  },
+};
+
 /**
  * MainMenu provides a way for users to navigate from one site section to another.
  * It contains a top (`menu`) and bottom (`auxMenu`) set of menu items, with each
@@ -90,6 +113,14 @@ const defaultProps = {
  */
 
 class MainMenu extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showTenantMenu: false,
+    };
+  }
+
   static shouldBeOpen(location, item) {
     return (
       (!!item.href &&
@@ -117,6 +148,11 @@ class MainMenu extends React.Component {
     ));
   }
 
+  handleTenantToggle = () => {
+    const { showTenantMenu } = this.state;
+    this.setState({ showTenantMenu: !showTenantMenu });
+  };
+
   render() {
     const {
       className,
@@ -125,34 +161,99 @@ class MainMenu extends React.Component {
       auxMenu,
       startAuxMenuExpanded,
       title,
+      tenants,
     } = this.props;
 
+    const { showTenantMenu } = this.state;
+
     return (
-      <nav
-        className={classNames('main-menu', className)}
-        aria-label="Main navigation"
+      <motion.div
+        animate={showTenantMenu ? 'showTenant' : 'hideTenant'}
+        className="relative"
       >
-        <div className="main-menu-top">
-          <Block
-            className="main-menu-title"
-            paddingVertical="3"
-            paddingHorizontal="5"
-            alignItems="center"
-          >
-            <Text bold>{title}</Text>
-          </Block>
-          <ul className="main-menu-items">
-            {this.renderItem(menu, startMenuExpanded)}
-          </ul>
-        </div>
-        {auxMenu && (
-          <div className="main-menu-bottom">
+        <motion.nav
+          variants={variants}
+          transition={{ ease: 'easeInOut' }}
+          className={classNames('main-menu', className)}
+          aria-label="Main navigation"
+        >
+          <div className="main-menu-top">
+            {tenants && (
+              <button
+                type="button"
+                onClick={this.handleTenantToggle}
+                className="tenant-menu-open-btn"
+              >
+                <span>{title}</span>
+                <Icon name="menu-dots" />
+              </button>
+            )}
+            {!tenants && (
+              <Block
+                className="main-menu-title"
+                paddingVertical="3"
+                paddingHorizontal="5"
+                alignItems="center"
+              >
+                <Text bold>{title}</Text>
+              </Block>
+            )}
+
             <ul className="main-menu-items">
-              {this.renderItem(auxMenu, startAuxMenuExpanded)}
+              {this.renderItem(menu, startMenuExpanded)}
             </ul>
           </div>
+          {auxMenu && (
+            <div className="main-menu-bottom">
+              <ul className="main-menu-items">
+                {this.renderItem(auxMenu, startAuxMenuExpanded)}
+              </ul>
+            </div>
+          )}
+        </motion.nav>
+
+        {tenants && (
+          <Block
+            height="100"
+            width="100"
+            background="neutral-800"
+            direction="column"
+            className="absolute"
+            style={{
+              top: 0,
+              left: 0,
+              zIndex: 0,
+              boxShadow: 'inset -2px 0 4px -2px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <Block
+              color="neutral-100"
+              justify="between"
+              background="black-30"
+              paddingHorizontal={[3, 4]}
+              paddingVertical={[2, 3]}
+              alignItems="center"
+            >
+              <Heading element="4" color="neutral-100" size="5">
+                Tenants
+              </Heading>
+              <Button
+                className="tenant-menu-close-btn"
+                size="small"
+                onClick={this.handleTenantToggle}
+              >
+                close
+              </Button>
+            </Block>
+            <Block direction="column">
+              <TenantMenu
+                tenants={tenants}
+                showTenantMenu={showTenantMenu}
+              />
+            </Block>
+          </Block>
         )}
-      </nav>
+      </motion.div>
     );
   }
 }

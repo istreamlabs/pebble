@@ -10,6 +10,52 @@ import MainMenu from '../MainMenu/MainMenu';
 
 const TENANT_NAME = 'Frame Example';
 
+const tenants = {
+  current: 'dtvlatamStage',
+  options: [
+    {
+      name: 'DirecTV LATAM',
+      realm: 'development',
+      id: 'dtvlatamDev',
+    },
+    {
+      name: 'DirecTV LATAM',
+      realm: 'stage',
+      id: 'dtvlatamStage',
+    },
+    {
+      name: 'DirecTV LATAM',
+      realm: 'production',
+      id: 'dtvlatamProd',
+    },
+    {
+      name: 'iStreamPlanet',
+      realm: 'development',
+      id: 'ispDev',
+    },
+    {
+      name: 'iStreamPlanet',
+      realm: 'stage',
+      id: 'ispStage',
+    },
+    {
+      name: 'iStreamPlanet',
+      realm: 'production',
+      id: 'ispProd',
+    },
+    {
+      name: 'Spark',
+      realm: 'stage',
+      id: 'sparkStage',
+    },
+    {
+      name: 'Spark',
+      realm: 'production',
+      id: 'sparkProd',
+    },
+  ],
+};
+
 const MENU = [
   {
     label: 'Dashboard',
@@ -65,6 +111,7 @@ class FrameExample extends React.Component {
 
     const mainMenu = (
       <MainMenu
+        tenants={tenants}
         title={TENANT_NAME}
         menu={MENU}
         activeItem={activeMainMenuItem}

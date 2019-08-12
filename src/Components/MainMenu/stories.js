@@ -7,6 +7,52 @@ import '../../Styles/foundation.scss';
 import MainMenu from './MainMenu';
 import Block from '../Block/Block';
 
+const tenants = {
+  current: 'dtvlatamStage',
+  options: [
+    {
+      name: 'DirecTV LATAM',
+      realm: 'development',
+      id: 'dtvlatamDev',
+    },
+    {
+      name: 'DirecTV LATAM',
+      realm: 'stage',
+      id: 'dtvlatamStage',
+    },
+    {
+      name: 'DirecTV LATAM',
+      realm: 'production',
+      id: 'dtvlatamProd',
+    },
+    {
+      name: 'iStreamPlanet',
+      realm: 'development',
+      id: 'ispDev',
+    },
+    {
+      name: 'iStreamPlanet',
+      realm: 'stage',
+      id: 'ispStage',
+    },
+    {
+      name: 'iStreamPlanet',
+      realm: 'production',
+      id: 'ispProd',
+    },
+    {
+      name: 'Spark',
+      realm: 'stage',
+      id: 'sparkStage',
+    },
+    {
+      name: 'Spark',
+      realm: 'production',
+      id: 'sparkProd',
+    },
+  ],
+};
+
 const menu = [
   {
     label: 'Link',
@@ -84,7 +130,12 @@ storiesOf('MainMenu', module)
     <DemoBrowserRouter>
       <div style={{ overflow: 'auto' }}>
         <Block height="400px">
-          <MainMenu menu={menu} auxMenu={auxMenu} />
+          <MainMenu
+            title="iStreamPlanet"
+            tenants={tenants}
+            menu={menu}
+            auxMenu={auxMenu}
+          />
         </Block>
       </div>
     </DemoBrowserRouter>
@@ -93,7 +144,12 @@ storiesOf('MainMenu', module)
     <DemoBrowserRouter>
       <div style={{ overflow: 'auto' }}>
         <Block height="400px">
-          <MainMenu menu={menu} auxMenu={auxMenu} startMenuExpanded />
+          <MainMenu
+            title="iStreamPlanet"
+            menu={menu}
+            auxMenu={auxMenu}
+            startMenuExpanded
+          />
         </Block>
       </div>
     </DemoBrowserRouter>
