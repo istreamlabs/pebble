@@ -97,7 +97,20 @@ const variants = {
     x: 0,
   },
   showTenant: {
-    x: -310,
+    x: 310,
+  },
+};
+
+const closeTenantVariants = {
+  hideTenant: {
+    x: 33,
+  },
+  showTenant: {
+    x: 0,
+    transition: {
+      delay: 0.25,
+      ease: 'easeOut',
+    },
   },
 };
 
@@ -105,6 +118,8 @@ const variants = {
  * MainMenu provides a way for users to navigate from one site section to another.
  * It contains a top (`menu`) and bottom (`auxMenu`) set of menu items, with each
  * allowing a two-level structure.
+ *
+ * It also contains a way to navigate across tenants if supplied a list of available tenants.
  *
  * It uses [NavLinks from react-router](https://reacttraining.com/react-router/web/api/NavLink)
  * as a way to automatically highlight the currently selected page.
@@ -169,7 +184,7 @@ class MainMenu extends React.Component {
     return (
       <motion.div
         animate={showTenantMenu ? 'showTenant' : 'hideTenant'}
-        className="relative"
+        className="relative overflow-hidden"
         style={{ height: '100vh' }}
       >
         <motion.nav
@@ -185,6 +200,7 @@ class MainMenu extends React.Component {
                 paddingHorizontal="5"
                 alignItems="center"
                 justify="between"
+                border="bottom"
               >
                 <div>
                   <div>
@@ -236,27 +252,36 @@ class MainMenu extends React.Component {
               top: 0,
               left: 0,
               zIndex: 0,
-              boxShadow: 'inset -2px 0 4px -2px rgba(0, 0, 0, 0.1)',
+              boxShadow: 'inset -8px 0 4px -2px rgba(0, 0, 0, 0.1)',
             }}
           >
             <Block
               color="neutral-100"
-              justify="between"
               background="black-30"
-              paddingHorizontal={5}
               paddingVertical={[2, 3]}
               alignItems="center"
+              className="relative"
+              itemSpacing="2"
+              justify="between"
             >
-              <Heading element="4" color="neutral-100" size="5">
+              <Heading
+                className="pl-5"
+                element="4"
+                color="neutral-100"
+                size="5"
+                responsive={false}
+              >
                 Tenants
               </Heading>
-              <Button
-                className="tenant-menu-close-btn"
-                size="small"
-                onClick={this.handleTenantToggle}
-              >
-                close
-              </Button>
+              <motion.div variants={closeTenantVariants}>
+                <Button
+                  onClick={this.handleTenantToggle}
+                  icon="arrow-small-left"
+                  size="small"
+                  accessibilityLabel="hide tenant menu"
+                  className="tenant-menu-close-btn shadow-1"
+                />
+              </motion.div>
             </Block>
             <Block direction="column">
               <TenantMenu

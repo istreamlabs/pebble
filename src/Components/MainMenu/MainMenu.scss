@@ -68,14 +68,9 @@
 }
 
 .tenant-menu-close-btn {
-  color: $neutral-300;
-  background: transparent;
-  border: 1px solid $neutral-500;
-
-  &:hover {
-    color: $neutral-100;
-    border-color: $neutral-300;
-  }
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
 }
 
 .tenant-menu-open-btn {

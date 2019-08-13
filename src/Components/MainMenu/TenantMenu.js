@@ -51,12 +51,7 @@ function TenantMenu(props) {
   return (
     <motion.ul className="tenant-menu" variants={variants}>
       {tenants.options.map((tenant, i) => (
-        <motion.li
-          whileFocus={{ x: 8 }}
-          whileHover={{ x: 8 }}
-          key={i}
-          variants={variants}
-        >
+        <motion.li whileHover={{ x: 8 }} key={i} variants={variants}>
           <Link href={tenant.url} className="tenant-link">
             <Block
               alignItems="center"
