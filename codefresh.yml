@@ -70,9 +70,8 @@ steps:
       deploy_to_npm:
         title: Publishing To Npm
         type: npm-publish
-        arguments:
-          NPM_TOKEN: '${{NPM_TOKEN}}'
+        image: codefresh/npm-publish
         when:
           condition:
             all:
-              isTag: '${{isTag}} == true'
+              isTag: "'${{isTag}}' == 'true'"
