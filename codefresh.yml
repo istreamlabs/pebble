@@ -66,6 +66,7 @@ steps:
         when:
           condition:
             all:
+              executeForMasterBranch: "'${{CF_BRANCH}}' == 'master'"
               isTag: "'${{IS_TAG_PUSH}}' == 'true'"
       deploy_to_npm:
         title: Publishing To Npm
