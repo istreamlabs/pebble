@@ -9,16 +9,44 @@ import Button from '../Button/Button';
 import Heading from '../Heading/Heading';
 import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
-import MenuItem from './MenuItem/MenuItem';
-import TenantMenu from './TenantMenu';
+import MenuItem from './Components/MenuItem';
+import TenantMenu from './Components/TenantMenu';
 
 import './MainMenu.scss';
 
 const propTypes = {
   /**
+   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   */
+  auxMenu: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+      icon: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
+      exact: PropTypes.bool,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          href: PropTypes.string,
+          aliases: PropTypes.arrayOf(PropTypes.string),
+          exact: PropTypes.bool,
+        }),
+      ),
+    }),
+  ),
+  /**
    * Additional ClassNames to add to button group
    */
   className: PropTypes.string,
+  /**
+   * Currently selected tenant
+   */
+  currentTenant: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    realm: PropTypes.string.isRequired,
+  }),
   /**
    * Automatically passed from [withRouter higher-order-component](https://reacttraining.com/react-router/web/api/withRouter).
    */
@@ -44,25 +72,9 @@ const propTypes = {
     }),
   ).isRequired,
   /**
-   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   * Callback function that when defined, display a button to create a new tenant
    */
-  auxMenu: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string,
-      icon: PropTypes.string,
-      aliases: PropTypes.arrayOf(PropTypes.string),
-      exact: PropTypes.bool,
-      items: PropTypes.arrayOf(
-        PropTypes.shape({
-          label: PropTypes.string.isRequired,
-          href: PropTypes.string,
-          aliases: PropTypes.arrayOf(PropTypes.string),
-          exact: PropTypes.bool,
-        }),
-      ),
-    }),
-  ),
+  onAddTenant: PropTypes.func,
   /**
    * A list of tenants the user has access to
    */
@@ -70,6 +82,7 @@ const propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
+      realm: PropTypes.string.isRequired,
     }),
   ),
   /**
@@ -170,13 +183,15 @@ class MainMenu extends React.Component {
 
   render() {
     const {
-      className,
-      menu,
-      startMenuExpanded,
       auxMenu,
+      className,
+      currentTenant,
+      menu,
+      onAddTenant,
+      startMenuExpanded,
       startAuxMenuExpanded,
-      title,
       tenants,
+      title,
     } = this.props;
 
     const { showTenantMenu } = this.state;
@@ -194,20 +209,19 @@ class MainMenu extends React.Component {
           aria-label="Main navigation"
         >
           <div className="main-menu-top">
-            {tenants && (
+            {tenants && currentTenant && (
               <Block
                 paddingVertical="3"
-                paddingHorizontal="5"
+                paddingHorizontal="4"
                 alignItems="center"
                 justify="between"
                 border="bottom"
+                itemSpacing="3"
               >
-                <div>
-                  <div>
-                    <Text bold>{tenants.current.name}</Text>
-                  </div>
-                  <Text size="6">{tenants.current.id}</Text>
-                </div>
+                <Block direction="column">
+                  <Text bold>{currentTenant.name}</Text>
+                  <Text size="6">{currentTenant.realm}</Text>
+                </Block>
                 <Button
                   type="button"
                   onClick={this.handleTenantToggle}
@@ -245,7 +259,7 @@ class MainMenu extends React.Component {
           <Block
             height="100"
             width="100"
-            background="neutral-800"
+            background="neutral-700"
             direction="column"
             className="absolute"
             style={{
@@ -264,19 +278,30 @@ class MainMenu extends React.Component {
               itemSpacing="2"
               justify="between"
             >
-              <Heading
-                className="pl-5"
-                element="4"
-                color="neutral-100"
-                size="5"
-                responsive={false}
-              >
-                Tenants
-              </Heading>
+              <Block alignItems="center" itemSpacing="2">
+                <Heading
+                  className="pl-5"
+                  element="4"
+                  color="neutral-100"
+                  size="5"
+                  responsive={false}
+                >
+                  Tenants
+                </Heading>
+                {onAddTenant && (
+                  <Button
+                    onClick={onAddTenant}
+                    size="small"
+                    icon="add-bold"
+                    accessibilityLabel="add realm"
+                    className="add-realm-btn"
+                  />
+                )}
+              </Block>
               <motion.div variants={closeTenantVariants}>
                 <Button
                   onClick={this.handleTenantToggle}
-                  icon="arrow-small-left"
+                  icon="nav-left"
                   size="small"
                   accessibilityLabel="hide tenant menu"
                   className="tenant-menu-close-btn shadow-1"
@@ -286,6 +311,7 @@ class MainMenu extends React.Component {
             <Block direction="column">
               <TenantMenu
                 tenants={tenants}
+                currentTenantId={currentTenant.id}
                 showTenantMenu={showTenantMenu}
               />
             </Block>

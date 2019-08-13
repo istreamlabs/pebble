@@ -1,4 +1,4 @@
-@import '../../Styles/foundation/variables.scss';
+@import '../../../Styles/foundation/variables.scss';
 
 .tenant-menu {
   margin: 0;
@@ -8,7 +8,7 @@
 
 .tenant-link {
   display: block;
-  color: $neutral-400;
+  color: $neutral-200;
   &:hover {
     color: $neutral-100;
     text-decoration: none;

@@ -8,43 +8,9 @@ import Frame from './Frame';
 import Block from '../Block/Block';
 import MainMenu from '../MainMenu/MainMenu';
 
-import { TENANTS } from '../../demo/data';
+import { MAIN_MENU, TENANTS } from '../../demo/data';
 
 const TENANT_NAME = 'Frame Example';
-
-const MENU = [
-  {
-    label: 'Dashboard',
-    icon: 'dashboard',
-    href: '/',
-  },
-  {
-    label: 'Subs Only',
-    icon: 'player',
-    items: [
-      {
-        label: 'Sub-item 1',
-        href: '/',
-      },
-    ],
-  },
-  {
-    id: '3',
-    label: 'Link & Sub',
-    icon: 'settings',
-    href: '?path=/story/frame--all',
-    items: [
-      {
-        label: 'Sub-item 1',
-        href: '/',
-      },
-      {
-        label: 'Sub-item 2',
-        href: '/#/Components/MainMenu',
-      },
-    ],
-  },
-];
 
 class FrameExample extends React.Component {
   constructor() {
@@ -68,8 +34,13 @@ class FrameExample extends React.Component {
     const mainMenu = (
       <MainMenu
         tenants={TENANTS}
+        currentTenant={{
+          name: 'Cyberdyne Systems',
+          id: 'cyberdyne-stage',
+          realm: 'stage',
+        }}
         title={TENANT_NAME}
-        menu={MENU}
+        menu={MAIN_MENU}
         activeItem={activeMainMenuItem}
         showMobileNavigation={showMobileNavigation}
       />

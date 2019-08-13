@@ -1,72 +1,121 @@
-export const TENANTS = {
-  current: { id: 'isp-stage', name: 'iStreamPlanet' },
-  options: [
-    {
-      name: 'BR Live',
-      id: 'brlive-prod',
-    },
-    {
-      name: 'CNN',
-      id: 'cnn-prod',
-    },
-    {
-      name: 'DirecTV LATAM',
-      id: 'dtvlatam-dev',
-    },
-    {
-      name: 'DirecTV LATAM',
-      id: 'dtvlatam-stage',
-    },
-    {
-      name: 'DirecTV LATAM',
-      id: 'dtvlatam-prod',
-    },
-    {
-      name: 'Fiji',
-      id: 'fiji-stage',
-    },
-    {
-      name: 'Fiji',
-      id: 'fiji-prod',
-    },
-    {
-      name: 'Fubo',
-      id: 'fubo-prod',
-    },
-    {
-      name: 'hulu',
-      id: 'hulu-prod',
-    },
-    {
-      name: 'iStreamPlanet',
-      id: 'isp-dev',
-    },
-    {
-      name: 'iStreamPlanet',
-      id: 'isp-stage',
-    },
-    {
-      name: 'iStreamPlanet',
-      id: 'isp-prod',
-    },
-    {
-      name: 'Spark',
-      id: 'spark-stage',
-    },
-    {
-      name: 'Spark',
-      id: 'spark-prod',
-    },
-    {
-      name: 'Turner',
-      id: 'turner-stage',
-    },
-    {
-      name: 'Turner',
-      id: 'turner-prod',
-    },
-  ],
-};
+export const MAIN_MENU = [
+  {
+    label: 'Link',
+    href: '/#/Components/MainMenu',
+    aliases: [
+      '/iframe.html',
+      '/?path=/story/mainmenu--with-multiple-tenants',
+    ],
+    icon: 'dashboard',
+  },
+  {
+    label: 'Subs Only',
+    icon: 'player',
+    items: [
+      {
+        label: 'Sub-item 1',
+        href: '/#',
+        exact: true,
+      },
+      {
+        label: 'Sub-item 2',
+        href: '/#',
+        exact: true,
+      },
+      {
+        label: 'Sub-item 3',
+        href: '/#',
+        exact: true,
+      },
+    ],
+  },
+  {
+    label: 'Link & Sub',
+    icon: 'settings',
+    href: '/#/Components/MainMenu',
+    exact: true,
+    items: [
+      {
+        label: 'Sub-item 1',
+        href: '/#/Components/MainMenu',
+        exact: true,
+      },
+      {
+        label: 'Sub-item 2',
+        href: '/#/Components/MainMenu',
+        exact: true,
+      },
+    ],
+  },
+];
+
+export const TENANTS = [
+  {
+    name: 'Acme Corporation',
+    id: 'acme-prod',
+    realm: 'production',
+  },
+  {
+    name: 'Cyberdyne Systems',
+    id: 'cyberdyne-dev',
+    realm: 'dev',
+  },
+  {
+    name: 'Cyberdyne Systems',
+    id: 'cyberdyne-stage',
+    realm: 'stage',
+  },
+  {
+    name: 'Cyberdyne Systems',
+    id: 'cyberdyne-prod',
+    realm: 'production',
+  },
+  {
+    name: 'Gekko & Co.',
+    id: 'gekko-stage',
+    realm: 'stage',
+  },
+  {
+    name: 'Gekko & Co.',
+    id: 'gekko-prod',
+    realm: 'production',
+  },
+  {
+    name: 'Genco Pura Olive Oil Company',
+    id: 'genco-prod',
+    realm: 'production',
+  },
+  {
+    name: 'Stark Industries',
+    id: 'stark-dev',
+    realm: 'dev',
+  },
+  {
+    name: 'Stark Industries',
+    id: 'stark-stage',
+    realm: 'stage',
+  },
+  {
+    name: 'Stark Industries',
+    id: 'stark-prod',
+    realm: 'production',
+  },
+  {
+    name: 'Wayne Enterprises',
+    id: 'wayne-stage',
+    realm: 'stage',
+  },
+  {
+    name: 'Wayne Enterprises',
+    id: 'wayne-prod',
+    realm: 'production',
+  },
+  {
+    name: 'Wonka Industries',
+    id: 'wonka-prod',
+    realm: 'production',
+  },
+];
 
 export const PEOPLE_DATA_2 = [
   {
