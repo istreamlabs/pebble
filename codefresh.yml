@@ -64,9 +64,9 @@ steps:
         commands:
         - ./deploy.sh "pebble.istreamplanet.net"
         when:
-          branch:
-            only:
-              - master
+          condition:
+            all:
+              isTag: "'${{IS_TAG_PUSH}}' == 'true'"
       deploy_to_npm:
         title: Publishing To Npm
         type: npm-publish
@@ -74,4 +74,4 @@ steps:
         when:
           condition:
             all:
-              isTag: "'${{isTag}}' == 'true'"
+              isTag: "'${{IS_TAG_PUSH}}' == 'true'"
