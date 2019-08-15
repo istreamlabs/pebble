@@ -9,6 +9,7 @@
 .tenant-link {
   display: block;
   color: $neutral-200;
+  &:focus,
   &:hover {
     color: $neutral-100;
     text-decoration: none;

@@ -1,16 +1,24 @@
+import './TenantMenu.scss';
+
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
 
 import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
 import Link from '../../Link/Link';
+import PropTypes from 'prop-types';
 import Text from '../../Text/Text';
-
-import './TenantMenu.scss';
+import { motion } from 'framer-motion';
 
 const propTypes = {
+  /**
+   * The id of the currently selected tenant
+   * so that it is highlighted in the list
+   */
   currentTenantId: PropTypes.string,
+  /**
+   * Function to call when a tenant is clicked
+   */
+  onTenantChange: PropTypes.func,
   /**
    * A list of tenants the user has access to
    */
@@ -44,17 +52,24 @@ const variants = {
 };
 
 function TenantMenu(props) {
-  const { currentTenantId, tenants } = props;
-  return (
-    <motion.ul className="tenant-menu" variants={variants}>
-      {tenants.map((tenant, i) => (
+  const { currentTenantId, onTenantChange, tenants } = props;
+
+  if (!tenants) return null;
+
+  const renderTenants = () => {
+    const tenantMarkup = tenants.map(
+      ({ name, realm, id, url }, i) => (
         <motion.li
           whileHover={{ paddingLeft: 8 }}
           key={i}
           variants={variants}
           className="bg-neutral-800-hover"
         >
-          <Link href={tenant.url} className="tenant-link">
+          <Link
+            href={url}
+            onClick={id !== currentTenantId ? onTenantChange : null}
+            className="tenant-link"
+          >
             <Block
               alignItems="center"
               itemSpacing="2"
@@ -62,12 +77,12 @@ function TenantMenu(props) {
               paddingHorizontal={5}
             >
               <Block direction="column" flex>
-                <Text bold>{tenant.name}</Text>
+                <Text bold>{name}</Text>
                 <Text color="neutral-400" size="6">
-                  {tenant.realm}
+                  {realm}
                 </Text>
               </Block>
-              {tenant.id === currentTenantId && (
+              {id === currentTenantId && (
                 <Block
                   justify="center"
                   alignItems="center"
@@ -86,8 +101,17 @@ function TenantMenu(props) {
             </Block>
           </Link>
         </motion.li>
-      ))}
-    </motion.ul>
+      ),
+    );
+    return tenantMarkup;
+  };
+
+  return (
+    <Block direction="column">
+      <motion.ul className="tenant-menu" variants={variants}>
+        {renderTenants()}
+      </motion.ul>
+    </Block>
   );
 }
 

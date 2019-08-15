@@ -1,9 +1,12 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import MainMenu from './MainMenu';
+import MainMenu, { TestableMainMenu } from './MainMenu';
 
-import MenuItem from './MenuItem/MenuItem';
+import MenuItem from './Components/MenuItem';
+import Button from '../Button/Button';
+
+import { TENANTS } from '../../demo/data';
 
 const mockMenuData = [
   {
@@ -107,6 +110,115 @@ describe('MainMenu', () => {
     menu.find('MenuItem').forEach((item, index) => {
       const expectedKey = `${mockMenuData[index].id}`;
       expect(item.key()).toBe(expectedKey);
+    });
+  });
+
+  describe('renderMenuHeader', () => {
+    it('renders the title', () => {
+      const testTitle = 'test title';
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        title: testTitle,
+      });
+      const result = shallow(instance.renderMenuHeader());
+      expect(result.text()).toBe(testTitle);
+    });
+    it('renders the current tenant if passed a tenant and currentTenant', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        currentTenant: {
+          name: 'Acme Corporation',
+          id: 'acme-prod',
+          realm: 'production',
+        },
+        tenants: TENANTS,
+      });
+      const result = shallow(instance.renderMenuHeader());
+
+      expect(result.find(Button).prop('size')).toContain('small');
+    });
+  });
+
+  describe('renderTenantHeader', () => {
+    it('returns an add tenant button if onAddTenant is defined', () => {
+      const mock = jest.fn();
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        onAddTenant: mock,
+        tenants: TENANTS,
+      });
+      const result = mount(instance.renderTenantHeader());
+      expect(
+        result
+          .find('button')
+          .at(0)
+          .prop('onClick'),
+      ).toBe(mock);
+      expect(
+        result
+          .find('button')
+          .at(0)
+          .prop('className'),
+      ).toContain('add-realm-btn');
+    });
+  });
+
+  describe('renderTenants', () => {
+    it('does not render tenants if tenants is not defined', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+      });
+      expect(instance.renderTenants()).toBe(null);
+    });
+    it('renders a TenantMenu, calls renderTenantHeader if tenants is defined', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        tenants: TENANTS,
+      });
+      jest
+        .spyOn(instance, 'renderTenantHeader')
+        .mockImplementation(jest.fn());
+      const result = shallow(instance.renderTenants());
+      expect(instance.renderTenantHeader).toHaveBeenCalled();
+      expect(result.find('TenantMenu')).toHaveLength(1);
+      expect(
+        result.find('TenantMenu').prop('currentTenantId'),
+      ).toBeNull();
+    });
+    it('renders a TenantMenu and sets currentTenant if defined', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        tenants: TENANTS,
+        currentTenant: {
+          name: 'Acme Corporation',
+          id: 'acme-prod',
+          realm: 'production',
+        },
+      });
+      jest
+        .spyOn(instance, 'renderTenantHeader')
+        .mockImplementation(jest.fn());
+      const result = shallow(instance.renderTenants());
+      expect(instance.renderTenantHeader).toHaveBeenCalled();
+      expect(result.find('TenantMenu')).toHaveLength(1);
+      expect(result.find('TenantMenu').prop('currentTenantId')).toBe(
+        'acme-prod',
+      );
+    });
+  });
+
+  describe('handleTenantToggle', () => {
+    it('toggles showTenantMenu with setState', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        tenants: TENANTS,
+      });
+      instance.setState = jest.fn();
+      instance.handleTenantToggle();
+      expect(instance.setState).toHaveBeenCalledTimes(1);
+      expect(instance.setState).toHaveBeenCalledWith({
+        showTenantMenu: !instance.state.showTenantMenu,
+      });
     });
   });
 });

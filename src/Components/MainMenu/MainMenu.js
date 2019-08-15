@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withRouter, matchPath } from 'react-router';
-import { motion } from 'framer-motion';
+import './MainMenu.scss';
+
+import { matchPath, withRouter } from 'react-router';
 
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 import Heading from '../Heading/Heading';
 import Icon from '../Icon/Icon';
-import Text from '../Text/Text';
 import MenuItem from './Components/MenuItem';
+import PropTypes from 'prop-types';
+import React from 'react';
 import TenantMenu from './Components/TenantMenu';
-
-import './MainMenu.scss';
+import Text from '../Text/Text';
+import classNames from 'classnames';
+import { motion } from 'framer-motion';
 
 const propTypes = {
   /**
@@ -83,8 +83,14 @@ const propTypes = {
       name: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       realm: PropTypes.string.isRequired,
+      url: PropTypes.string,
     }),
   ),
+  /**
+   * A function that is called when the user clicks on
+   * a different tenant in the Tenant Menu
+   */
+  onTenantChange: PropTypes.func,
   /**
    * Text that appears at the top of the menu
    */
@@ -176,6 +182,126 @@ class MainMenu extends React.Component {
     ));
   }
 
+  renderMenuHeader() {
+    const { currentTenant, tenants, title } = this.props;
+
+    if (!tenants) {
+      return (
+        <Block
+          className="main-menu-title"
+          paddingVertical="3"
+          paddingHorizontal="5"
+          alignItems="center"
+        >
+          <Text bold>{title}</Text>
+        </Block>
+      );
+    }
+
+    if (tenants && currentTenant) {
+      return (
+        <Block
+          paddingVertical="3"
+          paddingHorizontal="4"
+          alignItems="center"
+          justify="between"
+          border="bottom"
+          itemSpacing="3"
+        >
+          <Block direction="column">
+            <Text bold>{currentTenant.name}</Text>
+            <Text size="6">{currentTenant.realm}</Text>
+          </Block>
+          <Button
+            type="button"
+            onClick={this.handleTenantToggle}
+            size="small"
+          >
+            <Icon name="menu-dots" />
+          </Button>
+        </Block>
+      );
+    }
+  }
+
+  renderTenantHeader() {
+    const { onAddTenant } = this.props;
+
+    return (
+      <Block
+        color="neutral-100"
+        background="black-30"
+        paddingVertical={[2, 3]}
+        alignItems="center"
+        className="relative"
+        itemSpacing="2"
+        justify="between"
+      >
+        <Block alignItems="center" itemSpacing="2">
+          <Heading
+            className="pl-5"
+            element="4"
+            color="neutral-100"
+            size="5"
+            responsive={false}
+          >
+            Tenants
+          </Heading>
+          {onAddTenant && (
+            <Button
+              onClick={onAddTenant}
+              size="small"
+              icon="add-bold"
+              accessibilityLabel="add realm"
+              className="add-realm-btn"
+            />
+          )}
+        </Block>
+        <motion.div variants={closeTenantVariants}>
+          <Button
+            onClick={this.handleTenantToggle}
+            icon="nav-left"
+            size="small"
+            accessibilityLabel="hide tenant menu"
+            className="tenant-menu-close-btn shadow-1"
+          />
+        </motion.div>
+      </Block>
+    );
+  }
+
+  renderTenants() {
+    const { currentTenant, onTenantChange, tenants } = this.props;
+    const { showTenantMenu } = this.state;
+
+    if (!tenants) {
+      return null;
+    }
+    return (
+      <Block
+        height="100"
+        width="100"
+        background="neutral-700"
+        direction="column"
+        className="absolute"
+        style={{
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          boxShadow: 'inset -8px 0 4px -2px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        {this.renderTenantHeader()}
+        <TenantMenu
+          tenants={tenants}
+          currentTenantId={currentTenant ? currentTenant.id : null}
+          showTenantMenu={showTenantMenu}
+          onTenantChange={onTenantChange}
+        />
+      </Block>
+    );
+  }
+
   handleTenantToggle = () => {
     const { showTenantMenu } = this.state;
     this.setState({ showTenantMenu: !showTenantMenu });
@@ -185,13 +311,9 @@ class MainMenu extends React.Component {
     const {
       auxMenu,
       className,
-      currentTenant,
       menu,
-      onAddTenant,
       startMenuExpanded,
       startAuxMenuExpanded,
-      tenants,
-      title,
     } = this.props;
 
     const { showTenantMenu } = this.state;
@@ -209,38 +331,7 @@ class MainMenu extends React.Component {
           aria-label="Main navigation"
         >
           <div className="main-menu-top">
-            {tenants && currentTenant && (
-              <Block
-                paddingVertical="3"
-                paddingHorizontal="4"
-                alignItems="center"
-                justify="between"
-                border="bottom"
-                itemSpacing="3"
-              >
-                <Block direction="column">
-                  <Text bold>{currentTenant.name}</Text>
-                  <Text size="6">{currentTenant.realm}</Text>
-                </Block>
-                <Button
-                  type="button"
-                  onClick={this.handleTenantToggle}
-                  size="small"
-                >
-                  <Icon name="menu-dots" />
-                </Button>
-              </Block>
-            )}
-            {!tenants && (
-              <Block
-                className="main-menu-title"
-                paddingVertical="3"
-                paddingHorizontal="5"
-                alignItems="center"
-              >
-                <Text bold>{title}</Text>
-              </Block>
-            )}
+            {this.renderMenuHeader()}
 
             <ul className="main-menu-items">
               {this.renderItem(menu, startMenuExpanded)}
@@ -255,68 +346,7 @@ class MainMenu extends React.Component {
           )}
         </motion.nav>
 
-        {tenants && (
-          <Block
-            height="100"
-            width="100"
-            background="neutral-700"
-            direction="column"
-            className="absolute"
-            style={{
-              top: 0,
-              left: 0,
-              zIndex: 0,
-              boxShadow: 'inset -8px 0 4px -2px rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            <Block
-              color="neutral-100"
-              background="black-30"
-              paddingVertical={[2, 3]}
-              alignItems="center"
-              className="relative"
-              itemSpacing="2"
-              justify="between"
-            >
-              <Block alignItems="center" itemSpacing="2">
-                <Heading
-                  className="pl-5"
-                  element="4"
-                  color="neutral-100"
-                  size="5"
-                  responsive={false}
-                >
-                  Tenants
-                </Heading>
-                {onAddTenant && (
-                  <Button
-                    onClick={onAddTenant}
-                    size="small"
-                    icon="add-bold"
-                    accessibilityLabel="add realm"
-                    className="add-realm-btn"
-                  />
-                )}
-              </Block>
-              <motion.div variants={closeTenantVariants}>
-                <Button
-                  onClick={this.handleTenantToggle}
-                  icon="nav-left"
-                  size="small"
-                  accessibilityLabel="hide tenant menu"
-                  className="tenant-menu-close-btn shadow-1"
-                />
-              </motion.div>
-            </Block>
-            <Block direction="column">
-              <TenantMenu
-                tenants={tenants}
-                currentTenantId={currentTenant.id}
-                showTenantMenu={showTenantMenu}
-              />
-            </Block>
-          </Block>
-        )}
+        {this.renderTenants()}
       </motion.div>
     );
   }
@@ -324,5 +354,7 @@ class MainMenu extends React.Component {
 
 MainMenu.propTypes = propTypes;
 MainMenu.defaultProps = defaultProps;
+
+export { MainMenu as TestableMainMenu };
 
 export default withRouter(MainMenu);

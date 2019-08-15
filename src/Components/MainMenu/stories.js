@@ -53,6 +53,8 @@ storiesOf('MainMenu', module)
             menu={MAIN_MENU}
             auxMenu={auxMenu}
             startMenuExpanded={false}
+            onAddTenant={() => alert('add tenant logic')}
+            onTenantChange={() => alert('tenant change logic')}
           />
         </Block>
       </div>
