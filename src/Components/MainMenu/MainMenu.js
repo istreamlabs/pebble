@@ -44,9 +44,9 @@ const propTypes = {
    * Currently selected tenant
    */
   currentTenant: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    realm: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    id: PropTypes.string,
+    realm: PropTypes.string,
   }),
   /**
    * Automatically passed from [withRouter higher-order-component](https://reacttraining.com/react-router/web/api/withRouter).
@@ -181,11 +181,7 @@ class MainMenu extends React.Component {
 
     let headerContent;
 
-    if (!tenants) {
-      headerContent = <Text bold>{title}</Text>;
-    }
-
-    if (tenants && currentTenant) {
+    if (tenants && tenants.length > 1) {
       headerContent = (
         <>
           <Block direction="column">
@@ -203,6 +199,8 @@ class MainMenu extends React.Component {
           </Button>
         </>
       );
+    } else {
+      headerContent = <Text bold>{title}</Text>;
     }
 
     return (

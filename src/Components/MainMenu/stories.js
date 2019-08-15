@@ -37,7 +37,7 @@ const auxMenu = [
 ];
 
 storiesOf('MainMenu', module)
-  .add('with multiple tenants', () => (
+  .add('multiple tenants', () => (
     <DemoBrowserRouter>
       <MainMenu
         tenants={TENANTS}
@@ -54,7 +54,23 @@ storiesOf('MainMenu', module)
       />
     </DemoBrowserRouter>
   ))
-  .add('start expanded', () => (
+  .add('one tenant', () => (
+    <DemoBrowserRouter>
+      <MainMenu
+        title="iStreamPlanet"
+        menu={MAIN_MENU}
+        auxMenu={auxMenu}
+        tenants={[
+          {
+            name: 'one tenant',
+            id: 'cyberdyne-stage',
+            realm: 'stage',
+          },
+        ]}
+      />
+    </DemoBrowserRouter>
+  ))
+  .add('not start expanded', () => (
     <DemoBrowserRouter>
       <MainMenu
         title="iStreamPlanet"
