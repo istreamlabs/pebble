@@ -1,6 +1,7 @@
 import './MainMenu.scss';
 
 import { matchPath, withRouter } from 'react-router';
+import { tenantType } from '../../Types';
 
 import Block from '../Block/Block';
 import Button from '../Button/Button';
@@ -78,14 +79,7 @@ const propTypes = {
   /**
    * A list of tenants the user has access to
    */
-  tenants: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      realm: PropTypes.string.isRequired,
-      url: PropTypes.string,
-    }),
-  ),
+  tenants: tenantType,
   /**
    * A function that is called when the user clicks on
    * a different tenant in the Tenant Menu
@@ -185,32 +179,20 @@ class MainMenu extends React.Component {
   renderMenuHeader() {
     const { currentTenant, tenants, title } = this.props;
 
+    let headerContent;
+
     if (!tenants) {
-      return (
-        <Block
-          className="main-menu-title"
-          paddingVertical="3"
-          paddingHorizontal="5"
-          alignItems="center"
-        >
-          <Text bold>{title}</Text>
-        </Block>
-      );
+      headerContent = <Text bold>{title}</Text>;
     }
 
     if (tenants && currentTenant) {
-      return (
-        <Block
-          paddingVertical="3"
-          paddingHorizontal="4"
-          alignItems="center"
-          justify="between"
-          border="bottom"
-          itemSpacing="3"
-        >
+      headerContent = (
+        <>
           <Block direction="column">
             <Text bold>{currentTenant.name}</Text>
-            <Text size="6">{currentTenant.realm}</Text>
+            <Text color="neutral-600" size="6">
+              {currentTenant.realm}
+            </Text>
           </Block>
           <Button
             type="button"
@@ -219,9 +201,23 @@ class MainMenu extends React.Component {
           >
             <Icon name="menu-dots" />
           </Button>
-        </Block>
+        </>
       );
     }
+
+    return (
+      <Block
+        paddingVertical="3"
+        paddingHorizontal="4"
+        alignItems="center"
+        justify="between"
+        border="bottom"
+        itemSpacing="3"
+        color="neutral-700"
+      >
+        {headerContent}
+      </Block>
+    );
   }
 
   renderTenantHeader() {
@@ -253,7 +249,7 @@ class MainMenu extends React.Component {
               size="small"
               icon="add-bold"
               accessibilityLabel="add realm"
-              className="add-realm-btn"
+              className="add-tenant-btn"
             />
           )}
         </Block>

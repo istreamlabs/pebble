@@ -1,13 +1,15 @@
 import './TenantMenu.scss';
 
 import * as React from 'react';
+import { motion } from 'framer-motion';
 
 import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
 import Link from '../../Link/Link';
 import PropTypes from 'prop-types';
 import Text from '../../Text/Text';
-import { motion } from 'framer-motion';
+
+import { tenantType } from '../../../Types';
 
 const propTypes = {
   /**
@@ -22,13 +24,7 @@ const propTypes = {
   /**
    * A list of tenants the user has access to
    */
-  tenants: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      realm: PropTypes.string.isRequired,
-    }),
-  ),
+  tenants: tenantType,
 };
 
 const variants = {
@@ -66,6 +62,7 @@ function TenantMenu(props) {
           className="bg-neutral-800-hover"
         >
           <Link
+            external
             href={url}
             onClick={id !== currentTenantId ? onTenantChange : null}
             className="tenant-link"

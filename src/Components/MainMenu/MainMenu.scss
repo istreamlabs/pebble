@@ -56,18 +56,7 @@
   }
 }
 
-.main-menu-title {
-  color: $neutral-700;
-  display: flex;
-  font-weight: 700;
-  border-bottom: 1px solid $NAV_BORDER_COLOR;
-
-  @include respond-above(md) {
-    display: flex;
-  }
-}
-
-.add-realm-btn {
+.add-tenant-btn {
   background: transparent;
   color: $neutral-300;
   border-color: $neutral-600;

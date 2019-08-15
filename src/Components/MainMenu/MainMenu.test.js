@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import MainMenu, { TestableMainMenu } from './MainMenu';
 
 import MenuItem from './Components/MenuItem';
-import Button from '../Button/Button';
 
 import { TENANTS } from '../../demo/data';
 
@@ -113,6 +112,52 @@ describe('MainMenu', () => {
     });
   });
 
+  describe('render', () => {
+    it('calls all the correct helper methods when passed menu and auxMenu', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        auxMenu: mockMenuData,
+        title: 'test title',
+      });
+      jest
+        .spyOn(instance, 'renderMenuHeader')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderItem')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderTenants')
+        .mockImplementation(jest.fn());
+
+      instance.render();
+
+      expect(instance.renderMenuHeader).toHaveBeenCalledTimes(1);
+      expect(instance.renderItem).toHaveBeenCalledTimes(2);
+      expect(instance.renderTenants).toHaveBeenCalledTimes(1);
+    });
+    it('calls all the correct helper methods when passed menu only', () => {
+      const instance = new TestableMainMenu({
+        menu: mockMenuData,
+        title: 'test title',
+      });
+      jest
+        .spyOn(instance, 'renderMenuHeader')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderItem')
+        .mockImplementation(jest.fn());
+      jest
+        .spyOn(instance, 'renderTenants')
+        .mockImplementation(jest.fn());
+
+      instance.render();
+
+      expect(instance.renderMenuHeader).toHaveBeenCalledTimes(1);
+      expect(instance.renderItem).toHaveBeenCalledTimes(1);
+      expect(instance.renderTenants).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('renderMenuHeader', () => {
     it('renders the title', () => {
       const testTitle = 'test title';
@@ -122,6 +167,7 @@ describe('MainMenu', () => {
       });
       const result = shallow(instance.renderMenuHeader());
       expect(result.text()).toBe(testTitle);
+      expect(result.children()).toHaveLength(1);
     });
     it('renders the current tenant if passed a tenant and currentTenant', () => {
       const instance = new TestableMainMenu({
@@ -134,8 +180,7 @@ describe('MainMenu', () => {
         tenants: TENANTS,
       });
       const result = shallow(instance.renderMenuHeader());
-
-      expect(result.find(Button).prop('size')).toContain('small');
+      expect(result.children()).toHaveLength(2);
     });
   });
 
@@ -159,7 +204,7 @@ describe('MainMenu', () => {
           .find('button')
           .at(0)
           .prop('className'),
-      ).toContain('add-realm-btn');
+      ).toContain('add-tenant-btn');
     });
   });
 
