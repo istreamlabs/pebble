@@ -87,6 +87,31 @@
 .bg-indigo-lighter-hover:focus,
 .bg-indigo-lighter-hover:focus-within      { background: $indigo-lighter }
 
+.bg-neutral-100-hover:hover,
+.bg-neutral-100-hover:focus,
+.bg-neutral-100-hover:focus-within    { background: $neutral-100 }
+.bg-neutral-200-hover:hover,
+.bg-neutral-200-hover:focus,
+.bg-neutral-200-hover:focus-within    { background: $neutral-200 }
+.bg-neutral-300-hover:hover,
+.bg-neutral-300-hover:focus,
+.bg-neutral-300-hover:focus-within    { background: $neutral-300 }
+.bg-neutral-400-hover:hover,
+.bg-neutral-400-hover:focus,
+.bg-neutral-400-hover:focus-within    { background: $neutral-400 }
+.bg-neutral-500-hover:hover,
+.bg-neutral-500-hover:focus,
+.bg-neutral-500-hover:focus-within    { background: $neutral-500 }
+.bg-neutral-600-hover:hover,
+.bg-neutral-600-hover:focus,
+.bg-neutral-600-hover:focus-within    { background: $neutral-600 }
+.bg-neutral-700-hover:hover,
+.bg-neutral-700-hover:focus,
+.bg-neutral-700-hover:focus-within    { background: $neutral-700 }
+.bg-neutral-800-hover:hover,
+.bg-neutral-800-hover:focus,
+.bg-neutral-800-hover:focus-within    { background: $neutral-800 }
+
 .bg-hover { transition: background-color .2s linear, box-shadow .2s linear;}
 
 .brand-orange   { color: $brand-orange }
