@@ -194,6 +194,7 @@ class MainMenu extends React.Component {
             type="button"
             onClick={this.handleTenantToggle}
             size="small"
+            accessibilityLabel="view Tenants"
           >
             <Icon name="menu-dots" />
           </Button>
@@ -246,7 +247,7 @@ class MainMenu extends React.Component {
               onClick={onAddTenant}
               size="small"
               icon="add-bold"
-              accessibilityLabel="add realm"
+              accessibilityLabel="add tenant"
               className="add-tenant-btn"
             />
           )}

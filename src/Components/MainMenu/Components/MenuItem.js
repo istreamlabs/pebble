@@ -206,7 +206,7 @@ class MenuItem extends React.Component {
               paddingVertical="3"
               paddingHorizontal="6"
               textSize="6"
-              className="neutral-500"
+              color="neutral-600"
             >
               {item.label}
             </Block>
