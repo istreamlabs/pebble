@@ -26,14 +26,13 @@ const propTypes = {
    */
   onNavigationToggle: PropTypes.func,
   /**
-   * Title text that appears in header and MainMenu
+   * Title text that appears in header and MainMenu on mobile
    */
   title: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
   children: null,
-  onNavigationToggle: () => {},
 };
 
 /**
