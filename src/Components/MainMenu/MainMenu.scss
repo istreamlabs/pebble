@@ -1,6 +1,15 @@
 @import '../../Styles/foundation/variables.scss';
 @import '../../Styles/foundation/media-queries.scss';
 
+.main-menu-container {
+  width: 100%;
+  height: 100vh;
+
+  @include respond-above(md) {
+    width: $NAV_LG_WIDTH;
+  }
+}
+
 .main-menu {
   display: flex;
   flex-direction: column;

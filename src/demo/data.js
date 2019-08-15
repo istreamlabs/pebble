@@ -5,6 +5,7 @@ export const MAIN_MENU = [
     aliases: [
       '/iframe.html',
       '/?path=/story/mainmenu--with-multiple-tenants',
+      '/?path=/story/mainmenu--start-expanded',
     ],
     icon: 'dashboard',
   },

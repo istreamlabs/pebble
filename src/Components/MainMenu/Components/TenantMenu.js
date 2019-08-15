@@ -86,6 +86,7 @@ function TenantMenu(props) {
                   width="16px"
                   height="16px"
                   background="white"
+                  className="relative"
                 >
                   <Icon
                     name="check-circle"
@@ -104,7 +105,7 @@ function TenantMenu(props) {
   };
 
   return (
-    <Block direction="column">
+    <Block direction="column" overflow={{ vertical: 'auto' }}>
       <motion.ul className="tenant-menu" variants={variants}>
         {renderTenants()}
       </motion.ul>

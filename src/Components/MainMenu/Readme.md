@@ -4,6 +4,8 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 
+import { TENANTS } from '../../demo/data';
+
 const menu = [
   {
     label: 'Link',
@@ -72,10 +74,15 @@ const auxMenu = [
 initialState = { activeItem: '2', showMenu: false };
 
 <DemoBrowserRouter>
-  <Block overflow="auto">
-    <Block>
-      <MainMenu menu={menu} startMenuExpanded auxMenu={auxMenu} />
-    </Block>
-  </Block>
+  <MainMenu
+    currentTenant={{
+      name: 'Cyberdyne Systems',
+      id: 'cyberdyne-stage',
+      realm: 'stage',
+    }}
+    tenants={TENANTS}
+    menu={menu}
+    auxMenu={auxMenu}
+  />
 </DemoBrowserRouter>;
 ```

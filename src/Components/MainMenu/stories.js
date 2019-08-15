@@ -5,7 +5,6 @@ import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import '../../Styles/foundation.scss';
 
 import MainMenu from './MainMenu';
-import Block from '../Block/Block';
 
 import { MAIN_MENU, TENANTS } from '../../demo/data';
 
@@ -40,37 +39,28 @@ const auxMenu = [
 storiesOf('MainMenu', module)
   .add('with multiple tenants', () => (
     <DemoBrowserRouter>
-      <div style={{ overflow: 'auto' }}>
-        <Block height="400px">
-          <MainMenu
-            title="iStreamPlanet"
-            tenants={TENANTS}
-            currentTenant={{
-              name: 'Cyberdyne Systems',
-              id: 'cyberdyne-stage',
-              realm: 'stage',
-            }}
-            menu={MAIN_MENU}
-            auxMenu={auxMenu}
-            startMenuExpanded={false}
-            onAddTenant={() => alert('add tenant logic')}
-            onTenantChange={() => alert('tenant change logic')}
-          />
-        </Block>
-      </div>
+      <MainMenu
+        tenants={TENANTS}
+        currentTenant={{
+          name: 'Cyberdyne Systems',
+          id: 'cyberdyne-stage',
+          realm: 'stage',
+        }}
+        menu={MAIN_MENU}
+        auxMenu={auxMenu}
+        startMenuExpanded={false}
+        onAddTenant={() => alert('add tenant logic')}
+        onTenantChange={() => alert('tenant change logic')}
+      />
     </DemoBrowserRouter>
   ))
   .add('start expanded', () => (
     <DemoBrowserRouter>
-      <div style={{ overflow: 'auto' }}>
-        <Block height="400px">
-          <MainMenu
-            title="iStreamPlanet"
-            menu={MAIN_MENU}
-            auxMenu={auxMenu}
-            startMenuExpanded
-          />
-        </Block>
-      </div>
+      <MainMenu
+        title="iStreamPlanet"
+        menu={MAIN_MENU}
+        auxMenu={auxMenu}
+        startMenuExpanded
+      />
     </DemoBrowserRouter>
   ));

@@ -110,7 +110,7 @@ const variants = {
     x: 0,
   },
   showTenant: {
-    x: 310,
+    x: '100%',
   },
 };
 
@@ -317,8 +317,7 @@ class MainMenu extends React.Component {
     return (
       <motion.div
         animate={showTenantMenu ? 'showTenant' : 'hideTenant'}
-        className="relative overflow-hidden"
-        style={{ height: '100vh' }}
+        className="main-menu-container relative overflow-hidden"
       >
         <motion.nav
           variants={variants}

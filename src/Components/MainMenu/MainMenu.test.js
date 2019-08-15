@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import MainMenu, { TestableMainMenu } from './MainMenu';
 
 import MenuItem from './Components/MenuItem';
@@ -113,6 +114,24 @@ describe('MainMenu', () => {
   });
 
   describe('render', () => {
+    it('test', () => {
+      const result = shallow(
+        <TestableMainMenu location={{}} menu={[]} />,
+      );
+      expect(result.find(motion.div).prop('animate')).toBe(
+        'hideTenant',
+      );
+    });
+    it('test', () => {
+      const result = shallow(
+        <TestableMainMenu location={{}} menu={[]} />,
+      );
+      result.setState({ showTenantMenu: true }, () => {
+        expect(result.find(motion.div).prop('animate')).toBe(
+          'showTenant',
+        );
+      });
+    });
     it('calls all the correct helper methods when passed menu and auxMenu', () => {
       const instance = new TestableMainMenu({
         menu: mockMenuData,
