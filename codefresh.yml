@@ -71,7 +71,11 @@ steps:
       deploy_to_npm:
         title: Publishing To Npm
         type: npm-publish
-        image: codefresh/npm-publish
+        image: codefresh/npm-publish:master
+        commands:
+          - npm run npm-publish
+        environment:
+          - NPM_TOKEN=${{NPM_TOKEN}}
         when:
           condition:
             all:

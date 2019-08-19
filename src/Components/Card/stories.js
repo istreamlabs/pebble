@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import '../../Styles/foundation.scss';
 
 import Card from './Card';
 
@@ -32,6 +31,24 @@ storiesOf('Card', module).add('all', () => (
             add
           </Button>
           <Button>select</Button>
+        </ButtonGroup>
+      }
+    >
+      <p>Platinum Package</p>
+      <p>Gold Package</p>
+      <p>Silver Package</p>
+      <p>Bronze Package</p>
+    </Card>
+    <Card
+      sectioned
+      headerActions={
+        <ButtonGroup toolbar size="small" className="shadow-1">
+          <Button>1hr</Button>
+          <Button>1d</Button>
+          <Button className="blue-dark underline">1w</Button>
+          <Button>4w</Button>
+          <Button>YTD</Button>
+          <Button>All</Button>
         </ButtonGroup>
       }
     >
