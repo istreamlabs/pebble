@@ -6,7 +6,19 @@ import Button from '../Button/Button';
 
 import { TENANTS } from '../../demo/data';
 
-const menu = [
+// TENANTS looks like this:
+// [
+//   {
+//     name: 'Acme Corporation',
+//     id: 'acme-prod',
+//     realm: 'production',
+//     url: 'https://app.istreamplanet.com/t/acme-prod',
+//   },
+// ...
+// ]
+//
+
+const MENU = [
   {
     label: 'Link',
     href: '/#/Components/MainMenu',
@@ -46,7 +58,7 @@ const menu = [
     ],
   },
 ];
-const auxMenu = [
+const AUX_MENU = [
   {
     label: 'Support',
     href: '/#/Components/MainMenu',
@@ -81,8 +93,8 @@ initialState = { activeItem: '2', showMenu: false };
       realm: 'stage',
     }}
     tenants={TENANTS}
-    menu={menu}
-    auxMenu={auxMenu}
+    menu={MENU}
+    auxMenu={AUX_MENU}
   />
 </DemoBrowserRouter>;
 ```

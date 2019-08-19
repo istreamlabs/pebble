@@ -132,7 +132,7 @@ const closeTenantVariants = {
  * It contains a top (`menu`) and bottom (`auxMenu`) set of menu items, with each
  * allowing a two-level structure.
  *
- * It also contains a way to navigate across tenants if supplied a list of available tenants.
+ * It also provides a way to navigate across "tenants" if supplied a list of available tenants.
  *
  * It uses [NavLinks from react-router](https://reacttraining.com/react-router/web/api/NavLink)
  * as a way to automatically highlight the currently selected page.
