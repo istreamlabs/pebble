@@ -15,16 +15,3 @@
     text-decoration: none;
   }
 }
-
-.tenant-menu-close-btn {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-right-color: $neutral-300;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  box-shadow: inset -2px 0 4px -2px rgba(0, 0, 0, 0.1);
-
-  &:hover {
-    border-color: $neutral-300;
-  }
-}
