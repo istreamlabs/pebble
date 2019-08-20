@@ -23,7 +23,6 @@ $FRAME_HEADER_HEIGHT: 60px;
 
 .navigation {
   grid-area: nav;
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -31,12 +30,6 @@ $FRAME_HEADER_HEIGHT: 60px;
   max-width: 310px;
   width: 100%;
   z-index: $z-nav;
-
-  animation: slideInLeft 0.2s ease-out;
-
-  &.open {
-    display: block;
-  }
 
   @include respond-above(md) {
     display: flex;
@@ -69,7 +62,7 @@ main {
 
   @include respond-above(md) {
     height: auto;
-    z-index: 10000;
+    z-index: $z-main;
   }
 }
 
@@ -78,7 +71,6 @@ main {
   border-bottom: 1px solid $neutral-300;
   box-shadow: $box-shadow-1;
   display: flex;
-  font-weight: 700;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -110,4 +102,12 @@ main {
     height: 2rem;
     width: 2rem;
   }
+}
+
+.frame-tenant-nav-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $z-tenant-nav;
 }

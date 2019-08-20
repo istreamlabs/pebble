@@ -33,7 +33,6 @@ class FrameExample extends React.Component {
 
     const mainMenu = (
       <MainMenu
-        tenants={TENANTS}
         currentTenant={{
           name: 'Cyberdyne Systems',
           id: 'cyberdyne-stage',
@@ -62,9 +61,14 @@ class FrameExample extends React.Component {
       <Frame
         isShowingMobileNav={showMobileNavigation}
         navigation={mainMenu}
-        onNavigationToggle={this.toggleMainNav}
         tenantName={TENANT_NAME}
         title={TENANT_NAME}
+        tenants={TENANTS}
+        currentTenant={{
+          name: 'Cyberdyne Systems',
+          id: 'cyberdyne-stage',
+          realm: 'stage',
+        }}
       >
         {bodyContent}
       </Frame>

@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import TenantMenu from './TenantMenu';
-import Link from '../../Link/Link';
+import Link from '../Link/Link';
 
-import { TENANTS } from '../../../demo/data';
+import { TENANTS } from '../../demo/data';
 
 describe('TenantMenu', () => {
   it('renders without crashing', () => {
