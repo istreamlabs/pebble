@@ -20,6 +20,7 @@
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
     "focus-trap-react": "^6.0.0",
+    "framer-motion": "^1.6.3",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react-datepicker": "1.8.0",

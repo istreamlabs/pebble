@@ -1,0 +1,17 @@
+@import '../../Styles/foundation/variables.scss';
+
+.tenant-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tenant-link {
+  display: block;
+  color: $neutral-200;
+  &:focus,
+  &:hover {
+    color: $neutral-100;
+    text-decoration: none;
+  }
+}
