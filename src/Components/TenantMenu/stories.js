@@ -22,7 +22,9 @@ storiesOf('TenantMenu', module)
   .add('close and add buttons', () => (
     <TenantMenu
       tenants={TENANTS}
+      // eslint-disable-next-line no-console
       onAddTenant={() => console.log('add tenant')}
+      // eslint-disable-next-line no-console
       onCloseTenantMenu={() => console.log('close tenant menu')}
     />
   ));
