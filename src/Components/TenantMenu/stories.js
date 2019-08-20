@@ -7,6 +7,7 @@ import { TENANTS } from '../../demo/data';
 
 storiesOf('TenantMenu', module)
   .add('many tenants', () => <TenantMenu tenants={TENANTS} />)
+  .add('no tenants', () => <TenantMenu tenants={[]} />)
   .add('one tenant', () => (
     <TenantMenu
       tenants={[

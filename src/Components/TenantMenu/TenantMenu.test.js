@@ -22,23 +22,6 @@ describe('TenantMenu', () => {
     }).not.toThrow();
   });
 
-  it('renders 1 tenant', () => {
-    expect(() => {
-      shallow(
-        <TenantMenu
-          tenants={[
-            {
-              name: 'Acme Corporation',
-              id: 'acme-prod',
-              realm: 'production',
-              url: 'https://www.istreamplanet.com',
-            },
-          ]}
-        />,
-      );
-    }).not.toThrow();
-  });
-
   describe('renderHeader', () => {
     it('adds Add Tenant button when onAddTenant is defined', () => {
       const mock = jest.fn();
@@ -79,28 +62,42 @@ describe('TenantMenu', () => {
   });
 
   describe('renderTenants', () => {
-    it('renders correct number of tenants', () => {
-      const wrapper = shallow(<TenantMenu tenants={TENANTS} />);
-      expect(wrapper.find('.tenant-menu').children()).toHaveLength(
-        13,
-      );
-    });
-
-    it('it does not set onClick for the currentTenant', () => {
-      const mock = jest.fn();
-      const wrapper = shallow(
+    it('renders empty tenant list', () => {
+      const wrapper = mount(
         <TenantMenu
-          currentTenantId={TENANTS[1].id}
-          tenants={TENANTS}
-          onTenantChange={mock}
+          emptyMessage={<div id="emptyMessage">i am empty</div>}
         />,
       );
+      expect(wrapper.find('#emptyMessage')).toHaveLength(1);
+    });
+    it('renders one tenant', () => {
+      const wrapper = mount(
+        <TenantMenu
+          tenants={[
+            {
+              name: 'Genco Pura Olive Oil Company',
+              id: 'genco-prod',
+              realm: 'production',
+              url: 'https://www.istreamplanet.com',
+            },
+          ]}
+        />,
+      );
+      expect(wrapper.find('li')).toHaveLength(1);
+    });
+    it('renders correct number of tenants when passed more than one', () => {
+      const wrapper = mount(<TenantMenu tenants={TENANTS} />);
+      expect(wrapper.find('li')).toHaveLength(13);
+    });
+    it('adds the currently selected tenant Icon', () => {
+      const wrapper = mount(
+        <TenantMenu currentTenantId="genco-prod" tenants={TENANTS} />,
+      );
       expect(
-        wrapper
-          .find(Link)
-          .at(1)
-          .prop('onClick'),
-      ).toBeNull();
+        wrapper.find({
+          accessibilityLabel: 'currently selected tenant',
+        }),
+      ).toHaveLength(1);
     });
   });
 });

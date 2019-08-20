@@ -21,6 +21,10 @@ const propTypes = {
    */
   currentTenantId: PropTypes.string,
   /**
+   * Message to display if their are no tenants
+   */
+  emptyMessage: PropTypes.node,
+  /**
    * Callback function when defined, display a button to create a new tenant
    */
   onAddTenant: PropTypes.func,
@@ -36,6 +40,10 @@ const propTypes = {
    * A list of tenants the current user has access to
    */
   tenants: tenantType,
+};
+
+const defaultProps = {
+  emptyMessage: 'There are no tenants',
 };
 
 const variants = {
@@ -61,6 +69,7 @@ const variants = {
 function TenantMenu(props) {
   const {
     currentTenantId,
+    emptyMessage,
     onTenantChange,
     onAddTenant,
     tenants,
@@ -115,19 +124,34 @@ function TenantMenu(props) {
   };
 
   const renderTenants = () => {
-    if (tenants && tenants.length > 0) {
-      const tenantMarkup = tenants.map(
-        ({ name, realm, id, url }, i) => (
+    if (!tenants || (tenants && tenants.length === 0)) {
+      return (
+        <Block direction="column" padding="5" color="neutral-300">
+          <Block
+            border={{ side: 'all', color: 'neutral-600' }}
+            radius="2"
+            padding="5"
+            justify="center"
+          >
+            {emptyMessage}
+          </Block>
+        </Block>
+      );
+    }
+
+    const tenantMarkup = (
+      <motion.ul className="tenant-menu" variants={variants}>
+        {tenants.map(({ name, realm, id, url }, i) => (
           <motion.li
             whileHover={{ paddingLeft: 8 }}
             key={i}
             variants={variants}
-            className="bg-neutral-800-hover"
+            className="bg-hover bg-neutral-800-hover"
           >
             <Link
               external
               href={url}
-              onClick={id !== currentTenantId ? onTenantChange : null}
+              onClick={onTenantChange}
               className="tenant-link"
             >
               <Block
@@ -162,10 +186,14 @@ function TenantMenu(props) {
               </Block>
             </Link>
           </motion.li>
-        ),
-      );
-      return tenantMarkup;
-    }
+        ))}
+      </motion.ul>
+    );
+    return (
+      <Block direction="column" overflow={{ vertical: 'auto' }}>
+        {tenantMarkup}
+      </Block>
+    );
   };
 
   return (
@@ -179,15 +207,12 @@ function TenantMenu(props) {
       }}
     >
       {renderHeader()}
-      <Block direction="column" overflow={{ vertical: 'auto' }}>
-        <motion.ul className="tenant-menu" variants={variants}>
-          {renderTenants()}
-        </motion.ul>
-      </Block>
+      {renderTenants()}
     </Block>
   );
 }
 
 TenantMenu.propTypes = propTypes;
+TenantMenu.defaultProps = defaultProps;
 
 export default TenantMenu;
