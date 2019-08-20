@@ -17,7 +17,7 @@ import { useMobileLayout } from '../../Hooks';
 
 const propTypes = {
   /**
-   * Highlight the currently selected tenant by passing setting it's ID here
+   * Highlight the currently selected tenant
    */
   currentTenantId: PropTypes.string,
   /**
@@ -29,7 +29,7 @@ const propTypes = {
    */
   onTenantChange: PropTypes.func,
   /**
-   * Display a button to hide the tenant menu when the button is clicked
+   * Callback function when defined, display a button to hide the tenant menu
    */
   onCloseTenantMenu: PropTypes.func,
   /**
