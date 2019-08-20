@@ -4,7 +4,6 @@ import { useMobileLayout } from '../../Hooks';
 
 import TenantMenu from './TenantMenu';
 import Button from '../Button/Button';
-import Link from '../Link/Link';
 
 import { TENANTS } from '../../demo/data';
 
