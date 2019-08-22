@@ -93,8 +93,8 @@ function FrameExample() {
         tenants={TENANTS}
         currentTenant={{
           name: 'Cyberdyne Systems',
-          id: 'cyberdyne-dev',
-          realm: 'dev',
+          id: 'cyberdyne-prod',
+          realm: 'production',
           url: 'https://www.istreamplanet.com',
         }}
       >

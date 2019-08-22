@@ -207,11 +207,6 @@ export class Frame extends React.PureComponent {
     if (isMobile) {
       return (
         <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
-          <Button
-            icon="menu"
-            accessibilityLabel="toggle main menu"
-            onClick={this.handleNavigationToggle}
-          />
           <Block alignItems="center">
             {this.getFrameTitle()}
             <Button
@@ -223,6 +218,12 @@ export class Frame extends React.PureComponent {
               size="large"
             />
           </Block>
+          <Button
+            icon="menu"
+            accessibilityLabel="toggle main menu"
+            onClick={this.handleNavigationToggle}
+          />
+
           {this.renderTenantMenu()}
         </header>
       );
