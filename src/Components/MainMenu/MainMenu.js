@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter, matchPath } from 'react-router';
 
-import Block from '../Block/Block';
+import Button from '../Button/Button';
 import Text from '../Text/Text';
 import MenuItem from './MenuItem/MenuItem';
 
@@ -38,6 +38,10 @@ const propTypes = {
       ),
     }),
   ).isRequired,
+  /**
+   * Display a button to toggle another menu
+   */
+  onShowTenantMenu: PropTypes.func,
   /**
    * Menu items for the lower portion of the menu (e.g. Profile, Support)
    */
@@ -104,6 +108,23 @@ class MainMenu extends React.Component {
     );
   }
 
+  renderHeader = () => {
+    const { onShowTenantMenu, title } = this.props;
+    return (
+      <div className="main-menu-title pv-3 ph-5">
+        <Text bold>{title}</Text>
+        {onShowTenantMenu && (
+          <Button
+            plain
+            onClick={onShowTenantMenu}
+            icon="menu-dots"
+            accessibilityLabel="show tenant menu"
+          />
+        )}
+      </div>
+    );
+  };
+
   renderItem(menu, startExpanded) {
     const { location } = this.props;
 
@@ -124,7 +145,6 @@ class MainMenu extends React.Component {
       startMenuExpanded,
       auxMenu,
       startAuxMenuExpanded,
-      title,
     } = this.props;
 
     return (
@@ -133,14 +153,7 @@ class MainMenu extends React.Component {
         aria-label="Main navigation"
       >
         <div className="main-menu-top">
-          <Block
-            className="main-menu-title"
-            paddingVertical="3"
-            paddingHorizontal="5"
-            alignItems="center"
-          >
-            <Text bold>{title}</Text>
-          </Block>
+          {this.renderHeader()}
           <ul className="main-menu-items">
             {this.renderItem(menu, startMenuExpanded)}
           </ul>

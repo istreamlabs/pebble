@@ -2,8 +2,26 @@ import React from 'react';
 import FocusTrap from 'focus-trap-react';
 import { shallow } from 'enzyme';
 
+import { getBreakpointLayout } from '../../Utils';
+
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
+import TenantMenu from '../TenantMenu/TenantMenu';
+
+const TENANTS = [
+  {
+    name: 'Acme Corporation',
+    id: 'acme-prod',
+    realm: 'production',
+    url: 'https://www.istreamplanet.com',
+  },
+  {
+    name: 'Cyberdyne Systems',
+    id: 'cyberdyne-dev',
+    realm: 'dev',
+    url: 'https://www.istreamplanet.com',
+  },
+];
 
 const navToggleMock = jest.fn();
 
@@ -33,19 +51,61 @@ describe('Frame', () => {
     }).not.toThrow();
   });
 
-  it('renders a navigation wrapped in a FocusTrap with active set to false, when passed a navigation', () => {
-    const wrapper = shallow(testFrame);
+  describe('renderNavigation', () => {
+    it('renders a navigation wrapped in a FocusTrap with active set to true, when passed a navigation', () => {
+      const wrapper = shallow(testFrame);
+      wrapper.setState({
+        isShowingMobileNav: true,
+        breakpoints: [true, true],
+      });
 
-    expect(wrapper.find(FocusTrap).exists()).toBe(true);
-    expect(wrapper.find(FocusTrap).prop('active')).toBe(false);
+      expect(wrapper.find(FocusTrap).exists()).toBe(true);
+      expect(wrapper.find(FocusTrap).prop('active')).toBe(true);
+    });
+
+    it('does not set onShowTenantMenu prop of the MainMenu when there are NO tenants', () => {
+      const wrapper = shallow(
+        <Frame title="test" navigation={mainMenu} />,
+      );
+
+      expect(wrapper.find(MainMenu)).toHaveLength(1);
+      expect(
+        wrapper.find(MainMenu).prop('onShowTenantMenu'),
+      ).toBeUndefined();
+    });
+
+    it('sets onShowTenantMenu prop of the MainMenu when there are tenants', () => {
+      const wrapper = shallow(
+        <Frame
+          tenants={TENANTS}
+          title="test"
+          navigation={mainMenu}
+        />,
+      );
+
+      expect(wrapper.find(MainMenu)).toHaveLength(1);
+      expect(
+        wrapper.find(MainMenu).prop('onShowTenantMenu'),
+      ).toBeDefined();
+    });
   });
 
-  it('renders a navigation wrapped in a FocusTrap with active set to true, when passed a navigation', () => {
-    const wrapper = shallow(testFrame);
-    wrapper.setState({ isShowingMobileNav: true });
+  describe('renderTenantMenu', () => {
+    it('returns a TenantMenu if showTenantMenu is true', () => {
+      const wrapper = shallow(
+        <Frame
+          tenants={TENANTS}
+          title="test"
+          navigation={mainMenu}
+        />,
+      );
+      wrapper.setState({
+        showTenantMenu: true,
+        breakpoints: [true, true],
+      });
 
-    expect(wrapper.find(FocusTrap).exists()).toBe(true);
-    expect(wrapper.find(FocusTrap).prop('active')).toBe(true);
+      expect(wrapper.find(TenantMenu)).toHaveLength(1);
+    });
   });
 
   describe('handleNavigationToggle', () => {
@@ -105,7 +165,7 @@ describe('Frame', () => {
       expect(instance.setState).not.toHaveBeenCalled();
     });
 
-    it('calls setState', () => {
+    it('calls setState if isShowingMobileNav is true', () => {
       const instance = new Frame({
         onNavigationToggle: navToggleMock,
       });
@@ -123,6 +183,24 @@ describe('Frame', () => {
       expect(args[0]).toEqual({ isShowingMobileNav: false });
       args[1]();
       expect(navToggleMock).toHaveBeenCalledWith(false);
+    });
+
+    it('calls setState if showTenantMenu is true', () => {
+      const instance = new Frame({
+        onNavigationToggle: navToggleMock,
+      });
+
+      instance.state = {
+        isSkipFocused: true,
+        showTenantMenu: true,
+      };
+
+      instance.setState = jest.fn();
+
+      instance.handleNavigationDismiss();
+
+      const args = instance.setState.mock.calls[0];
+      expect(args[0]).toEqual({ showTenantMenu: false });
     });
 
     it('calls onNavigationToggle', () => {
@@ -160,6 +238,20 @@ describe('Frame', () => {
       const args = instance.setState.mock.calls[0];
       args[1]();
       expect(navToggleMock).not.toHaveBeenCalledWith(false);
+    });
+  });
+
+  describe('handleTenantMenuToggle', () => {
+    it('calls setState with opposite state', () => {
+      const instance = new Frame();
+
+      instance.setState = jest.fn();
+      instance.handleTenantMenuToggle();
+
+      expect(instance.setState).toHaveBeenCalled();
+
+      const args = instance.setState.mock.calls[0];
+      expect(args[0]).toEqual({ showTenantMenu: true });
     });
   });
 
@@ -270,6 +362,21 @@ describe('Frame', () => {
       instance.handleBlur();
       expect(instance.setState).toBeCalledWith({
         isSkipFocused: false,
+      });
+    });
+  });
+
+  describe('handleResize', () => {
+    beforeEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls setState', () => {
+      const instance = new Frame();
+      instance.setState = jest.fn();
+      instance.handleResize();
+      expect(instance.setState).toBeCalledWith({
+        breakpoints: getBreakpointLayout(),
       });
     });
   });

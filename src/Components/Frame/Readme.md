@@ -10,6 +10,8 @@ import MainMenu from '../MainMenu/MainMenu';
 import Modal from '../Modal/Modal';
 import { useToast } from '../../Hooks';
 
+import { TENANTS } from '../../demo/data';
+
 const TENANT_NAME = 'Frame Example';
 
 const MENU = [
@@ -91,6 +93,7 @@ function FrameExample() {
         navigation={mainMenu}
         onNavigationToggle={this.mainNavigationToggled}
         tenantName={TENANT_NAME}
+        tenants={TENANTS}
         title={TENANT_NAME}
       >
         {showModal && demoModal}

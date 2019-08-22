@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import FocusTrap from 'focus-trap-react';
 
+import Block from '../Block/Block';
 import Button from '../Button/Button';
 import Overlay from '../Overlay/Overlay';
+import TenantMenu from '../TenantMenu/TenantMenu';
 import ToastContainer from '../ToastContainer/ToastContainer';
+
+import { tenantType } from '../../Types';
+
+import { getBreakpointLayout } from '../../Utils';
 
 import './Frame.scss';
 
@@ -25,6 +31,10 @@ const propTypes = {
    * A callback function that is called when the navigation is toggled
    */
   onNavigationToggle: PropTypes.func,
+  /**
+   * A list of tenants the current user has access to
+   */
+  tenants: tenantType,
   /**
    * Title text that appears in header and MainMenu on mobile
    */
@@ -51,6 +61,8 @@ export class Frame extends React.PureComponent {
     this.state = {
       isSkipFocused: false,
       isShowingMobileNav: false,
+      showTenantMenu: false,
+      breakpoints: getBreakpointLayout(),
     };
 
     this.mainContent = React.createRef();
@@ -62,6 +74,7 @@ export class Frame extends React.PureComponent {
       this.handleNavKeydown,
       false,
     );
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillUnmount() {
@@ -70,7 +83,10 @@ export class Frame extends React.PureComponent {
       this.handleNavKeydown,
       false,
     );
+    window.removeEventListener('resize', this.handleResize);
   }
+
+  componentDidUpdate;
 
   handleSkipToMain = () => {
     this.mainContent.current.setAttribute('tabindex', '-1');
@@ -89,6 +105,10 @@ export class Frame extends React.PureComponent {
     this.setState({ isSkipFocused: false });
   };
 
+  handleResize = () => {
+    this.setState({ breakpoints: getBreakpointLayout() });
+  };
+
   handleNavigationToggle = () => {
     const { onNavigationToggle } = this.props;
     const { isShowingMobileNav } = this.state;
@@ -101,7 +121,7 @@ export class Frame extends React.PureComponent {
 
   handleNavigationDismiss = () => {
     const { onNavigationToggle } = this.props;
-    const { isShowingMobileNav } = this.state;
+    const { isShowingMobileNav, showTenantMenu } = this.state;
     if (isShowingMobileNav) {
       this.setState({ isShowingMobileNav: false }, () => {
         if (onNavigationToggle) {
@@ -109,6 +129,14 @@ export class Frame extends React.PureComponent {
         }
       });
     }
+    if (showTenantMenu) {
+      this.setState({ showTenantMenu: false });
+    }
+  };
+
+  handleTenantMenuToggle = () => {
+    const { showTenantMenu } = this.state;
+    this.setState({ showTenantMenu: !showTenantMenu });
   };
 
   handleNavKeydown = event => {
@@ -140,49 +168,152 @@ export class Frame extends React.PureComponent {
     );
   };
 
+  renderHeader = () => {
+    const { title } = this.props;
+    const { breakpoints } = this.state;
+    const [isPhone, isTablet] = breakpoints;
+    const isMobile = isPhone || isTablet;
+
+    if (isMobile) {
+      return (
+        <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
+          <Button
+            icon="menu"
+            accessibilityLabel="toggle main menu"
+            onClick={this.handleNavigationToggle}
+          />
+          <Block alignItems="center">
+            <div>{title}</div>
+            <Button
+              plain
+              className="ml-2"
+              accessibilityLabel="show tenant menu"
+              icon="menu-dots"
+              onClick={this.handleTenantMenuToggle}
+            />
+          </Block>
+          {this.renderTenantMenu()}
+        </header>
+      );
+    }
+  };
+
   renderNavigation = () => {
-    const { navigation } = this.props;
-    const { isShowingMobileNav } = this.state;
+    const { navigation, tenants } = this.props;
+    const {
+      isShowingMobileNav,
+      breakpoints,
+      showTenantMenu,
+    } = this.state;
+    const [isPhone, isTablet] = breakpoints;
+    const isMobile = isPhone || isTablet;
 
     const navigationClasses = classNames('navigation', {
       open: isShowingMobileNav,
     });
 
-    return (
-      <FocusTrap
-        active={isShowingMobileNav}
-        focusTrapOptions={{
-          clickOutsideDeactivates: true,
-        }}
-      >
-        <div
-          className={navigationClasses}
-          onKeyDown={this.handleNavKeydown}
-          onClick={this.handleOnClick}
-          id={APP_FRAME_NAV}
-          key="NavContent"
+    const menu = tenants
+      ? React.cloneElement(navigation, {
+          onShowTenantMenu: () => this.handleTenantMenuToggle(),
+        })
+      : navigation;
+
+    if (isMobile) {
+      return (
+        <FocusTrap
+          active={isShowingMobileNav && !showTenantMenu}
+          focusTrapOptions={{
+            clickOutsideDeactivates: true,
+          }}
         >
-          {navigation}
-          {isShowingMobileNav && (
-            <Button
-              className="frame-close-nav"
-              icon="remove-circle"
-              onClick={this.handleNavigationDismiss}
-              accessibilityLabel="close menu"
-              plain
-              size="large"
-            />
-          )}
-        </div>
-      </FocusTrap>
+          <div
+            className={navigationClasses}
+            onKeyDown={this.handleNavKeydown}
+            onClick={this.handleOnClick}
+            id={APP_FRAME_NAV}
+            key="NavContent"
+          >
+            {menu}
+            {isShowingMobileNav && (
+              <Button
+                className="frame-close-nav"
+                icon="remove-circle"
+                onClick={this.handleNavigationDismiss}
+                accessibilityLabel="close menu"
+                plain
+                size="large"
+              />
+            )}
+          </div>
+        </FocusTrap>
+      );
+    }
+
+    return (
+      <div
+        className={navigationClasses}
+        onKeyDown={this.handleNavKeydown}
+        onClick={this.handleOnClick}
+        id={APP_FRAME_NAV}
+        key="NavContent"
+      >
+        {this.renderTenantMenu()}
+        {menu}
+      </div>
     );
   };
 
-  renderOverlay = () => {
-    const { navigation } = this.props;
-    const { isShowingMobileNav } = this.state;
+  renderTenantMenu = () => {
+    const { tenants } = this.props;
+    const { showTenantMenu } = this.state;
 
-    if (navigation && isShowingMobileNav) {
+    if (showTenantMenu) {
+      return (
+        <FocusTrap
+          active={showTenantMenu}
+          focusTrapOptions={{
+            clickOutsideDeactivates: true,
+          }}
+        >
+          <Block
+            direction="column"
+            className="frame-tenant-menu-container"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+            }}
+          >
+            <TenantMenu
+              tenants={tenants}
+              onCloseTenantMenu={this.handleTenantMenuToggle}
+            />
+          </Block>
+        </FocusTrap>
+      );
+    }
+  };
+
+  renderOverlay = () => {
+    const { navigation, tenants } = this.props;
+    const {
+      isShowingMobileNav,
+      showTenantMenu,
+      breakpoints,
+    } = this.state;
+    const [isPhone, isTablet] = breakpoints;
+    const isMobile = isPhone || isTablet;
+
+    // on desktop, do not show overlay if TenantMenu is not shown
+    if (!isMobile && !showTenantMenu) {
+      return null;
+    }
+
+    if (
+      (navigation && isShowingMobileNav) ||
+      (tenants && showTenantMenu)
+    ) {
       return (
         <Overlay
           onClick={this.handleNavigationDismiss}
@@ -190,7 +321,6 @@ export class Frame extends React.PureComponent {
         />
       );
     }
-    return null;
   };
 
   handleOnClick = ({ target }) => {
@@ -200,19 +330,11 @@ export class Frame extends React.PureComponent {
   };
 
   render() {
-    const { children, title } = this.props;
-
+    const { children } = this.props;
     return (
       <div className="frame">
         {this.renderSkipToContent()}
-        <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
-          <Button
-            icon="menu"
-            accessibilityLabel="toggle main menu"
-            onClick={this.handleNavigationToggle}
-          />
-          <div>{title}</div>
-        </header>
+        {this.renderHeader()}
         {this.renderNavigation()}
         {this.renderOverlay()}
         <main

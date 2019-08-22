@@ -23,11 +23,10 @@
     position: relative;
     display: flex;
     width: $NAV_LG_WIDTH;
-    box-shadow: inset -2px 0 4px -2px rgba(0,0,0,.1);
+    box-shadow: inset -2px 0 4px -2px rgba(0, 0, 0, 0.1);
   }
 
   &.opened {
-
     @include respond-above(md) {
       display: flex;
       justify-content: space-between;
@@ -44,7 +43,6 @@
 }
 
 .main-menu-top {
-
   @include respond-above(sm) {
     overflow-y: auto;
   }
@@ -58,11 +56,12 @@
 
 .main-menu-title {
   color: $neutral-700;
-  display: flex;
+  display: none;
   font-weight: 700;
   border-bottom: 1px solid $NAV_BORDER_COLOR;
 
   @include respond-above(md) {
     display: flex;
+    justify-content: space-between;
   }
 }
