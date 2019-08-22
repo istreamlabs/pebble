@@ -66,7 +66,7 @@ describe('Frame', () => {
     });
   });
 
-  describe('renderNavigation', () => {
+  describe('renderMainMenu', () => {
     it('renders a navigation wrapped in a FocusTrap with active set to true, when passed a navigation', () => {
       const wrapper = shallow(testFrame);
       wrapper.setState({
@@ -93,6 +93,12 @@ describe('Frame', () => {
       const wrapper = shallow(
         <Frame
           tenants={TENANTS}
+          currentTenant={{
+            name: 'Cyberdyne Systems',
+            id: 'cyberdyne-dev',
+            realm: 'dev',
+            url: 'https://www.istreamplanet.com',
+          }}
           title="test"
           navigation={mainMenu}
         />,
@@ -101,6 +107,21 @@ describe('Frame', () => {
       expect(wrapper.find(MainMenu)).toHaveLength(1);
       expect(
         wrapper.find(MainMenu).prop('onShowTenantMenu'),
+      ).toBeDefined();
+      expect(
+        wrapper.find(MainMenu).props('mobileHeaderContent'),
+      ).toBeDefined();
+    });
+
+    it('sets mobileHeaderContent', () => {
+      const wrapper = shallow(
+        <Frame title="test" navigation={mainMenu} />,
+      );
+
+      expect(wrapper.find(MainMenu)).toHaveLength(1);
+      expect(wrapper.find(MainMenu).prop('title')).toBe('test');
+      expect(
+        wrapper.find(MainMenu).props('mobileHeaderContent'),
       ).toBeDefined();
     });
   });

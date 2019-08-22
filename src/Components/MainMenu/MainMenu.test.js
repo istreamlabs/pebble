@@ -121,4 +121,16 @@ describe('MainMenu', () => {
       menu.find({ accessibilityLabel: 'show tenant menu' }),
     ).toHaveLength(1);
   });
+
+  it('renders mobileHeaderContent if defined', () => {
+    const menu = mount(
+      <BrowserRouter>
+        <MainMenu
+          menu={mockMenuData}
+          mobileHeaderContent={<div className="testHeader">test</div>}
+        />
+      </BrowserRouter>,
+    );
+    expect(menu.find('.testHeader')).toHaveLength(1);
+  });
 });

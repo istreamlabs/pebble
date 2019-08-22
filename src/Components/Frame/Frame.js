@@ -230,7 +230,7 @@ export class Frame extends React.PureComponent {
     }
   };
 
-  renderNavigation = () => {
+  renderMainMenu = () => {
     const { navigation, tenants } = this.props;
     const {
       isShowingMobileNav,
@@ -244,12 +244,24 @@ export class Frame extends React.PureComponent {
       open: isShowingMobileNav,
     });
 
+    const mobileCloseMainMenuBtn = (
+      <Button
+        icon="remove"
+        onClick={this.handleNavigationDismiss}
+        accessibilityLabel="close menu"
+      />
+    );
+
     const menu = tenants
       ? React.cloneElement(navigation, {
           onShowTenantMenu: () => this.handleTenantMenuToggle(),
           title: this.getFrameTitle(),
+          mobileHeaderContent: mobileCloseMainMenuBtn,
         })
-      : navigation;
+      : React.cloneElement(navigation, {
+          title: this.getFrameTitle(),
+          mobileHeaderContent: mobileCloseMainMenuBtn,
+        });
 
     if (isMobile) {
       return (
@@ -267,16 +279,6 @@ export class Frame extends React.PureComponent {
             key="NavContent"
           >
             {menu}
-            {isShowingMobileNav && (
-              <Button
-                className="frame-close-nav"
-                icon="remove-circle"
-                onClick={this.handleNavigationDismiss}
-                accessibilityLabel="close menu"
-                plain
-                size="large"
-              />
-            )}
           </div>
         </FocusTrap>
       );
@@ -368,7 +370,7 @@ export class Frame extends React.PureComponent {
       <div className="frame">
         {this.renderSkipToContent()}
         {this.renderHeader()}
-        {this.renderNavigation()}
+        {this.renderMainMenu()}
         {this.renderOverlay()}
         <main
           className="main"

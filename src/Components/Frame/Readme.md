@@ -73,11 +73,11 @@ function FrameExample() {
       onRequestClose={() => setShowModal(!showModal)}
       showing={showModal}
       footer={[
-        <Button primary onClick={() => setShowModal(!showModal)}>
-          Save
-        </Button>,
         <Button onClick={() => setShowModal(!showModal)}>
           Cancel
+        </Button>,
+        <Button primary onClick={() => setShowModal(!showModal)}>
+          Save
         </Button>,
       ]}
     >

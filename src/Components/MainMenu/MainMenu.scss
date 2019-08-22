@@ -53,14 +53,3 @@
     border-top: 1px solid $NAV_BORDER_COLOR;
   }
 }
-
-.main-menu-title {
-  color: $neutral-700;
-  display: none;
-  border-bottom: 1px solid $NAV_BORDER_COLOR;
-
-  @include respond-above(md) {
-    display: flex;
-    justify-content: space-between;
-  }
-}

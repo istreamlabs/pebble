@@ -62,6 +62,10 @@ const propTypes = {
    */
   onShowTenantMenu: PropTypes.func,
   /**
+   * Content that appears in the header of the MainMenu on mobile only
+   */
+  mobileHeaderContent: PropTypes.node,
+  /**
    * On page load, expand items in the auxMenu that contain child items
    */
   startAuxMenuExpanded: PropTypes.bool,
@@ -108,18 +112,29 @@ class MainMenu extends React.Component {
   }
 
   renderHeader = () => {
-    const { onShowTenantMenu, title } = this.props;
+    const {
+      mobileHeaderContent,
+      onShowTenantMenu,
+      title,
+    } = this.props;
     return (
-      <div className="main-menu-title pv-3 ph-5">
-        {title}
-        {onShowTenantMenu && (
-          <Button
-            plain
-            onClick={onShowTenantMenu}
-            icon="menu-dots"
-            accessibilityLabel="show tenant menu"
-            size="large"
-          />
+      <div className="main-menu-title">
+        <div className="dn bb b-neutral-300 w-100 flex-m pv-3 ph-5 justify-between-m">
+          {title}
+          {onShowTenantMenu && (
+            <Button
+              plain
+              onClick={onShowTenantMenu}
+              icon="menu-dots"
+              accessibilityLabel="show tenant menu"
+              size="large"
+            />
+          )}
+        </div>
+        {mobileHeaderContent && (
+          <div className="bg-neutral-100 b-neutral-300 bb dn-m text-right pv-3 ph-5">
+            {mobileHeaderContent}
+          </div>
         )}
       </div>
     );
