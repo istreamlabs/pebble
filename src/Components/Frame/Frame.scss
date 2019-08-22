@@ -26,13 +26,13 @@ $FRAME_HEADER_HEIGHT: 60px;
   display: none;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   max-width: 310px;
   width: 100%;
   z-index: $z-nav;
 
-  animation: slideInLeft 0.2s ease-out;
+  animation: slideInRight 0.2s ease-out;
 
   &.open {
     display: block;
@@ -89,7 +89,7 @@ main {
 .frame-close-nav {
   position: absolute;
   top: 0;
-  left: 100%;
+  right: 100%;
   margin: $spacing-3;
 
   background: $neutral-700;

@@ -51,6 +51,21 @@ describe('Frame', () => {
     }).not.toThrow();
   });
 
+  describe('getFrameTitle', () => {
+    it('returns currentTenant name and realm if currentTenant is set', () => {
+      const instance = new Frame({
+        currentTenant: {
+          name: 'Cyberdyne Systems',
+          id: 'cyberdyne-dev',
+          realm: 'dev',
+          url: 'https://www.istreamplanet.com',
+        },
+      });
+      const result = shallow(instance.getFrameTitle());
+      expect(result.text()).toContain('Cyberdyne Systems');
+    });
+  });
+
   describe('renderNavigation', () => {
     it('renders a navigation wrapped in a FocusTrap with active set to true, when passed a navigation', () => {
       const wrapper = shallow(testFrame);
