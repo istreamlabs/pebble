@@ -12,8 +12,6 @@ import { useToast } from '../../Hooks';
 
 import { TENANTS } from '../../demo/data';
 
-const TENANT_NAME = 'Frame Example';
-
 const MENU = [
   {
     label: 'Link',
@@ -67,7 +65,7 @@ function FrameExample() {
     );
   };
 
-  const mainMenu = <MainMenu title={TENANT_NAME} menu={MENU} />;
+  const mainMenu = <MainMenu menu={MENU} />;
 
   const demoModal = (
     <Modal
@@ -92,9 +90,13 @@ function FrameExample() {
       <Frame
         navigation={mainMenu}
         onNavigationToggle={this.mainNavigationToggled}
-        tenantName={TENANT_NAME}
         tenants={TENANTS}
-        title={TENANT_NAME}
+        currentTenant={{
+          name: 'Cyberdyne Systems',
+          id: 'cyberdyne-dev',
+          realm: 'dev',
+          url: 'https://www.istreamplanet.com',
+        }}
       >
         {showModal && demoModal}
         <Block

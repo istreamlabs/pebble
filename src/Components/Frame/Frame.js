@@ -9,8 +9,6 @@ import Overlay from '../Overlay/Overlay';
 import TenantMenu from '../TenantMenu/TenantMenu';
 import ToastContainer from '../ToastContainer/ToastContainer';
 
-import { tenantType } from '../../Types';
-
 import { getBreakpointLayout } from '../../Utils';
 
 import './Frame.scss';
@@ -24,6 +22,16 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Highlight the currently selected tenant and set the title to current name and realm
+   * in the header on mobile viewports and top of the MainMenu on desktop
+   */
+  currentTenant: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+    realm: PropTypes.string,
+    url: PropTypes.string,
+  }),
+  /**
    * Component that will be rendered in the left sidebar of an application frame
    */
   navigation: PropTypes.node.isRequired,
@@ -34,11 +42,18 @@ const propTypes = {
   /**
    * A list of tenants the current user has access to
    */
-  tenants: tenantType,
+  tenants: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.string,
+      realm: PropTypes.string,
+      url: PropTypes.string,
+    }),
+  ),
   /**
    * Title text that appears in header and MainMenu on mobile
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
 
 const defaultProps = {
@@ -146,6 +161,23 @@ export class Frame extends React.PureComponent {
     }
   };
 
+  getFrameTitle = () => {
+    const { currentTenant, title } = this.props;
+
+    if (currentTenant) {
+      return (
+        <>
+          <div>{currentTenant.name}</div>
+          <div>{currentTenant.realm}</div>
+        </>
+      );
+    }
+
+    if (title) {
+      return title;
+    }
+  };
+
   renderSkipToContent = () => {
     const { isSkipFocused } = this.state;
 
@@ -169,7 +201,6 @@ export class Frame extends React.PureComponent {
   };
 
   renderHeader = () => {
-    const { title } = this.props;
     const { breakpoints } = this.state;
     const [isPhone, isTablet] = breakpoints;
     const isMobile = isPhone || isTablet;
@@ -183,7 +214,7 @@ export class Frame extends React.PureComponent {
             onClick={this.handleNavigationToggle}
           />
           <Block alignItems="center">
-            <div>{title}</div>
+            <div>{this.getFrameTitle()}</div>
             <Button
               plain
               className="ml-2"
@@ -215,6 +246,7 @@ export class Frame extends React.PureComponent {
     const menu = tenants
       ? React.cloneElement(navigation, {
           onShowTenantMenu: () => this.handleTenantMenuToggle(),
+          title: this.getFrameTitle(),
         })
       : navigation;
 
