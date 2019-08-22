@@ -7,6 +7,7 @@ import Block from '../Block/Block';
 import Button from '../Button/Button';
 import Overlay from '../Overlay/Overlay';
 import TenantMenu from '../TenantMenu/TenantMenu';
+import Text from '../Text/Text';
 import ToastContainer from '../ToastContainer/ToastContainer';
 
 import { getBreakpointLayout } from '../../Utils';
@@ -101,7 +102,22 @@ export class Frame extends React.PureComponent {
     window.removeEventListener('resize', this.handleResize);
   }
 
-  componentDidUpdate;
+  getFrameTitle = () => {
+    const { currentTenant, title } = this.props;
+
+    if (currentTenant) {
+      return (
+        <Block direction="column">
+          <Text bold>{currentTenant.name}</Text>
+          <Text size="6">{currentTenant.realm}</Text>
+        </Block>
+      );
+    }
+
+    if (title) {
+      return title;
+    }
+  };
 
   handleSkipToMain = () => {
     this.mainContent.current.setAttribute('tabindex', '-1');
@@ -161,23 +177,6 @@ export class Frame extends React.PureComponent {
     }
   };
 
-  getFrameTitle = () => {
-    const { currentTenant, title } = this.props;
-
-    if (currentTenant) {
-      return (
-        <>
-          <div>{currentTenant.name}</div>
-          <div>{currentTenant.realm}</div>
-        </>
-      );
-    }
-
-    if (title) {
-      return title;
-    }
-  };
-
   renderSkipToContent = () => {
     const { isSkipFocused } = this.state;
 
@@ -214,13 +213,14 @@ export class Frame extends React.PureComponent {
             onClick={this.handleNavigationToggle}
           />
           <Block alignItems="center">
-            <div>{this.getFrameTitle()}</div>
+            {this.getFrameTitle()}
             <Button
               plain
-              className="ml-2"
+              className="ml-3"
               accessibilityLabel="show tenant menu"
               icon="menu-dots"
               onClick={this.handleTenantMenuToggle}
+              size="large"
             />
           </Block>
           {this.renderTenantMenu()}

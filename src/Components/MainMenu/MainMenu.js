@@ -4,12 +4,31 @@ import classNames from 'classnames';
 import { withRouter, matchPath } from 'react-router';
 
 import Button from '../Button/Button';
-import Text from '../Text/Text';
 import MenuItem from './MenuItem/MenuItem';
 
 import './MainMenu.scss';
 
 const propTypes = {
+  /**
+   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   */
+  auxMenu: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+      icon: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
+      exact: PropTypes.bool,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          href: PropTypes.string,
+          aliases: PropTypes.arrayOf(PropTypes.string),
+          exact: PropTypes.bool,
+        }),
+      ),
+    }),
+  ),
   /**
    * Additional ClassNames to add to button group
    */
@@ -43,37 +62,17 @@ const propTypes = {
    */
   onShowTenantMenu: PropTypes.func,
   /**
-   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   * On page load, expand items in the auxMenu that contain child items
    */
-  auxMenu: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string,
-      icon: PropTypes.string,
-      aliases: PropTypes.arrayOf(PropTypes.string),
-      exact: PropTypes.bool,
-      items: PropTypes.arrayOf(
-        PropTypes.shape({
-          label: PropTypes.string.isRequired,
-          href: PropTypes.string,
-          aliases: PropTypes.arrayOf(PropTypes.string),
-          exact: PropTypes.bool,
-        }),
-      ),
-    }),
-  ),
-  /**
-   * Text that appears at the top of the menu
-   */
-  title: PropTypes.string,
+  startAuxMenuExpanded: PropTypes.bool,
   /**
    * On page load, expand items in the menu that contain child items
    */
   startMenuExpanded: PropTypes.bool,
   /**
-   * On page load, expand items in the auxMenu that contain child items
+   * Text that appears at the top of the menu (usually the tenant name)
    */
-  startAuxMenuExpanded: PropTypes.bool,
+  title: PropTypes.node,
 };
 
 const defaultProps = {
@@ -112,13 +111,14 @@ class MainMenu extends React.Component {
     const { onShowTenantMenu, title } = this.props;
     return (
       <div className="main-menu-title pv-3 ph-5">
-        <Text bold>{title}</Text>
+        {title}
         {onShowTenantMenu && (
           <Button
             plain
             onClick={onShowTenantMenu}
             icon="menu-dots"
             accessibilityLabel="show tenant menu"
+            size="large"
           />
         )}
       </div>

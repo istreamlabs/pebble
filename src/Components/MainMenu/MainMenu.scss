@@ -57,7 +57,6 @@
 .main-menu-title {
   color: $neutral-700;
   display: none;
-  font-weight: 700;
   border-bottom: 1px solid $NAV_BORDER_COLOR;
 
   @include respond-above(md) {
