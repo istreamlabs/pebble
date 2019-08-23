@@ -132,7 +132,7 @@ class MainMenu extends React.Component {
           )}
         </div>
         {mobileHeaderContent && (
-          <div className="bg-neutral-100 b-neutral-300 bb dn-m text-right pv-3 ph-5">
+          <div className="bg-neutral-100 b-neutral-300 bb dn-m text-right pv-3 ph-4 ph-5-ns">
             {mobileHeaderContent}
           </div>
         )}
