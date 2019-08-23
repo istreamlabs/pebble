@@ -1,13 +1,11 @@
-import React from 'react';
 import FocusTrap from 'focus-trap-react';
-import { shallow } from 'enzyme';
-
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
 import Overlay from '../Overlay/Overlay';
+import React from 'react';
 import TenantMenu from '../TenantMenu/TenantMenu';
-
 import { getBreakpointLayout } from '../../Utils';
+import { shallow } from 'enzyme';
 
 jest.mock('../../Utils/GetBreakpointLayout');
 
@@ -322,7 +320,7 @@ describe('Frame', () => {
         showTenantMenu: false,
       };
       const result = instance.renderOverlay();
-      expect(result).toBe(null);
+      expect(result).toBeUndefined();
     });
     it('returns an Overlay if showTenantMenu true', () => {
       const instance = new Frame();

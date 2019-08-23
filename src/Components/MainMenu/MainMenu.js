@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withRouter, matchPath } from 'react-router';
+import './MainMenu.scss';
+
+import { matchPath, withRouter } from 'react-router';
 
 import Button from '../Button/Button';
 import MenuItem from './MenuItem/MenuItem';
-
-import './MainMenu.scss';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
   /**

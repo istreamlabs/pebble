@@ -9,10 +9,8 @@ import Icon from '../Icon/Icon';
 import Link from '../Link/Link';
 import PropTypes from 'prop-types';
 import Text from '../Text/Text';
-
 import { motion } from 'framer-motion';
 import { tenantType } from '../../Types';
-
 import { useMobileLayout } from '../../Hooks';
 
 const propTypes = {
@@ -47,22 +45,16 @@ const defaultProps = {
 };
 
 const variants = {
-  showTenant: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      y: { stiffness: 1000, velocity: -100 },
-      staggerChildren: 0.07,
-      delayChildren: 0.2,
-    },
-  },
-  hideTenant: {
-    opacity: 0,
-    y: 50,
-    transition: {
-      y: { stiffness: 1000 },
-    },
+  popUp: custom => {
+    return {
+      opacity: [0, 1],
+      y: [24, 0],
+      transition: {
+        type: 'spring',
+        duration: 0.2,
+        delay: custom / 12,
+      },
+    };
   },
 };
 
@@ -140,13 +132,15 @@ function TenantMenu(props) {
     }
 
     const tenantMarkup = (
-      <motion.ul className="tenant-menu" variants={variants}>
+      <motion.ul className="tenant-menu">
         {tenants.map(({ name, realm, id, url }, i) => (
           <motion.li
-            whileHover={{ paddingLeft: 8 }}
-            key={i}
-            variants={variants}
             className="bg-hover bg-neutral-800-hover"
+            key={i}
+            custom={i}
+            animate="popUp"
+            variants={variants}
+            whileHover={{ paddingLeft: 8 }}
           >
             <Link
               external

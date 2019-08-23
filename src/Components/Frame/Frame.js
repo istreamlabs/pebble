@@ -1,18 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import FocusTrap from 'focus-trap-react';
+import './Frame.scss';
 
 import Block from '../Block/Block';
 import Button from '../Button/Button';
+import FocusTrap from 'focus-trap-react';
 import Overlay from '../Overlay/Overlay';
+import PropTypes from 'prop-types';
+import React from 'react';
 import TenantMenu from '../TenantMenu/TenantMenu';
 import Text from '../Text/Text';
 import ToastContainer from '../ToastContainer/ToastContainer';
-
+import classNames from 'classnames';
 import { getBreakpointLayout } from '../../Utils';
-
-import './Frame.scss';
+import { motion } from 'framer-motion';
 
 export const APP_FRAME_MAIN = 'AppFrameMain';
 const APP_FRAME_NAV = 'AppFrameNav';
@@ -219,11 +218,11 @@ export class Frame extends React.PureComponent {
             {this.getFrameTitle()}
             <Button
               plain
+              size="large"
               className="ml-3"
               accessibilityLabel="show tenant menu"
               icon="menu-dots"
               onClick={this.handleTenantMenuToggle}
-              size="large"
             />
           </Block>
           <Button
@@ -286,7 +285,7 @@ export class Frame extends React.PureComponent {
     }
 
     return (
-      <div
+      <motion.div
         className={navigationClasses}
         onKeyDown={this.handleNavKeydown}
         onClick={this.handleOnClick}
@@ -295,7 +294,7 @@ export class Frame extends React.PureComponent {
       >
         {this.renderTenantMenu()}
         {menu}
-      </div>
+      </motion.div>
     );
   };
 
@@ -311,15 +310,30 @@ export class Frame extends React.PureComponent {
             clickOutsideDeactivates: true,
           }}
         >
-          <Block
-            direction="column"
-            className="frame-tenant-menu-container"
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+            }}
           >
-            <TenantMenu
-              tenants={tenants}
-              onCloseTenantMenu={this.handleTenantMenuToggle}
-            />
-          </Block>
+            <motion.nav
+              animate={{
+                x: ['0px', '250px'],
+              }}
+              transition={{
+                duration: 0.25,
+                ease: 'easeOut',
+              }}
+              className="frame-tenant-menu-container"
+            >
+              <TenantMenu
+                tenants={tenants}
+                onCloseTenantMenu={this.handleTenantMenuToggle}
+              />
+            </motion.nav>
+          </div>
         </FocusTrap>
       );
     }
@@ -332,12 +346,7 @@ export class Frame extends React.PureComponent {
       isMobile,
     } = this.state;
 
-    // on desktop, do not show overlay if TenantMenu is not shown
-    if (!isMobile && !showTenantMenu) {
-      return null;
-    }
-
-    if (showTenantMenu || isShowingMobileNav) {
+    if (showTenantMenu || (isMobile && isShowingMobileNav)) {
       return (
         <Overlay
           onClick={this.handleNavigationDismiss}
