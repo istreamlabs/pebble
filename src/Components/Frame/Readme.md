@@ -10,7 +10,7 @@ import MainMenu from '../MainMenu/MainMenu';
 import Modal from '../Modal/Modal';
 import { useToast } from '../../Hooks';
 
-const TENANT_NAME = 'Frame Example';
+import { TENANTS } from '../../demo/data';
 
 const MENU = [
   {
@@ -65,7 +65,7 @@ function FrameExample() {
     );
   };
 
-  const mainMenu = <MainMenu title={TENANT_NAME} menu={MENU} />;
+  const mainMenu = <MainMenu menu={MENU} />;
 
   const demoModal = (
     <Modal
@@ -73,11 +73,11 @@ function FrameExample() {
       onRequestClose={() => setShowModal(!showModal)}
       showing={showModal}
       footer={[
-        <Button primary onClick={() => setShowModal(!showModal)}>
-          Save
-        </Button>,
         <Button onClick={() => setShowModal(!showModal)}>
           Cancel
+        </Button>,
+        <Button primary onClick={() => setShowModal(!showModal)}>
+          Save
         </Button>,
       ]}
     >
@@ -90,8 +90,8 @@ function FrameExample() {
       <Frame
         navigation={mainMenu}
         onNavigationToggle={this.mainNavigationToggled}
-        tenantName={TENANT_NAME}
-        title={TENANT_NAME}
+        tenants={TENANTS}
+        currentTenant={TENANTS[3]}
       >
         {showModal && demoModal}
         <Block

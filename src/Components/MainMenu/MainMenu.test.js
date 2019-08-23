@@ -109,4 +109,28 @@ describe('MainMenu', () => {
       expect(item.key()).toBe(expectedKey);
     });
   });
+
+  it('renders a show tenant menu button when onShowTenantMenu is set', () => {
+    const mock = jest.fn();
+    const menu = mount(
+      <BrowserRouter>
+        <MainMenu menu={mockMenuData} onShowTenantMenu={mock} />
+      </BrowserRouter>,
+    );
+    expect(
+      menu.find({ accessibilityLabel: 'show tenant menu' }),
+    ).toHaveLength(1);
+  });
+
+  it('renders mobileHeaderContent if defined', () => {
+    const menu = mount(
+      <BrowserRouter>
+        <MainMenu
+          menu={mockMenuData}
+          mobileHeaderContent={<div className="testHeader">test</div>}
+        />
+      </BrowserRouter>,
+    );
+    expect(menu.find('.testHeader')).toHaveLength(1);
+  });
 });
