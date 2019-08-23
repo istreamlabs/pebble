@@ -2,11 +2,14 @@ import React from 'react';
 import FocusTrap from 'focus-trap-react';
 import { shallow } from 'enzyme';
 
-import { getBreakpointLayout } from '../../Utils';
-
 import Frame from './Frame';
 import MainMenu from '../MainMenu/MainMenu';
+import Overlay from '../Overlay/Overlay';
 import TenantMenu from '../TenantMenu/TenantMenu';
+
+import { getBreakpointLayout } from '../../Utils';
+
+jest.mock('../../Utils/GetBreakpointLayout');
 
 const TENANTS = [
   {
@@ -43,6 +46,8 @@ const testFrame = (
 describe('Frame', () => {
   beforeEach(() => {
     jest.resetAllMocks();
+    getBreakpointLayout.mockClear();
+    getBreakpointLayout.mockImplementation(() => [false, false]);
   });
 
   it('renders without crashing', () => {
@@ -64,6 +69,23 @@ describe('Frame', () => {
       const result = shallow(instance.getFrameTitle());
       expect(result.text()).toContain('Cyberdyne Systems');
     });
+
+    it('includes title if set', () => {
+      const instance = new Frame({
+        title: 'hello world',
+      });
+      const result = instance.getFrameTitle();
+      expect(result).toEqual('hello world');
+    });
+
+    it('includes title if set', () => {
+      const instance = new Frame({
+        currentTenant: null,
+        title: null,
+      });
+      const result = instance.getFrameTitle();
+      expect(result).toBeUndefined();
+    });
   });
 
   describe('renderMainMenu', () => {
@@ -71,22 +93,11 @@ describe('Frame', () => {
       const wrapper = shallow(testFrame);
       wrapper.setState({
         isShowingMobileNav: true,
-        breakpoints: [true, true],
+        isMobile: true,
       });
 
       expect(wrapper.find(FocusTrap).exists()).toBe(true);
       expect(wrapper.find(FocusTrap).prop('active')).toBe(true);
-    });
-
-    it('does not set onShowTenantMenu prop of the MainMenu when there are NO tenants', () => {
-      const wrapper = shallow(
-        <Frame title="test" navigation={mainMenu} />,
-      );
-
-      expect(wrapper.find(MainMenu)).toHaveLength(1);
-      expect(
-        wrapper.find(MainMenu).prop('onShowTenantMenu'),
-      ).toBeUndefined();
     });
 
     it('sets onShowTenantMenu prop of the MainMenu when there are tenants', () => {
@@ -137,7 +148,7 @@ describe('Frame', () => {
       );
       wrapper.setState({
         showTenantMenu: true,
-        breakpoints: [true, true],
+        isMobile: true,
       });
 
       expect(wrapper.find(TenantMenu)).toHaveLength(1);
@@ -302,6 +313,38 @@ describe('Frame', () => {
     );
   });
 
+  describe('renderOverlay', () => {
+    it('returns null if showTenantMenu and isMobile is false', () => {
+      const instance = new Frame({ navigation: mainMenu });
+      instance.state = {
+        isMobile: false,
+        isShowingMobileNav: true,
+        showTenantMenu: false,
+      };
+      const result = instance.renderOverlay();
+      expect(result).toBe(null);
+    });
+    it('returns an Overlay if showTenantMenu true', () => {
+      const instance = new Frame();
+      instance.state = {
+        showTenantMenu: true,
+      };
+      const result = instance.renderOverlay();
+      expect(result.type).toEqual(Overlay);
+    });
+    it('returns an Overlay if navigation and isShowingMobileNav', () => {
+      getBreakpointLayout.mockImplementation(() => [true, true]);
+      const instance = new Frame();
+      instance.state = {
+        isMobile: true,
+        isShowingMobileNav: true,
+        showTenantMenu: false,
+      };
+      const result = instance.renderOverlay();
+      expect(result.type).toEqual(Overlay);
+    });
+  });
+
   describe('handleOnClick', () => {
     it('does nothing if target is not a tag', () => {
       const instance = new Frame({});
@@ -403,17 +446,43 @@ describe('Frame', () => {
   });
 
   describe('handleResize', () => {
-    beforeEach(() => {
-      jest.restoreAllMocks();
+    it('calls setState if isMobile is false but getBreakpointLayout returns isPhone', () => {
+      getBreakpointLayout.mockImplementation(() => [true, false]);
+      const instance = new Frame();
+      instance.state = {
+        isMobile: false,
+      };
+      instance.setState = jest.fn();
+
+      instance.handleResize();
+      expect(instance.setState).toHaveBeenCalledWith({
+        isMobile: true,
+      });
+    });
+    it('calls setState if isMobile is false but getBreakpointLayout returns isTablet', () => {
+      getBreakpointLayout.mockImplementation(() => [false, true]);
+      const instance = new Frame();
+      instance.state = {
+        isMobile: false,
+      };
+      instance.setState = jest.fn();
+
+      instance.handleResize();
+      expect(instance.setState).toHaveBeenCalledWith({
+        isMobile: true,
+      });
     });
 
-    it('calls setState', () => {
+    it('does not setState if getBreakpointLayout returns true and isMobile is true', () => {
+      getBreakpointLayout.mockImplementation(() => [false, true]);
       const instance = new Frame();
+      instance.state = {
+        isMobile: true,
+      };
       instance.setState = jest.fn();
+
       instance.handleResize();
-      expect(instance.setState).toBeCalledWith({
-        breakpoints: getBreakpointLayout(),
-      });
+      expect(instance.setState).not.toHaveBeenCalled();
     });
   });
 

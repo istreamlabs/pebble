@@ -202,9 +202,6 @@ function TenantMenu(props) {
       width="100"
       background="neutral-700"
       direction="column"
-      style={{
-        boxShadow: 'inset -8px 0 4px -2px rgba(0, 0, 0, 0.1)',
-      }}
     >
       {renderHeader()}
       {renderTenants()}

@@ -74,11 +74,13 @@ export class Frame extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    const [isPhone, isTablet] = getBreakpointLayout();
+
     this.state = {
       isSkipFocused: false,
       isShowingMobileNav: false,
       showTenantMenu: false,
-      breakpoints: getBreakpointLayout(),
+      isMobile: isPhone || isTablet,
     };
 
     this.mainContent = React.createRef();
@@ -109,7 +111,9 @@ export class Frame extends React.PureComponent {
       return (
         <Block direction="column">
           <Text bold>{currentTenant.name}</Text>
-          <Text size="6">{currentTenant.realm}</Text>
+          <Text color="neutral-500" size="6">
+            {currentTenant.realm}
+          </Text>
         </Block>
       );
     }
@@ -117,6 +121,7 @@ export class Frame extends React.PureComponent {
     if (title) {
       return title;
     }
+    return undefined;
   };
 
   handleSkipToMain = () => {
@@ -137,7 +142,12 @@ export class Frame extends React.PureComponent {
   };
 
   handleResize = () => {
-    this.setState({ breakpoints: getBreakpointLayout() });
+    const { isMobile } = this.state;
+    const [isPhone, isTablet] = getBreakpointLayout();
+    const newBreakpoint = isPhone || isTablet;
+    if (newBreakpoint !== isMobile) {
+      this.setState({ isMobile: newBreakpoint });
+    }
   };
 
   handleNavigationToggle = () => {
@@ -200,9 +210,7 @@ export class Frame extends React.PureComponent {
   };
 
   renderHeader = () => {
-    const { breakpoints } = this.state;
-    const [isPhone, isTablet] = breakpoints;
-    const isMobile = isPhone || isTablet;
+    const { isMobile } = this.state;
 
     if (isMobile) {
       return (
@@ -234,11 +242,9 @@ export class Frame extends React.PureComponent {
     const { navigation, tenants } = this.props;
     const {
       isShowingMobileNav,
-      breakpoints,
+      isMobile,
       showTenantMenu,
     } = this.state;
-    const [isPhone, isTablet] = breakpoints;
-    const isMobile = isPhone || isTablet;
 
     const navigationClasses = classNames('navigation', {
       open: isShowingMobileNav,
@@ -252,16 +258,11 @@ export class Frame extends React.PureComponent {
       />
     );
 
-    const menu = tenants
-      ? React.cloneElement(navigation, {
-          onShowTenantMenu: () => this.handleTenantMenuToggle(),
-          title: this.getFrameTitle(),
-          mobileHeaderContent: mobileCloseMainMenuBtn,
-        })
-      : React.cloneElement(navigation, {
-          title: this.getFrameTitle(),
-          mobileHeaderContent: mobileCloseMainMenuBtn,
-        });
+    const menu = React.cloneElement(navigation, {
+      onShowTenantMenu: tenants ? this.handleTenantMenuToggle : null,
+      title: this.getFrameTitle(),
+      mobileHeaderContent: mobileCloseMainMenuBtn,
+    });
 
     if (isMobile) {
       return (
@@ -313,12 +314,6 @@ export class Frame extends React.PureComponent {
           <Block
             direction="column"
             className="frame-tenant-menu-container"
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              bottom: 0,
-            }}
           >
             <TenantMenu
               tenants={tenants}
@@ -331,24 +326,18 @@ export class Frame extends React.PureComponent {
   };
 
   renderOverlay = () => {
-    const { navigation, tenants } = this.props;
     const {
       isShowingMobileNav,
       showTenantMenu,
-      breakpoints,
+      isMobile,
     } = this.state;
-    const [isPhone, isTablet] = breakpoints;
-    const isMobile = isPhone || isTablet;
 
     // on desktop, do not show overlay if TenantMenu is not shown
     if (!isMobile && !showTenantMenu) {
       return null;
     }
 
-    if (
-      (navigation && isShowingMobileNav) ||
-      (tenants && showTenantMenu)
-    ) {
+    if (showTenantMenu || isShowingMobileNav) {
       return (
         <Overlay
           onClick={this.handleNavigationDismiss}

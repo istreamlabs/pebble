@@ -32,8 +32,6 @@ $FRAME_HEADER_HEIGHT: 60px;
   width: 100%;
   z-index: $z-nav;
 
-  animation: slideInRight 0.2s ease-out;
-
   &.open {
     display: block;
   }
@@ -110,4 +108,14 @@ main {
 
 .frame-tenant-menu-container {
   z-index: $z-tenant-menu;
+  min-width: $NAV_LG_WIDTH;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: $box-shadow-2;
+
+  @include respond-above(md) {
+    width: 100%;
+  }
 }

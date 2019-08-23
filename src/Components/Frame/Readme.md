@@ -91,12 +91,7 @@ function FrameExample() {
         navigation={mainMenu}
         onNavigationToggle={this.mainNavigationToggled}
         tenants={TENANTS}
-        currentTenant={{
-          name: 'Cyberdyne Systems',
-          id: 'cyberdyne-prod',
-          realm: 'production',
-          url: 'https://www.istreamplanet.com',
-        }}
+        currentTenant={TENANTS[3]}
       >
         {showModal && demoModal}
         <Block
