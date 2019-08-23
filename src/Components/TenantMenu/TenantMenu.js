@@ -116,7 +116,7 @@ function TenantMenu(props) {
             icon={isMobile ? 'close' : 'nav-left'}
             plain
             accessibilityLabel="close tenant menu"
-            className="neutral-300 neutral-100-hover"
+            className="neutral-300 neutral-100-hover p-2"
           />
         )}
       </Block>
