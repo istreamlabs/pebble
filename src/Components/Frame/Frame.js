@@ -120,7 +120,6 @@ export class Frame extends React.PureComponent {
     if (title) {
       return title;
     }
-    return undefined;
   };
 
   handleSkipToMain = () => {
