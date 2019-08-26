@@ -309,3 +309,12 @@ export const borderType = PropTypes.oneOfType([
     color: colorType,
   }),
 ]);
+
+export const tenantType = PropTypes.arrayOf(
+  PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.string,
+    realm: PropTypes.string,
+    url: PropTypes.string,
+  }),
+);

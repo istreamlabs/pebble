@@ -73,9 +73,7 @@ initialState = { activeItem: '2', showMenu: false };
 
 <DemoBrowserRouter>
   <Block overflow="auto">
-    <Block>
-      <MainMenu menu={menu} startMenuExpanded auxMenu={auxMenu} />
-    </Block>
+    <MainMenu menu={menu} auxMenu={auxMenu} />
   </Block>
 </DemoBrowserRouter>;
 ```

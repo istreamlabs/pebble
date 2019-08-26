@@ -8,7 +8,7 @@ import Frame from './Frame';
 import Block from '../Block/Block';
 import MainMenu from '../MainMenu/MainMenu';
 
-const TENANT_NAME = 'Frame Example';
+import { TENANTS } from '../../demo/data';
 
 const MENU = [
   {
@@ -22,7 +22,8 @@ const MENU = [
     items: [
       {
         label: 'Sub-item 1',
-        href: '/',
+        href: '/sub1/subitem1',
+        exact: true,
       },
     ],
   },
@@ -34,7 +35,8 @@ const MENU = [
     items: [
       {
         label: 'Sub-item 1',
-        href: '/',
+        href: '/sub2/subitem1',
+        exact: true,
       },
       {
         label: 'Sub-item 2',
@@ -44,64 +46,43 @@ const MENU = [
   },
 ];
 
-class FrameExample extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      activeMainMenuItem: '1',
-      showMobileNavigation: false,
-    };
-    this.toggleMainNav = this.toggleMainNav.bind(this);
-  }
+const mainMenu = <MainMenu menu={MENU} startMenuExpanded />;
 
-  toggleMainNav() {
-    this.setState(prevState => ({
-      showMobileNavigation: !prevState.showMobileNavigation,
-    }));
-  }
+const bodyContent = (
+  <Block
+    background="blue-lighter"
+    flex
+    direction="column"
+    height="100%"
+    padding="6"
+  >
+    Main content
+  </Block>
+);
 
-  render() {
-    const { activeMainMenuItem, showMobileNavigation } = this.state;
-
-    const mainMenu = (
-      <MainMenu
-        title={TENANT_NAME}
-        menu={MENU}
-        activeItem={activeMainMenuItem}
-        showMobileNavigation={showMobileNavigation}
-      />
-    );
-
-    const bodyContent = (
-      <Block
-        background="blue-lighter"
-        flex
-        direction="column"
-        height="100%"
-        padding="6"
-      >
-        Main Content goes here
-      </Block>
-    );
-
-    return (
-      <Frame
-        isShowingMobileNav={showMobileNavigation}
-        navigation={mainMenu}
-        onNavigationToggle={this.toggleMainNav}
-        tenantName={TENANT_NAME}
-        title={TENANT_NAME}
-      >
-        {bodyContent}
-      </Frame>
-    );
-  }
-}
-
-storiesOf('Frame', module).add('all', () => (
-  <BrowserRouter>
-    <div style={{ height: '400px', overflow: 'auto' }}>
-      <FrameExample />
-    </div>
-  </BrowserRouter>
-));
+storiesOf('Frame', module)
+  .add('with Tenants', () => (
+    <BrowserRouter>
+      <div style={{ height: '400px', overflow: 'auto' }}>
+        <Frame
+          navigation={mainMenu}
+          tenants={TENANTS}
+          currentTenant={{
+            name: 'Cyberdyne Systems',
+            id: 'cyberdyne-prod',
+            realm: 'production',
+            url: 'https://www.istreamplanet.com',
+          }}
+        >
+          {bodyContent}
+        </Frame>
+      </div>
+    </BrowserRouter>
+  ))
+  .add('without Tenants', () => (
+    <BrowserRouter>
+      <div style={{ height: '400px', overflow: 'auto' }}>
+        <Frame navigation={mainMenu}>{bodyContent}</Frame>
+      </div>
+    </BrowserRouter>
+  ));

@@ -30,9 +30,11 @@ function Header({ actions, children, className }) {
 
   return (
     <div className={classes}>
-      <Heading element={2} size="4" className="card-title-heading">
-        {children}
-      </Heading>
+      {children && (
+        <Heading element={2} size="4" className="card-title-heading">
+          {children}
+        </Heading>
+      )}
       {actions && <div>{actions}</div>}
     </div>
   );

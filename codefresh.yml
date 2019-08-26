@@ -49,16 +49,34 @@ steps:
     image: ${{NODE_IMAGE}}
     commands:
     - yarn chromatic --exit-zero-on-changes
-  deploy_styleguide:
-    title: Deploy Styleguide
+  deployment:
+    type: parallel
+    title: Deploy All the Things
     stage: Deploy
-    image: codefresh/s3copy
-    environment:
-    - AWS_ACCESS_KEY_ID=${{DEVELOPMENT_AWS_ACCESS_KEY}}
-    - AWS_SECRET_ACCESS_KEY=${{DEVELOPMENT_AWS_SECRET}}
-    commands:
-    - ./deploy.sh "pebble.istreamplanet.net"
-    when:
-      branch:
-        only:
-          - master
+    steps:
+      deploy_styleguide:
+        title: Deploy Styleguide
+        stage: Deploy
+        image: codefresh/s3copy
+        environment:
+        - AWS_ACCESS_KEY_ID=${{DEVELOPMENT_AWS_ACCESS_KEY}}
+        - AWS_SECRET_ACCESS_KEY=${{DEVELOPMENT_AWS_SECRET}}
+        commands:
+        - ./deploy.sh "pebble.istreamplanet.net"
+        when:
+          condition:
+            all:
+              executeForMasterBranch: "'${{CF_BRANCH}}' == 'master'"
+              isTag: "'${{IS_TAG_PUSH}}' == 'true'"
+      deploy_to_npm:
+        title: Publishing To Npm
+        type: npm-publish
+        image: codefresh/npm-publish:master
+        commands:
+          - npm run npm-publish
+        environment:
+          - NPM_TOKEN=${{NPM_TOKEN}}
+        when:
+          condition:
+            all:
+              isTag: "'${{IS_TAG_PUSH}}' == 'true'"

@@ -8,15 +8,15 @@ $FRAME_HEADER_HEIGHT: 60px;
   height: 100vh;
   position: relative;
   grid-template-areas:
-    "header"
-    "main";
+    'header'
+    'main';
   grid-template-rows: $FRAME_HEADER_HEIGHT 0 auto;
   position: relative;
   overflow: hidden;
 
   @include respond-above(md) {
     grid-template-columns: $NAV_LG_WIDTH auto;
-    grid-template-areas: "nav main";
+    grid-template-areas: 'nav main';
     grid-template-rows: auto;
   }
 }
@@ -26,13 +26,11 @@ $FRAME_HEADER_HEIGHT: 60px;
   display: none;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   max-width: 310px;
   width: 100%;
   z-index: $z-nav;
-
-  animation: slideInLeft .2s ease-out;
 
   &.open {
     display: block;
@@ -75,7 +73,6 @@ main {
   border-bottom: 1px solid $neutral-300;
   box-shadow: $box-shadow-1;
   display: flex;
-  font-weight: 700;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -90,7 +87,7 @@ main {
 .frame-close-nav {
   position: absolute;
   top: 0;
-  left: 100%;
+  right: 100%;
   margin: $spacing-3;
 
   background: $neutral-700;
@@ -107,5 +104,18 @@ main {
     height: 2rem;
     width: 2rem;
   }
+}
 
+.frame-tenant-menu-container {
+  z-index: $z-tenant-menu;
+  min-width: $NAV_LG_WIDTH;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -250px;
+  box-shadow: $box-shadow-2;
+
+  @include respond-above(md) {
+    width: 100%;
+  }
 }

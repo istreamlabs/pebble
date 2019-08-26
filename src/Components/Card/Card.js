@@ -5,7 +5,7 @@ import { Header, Section } from './Components';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import { overflowType, requiresOtherProp } from '../../Types';
+import { overflowType } from '../../Types';
 
 import Block from '../Block/Block';
 
@@ -15,13 +15,18 @@ const propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Additional ClassNames to add to button
+   * Additional ClassNames to add to card
    */
   className: PropTypes.string,
   /**
-   * button(s) to be displayed in the upper right of the Card. A title must be provided in order to display headerActions.
+   * button(s) to be displayed in the header of the Card.
+   * If a title is provided, the headerActions will have an upper right placement
    */
-  headerActions: requiresOtherProp('title'),
+  headerActions: PropTypes.node,
+  /**
+   * Additional classNames to add to card header container
+   */
+  headerClassName: PropTypes.string,
   /**
    * Make the card less visually prominent
    */
@@ -67,6 +72,7 @@ function Card({
   children,
   className,
   headerActions,
+  headerClassName,
   sectioned,
   muted,
   overflow,
@@ -76,9 +82,11 @@ function Card({
     muted,
   });
 
-  const header = title ? (
-    <Header actions={headerActions}>{title}</Header>
-  ) : null;
+  const header = (
+    <Header className={headerClassName} actions={headerActions}>
+      {title}
+    </Header>
+  );
 
   const content = sectioned
     ? React.Children.map(children, child => (

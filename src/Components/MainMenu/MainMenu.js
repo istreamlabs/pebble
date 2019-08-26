@@ -1,15 +1,34 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { withRouter, matchPath } from 'react-router';
-
-import Block from '../Block/Block';
-import Text from '../Text/Text';
-import MenuItem from './MenuItem/MenuItem';
-
 import './MainMenu.scss';
 
+import { matchPath, withRouter } from 'react-router';
+
+import Button from '../Button/Button';
+import MenuItem from './MenuItem/MenuItem';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
+
 const propTypes = {
+  /**
+   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   */
+  auxMenu: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      href: PropTypes.string,
+      icon: PropTypes.string,
+      aliases: PropTypes.arrayOf(PropTypes.string),
+      exact: PropTypes.bool,
+      items: PropTypes.arrayOf(
+        PropTypes.shape({
+          label: PropTypes.string.isRequired,
+          href: PropTypes.string,
+          aliases: PropTypes.arrayOf(PropTypes.string),
+          exact: PropTypes.bool,
+        }),
+      ),
+    }),
+  ),
   /**
    * Additional ClassNames to add to button group
    */
@@ -39,37 +58,25 @@ const propTypes = {
     }),
   ).isRequired,
   /**
-   * Menu items for the lower portion of the menu (e.g. Profile, Support)
+   * Display a button to toggle another menu
    */
-  auxMenu: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      href: PropTypes.string,
-      icon: PropTypes.string,
-      aliases: PropTypes.arrayOf(PropTypes.string),
-      exact: PropTypes.bool,
-      items: PropTypes.arrayOf(
-        PropTypes.shape({
-          label: PropTypes.string.isRequired,
-          href: PropTypes.string,
-          aliases: PropTypes.arrayOf(PropTypes.string),
-          exact: PropTypes.bool,
-        }),
-      ),
-    }),
-  ),
+  onShowTenantMenu: PropTypes.func,
   /**
-   * Text that appears at the top of the menu
+   * Content that appears in the header of the MainMenu on mobile only
    */
-  title: PropTypes.string,
+  mobileHeaderContent: PropTypes.node,
+  /**
+   * On page load, expand items in the auxMenu that contain child items
+   */
+  startAuxMenuExpanded: PropTypes.bool,
   /**
    * On page load, expand items in the menu that contain child items
    */
   startMenuExpanded: PropTypes.bool,
   /**
-   * On page load, expand items in the auxMenu that contain child items
+   * Text that appears at the top of the menu (usually the tenant name)
    */
-  startAuxMenuExpanded: PropTypes.bool,
+  title: PropTypes.node,
 };
 
 const defaultProps = {
@@ -104,6 +111,35 @@ class MainMenu extends React.Component {
     );
   }
 
+  renderHeader = () => {
+    const {
+      mobileHeaderContent,
+      onShowTenantMenu,
+      title,
+    } = this.props;
+    return (
+      <div className="main-menu-title">
+        <div className="dn bb b-neutral-300 w-100 flex-m pv-3 ph-5 justify-between-m">
+          {title}
+          {onShowTenantMenu && (
+            <Button
+              plain
+              onClick={onShowTenantMenu}
+              icon="menu-dots"
+              accessibilityLabel="show tenant menu"
+              size="large"
+            />
+          )}
+        </div>
+        {mobileHeaderContent && (
+          <div className="bg-neutral-100 b-neutral-300 bb dn-m text-right pv-3 ph-4 ph-5-ns">
+            {mobileHeaderContent}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   renderItem(menu, startExpanded) {
     const { location } = this.props;
 
@@ -124,7 +160,6 @@ class MainMenu extends React.Component {
       startMenuExpanded,
       auxMenu,
       startAuxMenuExpanded,
-      title,
     } = this.props;
 
     return (
@@ -133,14 +168,7 @@ class MainMenu extends React.Component {
         aria-label="Main navigation"
       >
         <div className="main-menu-top">
-          <Block
-            className="main-menu-title"
-            paddingVertical="3"
-            paddingHorizontal="5"
-            alignItems="center"
-          >
-            <Text bold>{title}</Text>
-          </Block>
+          {this.renderHeader()}
           <ul className="main-menu-items">
             {this.renderItem(menu, startMenuExpanded)}
           </ul>

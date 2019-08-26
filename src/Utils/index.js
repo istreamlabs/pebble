@@ -6,6 +6,9 @@ export {
   default as getBorderRadiusClasses,
 } from './GetBorderRadiusClasses';
 export {
+  default as getBreakpointLayout,
+} from './GetBreakpointLayout';
+export {
   default as getDimensionClasses,
 } from './GetDimensionClasses';
 export {
