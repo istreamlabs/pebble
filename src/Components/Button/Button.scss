@@ -11,7 +11,7 @@ $BTN_FOCUS_DANGER: $red-light;
   justify-content: center;
   padding: $spacing-2 $spacing-3;
   position: relative;
-  background: $white;
+  background: linear-gradient(180deg, $white, $neutral-200);
   color: $neutral-600;
   line-height: $line-height-solid;
   white-space: nowrap;
@@ -19,11 +19,12 @@ $BTN_FOCUS_DANGER: $red-light;
   font-size: $font-size-5;
   border: 1px solid $neutral-400;
   border-radius: $border-radius-2;
+  box-shadow: inset 0 1px 0 0 $white-05;
   font-weight: 700;
   text-decoration: none;
-  transition-duration: .1s;
+  transition-duration: 0.2s;
   transition-timing-function: ease-in;
-  transition-property: background, border, box-shadow;
+  transition-property: background-color, border, box-shadow;
 
   &:focus,
   &:hover,
@@ -34,7 +35,7 @@ $BTN_FOCUS_DANGER: $red-light;
   }
 
   &:focus {
-    box-shadow: 0 0 0 .2rem $BTN_FOCUS_DEFAULT;
+    box-shadow: 0 0 0 0.2rem $BTN_FOCUS_DEFAULT;
   }
 
   &.disabled,
@@ -60,7 +61,7 @@ $BTN_FOCUS_DANGER: $red-light;
 }
 
 .btn-primary {
-  background: $blue;
+  background: linear-gradient(180deg, $blue, darken($blue, 3%));
   color: $white;
   border-color: $blue;
 
@@ -68,23 +69,26 @@ $BTN_FOCUS_DANGER: $red-light;
   &:hover,
   &:active {
     color: $white;
-    background: $blue-dark;
+    background: linear-gradient(
+      180deg,
+      darken($blue, 3%),
+      darken($blue, 6%)
+    );
     border-color: $blue-dark;
   }
 
   &:focus {
-    box-shadow: 0 0 0 .2rem $BTN_FOCUS_PRIMARY;
+    box-shadow: 0 0 0 0.2rem $BTN_FOCUS_PRIMARY;
   }
 
   &.disabled,
   &:disabled {
     color: $white;
     border-color: $blue-light;
-    background-color: $blue-light;
-
+    background: $blue-light;
 
     &:hover {
-      background-color: $blue-light;
+      background: $blue-light;
       border-color: $blue-light;
     }
   }
@@ -105,7 +109,7 @@ $BTN_FOCUS_DANGER: $red-light;
   }
 
   &:focus {
-    box-shadow: 0 0 0 .2rem $BTN_FOCUS_DANGER;
+    box-shadow: 0 0 0 0.2rem $BTN_FOCUS_DANGER;
   }
 
   &.disabled,
@@ -143,7 +147,6 @@ $BTN_FOCUS_DANGER: $red-light;
     outline-offset: $spacing-1;
   }
 
-
   &.disabled,
   &:disabled {
     &:hover {
@@ -165,7 +168,7 @@ $BTN_FOCUS_DANGER: $red-light;
 }
 
 .btn-primary.btn-danger {
-  background: $red;
+  background: linear-gradient(180deg, $red, darken($red, 3%));
   color: $white;
   border-color: $red;
 
@@ -173,18 +176,22 @@ $BTN_FOCUS_DANGER: $red-light;
   &:hover,
   &:active {
     color: $white;
-    background: $red-dark;
+    background: linear-gradient(
+      180deg,
+      darken($red, 3%),
+      darken($red, 6%)
+    );
     border-color: $red-dark;
   }
 
   &.disabled,
   &:disabled {
     color: $white;
-    background-color: $red-light;
+    background: $red-light;
     border-color: $red-light;
 
     &:hover {
-      background-color: $red-light;
+      background: $red-light;
       border-color: $red-light;
     }
   }
@@ -220,8 +227,8 @@ $BTN_FOCUS_DANGER: $red-light;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -.5rem;
-  margin-left: -.5rem;
+  margin-top: -0.5rem;
+  margin-left: -0.5rem;
   color: $neutral-500;
 }
 
