@@ -6,6 +6,9 @@ import TenantMenu from './TenantMenu';
 import { TENANTS } from '../../demo/data';
 
 storiesOf('TenantMenu', module)
+  .addParameters({
+    chromatic: { delay: 1500 },
+  })
   .add('many tenants', () => <TenantMenu tenants={TENANTS} />)
   .add('no tenants', () => <TenantMenu tenants={[]} />)
   .add('one tenant', () => (
