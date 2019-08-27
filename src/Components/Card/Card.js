@@ -82,11 +82,12 @@ function Card({
     muted,
   });
 
-  const header = (
-    <Header className={headerClassName} actions={headerActions}>
-      {title}
-    </Header>
-  );
+  const header =
+    title || headerActions ? (
+      <Header className={headerClassName} actions={headerActions}>
+        {title}
+      </Header>
+    ) : null;
 
   const content = sectioned
     ? React.Children.map(children, child => (
