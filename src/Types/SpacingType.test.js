@@ -1,6 +1,6 @@
 import SpacingType from './SpacingType';
 
-describe('Util > SpacingType', () => {
+describe('Types > SpacingType', () => {
   it('returns null if there is no prop value', () => {
     const props = { itemSpacing: 'bar' };
     expect(SpacingType(props, 'baz', 'myComponent')).toEqual(null);

@@ -1,6 +1,6 @@
 import boolRequiresOtherProp from './BoolRequiresOtherProp';
 
-describe('Util > BoolRequiresOtherProp', () => {
+describe('Types > BoolRequiresOtherProp', () => {
   it('should do nothing if first prop undefined', () => {
     const func = boolRequiresOtherProp('myOtherProp');
     const error = func({}, 'myProp', 'myComponent');
@@ -15,7 +15,11 @@ describe('Util > BoolRequiresOtherProp', () => {
 
   it('should do nothing if prop is a boolean and other prop defined', () => {
     const func = boolRequiresOtherProp('myOtherProp');
-    const error = func({ myProp: true, myOtherProp: 'abc' }, 'myProp', 'myComponent');
+    const error = func(
+      { myProp: true, myOtherProp: 'abc' },
+      'myProp',
+      'myComponent',
+    );
     expect(error).toBeUndefined();
   });
 
@@ -23,6 +27,8 @@ describe('Util > BoolRequiresOtherProp', () => {
     const func = boolRequiresOtherProp('myOtherProp');
     const error = func({ myProp: true }, 'myProp', 'myComponent');
     expect(error).toBeDefined();
-    expect(error.message).toEqual("Please provide a 'myOtherProp' in order to use 'myProp' in <myComponent>");
+    expect(error.message).toEqual(
+      "Please provide a 'myOtherProp' in order to use 'myProp' in <myComponent>",
+    );
   });
 });

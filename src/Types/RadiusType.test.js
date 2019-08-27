@@ -1,6 +1,6 @@
 import RadiusType from './RadiusType';
 
-describe('Util > SpacingType', () => {
+describe('Types > SpacingType', () => {
   it('returns null if there is no prop value', () => {
     const props = { radius: 'bar' };
     expect(RadiusType(props, 'baz', 'myComponent')).toEqual(null);
