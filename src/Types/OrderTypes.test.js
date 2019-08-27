@@ -1,6 +1,6 @@
 import OrderType from './OrderType';
 
-describe('Util > OrderType', () => {
+describe('Types > OrderType', () => {
   it('returns null if there is no prop value', () => {
     const props = { order: 'bar' };
     expect(OrderType(props, 'baz', 'myComponent')).toEqual(null);
