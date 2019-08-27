@@ -15,6 +15,7 @@ import {
   colorType,
   dimensionType,
   fontSizeType,
+  orderType,
   overflowType,
   radiusType,
   spacingType,
@@ -226,6 +227,13 @@ const propTypes = {
    */
   marginBottom: spacingType,
   /**
+   *  Controls the order in which the item appears in a flex container
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Order>}
+   */
+  order: orderType,
+  /**
    * Overflow behavior
    *
    * One of: 'auto', 'visible', 'hidden', 'scroll'
@@ -343,6 +351,7 @@ class Block extends React.PureComponent {
       justify,
       marginTop,
       marginBottom,
+      order,
       overflow,
       padding,
       paddingHorizontal,
@@ -385,6 +394,7 @@ class Block extends React.PureComponent {
       'self',
       alignSelf,
     );
+    const orderClasses = getFlexPropertyClasses('order', order);
 
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
@@ -438,6 +448,7 @@ class Block extends React.PureComponent {
       alignContentClasses,
       alignItemsClasses,
       alignSelfClasses,
+      orderClasses,
       widthStyles.classes,
       heightStyles.classes,
       color,

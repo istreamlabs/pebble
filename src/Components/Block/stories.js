@@ -10,52 +10,126 @@ import Text from '../Text/Text';
 const borderWidth = '8px';
 
 storiesOf('Block', module)
-  .add('itemSpacing', () => (
-    <Block direction="column" itemSpacing="6">
-      <Block direction="row" itemSpacing="5">
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
+  .add('background color', () => (
+    <Block itemSpacing="3">
+      <Block direction="column">
+        <Block width="100px" height="50px" background="neutral-100">
+          neutral-100
+        </Block>
+        <Block width="100px" height="50px" background="neutral-200">
+          neutral-200
+        </Block>
+        <Block width="100px" height="50px" background="neutral-300">
+          neutral-300
+        </Block>
+        <Block width="100px" height="50px" background="neutral-400">
+          neutral-400
+        </Block>
+        <Block width="100px" height="50px" background="neutral-500">
+          neutral-500
+        </Block>
+        <Block width="100px" height="50px" background="neutral-600">
+          neutral-600
+        </Block>
+        <Block width="100px" height="50px" background="neutral-700">
+          neutral-700
+        </Block>
+        <Block width="100px" height="50px" background="neutral-800">
+          neutral-800
+        </Block>
       </Block>
-      <Block direction="column" itemSpacing="5">
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
+      <Block direction="column">
+        <Block width="100px" height="50px" background="blue-lighter">
+          blue-lighter
+        </Block>
+        <Block width="100px" height="50px" background="blue-light">
+          blue-light
+        </Block>
+        <Block width="100px" height="50px" background="blue">
+          blue
+        </Block>
+        <Block width="100px" height="50px" background="blue-dark">
+          blue-dark
+        </Block>
+        <Block width="100px" height="50px" background="blue-darker">
+          blue-darker
+        </Block>
       </Block>
-      <Block direction="row" itemSpacing={[2, 4, 6, 8]}>
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
+      <Block direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          background="yellow-lighter"
+        >
+          yellow-lighter
+        </Block>
+        <Block width="100px" height="50px" background="yellow-light">
+          yellow-light
+        </Block>
+        <Block width="100px" height="50px" background="yellow">
+          yellow
+        </Block>
+        <Block width="100px" height="50px" background="yellow-dark">
+          yellow-dark
+        </Block>
+        <Block width="100px" height="50px" background="yellow-darker">
+          yellow-darker
+        </Block>
       </Block>
-      <Block direction="column" itemSpacing={[7, 3, 1, 7]}>
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
+      <Block direction="column">
+        <Block width="100px" height="50px" background="green-lighter">
+          green-lighter
+        </Block>
+        <Block width="100px" height="50px" background="green-light">
+          green-light
+        </Block>
+        <Block width="100px" height="50px" background="green">
+          green
+        </Block>
+        <Block width="100px" height="50px" background="green-dark">
+          green-dark
+        </Block>
+        <Block width="100px" height="50px" background="green-darker">
+          green-darker
+        </Block>
       </Block>
-      <Block
-        direction={['column', 'row', 'column', 'row']}
-        itemSpacing={[7, 3, 1, 7]}
-      >
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
+      <Block direction="column">
+        <Block width="100px" height="50px" background="red-lighter">
+          red-lighter
+        </Block>
+        <Block width="100px" height="50px" background="red-light">
+          red-light
+        </Block>
+        <Block width="100px" height="50px" background="red">
+          red
+        </Block>
+        <Block width="100px" height="50px" background="red-dark">
+          red-dark
+        </Block>
+        <Block width="100px" height="50px" background="red-darker">
+          red-darker
+        </Block>
       </Block>
-      <Block direction={['column', 'row']} itemSpacing={[7, 3, 4, 5]}>
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
-        <Block background="blue-light" width="50px" height="50px" />
+      <Block direction="column">
+        <Block
+          width="100px"
+          height="50px"
+          background="indigo-lighter"
+        >
+          indigo-lighter
+        </Block>
+        <Block width="100px" height="50px" background="indigo-light">
+          indigo-light
+        </Block>
+        <Block width="100px" height="50px" background="indigo">
+          indigo
+        </Block>
+        <Block width="100px" height="50px" background="indigo-dark">
+          indigo-dark
+        </Block>
+        <Block width="100px" height="50px" background="indigo-darker">
+          indigo-darker
+        </Block>
       </Block>
     </Block>
   ))
@@ -501,6 +575,155 @@ storiesOf('Block', module)
       </Block>
     </Block>
   ))
+  .add('itemSpacing', () => (
+    <Block direction="column" itemSpacing="6">
+      <Block direction="row" itemSpacing="5">
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction="column" itemSpacing="5">
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction="row" itemSpacing={[2, 4, 6, 8]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction="column" itemSpacing={[7, 3, 1, 7]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block
+        direction={['column', 'row', 'column', 'row']}
+        itemSpacing={[7, 3, 1, 7]}
+      >
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+      <Block direction={['column', 'row']} itemSpacing={[7, 3, 4, 5]}>
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+        <Block background="blue-light" width="50px" height="50px" />
+      </Block>
+    </Block>
+  ))
+
+  .add('order', () => (
+    <Block color="neutral-700" direction="column" itemSpacing="5">
+      <Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order="last"
+          border="left"
+        >
+          last
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order={[1, 4, 3, 2]}
+          border="left"
+        >
+          A
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order={[2, 1, 4, 3]}
+          border="left"
+        >
+          B
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order={[3, 2, 1, 4]}
+          border="left"
+        >
+          C
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order={[4, 3, 2, 1]}
+          border="left"
+        >
+          D
+        </Block>
+      </Block>
+
+      <Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order="last"
+          border="left"
+        >
+          last
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order="4"
+          border="left"
+        >
+          4
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order="3"
+          border="left"
+        >
+          3
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order="2"
+          border="left"
+        >
+          2
+        </Block>
+        <Block
+          background="blue-light"
+          width="50px"
+          height="50px"
+          order="1"
+          border="left"
+        >
+          1
+        </Block>
+      </Block>
+    </Block>
+  ))
   .add('text color', () => (
     <>
       <Block color="neutral-100">neutral-100</Block>
@@ -537,129 +760,6 @@ storiesOf('Block', module)
       <Block color="indigo-dark">indigo-dark</Block>
       <Block color="indigo-darker">indigo-darker</Block>
     </>
-  ))
-  .add('background color', () => (
-    <Block itemSpacing="3">
-      <Block direction="column">
-        <Block width="100px" height="50px" background="neutral-100">
-          neutral-100
-        </Block>
-        <Block width="100px" height="50px" background="neutral-200">
-          neutral-200
-        </Block>
-        <Block width="100px" height="50px" background="neutral-300">
-          neutral-300
-        </Block>
-        <Block width="100px" height="50px" background="neutral-400">
-          neutral-400
-        </Block>
-        <Block width="100px" height="50px" background="neutral-500">
-          neutral-500
-        </Block>
-        <Block width="100px" height="50px" background="neutral-600">
-          neutral-600
-        </Block>
-        <Block width="100px" height="50px" background="neutral-700">
-          neutral-700
-        </Block>
-        <Block width="100px" height="50px" background="neutral-800">
-          neutral-800
-        </Block>
-      </Block>
-      <Block direction="column">
-        <Block width="100px" height="50px" background="blue-lighter">
-          blue-lighter
-        </Block>
-        <Block width="100px" height="50px" background="blue-light">
-          blue-light
-        </Block>
-        <Block width="100px" height="50px" background="blue">
-          blue
-        </Block>
-        <Block width="100px" height="50px" background="blue-dark">
-          blue-dark
-        </Block>
-        <Block width="100px" height="50px" background="blue-darker">
-          blue-darker
-        </Block>
-      </Block>
-      <Block direction="column">
-        <Block
-          width="100px"
-          height="50px"
-          background="yellow-lighter"
-        >
-          yellow-lighter
-        </Block>
-        <Block width="100px" height="50px" background="yellow-light">
-          yellow-light
-        </Block>
-        <Block width="100px" height="50px" background="yellow">
-          yellow
-        </Block>
-        <Block width="100px" height="50px" background="yellow-dark">
-          yellow-dark
-        </Block>
-        <Block width="100px" height="50px" background="yellow-darker">
-          yellow-darker
-        </Block>
-      </Block>
-      <Block direction="column">
-        <Block width="100px" height="50px" background="green-lighter">
-          green-lighter
-        </Block>
-        <Block width="100px" height="50px" background="green-light">
-          green-light
-        </Block>
-        <Block width="100px" height="50px" background="green">
-          green
-        </Block>
-        <Block width="100px" height="50px" background="green-dark">
-          green-dark
-        </Block>
-        <Block width="100px" height="50px" background="green-darker">
-          green-darker
-        </Block>
-      </Block>
-      <Block direction="column">
-        <Block width="100px" height="50px" background="red-lighter">
-          red-lighter
-        </Block>
-        <Block width="100px" height="50px" background="red-light">
-          red-light
-        </Block>
-        <Block width="100px" height="50px" background="red">
-          red
-        </Block>
-        <Block width="100px" height="50px" background="red-dark">
-          red-dark
-        </Block>
-        <Block width="100px" height="50px" background="red-darker">
-          red-darker
-        </Block>
-      </Block>
-      <Block direction="column">
-        <Block
-          width="100px"
-          height="50px"
-          background="indigo-lighter"
-        >
-          indigo-lighter
-        </Block>
-        <Block width="100px" height="50px" background="indigo-light">
-          indigo-light
-        </Block>
-        <Block width="100px" height="50px" background="indigo">
-          indigo
-        </Block>
-        <Block width="100px" height="50px" background="indigo-dark">
-          indigo-dark
-        </Block>
-        <Block width="100px" height="50px" background="indigo-darker">
-          indigo-darker
-        </Block>
-      </Block>
-    </Block>
   ))
   .add('responsive justify', () => (
     <Block

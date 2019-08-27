@@ -16,4 +16,5 @@
  * @typedef {'auto'|'hidden'|'scroll'|'visible'|'overlay'|'initial'} Overflow
  * @typedef {'default'|'info'|'warn'|'danger'|'success'|'special'} AppearanceType
  * @typedef {'auto'|'auto-start'|'auto-end'|'top'|'top-start'|'top-end'|'right'|'right-start'|'right-end'|'bottom'|'bottom-start'|'bottom-end'|'left'|'left-start'|'left-end'} PlacementType
+ * @typedef {(0|1|2|3|4|5|6|7|8|'0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'last')} Order
  */

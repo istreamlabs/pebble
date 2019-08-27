@@ -6,6 +6,7 @@ import { PropTypes } from 'prop-types';
 
 export { default as radiusType } from './RadiusType';
 export { default as spacingType } from './SpacingType';
+export { default as orderType } from './OrderType';
 export {
   default as boolRequiresOtherProp,
 } from './BoolRequiresOtherProp';
