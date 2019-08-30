@@ -330,7 +330,7 @@ export class Frame extends React.PureComponent {
               <TenantMenu
                 tenants={tenants}
                 onCloseTenantMenu={this.handleTenantMenuToggle}
-                currentTenantId={currentTenant.id}
+                currentTenantId={(currentTenant || {}).id}
               />
             </motion.nav>
           </div>
