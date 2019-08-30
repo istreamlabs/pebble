@@ -298,7 +298,7 @@ export class Frame extends React.PureComponent {
   };
 
   renderTenantMenu = () => {
-    const { tenants } = this.props;
+    const { tenants, currentTenant } = this.props;
     const { showTenantMenu } = this.state;
 
     if (showTenantMenu) {
@@ -330,6 +330,7 @@ export class Frame extends React.PureComponent {
               <TenantMenu
                 tenants={tenants}
                 onCloseTenantMenu={this.handleTenantMenuToggle}
+                currentTenantId={(currentTenant || {}).id}
               />
             </motion.nav>
           </div>
