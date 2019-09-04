@@ -124,9 +124,9 @@ class DateTime extends React.PureComponent {
     if (excludeTime || !showAlternativeTimeZone) return;
 
     const classes = classNames({
-      'fs-4-responsive': size === 'small',
+      'fs-6-responsive': size === 'small',
       'fs-5-responsive': size === 'medium',
-      'fs-6-responsive': size === 'large',
+      'fs-4-responsive': size === 'large',
     });
 
     return (
