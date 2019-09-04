@@ -64,7 +64,6 @@ const defaultProps = {
   excludeTime: false,
   hideTimeZone: false,
   showAlternativeTimeZone: false,
-  size: 'medium',
   timeFormat: 'HH:mm',
 };
 
@@ -188,9 +187,9 @@ class DateTime extends React.PureComponent {
     } = this.props;
 
     const classes = classNames('DateTime-value', {
-      'fs-4-responsive': size === 'small',
+      'fs-6-responsive': size === 'small',
       'fs-5-responsive': size === 'medium',
-      'fs-6-responsive': size === 'large',
+      'fs-4-responsive': size === 'large',
       ' fw-700': showAlternativeTimeZone,
     });
 
