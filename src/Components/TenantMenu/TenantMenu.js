@@ -52,7 +52,7 @@ const variants = {
       transition: {
         type: 'spring',
         duration: 0.2,
-        delay: custom / 12,
+        delay: custom / 16,
       },
     };
   },
