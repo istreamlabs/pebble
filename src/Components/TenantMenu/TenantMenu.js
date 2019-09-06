@@ -184,7 +184,11 @@ function TenantMenu(props) {
       </motion.ul>
     );
     return (
-      <Block direction="column" overflow={{ vertical: 'auto' }}>
+      <Block
+        direction="column"
+        className="pb-5"
+        overflow={{ vertical: 'auto' }}
+      >
         {tenantMarkup}
       </Block>
     );
