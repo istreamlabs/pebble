@@ -105,7 +105,10 @@ function FieldCheckbox({
 
       return (
         <label className={labelClasses} htmlFor={id}>
-          <div className="toggle-switch" aria-hidden="true">
+          <div
+            className="flex-shrink-0 toggle-switch"
+            aria-hidden="true"
+          >
             <div
               className="toggle-text-left relative text-center fw-700 text-transform-uppercase"
               aria-hidden="true"
