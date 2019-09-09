@@ -167,9 +167,6 @@ class MenuItem extends React.Component {
               exact={item.exact}
               to={item.href}
               className="menu-item"
-              onClick={
-                hasSubItems ? this.handleToggleOpen : undefined
-              }
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
