@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import Tab from './Components/Tab';
 import Block from '../Block/Block';
 
+import './Tabs.scss';
+
 /**
  * A tab keeps related content in a single container that is shown and hidden through navigation
  *
@@ -12,6 +14,33 @@ import Block from '../Block/Block';
  */
 
 export class Tabs extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.tabContainer = React.createRef();
+    this.state = {
+      overflowActive: false,
+    };
+  }
+
+  isOverflowActive(e) {
+    if (e) {
+      return (
+        e.offsetHeight < e.scrollHeight ||
+        e.offsetWidth < e.scrollWidth
+      );
+    }
+    return false;
+  }
+
+  componentDidMount() {
+    this.setState({
+      overflowActive: this.isOverflowActive(
+        this.tabContainer.current,
+      ),
+    });
+  }
+
   render() {
     const {
       className,
@@ -24,13 +53,9 @@ export class Tabs extends React.PureComponent {
       ...rest
     } = this.props;
 
-    const tabsClasses = classNames(
-      'tabs',
-      'flex',
-      'list-unstyled',
-      'bb',
-      'b-neutral-300',
-    );
+    const { overflowActive } = this.state;
+
+    const tabsClasses = classNames('tabs');
 
     const getTabsMarkup = () => {
       if (tabs) {
@@ -109,11 +134,15 @@ export class Tabs extends React.PureComponent {
           as="ul"
           role="tablist"
           className={tabsClasses}
+          forwardRef={this.tabContainer}
           {...rest}
         >
           {getTabsMarkup()}
         </Block>
         {getSelectedTabContent()}
+        {overflowActive && (
+          <div className="tab-overflow">overflow!</div>
+        )}
       </Block>
     );
   }

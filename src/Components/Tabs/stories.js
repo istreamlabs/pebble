@@ -26,6 +26,24 @@ const tabData = [
     content: 'three content',
   },
   {
+    id: 'four',
+    label: 'Four',
+    panelId: 'four-content',
+    content: 'four content',
+  },
+  {
+    id: 'five',
+    label: 'Five',
+    panelId: 'five-content',
+    content: 'five content',
+  },
+  {
+    id: 'six',
+    label: '6 Label',
+    panelId: 'six-content',
+    content: 'six content',
+  },
+  {
     id: 'disabled',
     label: 'Disabled',
     panelId: 'disabled-content',

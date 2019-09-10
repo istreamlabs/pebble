@@ -37,6 +37,36 @@ describe('Tabs', () => {
     ).toHaveLength(2);
   });
 
+  describe('isOverflowActive', () => {
+    const noOverflow = () => {
+      return {
+        offsetHeight: 2,
+        scrollHeight: 1,
+      };
+    };
+
+    const yesOverflow = () => {
+      return {
+        offsetHeight: 1,
+        scrollHeight: 2,
+      };
+    };
+
+    it('returns false when offsetHeight > scrollHeight', () => {
+      const wrapper = shallow(<Tabs tabs={tabs} selectedId="two" />);
+      expect(wrapper.instance().isOverflowActive(noOverflow())).toBe(
+        false,
+      );
+    });
+
+    it('returns true when offsetHeight < scrollHeight', () => {
+      const wrapper = shallow(<Tabs tabs={tabs} selectedId="two" />);
+      expect(wrapper.instance().isOverflowActive(yesOverflow())).toBe(
+        true,
+      );
+    });
+  });
+
   describe('getTabsMarkup', () => {
     it('selects the selected Tab', () => {
       const wrapper = shallow(<Tabs tabs={tabs} selectedId="two" />);

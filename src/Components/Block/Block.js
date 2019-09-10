@@ -176,6 +176,10 @@ const propTypes = {
       shrink: PropTypes.number,
     }),
   ]),
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any }),
+  ]),
   /**
    * A valid css width (%, px, em, rem).
    *
@@ -346,6 +350,7 @@ class Block extends React.PureComponent {
       className,
       direction,
       flex,
+      forwardRef,
       height,
       itemSpacing,
       justify,
@@ -494,7 +499,12 @@ class Block extends React.PureComponent {
     const Element = as;
 
     return (
-      <Element className={classes} {...props} style={mergedStyle}>
+      <Element
+        ref={forwardRef}
+        className={classes}
+        {...props}
+        style={mergedStyle}
+      >
         {blockChildren}
       </Element>
     );

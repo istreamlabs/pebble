@@ -1,0 +1,11 @@
+@import '../../Styles/foundation/variables.scss';
+
+.tabs {
+  display: flex;
+  list-style: none;
+  border-bottom-width: 1px;
+  border-bottom-color: $NAV_BORDER_COLOR;
+  border-bottom-style: solid;
+  overflow-x: auto;
+  padding-left: 0;
+}
