@@ -176,7 +176,7 @@ const propTypes = {
       shrink: PropTypes.number,
     }),
   ]),
-  forwardedRef: PropTypes.oneOfType([
+  forwardRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]),
