@@ -2,10 +2,34 @@
 
 .tabs {
   display: flex;
+  position: relative;
   list-style: none;
   border-bottom-width: 1px;
   border-bottom-color: $NAV_BORDER_COLOR;
   border-bottom-style: solid;
   overflow-x: auto;
   padding-left: 0;
+  margin: 0;
+}
+
+.tabs-overflow {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: $width-1;
+  top: 0;
+  bottom: 0;
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+.tabs-overflow-shadow-end {
+  right: 0;
+  box-shadow: inset -8px 0px 8px -8px rgba(0, 0, 0, 0.2);
+}
+
+.tabs-overflow-shadow-start {
+  left: 0;
+  box-shadow: inset 8px 0px 8px -8px rgba(0, 0, 0, 0.2);
 }

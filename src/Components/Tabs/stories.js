@@ -50,6 +50,12 @@ const tabData = [
     content: 'disabled content',
     disabled: true,
   },
+  {
+    id: 'seven',
+    label: 'Seven',
+    panelId: 'seven-content',
+    content: 'seven content',
+  },
 ];
 
 function TabsExample() {

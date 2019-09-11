@@ -7,6 +7,35 @@ import Block from '../Block/Block';
 
 import './Tabs.scss';
 
+const propTypes = {
+  children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Id of selected tab
+   */
+  selectedId: PropTypes.string,
+  /**
+   * List of tabs
+   */
+  tabs: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Callback function when a tab is selected
+   */
+  onSelect: PropTypes.func,
+  /**
+   * Changes the size of the tabs, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+};
+
 /**
  * A tab keeps related content in a single container that is shown and hidden through navigation
  *
@@ -20,10 +49,41 @@ export class Tabs extends React.PureComponent {
     this.tabContainer = React.createRef();
     this.state = {
       overflowActive: false,
+      scrollEndTarget: null,
+      scrollEnd: false,
+      scrollStart: true,
+      scrollStartTarget: null,
     };
   }
 
-  isOverflowActive(e) {
+  componentDidMount() {
+    document.addEventListener('scroll', this.trackScrolling, false);
+
+    const diff =
+      this.tabContainer.current.scrollWidth -
+      this.tabContainer.current.offsetWidth;
+
+    this.setState({
+      overflowActive: this.isOverflowActive(
+        this.tabContainer.current,
+      ),
+      scrollEndTarget:
+        this.tabContainer.current.firstChild.getBoundingClientRect()
+          .left - diff,
+      scrollStartTarget: this.tabContainer.current.firstChild.getBoundingClientRect()
+        .left,
+    });
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener(
+      'scroll',
+      this.trackScrolling,
+      false,
+    );
+  }
+
+  isOverflowActive = e => {
     if (e) {
       return (
         e.offsetHeight < e.scrollHeight ||
@@ -31,15 +91,46 @@ export class Tabs extends React.PureComponent {
       );
     }
     return false;
-  }
+  };
 
-  componentDidMount() {
+  isScrolledToEnd = e => {
+    const { scrollEndTarget } = this.state;
+
+    if (
+      scrollEndTarget >= e.firstChild.getBoundingClientRect().left
+    ) {
+      this.setState({
+        scrollEnd: true,
+      });
+      return true;
+    }
     this.setState({
-      overflowActive: this.isOverflowActive(
-        this.tabContainer.current,
-      ),
+      scrollEnd: false,
     });
-  }
+    return false;
+  };
+
+  isScrolledToStart = e => {
+    const { scrollStartTarget } = this.state;
+
+    if (
+      scrollStartTarget === e.firstChild.getBoundingClientRect().left
+    ) {
+      this.setState({
+        scrollStart: true,
+      });
+      return true;
+    }
+    this.setState({
+      scrollStart: false,
+    });
+    return false;
+  };
+
+  trackScrolling = () => {
+    this.isScrolledToEnd(this.tabContainer.current);
+    this.isScrolledToStart(this.tabContainer.current);
+  };
 
   render() {
     const {
@@ -53,7 +144,7 @@ export class Tabs extends React.PureComponent {
       ...rest
     } = this.props;
 
-    const { overflowActive } = this.state;
+    const { overflowActive, scrollEnd, scrollStart } = this.state;
 
     const tabsClasses = classNames('tabs');
 
@@ -128,53 +219,54 @@ export class Tabs extends React.PureComponent {
       return childArray[selectedIndex];
     };
 
+    const overflowEndClasses = classNames('tabs-overflow', {
+      'tabs-overflow-shadow-end': scrollEnd === false,
+    });
+
+    const overflowStartClasses = classNames('tabs-overflow', {
+      'tabs-overflow-shadow-start': scrollStart === false,
+    });
+
     return (
-      <Block flex direction="column" className={className}>
+      <Block
+        flex
+        direction="column"
+        className={`relative ${className}`}
+      >
         <Block
           as="ul"
           role="tablist"
           className={tabsClasses}
           forwardRef={this.tabContainer}
+          onScroll={this.trackScrolling}
           {...rest}
         >
           {getTabsMarkup()}
         </Block>
-        {getSelectedTabContent()}
         {overflowActive && (
-          <div className="tab-overflow">overflow!</div>
+          <>
+            <div
+              className={overflowEndClasses}
+              style={{
+                height: `${this.tabContainer.current.offsetHeight -
+                  1}px`,
+              }}
+            />
+            <div
+              className={overflowStartClasses}
+              style={{
+                height: `${this.tabContainer.current.offsetHeight -
+                  1}px`,
+              }}
+            />
+          </>
         )}
+        {getSelectedTabContent()}
       </Block>
     );
   }
 }
 
-Tabs.propTypes = {
-  children: PropTypes.node,
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * Id of selected tab
-   */
-  selectedId: PropTypes.string,
-  /**
-   * List of tabs
-   */
-  tabs: PropTypes.arrayOf(PropTypes.object),
-  /**
-   * Callback function when a tab is selected
-   */
-  onSelect: PropTypes.func,
-  /**
-   * Changes the size of the tabs, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-};
+Tabs.propTypes = propTypes;
 
 export default Tabs;
