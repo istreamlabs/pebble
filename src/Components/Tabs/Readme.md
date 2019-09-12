@@ -168,6 +168,48 @@ function TabExample() {
 <TabExample />;
 ```
 
+### Overflow
+
+Tabs scroll horizontally when they overflow the viewport or containing div. Resize the browser window (narrower) to see the behavior.
+
+```jsx
+import Tabs from './Tabs';
+const tabData = [
+  {
+    id: '1',
+    label: 'Configuration',
+    panelId: 'one-content',
+  },
+  {
+    id: '2',
+    label: 'Metadata',
+    panelId: 'two-content',
+  },
+  {
+    id: '3',
+    label: 'Availability',
+    panelId: 'three-content',
+  },
+  {
+    id: '4',
+    label: 'Activity',
+    panelId: 'three-content',
+  },
+  {
+    id: '5',
+    label: 'Uptime',
+    panelId: 'three-content',
+  },
+];
+
+<Tabs
+  size="large"
+  tabs={tabData}
+  onSelect={() => {}}
+  className="mb-6"
+/>;
+```
+
 ## Best Practices
 
 Tabs should:
