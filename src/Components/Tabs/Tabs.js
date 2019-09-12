@@ -138,7 +138,6 @@ export class Tabs extends React.PureComponent {
           as="ul"
           role="tablist"
           className={tabsClasses}
-          forwardRef={this.tabContainer}
           onScroll={this.trackScrolling}
           {...rest}
         >
