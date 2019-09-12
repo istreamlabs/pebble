@@ -170,7 +170,7 @@ function TabExample() {
 
 ### Overflow
 
-Tabs scroll horizontally when they overflow the viewport or containing div.
+Tabs scroll horizontally when they overflow the viewport or containing div. Resize the browser window (narrower) to see the behavior.
 
 ```jsx
 import Tabs from './Tabs';
