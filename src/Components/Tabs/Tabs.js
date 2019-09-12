@@ -43,95 +43,6 @@ const propTypes = {
  */
 
 export class Tabs extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.tabContainer = React.createRef();
-    this.state = {
-      overflowActive: false,
-      scrollEndTarget: null,
-      scrollEnd: false,
-      scrollStart: true,
-      scrollStartTarget: null,
-    };
-  }
-
-  componentDidMount() {
-    document.addEventListener('scroll', this.trackScrolling, false);
-
-    const diff =
-      this.tabContainer.current.scrollWidth -
-      this.tabContainer.current.offsetWidth;
-
-    this.setState({
-      overflowActive: this.isOverflowActive(
-        this.tabContainer.current,
-      ),
-      scrollEndTarget:
-        this.tabContainer.current.firstChild.getBoundingClientRect()
-          .left - diff,
-      scrollStartTarget: this.tabContainer.current.firstChild.getBoundingClientRect()
-        .left,
-    });
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener(
-      'scroll',
-      this.trackScrolling,
-      false,
-    );
-  }
-
-  isOverflowActive = e => {
-    if (e) {
-      return (
-        e.offsetHeight < e.scrollHeight ||
-        e.offsetWidth < e.scrollWidth
-      );
-    }
-    return false;
-  };
-
-  isScrolledToEnd = e => {
-    const { scrollEndTarget } = this.state;
-
-    if (
-      scrollEndTarget >= e.firstChild.getBoundingClientRect().left
-    ) {
-      this.setState({
-        scrollEnd: true,
-      });
-      return true;
-    }
-    this.setState({
-      scrollEnd: false,
-    });
-    return false;
-  };
-
-  isScrolledToStart = e => {
-    const { scrollStartTarget } = this.state;
-
-    if (
-      scrollStartTarget === e.firstChild.getBoundingClientRect().left
-    ) {
-      this.setState({
-        scrollStart: true,
-      });
-      return true;
-    }
-    this.setState({
-      scrollStart: false,
-    });
-    return false;
-  };
-
-  trackScrolling = () => {
-    this.isScrolledToEnd(this.tabContainer.current);
-    this.isScrolledToStart(this.tabContainer.current);
-  };
-
   render() {
     const {
       className,
@@ -143,8 +54,6 @@ export class Tabs extends React.PureComponent {
       children,
       ...rest
     } = this.props;
-
-    const { overflowActive, scrollEnd, scrollStart } = this.state;
 
     const tabsClasses = classNames('tabs');
 
@@ -219,19 +128,11 @@ export class Tabs extends React.PureComponent {
       return childArray[selectedIndex];
     };
 
-    const overflowEndClasses = classNames('tabs-overflow', {
-      'tabs-overflow-shadow-end': scrollEnd === false,
-    });
-
-    const overflowStartClasses = classNames('tabs-overflow', {
-      'tabs-overflow-shadow-start': scrollStart === false,
-    });
-
     return (
       <Block
         flex
         direction="column"
-        className={`relative ${className}`}
+        className={`relative ${className} overflow-hidden`}
       >
         <Block
           as="ul"
@@ -243,24 +144,6 @@ export class Tabs extends React.PureComponent {
         >
           {getTabsMarkup()}
         </Block>
-        {overflowActive && (
-          <>
-            <div
-              className={overflowEndClasses}
-              style={{
-                height: `${this.tabContainer.current.offsetHeight -
-                  1}px`,
-              }}
-            />
-            <div
-              className={overflowStartClasses}
-              style={{
-                height: `${this.tabContainer.current.offsetHeight -
-                  1}px`,
-              }}
-            />
-          </>
-        )}
         {getSelectedTabContent()}
       </Block>
     );
