@@ -75,12 +75,10 @@ class Pagination extends React.PureComponent {
     }
   };
 
-  getPageSelectDropdown = () => {
-    const { currentPage, numPages } = this.props;
+  getPageSelectDropdown = (current, total) => {
+    const options = this.getMenuOptions(total);
 
-    const options = this.getMenuOptions(numPages);
-
-    if (numPages !== undefined) {
+    if (total !== undefined) {
       return (
         <Block alignItems="center" className="mr-4">
           <FieldSelect
@@ -91,11 +89,11 @@ class Pagination extends React.PureComponent {
             menuPortalTarget={document.body}
             options={options}
             onChange={this.onPageSelect}
-            value={{ value: currentPage, label: `${currentPage}` }}
+            value={{ value: current, label: `${current}` }}
             width="96px"
             className="mr-2"
           />
-          <Block textSize="6">{`of ${numPages}`}</Block>
+          <Block textSize="6">{`of ${total}`}</Block>
         </Block>
       );
     }
@@ -105,6 +103,7 @@ class Pagination extends React.PureComponent {
     const { border, className, currentPage, numPages } = this.props;
 
     const classes = classNames('pagination', className);
+    const numPagesInt = numPages ? Math.ceil(numPages) : undefined;
 
     return (
       <Block
@@ -122,9 +121,9 @@ class Pagination extends React.PureComponent {
         >
           Prev
         </Button>
-        {this.getPageSelectDropdown()}
+        {this.getPageSelectDropdown(currentPage, numPagesInt)}
         <Button
-          disabled={currentPage === numPages}
+          disabled={currentPage === numPagesInt}
           onClick={() => this.onPageSelect(currentPage + 1)}
           iconAfterText="arrow-small-right"
         >

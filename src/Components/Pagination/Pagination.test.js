@@ -30,6 +30,7 @@ describe('Pagination', () => {
       const instance = new Pagination({
         currentPage: 1,
         onPageChange: onPageChangeFunc,
+        numPages: 4,
       });
       instance.onPageSelect(2);
       expect(onPageChangeFunc).toHaveBeenCalled();
@@ -75,6 +76,53 @@ describe('Pagination', () => {
         .last()
         .simulate('click');
       expect(onPageChangeFunc).toHaveBeenCalledWith(2);
+    });
+  });
+
+  describe('render', () => {
+    it('disables the Next button if currentPage equal to Math.ceiling of numPages', () => {
+      const onPageChangeFunc = jest.fn();
+      const wrapper = shallow(
+        <Pagination
+          currentPage={2}
+          onPageChange={onPageChangeFunc}
+          numPages={1.2}
+        />,
+      );
+      expect(
+        wrapper
+          .find(Button)
+          .first()
+          .prop('disabled'),
+      ).toBe(false);
+      expect(
+        wrapper
+          .find(Button)
+          .last()
+          .prop('disabled'),
+      ).toBe(true);
+    });
+
+    it('does not disable the Next button if numPages is not set', () => {
+      const onPageChangeFunc = jest.fn();
+      const wrapper = shallow(
+        <Pagination
+          currentPage={2}
+          onPageChange={onPageChangeFunc}
+        />,
+      );
+      expect(
+        wrapper
+          .find(Button)
+          .first()
+          .prop('disabled'),
+      ).toBe(false);
+      expect(
+        wrapper
+          .find(Button)
+          .last()
+          .prop('disabled'),
+      ).toBe(false);
     });
   });
 });
