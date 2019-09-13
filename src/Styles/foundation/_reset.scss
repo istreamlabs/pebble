@@ -34,11 +34,20 @@ p {
   font-weight: 400;
 }
 
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   font-family: $sans-serif;
 }
 
 table {
   border-spacing: 0;
   border-collapse: separate;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
