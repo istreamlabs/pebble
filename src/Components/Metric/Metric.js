@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Text from '../Text/Text';
 import Tooltip from '../Tooltip/Tooltip';
 import useResponsiveLayout from '../../Hooks/UseResponsiveLayout';
@@ -15,7 +14,7 @@ const propTypes = {
   /**
    * Custom formatter using javascript [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat)
    */
-  formatter: PropTypes.objectOf(Intl.NumberFormat),
+  formatter: PropTypes.func,
   /**
    * Supplemental information about the metric
    */
@@ -43,23 +42,15 @@ const propTypes = {
   /**
    * The label of the metric. Be sure to include unit type if appropriate
    */
-  title: PropTypes.node,
+  title: PropTypes.node.isRequired,
   /**
    * Value of the metric
    */
-  value: PropTypes.node,
+  value: PropTypes.node.isRequired,
   /**
    * Additional css classes to apply to the value
    */
   valueClass: PropTypes.string,
-  /**
-   * Color the metric value
-   */
-  type: PropTypes.oneOf(['danger', 'success']),
-};
-
-const defaultProps = {
-  precision: 0,
 };
 
 /**
@@ -80,33 +71,20 @@ function Metric(props) {
     suffix,
     title,
     value,
-    type,
   } = props;
 
   const [isPhone, isTablet] = useResponsiveLayout();
   const isMobile = isPhone || isTablet;
 
-  let valueColor;
-  switch (type) {
-    case 'danger':
-      valueColor = 'red';
-      break;
-    case 'success':
-      valueColor = 'green';
-      break;
-    default:
-      valueColor = null;
-  }
-
-  const getFormattedMetric = () => {
-    if (formatter) {
-      return formatter.format(value);
+  const getFormattedValue = () => {
+    if (typeof formatter === 'function') {
+      return formatter(value);
     }
     if (typeof value === 'number') {
-      return value.toLocaleString(navigator.language, {
-        minimumFractionDigits: precision,
-        maximumFractionDigits: precision,
-      });
+      return Intl.NumberFormat(navigator.language, {
+        minimumFractionDigits: precision || null,
+        maximumFractionDigits: precision || null,
+      }).format(value);
     }
     return value;
   };
@@ -127,13 +105,13 @@ function Metric(props) {
       </Block>
 
       <Block
-        color={valueColor}
+        // color={valueColor}
         alignItems="baseline"
         itemSpacing={[1, 1, 2]}
       >
         {prefix && <span className={prefixClassName}>{prefix}</span>}
         <Text bold size={isMobile ? 3 : 1}>
-          {getFormattedMetric()}
+          {getFormattedValue()}
         </Text>
         {suffix && <span className={suffixClassName}>{suffix}</span>}
       </Block>
@@ -142,6 +120,5 @@ function Metric(props) {
 }
 
 Metric.propTypes = propTypes;
-Metric.defaultProps = defaultProps;
 
 export default Metric;

@@ -5,11 +5,13 @@
 
 ### Number
 
+Commas are automatically inserted as thousands separaters when `value` is a number.
+
 ```js
 import Block from '../Block/Block';
 
 <Block width="100" itemSpacing={[5, 5, 6, 7]} wrap>
-  <Metric value={378} className="mb-5" title="MTD New Subscribers" />
+  <Metric value={3378} className="mb-5" title="MTD New Subscribers" />
   <Metric value={12} className="mb-5" title="MTD Subscriber Churn" />
 
   <Metric value={34} className="mb-5" title="New Yesterday" />
@@ -19,10 +21,11 @@ import Block from '../Block/Block';
 
 ### Percentage
 
+A percentage can be displayed using a combination of the `value` and `suffix` props, or by defining a custom `formatter` function.
+
 ```js
 import Icon from '../Icon/Icon';
 <Metric
-  type="success"
   value={100}
   prefixClassName="self-center"
   suffix="%"
@@ -35,15 +38,25 @@ import Icon from '../Icon/Icon';
 Using a custom javascript [Intl.numberformat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat).
 
 ```js
-var percentageFormatter = new Intl.NumberFormat(undefined, {
-  style: 'percent',
-  minimumFractionDigits: 3,
-});
+const customFormatter = value => {
+  var percentageFormatter = new Intl.NumberFormat(undefined, {
+    style: 'percent',
+    minimumFractionDigits: 3,
+  });
 
-<Metric value={0.9943146} formatter={percentageFormatter} />;
+  return percentageFormatter.format(value);
+};
+
+<Metric
+  title="Uptime"
+  formatter={customFormatter}
+  value={0.9943146}
+/>;
 ```
 
-### Time
+### Time Duration
+
+Pass a string representing the duration of time.
 
 ```js
 import Icon from '../Icon/Icon';
@@ -52,7 +65,6 @@ import Icon from '../Icon/Icon';
   value="15:34"
   prefixClassName="self-center"
   title="Minutes Down"
-  suffix="(+3:45)"
 />;
 ```
 
@@ -61,48 +73,38 @@ import Icon from '../Icon/Icon';
 To handle international currencies, define a custom formatter for currency localization based on the javascript [Intl.numberformat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat).
 
 ```js
-// Create your own number formatter.
-var usCurrency = new Intl.NumberFormat(undefined, {
-  style: 'currency',
-  currency: 'USD',
-});
+import Block from '../Block/Block';
 
-var brCurrency = new Intl.NumberFormat(undefined, {
-  style: 'currency',
-  currency: 'BRL',
-});
+const displayUSD = value => {
+  var currencyFormat = new Intl.NumberFormat(undefined, {
+    style: 'currency',
+    currency: 'USD',
+  });
 
-var jpCurrency = new Intl.NumberFormat(undefined, {
-  style: 'currency',
-  currency: 'JPY',
-});
+  return currencyFormat.format(value);
+};
 
-<>
+const displayJPY = value => {
+  var currencyFormat = new Intl.NumberFormat(undefined, {
+    style: 'currency',
+    currency: 'JPY',
+  });
+
+  return currencyFormat.format(value);
+};
+
+<Block itemSpacing="5">
   <Metric
-    value={145235.34}
+    value={1455.34}
     prefixClassName="self-center"
     title="Sep 2019 Revenue (US Dollar)"
-    suffix="(+34%)"
-    suffixClassName="green"
-    formatter={usCurrency}
-    className="mb-5"
+    formatter={displayUSD}
   />
   <Metric
-    value={145235.34}
-    prefixClassName="self-center"
-    title="Sep 2019 Revenue (Brazilian Real)"
-    suffix="(+34%)"
-    suffixClassName="green"
-    formatter={brCurrency}
-    className="mb-5"
-  />
-  <Metric
-    value={145235.34}
+    value={1455.34}
     prefixClassName="self-center"
     title="Sep 2019 Revenue (Japanese Yen)"
-    suffix="(+34%)"
-    suffixClassName="green"
-    formatter={jpCurrency}
+    formatter={displayJPY}
   />
-</>;
+</Block>;
 ```
