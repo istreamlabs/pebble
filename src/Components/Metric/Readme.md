@@ -1,5 +1,10 @@
 ```js
-<Metric value={254678} className="mb-5" title="Total Subscribers" />
+<Metric
+  title="Total Subscribers"
+  value={254678}
+  helpText="Total number of subscribers in the system"
+  className="mb-5"
+/>
 <Metric value={3.14159265359} precision={10} title={<>&pi;</>} />
 ```
 
@@ -69,4 +74,28 @@ Pass a string representing the duration of time.
 
 ```js
 <Metric type="danger" value="15:34" title="Minutes Down" />
+```
+
+### Prefix and Suffix
+
+The prefix and suffix props may be used to display things like Icons, symbols, or deltas.
+
+```js
+import Block from '../Block/Block';
+import Icon from '../Icon/Icon';
+
+<Block itemSpacing="5">
+  <Metric
+    title="Monthly Subscribers"
+    value={4512}
+    suffix="(+23)"
+    suffixClassName="fw-700 green"
+  />
+  <Metric
+    title="Errors"
+    value={14}
+    prefix={<Icon name="warning-triangle" size="32" />}
+    prefixClassName="red"
+  />
+</Block>;
 ```
