@@ -106,11 +106,7 @@ function Metric(props) {
         )}
       </Block>
 
-      <Block
-        // color={valueColor}
-        alignItems="baseline"
-        itemSpacing={[1, 1, 2]}
-      >
+      <Block alignItems="baseline" itemSpacing={[1, 1, 2]}>
         {prefix && <span className={prefixClassName}>{prefix}</span>}
         {renderValue()}
         {suffix && <span className={suffixClassName}>{suffix}</span>}
