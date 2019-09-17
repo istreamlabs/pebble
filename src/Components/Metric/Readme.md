@@ -13,7 +13,6 @@ import Block from '../Block/Block';
 <Block width="100" itemSpacing={[5, 5, 6, 7]} wrap>
   <Metric value={3378} className="mb-5" title="MTD New Subscribers" />
   <Metric value={12} className="mb-5" title="MTD Subscriber Churn" />
-
   <Metric value={34} className="mb-5" title="New Yesterday" />
   <Metric value={12} className="mb-5" title="New Today" />
 </Block>;
@@ -21,37 +20,47 @@ import Block from '../Block/Block';
 
 ### Percentage
 
-A percentage can be displayed using a combination of the `value` and `suffix` props, or by defining a custom `formatter` function.
+Use our formatter utility function based on javascript [Intl.numberformat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat) to display a percentage.
 
 ```js
-import Icon from '../Icon/Icon';
+import formatter from '../../Utils/Formatters';
+
 <Metric
-  value={100}
-  prefixClassName="self-center"
-  suffix="%"
-  precision={2}
-  className="mb-5"
   title="Uptime"
+  formatter={formatter.percentage}
+  value={0.9943146}
+  precision={3}
 />;
 ```
 
-Using a custom javascript [Intl.numberformat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat).
+### Currency
+
+Use our formatter utility function based on [Intl.numberformat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat) to display currency by specifying a [currency code](https://www.currency-iso.org/en/home/tables/table-a1.html), such as `"USD"` for the US dollar, `"EUR"` for the euro, or `"CNY"` for the Chinese RMB .
 
 ```js
-const customFormatter = value => {
-  var percentageFormatter = new Intl.NumberFormat(undefined, {
-    style: 'percent',
-    minimumFractionDigits: 3,
-  });
+import Block from '../Block/Block';
+import formatter from '../../Utils/Formatters';
 
-  return percentageFormatter.format(value);
-};
-
-<Metric
-  title="Uptime"
-  formatter={customFormatter}
-  value={0.9943146}
-/>;
+<Block itemSpacing="5">
+  <Metric
+    value={1455.34}
+    prefixClassName="self-center"
+    title="Sep 2019 Revenue (US Dollar)"
+    formatter={formatter.currency('USD')}
+  />
+  <Metric
+    value={1455.34}
+    prefixClassName="self-center"
+    title="Sep 2019 Revenue (Japanese Yen)"
+    formatter={formatter.currency('JPY')}
+  />
+  <Metric
+    value={1455.34}
+    prefixClassName="self-center"
+    title="Sep 2019 Revenue (Brazilian Real)"
+    formatter={formatter.currency('BRL')}
+  />
+</Block>;
 ```
 
 ### Time Duration
@@ -59,52 +68,5 @@ const customFormatter = value => {
 Pass a string representing the duration of time.
 
 ```js
-import Icon from '../Icon/Icon';
-<Metric
-  type="danger"
-  value="15:34"
-  prefixClassName="self-center"
-  title="Minutes Down"
-/>;
-```
-
-### Currency
-
-To handle international currencies, define a custom formatter for currency localization based on the javascript [Intl.numberformat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat).
-
-```js
-import Block from '../Block/Block';
-
-const displayUSD = value => {
-  var currencyFormat = new Intl.NumberFormat(undefined, {
-    style: 'currency',
-    currency: 'USD',
-  });
-
-  return currencyFormat.format(value);
-};
-
-const displayJPY = value => {
-  var currencyFormat = new Intl.NumberFormat(undefined, {
-    style: 'currency',
-    currency: 'JPY',
-  });
-
-  return currencyFormat.format(value);
-};
-
-<Block itemSpacing="5">
-  <Metric
-    value={1455.34}
-    prefixClassName="self-center"
-    title="Sep 2019 Revenue (US Dollar)"
-    formatter={displayUSD}
-  />
-  <Metric
-    value={1455.34}
-    prefixClassName="self-center"
-    title="Sep 2019 Revenue (Japanese Yen)"
-    formatter={displayJPY}
-  />
-</Block>;
+<Metric type="danger" value="15:34" title="Minutes Down" />
 ```

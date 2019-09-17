@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Text from '../Text/Text';
 import Tooltip from '../Tooltip/Tooltip';
+import formatters from '../../Utils/Formatters';
 import useResponsiveLayout from '../../Hooks/UseResponsiveLayout';
 
 const propTypes = {
@@ -53,6 +54,10 @@ const propTypes = {
   valueClass: PropTypes.string,
 };
 
+const defaultProps = {
+  formatter: formatters.number,
+};
+
 /**
  * Used to display statistic or metric (e.g. key performance indicator)
  *
@@ -64,7 +69,6 @@ function Metric(props) {
     className,
     formatter,
     helpText,
-    precision,
     prefix,
     suffixClassName,
     prefixClassName,
@@ -75,19 +79,6 @@ function Metric(props) {
 
   const [isPhone, isTablet] = useResponsiveLayout();
   const isMobile = isPhone || isTablet;
-
-  const getFormattedValue = () => {
-    if (typeof formatter === 'function') {
-      return formatter(value);
-    }
-    if (typeof value === 'number') {
-      return Intl.NumberFormat(navigator.language, {
-        minimumFractionDigits: precision || null,
-        maximumFractionDigits: precision || null,
-      }).format(value);
-    }
-    return value;
-  };
 
   return (
     <Block flex direction="column" className={className}>
@@ -111,7 +102,7 @@ function Metric(props) {
       >
         {prefix && <span className={prefixClassName}>{prefix}</span>}
         <Text bold size={isMobile ? 3 : 1}>
-          {getFormattedValue()}
+          {formatter(value, props)}
         </Text>
         {suffix && <span className={suffixClassName}>{suffix}</span>}
       </Block>
@@ -120,5 +111,6 @@ function Metric(props) {
 }
 
 Metric.propTypes = propTypes;
+Metric.defaultProps = defaultProps;
 
 export default Metric;
