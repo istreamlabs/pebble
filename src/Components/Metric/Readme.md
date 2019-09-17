@@ -73,7 +73,7 @@ import formatter from '../../Utils/Formatters';
 Pass a string representing the duration of time.
 
 ```js
-<Metric type="danger" value="15:34" title="Minutes Down" />
+<Metric value="15:34" title="Minutes Down" />
 ```
 
 ### Prefix and Suffix
@@ -96,6 +96,27 @@ import Icon from '../Icon/Icon';
     value={14}
     prefix={<Icon name="warning-triangle" size="32" />}
     prefixClassName="red"
+    suffix="(+3)"
+    suffixClassName="fw-700 red"
   />
 </Block>;
+```
+
+### Node values
+
+If `value` is set as not a string or number, it will be displayed without any formatting applied.
+
+```js
+<Metric
+  title="Top 5 of All Time"
+  value={
+    <ol>
+      <li>Michael Jordan</li>
+      <li>Lebron James</li>
+      <li>Kareem Abdul-Jabar</li>
+      <li>Bill Russell</li>
+      <li>Magic Johnson</li>
+    </ol>
+  }
+/>
 ```

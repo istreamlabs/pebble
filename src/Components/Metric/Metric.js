@@ -80,6 +80,17 @@ function Metric(props) {
   const [isPhone, isTablet] = useResponsiveLayout();
   const isMobile = isPhone || isTablet;
 
+  const renderValue = () => {
+    if (typeof value === 'number' || typeof value === 'string') {
+      return (
+        <Text bold size={isMobile ? 3 : 1}>
+          {formatter(value, props)}
+        </Text>
+      );
+    }
+    return value;
+  };
+
   return (
     <Block flex direction="column" className={className}>
       <Block itemSpacing="2">
@@ -101,9 +112,7 @@ function Metric(props) {
         itemSpacing={[1, 1, 2]}
       >
         {prefix && <span className={prefixClassName}>{prefix}</span>}
-        <Text bold size={isMobile ? 3 : 1}>
-          {formatter(value, props)}
-        </Text>
+        {renderValue()}
         {suffix && <span className={suffixClassName}>{suffix}</span>}
       </Block>
     </Block>
