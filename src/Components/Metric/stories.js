@@ -8,7 +8,7 @@ import formatter from '../../Utils/Formatters';
 
 storiesOf('Metric', module)
   .addParameters({
-    chromatic: { viewports: [480, 960, 1440] },
+    chromatic: { viewports: [479, 959, 1439] },
   })
   .add('all', () => (
     <Block direction="column" itemSpacing="5">
