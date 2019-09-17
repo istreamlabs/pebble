@@ -94,8 +94,8 @@ import Icon from '../Icon/Icon';
   <Metric
     title="Errors"
     value={14}
-    prefix={<Icon name="warning-triangle" size="32" />}
-    prefixClassName="red"
+    prefix={<Icon name="warning-triangle" size="20" />}
+    prefixClassName="red self-center"
     suffix="(+3)"
     suffixClassName="fw-700 red"
   />
