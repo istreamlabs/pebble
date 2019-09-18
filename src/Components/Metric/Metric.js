@@ -17,11 +17,11 @@ const propTypes = {
    */
   colorRules: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
-   * Custom formatter using javascript [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat)
+   * Custom formatter based on javascript [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat). Defaults to formatter.number.
    */
   formatter: PropTypes.func,
   /**
-   * Supplemental information about the metric
+   * Supplemental information about the metric that can be seen via a [Tooltip](/#/Components/Tooltip)
    */
   helpText: PropTypes.node,
   /**
@@ -52,10 +52,6 @@ const propTypes = {
    * Value of the metric
    */
   value: PropTypes.node.isRequired,
-  /**
-   * Additional css classes to apply to the value
-   */
-  valueClass: PropTypes.string,
 };
 
 const defaultProps = {
