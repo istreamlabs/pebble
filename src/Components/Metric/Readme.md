@@ -8,9 +8,14 @@
 <Metric value={3.14159265359} precision={10} title={<>&pi;</>} />
 ```
 
-### Color Ranges
+### Color Rules
 
-Control the color of the value by specifying the starting point for a color.
+Control the color of the value by setting the `colorRules` prop to an object, where the object key is the range values, and the value for the key is one of the following: ["neutral", "warn", "danger", "success"].
+
+- The first value of the range (min) is inclusive
+- The second value of the range (max) is exclusive
+- The value is evaluated starting with first key
+- The value of key must be one of the following: ["neutral", "warn", "danger", "success"]
 
 ```js
 import Block from '../Block/Block';
@@ -33,39 +38,77 @@ const uptime = {
     <Metric
       value={70}
       suffix="%"
-      title="cpu usage"
-      colorPoints={cpuHealth}
+      title="cpu a usage"
+      colorRules={cpuHealth}
     />
     <Metric
       value={71}
       suffix="%"
-      title="cpu usage"
-      colorPoints={cpuHealth}
+      title="cpu b usage"
+      colorRules={cpuHealth}
     />
     <Metric
       value={98}
       suffix="%"
-      title="cpu usage"
-      colorPoints={cpuHealth}
+      title="cpu c usage"
+      colorRules={cpuHealth}
     />
   </Block>
   <Block width="100" itemSpacing="5">
     <Metric
       value={0.9998}
-      title="uptime"
-      colorPoints={uptime}
+      title="channel 1 uptime"
+      colorRules={uptime}
       formatter={formatter.percentage}
       precision={2}
     />
     <Metric
       value={0.9999}
-      title="uptime"
-      colorPoints={uptime}
+      title="channel 2 uptime"
+      colorRules={uptime}
       formatter={formatter.percentage}
       precision={2}
     />
   </Block>
 </>;
+```
+
+You may also define your own custom function for determining the color of the value.
+
+```js
+import Block from '../Block/Block';
+
+const channelStatus = value => {
+  switch (value) {
+    case 'on':
+      return 'success';
+    case 'off':
+      return 'neutral';
+    case 'reconciling':
+      return 'warn';
+    default:
+      return 'neutral';
+      break;
+  }
+};
+
+<Block width="100" itemSpacing="5">
+  <Metric
+    value="on"
+    title="channel status"
+    colorRules={channelStatus}
+  />
+  <Metric
+    value="off"
+    title="channel status"
+    colorRules={channelStatus}
+  />
+  <Metric
+    value="reconciling"
+    title="channel status"
+    colorRules={channelStatus}
+  />
+</Block>;
 ```
 
 ### Number

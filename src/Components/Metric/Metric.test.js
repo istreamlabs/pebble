@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { useResponsiveLayout } from '../../Hooks';
 
 import Text from '../Text/Text';
@@ -50,6 +50,67 @@ describe('Metric', () => {
         .at(1)
         .prop('size'),
     ).toBe(3);
+  });
+
+  it('calls colorRules if colorRules is a function', () => {
+    const customFunc = jest.fn().mockImplementation(() => 'success');
+    shallow(
+      <Metric
+        value="5"
+        title="test metric"
+        colorRules={customFunc}
+      />,
+    );
+    expect(customFunc).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls console.warn if colorRules returns an unknown value', () => {
+    const customFunc = jest.fn().mockImplementation(() => 'unknown');
+    const spy = jest.spyOn(global.console, 'warn');
+    shallow(
+      <Metric
+        value="5"
+        title="test metric"
+        colorRules={customFunc}
+      />,
+    );
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('sets the correct color if colorRules is an object', () => {
+    const cpuHealth = {
+      '0-71': 'neutral',
+      '71-81': 'warn',
+      '81-99': 'danger',
+      '99-100': 'success',
+    };
+    const neutral = mount(
+      <Metric value="5" title="test metric" colorRules={cpuHealth} />,
+    );
+    const warn = mount(
+      <Metric
+        value="71"
+        title="test metric"
+        colorRules={cpuHealth}
+      />,
+    );
+    const danger = mount(
+      <Metric
+        value="81"
+        title="test metric"
+        colorRules={cpuHealth}
+      />,
+    );
+    const success = mount(
+      <Metric
+        value="99"
+        title="test metric"
+        colorRules={cpuHealth}
+      />,
+    );
+    expect(neutral.find('.neutral-600')).toHaveLength(1);
+    expect(warn.find('.yellow')).toHaveLength(1);
+    expect(danger.find('.red')).toHaveLength(1);
+    expect(success.find('.green')).toHaveLength(1);
   });
 
   describe('helpText', () => {

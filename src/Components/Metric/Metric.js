@@ -13,9 +13,9 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * An object where each key is the range, and the value of the key is the state.
+   * An object where each key is the range, and the value of the key is the state. Or a custom function that returns one of the following: ["neutral", "warn", "danger", "success"]
    */
-  colorPoints: PropTypes.object,
+  colorRules: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * Custom formatter using javascript [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat)
    */
@@ -73,6 +73,39 @@ const COLOR_MAP = {
   success: 'green',
 };
 
+const calculateColorFromValues = (cp, value) => {
+  // eslint-disable-next-line no-unused-vars
+  for (const k in cp) {
+    const min = parseFloat(k.split('-')[0], 10);
+    const max = parseFloat(k.split('-')[1], 10);
+    const valueColor = cp[k];
+    if (isBetween(value, min, max)) {
+      return valueColor;
+    }
+  }
+};
+
+const getValueColor = (colorRules, value) => {
+  let result;
+  if (colorRules) {
+    if (typeof colorRules === 'function') {
+      result = COLOR_MAP[colorRules(value)];
+    } else {
+      result = COLOR_MAP[calculateColorFromValues(colorRules, value)];
+    }
+    if (result === undefined) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        'The colorRules result of',
+        COLOR_MAP[colorRules(value)],
+        'must be one of the following:',
+        Object.keys(COLOR_MAP),
+      );
+    }
+  }
+  return result;
+};
+
 /**
  * Used to display statistic or metric (e.g. key performance indicator)
  *
@@ -82,7 +115,7 @@ const COLOR_MAP = {
 function Metric(props) {
   const {
     className,
-    colorPoints,
+    colorRules,
     formatter,
     helpText,
     prefix,
@@ -107,23 +140,6 @@ function Metric(props) {
     return value;
   };
 
-  const getValueColor = () => {
-    if (colorPoints) {
-      for (const key in colorPoints) {
-        if (colorPoints.hasOwnProperty(key)) {
-          const min = parseFloat(key.split('-')[0], 10);
-          const max = parseFloat(key.split('-')[1], 10);
-          const valueColor = colorPoints[key];
-          console.log(min, max, valueColor);
-
-          if (isBetween(value, min, max)) {
-            return COLOR_MAP[valueColor];
-          }
-        }
-      }
-    }
-  };
-
   return (
     <Block flex direction="column" className={className}>
       <Block itemSpacing="2">
@@ -140,7 +156,7 @@ function Metric(props) {
       </Block>
 
       <Block
-        color={getValueColor()}
+        color={getValueColor(colorRules, value)}
         alignItems="baseline"
         itemSpacing={[1, 1, 2]}
       >
