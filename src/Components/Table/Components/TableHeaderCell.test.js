@@ -74,7 +74,17 @@ describe('TableHeaderCell', () => {
     expect(wrapper.prop('width')).toBe('100%');
   });
   it('sets the width if specified', () => {
+    useMobileLayout.mockImplementation(() => false);
     const wrapper = shallow(<TableHeaderCell width="20px" />);
     expect(wrapper.prop('width')).toBe('20px');
+  });
+
+  it('sets the flex to grow if width is 100%', () => {
+    const wrapper = shallow(<TableHeaderCell width="100%" />);
+    expect(wrapper.prop('flex')).toBe('grow');
+  });
+  it('sets the flex to undefined width is not set', () => {
+    const wrapper = shallow(<TableHeaderCell width="20%" />);
+    expect(wrapper.prop('flex')).toBeUndefined();
   });
 });
