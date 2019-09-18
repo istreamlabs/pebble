@@ -6,6 +6,31 @@ import Icon from '../Icon/Icon';
 import Metric from './Metric';
 import formatter from '../../Utils/Formatters';
 
+const cpuHealth = {
+  '0-71': 'neutral',
+  '71-81': 'warn',
+  '81-100': 'danger',
+};
+
+const uptime = {
+  '0-.9999': 'danger',
+  '.9999-1': 'success',
+};
+
+const channelStatus = value => {
+  switch (value) {
+    case 'on':
+      return 'success';
+    case 'off':
+      return 'neutral';
+    case 'reconciling':
+      return 'warn';
+    default:
+      return 'neutral';
+      break;
+  }
+};
+
 storiesOf('Metric', module)
   .addParameters({
     chromatic: { viewports: [479, 959, 1439] },
@@ -74,6 +99,53 @@ storiesOf('Metric', module)
             <li>Magic Johnson</li>
           </ol>
         }
+      />
+      <Metric
+        value={70}
+        suffix="%"
+        title="cpu a usage"
+        colorRules={cpuHealth}
+      />
+      <Metric
+        value={71}
+        suffix="%"
+        title="cpu b usage"
+        colorRules={cpuHealth}
+      />
+      <Metric
+        value={98}
+        suffix="%"
+        title="cpu c usage"
+        colorRules={cpuHealth}
+      />
+      <Metric
+        value={0.9998}
+        title="channel 1 uptime"
+        colorRules={uptime}
+        formatter={formatter.percentage}
+        precision={2}
+      />
+      <Metric
+        value={0.9999}
+        title="channel 2 uptime"
+        colorRules={uptime}
+        formatter={formatter.percentage}
+        precision={2}
+      />
+      <Metric
+        value="on"
+        title="channel status"
+        colorRules={channelStatus}
+      />
+      <Metric
+        value="off"
+        title="channel status"
+        colorRules={channelStatus}
+      />
+      <Metric
+        value="reconciling"
+        title="channel status"
+        colorRules={channelStatus}
       />
     </Block>
   ));
