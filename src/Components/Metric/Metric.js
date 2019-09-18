@@ -6,7 +6,6 @@ import Text from '../Text/Text';
 import Tooltip from '../Tooltip/Tooltip';
 import formatters from '../../Utils/Formatters';
 import useResponsiveLayout from '../../Hooks/UseResponsiveLayout';
-import { colorPointType } from '../../Types';
 
 const propTypes = {
   /**
@@ -14,9 +13,9 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * An array up to a length of four, where the elements correspond to the colors "neutral", "danger", "warning", "success"
+   * An object where each key is the range, and the value of the key is the state.
    */
-  colorPoints: colorPointType,
+  colorPoints: PropTypes.object,
   /**
    * Custom formatter using javascript [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat)
    */
@@ -63,6 +62,17 @@ const defaultProps = {
   formatter: formatters.number,
 };
 
+function isBetween(value, min, max) {
+  return value >= min && value < max;
+}
+
+const COLOR_MAP = {
+  neutral: 'neutral-600',
+  warn: 'yellow',
+  danger: 'red',
+  success: 'green',
+};
+
 /**
  * Used to display statistic or metric (e.g. key performance indicator)
  *
@@ -98,35 +108,20 @@ function Metric(props) {
   };
 
   const getValueColor = () => {
-    let color = null;
-    if (Array.isArray(colorPoints) && colorPoints.length) {
-      if (
-        typeof colorPoints[0] === 'number' &&
-        value >= colorPoints[0]
-      ) {
-        color = 'neutral-600';
-      }
-      if (
-        typeof colorPoints[1] === 'number' &&
-        value >= colorPoints[1]
-      ) {
-        color = 'red';
-      }
-      if (
-        typeof colorPoints[2] === 'number' &&
-        value >= colorPoints[2]
-      ) {
-        color = 'yellow';
-      }
-      if (
-        typeof colorPoints[3] === 'number' &&
-        value >= colorPoints[3]
-      ) {
-        console.log('green');
-        color = 'green';
+    if (colorPoints) {
+      for (const key in colorPoints) {
+        if (colorPoints.hasOwnProperty(key)) {
+          const min = parseFloat(key.split('-')[0], 10);
+          const max = parseFloat(key.split('-')[1], 10);
+          const valueColor = colorPoints[key];
+          console.log(min, max, valueColor);
+
+          if (isBetween(value, min, max)) {
+            return COLOR_MAP[valueColor];
+          }
+        }
       }
     }
-    return color;
   };
 
   return (
