@@ -97,9 +97,7 @@ function TableHeaderCell({
         className={classes}
         padding={padding}
         flex={width === '100%' ? 'grow' : undefined}
-        width={
-          isMobileLayout ? '100%' : width !== '100%' ? width : null
-        }
+        width={isMobileLayout ? '100%' : width}
         {...rest}
       >
         <Button plain onClick={onSortClick} width="100%">
