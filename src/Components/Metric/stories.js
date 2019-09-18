@@ -27,7 +27,6 @@ const channelStatus = value => {
       return 'warn';
     default:
       return 'neutral';
-      break;
   }
 };
 
