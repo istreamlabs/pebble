@@ -6,12 +6,17 @@ import Text from '../Text/Text';
 import Tooltip from '../Tooltip/Tooltip';
 import formatters from '../../Utils/Formatters';
 import useResponsiveLayout from '../../Hooks/UseResponsiveLayout';
+import { colorPointType } from '../../Types';
 
 const propTypes = {
   /**
    * Additional classNames to add
    */
   className: PropTypes.string,
+  /**
+   * An array up to a length of four, where the elements correspond to the colors "neutral", "danger", "warning", "success"
+   */
+  colorPoints: colorPointType,
   /**
    * Custom formatter using javascript [Intl.NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat)
    */
@@ -67,6 +72,7 @@ const defaultProps = {
 function Metric(props) {
   const {
     className,
+    colorPoints,
     formatter,
     helpText,
     prefix,
@@ -91,6 +97,38 @@ function Metric(props) {
     return value;
   };
 
+  const getValueColor = () => {
+    let color = null;
+    if (Array.isArray(colorPoints) && colorPoints.length) {
+      if (
+        typeof colorPoints[0] === 'number' &&
+        value >= colorPoints[0]
+      ) {
+        color = 'neutral-600';
+      }
+      if (
+        typeof colorPoints[1] === 'number' &&
+        value >= colorPoints[1]
+      ) {
+        color = 'red';
+      }
+      if (
+        typeof colorPoints[2] === 'number' &&
+        value >= colorPoints[2]
+      ) {
+        color = 'yellow';
+      }
+      if (
+        typeof colorPoints[3] === 'number' &&
+        value >= colorPoints[3]
+      ) {
+        console.log('green');
+        color = 'green';
+      }
+    }
+    return color;
+  };
+
   return (
     <Block flex direction="column" className={className}>
       <Block itemSpacing="2">
@@ -106,7 +144,11 @@ function Metric(props) {
         )}
       </Block>
 
-      <Block alignItems="baseline" itemSpacing={[1, 1, 2]}>
+      <Block
+        color={getValueColor()}
+        alignItems="baseline"
+        itemSpacing={[1, 1, 2]}
+      >
         {prefix && <span className={prefixClassName}>{prefix}</span>}
         {renderValue()}
         {suffix && <span className={suffixClassName}>{suffix}</span>}

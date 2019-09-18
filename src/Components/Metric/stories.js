@@ -59,7 +59,7 @@ storiesOf('Metric', module)
         title="Errors"
         value={14}
         prefix={<Icon name="warning-triangle" size="20" />}
-        prefixClassName="red"
+        prefixClassName="red self-center"
         suffix="(+3)"
         suffixClassName="fw-700 red"
       />

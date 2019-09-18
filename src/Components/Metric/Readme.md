@@ -8,6 +8,54 @@
 <Metric value={3.14159265359} precision={10} title={<>&pi;</>} />
 ```
 
+### Color Ranges
+
+Control the color of the value by specifying the starting point for a color.
+
+```js
+import Block from '../Block/Block';
+
+const colorPoints = [
+  0, // >= 0 and < 3 will be neutral
+  3, // >= 3 and < 6 will be red
+  6, // >= 6 and < 9 will be yellow
+  9, // >= 9 will be green
+];
+
+<Block width="100" itemSpacing="5">
+  <Metric value={9} title="success" colorPoints={colorPoints} />
+  <Metric value={6} title="warn" colorPoints={colorPoints} />
+  <Metric value={5} title="danger" colorPoints={colorPoints} />
+  <Metric value={0} title="neutral" colorPoints={colorPoints} />
+</Block>;
+```
+
+In the case where only certain colors need to be applied, such as green and red for a services uptime, pass null to the unwanted color options.
+
+```js
+import formatter from '../../Utils/Formatters';
+import Block from '../Block/Block';
+
+const slaColorPoints = [null, 0.9998, null, 0.9999];
+
+<Block width="100" itemSpacing="5">
+  <Metric
+    value={0.9999}
+    formatter={formatter.percentage}
+    title="Service Uptime"
+    colorPoints={slaColorPoints}
+    precision={2}
+  />
+  <Metric
+    value={0.9998}
+    formatter={formatter.percentage}
+    title="Service Uptime"
+    colorPoints={slaColorPoints}
+    precision={2}
+  />
+</Block>;
+```
+
 ### Number
 
 Commas are automatically inserted as thousands separaters when `value` is a number.
