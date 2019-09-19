@@ -166,5 +166,5 @@ function Metric(props) {
 
 Metric.propTypes = propTypes;
 Metric.defaultProps = defaultProps;
-
+Metric.displayName = 'Metric';
 export default Metric;
