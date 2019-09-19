@@ -15,4 +15,6 @@ function FieldToggle({ ...props }) {
   return <FieldCheckbox toggle {...props} />;
 }
 
+FieldToggle.displayName = 'FieldToggle';
+
 export default FieldToggle;

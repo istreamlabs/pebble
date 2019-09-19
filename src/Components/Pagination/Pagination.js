@@ -136,5 +136,6 @@ class Pagination extends React.PureComponent {
 
 Pagination.propTypes = propTypes;
 Pagination.defaultProps = defaultProps;
+Pagination.displayName = 'Pagination';
 
 export default Pagination;

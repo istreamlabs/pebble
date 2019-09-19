@@ -221,7 +221,7 @@ class FieldText extends React.PureComponent {
 }
 
 FieldText.defaultProps = defaultProps;
-
 FieldText.propTypes = propTypes;
+FieldText.displayName = 'FieldText';
 
 export default FieldText;

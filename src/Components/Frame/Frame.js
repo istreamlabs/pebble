@@ -386,5 +386,6 @@ export class Frame extends React.PureComponent {
 
 Frame.propTypes = propTypes;
 Frame.defaultProps = defaultProps;
+Frame.displayName = 'Frame';
 
 export default Frame;

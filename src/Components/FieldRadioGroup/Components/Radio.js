@@ -165,5 +165,6 @@ function Radio({
 
 Radio.propTypes = propTypes;
 Radio.defaultProps = defaultProps;
+Radio.displayName = 'Radio';
 
 export default Radio;

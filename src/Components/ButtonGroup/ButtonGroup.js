@@ -67,5 +67,6 @@ function ButtonGroup(props) {
 
 ButtonGroup.propTypes = propTypes;
 ButtonGroup.defaultProps = defaultProps;
+ButtonGroup.displayName = 'ButtonGroup';
 
 export default ButtonGroup;

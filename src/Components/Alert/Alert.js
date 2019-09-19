@@ -129,5 +129,6 @@ function Alert({
 
 Alert.propTypes = propTypes;
 Alert.defaultProps = defaultProps;
+Alert.displayName = 'Alert';
 
 export default Alert;

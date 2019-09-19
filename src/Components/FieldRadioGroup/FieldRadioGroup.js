@@ -124,5 +124,6 @@ function FieldRadioGroup({
 
 FieldRadioGroup.propTypes = propTypes;
 FieldRadioGroup.defaultProps = defaultProps;
+FieldRadioGroup.displayName = 'FieldRadioGroup';
 
 export default FieldRadioGroup;

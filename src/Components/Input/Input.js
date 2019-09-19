@@ -274,5 +274,6 @@ class Input extends React.PureComponent {
 
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
+Input.displayName = 'Input';
 
 export default Input;

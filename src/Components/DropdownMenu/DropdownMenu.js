@@ -265,6 +265,7 @@ class DropdownMenu extends React.PureComponent {
 
 DropdownMenu.defaultProps = defaultProps;
 DropdownMenu.propTypes = propTypes;
+DropdownMenu.displayName = 'DropdownMenu';
 
 export { DropdownMenu as DropdownMenuWithoutOnClickOutside };
 

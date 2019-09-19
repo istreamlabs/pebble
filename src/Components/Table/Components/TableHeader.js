@@ -84,5 +84,6 @@ function TableHeader({ border, children, mobileLabel }) {
 
 TableHeader.propTypes = propTypes;
 TableHeader.defaultProps = defaultProps;
+TableHeader.displayName = 'TableHeader';
 
 export default TableHeader;

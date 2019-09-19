@@ -29,5 +29,6 @@ function TableBody({ children }) {
 }
 
 TableBody.propTypes = propTypes;
+TableBody.displayName = 'TableBody';
 
 export default TableBody;

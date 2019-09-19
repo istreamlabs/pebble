@@ -64,5 +64,6 @@ function Breadcrumbs({ className, children, ...rest }) {
 
 Breadcrumbs.propTypes = propTypes;
 Breadcrumbs.defaultProps = defaultProps;
+Breadcrumbs.displayName = 'Breadcrumbs';
 
 export default Breadcrumbs;

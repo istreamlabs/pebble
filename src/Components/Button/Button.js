@@ -222,5 +222,6 @@ const Button = React.forwardRef((props, ref) => {
 
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
+Button.displayName = 'Button';
 
 export default Button;

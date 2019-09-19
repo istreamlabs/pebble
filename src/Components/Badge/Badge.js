@@ -85,5 +85,6 @@ function Badge({ children, className, icon, size, type }) {
 
 Badge.propTypes = propTypes;
 Badge.defaultProps = defaultProps;
+Badge.displayName = 'Badge';
 
 export default Badge;

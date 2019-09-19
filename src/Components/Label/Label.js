@@ -71,5 +71,6 @@ function Label({ className, children, disabled, hide, id, invalid }) {
 }
 
 Label.propTypes = propTypes;
+Label.displayName = 'Label';
 
 export default Label;

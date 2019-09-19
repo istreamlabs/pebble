@@ -150,5 +150,6 @@ function Heading({
 
 Heading.propTypes = propTypes;
 Heading.defaultProps = defaultProps;
+Heading.displayName = 'Heading';
 
 export default Heading;

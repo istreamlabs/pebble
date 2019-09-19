@@ -229,5 +229,6 @@ class MenuItem extends React.Component {
 
 MenuItem.propTypes = propTypes;
 MenuItem.defaultProps = defaultProps;
+MenuItem.displayName = 'MenuItem';
 
 export default MenuItem;

@@ -216,5 +216,6 @@ class DateTime extends React.PureComponent {
 
 DateTime.propTypes = propTypes;
 DateTime.defaultProps = defaultProps;
+DateTime.displayName = 'DateTime';
 
 export default DateTime;
