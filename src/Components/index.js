@@ -27,6 +27,7 @@ export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as List } from './List/List';
 export { default as ListItem } from './List/Components/ListItem';
 export { default as MainMenu } from './MainMenu/MainMenu';
+export { default as Metric } from './Metric/Metric';
 export { default as Modal } from './Modal/Modal';
 export { default as Overlay } from './Overlay/Overlay';
 export { default as Pagination } from './Pagination/Pagination';
