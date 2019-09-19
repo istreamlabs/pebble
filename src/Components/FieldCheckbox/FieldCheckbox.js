@@ -186,5 +186,6 @@ function FieldCheckbox({
 
 FieldCheckbox.propTypes = propTypes;
 FieldCheckbox.defaultProps = defaultProps;
+FieldCheckbox.displayName = 'FieldCheckbox';
 
 export default FieldCheckbox;

@@ -209,5 +209,6 @@ function TenantMenu(props) {
 
 TenantMenu.propTypes = propTypes;
 TenantMenu.defaultProps = defaultProps;
+TenantMenu.displayName = 'TenantMenu';
 
 export default TenantMenu;

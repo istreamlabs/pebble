@@ -105,5 +105,6 @@ function Card({
 
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
+Card.displayName = 'Card';
 
 export default Card;

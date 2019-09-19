@@ -73,5 +73,6 @@ function List({ ordered, children, className, size }) {
 
 List.propTypes = propTypes;
 List.defaultProps = defaultProps;
+List.displayName = 'List';
 
 export default List;

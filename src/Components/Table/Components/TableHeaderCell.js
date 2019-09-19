@@ -127,5 +127,6 @@ function TableHeaderCell({
 
 TableHeaderCell.propTypes = propTypes;
 TableHeaderCell.defaultProps = defaultProps;
+TableHeaderCell.displayName = 'TableHeaderCell';
 
 export default TableHeaderCell;

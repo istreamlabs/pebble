@@ -101,5 +101,6 @@ function TableRow({
 
 TableRow.propTypes = propTypes;
 TableRow.defaultProps = defaultProps;
+TableRow.displayName = 'TableRow';
 
 export default TableRow;

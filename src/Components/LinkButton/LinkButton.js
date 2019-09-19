@@ -168,5 +168,6 @@ const LinkButton = forwardRef((props, ref) => {
 
 LinkButton.propTypes = propTypes;
 LinkButton.defaultProps = defaultProps;
+LinkButton.displayName = 'LinkButton';
 
 export default LinkButton;

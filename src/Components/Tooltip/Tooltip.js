@@ -145,5 +145,6 @@ export class Tooltip extends React.PureComponent {
 
 Tooltip.propTypes = propTypes;
 Tooltip.defaultProps = defaultProps;
+Tooltip.displayName = 'Tooltip';
 
 export default Tooltip;

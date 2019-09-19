@@ -187,5 +187,6 @@ class MainMenu extends React.Component {
 
 MainMenu.propTypes = propTypes;
 MainMenu.defaultProps = defaultProps;
+MainMenu.displayName = 'MainMenu';
 
 export default withRouter(MainMenu);

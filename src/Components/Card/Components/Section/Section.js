@@ -34,5 +34,6 @@ function Section({ children, className, subdued }) {
 
 Section.propTypes = propTypes;
 Section.defaultProps = defaultProps;
+Section.displayName = 'CardSection';
 
 export default Section;

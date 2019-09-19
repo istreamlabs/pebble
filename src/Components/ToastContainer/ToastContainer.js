@@ -4,32 +4,7 @@ import PropTypes from 'prop-types';
 import { ToastContainer as ToastifyContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-/**
- * In order to use `useToast` the page must have a toastContainer on it.
- * If you are using the `Frame` component one is added automatically.
- * However, if the application is not using the `frame` component
- * and/or there is a need for multiple containers `ToastContainer`
- * can be used.
- */
-const ToastContainer = ({
-  position = 'top-right',
-  autoClose = 5000,
-  pauseOnHover = true,
-  enableMultiContainer = false,
-  containerId,
-}) => (
-  <ToastifyContainer
-    position={position}
-    autoClose={autoClose}
-    hideProgressBar
-    pauseOnHover={pauseOnHover}
-    closeButton={false}
-    enableMultiContainer={enableMultiContainer}
-    containerId={containerId}
-  />
-);
-
-ToastContainer.propTypes = {
+const propTypes = {
   /**
    * Location where the toast will appear. Can be overridden
    * on each toast message.
@@ -63,5 +38,33 @@ ToastContainer.propTypes = {
    */
   containerId: PropTypes.string,
 };
+
+/**
+ * In order to use `useToast` the page must have a toastContainer on it.
+ * If you are using the `Frame` component one is added automatically.
+ * However, if the application is not using the `frame` component
+ * and/or there is a need for multiple containers `ToastContainer`
+ * can be used.
+ */
+const ToastContainer = ({
+  position = 'top-right',
+  autoClose = 5000,
+  pauseOnHover = true,
+  enableMultiContainer = false,
+  containerId,
+}) => (
+  <ToastifyContainer
+    position={position}
+    autoClose={autoClose}
+    hideProgressBar
+    pauseOnHover={pauseOnHover}
+    closeButton={false}
+    enableMultiContainer={enableMultiContainer}
+    containerId={containerId}
+  />
+);
+
+ToastContainer.propTypes = propTypes;
+ToastContainer.displayName = 'ToastContainer';
 
 export default ToastContainer;

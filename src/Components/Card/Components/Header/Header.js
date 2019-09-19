@@ -42,5 +42,6 @@ function Header({ actions, children, className }) {
 
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
+Header.displayName = 'CardHeader';
 
 export default Header;

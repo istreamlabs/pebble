@@ -55,5 +55,6 @@ function TextContainer({ children, className, tight, size }) {
 
 TextContainer.propTypes = propTypes;
 TextContainer.defaultProps = defaultProps;
+TextContainer.displayName = 'TextContainer';
 
 export default TextContainer;

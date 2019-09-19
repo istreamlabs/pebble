@@ -257,5 +257,6 @@ function Modal({
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
+Modal.displayName = 'Modal';
 
 export default Modal;

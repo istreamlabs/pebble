@@ -62,7 +62,7 @@ describe('Button', () => {
 
     it('renders a spinner into the button', () => {
       const button = shallow(<Button loading>foo</Button>);
-      expect(button.find('ForwardRef').prop('className')).toBe(
+      expect(button.find('Icon').prop('className')).toBe(
         'btn-loading-spinner',
       );
     });
@@ -144,9 +144,7 @@ describe('Button', () => {
       const button = shallow(
         <Button icon="add-circle">add button</Button>,
       );
-      expect(button.find('ForwardRef').prop('name')).toBe(
-        'add-circle',
-      );
+      expect(button.find('Icon').prop('name')).toBe('add-circle');
     });
     it('sets the correct icon size', () => {
       const button = shallow(
@@ -154,7 +152,7 @@ describe('Button', () => {
           add button
         </Button>,
       );
-      expect(button.find('ForwardRef').prop('size')).toBe(20);
+      expect(button.find('Icon').prop('size')).toBe(20);
     });
     it('it places icon to left of button text', () => {
       const button = shallow(

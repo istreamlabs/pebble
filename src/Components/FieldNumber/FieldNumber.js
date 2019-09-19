@@ -190,7 +190,7 @@ class FieldNumber extends React.PureComponent {
 }
 
 FieldNumber.defaultProps = defaultProps;
-
 FieldNumber.propTypes = propTypes;
+FieldNumber.displayName = 'FieldNumber';
 
 export default FieldNumber;

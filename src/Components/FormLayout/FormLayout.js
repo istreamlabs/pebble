@@ -77,5 +77,6 @@ function FormLayout({
 
 FormLayout.propTypes = propTypes;
 FormLayout.defaultProps = defaultProps;
+FormLayout.displayName = 'FormLayout';
 
 export default FormLayout;

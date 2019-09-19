@@ -90,5 +90,6 @@ class Form extends React.PureComponent {
 }
 
 Form.propTypes = propTypes;
+Form.displayName = 'Form';
 
 export default Form;

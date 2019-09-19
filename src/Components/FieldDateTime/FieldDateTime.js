@@ -418,7 +418,7 @@ class FieldDateTime extends React.PureComponent {
 }
 
 FieldDateTime.propTypes = propTypes;
-
 FieldDateTime.defaultProps = defaultProps;
+FieldDateTime.displayName = 'FieldDateTime';
 
 export default FieldDateTime;

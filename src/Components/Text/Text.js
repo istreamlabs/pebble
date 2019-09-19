@@ -91,5 +91,6 @@ const Text = forwardRef((props, ref) => {
 
 Text.propTypes = propTypes;
 Text.defaultProps = defaultProps;
+Text.displayName = 'Text';
 
 export default Text;

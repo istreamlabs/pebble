@@ -4,43 +4,7 @@ import classNames from 'classnames';
 
 import Block from '../../Block/Block';
 
-/**
- * A child of Tabs meant to be an easy way to create a Tab and its associated content.
- * Use apply any props available in [Block](/#/Components/Block), as TabPanel is just a wrapper for that
- *
- * ---
- */
-
-const Tab = (
-  {
-    tabId,
-    className,
-    children,
-    ...rest
-  }
-) => {
-  const classes = classNames(
-    'tab', className
-  );
-
-  return (
-    <Block
-      as="section"
-      className={classes}
-      role="tabpanel"
-      aria-labelledby={tabId}
-      {...rest}
-    >
-      {children}
-    </Block>
-  );
-};
-
-Tab.defaultProps = {
-  size: 'medium'
-};
-
-Tab.propTypes = {
+const propTypes = {
   /**
    * Id of the panel
    */
@@ -67,4 +31,35 @@ Tab.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export default Tab;
+const defaultProps = {
+  size: 'medium',
+};
+
+/**
+ * A child of Tabs meant to be an easy way to create a Tab and its associated content.
+ * Use apply any props available in [Block](/#/Components/Block), as TabPanel is just a wrapper for that
+ *
+ * ---
+ */
+
+const TabPanel = ({ tabId, className, children, ...rest }) => {
+  const classes = classNames('tab', className);
+
+  return (
+    <Block
+      as="section"
+      className={classes}
+      role="tabpanel"
+      aria-labelledby={tabId}
+      {...rest}
+    >
+      {children}
+    </Block>
+  );
+};
+
+TabPanel.propTypes = propTypes;
+TabPanel.defaultProps = defaultProps;
+TabPanel.displayName = 'TabPanel';
+
+export default TabPanel;

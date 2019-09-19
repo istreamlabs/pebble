@@ -71,5 +71,6 @@ const Link = forwardRef((props, ref) => {
 
 Link.propTypes = propTypes;
 Link.defaultProps = defaultProps;
+Link.displayName = 'Link';
 
 export default Link;

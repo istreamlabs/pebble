@@ -150,5 +150,6 @@ export class Tabs extends React.PureComponent {
 }
 
 Tabs.propTypes = propTypes;
+Tabs.displayName = 'Tabs';
 
 export default Tabs;

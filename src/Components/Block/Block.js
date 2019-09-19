@@ -503,5 +503,6 @@ class Block extends React.PureComponent {
 
 Block.propTypes = propTypes;
 Block.defaultProps = defaultProps;
+Block.displayName = 'Block';
 
 export default Block;
