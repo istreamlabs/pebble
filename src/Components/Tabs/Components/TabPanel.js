@@ -28,7 +28,7 @@ const propTypes = {
   /**
    * Label of the tab associated with this panel
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
 };
 
 const defaultProps = {
