@@ -13,7 +13,12 @@ function ClearIndicator(props) {
     innerProps: { ref, ...restInnerProps },
   } = props;
   return (
-    <Block {...restInnerProps} ref={ref} paddingHorizontal="3">
+    <Block
+      className="neutral-500 neutral-600-hover"
+      {...restInnerProps}
+      ref={ref}
+      paddingHorizontal="3"
+    >
       <Icon name="remove-circle" />
     </Block>
   );
