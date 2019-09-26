@@ -49,6 +49,7 @@ import Badge from '../Badge/Badge';
     1
   </Block>
   <Block
+    className="db"
     width="100px"
     flex={true}
     padding="3"
@@ -112,28 +113,13 @@ Height can be set to a valid css height value.
 
 ```js
 <Block itemSpacing="3" height="100px">
-  <Block
-    height="44px"
-    padding="3"
-    background="blue-light"
-    marginBottom="4"
-  >
+  <Block height="44px" padding="3" background="blue-light">
     44px
   </Block>
-  <Block
-    height="4rem"
-    padding="3"
-    background="blue-light"
-    marginBottom="4"
-  >
+  <Block height="4rem" padding="3" background="blue-light">
     4rem (64px)
   </Block>
-  <Block
-    height="80%"
-    padding="3"
-    background="blue-light"
-    marginBottom="4"
-  >
+  <Block height="80%" padding="3" background="blue-light">
     80%
   </Block>
 </Block>
