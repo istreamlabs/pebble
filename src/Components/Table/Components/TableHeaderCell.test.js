@@ -21,8 +21,17 @@ describe('TableHeaderCell', () => {
 
   it('sets the width to 100% if viewed in mobile sized viewport, even if specified', () => {
     useMobileLayout.mockImplementation(() => true);
-    const wrapper = shallow(<TableHeaderCell width="20px" />);
+    const wrapper = shallow(
+      <TableHeaderCell width="20px" onSort={() => {}} />,
+    );
     expect(wrapper.prop('width')).toBe('100%');
+  });
+
+  it('sets the flex to grow if width is 100%', () => {
+    useMobileLayout.mockImplementation(() => true);
+    const wrapper = shallow(<TableHeaderCell onSort={() => {}} />);
+    expect(wrapper.prop('width')).toBe('100%');
+    expect(wrapper.prop('flex')).toBe('grow');
   });
   it('sets the width if specified', () => {
     const wrapper = shallow(<TableHeaderCell width="20px" />);

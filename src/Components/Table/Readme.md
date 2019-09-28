@@ -4,7 +4,7 @@
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
 import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
-import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow'; //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 <Table>
@@ -28,8 +28,7 @@ import TableCell from './Components/TableCell'; //import { TableCell } from '@is
       <TableCell>Acme Inc.</TableCell>
     </TableRow>
   </TableBody>
-</Table>
-
+</Table>;
 ```
 
 ### Custom Cells and Table Body Scrolling
@@ -48,7 +47,7 @@ import { PEOPLE_DATA_2 } from '../../demo/data.js';
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
 import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
-import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow'; //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 function CustomCellTable() {
@@ -61,31 +60,37 @@ function CustomCellTable() {
         <TableHeaderCell>Age</TableHeaderCell>
       </TableHeader>
       <TableBody>
-        {
-          PEOPLE_DATA_2.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell width="56px">
-                <Icon name="profile-circle" size="24" className="neutral-300" />
-              </TableCell>
-              <TableCell width="300px">
-                <Text size="4" bold>{row.name}</Text>
-              </TableCell>
-              <TableCell>
-                <div className="mb-2">
-                  <a className="blue" href={`mailto:${row.email}`}>{row.email}</a>
-                </div>
-                <div>{row.phone}</div>
-              </TableCell>
-              <TableCell>{row.age}</TableCell>
-            </TableRow>
-          ))
-        }
+        {PEOPLE_DATA_2.map((row, index) => (
+          <TableRow key={index}>
+            <TableCell width="56px">
+              <Icon
+                name="profile-circle"
+                size="24"
+                className="neutral-300"
+              />
+            </TableCell>
+            <TableCell width="300px">
+              <Text size="4" bold>
+                {row.name}
+              </Text>
+            </TableCell>
+            <TableCell>
+              <div className="mb-2">
+                <a className="blue" href={`mailto:${row.email}`}>
+                  {row.email}
+                </a>
+              </div>
+              <div>{row.phone}</div>
+            </TableCell>
+            <TableCell>{row.age}</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
 }
 
-<CustomCellTable />
+<CustomCellTable />;
 ```
 
 ### Sorting Example
@@ -102,22 +107,22 @@ import { PEOPLE_DATA_2 } from '../../demo/data.js';
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
 import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
-import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow'; //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 import { useState } from 'react';
 
 function compare(key) {
-  return function (a, b) {
+  return function(a, b) {
     // property does not exist
-    if(!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
       return 0;
     }
 
-    const varA = (typeof a[key] === 'string')
-      ? a[key].toUpperCase() : a[key];
-    const varB = (typeof b[key] === 'string')
-      ? b[key].toUpperCase() : b[key];
+    const varA =
+      typeof a[key] === 'string' ? a[key].toUpperCase() : a[key];
+    const varB =
+      typeof b[key] === 'string' ? b[key].toUpperCase() : b[key];
 
     let comparison = 0;
     if (varA > varB) {
@@ -125,7 +130,7 @@ function compare(key) {
     } else if (varA < varB) {
       comparison = -1;
     }
-    return comparison
+    return comparison;
   };
 }
 
@@ -160,7 +165,7 @@ function SortableTable() {
     }
   };
 
-  const getSortedData = (DATA) => {
+  const getSortedData = DATA => {
     if (nameSortDirection) {
       const sorted = DATA.sort(compare('name'));
 
@@ -201,22 +206,22 @@ function SortableTable() {
         >
           Age
         </TableHeaderCell>
+        <TableHeaderCell>Location</TableHeaderCell>
       </TableHeader>
       <TableBody>
-        {
-          getSortedData(PEOPLE_DATA_2).map((row, index) => (
-            <TableRow key={index}>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.age}</TableCell>
-            </TableRow>
-          ))
-        }
+        {getSortedData(PEOPLE_DATA_2).map((row, index) => (
+          <TableRow key={index}>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.age}</TableCell>
+            <TableCell>Seattle, WA</TableCell>
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   );
 }
 
-<SortableTable />
+<SortableTable />;
 ```
 
 ### Pagination Example
@@ -231,13 +236,13 @@ import Pagination from '../Pagination/Pagination';
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
 import TableHeaderCell from './Components/TableHeaderCell'; //import { TableHeaderCell } from '@istreamplanet/pebble';
-import TableRow from './Components/TableRow';   //import { TableRow } from '@istreamplanet/pebble';
+import TableRow from './Components/TableRow'; //import { TableRow } from '@istreamplanet/pebble';
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 const DATA = [];
 for (var i = 0; i < 500; i++) {
   DATA.push({
-      row: i+1,
+    row: i + 1,
   });
 }
 
@@ -245,13 +250,14 @@ const PAGE_SIZE_OPTIONS = [
   { value: 25, label: '25' },
   { value: 50, label: '50' },
   { value: 100, label: '100' },
-]
+];
 
 function PaginationTableSample() {
-
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(25);
-  const [numPages, setNumPages] = useState(Math.ceil(DATA.length / pageSize))
+  const [numPages, setNumPages] = useState(
+    Math.ceil(DATA.length / pageSize),
+  );
 
   const handlePageChange = nextPage => {
     if (nextPage < 1) {
@@ -263,7 +269,7 @@ function PaginationTableSample() {
     setPage(nextPage);
   };
 
-  handleLimitChange = (nextPageSize) => {
+  handleLimitChange = nextPageSize => {
     const nextPageNum = Math.ceil(DATA.length / nextPageSize);
     const nextNumPages = Math.ceil(DATA.length / nextPageSize);
 
@@ -287,9 +293,11 @@ function PaginationTableSample() {
     const end = start + pageSize - 1;
 
     return (
-      <Block marginBottom="4">showing {start} - {end} of {DATA.length}</Block>
-    )
-  }
+      <Block marginBottom="4">
+        showing {start} - {end} of {DATA.length}
+      </Block>
+    );
+  };
 
   return (
     <>
@@ -298,8 +306,8 @@ function PaginationTableSample() {
         options={PAGE_SIZE_OPTIONS}
         label="page size"
         placeholder={pageSize}
-        onChange={(object,action)=>{
-          handleLimitChange(object.value)
+        onChange={(object, action) => {
+          handleLimitChange(object.value);
         }}
         className="w4 mb-5 "
       />
@@ -312,16 +320,14 @@ function PaginationTableSample() {
           <TableHeaderCell>Column 4</TableHeaderCell>
         </TableHeader>
         <TableBody>
-          {
-            visibleData().map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>row: {row.row}</TableCell>
-                <TableCell>row: {row.row}</TableCell>
-                <TableCell>row: {row.row}</TableCell>
-                <TableCell>row: {row.row}</TableCell>
-              </TableRow>
-            ))
-          }
+          {visibleData().map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>row: {row.row}</TableCell>
+              <TableCell>row: {row.row}</TableCell>
+              <TableCell>row: {row.row}</TableCell>
+              <TableCell>row: {row.row}</TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
 
@@ -329,11 +335,10 @@ function PaginationTableSample() {
         onPageChange={handlePageChange}
         currentPage={page}
         numPages={numPages}
-      >
-      </Pagination>
+      ></Pagination>
     </>
-  )
+  );
 }
 
-<PaginationTableSample />
+<PaginationTableSample />;
 ```

@@ -71,7 +71,9 @@ function TableHeaderCell({
 
   const isSortable = onSort !== null;
 
-  const classes = classNames('word-wrap fw-700 fs-6', className);
+  const baseClasses = 'word-wrap fw-700 fs-6';
+
+  const classes = classNames(baseClasses, className);
 
   const getSortDirectionArrow = () => {
     if (sortDirection === 'ASC') {
@@ -100,7 +102,12 @@ function TableHeaderCell({
         width={isMobileLayout ? '100%' : width}
         {...rest}
       >
-        <Button plain onClick={onSortClick} width="100%">
+        <Button
+          plain
+          onClick={onSortClick}
+          width="100%"
+          className={baseClasses}
+        >
           {getSortDirectionArrow()}
           {children}
         </Button>
