@@ -77,11 +77,23 @@ function TableHeaderCell({
 
   const getSortDirectionArrow = () => {
     if (sortDirection === 'ASC') {
-      return <Icon name="arrow-small-up" className="mr-1" />;
+      return (
+        <Icon
+          name="arrow-small-up"
+          accessibilityLabel="sort ascending"
+          className="mr-1"
+        />
+      );
     }
 
     if (sortDirection === 'DESC') {
-      return <Icon name="arrow-small-down" className="mr-1" />;
+      return (
+        <Icon
+          name="arrow-small-down"
+          accessibilityLabel="sort descending"
+          className="mr-1"
+        />
+      );
     }
 
     return null;
