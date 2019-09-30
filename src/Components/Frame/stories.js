@@ -61,6 +61,9 @@ const bodyContent = (
 );
 
 storiesOf('Frame', module)
+  .addParameters({
+    chromatic: { viewports: [479, 959, 1439] },
+  })
   .add('with Tenants', () => (
     <BrowserRouter>
       <div style={{ height: '400px', overflow: 'auto' }}>
