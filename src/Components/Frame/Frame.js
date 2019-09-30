@@ -208,6 +208,7 @@ export class Frame extends React.PureComponent {
   };
 
   renderHeader = () => {
+    const { tenants } = this.props;
     const { isMobile } = this.state;
 
     if (isMobile) {
@@ -215,14 +216,16 @@ export class Frame extends React.PureComponent {
         <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
           <Block alignItems="center">
             {this.getFrameTitle()}
-            <Button
-              plain
-              size="large"
-              className="ml-3"
-              accessibilityLabel="show tenant menu"
-              icon="menu-dots"
-              onClick={this.handleTenantMenuToggle}
-            />
+            {tenants && (
+              <Button
+                plain
+                size="large"
+                className="ml-3"
+                accessibilityLabel="show tenant menu"
+                icon="menu-dots"
+                onClick={this.handleTenantMenuToggle}
+              />
+            )}
           </Block>
           <Button
             icon="menu"

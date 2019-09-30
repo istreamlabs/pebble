@@ -82,7 +82,9 @@ storiesOf('Frame', module)
   .add('without Tenants', () => (
     <BrowserRouter>
       <div style={{ height: '400px', overflow: 'auto' }}>
-        <Frame navigation={mainMenu}>{bodyContent}</Frame>
+        <Frame title="iStreamPlanet" navigation={mainMenu}>
+          {bodyContent}
+        </Frame>
       </div>
     </BrowserRouter>
   ));
