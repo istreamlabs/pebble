@@ -31,7 +31,8 @@ const MENU = [
     id: '3',
     label: 'Link & Sub',
     icon: 'settings',
-    href: '?path=/story/frame--all',
+    href: '/linksub',
+    exact: true,
     items: [
       {
         label: 'Sub-item 1',
@@ -41,6 +42,7 @@ const MENU = [
       {
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
+        exact: true,
       },
     ],
   },
