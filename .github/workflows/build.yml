@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -21,4 +22,16 @@ jobs:
       run: |
         yarn cover
         curl -s https://codecov.io/bash | bash -s
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: build styleguide
+        run: yarn styleguide:build
 
