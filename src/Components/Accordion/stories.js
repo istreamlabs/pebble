@@ -65,6 +65,54 @@ storiesOf('Accordion', module)
       </AccordionPanel>
     </Accordion>
   ))
+  .add('Nested', () => (
+    <Accordion defaultIndex={0} border="all">
+      <AccordionPanel
+        displayBlock
+        background="neutral-200"
+        label="panel 1"
+        textSize="7"
+      >
+        <Accordion allowMultiple>
+          <AccordionPanel
+            background="neutral-200"
+            padding={[3, 4, 5]}
+            label="nested panel 1"
+          >
+            nested panel 1 content
+          </AccordionPanel>
+          <AccordionPanel
+            background="neutral-200"
+            padding={[3, 4, 5]}
+            label="nested panel 2"
+          >
+            nested panel 2 content
+          </AccordionPanel>
+          <AccordionPanel
+            background="neutral-200"
+            padding={[3, 4, 5]}
+            label="nested panel 3"
+          >
+            nested panel 3 content
+          </AccordionPanel>
+        </Accordion>
+      </AccordionPanel>
+      <AccordionPanel
+        background="neutral-200"
+        padding={[3, 4, 5]}
+        label="panel 2"
+      >
+        panel 2 content
+      </AccordionPanel>
+      <AccordionPanel
+        background="neutral-200"
+        padding={[3, 4, 5]}
+        label="panel 3"
+      >
+        panel 3 content
+      </AccordionPanel>
+    </Accordion>
+  ))
   .add('Nested with Label Render Prop', () => (
     <Accordion allowMultiple border="all">
       <AccordionPanel displayBlock label="LA RED 1 (451)">
@@ -121,7 +169,6 @@ const sids = (
           active={props.active}
         />
       )}
-      background="white"
       textSize="6"
     >
       <SidVideoDetail />
@@ -138,7 +185,6 @@ const sids = (
           type="video"
         />
       )}
-      background="white"
       textSize="6"
     >
       <SidVideoDetail />
@@ -155,7 +201,6 @@ const sids = (
           type="audio"
         />
       )}
-      background="white"
       textSize="6"
     >
       <SidAudioDetail />
@@ -172,7 +217,6 @@ const sids = (
           type="audio"
         />
       )}
-      background="white"
       textSize="6"
     >
       <SidAudioDetail />

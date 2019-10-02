@@ -36,22 +36,21 @@ function AccordionPanel(props) {
         aria-selected={active}
         aria-expanded={active}
         onClick={onPanelChange}
-        className="w-100 p-0 bn bg-blue-lighter-hover"
+        className="w-100 p-0 bn bg-white bg-blue-lighter-hover"
         style={{
           outline: 0,
-          background: 'transparent',
+          cursor: 'pointer',
+          fontSize: 'inherit',
         }}
       >
         {typeof label === 'string' ? (
           <Block
-            textSize="5"
             color="neutral-600"
             padding={[4]}
             flex
             justify="between"
             border="bottom"
             className="fw-700"
-            background="white"
           >
             <div>{label}</div>
             <Icon name={arrowIcon} />

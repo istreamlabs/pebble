@@ -13,28 +13,16 @@ import AccordionPanel from './Components/AccordionPanel';
 
 <Accordion
   border="all"
-  background="white"
+  background="neutral-200"
   onChange={index => console.log(index, 'panel clicked')}
 >
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 1"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 1">
     panel 1 content
   </AccordionPanel>
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 2"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 2">
     panel 2 content
   </AccordionPanel>
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 3"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 3">
     panel 3 content
   </AccordionPanel>
 </Accordion>;
@@ -50,28 +38,16 @@ import AccordionPanel from './Components/AccordionPanel';
 <Accordion
   allowMultiple
   border="all"
-  background="white"
+  background="neutral-200"
   onChange={index => console.log(index, 'panel clicked')}
 >
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 1"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 1">
     panel 1 content
   </AccordionPanel>
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 2"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 2">
     panel 2 content
   </AccordionPanel>
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 3"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 3">
     panel 3 content
   </AccordionPanel>
 </Accordion>;
@@ -84,26 +60,14 @@ Setting a zero-based `defaultIndex` will start with that panel open.
 ```js
 import AccordionPanel from './Components/AccordionPanel';
 
-<Accordion defaultIndex={2} border="all" background="white">
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 1"
-  >
+<Accordion defaultIndex={2} border="all" background="neutral-200">
+  <AccordionPanel padding={[3, 4, 5]} label="panel 1">
     panel 1 content
   </AccordionPanel>
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="panel 2"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="panel 2">
     panel 2 content
   </AccordionPanel>
-  <AccordionPanel
-    background="neutral-200"
-    padding={[3, 4, 5]}
-    label="default"
-  >
+  <AccordionPanel padding={[3, 4, 5]} label="default">
     default content
   </AccordionPanel>
 </Accordion>;
