@@ -2,7 +2,7 @@
 
 Pebble exports 1 additional related component:
 
-- `<AccordionPanel>`: A label and container for a single panel of the Accordion
+- **AccordionPanel**: A label and container for a single panel of the Accordion
 
 ### Single
 
