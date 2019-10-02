@@ -8,50 +8,50 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Block from '../Block/Block';
-import Icon from '../Icon/Icon';
 
 const propTypes = {
+  /**
+   * Allow multiple panels to be open at once
+   */
   allowMultiple: PropTypes.bool,
+  /**
+   * Array of AccordionPanels
+   */
   children: PropTypes.node,
+  /**
+   * additional classes to add to container
+   */
   className: PropTypes.string,
+  /**
+   * Zero-based index(es) of panels that should be opened
+   */
   defaultIndex: PropTypes.number,
+  /**
+   * Callback function that will be called when the active panel(s) change.
+   * It will pass the index of the active panel, or an array of indexes if allowMultiple is true
+   */
   onChange: PropTypes.func,
 };
-
-/**
- * Display a list of options that expand/collapse to reveal more information
- *
- * ---
- */
 
 const defaultProps = {
   allowMultiple: false,
 };
 
-function Accordion({
-  /**
-   * Allow multiple panels to be open at once
-   */
-  allowMultiple,
-  /**
-   * additional classes to add to container
-   */
-  className,
-  /**
-   * Array of AccordionPanels
-   */
-  children,
-  /**
-   * Zero-based index(es) of panels that should be opened
-   */
-  defaultIndex,
-  /**
-   * Callback function that will be called when the active panel(s) change.
-   * It will send an number of the active panel, or an array of indexes if allowMultiple is true
-   */
-  onChange,
-  ...rest
-}) {
+/**
+ * Display a list of options that expand/collapse to reveal more information.
+ *
+ * ---
+ */
+
+function Accordion(props) {
+  const {
+    allowMultiple,
+    className,
+    children,
+    defaultIndex,
+    onChange,
+    ...rest
+  } = props;
   const classes = classNames('accordion', className);
 
   const initialState = allowMultiple
@@ -79,15 +79,15 @@ function Accordion({
         nextActive = [...active, selectedIndex];
       }
       setActive(nextActive);
+      onChange && onChange(nextActive);
     } else {
       if (selectedIndex === active) {
         setActive(null);
       } else {
         setActive(selectedIndex);
       }
+      onChange && onChange(selectedIndex);
     }
-
-    onChange && onChange(active);
   };
 
   const clones = Children.map(children, (child, childIndex) => {
@@ -100,7 +100,7 @@ function Accordion({
   });
 
   return (
-    <Block className={classes} {...rest} displayBlock>
+    <Block role="tablist" className={classes} {...rest} displayBlock>
       {clones}
     </Block>
   );
@@ -111,58 +111,3 @@ Accordion.defaultProps = defaultProps;
 Accordion.displayName = 'Accordion';
 
 export default Accordion;
-
-// /////////////////////////////////////////////
-
-export const AccordionPanel = ({
-  children,
-  label,
-  active,
-  onPanelChange,
-  ...rest
-}) => {
-  const arrowIcon = active ? 'arrow-small-up' : 'arrow-small-down';
-
-  return (
-    <Block displayBlock>
-      <button
-        type="button"
-        role="tab"
-        aria-selected={active}
-        aria-expanded={active}
-        onClick={onPanelChange}
-        className="w-100 p-0 bn bg-blue-lighter-hover"
-        style={{
-          outline: 0,
-        }}
-      >
-        {typeof label === 'string' ? (
-          <Block
-            textSize="5"
-            color="neutral-600"
-            padding={[4]}
-            flex
-            justify="between"
-            border="bottom"
-            className="fw-700"
-          >
-            <div>{label}</div>
-            <Icon name={arrowIcon} />
-          </Block>
-        ) : (
-          label(arrowIcon)
-        )}
-      </button>
-      {active && <Block {...rest}>{children}</Block>}
-    </Block>
-  );
-};
-
-AccordionPanel.propTypes = {
-  children: PropTypes.node,
-  label: PropTypes.node,
-  active: PropTypes.bool,
-  onPanelChange: PropTypes.func,
-};
-
-AccordionPanel.displayName = 'AccordionPanel';

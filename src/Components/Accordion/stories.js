@@ -3,7 +3,8 @@ import { storiesOf } from '@storybook/react';
 
 import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
-import Accordion, { AccordionPanel } from './Accordion';
+import Accordion from './Accordion';
+import AccordionPanel from './Components/AccordionPanel';
 
 storiesOf('Accordion', module)
   .addParameters({
@@ -64,69 +65,25 @@ storiesOf('Accordion', module)
       </AccordionPanel>
     </Accordion>
   ))
-  .add('PID', () => (
-    <Accordion allowMultiple border="all" background="neutral-200">
+  .add('Nested with Label Render Prop', () => (
+    <Accordion allowMultiple border="all">
       <AccordionPanel displayBlock label="LA RED 1 (451)">
-        <Accordion background="neutral-200" allowMultiple>
-          <AccordionPanel
-            displayBlock
-            paddingVertical="4"
-            paddingHorizontal="4"
-            label={arrowIcon => (
-              <PID arrowIcon={arrowIcon} label="PMT: 410" />
-            )}
-          >
-            test
-          </AccordionPanel>
-          <AccordionPanel
-            displayBlock
-            paddingVertical="4"
-            paddingHorizontal="4"
-            label={arrowIcon => (
-              <PID arrowIcon={arrowIcon} label="PMT: 416" />
-            )}
-          >
-            info
-          </AccordionPanel>
-          <AccordionPanel
-            displayBlock
-            paddingVertical="4"
-            paddingHorizontal="4"
-            label={arrowIcon => (
-              <PID
-                arrowIcon={arrowIcon}
-                label="ECM: 1389 (Irdeto -- 0x610)"
-              />
-            )}
-          >
-            info
-          </AccordionPanel>
-          <AccordionPanel
-            displayBlock
-            paddingVertical="4"
-            paddingHorizontal="4"
-            label={arrowIcon => (
-              <PID
-                arrowIcon={arrowIcon}
-                label="ECM: 2389 (Irdeto -- 0x610)"
-              />
-            )}
-          >
-            info
-          </AccordionPanel>
-        </Accordion>
+        {sids}
       </AccordionPanel>
-      <AccordionPanel label="LA RED 2 (452)">
-        panel 2 content
+      <AccordionPanel displayBlock label="LA RED 2 (452)">
+        {sids}
       </AccordionPanel>
-      <AccordionPanel label="TVN 1 (551">
-        panel 3 content
+      <AccordionPanel displayBlock label="TVN 1 (551">
+        {sids}
       </AccordionPanel>
     </Accordion>
   ));
 
-function PID(props) {
-  const { label, arrowIcon } = props;
+function ServiceID(props) {
+  // eslint-disable-next-line react/prop-types
+  const { label, active, type } = props;
+
+  const arrowIcon = active ? 'arrow-small-up' : 'arrow-small-down';
 
   return (
     <Block
@@ -137,8 +94,111 @@ function PID(props) {
       border="bottom"
       justify="between"
     >
-      <div>{label}</div>
+      <Block itemSpacing="3" alignItems="start">
+        <Icon
+          name={type === 'video' ? 'video' : 'music'}
+          accessibilityLabel={type === 'video' ? 'video' : 'audio'}
+          className="neutral-400"
+        />
+        <div>{label}</div>
+      </Block>
       <Icon name={arrowIcon} />
+    </Block>
+  );
+}
+
+const sids = (
+  <Accordion background="neutral-200" allowMultiple>
+    <AccordionPanel
+      displayBlock
+      paddingVertical="4"
+      paddingHorizontal="4"
+      border="bottom"
+      label={props => (
+        <ServiceID
+          label="PMT: 411 (0x19b): MPEG-4 AVC"
+          type="video"
+          active={props.active}
+        />
+      )}
+      background="white"
+      textSize="6"
+    >
+      <SidVideoDetail />
+    </AccordionPanel>
+    <AccordionPanel
+      displayBlock
+      paddingVertical="4"
+      paddingHorizontal="4"
+      border="bottom"
+      label={props => (
+        <ServiceID
+          active={props.active}
+          label="PMT: 416"
+          type="video"
+        />
+      )}
+      background="white"
+      textSize="6"
+    >
+      <SidVideoDetail />
+    </AccordionPanel>
+    <AccordionPanel
+      displayBlock
+      paddingVertical="4"
+      paddingHorizontal="4"
+      border="bottom"
+      label={props => (
+        <ServiceID
+          active={props.active}
+          label="ECM: 1389 (Irdeto -- 0x610)"
+          type="audio"
+        />
+      )}
+      background="white"
+      textSize="6"
+    >
+      <SidAudioDetail />
+    </AccordionPanel>
+    <AccordionPanel
+      displayBlock
+      paddingVertical="4"
+      paddingHorizontal="4"
+      border="bottom"
+      label={active => (
+        <ServiceID
+          active={active}
+          label="ECM: 2389 (Irdeto -- 0x610)"
+          type="audio"
+        />
+      )}
+      background="white"
+      textSize="6"
+    >
+      <SidAudioDetail />
+    </AccordionPanel>
+  </Accordion>
+);
+
+function SidVideoDetail() {
+  return (
+    <Block displayBlock>
+      <div>Bitrate</div>
+      <div>FrameType</div>
+      <div>FrameSize</div>
+      <div>FrameRate</div>
+      <div>Ratio</div>
+      <div>BitDepth</div>
+    </Block>
+  );
+}
+
+function SidAudioDetail() {
+  return (
+    <Block displayBlock>
+      <div>Lanuguage</div>
+      <div>Bitrate</div>
+      <div>SampleRate</div>
     </Block>
   );
 }
