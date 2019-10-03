@@ -5,23 +5,23 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-  env:
     env:
-    CI: true
-    CHROMATIC_APP_CODE: ${{ secrets.CHROMATIC_APP_CODE }}
-    S3_PATH: pebble.istreamplanet.net/${{ github.event.number }}
-  steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: install dependencies
-      run: yarn install
-    - name: build styleguide
-      run: yarn styleguide:build
-    - name: deploy
-      uses: actions/aws/cli@master
-      run: |
-        echo ${{ S3_PATH }}
+      env:
+      CI: true
+      CHROMATIC_APP_CODE: ${{ secrets.CHROMATIC_APP_CODE }}
+      S3_PATH: pebble.istreamplanet.net/${{ github.event.number }}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install dependencies
+        run: yarn install
+      - name: build styleguide
+        run: yarn styleguide:build
+      - name: deploy
+        uses: actions/aws/cli@master
+        run: |
+          echo ${{ S3_PATH }}
 
