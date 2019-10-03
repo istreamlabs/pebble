@@ -94,13 +94,13 @@ function Accordion(props) {
     if (!isValidElement(child)) return;
 
     return cloneElement(child, {
-      active: getActiveCondition(childIndex),
+      open: getActiveCondition(childIndex),
       onPanelChange: () => handlePanelChange(childIndex),
     });
   });
 
   return (
-    <Block role="tablist" className={classes} {...rest} displayBlock>
+    <Block className={classes} {...rest} displayBlock>
       {clones}
     </Block>
   );

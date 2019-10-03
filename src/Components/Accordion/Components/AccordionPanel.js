@@ -14,9 +14,9 @@ const propTypes = {
    */
   label: PropTypes.node.isRequired,
   /**
-   * Expands the panel
+   * Is the panel contents visible
    */
-  active: PropTypes.bool,
+  open: PropTypes.bool,
   /**
    * Function to call when the label is pressed
    */
@@ -24,42 +24,36 @@ const propTypes = {
 };
 
 function AccordionPanel(props) {
-  const { children, label, active, onPanelChange, ...rest } = props;
+  const { children, label, open, onPanelChange, ...rest } = props;
 
-  const arrowIcon = active ? 'arrow-small-up' : 'arrow-small-down';
+  const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
+
+  const handleClick = event => {
+    event.preventDefault();
+    onPanelChange();
+  };
 
   return (
-    <Block displayBlock>
-      <button
-        type="button"
-        role="tab"
-        aria-selected={active}
-        aria-expanded={active}
-        onClick={onPanelChange}
-        className="w-100 p-0 bn bg-white bg-blue-lighter-hover"
-        style={{
-          outline: 0,
-          cursor: 'pointer',
-          fontSize: 'inherit',
-        }}
-      >
-        {typeof label === 'string' ? (
-          <Block
-            color="neutral-600"
-            padding={[4]}
-            flex
-            justify="between"
-            border="bottom"
-            className="fw-700"
-          >
-            <div>{label}</div>
-            <Icon name={arrowIcon} />
-          </Block>
-        ) : (
-          label(props)
-        )}
-      </button>
-      {active && <Block {...rest}>{children}</Block>}
+    <Block as="details" displayBlock open={open}>
+      {typeof label === 'string' ? (
+        <Block
+          as="summary"
+          color="neutral-600"
+          padding={[4]}
+          flex
+          border="bottom"
+          onClick={handleClick}
+          className="fw-700 w-100 p-0 bn bg-white bg-blue-lighter-hover"
+          itemSpacing="2"
+          justify="between"
+        >
+          <div>{label}</div>
+          <Icon name={arrowIcon} />
+        </Block>
+      ) : (
+        <summary onClick={handleClick}>{label(props)}</summary>
+      )}
+      <Block {...rest}>{children}</Block>
     </Block>
   );
 }

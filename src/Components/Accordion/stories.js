@@ -6,12 +6,152 @@ import Icon from '../Icon/Icon';
 import Accordion from './Accordion';
 import AccordionPanel from './Components/AccordionPanel';
 
+const VDCM = [
+  {
+    name: 'LA RED 1',
+    id: 451,
+    pids: [
+      {
+        id: 411,
+        type: 'H264 video',
+        specs: {
+          bitrate: '5.9 Mbps',
+          frameType: 'interlaced',
+          frameSize: '1920x1080',
+          frameRate: '29.97fps',
+          ratio: '1920:1080',
+          bitDepth: 8,
+        },
+      },
+      {
+        id: 412,
+        type: 'AAC audio',
+        specs: {
+          language: 'english',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+      {
+        id: 413,
+        type: 'AAC audio',
+        specs: {
+          language: 'english',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+      {
+        id: 414,
+        type: 'AAC audio3',
+        specs: {
+          language: 'spanish',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+      {
+        id: 415,
+        type: 'AAC audio',
+        specs: {
+          language: 'spanish',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+    ],
+  },
+  {
+    name: 'LA RED 2',
+    id: 451,
+    pids: [
+      {
+        id: 411,
+        type: 'H264 video',
+        specs: {
+          bitrate: '5.9 Mbps',
+          frameType: 'interlaced',
+          frameSize: '1920x1080',
+          frameRate: '29.97fps',
+          ratio: '1920:1080',
+          bitDepth: 8,
+        },
+      },
+      {
+        id: 412,
+        type: 'AAC audio',
+        specs: {
+          language: 'english',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+      {
+        id: 413,
+        type: 'AAC audio',
+        specs: {
+          language: 'english',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+      {
+        id: 414,
+        type: 'AAC audio3',
+        specs: {
+          language: 'spanish',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+      {
+        id: 415,
+        type: 'AAC audio',
+        specs: {
+          language: 'spanish',
+          bitRate: '391.33 Kbps',
+          sampleRate: '48 KHz',
+        },
+      },
+    ],
+  },
+];
+
 storiesOf('Accordion', module)
   .addParameters({
     chromatic: { viewports: [479, 959, 1439] },
   })
+  .add('loop', () => {
+    const items = VDCM.map(program => (
+      <AccordionPanel
+        background="neutral-200"
+        label={program.name}
+        key={program.id}
+        displayBlock
+      >
+        <Accordion className="ml-5" allowMultiple>
+          {program.pids.map(pid => (
+            <AccordionPanel
+              background="neutral-200"
+              label={`${pid.id}`}
+              key={pid.id}
+              padding={[3, 4]}
+              displayBlock
+            >
+              {pid.type}
+            </AccordionPanel>
+          ))}
+        </Accordion>
+      </AccordionPanel>
+    ));
+    return (
+      <Accordion border="all" background="white">
+        {items}
+      </Accordion>
+    );
+  })
   .add('Single', () => (
-    <Accordion border="all" background="white" defaultIndex={0}>
+    <Accordion border="all" defaultIndex={0} background="white">
       <AccordionPanel
         background="neutral-200"
         padding={[3, 4, 5]}
@@ -129,9 +269,9 @@ storiesOf('Accordion', module)
 
 function ServiceID(props) {
   // eslint-disable-next-line react/prop-types
-  const { label, active, type } = props;
+  const { label, open, type } = props;
 
-  const arrowIcon = active ? 'arrow-small-up' : 'arrow-small-down';
+  const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
 
   return (
     <Block
@@ -166,9 +306,23 @@ const sids = (
         <ServiceID
           label="PMT: 411 (0x19b): MPEG-4 AVC"
           type="video"
-          active={props.active}
+          open={props.open}
         />
       )}
+      background="neutral-300"
+      textSize="6"
+    >
+      <SidVideoDetail />
+    </AccordionPanel>
+    <AccordionPanel
+      displayBlock
+      paddingVertical="4"
+      paddingHorizontal="4"
+      border="bottom"
+      label={props => (
+        <ServiceID open={props.open} label="PMT: 416" type="video" />
+      )}
+      background="neutral-300"
       textSize="6"
     >
       <SidVideoDetail />
@@ -180,27 +334,12 @@ const sids = (
       border="bottom"
       label={props => (
         <ServiceID
-          active={props.active}
-          label="PMT: 416"
-          type="video"
-        />
-      )}
-      textSize="6"
-    >
-      <SidVideoDetail />
-    </AccordionPanel>
-    <AccordionPanel
-      displayBlock
-      paddingVertical="4"
-      paddingHorizontal="4"
-      border="bottom"
-      label={props => (
-        <ServiceID
-          active={props.active}
+          open={props.open}
           label="ECM: 1389 (Irdeto -- 0x610)"
           type="audio"
         />
       )}
+      background="neutral-300"
       textSize="6"
     >
       <SidAudioDetail />
@@ -210,13 +349,14 @@ const sids = (
       paddingVertical="4"
       paddingHorizontal="4"
       border="bottom"
-      label={active => (
+      label={props => (
         <ServiceID
-          active={active}
+          open={props.open}
           label="ECM: 2389 (Irdeto -- 0x610)"
           type="audio"
         />
       )}
+      background="neutral-300"
       textSize="6"
     >
       <SidAudioDetail />
@@ -226,7 +366,7 @@ const sids = (
 
 function SidVideoDetail() {
   return (
-    <Block displayBlock>
+    <Block padding="3" background="white" radius="2" displayBlock>
       <div>Bitrate</div>
       <div>FrameType</div>
       <div>FrameSize</div>
@@ -239,7 +379,7 @@ function SidVideoDetail() {
 
 function SidAudioDetail() {
   return (
-    <Block displayBlock>
+    <Block padding="3" background="white" radius="2" displayBlock>
       <div>Lanuguage</div>
       <div>Bitrate</div>
       <div>SampleRate</div>
