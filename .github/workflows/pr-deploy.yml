@@ -21,5 +21,5 @@ jobs:
         run: yarn styleguide:build
       - name: deploy
         run: |
-          echo ${{ S3_PATH }}
+          echo $S3_PATH
 
