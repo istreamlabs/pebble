@@ -21,7 +21,6 @@ jobs:
       - name: build styleguide
         run: yarn styleguide:build
       - name: deploy
-        uses: actions/aws/cli@master
         run: |
           echo ${{ S3_PATH }}
 
