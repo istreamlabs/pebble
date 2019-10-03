@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      CHROMATIC_APP_CODE: ${{ secrets.CHROMATIC_APP_CODE }}
       S3_PATH: pebble.istreamplanet.net/${{ github.event.number }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.DEVELOPMENT_AWS_SECRET }}
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
@@ -20,6 +21,7 @@ jobs:
       - name: build styleguide
         run: yarn styleguide:build
       - name: deploy
-        run: |
-          echo $S3_PATH
+        uses: actions/aws/cli@master
+        with:
+          args: ./deploy.sh $S3_PATH
 
