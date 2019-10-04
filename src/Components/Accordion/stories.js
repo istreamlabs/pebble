@@ -63,7 +63,7 @@ const VDCM = [
   },
   {
     name: 'LA RED 2',
-    id: 451,
+    id: 452,
     pids: [
       {
         id: 411,
@@ -121,26 +121,37 @@ storiesOf('Accordion', module)
   .addParameters({
     chromatic: { viewports: [479, 959, 1439] },
   })
-  .add('loop', () => {
+  .add('Nested with label renderProp', () => {
     const items = VDCM.map(program => (
       <AccordionPanel
+        id={`${program.id}`}
         background="neutral-200"
         label={program.name}
         key={program.id}
         displayBlock
       >
-        <Accordion className="ml-5" allowMultiple>
-          {program.pids.map(pid => (
-            <AccordionPanel
-              background="neutral-200"
-              label={`${pid.id}`}
-              key={pid.id}
-              padding={[3, 4]}
-              displayBlock
-            >
-              {pid.type}
-            </AccordionPanel>
-          ))}
+        <Accordion allowMultiple className="ml-5">
+          {program.pids.map((pid, i) => {
+            return (
+              <AccordionPanel
+                background="neutral-300"
+                label={props => (
+                  <ServiceID
+                    onPanelChange={props.onPanelChange}
+                    open={props.open}
+                    label={`${pid.id} - ${pid.type}`}
+                    type={pid.type}
+                  />
+                )}
+                id={`${pid.id}`}
+                key={`${pid.id}${i}`}
+                padding={[3, 4]}
+                displayBlock
+              >
+                <SidVideoDetail specs={pid.specs} />
+              </AccordionPanel>
+            );
+          })}
         </Accordion>
       </AccordionPanel>
     ));
@@ -151,8 +162,9 @@ storiesOf('Accordion', module)
     );
   })
   .add('Single', () => (
-    <Accordion border="all" defaultIndex={0} background="white">
+    <Accordion border="all" defaultOpen="panel2" background="white">
       <AccordionPanel
+        id="panel1"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 1"
@@ -160,6 +172,7 @@ storiesOf('Accordion', module)
         panel 1 content
       </AccordionPanel>
       <AccordionPanel
+        id="panel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 2"
@@ -167,6 +180,7 @@ storiesOf('Accordion', module)
         panel 2 content
       </AccordionPanel>
       <AccordionPanel
+        id="panel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 3"
@@ -177,12 +191,14 @@ storiesOf('Accordion', module)
   ))
   .add('Multiple', () => (
     <Accordion
-      defaultIndex={[0, 1, 2]}
+      id="panel1"
       allowMultiple
       border="all"
       background="white"
+      defaultOpen={['panel2', 'panel3']}
     >
       <AccordionPanel
+        id="panel1"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 1"
@@ -190,6 +206,7 @@ storiesOf('Accordion', module)
         panel 1 content
       </AccordionPanel>
       <AccordionPanel
+        id="panel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 2"
@@ -197,6 +214,7 @@ storiesOf('Accordion', module)
         panel 2 content
       </AccordionPanel>
       <AccordionPanel
+        id="panel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 3"
@@ -206,8 +224,9 @@ storiesOf('Accordion', module)
     </Accordion>
   ))
   .add('Nested', () => (
-    <Accordion defaultIndex={0} border="all">
+    <Accordion border="all">
       <AccordionPanel
+        id="panel1"
         displayBlock
         background="neutral-200"
         label="panel 1"
@@ -215,6 +234,7 @@ storiesOf('Accordion', module)
       >
         <Accordion allowMultiple>
           <AccordionPanel
+            id="nestedPanel1"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="nested panel 1"
@@ -222,6 +242,7 @@ storiesOf('Accordion', module)
             nested panel 1 content
           </AccordionPanel>
           <AccordionPanel
+            id="nestedPanel2"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="nested panel 2"
@@ -229,6 +250,7 @@ storiesOf('Accordion', module)
             nested panel 2 content
           </AccordionPanel>
           <AccordionPanel
+            id="nestedPanel3"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="nested panel 3"
@@ -238,6 +260,7 @@ storiesOf('Accordion', module)
         </Accordion>
       </AccordionPanel>
       <AccordionPanel
+        id="panel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 2"
@@ -245,24 +268,12 @@ storiesOf('Accordion', module)
         panel 2 content
       </AccordionPanel>
       <AccordionPanel
+        id="panel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 3"
       >
         panel 3 content
-      </AccordionPanel>
-    </Accordion>
-  ))
-  .add('Nested with Label Render Prop', () => (
-    <Accordion allowMultiple border="all">
-      <AccordionPanel displayBlock label="LA RED 1 (451)">
-        {sids}
-      </AccordionPanel>
-      <AccordionPanel displayBlock label="LA RED 2 (452)">
-        {sids}
-      </AccordionPanel>
-      <AccordionPanel displayBlock label="TVN 1 (551">
-        {sids}
       </AccordionPanel>
     </Accordion>
   ));
@@ -281,11 +292,12 @@ function ServiceID(props) {
       paddingVertical="3"
       border="bottom"
       justify="between"
+      background="white"
     >
       <Block itemSpacing="3" alignItems="start">
         <Icon
-          name={type === 'video' ? 'video' : 'music'}
-          accessibilityLabel={type === 'video' ? 'video' : 'audio'}
+          name={type === 'H264 video' ? 'video' : 'music'}
+          accessibilityLabel={type}
           className="neutral-400"
         />
         <div>{label}</div>
@@ -295,94 +307,24 @@ function ServiceID(props) {
   );
 }
 
-const sids = (
-  <Accordion background="neutral-200" allowMultiple>
-    <AccordionPanel
-      displayBlock
-      paddingVertical="4"
-      paddingHorizontal="4"
+function SidVideoDetail({ specs }) {
+  const displaySpecs = Object.keys(specs).map(keyName => (
+    <Block
+      key={keyName}
       border="bottom"
-      label={props => (
-        <ServiceID
-          label="PMT: 411 (0x19b): MPEG-4 AVC"
-          type="video"
-          open={props.open}
-        />
-      )}
-      background="neutral-300"
+      paddingHorizontal="3"
+      paddingVertical="2"
+      justify="between"
       textSize="6"
     >
-      <SidVideoDetail />
-    </AccordionPanel>
-    <AccordionPanel
-      displayBlock
-      paddingVertical="4"
-      paddingHorizontal="4"
-      border="bottom"
-      label={props => (
-        <ServiceID open={props.open} label="PMT: 416" type="video" />
-      )}
-      background="neutral-300"
-      textSize="6"
-    >
-      <SidVideoDetail />
-    </AccordionPanel>
-    <AccordionPanel
-      displayBlock
-      paddingVertical="4"
-      paddingHorizontal="4"
-      border="bottom"
-      label={props => (
-        <ServiceID
-          open={props.open}
-          label="ECM: 1389 (Irdeto -- 0x610)"
-          type="audio"
-        />
-      )}
-      background="neutral-300"
-      textSize="6"
-    >
-      <SidAudioDetail />
-    </AccordionPanel>
-    <AccordionPanel
-      displayBlock
-      paddingVertical="4"
-      paddingHorizontal="4"
-      border="bottom"
-      label={props => (
-        <ServiceID
-          open={props.open}
-          label="ECM: 2389 (Irdeto -- 0x610)"
-          type="audio"
-        />
-      )}
-      background="neutral-300"
-      textSize="6"
-    >
-      <SidAudioDetail />
-    </AccordionPanel>
-  </Accordion>
-);
-
-function SidVideoDetail() {
-  return (
-    <Block padding="3" background="white" radius="2" displayBlock>
-      <div>Bitrate</div>
-      <div>FrameType</div>
-      <div>FrameSize</div>
-      <div>FrameRate</div>
-      <div>Ratio</div>
-      <div>BitDepth</div>
+      <div>{keyName}</div>
+      <div className="fw-700">{specs[keyName]}</div>
     </Block>
-  );
-}
+  ));
 
-function SidAudioDetail() {
   return (
-    <Block padding="3" background="white" radius="2" displayBlock>
-      <div>Lanuguage</div>
-      <div>Bitrate</div>
-      <div>SampleRate</div>
+    <Block displayBlock background="white" radius="2">
+      {displaySpecs}
     </Block>
   );
 }

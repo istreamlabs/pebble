@@ -11,84 +11,123 @@ describe('Accordion', () => {
 
   const testOnChange = jest.fn();
 
-  it('renders the panels but will not render inValidElement', () => {
-    const { getByText, queryByText } = render(
+  it('renders closed panels but will not render inValidElement, then opens the panel that is clicked', () => {
+    const { getByTestId, getByText, queryByText } = render(
       <Accordion>
-        <AccordionPanel label="label 1">panel 1</AccordionPanel>
-        <AccordionPanel label="label 2">panel 2</AccordionPanel>
+        <AccordionPanel id="panel1" label="label 1">
+          panel 1
+        </AccordionPanel>
+        <AccordionPanel id="panel2" label="label 2">
+          panel 2
+        </AccordionPanel>
         test
       </Accordion>,
     );
-    expect(getByText('label 1')).toBeDefined();
-    expect(getByText('label 2')).toBeDefined();
+    expect(getByTestId('panel1')).toBeDefined();
+    expect(getByTestId('panel2')).toBeDefined();
     expect(queryByText('test')).toBeNull();
 
     fireEvent.click(getByText('label 1'));
 
-    expect(getByText('panel 1')).toBeDefined();
+    expect(getByTestId('panel1').open).toBe(true);
   });
 
-  it('displays the default panel, calls onChange when a panel is clicked, toggles the visible panels', () => {
-    const { getByText, queryByText } = render(
-      <Accordion defaultIndex={0} onChange={testOnChange}>
-        <AccordionPanel label="label 1">panel 1</AccordionPanel>
-        <AccordionPanel label="label 2">panel 2</AccordionPanel>
-        <AccordionPanel label="label 3">panel 3</AccordionPanel>
+  it('renders default panel, calls onChange when a panel is clicked, toggles the visible panels', () => {
+    const { getByTestId, getByText } = render(
+      <Accordion defaultOpen="panel1" onChange={testOnChange}>
+        <AccordionPanel id="panel1" label="label 1">
+          panel 1
+        </AccordionPanel>
+        <AccordionPanel id="panel2" label="label 2">
+          panel 2
+        </AccordionPanel>
+        <AccordionPanel id="panel3" label="label 3">
+          panel 3
+        </AccordionPanel>
       </Accordion>,
     );
-    expect(getByText('label 1')).toBeDefined();
-    expect(getByText('panel 1')).toBeDefined();
-    expect(getByText('label 2')).toBeDefined();
-    expect(getByText('label 3')).toBeDefined();
+    expect(getByTestId('panel1')).toBeDefined();
+    expect(getByTestId('panel1').open).toBe(true);
+    expect(getByTestId('panel2')).toBeDefined();
+    expect(getByTestId('panel3')).toBeDefined();
 
     fireEvent.click(getByText('label 3'));
-    expect(testOnChange).toHaveBeenCalledWith(2);
+    expect(testOnChange).toHaveBeenCalledWith('panel3');
 
-    expect(getByText('panel 3')).toBeDefined();
-    expect(queryByText('panel 1')).toBeNull();
+    expect(getByTestId('panel3').open).toBe(true);
+    expect(getByTestId('panel1').open).toBe(false);
 
     fireEvent.click(getByText('label 3'));
-    expect(testOnChange).toHaveBeenCalledWith(2);
-    expect(queryByText('panel 3')).toBeNull();
+    expect(testOnChange).toHaveBeenCalledWith('panel3');
+    expect(getByTestId('panel3').open).toBe(false);
   });
 
   it('displays multiple panels if allowMultiple is true', () => {
-    jest.clearAllMocks();
-    const { getByText, queryByText } = render(
+    const { getByText, getByTestId } = render(
       <Accordion allowMultiple onChange={testOnChange}>
-        <AccordionPanel label="label 1">panel 1</AccordionPanel>
-        <AccordionPanel label="label 2">panel 2</AccordionPanel>
-        <AccordionPanel label="label 3">panel 3</AccordionPanel>
+        <AccordionPanel id="panel1" label="label 1">
+          panel 1
+        </AccordionPanel>
+        <AccordionPanel id="panel2" label="label 2">
+          panel 2
+        </AccordionPanel>
+        <AccordionPanel id="panel3" label="label 3">
+          panel 3
+        </AccordionPanel>
       </Accordion>,
     );
 
-    expect(queryByText('panel 1')).toBeNull();
-    expect(queryByText('panel 2')).toBeNull();
-    expect(queryByText('panel 3')).toBeNull();
+    expect(getByTestId('panel1')).toBeDefined();
+    expect(getByTestId('panel2')).toBeDefined();
+    expect(getByTestId('panel3')).toBeDefined();
 
     // open the first panel
     fireEvent.click(getByText('label 3'));
-    expect(testOnChange).toHaveBeenCalledWith([2]);
+    expect(testOnChange).toHaveBeenCalledWith('panel3');
 
-    expect(queryByText('panel 1')).toBeNull();
-    expect(queryByText('panel 2')).toBeNull();
-    expect(queryByText('panel 3')).toBeDefined();
+    expect(getByTestId('panel1').open).toBe(false);
+    expect(getByTestId('panel2').open).toBe(false);
+    expect(getByTestId('panel3').open).toBe(true);
 
     // open another panel
     fireEvent.click(getByText('label 2'));
 
-    expect(testOnChange).toHaveBeenCalledWith([2, 1]);
+    expect(testOnChange).toHaveBeenCalledWith('panel2');
 
-    expect(queryByText('panel 1')).toBeNull();
-    expect(queryByText('panel 2')).toBeDefined();
-    expect(queryByText('panel 3')).toBeDefined();
+    expect(getByTestId('panel1').open).toBe(false);
+    expect(getByTestId('panel2').open).toBe(true);
+    expect(getByTestId('panel3').open).toBe(true);
 
     // close the second panel
     fireEvent.click(getByText('label 2'));
-    expect(testOnChange).toHaveBeenCalledWith([2]);
+    expect(testOnChange).toHaveBeenCalledWith('panel2');
 
-    expect(queryByText('panel 1')).toBeNull();
-    expect(queryByText('panel 2')).toBeNull();
-    expect(queryByText('panel 3')).toBeDefined();
+    expect(getByTestId('panel1').open).toBe(false);
+    expect(getByTestId('panel2').open).toBe(false);
+    expect(getByTestId('panel3').open).toBe(true);
+  });
+
+  it('renders multiple open default panels', () => {
+    const { getByTestId } = render(
+      <Accordion
+        allowMultiple
+        defaultOpen={['panel1', 'panel2', 'panel3']}
+        onChange={testOnChange}
+      >
+        <AccordionPanel id="panel1" label="label 1">
+          panel 1
+        </AccordionPanel>
+        <AccordionPanel id="panel2" label="label 2">
+          panel 2
+        </AccordionPanel>
+        <AccordionPanel id="panel3" label="label 3">
+          panel 3
+        </AccordionPanel>
+      </Accordion>,
+    );
+
+    expect(getByTestId('panel1').open).toBe(true);
+    expect(getByTestId('panel2').open).toBe(true);
+    expect(getByTestId('panel3').open).toBe(true);
   });
 });

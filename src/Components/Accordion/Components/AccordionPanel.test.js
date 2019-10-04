@@ -36,7 +36,9 @@ function ServiceID(props) {
 describe('AccordionPanel', () => {
   it('renders', () => {
     const { getByText } = render(
-      <AccordionPanel label="label 1">panel 1</AccordionPanel>,
+      <AccordionPanel id="panel1" label="label 1">
+        panel 1
+      </AccordionPanel>,
     );
     expect(getByText('label 1')).toBeDefined();
   });
@@ -44,7 +46,8 @@ describe('AccordionPanel', () => {
   it('renders with label renderProp', () => {
     const { getByText, getByTitle } = render(
       <AccordionPanel
-        active
+        id="panel1"
+        open
         label={props => (
           <ServiceID
             label="PMT: 411 (0x19b): MPEG-4 AVC"

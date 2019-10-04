@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 import Block from '../../Block/Block';
 import Icon from '../../Icon/Icon';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const propTypes = {
   /**
@@ -10,9 +9,14 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   * This value can be used to open the panel in the Accordion
+   */
+  id: PropTypes.string.isRequired,
+  /**
    * A string or element to use as the button that expands/collapses the panel
    */
-  label: PropTypes.node.isRequired,
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+    .isRequired,
   /**
    * Is the panel contents visible
    */
@@ -24,7 +28,7 @@ const propTypes = {
 };
 
 function AccordionPanel(props) {
-  const { children, label, open, onPanelChange, ...rest } = props;
+  const { children, id, label, open, onPanelChange, ...rest } = props;
 
   const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
 
@@ -34,7 +38,13 @@ function AccordionPanel(props) {
   };
 
   return (
-    <Block as="details" displayBlock open={open}>
+    <Block
+      as="details"
+      displayBlock
+      open={open}
+      id={id}
+      data-testid={id}
+    >
       {typeof label === 'string' ? (
         <Block
           as="summary"

@@ -4,10 +4,10 @@ import React, {
   isValidElement,
   useState,
 } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import Block from '../Block/Block';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const propTypes = {
   /**
@@ -23,9 +23,12 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Zero-based index(es) of panels that should be opened
+   * Id or array of ids of the panels that should start opened
    */
-  defaultIndex: PropTypes.number,
+  defaultOpen: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   /**
    * Callback function that will be called when the active panel(s) change.
    * It will pass the index of the active panel, or an array of indexes if allowMultiple is true
@@ -48,54 +51,46 @@ function Accordion(props) {
     allowMultiple,
     className,
     children,
-    defaultIndex,
+    defaultOpen,
     onChange,
     ...rest
   } = props;
   const classes = classNames('accordion', className);
 
-  const initialState = allowMultiple
-    ? defaultIndex || []
-    : defaultIndex;
+  const startOpen =
+    typeof defaultOpen === 'string'
+      ? { [defaultOpen]: true }
+      : Array.isArray(defaultOpen) && defaultOpen.length
+      ? defaultOpen.reduce((result, panelId) => {
+          return Object.assign(result, {
+            [panelId]: true,
+          });
+        }, {})
+      : {};
 
-  const [active, setActive] = useState(initialState);
+  const [active, setActive] = useState(startOpen);
 
-  const getActiveCondition = itemIndex => {
-    if (Array.isArray(active)) {
-      return active.includes(itemIndex);
-    }
-    return active === itemIndex;
-  };
-
-  const handlePanelChange = selectedIndex => {
+  const handlePanelChange = selectedId => {
+    const isOpen = !!active[selectedId];
     if (allowMultiple) {
-      const activeIndex = active.indexOf(selectedIndex);
-      let nextActive = [...active];
-
-      // the selected panel is already active
-      if (activeIndex > -1) {
-        nextActive.splice(activeIndex, 1);
-      } else {
-        nextActive = [...active, selectedIndex];
-      }
-      setActive(nextActive);
-      onChange && onChange(nextActive);
+      setActive({
+        ...active,
+        [selectedId]: !isOpen,
+      });
     } else {
-      if (selectedIndex === active) {
-        setActive(null);
-      } else {
-        setActive(selectedIndex);
-      }
-      onChange && onChange(selectedIndex);
+      setActive({
+        [selectedId]: !isOpen,
+      });
     }
+    onChange && onChange(selectedId);
   };
 
-  const clones = Children.map(children, (child, childIndex) => {
+  const clones = Children.map(children, child => {
     if (!isValidElement(child)) return;
 
     return cloneElement(child, {
-      open: getActiveCondition(childIndex),
-      onPanelChange: () => handlePanelChange(childIndex),
+      open: !!active[child.props.id],
+      onPanelChange: () => handlePanelChange(child.props.id),
     });
   });
 
