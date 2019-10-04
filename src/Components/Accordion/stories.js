@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { storiesOf } from '@storybook/react';
 
 import Block from '../Block/Block';
@@ -328,3 +330,7 @@ function SidVideoDetail({ specs }) {
     </Block>
   );
 }
+
+SidVideoDetail.propTypes = {
+  specs: PropTypes.object,
+};
