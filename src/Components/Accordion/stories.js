@@ -226,13 +226,14 @@ storiesOf('Accordion', module)
     </Accordion>
   ))
   .add('Nested', () => (
-    <Accordion border="all">
+    <Accordion defaultOpen="panel1" border="all">
       <AccordionPanel
         id="panel1"
         displayBlock
         background="neutral-200"
         label="panel 1"
         textSize="7"
+        className="pl-5"
       >
         <Accordion allowMultiple>
           <AccordionPanel
