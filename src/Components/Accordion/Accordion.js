@@ -30,8 +30,7 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.string),
   ]),
   /**
-   * Callback function that will be called when the active panel(s) change.
-   * It will pass the index of the active panel, or an array of indexes if allowMultiple is true
+   * Callback function that is called with the ID of the panel that was open/closed
    */
   onChange: PropTypes.func,
 };
@@ -41,7 +40,7 @@ const defaultProps = {
 };
 
 /**
- * Display a list of options that expand/collapse to reveal more information.
+ * Display a list of panels that expand/collapse to reveal more information.
  *
  * ---
  */
@@ -87,7 +86,6 @@ function Accordion(props) {
 
   const clones = Children.map(children, child => {
     if (!isValidElement(child)) return;
-
     return cloneElement(child, {
       open: !!active[child.props.id],
       onPanelChange: () => handlePanelChange(child.props.id),

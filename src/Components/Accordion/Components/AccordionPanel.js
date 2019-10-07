@@ -18,7 +18,7 @@ const propTypes = {
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
     .isRequired,
   /**
-   * Is the panel contents visible
+   * Are the panel contents visible
    */
   open: PropTypes.bool,
   /**

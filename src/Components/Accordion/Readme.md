@@ -14,7 +14,7 @@ import AccordionPanel from './Components/AccordionPanel';
 <Accordion
   border="all"
   background="neutral-200"
-  onChange={index => console.log(index, 'panel clicked')}
+  onChange={id => console.log(id)}
 >
   <AccordionPanel id="panel1" padding={[3, 4, 5]} label="panel 1">
     panel 1 content
@@ -39,7 +39,7 @@ import AccordionPanel from './Components/AccordionPanel';
   allowMultiple
   border="all"
   background="neutral-200"
-  onChange={index => console.log(index, 'panel clicked')}
+  onChange={id => console.log(id)}
 >
   <AccordionPanel id="panel1" padding={[3, 4, 5]} label="panel 1">
     panel 1 content
@@ -85,7 +85,7 @@ Accordions can be nested to display complex tree structures.
 ```js
 import AccordionPanel from './Components/AccordionPanel';
 
-<Accordion defaultOpen="panel1" border="all">
+<Accordion defaultOpen={['panel1']} border="all">
   <AccordionPanel
     id="panel1"
     displayBlock
@@ -94,7 +94,7 @@ import AccordionPanel from './Components/AccordionPanel';
     textSize="7"
     className="pl-5"
   >
-    <Accordion allowMultiple defaultOpen="nestedPanel1">
+    <Accordion allowMultiple>
       <AccordionPanel
         id="nestedPanel1"
         background="neutral-200"
