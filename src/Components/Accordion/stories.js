@@ -132,7 +132,7 @@ storiesOf('Accordion', module)
         key={program.id}
         displayBlock
       >
-        <Accordion allowMultiple className="ml-5">
+        <Accordion allowMultiple defaultOpen="411" className="ml-5">
           {program.pids.map((pid, i) => {
             return (
               <AccordionPanel
@@ -158,7 +158,7 @@ storiesOf('Accordion', module)
       </AccordionPanel>
     ));
     return (
-      <Accordion border="all" background="white">
+      <Accordion defaultOpen="451" border="all" background="white">
         {items}
       </Accordion>
     );
