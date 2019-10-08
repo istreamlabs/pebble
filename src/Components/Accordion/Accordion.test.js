@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 
 import Accordion from './Accordion';
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 describe('Accordion', () => {
   beforeEach(() => {
@@ -14,12 +14,12 @@ describe('Accordion', () => {
   it('renders closed panels but will not render inValidElement, then opens the panel that is clicked', () => {
     const { getByTestId, getByText, queryByText } = render(
       <Accordion>
-        <AccordionPanel id="panel1" label="label 1">
+        <CollapsiblePanel id="panel1" label="label 1">
           panel 1
-        </AccordionPanel>
-        <AccordionPanel id="panel2" label="label 2">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel2" label="label 2">
           panel 2
-        </AccordionPanel>
+        </CollapsiblePanel>
         test
       </Accordion>,
     );
@@ -35,15 +35,15 @@ describe('Accordion', () => {
   it('renders default panel, calls onChange when a panel is clicked, toggles the visible panels', () => {
     const { getByTestId, getByText } = render(
       <Accordion defaultOpen="panel1" onChange={testOnChange}>
-        <AccordionPanel id="panel1" label="label 1">
+        <CollapsiblePanel id="panel1" label="label 1">
           panel 1
-        </AccordionPanel>
-        <AccordionPanel id="panel2" label="label 2">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel2" label="label 2">
           panel 2
-        </AccordionPanel>
-        <AccordionPanel id="panel3" label="label 3">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel3" label="label 3">
           panel 3
-        </AccordionPanel>
+        </CollapsiblePanel>
       </Accordion>,
     );
     expect(getByTestId('panel1')).toBeDefined();
@@ -65,15 +65,15 @@ describe('Accordion', () => {
   it('displays multiple panels if allowMultiple is true', () => {
     const { getByText, getByTestId } = render(
       <Accordion allowMultiple onChange={testOnChange}>
-        <AccordionPanel id="panel1" label="label 1">
+        <CollapsiblePanel id="panel1" label="label 1">
           panel 1
-        </AccordionPanel>
-        <AccordionPanel id="panel2" label="label 2">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel2" label="label 2">
           panel 2
-        </AccordionPanel>
-        <AccordionPanel id="panel3" label="label 3">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel3" label="label 3">
           panel 3
-        </AccordionPanel>
+        </CollapsiblePanel>
       </Accordion>,
     );
 
@@ -114,15 +114,15 @@ describe('Accordion', () => {
         defaultOpen={['panel1', 'panel2', 'panel3']}
         onChange={testOnChange}
       >
-        <AccordionPanel id="panel1" label="label 1">
+        <CollapsiblePanel id="panel1" label="label 1">
           panel 1
-        </AccordionPanel>
-        <AccordionPanel id="panel2" label="label 2">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel2" label="label 2">
           panel 2
-        </AccordionPanel>
-        <AccordionPanel id="panel3" label="label 3">
+        </CollapsiblePanel>
+        <CollapsiblePanel id="panel3" label="label 3">
           panel 3
-        </AccordionPanel>
+        </CollapsiblePanel>
       </Accordion>,
     );
 

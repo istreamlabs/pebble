@@ -1,5 +1,5 @@
-import Block from '../../Block/Block';
-import Icon from '../../Icon/Icon';
+import Block from '../Block/Block';
+import Icon from '../Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -24,17 +24,22 @@ const propTypes = {
   /**
    * Function to call when the label is pressed
    */
-  onPanelChange: PropTypes.func,
+  onToggle: PropTypes.func,
 };
 
-function AccordionPanel(props) {
-  const { children, id, label, open, onPanelChange, ...rest } = props;
+/**
+ * A detail/summary element that provides a way to display information when the component is in an "open" state
+ *
+ */
+
+function CollapsiblePanel(props) {
+  const { children, id, label, open, onToggle, ...rest } = props;
 
   const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
 
   const handleClick = event => {
     event.preventDefault();
-    onPanelChange();
+    onToggle();
   };
 
   return (
@@ -68,7 +73,7 @@ function AccordionPanel(props) {
   );
 }
 
-AccordionPanel.propTypes = propTypes;
-AccordionPanel.displayName = 'AccordionPanel';
+CollapsiblePanel.propTypes = propTypes;
+CollapsiblePanel.displayName = 'CollapsiblePanel';
 
-export default AccordionPanel;
+export default CollapsiblePanel;

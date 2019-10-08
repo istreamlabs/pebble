@@ -2,29 +2,29 @@
 
 Pebble exports 1 additional related component:
 
-- **AccordionPanel**: A label and container for a single panel of the Accordion
+- **CollapsiblePanel**: A label and container for a single panel of the Accordion
 
 ### Single
 
-By default, only a single panel may be open at one time. Each `<AccordionPanel />` requires an `id` and `label`.
+By default, only a single panel may be open at one time. Each `<CollapsiblePanel />` requires an `id` and `label`.
 
 ```js
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 <Accordion
   border="all"
   background="neutral-200"
   onChange={id => console.log(id)}
 >
-  <AccordionPanel id="panel1" padding={[3, 4, 5]} label="panel 1">
+  <CollapsiblePanel id="panel1" padding={[3, 4, 5]} label="panel 1">
     panel 1 content
-  </AccordionPanel>
-  <AccordionPanel id="panel2" padding={[3, 4, 5]} label="panel 2">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
     panel 2 content
-  </AccordionPanel>
-  <AccordionPanel id="panel3" padding={[3, 4, 5]} label="panel 3">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
     panel 3 content
-  </AccordionPanel>
+  </CollapsiblePanel>
 </Accordion>;
 ```
 
@@ -33,7 +33,7 @@ import AccordionPanel from './Components/AccordionPanel';
 To allow multiple panels to be open at one time, use `allowMultiple`.
 
 ```js
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 <Accordion
   allowMultiple
@@ -41,15 +41,15 @@ import AccordionPanel from './Components/AccordionPanel';
   background="neutral-200"
   onChange={id => console.log(id)}
 >
-  <AccordionPanel id="panel1" padding={[3, 4, 5]} label="panel 1">
+  <CollapsiblePanel id="panel1" padding={[3, 4, 5]} label="panel 1">
     panel 1 content
-  </AccordionPanel>
-  <AccordionPanel id="panel2" padding={[3, 4, 5]} label="panel 2">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
     panel 2 content
-  </AccordionPanel>
-  <AccordionPanel id="panel3" padding={[3, 4, 5]} label="panel 3">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
     panel 3 content
-  </AccordionPanel>
+  </CollapsiblePanel>
 </Accordion>;
 ```
 
@@ -58,7 +58,7 @@ import AccordionPanel from './Components/AccordionPanel';
 Set the `defaultOpen` prop the single string id, or an array of string ids of the panel(s) that should be open
 
 ```js
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 <Accordion
   defaultOpen={['panel2', 'panel3']}
@@ -66,15 +66,15 @@ import AccordionPanel from './Components/AccordionPanel';
   background="neutral-200"
   allowMultiple
 >
-  <AccordionPanel id="panel1" padding={[3, 4, 5]} label="panel 1">
+  <CollapsiblePanel id="panel1" padding={[3, 4, 5]} label="panel 1">
     content
-  </AccordionPanel>
-  <AccordionPanel id="panel2" padding={[3, 4, 5]} label="panel 2">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
     starts open
-  </AccordionPanel>
-  <AccordionPanel id="panel3" padding={[3, 4, 5]} label="panel 3">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
     starts open
-  </AccordionPanel>
+  </CollapsiblePanel>
 </Accordion>;
 ```
 
@@ -83,10 +83,10 @@ import AccordionPanel from './Components/AccordionPanel';
 Accordions can be nested to display complex tree structures.
 
 ```js
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 <Accordion defaultOpen={['panel1']} border="all">
-  <AccordionPanel
+  <CollapsiblePanel
     id="panel1"
     displayBlock
     background="neutral-200"
@@ -95,7 +95,7 @@ import AccordionPanel from './Components/AccordionPanel';
     className="pl-5"
   >
     <Accordion allowMultiple>
-      <AccordionPanel
+      <CollapsiblePanel
         id="nestedPanel1"
         background="neutral-200"
         label="level 1 panel 1"
@@ -103,58 +103,58 @@ import AccordionPanel from './Components/AccordionPanel';
         className="pl-5"
       >
         <Accordion allowMultiple>
-          <AccordionPanel
+          <CollapsiblePanel
             id="nested2Panel1"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="level 2 panel 1"
           >
             nested 2 panel 1 content
-          </AccordionPanel>
-          <AccordionPanel
+          </CollapsiblePanel>
+          <CollapsiblePanel
             id="nested2Panel2"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="level 2 panel 2"
           >
             nested 2 panel 2 content
-          </AccordionPanel>
-          <AccordionPanel
+          </CollapsiblePanel>
+          <CollapsiblePanel
             id="nested2Panel3"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="level 2 panel 3"
           >
             nested 2 panel 3 content
-          </AccordionPanel>
+          </CollapsiblePanel>
         </Accordion>
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="nestedPanel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="level 1 panel 2"
       >
         nested panel 2 content
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="nestedPanel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="level 1 panel 3"
       >
         nested panel 3 content
-      </AccordionPanel>
+      </CollapsiblePanel>
     </Accordion>
-  </AccordionPanel>
-  <AccordionPanel
+  </CollapsiblePanel>
+  <CollapsiblePanel
     id="panel2"
     background="neutral-200"
     padding={[3, 4, 5]}
     label="panel 2"
   >
     panel 2 content
-  </AccordionPanel>
+  </CollapsiblePanel>
 </Accordion>;
 ```
 
@@ -163,7 +163,7 @@ import AccordionPanel from './Components/AccordionPanel';
 The `label` accepts a render prop function so that it's appearance may be customized.
 
 ```js
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
 
@@ -191,7 +191,7 @@ function ExampleLabel({ open, label }) {
 }
 
 <Accordion border="all" background="neutral-200" allowMultiple>
-  <AccordionPanel
+  <CollapsiblePanel
     id="panel1"
     padding={[3, 4, 5]}
     label={props => (
@@ -199,12 +199,12 @@ function ExampleLabel({ open, label }) {
     )}
   >
     content
-  </AccordionPanel>
-  <AccordionPanel id="panel2" padding={[3, 4, 5]} label="panel 2">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
     content
-  </AccordionPanel>
-  <AccordionPanel id="panel3" padding={[3, 4, 5]} label="panel 3">
+  </CollapsiblePanel>
+  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
     content
-  </AccordionPanel>
+  </CollapsiblePanel>
 </Accordion>;
 ```

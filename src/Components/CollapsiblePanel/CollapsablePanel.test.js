@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import AccordionPanel from './AccordionPanel';
+import CollapsiblePanel from './CollapsiblePanel';
 
-import Block from '../../Block/Block';
-import Icon from '../../Icon/Icon';
+import Block from '../Block/Block';
+import Icon from '../Icon/Icon';
 
 function ServiceID(props) {
   // eslint-disable-next-line react/prop-types
@@ -33,21 +33,26 @@ function ServiceID(props) {
     </Block>
   );
 }
-describe('AccordionPanel', () => {
+describe('CollapsiblePanel', () => {
   it('renders', () => {
     const { getByText } = render(
-      <AccordionPanel id="panel1" label="label 1">
+      <CollapsiblePanel
+        id="panel1"
+        label="label 1"
+        onToggle={jest.fn()}
+      >
         panel 1
-      </AccordionPanel>,
+      </CollapsiblePanel>,
     );
     expect(getByText('label 1')).toBeDefined();
   });
 
   it('renders with label renderProp', () => {
     const { getByText, getByTitle } = render(
-      <AccordionPanel
+      <CollapsiblePanel
         id="panel1"
         open
+        onToggle={jest.fn()}
         label={props => (
           <ServiceID
             label="PMT: 411 (0x19b): MPEG-4 AVC"

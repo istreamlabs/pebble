@@ -88,7 +88,7 @@ function Accordion(props) {
     if (!isValidElement(child)) return;
     return cloneElement(child, {
       open: !!active[child.props.id],
-      onPanelChange: () => handlePanelChange(child.props.id),
+      onToggle: () => handlePanelChange(child.props.id),
     });
   });
 

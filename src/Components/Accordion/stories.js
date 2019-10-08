@@ -6,7 +6,7 @@ import { storiesOf } from '@storybook/react';
 import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
 import Accordion from './Accordion';
-import AccordionPanel from './Components/AccordionPanel';
+import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 const VDCM = [
   {
@@ -125,7 +125,7 @@ storiesOf('Accordion', module)
   })
   .add('Nested with label renderProp', () => {
     const items = VDCM.map(program => (
-      <AccordionPanel
+      <CollapsiblePanel
         id={`${program.id}`}
         background="neutral-200"
         label={program.name}
@@ -135,11 +135,11 @@ storiesOf('Accordion', module)
         <Accordion allowMultiple defaultOpen="411" className="ml-5">
           {program.pids.map((pid, i) => {
             return (
-              <AccordionPanel
+              <CollapsiblePanel
                 background="neutral-300"
                 label={props => (
                   <ServiceID
-                    onPanelChange={props.onPanelChange}
+                    onToggle={props.onToggle}
                     open={props.open}
                     label={`${pid.id} - ${pid.type}`}
                     type={pid.type}
@@ -151,11 +151,11 @@ storiesOf('Accordion', module)
                 displayBlock
               >
                 <SidVideoDetail specs={pid.specs} />
-              </AccordionPanel>
+              </CollapsiblePanel>
             );
           })}
         </Accordion>
-      </AccordionPanel>
+      </CollapsiblePanel>
     ));
     return (
       <Accordion defaultOpen="451" border="all" background="white">
@@ -165,30 +165,30 @@ storiesOf('Accordion', module)
   })
   .add('Single', () => (
     <Accordion border="all" defaultOpen="panel2" background="white">
-      <AccordionPanel
+      <CollapsiblePanel
         id="panel1"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 1"
       >
         panel 1 content
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="panel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 2"
       >
         panel 2 content
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="panel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 3"
       >
         panel 3 content
-      </AccordionPanel>
+      </CollapsiblePanel>
     </Accordion>
   ))
   .add('Multiple', () => (
@@ -199,35 +199,35 @@ storiesOf('Accordion', module)
       background="white"
       defaultOpen={['panel2', 'panel3']}
     >
-      <AccordionPanel
+      <CollapsiblePanel
         id="panel1"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 1"
       >
         panel 1 content
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="panel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 2"
       >
         panel 2 content
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="panel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 3"
       >
         panel 3 content
-      </AccordionPanel>
+      </CollapsiblePanel>
     </Accordion>
   ))
   .add('Nested', () => (
     <Accordion defaultOpen="panel1" border="all">
-      <AccordionPanel
+      <CollapsiblePanel
         id="panel1"
         displayBlock
         background="neutral-200"
@@ -236,48 +236,48 @@ storiesOf('Accordion', module)
         className="pl-5"
       >
         <Accordion allowMultiple>
-          <AccordionPanel
+          <CollapsiblePanel
             id="nestedPanel1"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="nested panel 1"
           >
             nested panel 1 content
-          </AccordionPanel>
-          <AccordionPanel
+          </CollapsiblePanel>
+          <CollapsiblePanel
             id="nestedPanel2"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="nested panel 2"
           >
             nested panel 2 content
-          </AccordionPanel>
-          <AccordionPanel
+          </CollapsiblePanel>
+          <CollapsiblePanel
             id="nestedPanel3"
             background="neutral-200"
             padding={[3, 4, 5]}
             label="nested panel 3"
           >
             nested panel 3 content
-          </AccordionPanel>
+          </CollapsiblePanel>
         </Accordion>
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="panel2"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 2"
       >
         panel 2 content
-      </AccordionPanel>
-      <AccordionPanel
+      </CollapsiblePanel>
+      <CollapsiblePanel
         id="panel3"
         background="neutral-200"
         padding={[3, 4, 5]}
         label="panel 3"
       >
         panel 3 content
-      </AccordionPanel>
+      </CollapsiblePanel>
     </Accordion>
   ));
 
