@@ -1,5 +1,4 @@
 export { default as Accordion } from './Accordion/Accordion';
-export { default as AccordionPanel } from './Accordion/Components/AccordionPanel';
 export { default as Alert } from './Alert/Alert';
 export { default as Badge } from './Badge/Badge';
 export { default as Block } from './Block/Block';
@@ -7,6 +6,7 @@ export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { default as Button } from './Button/Button';
 export { default as ButtonGroup } from './ButtonGroup/ButtonGroup';
 export { default as Card } from './Card/Card';
+export { default as CollapsiblePanel } from './CollapsiblePanel/CollapsiblePanel';
 export { default as DateTime } from './DateTime/DateTime';
 export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
 export { default as DropdownMenuSeparator } from './DropdownMenu/Components/DropdownMenuSeparator';
