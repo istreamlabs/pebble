@@ -55,7 +55,7 @@ export class Tabs extends React.PureComponent {
       ...rest
     } = this.props;
 
-    const classes = classNames('tabs', className);
+    const classes = classNames(className, 'relative');
 
     const getTabsMarkup = () => {
       if (tabs) {
@@ -129,18 +129,18 @@ export class Tabs extends React.PureComponent {
     };
 
     return (
-      <>
+      <Block displayBlock className={classes}>
         <Block
           as="ul"
           role="tablist"
-          className={classes}
+          className="tabs"
           onScroll={this.trackScrolling}
           {...rest}
         >
           {getTabsMarkup()}
         </Block>
         {getSelectedTabContent()}
-      </>
+      </Block>
     );
   }
 }
