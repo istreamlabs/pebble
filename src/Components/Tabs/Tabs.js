@@ -55,7 +55,7 @@ export class Tabs extends React.PureComponent {
       ...rest
     } = this.props;
 
-    const tabsClasses = classNames('tabs');
+    const classes = classNames(className, 'relative');
 
     const getTabsMarkup = () => {
       if (tabs) {
@@ -129,15 +129,11 @@ export class Tabs extends React.PureComponent {
     };
 
     return (
-      <Block
-        flex
-        direction="column"
-        className={`relative ${className} overflow-hidden`}
-      >
+      <Block displayBlock className={classes}>
         <Block
           as="ul"
           role="tablist"
-          className={tabsClasses}
+          className="tabs"
           onScroll={this.trackScrolling}
           {...rest}
         >
