@@ -15,7 +15,6 @@ function loadStories() {
 
 const styles = {
   margin: '1rem',
-  width: '30rem',
   display: 'block',
 };
 const componentContainerDecorator = storyFn => (
