@@ -49,7 +49,7 @@ const propTypes = {
   /**
    * Title content of the card
    */
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 
 const defaultProps = {
