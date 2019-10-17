@@ -23,14 +23,14 @@ const propTypes = {
     icon: PropTypes.string,
     aliases: PropTypes.arrayOf(PropTypes.string),
     exact: PropTypes.bool,
-    activeHandler: PropTypes.bool,
+    activeHandler: PropTypes.func,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
         href: PropTypes.string,
         aliases: PropTypes.arrayOf(PropTypes.string),
         exact: PropTypes.bool,
-        activeHandler: PropTypes.bool,
+        activeHandler: PropTypes.func,
       }),
     ),
   }).isRequired,
