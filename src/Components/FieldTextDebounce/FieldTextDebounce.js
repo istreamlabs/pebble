@@ -201,7 +201,14 @@ const FieldTextDebounce = ({
         clearTimeout(handler);
       };
     }
-  }, [internalValue]);
+  }, [
+    internalValue,
+    delay,
+    minimumCharacters,
+    onDebounce,
+    value,
+    externalValue,
+  ]);
 
   const handleFocus = () => {
     if (value.length < 2) {
