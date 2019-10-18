@@ -55,22 +55,23 @@ function Example() {
         onDebounce={setMinLengthValue}
       />
       <div className="fs-6 mt-3 mb-5">
-        Will not update until 5 charasters are typed:{' '}
+        Will not update until 5 characters are typed:{' '}
         <span className="fw-700">{minLengthValue}</span>
       </div>
     </>
   );
 }
-<Example />
+<Example />;
 ```
 
 ### Using [FieldText](/#Components/FieldText) Features
+
 ```js
 import { useState } from 'react';
 const [value, setValue] = useState('');
 const handleClear = () => {
   setValue('');
-}
+};
 <>
   <FieldTextDebounce
     label="Supports Clearing"
@@ -90,7 +91,7 @@ const handleClear = () => {
     className="mb-5"
   />
 
-   <FieldTextDebounce
+  <FieldTextDebounce
     label="placeholder"
     id="placeholder-input"
     value={value}
@@ -98,5 +99,5 @@ const handleClear = () => {
     placeholder="does not update value right away"
     className="mb-5"
   />
-</>
+</>;
 ```

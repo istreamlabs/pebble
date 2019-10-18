@@ -224,14 +224,6 @@ const FieldTextDebounce = ({
 
   return (
     <div className="w-100 relative">
-      <FieldText
-        {...rest}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        value={internalValue}
-        clearBtnFunc={internalClearBtnFunc}
-      />
       {showMinimumMsg && (
         <Block
           paddingHorizontal="2"
@@ -240,15 +232,25 @@ const FieldTextDebounce = ({
           color="neutral-200"
           textSize="6"
           radius="2"
-          marginTop="1"
+          marginBottom="1"
           className="animate fadeIn absolute shadow-1"
           style={{
             zIndex: 1,
+            right: 0,
+            top: '-3px',
           }}
         >
           {minimumCharacters} character minimum&hellip;
         </Block>
       )}
+      <FieldText
+        {...rest}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        value={internalValue}
+        clearBtnFunc={internalClearBtnFunc}
+      />
     </div>
   );
 };
