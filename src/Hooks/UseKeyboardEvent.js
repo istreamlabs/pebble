@@ -4,6 +4,9 @@ export default (key, callback) => {
   useEffect(() => {
     const handler = function(event) {
       if (event.key === key) {
+        if (event.target.tagName !== 'INPUT') {
+          event.preventDefault();
+        }
         callback();
       }
     };
