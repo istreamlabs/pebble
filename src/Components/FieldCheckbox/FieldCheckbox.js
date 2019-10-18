@@ -132,7 +132,7 @@ function FieldCheckbox({
     }
 
     // normal checkbox
-    const labelClasses = classNames('db mb-2', {
+    const labelClasses = classNames('db', {
       red: isInvalid,
     });
 
