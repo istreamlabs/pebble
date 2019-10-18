@@ -35,6 +35,10 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
+   * Additional classes to add to the label
+   */
+  labelClassName: PropTypes.string,
+  /**
    * Callback function when a checkbox is changed
    */
   onChange: PropTypes.func,
@@ -72,6 +76,7 @@ function FieldCheckbox({
   label,
   isSelected,
   isInvalid,
+  labelClassName,
   className,
   helpText,
   value,
@@ -98,7 +103,7 @@ function FieldCheckbox({
 
   const labelMarkup = () => {
     if (toggle) {
-      const labelClasses = classNames('flex', {
+      const labelClasses = classNames(labelClassName, 'flex', {
         'items-center': toggle && !isInvalid,
         red: isInvalid,
       });
@@ -132,7 +137,7 @@ function FieldCheckbox({
     }
 
     // normal checkbox
-    const labelClasses = classNames('db mb-2', {
+    const labelClasses = classNames(labelClassName, 'db', {
       red: isInvalid,
     });
 
