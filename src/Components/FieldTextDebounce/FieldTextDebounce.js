@@ -211,7 +211,7 @@ const FieldTextDebounce = ({
   ]);
 
   const handleFocus = () => {
-    if (value.length < 2) {
+    if (value.length < minimumCharacters) {
       setShowMinimumMsg(true);
     }
     if (onFocus) onFocus();
@@ -226,7 +226,7 @@ const FieldTextDebounce = ({
     const newValue = (event.target || {}).value;
     setInternalValue(newValue);
     setExternalValue(newValue);
-    setShowMinimumMsg(newValue.length < 2);
+    setShowMinimumMsg(newValue.length < minimumCharacters);
   };
 
   return (
