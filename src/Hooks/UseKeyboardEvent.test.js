@@ -67,6 +67,23 @@ describe('useKeyboardEvent', () => {
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
+  it('it calls the callback with the correct value when the keydown event but the string is all caps', async () => {
+    const callback = jest.fn();
+    const { container } = render(
+      <TestComponent detectKeys="CTRL+s" callback={callback} />,
+    );
+    const keyDownEvent = new KeyboardEvent('keydown', {
+      key: 's',
+      bubbles: true,
+      which: 83,
+      code: 'KeyS',
+      ctrlKey: true,
+    });
+    fireEvent(container, keyDownEvent);
+    expect(callback).toHaveBeenCalledWith(keyDownEvent);
+    expect(callback).toHaveBeenCalledTimes(1);
+  });
+
   it('it calls the callback with the correct value when the keydown event is fired with meta + letter', async () => {
     const callback = jest.fn();
     const { container } = render(

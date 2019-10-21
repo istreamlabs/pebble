@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
 
+/**
+ * adds a keydown event listener to the window
+ * when the key(s) are pressed, it calls the callback
+ */
+
 export default (function(key, callback) {
   useEffect(
     function() {
