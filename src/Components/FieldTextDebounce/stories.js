@@ -47,6 +47,16 @@ function Example() {
         onDebounce={setValue}
         className="mb-5"
       />
+
+      <FieldTextDebounce
+        hideLabel
+        label="hidden label"
+        id="hiddenLabel"
+        value={value}
+        onDebounce={setValue}
+        placeholder="hidden label"
+        size="small"
+      />
     </>
   );
 }
