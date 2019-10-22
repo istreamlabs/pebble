@@ -18,6 +18,7 @@ export { default as FieldNumber } from './FieldNumber/FieldNumber';
 export { default as FieldRadioGroup } from './FieldRadioGroup/FieldRadioGroup';
 export { default as FieldSelect } from './FieldSelect/FieldSelect';
 export { default as FieldText } from './FieldText/FieldText';
+export { default as FieldTextDebounce } from './FieldTextDebounce/FieldTextDebounce';
 export { default as FieldToggle } from './FieldToggle/FieldToggle';
 export { default as Form } from './Form/Form';
 export { default as FormLayout } from './FormLayout/FormLayout';
