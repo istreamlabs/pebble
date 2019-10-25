@@ -1,4 +1,4 @@
-Use shadow tokens to set a box shadow.
+Use shadow tokens to set a box shadow. Based off of Tobias Ahlin's article on <a href="https://tobiasahlin.com/blog/layered-smooth-box-shadows/">smoother and sharper box-shadows</a>.
 
 <table>
     <thead>
@@ -12,27 +12,42 @@ Use shadow tokens to set a box shadow.
         <tr>
             <td>`$box-shadow-1`</td>
             <td>`.shadow-1`</td>
-            <td>`0 1px 1px rgba(0, 0, 0, .07), 0 1px 8px rgba(0, 0, 0, .1)`</td>
+            <td>`0 1px 1px rgba(0, 0, 0, 0.07),
+  0 1px 8px rgba(0, 0, 0, 0.07);`</td>
         </tr>
         <tr>
             <td>`$box-shadow-2`</td>
             <td>`.shadow-2`</td>
-            <td>`0 1px 8px rgba(0, 0, 0, .07), 0 8px 20px rgba(0, 0, 0, .1)`</td>
+            <td>`0 1px 1px rgba(0,0,0,0.07),
+  0 2px 2px rgba(0,0,0,0.07),
+  0 4px 4px rgba(0,0,0,0.07)`</td>
         </tr>
         <tr>
             <td>`$box-shadow-3`</td>
             <td>`.shadow-3`</td>
-            <td>`0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05)`</td>
+            <td>`0 1px 1px rgba(0,0,0,0.07),
+  0 2px 2px rgba(0,0,0,0.07),
+  0 4px 4px rgba(0,0,0,0.07),
+  0 8px 8px rgba(0,0,0,0.07)`</td>
         </tr>
         <tr>
             <td>`$box-shadow-3`</td>
             <td>`.shadow-4`</td>
-            <td>`0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05)`</td>
+            <td>`0 1px 1px rgba(0,0,0,0.07),
+  0 2px 2px rgba(0,0,0,0.07),
+  0 4px 4px rgba(0,0,0,0.07),
+  0 8px 8px rgba(0,0,0,0.07),
+  0 16px 16px rgba(0,0,0,0.07)`</td>
         </tr>
         <tr>
             <td>`$box-shadow-3`</td>
             <td>`.shadow-5`</td>
-            <td>`0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05)`</td>
+            <td>`0 1px 1px rgba(0,0,0,0.07),
+  0 2px 2px rgba(0,0,0,0.07),
+  0 4px 4px rgba(0,0,0,0.07),
+  0 8px 8px rgba(0,0,0,0.07),
+  0 16px 16px rgba(0,0,0,0.07),
+  0 32px 32px rgba(0,0,0,0.07)`</td>
         </tr>
     </tbody>
 </table>
