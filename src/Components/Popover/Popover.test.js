@@ -61,4 +61,66 @@ describe('Popover', () => {
     fireEvent.click(getByText('trigger'));
     expect(mockFn).toHaveBeenCalledTimes(2);
   });
+
+  it('passes the onTriggerClicked handler to content render prop', () => {
+    const { getByText, queryByText } = render(
+      <Popover
+        content={onTriggerClicked => (
+          <div>
+            <button type="button" onClick={onTriggerClicked}>
+              Content Button
+            </button>
+          </div>
+        )}
+      >
+        <button type="button">trigger</button>
+      </Popover>,
+    );
+    fireEvent.click(getByText('trigger'));
+    fireEvent.click(getByText('Content Button'));
+    expect(queryByText('Content Button')).toBeNull();
+  });
+
+  describe('onBodyClick', () => {
+    it('closes the popover when the body is clicked', () => {
+      const { getByText, queryByText } = render(
+        <Popover content={<div>popover content</div>}>
+          <button type="button">trigger</button>
+        </Popover>,
+      );
+      fireEvent.click(getByText('trigger'));
+      expect(getByText('popover content')).toBeDefined();
+      fireEvent.click(document.body);
+      expect(queryByText('popover content')).toBeNull();
+    });
+
+    it('does not close the popover when content is clicked', () => {
+      const { getByText } = render(
+        <Popover content={<div>popover content</div>}>
+          <button type="button">trigger</button>
+        </Popover>,
+      );
+      fireEvent.click(getByText('trigger'));
+      const content = getByText('popover content');
+      expect(content).toBeDefined();
+      fireEvent.click(content);
+      expect(content).toBeDefined();
+    });
+
+    it('closes the popover when closeOnContentClick is true and content is clicked', () => {
+      const { getByText, queryByText } = render(
+        <Popover
+          closeOnContentClick
+          content={<div>popover content</div>}
+        >
+          <button type="button">trigger</button>
+        </Popover>,
+      );
+      fireEvent.click(getByText('trigger'));
+      const content = getByText('popover content');
+      expect(content).toBeDefined();
+      fireEvent.click(content);
+      expect(queryByText('popover content')).toBeNull();
+    });
+  });
 });

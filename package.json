@@ -65,6 +65,7 @@
     "publish-for-npm": "git+https://github.com/codefresh-plugins/npm-publish.git",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-merge-refs": "^1.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "react-styleguidist": "^9.0.8",

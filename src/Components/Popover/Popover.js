@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Manager, Popper, Reference } from 'react-popper';
 import classNames from 'classnames';
+import mergeRefs from 'react-merge-refs';
 
 import { placementType } from '../../Types';
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
@@ -19,9 +20,14 @@ const propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
+   * Close the popover when `content` is clicked
+   */
+  closeOnContentClick: PropTypes.bool,
+  /**
    * The content of the popover
    */
-  content: PropTypes.node.isRequired,
+  content: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
+    .isRequired,
   /**
    * Callback when the popover is toggled
    */
@@ -42,6 +48,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  closeOnContentClick: false,
   hideArrow: false,
   isOpen: false,
   placement: 'bottom',
@@ -60,6 +67,7 @@ const Popover = props => {
     isOpen,
     children,
     className,
+    closeOnContentClick,
     content,
     hideArrow,
     onToggle,
@@ -67,13 +75,15 @@ const Popover = props => {
   } = props;
   const [showing, setShowing] = useState(isOpen);
 
+  const popoverRef = React.useRef();
+  const triggerRef = React.useRef();
+
   const open = () => {
     if (onToggle) {
       onToggle(true);
     }
     setShowing(true);
-
-    // document.body.addEventListener('click', onBodyClick, false);
+    document.body.addEventListener('click', onBodyClick, false);
   };
 
   const close = () => {
@@ -81,10 +91,32 @@ const Popover = props => {
       onToggle(false);
     }
     setShowing(false);
-    // removeBodyListeners();
+    document.body.removeEventListener('click', onBodyClick, false);
   };
 
   useKeyboardEvent('Escape', close);
+
+  const onBodyClick = e => {
+    const popover = popoverRef.current;
+    const trigger = triggerRef.current;
+
+    if (!popover || !trigger) {
+      return;
+    }
+
+    if (e.target === trigger || trigger.contains(e.target)) {
+      return;
+    }
+
+    if (e.target === popover || popover.contains(e.target)) {
+      if (closeOnContentClick) {
+        close();
+      }
+      return;
+    }
+
+    close();
+  };
 
   React.useEffect(() => {
     setShowing(isOpen);
@@ -99,7 +131,7 @@ const Popover = props => {
         }
       },
       className: classNames(className, children.props.className),
-      ref,
+      ref: mergeRefs([ref, triggerRef]),
       role: 'button',
       'aria-expanded': showing,
       'aria-haspopup': true,
@@ -111,9 +143,14 @@ const Popover = props => {
   };
 
   const arrowClasses = classNames('popover-arrow', {
-    'bg-white': content.props.background === undefined,
-    [`bg-${content.props.background}`]: content.props.background,
+    'bg-white':
+      typeof content !== 'function' &&
+      content.props.background === undefined,
   });
+
+  const popperStyle = {
+    zIndex: 2,
+  };
 
   return (
     <Manager>
@@ -127,11 +164,10 @@ const Popover = props => {
               <div
                 role="dialog"
                 aria-modal="false"
-                data-testid="popoverRef"
                 aria-hidden={!showing}
-                style={style}
+                style={{ ...style, ...popperStyle }}
                 data-placement={placement}
-                ref={ref}
+                ref={mergeRefs([ref, popoverRef])}
               >
                 {!hideArrow && (
                   <div
@@ -141,7 +177,9 @@ const Popover = props => {
                     style={arrowProps.style}
                   />
                 )}
-                {content}
+                {typeof content === 'function'
+                  ? content(onTriggerClicked)
+                  : content}
               </div>
             </>
           )}
