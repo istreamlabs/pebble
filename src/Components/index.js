@@ -34,6 +34,7 @@ export { default as Metric } from './Metric/Metric';
 export { default as Modal } from './Modal/Modal';
 export { default as Overlay } from './Overlay/Overlay';
 export { default as Pagination } from './Pagination/Pagination';
+export { default as Popover } from './Popover/Popover';
 export { default as Icon } from './Icon/Icon';
 export { default as Table } from './Table/Table';
 export { default as TableBody } from './Table/Components/TableBody';

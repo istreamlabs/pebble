@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Manager, Popper, Reference } from 'react-popper';
-import onClickOutside from 'react-onclickoutside';
+import classNames from 'classnames';
 
 import { placementType } from '../../Types';
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
 
+import './Popover.scss';
+
 const propTypes = {
+  className: PropTypes.string,
   /**
    * Whether the popover is initially open
    */
@@ -24,17 +27,25 @@ const propTypes = {
    */
   onToggle: PropTypes.func,
   /**
-   * Where the popover will appear relative to the trigger
+   * Where the popover will appear relative to the trigger.
+   * This will automatically adjust if there is not enough room
+   * to properly display the popover in the specified placement
    *
    * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
    * @type {PropTypes.Requireable<PlacementType>}
    */
   placement: placementType,
+  /**
+   * Hide the popover arrow
+   */
+  hideArrow: PropTypes.bool,
 };
 
 const defaultProps = {
+  hideArrow: false,
   isOpen: false,
   placement: 'bottom',
+  trigger: 'click',
 };
 
 /**
@@ -45,31 +56,41 @@ const defaultProps = {
  */
 
 const Popover = props => {
-  const { isOpen, children, content, onToggle, placement } = props;
-  const [show, setShow] = useState(isOpen);
+  const {
+    isOpen,
+    children,
+    className,
+    content,
+    hideArrow,
+    onToggle,
+    placement,
+  } = props;
+  const [showing, setShowing] = useState(isOpen);
 
   const open = () => {
     if (onToggle) {
       onToggle(true);
     }
-    setShow(true);
+    setShowing(true);
+
+    // document.body.addEventListener('click', onBodyClick, false);
   };
 
   const close = () => {
-    console.log('closing...');
     if (onToggle) {
       onToggle(false);
     }
-    setShow(false);
+    setShowing(false);
+    // removeBodyListeners();
   };
 
   useKeyboardEvent('Escape', close);
 
   React.useEffect(() => {
-    setShow(isOpen);
+    setShowing(isOpen);
   }, [isOpen]);
 
-  const renderTrigger = ref => {
+  const renderTrigger = (ref, className) => {
     return React.cloneElement(children, {
       onClick: e => {
         onTriggerClicked();
@@ -77,38 +98,52 @@ const Popover = props => {
           children.props.onClick(e);
         }
       },
+      className: classNames(className, children.props.className),
       ref,
       role: 'button',
-      'aria-expanded': show,
+      'aria-expanded': showing,
       'aria-haspopup': true,
     });
   };
 
   const onTriggerClicked = () => {
-    return show ? close() : open();
+    return showing ? close() : open();
   };
 
-  // used by onClickOutside HOC
-  Popover.handleClickOutside = () => {
-    console.log('click outside');
-
-    close();
-  };
+  const arrowClasses = classNames('popover-arrow', {
+    'bg-white': content.props.background === undefined,
+    [`bg-${content.props.background}`]: content.props.background,
+  });
 
   return (
     <Manager>
-      <Reference>{({ ref }) => renderTrigger(ref)}</Reference>
-      {show && (
+      <Reference>
+        {({ ref }) => renderTrigger(ref, className)}
+      </Reference>
+      {showing && (
         <Popper placement={placement}>
-          {(ref, style, placement) => (
-            <div
-              data-testid="popoverRef"
-              ref={ref}
-              style={style}
-              data-placement={placement}
-            >
-              {content}
-            </div>
+          {({ ref, style, placement, arrowProps }) => (
+            <>
+              <div
+                role="dialog"
+                aria-modal="false"
+                data-testid="popoverRef"
+                aria-hidden={!showing}
+                style={style}
+                data-placement={placement}
+                ref={ref}
+              >
+                {!hideArrow && (
+                  <div
+                    role="presentation"
+                    className={arrowClasses}
+                    ref={arrowProps.ref}
+                    style={arrowProps.style}
+                  />
+                )}
+                {content}
+              </div>
+            </>
           )}
         </Popper>
       )}
@@ -119,10 +154,4 @@ const Popover = props => {
 Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
 
-const clickOutsideConfig = {
-  handleClickOutside: () => Popover.handleClickOutside,
-};
-
-export { Popover as TestablePopOver };
-
-export default onClickOutside(Popover, clickOutsideConfig);
+export default Popover;
