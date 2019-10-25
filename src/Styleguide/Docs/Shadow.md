@@ -24,15 +24,26 @@ Use shadow tokens to set a box shadow.
             <td>`.shadow-3`</td>
             <td>`0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05)`</td>
         </tr>
+        <tr>
+            <td>`$box-shadow-3`</td>
+            <td>`.shadow-4`</td>
+            <td>`0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05)`</td>
+        </tr>
+        <tr>
+            <td>`$box-shadow-3`</td>
+            <td>`.shadow-5`</td>
+            <td>`0 1px 8px rgba(0, 0, 0, .1), 0 16px 40px rgba(0, 0, 0, .07), 0 24px 56px rgba(0, 0, 0, .05)`</td>
+        </tr>
     </tbody>
 </table>
 
 ```js
 import Block from '../../Components/Block/Block';
 
-<Block justify="around" marginTop="7">
+<Block itemSpacing="7" justify="around" marginTop="7">
   <Block
-    width="175px"
+    flex
+    radius="2"
     height="100px"
     className="shadow-1"
     background="white"
@@ -42,7 +53,8 @@ import Block from '../../Components/Block/Block';
     .shadow-1
   </Block>
   <Block
-    width="175px"
+    flex
+    radius="2"
     height="100px"
     className="shadow-2"
     background="white"
@@ -52,7 +64,8 @@ import Block from '../../Components/Block/Block';
     .shadow-2
   </Block>
   <Block
-    width="175px"
+    flex
+    radius="2"
     height="100px"
     className="shadow-3"
     background="white"
@@ -60,6 +73,28 @@ import Block from '../../Components/Block/Block';
     justify="center"
   >
     .shadow-3
+  </Block>
+  <Block
+    flex
+    radius="2"
+    height="100px"
+    className="shadow-4"
+    background="white"
+    alignItems="center"
+    justify="center"
+  >
+    .shadow-4
+  </Block>
+  <Block
+    flex
+    radius="2"
+    height="100px"
+    className="shadow-5"
+    background="white"
+    alignItems="center"
+    justify="center"
+  >
+    .shadow-5
   </Block>
 </Block>;
 ```
