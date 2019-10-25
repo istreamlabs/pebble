@@ -4,12 +4,19 @@ import { Manager, Popper, Reference } from 'react-popper';
 import classNames from 'classnames';
 import mergeRefs from 'react-merge-refs';
 
-import { placementType } from '../../Types';
+import { colorType, placementType } from '../../Types';
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
 
 import './Popover.scss';
 
 const propTypes = {
+  /**
+   * The color of the popover arrow. If not specified, the arrow will be colored the same as the background of the `content`
+   */
+  arrowColor: colorType,
+  /**
+   * Additional classes to add
+   */
   className: PropTypes.string,
   /**
    * Whether the popover is initially open
@@ -64,12 +71,13 @@ const defaultProps = {
 
 const Popover = props => {
   const {
-    isOpen,
+    arrowColor,
     children,
     className,
     closeOnContentClick,
     content,
     hideArrow,
+    isOpen,
     onToggle,
     placement,
   } = props;
@@ -142,10 +150,16 @@ const Popover = props => {
     return showing ? close() : open();
   };
 
+  const backgroundColor =
+    typeof content !== 'function' &&
+    content.props.background === undefined
+      ? 'white'
+      : typeof content === 'function'
+      ? arrowColor
+      : content.props.background;
+
   const arrowClasses = classNames('popover-arrow', {
-    'bg-white':
-      typeof content !== 'function' &&
-      content.props.background === undefined,
+    [`bg-${backgroundColor}`]: backgroundColor,
   });
 
   const popperStyle = {

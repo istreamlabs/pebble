@@ -7,7 +7,8 @@ import Button from '../Button/Button';
 <Popover
   content={
     <Block
-      background="white"
+      background="blue"
+      color="white"
       displayBlock
       padding="3"
       radius="2"
@@ -31,6 +32,7 @@ import Button from '../Button/Button';
 import FieldText from '../FieldText/FieldText';
 
 <Popover
+  arrowColor="neutral-200"
   content={onTriggerClicked => (
     <Block
       background="white"
