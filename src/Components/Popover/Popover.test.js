@@ -1,6 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
+import Block from '../Block/Block';
 import Popover from './Popover';
 
 jest.mock('popper.js', () => {
@@ -45,6 +46,19 @@ describe('Popover', () => {
     expect(mockFn).toHaveBeenCalledTimes(2);
   });
 
+  it('applies the content background color to the arrow', () => {
+    const { getByTestId } = render(
+      <Popover
+        isOpen
+        content={<Block background="red">popover content</Block>}
+      >
+        <button type="button">trigger</button>
+      </Popover>,
+    );
+    const popoverArrow = getByTestId('popover-arrow');
+    expect(popoverArrow.classList.contains('bg-red')).toEqual(true);
+  });
+
   it('calls the trigger onClick when trigger is clicked', () => {
     const mockFn = jest.fn();
 
@@ -65,6 +79,7 @@ describe('Popover', () => {
   it('passes the onTriggerClicked handler to content render prop', () => {
     const { getByText, queryByText } = render(
       <Popover
+        arrowColor="blue"
         content={onTriggerClicked => (
           <div>
             <button type="button" onClick={onTriggerClicked}>

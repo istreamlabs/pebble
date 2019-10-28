@@ -31,8 +31,10 @@ import Block from '../Block/Block';
 import Button from '../Button/Button';
 import FieldText from '../FieldText/FieldText';
 
+const contentHeaderColor = 'neutral-200';
+
 <Popover
-  arrowColor="neutral-200"
+  arrowColor={contentHeaderColor}
   content={onTriggerClicked => (
     <Block
       background="white"
@@ -41,7 +43,7 @@ import FieldText from '../FieldText/FieldText';
       className="shadow-2"
     >
       <Block
-        background="neutral-200"
+        background={contentHeaderColor}
         alignItems="center"
         justify="between"
         padding="3"

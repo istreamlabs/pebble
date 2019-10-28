@@ -150,13 +150,28 @@ const Popover = props => {
     return showing ? close() : open();
   };
 
-  const backgroundColor =
-    typeof content !== 'function' &&
-    content.props.background === undefined
-      ? 'white'
-      : typeof content === 'function'
-      ? arrowColor
-      : content.props.background;
+  let backgroundColor = 'white';
+
+  if (content.props && content.props.background) {
+    backgroundColor = content.props.background;
+  }
+  // console.log('arrowColor', arrowColor);
+  // console.log('typeof content', typeof content);
+  // if (arrowColor !== undefined && typeof content === 'function') {
+  //   console.log('setting arrowColor');
+  //   backgroundColor = arrowColor;
+  // }
+
+  if (arrowColor !== undefined) {
+    backgroundColor = arrowColor;
+  }
+
+  // const backgroundColor =
+  //   arrowColor ||
+  //   (typeof content !== 'function' &&
+  //     content.props.background === undefined)
+  //     ? 'white'
+  //     : content.props.background;
 
   const arrowClasses = classNames('popover-arrow', {
     [`bg-${backgroundColor}`]: backgroundColor,
@@ -185,6 +200,7 @@ const Popover = props => {
               >
                 {!hideArrow && (
                   <div
+                    data-testid="popover-arrow"
                     role="presentation"
                     className={arrowClasses}
                     ref={arrowProps.ref}

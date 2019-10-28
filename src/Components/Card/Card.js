@@ -77,6 +77,7 @@ function Card({
   muted,
   overflow,
   title,
+  ...rest
 }) {
   const classes = classNames('card', className, {
     muted,
@@ -96,7 +97,12 @@ function Card({
     : children;
 
   return (
-    <Block direction="column" overflow={overflow} className={classes}>
+    <Block
+      {...rest}
+      direction="column"
+      overflow={overflow}
+      className={classes}
+    >
       {header}
       {content}
     </Block>
