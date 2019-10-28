@@ -3,8 +3,9 @@ import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
 
 import Popover from './Popover';
-import Button from '../Button/Button';
 import Block from '../Block/Block';
+import Button from '../Button/Button';
+import FieldText from '../FieldText/FieldText';
 
 storiesOf('Popover', module)
   .add('basic', () => {
@@ -106,5 +107,46 @@ storiesOf('Popover', module)
       }
     >
       <Button>popover trigger</Button>
+    </Popover>
+  ))
+  .add('content render prop', () => (
+    <Popover
+      isOpen
+      arrowColor="neutral-200"
+      content={onTriggerClicked => (
+        <Block
+          background="white"
+          displayBlock
+          radius="2"
+          className="shadow-2"
+        >
+          <Block
+            background="neutral-200"
+            alignItems="center"
+            justify="between"
+            padding="3"
+          >
+            <Button size="small">Clear</Button>
+            <div className="fw-700">Filters</div>
+            <Button onClick={onTriggerClicked} primary size="small">
+              Done
+            </Button>
+          </Block>
+          <Block
+            displayBlock
+            itemSpacing="3"
+            paddingVertical="5"
+            paddingHorizontal="3"
+          >
+            <FieldText
+              id="q"
+              placeholder="search by name, email"
+              label="search"
+            />
+          </Block>
+        </Block>
+      )}
+    >
+      <Button>trigger</Button>
     </Popover>
   ));

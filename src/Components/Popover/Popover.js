@@ -155,23 +155,10 @@ const Popover = props => {
   if (content.props && content.props.background) {
     backgroundColor = content.props.background;
   }
-  // console.log('arrowColor', arrowColor);
-  // console.log('typeof content', typeof content);
-  // if (arrowColor !== undefined && typeof content === 'function') {
-  //   console.log('setting arrowColor');
-  //   backgroundColor = arrowColor;
-  // }
 
   if (arrowColor !== undefined) {
     backgroundColor = arrowColor;
   }
-
-  // const backgroundColor =
-  //   arrowColor ||
-  //   (typeof content !== 'function' &&
-  //     content.props.background === undefined)
-  //     ? 'white'
-  //     : content.props.background;
 
   const arrowClasses = classNames('popover-arrow', {
     [`bg-${backgroundColor}`]: backgroundColor,
