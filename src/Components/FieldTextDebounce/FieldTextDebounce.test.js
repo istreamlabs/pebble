@@ -70,9 +70,46 @@ describe('FieldTextDebounce', () => {
     );
     const input = getByDisplayValue('a');
     fireEvent.focus(input);
-    expect(getByText('2 character minimum…')).toBeDefined();
+    expect(getByText('2 character minimum')).toBeDefined();
     fireEvent.blur(input);
-    expect(() => getByText('2 character minimum…')).toThrow();
+    expect(() => getByText('2 character minimum')).toThrow();
+  });
+
+  it('shows min message when the label is hidden', () => {
+    const onDebounce = jest.fn();
+    const { getByDisplayValue, getByText } = render(
+      <FieldTextDebounce
+        hideLabel
+        label="debounce"
+        id="debounce"
+        value="a"
+        onDebounce={onDebounce}
+      />,
+    );
+    const input = getByDisplayValue('a');
+    fireEvent.focus(input);
+    expect(getByText('2 character minimum')).toBeDefined();
+    fireEvent.blur(input);
+    expect(() => getByText('2 character minimum')).toThrow();
+  });
+
+  it('shows min message when the label is hidden and size is small', () => {
+    const onDebounce = jest.fn();
+    const { getByDisplayValue, getByText } = render(
+      <FieldTextDebounce
+        hideLabel
+        size="small"
+        label="debounce"
+        id="debounce"
+        value="a"
+        onDebounce={onDebounce}
+      />,
+    );
+    const input = getByDisplayValue('a');
+    fireEvent.focus(input);
+    expect(getByText('2 character minimum')).toBeDefined();
+    fireEvent.blur(input);
+    expect(() => getByText('2 character minimum')).toThrow();
   });
 
   it('wraps events and call passed in event as well ', () => {

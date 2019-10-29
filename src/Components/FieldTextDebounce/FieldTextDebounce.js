@@ -160,10 +160,12 @@ const defaultProps = {
 const FieldTextDebounce = ({
   clearBtnFunc,
   delay,
+  hideLabel,
   onDebounce,
   onChange,
   onBlur,
   onFocus,
+  size,
   value,
   minimumCharacters,
   ...rest
@@ -229,6 +231,15 @@ const FieldTextDebounce = ({
     setShowMinimumMsg(newValue.length < minimumCharacters);
   };
 
+  let minMsgPosition = '-3px';
+
+  if (hideLabel) {
+    minMsgPosition = '4px';
+  }
+  if (hideLabel && size === 'small') {
+    minMsgPosition = '2px';
+  }
+
   return (
     <div className="w-100 relative">
       {showMinimumMsg && (
@@ -237,17 +248,17 @@ const FieldTextDebounce = ({
           paddingVertical="1"
           background="neutral-700"
           color="neutral-200"
-          textSize="6"
+          textSize={size === 'small' ? '7' : '6'}
           radius="2"
           marginBottom="1"
           className="animate fadeIn absolute shadow-1"
           style={{
-            zIndex: 1,
-            right: 0,
-            top: '-3px',
+            zIndex: 2,
+            right: hideLabel ? '4px' : 0,
+            top: minMsgPosition,
           }}
         >
-          {minimumCharacters} character minimum&hellip;
+          {minimumCharacters} character minimum
         </Block>
       )}
       <FieldText
@@ -256,7 +267,9 @@ const FieldTextDebounce = ({
         onBlur={handleBlur}
         onFocus={handleFocus}
         value={internalValue}
+        size={size}
         clearBtnFunc={internalClearBtnFunc}
+        hideLabel={hideLabel}
       />
     </div>
   );
