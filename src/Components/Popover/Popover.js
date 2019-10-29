@@ -176,29 +176,27 @@ const Popover = props => {
       {showing && (
         <Popper placement={placement}>
           {({ ref, style, placement, arrowProps }) => (
-            <>
-              <div
-                role="dialog"
-                aria-modal="false"
-                aria-hidden={!showing}
-                style={{ ...style, ...popperStyle }}
-                data-placement={placement}
-                ref={mergeRefs([ref, popoverRef])}
-              >
-                {!hideArrow && (
-                  <div
-                    data-testid="popover-arrow"
-                    role="presentation"
-                    className={arrowClasses}
-                    ref={arrowProps.ref}
-                    style={arrowProps.style}
-                  />
-                )}
-                {typeof content === 'function'
-                  ? content(onTriggerClicked)
-                  : content}
-              </div>
-            </>
+            <div
+              role="dialog"
+              aria-modal="false"
+              aria-hidden={!showing}
+              style={{ ...style, ...popperStyle }}
+              data-placement={placement}
+              ref={mergeRefs([ref, popoverRef])}
+            >
+              {!hideArrow && (
+                <div
+                  data-testid="popover-arrow"
+                  role="presentation"
+                  className={arrowClasses}
+                  ref={arrowProps.ref}
+                  style={arrowProps.style}
+                />
+              )}
+              {typeof content === 'function'
+                ? content(onTriggerClicked)
+                : content}
+            </div>
           )}
         </Popper>
       )}
