@@ -22,9 +22,11 @@ import Button from '../Button/Button';
 </Popover>;
 ```
 
-### Internal details with `content` render prop
+### Trapping focus and internal details with `content` render prop
 
-The `onTriggerClicked` handler can be accessed via the render prop pattern.
+The `onTriggerClicked` handler can be accessed via the render prop pattern, so you can close the popover via a button within the content of the popover.
+
+If the content of the popover contains focusable elements (e.g. a form), use `trapFocus` to cycle through the focusable elements of the popover.
 
 ```js
 import Block from '../Block/Block';
@@ -34,6 +36,7 @@ import FieldText from '../FieldText/FieldText';
 const contentHeaderColor = 'neutral-200';
 
 <Popover
+  trapFocus
   arrowColor={contentHeaderColor}
   content={onTriggerClicked => (
     <Block

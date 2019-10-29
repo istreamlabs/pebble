@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Manager, Popper, Reference } from 'react-popper';
 import classNames from 'classnames';
 import mergeRefs from 'react-merge-refs';
+import FocusTrap from 'focus-trap-react';
 
 import { colorType, placementType } from '../../Types';
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
@@ -36,6 +37,10 @@ const propTypes = {
   content: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
     .isRequired,
   /**
+   * Hide the popover arrow
+   */
+  hideArrow: PropTypes.bool,
+  /**
    * Callback when the popover is toggled
    */
   onToggle: PropTypes.func,
@@ -49,9 +54,10 @@ const propTypes = {
    */
   placement: placementType,
   /**
-   * Hide the popover arrow
+   * If the Popover contains form inputs or other focusable elements,
+   * trap focus within the popover while it is visible
    */
-  hideArrow: PropTypes.bool,
+  trapFocus: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -80,6 +86,7 @@ const Popover = props => {
     isOpen,
     onToggle,
     placement,
+    trapFocus,
   } = props;
   const [showing, setShowing] = useState(isOpen);
 
@@ -169,38 +176,54 @@ const Popover = props => {
   };
 
   return (
-    <Manager>
-      <Reference>
-        {({ ref }) => renderTrigger(ref, className)}
-      </Reference>
-      {showing && (
-        <Popper placement={placement}>
-          {({ ref, style, placement, arrowProps }) => (
-            <div
-              role="dialog"
-              aria-modal="false"
-              aria-hidden={!showing}
-              style={{ ...style, ...popperStyle }}
-              data-placement={placement}
-              ref={mergeRefs([ref, popoverRef])}
-            >
-              {!hideArrow && (
-                <div
-                  data-testid="popover-arrow"
-                  role="presentation"
-                  className={arrowClasses}
-                  ref={arrowProps.ref}
-                  style={arrowProps.style}
-                />
-              )}
-              {typeof content === 'function'
-                ? content(onTriggerClicked)
-                : content}
-            </div>
-          )}
-        </Popper>
+    <ConditionalWrapper
+      condition={trapFocus}
+      wrapper={children => (
+        <FocusTrap
+          active={showing}
+          focusTrapOptions={{
+            clickOutsideDeactivates: false,
+          }}
+        >
+          {children}
+        </FocusTrap>
       )}
-    </Manager>
+    >
+      <div>
+        <Manager>
+          <Reference>
+            {({ ref }) => renderTrigger(ref, className)}
+          </Reference>
+          {showing && (
+            <Popper placement={placement}>
+              {({ ref, style, placement, arrowProps }) => (
+                <div
+                  role="dialog"
+                  aria-modal="false"
+                  aria-hidden={!showing}
+                  style={{ ...style, ...popperStyle }}
+                  data-placement={placement}
+                  ref={mergeRefs([ref, popoverRef])}
+                >
+                  {!hideArrow && (
+                    <div
+                      data-testid="popover-arrow"
+                      role="presentation"
+                      className={arrowClasses}
+                      ref={arrowProps.ref}
+                      style={arrowProps.style}
+                    />
+                  )}
+                  {typeof content === 'function'
+                    ? content(onTriggerClicked)
+                    : content}
+                </div>
+              )}
+            </Popper>
+          )}
+        </Manager>
+      </div>
+    </ConditionalWrapper>
   );
 };
 
@@ -208,3 +231,6 @@ Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
 
 export default Popover;
+
+const ConditionalWrapper = ({ condition, wrapper, children }) =>
+  condition ? wrapper(children) : children;
