@@ -99,7 +99,7 @@ describe('Tooltip', () => {
         placement: 'top',
         style: testStyle,
       });
-      expect(result.props['data-placement']).toEqual('top');
+      expect(result.props['data-tooltip-placement']).toEqual('top');
       expect(result.props.children).toEqual(content);
       expect(result.props.style).toEqual(testStyle);
     });
