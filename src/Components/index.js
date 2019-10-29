@@ -7,6 +7,7 @@ export { default as Button } from './Button/Button';
 export { default as ButtonGroup } from './ButtonGroup/ButtonGroup';
 export { default as Card } from './Card/Card';
 export { default as CollapsiblePanel } from './CollapsiblePanel/CollapsiblePanel';
+export { default as ConditionalWrapper } from './ConditionalWrapper/ConditionalWrapper';
 export { default as DateTime } from './DateTime/DateTime';
 export { default as DropdownMenu } from './DropdownMenu/DropdownMenu';
 export { default as DropdownMenuSeparator } from './DropdownMenu/Components/DropdownMenuSeparator';

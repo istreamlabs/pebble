@@ -1,5 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
+import { mount } from 'enzyme';
+import FocusTrap from 'focus-trap-react';
 
 import Block from '../Block/Block';
 import Popover from './Popover';
@@ -94,6 +96,25 @@ describe('Popover', () => {
     fireEvent.click(getByText('trigger'));
     fireEvent.click(getByText('Content Button'));
     expect(queryByText('Content Button')).toBeNull();
+  });
+
+  it('adds FocusTrap if trapFocus is true', () => {
+    const instance = mount(
+      <Popover
+        trapFocus
+        arrowColor="neutral-200"
+        content={onTriggerClicked => (
+          <div>
+            <button onClick={onTriggerClicked} type="button">
+              focusable button
+            </button>
+          </div>
+        )}
+      >
+        <button type="button">trigger</button>
+      </Popover>,
+    );
+    expect(instance.find(FocusTrap).exists()).toBe(true);
   });
 
   describe('onBodyClick', () => {

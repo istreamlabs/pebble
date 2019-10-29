@@ -109,8 +109,9 @@ storiesOf('Popover', module)
       <Button>popover trigger</Button>
     </Popover>
   ))
-  .add('content render prop', () => (
+  .add('content render prop with trapFocus', () => (
     <Popover
+      trapFocus
       isOpen
       arrowColor="neutral-200"
       content={onTriggerClicked => (

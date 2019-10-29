@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import mergeRefs from 'react-merge-refs';
 import FocusTrap from 'focus-trap-react';
 
+import ConditionalWrapper from '../ConditionalWrapper/ConditionalWrapper';
 import { colorType, placementType } from '../../Types';
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
 
@@ -230,6 +231,3 @@ Popover.propTypes = propTypes;
 Popover.defaultProps = defaultProps;
 
 export default Popover;
-
-const ConditionalWrapper = ({ condition, wrapper, children }) =>
-  condition ? wrapper(children) : children;
