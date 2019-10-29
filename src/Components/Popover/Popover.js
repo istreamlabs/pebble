@@ -65,7 +65,6 @@ const defaultProps = {
   hideArrow: false,
   isOpen: false,
   placement: 'bottom',
-  trigger: 'click',
 };
 
 /**
