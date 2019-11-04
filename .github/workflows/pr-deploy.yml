@@ -23,5 +23,5 @@ jobs:
       - name: deploy js files
         uses: actions/aws/cli@master
         with:
-          args: aws s3 sync styleguide s3://${{ S3_BUCKET_NAME }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
+          args: aws s3 sync styleguide s3://${{ S3_PATH }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
 
