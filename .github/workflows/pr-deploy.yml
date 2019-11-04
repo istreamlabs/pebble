@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      S3_PATH: pebble.istreamplanet.net/${{ github.event.number }}
       AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.DEVELOPMENT_AWS_SECRET }}
     steps:
@@ -23,5 +22,5 @@ jobs:
       - name: deploy js files
         uses: actions/aws/cli@master
         with:
-          args: aws s3 sync styleguide s3://${{ S3_PATH }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
+          args: aws s3 sync styleguide s3://pebble.istreamplanet.net/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
 
