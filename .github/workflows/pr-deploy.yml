@@ -23,4 +23,13 @@ jobs:
         uses: actions/aws/cli@master
         with:
           args: s3 sync styleguide s3://pebble.istreamplanet.net/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
-
+      - name: deploy service-worker.js
+        uses: actions/aws/cli@master
+        with:
+          args: s3 cp styleguide/service-worker.js s3://pebble.istreamplanet.net/${{ github.event.number }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
+      - name: deploy index.html
+        uses: actions/aws/cli@master
+        with:
+          args: s3 cp styleguide/index.html s3://pebble.istreamplanet.net/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
+      - name: link to PR
+        run: echo "http://pebble.istreamplanet.net.s3-website-us-west-2.amazonaws.com/${{ github.event.number }}/index.html"
