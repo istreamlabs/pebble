@@ -1,6 +1,7 @@
 import React from 'react';
 import { addDecorator, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
+import { withKnobs } from '@storybook/addon-knobs';
 import 'storybook-chromatic';
 
 // automatically import all files ending in *.stories.js
@@ -24,5 +25,6 @@ const componentContainerDecorator = storyFn => (
 );
 addDecorator(componentContainerDecorator);
 addDecorator(withA11y);
+addDecorator(withKnobs);
 
 configure(loadStories, module);

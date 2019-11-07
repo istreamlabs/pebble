@@ -1,0 +1,64 @@
+@import '../../Styles/foundation/variables.scss';
+
+.popover-arrow {
+  position: absolute;
+  transform: rotate(45deg);
+  width: 1rem;
+  height: 1rem;
+
+  &::before {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    z-index: -1;
+    position: absolute;
+  }
+}
+
+[data-placement*='bottom'] {
+  margin-top: 0.6rem;
+
+  .popover-arrow {
+    margin-top: -0.4rem;
+
+    &::before {
+      box-shadow: rgba(0, 0, 0, 0.07) -1px -1px 1px 0px;
+    }
+  }
+}
+
+[data-placement*='top'] {
+  margin-bottom: 0.6rem;
+
+  .popover-arrow {
+    bottom: -0.5rem;
+
+    &::before {
+      box-shadow: rgba(0, 0, 0, 0.07) 1px 1px 1px 0px;
+    }
+  }
+}
+
+[data-placement*='left'] {
+  margin-right: 0.6rem;
+
+  .popover-arrow {
+    right: -0.5rem;
+
+    &::before {
+      box-shadow: rgba(0, 0, 0, 0.07) 1px -1px 1px 0;
+    }
+  }
+}
+
+[data-placement*='right'] {
+  margin-left: 0.6rem;
+
+  .popover-arrow {
+    left: -0.5rem;
+
+    &::before {
+      box-shadow: rgba(0, 0, 0, 0.07) -1px 1px 1px 0;
+    }
+  }
+}
