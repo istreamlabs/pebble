@@ -91,4 +91,4 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
-          args: '{\"channel\":\"CQ9A7ERLM\",\"text\":\":rocket: Pull Request - <https://github.com/iStreamPlanet/pebble/pull/${{ github.event.number }}|${{ github.event.pull_request.title }}> has been opened and a <https://pebble.istreamplanet.net/${{ github.event.number }}/index.html|test deployment> has been created.\"}'
+          args: '{\"channel\":\"CQ9AG10AC\",\"text\":\":rocket: Pull Request - <https://github.com/iStreamPlanet/pebble/pull/${{ github.event.number }}|${{ github.event.pull_request.title }}> has been opened and a <https://pebble.istreamplanet.net/${{ github.event.number }}/index.html|test deployment> has been created.\"}'
