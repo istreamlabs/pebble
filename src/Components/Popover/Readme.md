@@ -38,7 +38,7 @@ const contentHeaderColor = 'neutral-200';
 <Popover
   trapFocus
   arrowColor={contentHeaderColor}
-  content={onTriggerClicked => (
+  content={close => (
     <Block
       background="white"
       displayBlock
@@ -53,7 +53,7 @@ const contentHeaderColor = 'neutral-200';
       >
         <Button size="small">Clear</Button>
         <div className="fw-700">Filters</div>
-        <Button onClick={onTriggerClicked} primary size="small">
+        <Button onClick={close} primary size="small">
           Done
         </Button>
       </Block>
