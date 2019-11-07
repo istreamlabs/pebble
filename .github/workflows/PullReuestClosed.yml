@@ -1,0 +1,14 @@
+name: Pull Request Closed
+on:
+  pull_request:
+    types: [closed]
+jobs:
+  cleanup:
+    name: clean up test documentation site
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.DEVELOPMENT_AWS_SECRET }}
+    steps:
+      - name: delete from s3
+        run: aws s3 rm "s3://pebble.istreamplanet.net/${{ github.event.number }}" --recursive
