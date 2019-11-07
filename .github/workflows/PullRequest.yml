@@ -83,7 +83,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@1.0.0
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         with:
-          message: '### :eyes: [Test Deployment](https://pebble.istreamplanet.com/${{ github.event.number }}/index.html) :eyes:'
+          message: '### :eyes: [Test Deployment](https://pebble.istreamplanet.net/${{ github.event.number }}/index.html) :eyes:'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Notify Slack
         uses: pullreminders/slack-action@master
@@ -91,4 +91,4 @@ jobs:
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
-          args: '{\"channel\":\"CQ9A7ERLM\",\"text\":\"Pebble Pull Request ${{ github.event.number }} opened see test deployment at https://pebble.istreamplanet.com/${{ github.event.number }}/index.html\"}'
+          args: '{\"channel\":\"CQ9A7ERLM\",\"text\":\":rocket: <https://github.com/iStreamPlanet/pebble/pull/${{ github.event.number }}|Title of Pull Request> has been opened and a <https://pebble.istreamplanet.net/${{ github.event.number }}/index.html|test deployment> has been created."}'
