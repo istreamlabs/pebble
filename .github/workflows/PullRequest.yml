@@ -3,21 +3,71 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: install dependencies
+        run: yarn install
+      - name: lint
+        run: yarn lint
+  unit-tests:
+    name: unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: install dependencies
+        run: yarn install
+      - name: unit test with coverage
+        run: |
+          yarn cover
+          curl -s https://codecov.io/bash | bash -s
+  visual-tests:
+    name: visual regression tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: install dependencies
+        run: yarn install
+      - name: run visual regression tests
+        run: yarn chromatic --exit-zero-on-changes
   deploy:
+    name: deploy
+    needs: [lint, unit-tests, visual-tests]
     runs-on: ubuntu-latest
     env:
-      CI: true
       AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.DEVELOPMENT_AWS_SECRET }}
     steps:
       - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/cache@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: install dependencies
         run: yarn install
-      - name: build styleguide
+      - name: build documentation site
         run: yarn styleguide:build
       - name: deploy js files
         uses: actions/aws/cli@master
@@ -33,3 +83,9 @@ jobs:
           args: s3 cp styleguide/index.html s3://pebble.istreamplanet.net/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
       - name: link to PR
         run: echo "http://pebble.istreamplanet.net.s3-website-us-west-2.amazonaws.com/${{ github.event.number }}/index.html"
+      - name: Add link to Pull Request
+        uses: thollander/actions-comment-pull-request@1.0.0
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        with:
+          message: '### :eyes: [Test Deployment](https://pebble.istreamplanet.com/${{ github.event.number }}/index.html) :eyes:'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
