@@ -56,8 +56,7 @@ jobs:
       - name: run visual regression tests
         run: yarn chromatic --exit-zero-on-changes
   deploy:
-    name: deploy
-    needs: [lint, unit-tests, visual-tests]
+    name: deploy test documentation site
     runs-on: ubuntu-latest
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY }}
@@ -75,19 +74,11 @@ jobs:
       - name: build documentation site
         run: yarn styleguide:build
       - name: deploy js files
-        uses: actions/aws/cli@master
-        with:
-          args: s3 sync styleguide s3://pebble.istreamplanet.net/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
+        run: aws s3 sync styleguide s3://pebble.istreamplanet.net/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
       - name: deploy service-worker.js
-        uses: actions/aws/cli@master
-        with:
-          args: s3 cp styleguide/service-worker.js s3://pebble.istreamplanet.net/${{ github.event.number }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
+        run: aws s3 cp styleguide/service-worker.js s3://pebble.istreamplanet.net/${{ github.event.number }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
       - name: deploy index.html
-        uses: actions/aws/cli@master
-        with:
-          args: s3 cp styleguide/index.html s3://pebble.istreamplanet.net/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
-      - name: link to PR
-        run: echo "http://pebble.istreamplanet.net.s3-website-us-west-2.amazonaws.com/${{ github.event.number }}/index.html"
+        run: aws s3 cp styleguide/index.html s3://pebble.istreamplanet.net/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
       - name: Add link to Pull Request
         uses: thollander/actions-comment-pull-request@1.0.0
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
