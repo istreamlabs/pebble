@@ -85,3 +85,10 @@ jobs:
         with:
           message: '### :eyes: [Test Deployment](https://pebble.istreamplanet.com/${{ github.event.number }}/index.html) :eyes:'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Notify Slack
+        uses: pullreminders/slack-action@master
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        with:
+          args: '{\"channel\":\"CQ9A7ERLM\",\"text\":\"Pebble Pull Request ${{ github.event.number }} opened see test deployment at https://pebble.istreamplanet.com/${{ github.event.number }}/index.html\"}'
