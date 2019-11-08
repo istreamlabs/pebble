@@ -417,4 +417,37 @@ describe('Block', () => {
         expect(wrapper.prop('className')).toContain('truncate');
       });
     });
+
+  describe('displayBlock', () => {
+    it('applies the db class and removes flex class', () => {
+      const wrapper = shallow(<Block displayBlock>test</Block>);
+      expect(wrapper.prop('className')).toContain('db');
+      expect(wrapper.prop('className')).not.toContain('flex');
+    });
+    it('applies the db class and does not apply flex direction class', () => {
+      const wrapper = shallow(
+        <Block displayBlock direction="row">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </Block>,
+      );
+      expect(wrapper.prop('className')).toContain('db');
+      expect(wrapper.prop('className')).not.toContain('flex-row');
+      expect(wrapper.childAt(0).prop('className')).toBeUndefined();
+    });
+    it('applies the db class and adds correct spacing to children', () => {
+      const wrapper = shallow(
+        <Block displayBlock itemSpacing="4">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+        </Block>,
+      );
+      expect(wrapper.children()).toHaveLength(3);
+      expect(wrapper.childAt(0).prop('className')).toContain('mb-4');
+      expect(wrapper.childAt(1).prop('className')).toContain('mb-4');
+      expect(wrapper.childAt(2).prop('className')).toContain('mb-4');
+    });
+  });
 });

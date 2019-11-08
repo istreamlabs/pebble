@@ -106,7 +106,7 @@ export class Tooltip extends React.PureComponent {
     return (
       <div
         className={classes}
-        data-placement={placement}
+        data-tooltip-placement={placement}
         ref={ref}
         role="tooltip"
         style={style}
@@ -145,5 +145,6 @@ export class Tooltip extends React.PureComponent {
 
 Tooltip.propTypes = propTypes;
 Tooltip.defaultProps = defaultProps;
+Tooltip.displayName = 'Tooltip';
 
 export default Tooltip;

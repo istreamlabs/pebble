@@ -19,3 +19,4 @@ export {
 } from './GetItemSpacingClasses';
 export { default as getOverflowClasses } from './GetOverflowClasses';
 export { default as parseTextSize } from './ParseTextSize';
+export { default as formatters } from './Formatters';

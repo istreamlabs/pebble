@@ -76,13 +76,13 @@ const propTypes = {
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
-   * Text to display before the value
+   * Text or node to display before the value
    */
-  prefix: PropTypes.string,
+  prefix: PropTypes.node,
   /**
-   * Text to display after the value
+   * Text or node to display after the value
    */
-  suffix: PropTypes.string,
+  suffix: PropTypes.node,
   /**
    * Text to display if the input is invalid.
    * The text should explain why the input is invalid.
@@ -190,7 +190,7 @@ class FieldNumber extends React.PureComponent {
 }
 
 FieldNumber.defaultProps = defaultProps;
-
 FieldNumber.propTypes = propTypes;
+FieldNumber.displayName = 'FieldNumber';
 
 export default FieldNumber;

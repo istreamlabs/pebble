@@ -71,15 +71,29 @@ function TableHeaderCell({
 
   const isSortable = onSort !== null;
 
-  const classes = classNames('word-wrap fw-700 fs-6', className);
+  const baseClasses = 'word-wrap fw-700 fs-6';
+
+  const classes = classNames(baseClasses, className);
 
   const getSortDirectionArrow = () => {
     if (sortDirection === 'ASC') {
-      return <Icon name="arrow-small-up" className="mr-1" />;
+      return (
+        <Icon
+          name="arrow-small-up"
+          accessibilityLabel="sort ascending"
+          className="mr-1"
+        />
+      );
     }
 
     if (sortDirection === 'DESC') {
-      return <Icon name="arrow-small-down" className="mr-1" />;
+      return (
+        <Icon
+          name="arrow-small-down"
+          accessibilityLabel="sort descending"
+          className="mr-1"
+        />
+      );
     }
 
     return null;
@@ -97,12 +111,15 @@ function TableHeaderCell({
         className={classes}
         padding={padding}
         flex={width === '100%' ? 'grow' : undefined}
-        width={
-          isMobileLayout ? '100%' : width !== '100%' ? width : null
-        }
+        width={isMobileLayout ? '100%' : width}
         {...rest}
       >
-        <Button plain onClick={onSortClick} width="100%">
+        <Button
+          plain
+          onClick={onSortClick}
+          width="100%"
+          className={baseClasses}
+        >
           {getSortDirectionArrow()}
           {children}
         </Button>
@@ -129,5 +146,6 @@ function TableHeaderCell({
 
 TableHeaderCell.propTypes = propTypes;
 TableHeaderCell.defaultProps = defaultProps;
+TableHeaderCell.displayName = 'TableHeaderCell';
 
 export default TableHeaderCell;

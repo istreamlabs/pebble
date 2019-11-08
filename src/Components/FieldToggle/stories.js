@@ -22,7 +22,7 @@ function FieldToggleExample() {
       <FieldToggle
         id="toggleHelp"
         label="toggle with helpText"
-        helpText="This is help text"
+        helpText="Secure the delivery of streaming media on iOS, tvOS, and Safari on iOS and macOS through the HTTP Live Streaming protocol"
         isSelected={toggleHelp}
         value="first"
         onChange={setToggleHelp}

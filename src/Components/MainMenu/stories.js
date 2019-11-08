@@ -12,6 +12,7 @@ const menu = [
     label: 'Link',
     href: '/#/Components/MainMenu',
     icon: 'dashboard',
+    exact: true,
   },
   {
     label: 'Subs Only',
@@ -21,14 +22,17 @@ const menu = [
         label: 'Sub-item 1',
         href: '/#/Components/MainMenu',
         aliases: ['/iframe.html'],
+        exact: true,
       },
       {
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
+        exact: true,
       },
       {
         label: 'Sub-item 3',
         href: '/#/Components/MainMenu',
+        exact: true,
       },
     ],
   },
@@ -37,16 +41,19 @@ const menu = [
     icon: 'settings',
     href: '/#/Components/MainMenu',
     aliases: ['/iframe.html'],
+    exact: true,
     items: [
       {
         label: 'Sub-item 1',
         href: '/#/Components/MainMenu',
         icon: '',
+        exact: true,
       },
       {
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
         icon: '',
+        exact: true,
       },
     ],
   },
@@ -56,6 +63,7 @@ const auxMenu = [
     label: 'Support',
     href: '/#/Components/MainMenu',
     icon: 'ticket',
+    exact: true,
   },
   {
     label: 'Trent Anderson',

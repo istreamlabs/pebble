@@ -29,8 +29,23 @@ describe('Card', () => {
     expect(wrapper.find(Section)).toHaveLength(2);
   });
 
-  it('renders a header when a title is passed', () => {
-    const wrapper = mount(<Card title="test-title">test</Card>);
-    expect(wrapper.contains(Header)).toBeTruthy();
+  describe('header', () => {
+    it('renders a header when a title is passed', () => {
+      const wrapper = shallow(<Card title="test-title">test</Card>);
+      expect(wrapper.find(Header)).toHaveLength(1);
+      expect(wrapper.find(Header).html()).toContain('test-title');
+    });
+    it('renders a header when a title is passed', () => {
+      const wrapper = shallow(
+        <Card headerActions={<button type="button">test</button>}>
+          test
+        </Card>,
+      );
+      expect(wrapper.find(Header)).toHaveLength(1);
+    });
+    it('does not get rendered if a title or headerActions is not passed', () => {
+      const wrapper = shallow(<Card>test</Card>);
+      expect(wrapper.find(Header)).toHaveLength(0);
+    });
   });
 });

@@ -52,7 +52,7 @@ const variants = {
       transition: {
         type: 'spring',
         duration: 0.2,
-        delay: custom / 12,
+        delay: custom / 16,
       },
     };
   },
@@ -184,7 +184,11 @@ function TenantMenu(props) {
       </motion.ul>
     );
     return (
-      <Block direction="column" overflow={{ vertical: 'auto' }}>
+      <Block
+        direction="column"
+        className="pb-5"
+        overflow={{ vertical: 'auto' }}
+      >
         {tenantMarkup}
       </Block>
     );
@@ -205,5 +209,6 @@ function TenantMenu(props) {
 
 TenantMenu.propTypes = propTypes;
 TenantMenu.defaultProps = defaultProps;
+TenantMenu.displayName = 'TenantMenu';
 
 export default TenantMenu;

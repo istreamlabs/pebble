@@ -74,5 +74,6 @@ function Table({ border, children, className, width, ...rest }) {
 
 Table.propTypes = propTypes;
 Table.defaultProps = defaultProps;
+Table.displayName = 'Table';
 
 export default Table;

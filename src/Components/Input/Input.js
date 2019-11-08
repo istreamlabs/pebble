@@ -66,9 +66,9 @@ const propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Text to display before the value
+   * Text or node to display before the value
    */
-  prefix: PropTypes.string,
+  prefix: PropTypes.node,
   /**
    * Is the input required
    */
@@ -78,9 +78,9 @@ const propTypes = {
    */
   spellCheck: PropTypes.bool,
   /**
-   * Text to display after the value
+   * Text or node to display after the value
    */
-  suffix: PropTypes.string,
+  suffix: PropTypes.node,
   /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
@@ -274,5 +274,6 @@ class Input extends React.PureComponent {
 
 Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
+Input.displayName = 'Input';
 
 export default Input;

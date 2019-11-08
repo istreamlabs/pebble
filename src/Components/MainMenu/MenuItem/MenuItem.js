@@ -23,14 +23,14 @@ const propTypes = {
     icon: PropTypes.string,
     aliases: PropTypes.arrayOf(PropTypes.string),
     exact: PropTypes.bool,
-    activeHandler: PropTypes.bool,
+    activeHandler: PropTypes.func,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
         href: PropTypes.string,
         aliases: PropTypes.arrayOf(PropTypes.string),
         exact: PropTypes.bool,
-        activeHandler: PropTypes.bool,
+        activeHandler: PropTypes.func,
       }),
     ),
   }).isRequired,
@@ -167,9 +167,6 @@ class MenuItem extends React.Component {
               exact={item.exact}
               to={item.href}
               className="menu-item"
-              onClick={
-                hasSubItems ? this.handleToggleOpen : undefined
-              }
               aria-haspopup={hasSubItems}
               aria-expanded={isOpen}
               activeClassName="active"
@@ -232,5 +229,6 @@ class MenuItem extends React.Component {
 
 MenuItem.propTypes = propTypes;
 MenuItem.defaultProps = defaultProps;
+MenuItem.displayName = 'MenuItem';
 
 export default MenuItem;

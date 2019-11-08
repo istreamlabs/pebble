@@ -260,5 +260,6 @@ function FieldSelect({
 
 FieldSelect.propTypes = propTypes;
 FieldSelect.defaultProps = defaultProps;
+FieldSelect.displayName = 'FieldSelect';
 
 export default FieldSelect;

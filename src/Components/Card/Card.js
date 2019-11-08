@@ -49,7 +49,7 @@ const propTypes = {
   /**
    * Title content of the card
    */
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 
 const defaultProps = {
@@ -77,16 +77,18 @@ function Card({
   muted,
   overflow,
   title,
+  ...rest
 }) {
   const classes = classNames('card', className, {
     muted,
   });
 
-  const header = (
-    <Header className={headerClassName} actions={headerActions}>
-      {title}
-    </Header>
-  );
+  const header =
+    title || headerActions ? (
+      <Header className={headerClassName} actions={headerActions}>
+        {title}
+      </Header>
+    ) : null;
 
   const content = sectioned
     ? React.Children.map(children, child => (
@@ -95,7 +97,12 @@ function Card({
     : children;
 
   return (
-    <Block direction="column" overflow={overflow} className={classes}>
+    <Block
+      {...rest}
+      direction="column"
+      overflow={overflow}
+      className={classes}
+    >
       {header}
       {content}
     </Block>
@@ -104,5 +111,6 @@ function Card({
 
 Card.propTypes = propTypes;
 Card.defaultProps = defaultProps;
+Card.displayName = 'Card';
 
 export default Card;

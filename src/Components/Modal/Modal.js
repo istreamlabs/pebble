@@ -6,6 +6,7 @@ import FocusTrap from 'focus-trap-react';
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
+import ConditionalWrapper from '../ConditionalWrapper/ConditionalWrapper';
 import Heading from '../Heading/Heading';
 import Icon from '../Icon/Icon';
 import Overlay from '../Overlay/Overlay';
@@ -32,14 +33,6 @@ const ICON_COLOR_MAP = {
   warn: 'yellow',
   danger: 'red',
 };
-
-// Small helper that is used to conditionally render the
-// FocusTrap component when notDismissable is true
-// this prevents situations where FocusTrap will throw
-// errors if all the children passed to it are not focusable elements
-// ref: https://blog.hackages.io/conditionally-wrap-an-element-in-react-a8b9a47fab2
-const ConditionalWrapper = ({ condition, wrapper, children }) =>
-  condition ? wrapper(children) : children;
 
 const propTypes = {
   /**
@@ -257,5 +250,6 @@ function Modal({
 
 Modal.propTypes = propTypes;
 Modal.defaultProps = defaultProps;
+Modal.displayName = 'Modal';
 
 export default Modal;

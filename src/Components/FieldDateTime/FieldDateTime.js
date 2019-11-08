@@ -403,7 +403,7 @@ class FieldDateTime extends React.PureComponent {
           />
           <label htmlFor={id}>
             <Icon
-              accessabilityLabel="open picker"
+              accessibilityLabel="open picker"
               className={iconClasses}
               name={excludeTime ? 'calendar' : 'date-time'}
             />
@@ -418,7 +418,7 @@ class FieldDateTime extends React.PureComponent {
 }
 
 FieldDateTime.propTypes = propTypes;
-
 FieldDateTime.defaultProps = defaultProps;
+FieldDateTime.displayName = 'FieldDateTime';
 
 export default FieldDateTime;

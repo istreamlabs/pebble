@@ -15,6 +15,7 @@ import {
   colorType,
   dimensionType,
   fontSizeType,
+  orderType,
   overflowType,
   radiusType,
   spacingType,
@@ -123,6 +124,11 @@ const propTypes = {
     PropTypes.string,
   ]),
   /**
+   * By default, Blocks are `display:flex`. This sets the block element to be a block element instead.
+   * When this is true, flex properties will be ignored
+   */
+  displayBlock: PropTypes.bool,
+  /**
    *
    * Apply a `solid 1px neutral-300` border to a specific side by passing one of the following strings:
    *
@@ -226,6 +232,13 @@ const propTypes = {
    */
   marginBottom: spacingType,
   /**
+   *  Controls the order in which the item appears in a flex container
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Order>}
+   */
+  order: orderType,
+  /**
    * Overflow behavior
    *
    * One of: 'auto', 'visible', 'hidden', 'scroll'
@@ -311,6 +324,7 @@ const propTypes = {
 const defaultProps = {
   as: 'div',
   direction: 'row',
+  displayBlock: false,
 };
 
 /**
@@ -332,6 +346,7 @@ class Block extends React.PureComponent {
       as,
       background,
       basis,
+      displayBlock,
       border,
       color,
       children,
@@ -343,6 +358,7 @@ class Block extends React.PureComponent {
       justify,
       marginTop,
       marginBottom,
+      order,
       overflow,
       padding,
       paddingHorizontal,
@@ -366,10 +382,10 @@ class Block extends React.PureComponent {
       radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses =
       overflow !== undefined ? getOverflowClasses(overflow) : null;
-    const directionClasses = getFlexPropertyClasses(
-      'flex',
-      direction,
-    );
+
+    const directionClasses = !displayBlock
+      ? getFlexPropertyClasses('flex', direction)
+      : null;
     const widthStyles = getDimensionClasses('width', width);
     const heightStyles = getDimensionClasses('height', height);
     const justifyClasses = getFlexPropertyClasses('justify', justify);
@@ -385,6 +401,7 @@ class Block extends React.PureComponent {
       'self',
       alignSelf,
     );
+    const orderClasses = getFlexPropertyClasses('order', order);
 
     const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
@@ -425,6 +442,9 @@ class Block extends React.PureComponent {
     Object.assign(mergedStyle, { width: widthStyles.styles });
     Object.assign(mergedStyle, { height: heightStyles.styles });
 
+    const isDisplayBlock =
+      displayBlock || (className ? className.includes('db') : false);
+
     const classes = classNames(
       directionClasses,
       overflowClasses,
@@ -438,11 +458,13 @@ class Block extends React.PureComponent {
       alignContentClasses,
       alignItemsClasses,
       alignSelfClasses,
+      orderClasses,
       widthStyles.classes,
       heightStyles.classes,
       color,
       {
-        flex: !truncate,
+        db: displayBlock,
+        flex: !isDisplayBlock && !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
         [`fs-${parsedTextSize}`]: parsedTextSize,
@@ -452,10 +474,11 @@ class Block extends React.PureComponent {
       },
       className,
     );
+    const calcDirection = displayBlock ? 'column' : direction;
 
     const spacingClasses =
       itemSpacing !== undefined
-        ? getItemSpacingClasses(direction, itemSpacing)
+        ? getItemSpacingClasses(calcDirection, itemSpacing)
         : null;
 
     let blockChildren;
@@ -492,5 +515,6 @@ class Block extends React.PureComponent {
 
 Block.propTypes = propTypes;
 Block.defaultProps = defaultProps;
+Block.displayName = 'Block';
 
 export default Block;

@@ -5,6 +5,37 @@ import classNames from 'classnames';
 import Tab from './Components/Tab';
 import Block from '../Block/Block';
 
+import './Tabs.scss';
+
+const propTypes = {
+  children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * Id of selected tab
+   */
+  selectedId: PropTypes.string,
+  /**
+   * List of tabs
+   */
+  tabs: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Callback function when a tab is selected
+   */
+  onSelect: PropTypes.func,
+  /**
+   * Changes the size of the tabs, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+};
+
 /**
  * A tab keeps related content in a single container that is shown and hidden through navigation
  *
@@ -24,13 +55,7 @@ export class Tabs extends React.PureComponent {
       ...rest
     } = this.props;
 
-    const tabsClasses = classNames(
-      'tabs',
-      'flex',
-      'list-unstyled',
-      'bb',
-      'b-neutral-300',
-    );
+    const classes = classNames(className, 'relative');
 
     const getTabsMarkup = () => {
       if (tabs) {
@@ -104,11 +129,12 @@ export class Tabs extends React.PureComponent {
     };
 
     return (
-      <Block flex direction="column" className={className}>
+      <Block displayBlock className={classes}>
         <Block
           as="ul"
           role="tablist"
-          className={tabsClasses}
+          className="tabs"
+          onScroll={this.trackScrolling}
           {...rest}
         >
           {getTabsMarkup()}
@@ -119,33 +145,7 @@ export class Tabs extends React.PureComponent {
   }
 }
 
-Tabs.propTypes = {
-  children: PropTypes.node,
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Takes up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * Id of selected tab
-   */
-  selectedId: PropTypes.string,
-  /**
-   * List of tabs
-   */
-  tabs: PropTypes.arrayOf(PropTypes.object),
-  /**
-   * Callback function when a tab is selected
-   */
-  onSelect: PropTypes.func,
-  /**
-   * Changes the size of the tabs, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-};
+Tabs.propTypes = propTypes;
+Tabs.displayName = 'Tabs';
 
 export default Tabs;

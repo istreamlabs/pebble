@@ -31,7 +31,8 @@ const MENU = [
     id: '3',
     label: 'Link & Sub',
     icon: 'settings',
-    href: '?path=/story/frame--all',
+    href: '/linksub',
+    exact: true,
     items: [
       {
         label: 'Sub-item 1',
@@ -41,6 +42,7 @@ const MENU = [
       {
         label: 'Sub-item 2',
         href: '/#/Components/MainMenu',
+        exact: true,
       },
     ],
   },
@@ -61,6 +63,9 @@ const bodyContent = (
 );
 
 storiesOf('Frame', module)
+  .addParameters({
+    chromatic: { viewports: [479, 959, 1439] },
+  })
   .add('with Tenants', () => (
     <BrowserRouter>
       <div style={{ height: '400px', overflow: 'auto' }}>
@@ -82,7 +87,9 @@ storiesOf('Frame', module)
   .add('without Tenants', () => (
     <BrowserRouter>
       <div style={{ height: '400px', overflow: 'auto' }}>
-        <Frame navigation={mainMenu}>{bodyContent}</Frame>
+        <Frame title="iStreamPlanet" navigation={mainMenu}>
+          {bodyContent}
+        </Frame>
       </div>
     </BrowserRouter>
   ));

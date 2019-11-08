@@ -39,5 +39,6 @@ function Overlay({ children, className, onClick, ...rest }) {
 }
 
 Overlay.propTypes = propTypes;
+Overlay.displayName = 'Overlay';
 
 export default Overlay;

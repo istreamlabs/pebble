@@ -67,5 +67,6 @@ function TableCell({ children, className, padding, width, ...rest }) {
 
 TableCell.propTypes = propTypes;
 TableCell.defaultProps = defaultProps;
+TableCell.displayName = 'TableCell';
 
 export default TableCell;

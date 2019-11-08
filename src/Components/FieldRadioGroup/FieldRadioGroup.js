@@ -1,7 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Block from '../Block/Block';
 import Radio from './Components/Radio';
 import Text from '../Text/Text';
 
@@ -100,11 +98,7 @@ function FieldRadioGroup({
 
   const titleMarkup = () => {
     if (title) {
-      return (
-        <Text bold className="db mb-2">
-          {title}
-        </Text>
-      );
+      return <legend className="fw-700 db mb-2">{title}</legend>;
     }
   };
 
@@ -117,18 +111,19 @@ function FieldRadioGroup({
     );
   };
 
-  const classes = classNames('field-radio-group', className);
-
   return (
-    <Block role="radiogroup" direction="column" className={classes}>
-      {titleMarkup()}
-      {helpTextMarkup()}
-      {radioMarkup(getRadioItems())}
-    </Block>
+    <div className={className}>
+      <fieldset>
+        {titleMarkup()}
+        {helpTextMarkup()}
+        {radioMarkup(getRadioItems())}
+      </fieldset>
+    </div>
   );
 }
 
 FieldRadioGroup.propTypes = propTypes;
 FieldRadioGroup.defaultProps = defaultProps;
+FieldRadioGroup.displayName = 'FieldRadioGroup';
 
 export default FieldRadioGroup;

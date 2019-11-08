@@ -6,6 +6,50 @@ import Button from '../../Button/Button';
 
 import './Tab.scss';
 
+const propTypes = {
+  /**
+   * Disables the tab, making it inoperable
+   */
+  disabled: PropTypes.bool,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
+  /**
+   * Take up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
+   * The id of the tab
+   */
+  id: PropTypes.string,
+  /**
+   * Look like it is selected
+   */
+  isSelected: PropTypes.bool,
+  /**
+   * Id of the element the button controls
+   */
+  ariaControls: PropTypes.string,
+  /**
+   * Callback function when a tab is pressed
+   */
+  onClick: PropTypes.func,
+  /**
+   * Content to be rendered in the tab
+   */
+  label: PropTypes.node,
+  /**
+   * Changes the size of the tabs, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+};
+
+const defaultProps = {
+  size: 'medium',
+};
+
 /**
  * A single Tab used by Tabs
  *
@@ -61,48 +105,8 @@ const Tab = ({
   );
 };
 
-Tab.defaultProps = {
-  size: 'medium',
-};
-
-Tab.propTypes = {
-  /**
-   * Disables the tab, making it inoperable
-   */
-  disabled: PropTypes.bool,
-  /**
-   * Additional classNames to add
-   */
-  className: PropTypes.string,
-  /**
-   * Take up the full width of its parent container
-   */
-  fullWidth: PropTypes.bool,
-  /**
-   * The id of the tab
-   */
-  id: PropTypes.string,
-  /**
-   * Look like it is selected
-   */
-  isSelected: PropTypes.bool,
-  /**
-   * Id of the element the button controls
-   */
-  ariaControls: PropTypes.string,
-  /**
-   * Callback function when a tab is pressed
-   */
-  onClick: PropTypes.func,
-  /**
-   * Content to be rendered in the tab
-   */
-  label: PropTypes.node,
-  /**
-   * Changes the size of the tabs, giving it more or less padding and font size
-   * @type {PropTypes.Requireable<Size>}
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-};
+Tab.propTypes = propTypes;
+Tab.defaultProps = defaultProps;
+Tab.displayName = 'Tab';
 
 export default Tab;

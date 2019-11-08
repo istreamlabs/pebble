@@ -135,6 +135,7 @@ module.exports = {
     '**/*.spec.{js,jsx,ts,tsx}',
     '**/stories.{js,jsx,ts,tsx}',
     '**/*.d.ts',
+    'src/Components/ConditionalWrapper/ConditionalWrapper.js',
     'src/Components/Icon/Icons.js',
     'src/Components/Input/Input.js',
     'src/Components/Label/Label.js',
