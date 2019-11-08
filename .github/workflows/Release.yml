@@ -23,11 +23,11 @@ jobs:
       - name: build documentation site
         run: yarn styleguide:build
       - name: deploy js files
-        run: aws s3 sync styleguide s3://pebble.istreamplanet.net/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
+        run: aws s3 sync styleguide s3://pebble.istreamplanet.net --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
       - name: deploy service-worker.js
-        run: aws s3 cp styleguide/service-worker.js s3://pebble.istreamplanet.net/${{ github.event.number }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
+        run: aws s3 cp styleguide/service-worker.js s3://pebble.istreamplanet.net/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
       - name: deploy index.html
-        run: aws s3 cp styleguide/index.html s3://pebble.istreamplanet.net/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
+        run: aws s3 cp styleguide/index.html s3://pebble.istreamplanet.net/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
       - name: Publish to NPM
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
