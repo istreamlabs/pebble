@@ -39,7 +39,6 @@ jobs:
           echo ::set-output name=VERSION_WITHOUT_V::${GITHUB_REF/refs\/tags\/v/}
       - name: Notify Slack
         uses: pullreminders/slack-action@master
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
