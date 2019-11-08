@@ -1,5 +1,7 @@
 name: Pull Request on Branch Push
-on: push
+on:
+  push:
+    branches-ignore: [master]
 jobs:
   auto-pull-request:
     name: Create a PR
