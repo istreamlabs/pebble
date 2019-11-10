@@ -1,6 +1,5 @@
-[![Codefresh build status](https://g.codefresh.io/api/badges/pipeline/istreamplanet-orbis/iStreamPlanet%2Fpebble%2Fpebble?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWI4NTcwM2Y0ZTQ0YTAwMDAxNzU3Zjg1.yUFZAhLcIDmTZW5V3HeFOhbHT_6JUTS4VhibhdFN6nM&type=cf-1)](https://g.codefresh.io/pipelines/pebble/builds?repoOwner=iStreamPlanet&repoName=pebble&serviceName=iStreamPlanet%2Fpebble&filter=trigger:build~Build;branch:master;pipeline:5ca7ad13f8596e1a35524aa7~pebble)
-[![Build Status](https://travis-ci.com/iStreamPlanet/pebble.svg?token=ob5GGxyPdck69sbiTyH4&branch=master)](https://travis-ci.com/iStreamPlanet/pebble)
-[![codecov](https://codecov.io/gh/iStreamPlanet/pebble/branch/master/graph/badge.svg?token=sertHGUtdf)](https://codecov.io/gh/iStreamPlanet/pebble)
+
+[![CI GitHub Action](https://github.com/iStreamPlanet/pebble/workflows/CI/badge.svg)](https://github.com/iStreamPlanet/pebble/actions?query=workflow%3ACI)
 
 # Pebble
 
