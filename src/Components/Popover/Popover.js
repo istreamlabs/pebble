@@ -182,7 +182,7 @@ const Popover = props => {
         <FocusTrap
           active={showing}
           focusTrapOptions={{
-            clickOutsideDeactivates: false,
+            clickOutsideDeactivates: true,
           }}
         >
           {children}
