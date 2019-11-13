@@ -124,6 +124,7 @@ class DropdownMenu extends React.PureComponent {
     const hasMenuItemInTree =
       event &&
       event.target &&
+      event.target.closest &&
       event.target.closest('[role=menuitem]');
     if (hasMenuItemInTree) {
       this.setState({ isOverlayOpen: false }, this.handleClose);
