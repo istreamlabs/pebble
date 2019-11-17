@@ -42,6 +42,10 @@ const propTypes = {
    * @type {PropTypes.Requireable<FontSizeLike>}
    */
   size: fontSizeType,
+  /**
+   * on smaller devices, decrease the size of the specified size
+   */
+  responsive: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -64,6 +68,7 @@ const Text = forwardRef((props, ref) => {
     className,
     color,
     size,
+    responsive,
     ...rest
   } = props;
 
@@ -75,7 +80,8 @@ const Text = forwardRef((props, ref) => {
     'text',
     color,
     {
-      [`fs-${parsedSize}`]: parsedSize,
+      [`fs-${parsedSize}`]: parsedSize && !responsive,
+      [`fs-${parsedSize}-responsive`]: parsedSize && responsive,
       'fw-700': bold,
       [`appearance-${appearance}`]: appearance,
     },

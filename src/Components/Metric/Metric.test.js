@@ -5,8 +5,24 @@ import { useResponsiveLayout } from '../../Hooks';
 import Text from '../Text/Text';
 import Tooltip from '../Tooltip/Tooltip';
 import Metric from './Metric';
+import { getMetricValueSize } from './Metric';
 
 jest.mock('../../Hooks/UseResponsiveLayout');
+
+describe('getMetricValueSize()', () => {
+  it('returns correct font size when size is large', () => {
+    expect(getMetricValueSize('large')).toBe(1);
+  });
+  it('returns correct font size when size is medium', () => {
+    expect(getMetricValueSize('medium')).toBe(2);
+  });
+  it('returns correct font size when size is small', () => {
+    expect(getMetricValueSize('small')).toBe(5);
+  });
+  it('returns correct font size when size is not small, medium or large', () => {
+    expect(getMetricValueSize('foo')).toBe(1);
+  });
+});
 
 describe('Metric', () => {
   beforeEach(() => {
@@ -49,7 +65,7 @@ describe('Metric', () => {
         .find(Text)
         .at(1)
         .prop('size'),
-    ).toBe(3);
+    ).toBe(1);
   });
 
   it('calls colorRules if colorRules is a function', () => {
@@ -198,6 +214,7 @@ describe('Metric', () => {
       expect(customFormatter).toHaveBeenCalledTimes(1);
       expect(customFormatter).toHaveBeenCalledWith(3, {
         formatter: customFormatter,
+        size: 'large',
         title: 'test',
         value: 3,
       });
@@ -212,6 +229,7 @@ describe('Metric', () => {
       expect(customFormatter).toHaveBeenCalledTimes(1);
       expect(customFormatter).toHaveBeenCalledWith('3', {
         formatter: customFormatter,
+        size: 'large',
         title: 'test',
         value: '3',
       });

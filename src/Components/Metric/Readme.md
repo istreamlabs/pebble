@@ -110,6 +110,20 @@ const channelStatus = value => {
 </Block>;
 ```
 
+### Sizes
+
+Control the text size of the value the `size` prop.
+
+```js
+import Block from '../Block/Block';
+
+<Block width="100" itemSpacing={[5, 5, 6, 7]} wrap>
+  <Metric size="large" value={14332} title="large" />
+  <Metric size="medium" value={3414} title="medium" />
+  <Metric size="small" value={1312} title="small" />
+</Block>;
+```
+
 ### Number
 
 Commas are automatically inserted as thousands separaters when `value` is a number.

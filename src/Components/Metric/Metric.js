@@ -37,6 +37,11 @@ const propTypes = {
    */
   prefixClassName: PropTypes.string,
   /**
+   * Controls the text size of the value
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * Content that appears after the value
    */
   suffix: PropTypes.node,
@@ -56,6 +61,7 @@ const propTypes = {
 
 const defaultProps = {
   formatter: formatters.number,
+  size: 'large',
 };
 
 function isBetween(value, min, max) {
@@ -103,6 +109,24 @@ const getValueColor = (colorRules, value) => {
 };
 
 /**
+ * Returns the font size of the Metric when give size small, medium or large
+ * @param {string} size small, medium, large
+ */
+
+export const getMetricValueSize = size => {
+  switch (size) {
+    case 'large':
+      return 1;
+    case 'medium':
+      return 2;
+    case 'small':
+      return 5;
+    default:
+      return 1;
+  }
+};
+
+/**
  * Used to display statistic or metric (e.g. key performance indicator)
  *
  * ---
@@ -117,18 +141,18 @@ function Metric(props) {
     prefix,
     suffixClassName,
     prefixClassName,
+    size,
     suffix,
     title,
     value,
   } = props;
 
-  const [isPhone, isTablet] = useResponsiveLayout();
-  const isMobile = isPhone || isTablet;
+  const [isPhone] = useResponsiveLayout();
 
   const renderValue = () => {
     if (typeof value === 'number' || typeof value === 'string') {
       return (
-        <Text bold size={isMobile ? 3 : 1}>
+        <Text responsive bold size={getMetricValueSize(size)}>
           {formatter(value, props)}
         </Text>
       );
