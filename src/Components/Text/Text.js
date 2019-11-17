@@ -46,7 +46,6 @@ const propTypes = {
 
 const defaultProps = {
   bold: false,
-  size: 5,
 };
 
 /**
