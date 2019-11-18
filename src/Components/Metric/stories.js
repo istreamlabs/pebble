@@ -146,5 +146,8 @@ storiesOf('Metric', module)
         title="channel status"
         colorRules={channelStatus}
       />
+      <Metric size="large" value={14332} title="large" />
+      <Metric size="medium" value={3414} title="medium" />
+      <Metric size="small" value={1312} title="small" />
     </Block>
   ));
