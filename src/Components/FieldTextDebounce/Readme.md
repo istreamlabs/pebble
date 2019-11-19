@@ -7,6 +7,10 @@ function Example() {
   const [value, setValue] = useState('');
   const [longValue, setLongValue] = useState('');
   const [minLengthValue, setMinLengthValue] = useState('');
+  const [
+    hideLabelMinLengthValue,
+    setHideLabelMinLengthValue,
+  ] = useState('');
   return (
     <>
       <FieldTextDebounce
@@ -48,6 +52,7 @@ function Example() {
         <span className="fw-700">{longValue}</span>
       </div>
       <FieldTextDebounce
+        autoFocus
         label="Requires 5 characters"
         id="long-input"
         minimumCharacters={5}
@@ -57,6 +62,19 @@ function Example() {
       <div className="fs-6 mt-3 mb-5">
         Will not update until 5 characters are typed:{' '}
         <span className="fw-700">{minLengthValue}</span>
+      </div>
+      <FieldTextDebounce
+        label="Requires 5 characters"
+        id="long-input"
+        hideLabel
+        minimumCharacters={5}
+        value={hideLabelMinLengthValue}
+        onDebounce={setHideLabelMinLengthValue}
+        placeholder="hidden label"
+      />
+      <div className="fs-6 mt-3 mb-5">
+        Will not update until 5 characters are typed:{' '}
+        <span className="fw-700">{hideLabelMinLengthValue}</span>
       </div>
     </>
   );

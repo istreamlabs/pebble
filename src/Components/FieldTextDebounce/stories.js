@@ -13,6 +13,7 @@ function Example() {
   return (
     <>
       <FieldTextDebounce
+        autoFocus
         label="Some Field"
         id="input"
         value={value}

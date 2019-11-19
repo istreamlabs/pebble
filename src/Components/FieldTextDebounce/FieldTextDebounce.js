@@ -196,6 +196,8 @@ const FieldTextDebounce = ({
       internalValue.length === 0
     ) {
       const handler = setTimeout(() => {
+        setShowMinimumMsg(false);
+
         onDebounce(externalValue);
       }, delay);
 
@@ -203,6 +205,9 @@ const FieldTextDebounce = ({
         clearTimeout(handler);
       };
     }
+    setTimeout(() => {
+      setShowMinimumMsg(true);
+    }, delay);
   }, [
     internalValue,
     delay,
@@ -213,9 +218,6 @@ const FieldTextDebounce = ({
   ]);
 
   const handleFocus = () => {
-    if (value.length < minimumCharacters) {
-      setShowMinimumMsg(true);
-    }
     if (onFocus) onFocus();
   };
 
@@ -228,7 +230,6 @@ const FieldTextDebounce = ({
     const newValue = (event.target || {}).value;
     setInternalValue(newValue);
     setExternalValue(newValue);
-    setShowMinimumMsg(newValue.length < minimumCharacters);
   };
 
   let minMsgPosition = '-3px';
