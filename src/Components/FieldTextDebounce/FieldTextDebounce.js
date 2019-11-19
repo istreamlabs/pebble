@@ -232,10 +232,10 @@ const FieldTextDebounce = ({
     setExternalValue(newValue);
   };
 
-  let minMsgPosition = '-3px';
+  let minMsgPosition = 'translateY(-3px)';
 
   if (hideLabel) {
-    minMsgPosition = '4px';
+    minMsgPosition = 'translateY(-113%)';
   }
   if (hideLabel && size === 'small') {
     minMsgPosition = '2px';
@@ -255,8 +255,8 @@ const FieldTextDebounce = ({
           className="animate fadeIn absolute shadow-1"
           style={{
             zIndex: 2,
-            right: hideLabel ? '4px' : 0,
-            top: minMsgPosition,
+            right: 0,
+            transform: minMsgPosition,
           }}
         >
           {minimumCharacters} character minimum
