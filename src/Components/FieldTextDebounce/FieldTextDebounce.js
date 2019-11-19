@@ -191,18 +191,20 @@ const FieldTextDebounce = ({
       return;
     }
 
-    if (
-      internalValue.length >= minimumCharacters ||
-      internalValue.length === 0
-    ) {
-      const handler = setTimeout(() => {
+    const handler = setTimeout(() => {
+      if (
+        internalValue.length >= minimumCharacters ||
+        internalValue.length === 0
+      ) {
+        setShowMinimumMsg(false);
         onDebounce(externalValue);
-      }, delay);
-
-      return () => {
-        clearTimeout(handler);
-      };
-    }
+      } else {
+        setShowMinimumMsg(true);
+      }
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
   }, [
     internalValue,
     delay,
@@ -213,9 +215,6 @@ const FieldTextDebounce = ({
   ]);
 
   const handleFocus = () => {
-    if (value.length < minimumCharacters) {
-      setShowMinimumMsg(true);
-    }
     if (onFocus) onFocus();
   };
 
@@ -228,13 +227,12 @@ const FieldTextDebounce = ({
     const newValue = (event.target || {}).value;
     setInternalValue(newValue);
     setExternalValue(newValue);
-    setShowMinimumMsg(newValue.length < minimumCharacters);
   };
 
-  let minMsgPosition = '-3px';
+  let minMsgPosition = 'translateY(-3px)';
 
   if (hideLabel) {
-    minMsgPosition = '4px';
+    minMsgPosition = 'translateY(-113%)';
   }
   if (hideLabel && size === 'small') {
     minMsgPosition = '2px';
@@ -254,8 +252,8 @@ const FieldTextDebounce = ({
           className="animate fadeIn absolute shadow-1"
           style={{
             zIndex: 2,
-            right: hideLabel ? '4px' : 0,
-            top: minMsgPosition,
+            right: 0,
+            transform: minMsgPosition,
           }}
         >
           {minimumCharacters} character minimum
