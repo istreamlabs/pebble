@@ -191,23 +191,20 @@ const FieldTextDebounce = ({
       return;
     }
 
-    if (
-      internalValue.length >= minimumCharacters ||
-      internalValue.length === 0
-    ) {
-      const handler = setTimeout(() => {
+    const handler = setTimeout(() => {
+      if (
+        internalValue.length >= minimumCharacters ||
+        internalValue.length === 0
+      ) {
         setShowMinimumMsg(false);
-
         onDebounce(externalValue);
-      }, delay);
-
-      return () => {
-        clearTimeout(handler);
-      };
-    }
-    setTimeout(() => {
-      setShowMinimumMsg(true);
+      } else {
+        setShowMinimumMsg(true);
+      }
     }, delay);
+    return () => {
+      clearTimeout(handler);
+    };
   }, [
     internalValue,
     delay,

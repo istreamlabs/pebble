@@ -1,7 +1,8 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, wait } from '@testing-library/react';
 
 import FieldTextDebounce from './FieldTextDebounce';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 
 describe('FieldTextDebounce', () => {
   jest.useFakeTimers();
@@ -17,13 +18,17 @@ describe('FieldTextDebounce', () => {
         onDebounce={onDebounce}
       />,
     );
-    fireEvent.change(getByDisplayValue('abc'), {
-      target: {
-        value: 'abcd',
-      },
+    act(() => {
+      fireEvent.change(getByDisplayValue('abc'), {
+        target: {
+          value: 'abcd',
+        },
+      });
     });
     expect(onDebounce).not.toHaveBeenCalled();
-    jest.runAllTimers();
+    act(() => {
+      jest.runAllTimers();
+    });
     expect(onDebounce).toHaveBeenCalled();
   });
 
@@ -46,54 +51,82 @@ describe('FieldTextDebounce', () => {
       },
     });
     expect(onDebounce).not.toHaveBeenCalled();
-    jest.runAllTimers();
-    expect(onDebounce).not.toHaveBeenCalled();
-    fireEvent.change(input, {
-      target: {
-        value: 'abcdef',
-      },
+    act(() => {
+      jest.runAllTimers();
     });
     expect(onDebounce).not.toHaveBeenCalled();
-    jest.runAllTimers();
+    act(() => {
+      fireEvent.change(input, {
+        target: {
+          value: 'abcdef',
+        },
+      });
+    });
+    expect(onDebounce).not.toHaveBeenCalled();
+    act(() => {
+      jest.runAllTimers();
+    });
     expect(onDebounce).toHaveBeenCalled();
   });
 
-  it('shows min message ', () => {
+  it('shows min message ', async () => {
     const onDebounce = jest.fn();
     const { getByDisplayValue, getByText } = render(
       <FieldTextDebounce
         label="debounce"
         id="debounce"
-        value="a"
+        value="abc"
         onDebounce={onDebounce}
       />,
     );
-    const input = getByDisplayValue('a');
+    const input = getByDisplayValue('abc');
     fireEvent.focus(input);
-    expect(getByText('2 character minimum')).toBeDefined();
+    // doesn't show the min char message on focus
+    expect(() => getByText('2 character minimum')).toThrow();
+
+    act(() => {
+      fireEvent.change(input, { target: { value: '1' } });
+    });
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    await wait(() => getByText('2 character minimum'));
     fireEvent.blur(input);
     expect(() => getByText('2 character minimum')).toThrow();
   });
 
-  it('shows min message when the label is hidden', () => {
+  it('shows min message when the label is hidden', async () => {
     const onDebounce = jest.fn();
     const { getByDisplayValue, getByText } = render(
       <FieldTextDebounce
         hideLabel
         label="debounce"
         id="debounce"
-        value="a"
+        value="abc"
         onDebounce={onDebounce}
       />,
     );
-    const input = getByDisplayValue('a');
+    const input = getByDisplayValue('abc');
     fireEvent.focus(input);
-    expect(getByText('2 character minimum')).toBeDefined();
+    // doesn't show the min char message on focus
+    expect(() => getByText('2 character minimum')).toThrow();
+
+    act(() => {
+      fireEvent.change(input, { target: { value: '1' } });
+    });
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    await wait(() => getByText('2 character minimum'));
     fireEvent.blur(input);
     expect(() => getByText('2 character minimum')).toThrow();
   });
 
-  it('shows min message when the label is hidden and size is small', () => {
+  it('shows min message when the label is hidden and size is small', async () => {
     const onDebounce = jest.fn();
     const { getByDisplayValue, getByText } = render(
       <FieldTextDebounce
@@ -101,13 +134,24 @@ describe('FieldTextDebounce', () => {
         size="small"
         label="debounce"
         id="debounce"
-        value="a"
+        value="abc"
         onDebounce={onDebounce}
       />,
     );
-    const input = getByDisplayValue('a');
+    const input = getByDisplayValue('abc');
     fireEvent.focus(input);
-    expect(getByText('2 character minimum')).toBeDefined();
+    // doesn't show the min char message on focus
+    expect(() => getByText('2 character minimum')).toThrow();
+
+    act(() => {
+      fireEvent.change(input, { target: { value: '1' } });
+    });
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    await wait(() => getByText('2 character minimum'));
     fireEvent.blur(input);
     expect(() => getByText('2 character minimum')).toThrow();
   });
