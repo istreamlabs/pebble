@@ -254,6 +254,16 @@ const propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
+   * or:
+   * {
+   *      "vertical": "...",
+   *      "horizontal": "...",
+   *      "top": "...",
+   *      "bottom": "...",
+   *      "left": "...",
+   *      "right": "..."
+   *    }
+   *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */

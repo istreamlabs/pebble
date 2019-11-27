@@ -10,6 +10,9 @@ import Text from '../Text/Text';
 const borderWidth = '8px';
 
 storiesOf('Block', module)
+  .addParameters({
+    chromatic: { viewports: [479, 959, 1439] },
+  })
   .add('background color', () => (
     <Block itemSpacing="3">
       <Block direction="column">
@@ -833,6 +836,87 @@ storiesOf('Block', module)
       </Block>
       <Block width="80px" padding="3" background="blue-light">
         1/3
+      </Block>
+    </Block>
+  ))
+  .add('responsive padding object', () => (
+    <Block displayBlock itemSpacing="3">
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={[
+          {
+            vertical: 3,
+            horizontal: 4,
+          },
+          {
+            vertical: 4,
+            horizontal: 5,
+          },
+          {
+            vertical: 5,
+            horizontal: 6,
+          },
+          {
+            vertical: 6,
+            horizontal: 7,
+          },
+        ]}
+      >
+        <Block flex background="white">
+          vertical 3,4,5,6, horizontal 4,5,6,7
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={{
+          vertical: 3,
+          horizontal: 8,
+        }}
+      >
+        <Block flex background="white">
+          vertical 3, horizontal 8
+        </Block>
+      </Block>
+
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={{
+          top: 3,
+          right: 8,
+        }}
+      >
+        <Block flex background="white">
+          top 3, right 8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={{
+          bottom: 3,
+          horizontal: 8,
+        }}
+      >
+        <Block flex background="white">
+          bottom 3, horizontal 8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={{
+          top: 3,
+          right: 3,
+          bottom: 0,
+          left: 8,
+        }}
+      >
+        <Block flex background="white">
+          top 3, right 3, bottom 0, left 8
+        </Block>
       </Block>
     </Block>
   ))

@@ -23,24 +23,61 @@ export default (dimension, value) => {
     // set to responsive css classes
   } else if (Array.isArray(value) && value.length) {
     classes = [];
-    classPrefix = getPrefix(dimension, value[0]);
-    classes.push(`${classPrefix}${value[0]}`);
+
+    if (typeof value[0] === 'object') {
+      Object.keys(value[0]).forEach(dimension => {
+        classPrefix = getPrefix(dimension, value[0][dimension]);
+        classes.push(`${classPrefix}${value[0][dimension]}`);
+      });
+    } else {
+      classPrefix = getPrefix(dimension, value[0]);
+      classes.push(`${classPrefix}${value[0]}`);
+    }
 
     if (value[1] !== undefined) {
-      classPrefix = getPrefix(dimension, value[1]);
-      classes.push(`${classPrefix}${value[1]}-ns`);
+      if (typeof value[1] === 'object') {
+        Object.keys(value[1]).forEach(dimension => {
+          classPrefix = getPrefix(dimension, value[1][dimension]);
+          classes.push(`${classPrefix}${value[1][dimension]}-ns`);
+        });
+      } else {
+        classPrefix = getPrefix(dimension, value[1]);
+        classes.push(`${classPrefix}${value[1]}-ns`);
+      }
     }
 
     if (value[2] !== undefined) {
-      classPrefix = getPrefix(dimension, value[2]);
-      classes.push(`${classPrefix}${value[2]}-m`);
+      if (typeof value[2] === 'object') {
+        Object.keys(value[2]).forEach(dimension => {
+          classPrefix = getPrefix(dimension, value[2][dimension]);
+          classes.push(`${classPrefix}${value[2][dimension]}-m`);
+        });
+      } else {
+        classPrefix = getPrefix(dimension, value[2]);
+        classes.push(`${classPrefix}${value[2]}-m`);
+      }
     }
 
     if (value[3] !== undefined) {
-      classPrefix = getPrefix(dimension, value[3]);
-      classes.push(`${classPrefix}${value[3]}-l`);
+      if (typeof value[3] === 'object') {
+        Object.keys(value[3]).forEach(dimension => {
+          classPrefix = getPrefix(dimension, value[3][dimension]);
+          classes.push(`${classPrefix}${value[3][dimension]}-l`);
+        });
+      } else {
+        classPrefix = getPrefix(dimension, value[3]);
+        classes.push(`${classPrefix}${value[3]}-l`);
+      }
     }
+    // figure out which classes to apply based on object keys
+  } else if (typeof value === 'object') {
+    classes = [];
+    Object.keys(value).forEach(dimension => {
+      classPrefix = getPrefix(dimension, value[dimension]);
+      classes.push(`${classPrefix}${value[dimension]}`);
+    });
   }
+
   dimensionCss.classes = classes;
 
   return dimensionCss;
@@ -59,6 +96,42 @@ function getPrefix(dimension, value) {
     case 'height':
       prefix = 'h';
       if (value > 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'vertical':
+      prefix = 'pv';
+      if (value < 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'horizontal':
+      prefix = 'ph';
+      if (value < 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'top':
+      prefix = 'pt';
+      if (value < 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'right':
+      prefix = 'pr';
+      if (value < 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'bottom':
+      prefix = 'pb';
+      if (value < 9) {
+        prefix = `${prefix}-`;
+      }
+      break;
+    case 'left':
+      prefix = 'pl';
+      if (value < 9) {
         prefix = `${prefix}-`;
       }
       break;
