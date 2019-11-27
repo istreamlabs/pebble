@@ -13,7 +13,7 @@ describe('Section', () => {
     const wrapper = shallow(
       <Section className="myClass">test</Section>,
     );
-    expect(wrapper.find('div').prop('className')).toContain(
+    expect(wrapper.find('Block').prop('className')).toContain(
       'myClass',
     );
   });

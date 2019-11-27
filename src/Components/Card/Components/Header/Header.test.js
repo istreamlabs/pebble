@@ -14,7 +14,7 @@ describe('Header', () => {
     const wrapper = shallow(
       <Header className="myClass">test</Header>,
     );
-    expect(wrapper.find('div').prop('className')).toContain(
+    expect(wrapper.find('Block').prop('className')).toContain(
       'myClass',
     );
   });
