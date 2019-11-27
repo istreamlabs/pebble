@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import Block from '../../../Block/Block';
 import '../../Card.scss';
 
 const propTypes = {
@@ -13,10 +13,6 @@ const propTypes = {
    * Contents of the button
    */
   children: PropTypes.node.isRequired,
-  /**
-   * Make the section less visually prominent
-   */
-  subdued: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -24,12 +20,19 @@ const defaultProps = {
   subdued: false,
 };
 
-function Section({ children, className, subdued }) {
-  const classes = classNames('card-section', className, {
-    subdued,
-  });
+function Section({ children, className }) {
+  const classes = classNames('card-section', className);
 
-  return <div className={classes}>{children}</div>;
+  return (
+    <Block
+      displayBlock
+      paddingHorizontal={[3, 4, 5]}
+      paddingVertical={[3, 4]}
+      className={classes}
+    >
+      {children}
+    </Block>
+  );
 }
 
 Section.propTypes = propTypes;

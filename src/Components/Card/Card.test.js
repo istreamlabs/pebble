@@ -29,6 +29,14 @@ describe('Card', () => {
     expect(wrapper.find(Section)).toHaveLength(2);
   });
 
+  it('sets the correct background and border for muted cards', () => {
+    const wrapper = shallow(<Card muted>test</Card>);
+    expect(wrapper.find('Block').prop('background')).toBe(
+      'neutral-200',
+    );
+    expect(wrapper.find('Block').prop('border')).toBeNull();
+  });
+
   describe('header', () => {
     it('renders a header when a title is passed', () => {
       const wrapper = shallow(<Card title="test-title">test</Card>);

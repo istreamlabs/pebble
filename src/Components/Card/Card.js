@@ -79,8 +79,8 @@ function Card({
   title,
   ...rest
 }) {
-  const classes = classNames('card', className, {
-    muted,
+  const classes = classNames(className, {
+    'shadow-1': !muted,
   });
 
   const header =
@@ -98,10 +98,13 @@ function Card({
 
   return (
     <Block
-      {...rest}
       direction="column"
       overflow={overflow}
       className={classes}
+      background={muted ? 'neutral-200' : 'white'}
+      border={muted ? null : 'all'}
+      radius="2"
+      {...rest}
     >
       {header}
       {content}
