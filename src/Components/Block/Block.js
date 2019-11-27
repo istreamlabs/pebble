@@ -410,6 +410,8 @@ class Block extends React.PureComponent {
       : null;
 
     const flexGrowShrinkProp = flex => {
+      if (displayBlock) return;
+
       if (typeof flex === 'boolean' || typeof flex === 'string') {
         return FLEX_MAP[flex];
       }
