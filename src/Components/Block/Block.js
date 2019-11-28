@@ -214,6 +214,25 @@ const propTypes = {
    */
   textSize: fontSizeType,
   /**
+   * Margin [space](/#/Styles/Spacing) to be added around this block.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * or:
+   * {
+   *      "vertical": "...",
+   *      "horizontal": "...",
+   *      "top": "...",
+   *      "bottom": "...",
+   *      "left": "...",
+   *      "right": "..."
+   *    }
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Spacing>}
+   */
+  margin: spacingType,
+  /**
    * Margin [space](/#/Styles/Spacing) to be added above this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -250,7 +269,7 @@ const propTypes = {
    */
   overflow: overflowType,
   /**
-   * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
+   * Padding [space](/#/Styles/Spacing) to be added  within this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
@@ -366,6 +385,7 @@ class Block extends React.PureComponent {
       height,
       itemSpacing,
       justify,
+      margin,
       marginTop,
       marginBottom,
       order,
@@ -383,6 +403,7 @@ class Block extends React.PureComponent {
       ...props
     } = this.props;
 
+    const mClasses = getDimensionClasses('m', margin);
     const mtClasses = getDimensionClasses('mt', marginTop);
     const mbClasses = getDimensionClasses('mb', marginBottom);
     const pClasses = getDimensionClasses('p', padding);
@@ -460,6 +481,7 @@ class Block extends React.PureComponent {
     const classes = classNames(
       directionClasses,
       overflowClasses,
+      mClasses.classes,
       mbClasses.classes,
       mtClasses.classes,
       pClasses.classes,

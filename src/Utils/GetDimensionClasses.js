@@ -24,7 +24,10 @@ export default (dimension, value) => {
   } else if (Array.isArray(value) && value.length) {
     classes = [];
 
-    if (typeof value[0] === 'object') {
+    if (
+      typeof value[0] === 'object' &&
+      (dimension === 'padding' || dimension === 'margin')
+    ) {
       Object.keys(value[0]).forEach(dimension => {
         classPrefix = getPrefix(dimension, value[0][dimension]);
         classes.push(`${classPrefix}${value[0][dimension]}`);
@@ -35,7 +38,10 @@ export default (dimension, value) => {
     }
 
     if (value[1] !== undefined) {
-      if (typeof value[1] === 'object') {
+      if (
+        typeof value[1] === 'object' &&
+        (dimension === 'p' || dimension === 'm')
+      ) {
         Object.keys(value[1]).forEach(dimension => {
           classPrefix = getPrefix(dimension, value[1][dimension]);
           classes.push(`${classPrefix}${value[1][dimension]}-ns`);
@@ -47,7 +53,10 @@ export default (dimension, value) => {
     }
 
     if (value[2] !== undefined) {
-      if (typeof value[2] === 'object') {
+      if (
+        typeof value[2] === 'object' &&
+        (dimension === 'p' || dimension === 'p')
+      ) {
         Object.keys(value[2]).forEach(dimension => {
           classPrefix = getPrefix(dimension, value[2][dimension]);
           classes.push(`${classPrefix}${value[2][dimension]}-m`);
@@ -59,7 +68,10 @@ export default (dimension, value) => {
     }
 
     if (value[3] !== undefined) {
-      if (typeof value[3] === 'object') {
+      if (
+        typeof value[3] === 'object' &&
+        (dimension === 'p' || dimension === 'm')
+      ) {
         Object.keys(value[3]).forEach(dimension => {
           classPrefix = getPrefix(dimension, value[3][dimension]);
           classes.push(`${classPrefix}${value[3][dimension]}-l`);
@@ -70,7 +82,10 @@ export default (dimension, value) => {
       }
     }
     // figure out which classes to apply based on object keys
-  } else if (typeof value === 'object') {
+  } else if (
+    typeof value === 'object' &&
+    (dimension === 'p' || dimension === 'm')
+  ) {
     classes = [];
     Object.keys(value).forEach(dimension => {
       classPrefix = getPrefix(dimension, value[dimension]);

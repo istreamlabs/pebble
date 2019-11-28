@@ -28,6 +28,15 @@ describe('Util > GetDimensionClasses', () => {
     );
   });
 
+  it('returns correct classes if passed a padding object', () => {
+    expect(
+      getDimensionClasses('p', { top: 3, bottom: 2 }),
+    ).toMatchObject({
+      styles: null,
+      classes: ['pt-3', 'pb-2'],
+    });
+  });
+
   it('returns undefined if not passed an array, string, or number', () => {
     expect(getDimensionClasses('width', {})).toMatchObject({
       styles: null,
