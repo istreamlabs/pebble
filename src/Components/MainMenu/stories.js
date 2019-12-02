@@ -1,11 +1,10 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
-
 import '../../Styles/foundation.scss';
 
-import MainMenu from './MainMenu';
 import Block from '../Block/Block';
+import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
+import MainMenu from './MainMenu';
+import React from 'react';
+import { storiesOf } from '@storybook/react';
 
 const menu = [
   {
@@ -68,6 +67,7 @@ const auxMenu = [
   {
     label: 'Trent Anderson',
     icon: 'profile-circle',
+    className: 'fs-block',
     items: [
       {
         label: 'Profile',
