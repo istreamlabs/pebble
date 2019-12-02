@@ -160,9 +160,9 @@ function SortableTable() {
 }
 
 storiesOf('Table', module)
-  .addDecorator(storyFn => (
-    <div style={{ width: '900px' }}>{storyFn()}</div>
-  ))
+  .addParameters({
+    chromatic: { viewports: [479, 959, 1439] },
+  })
   .add('tabular data', () => (
     <Table>
       <TableHeader mobileLabel="Contacts">
