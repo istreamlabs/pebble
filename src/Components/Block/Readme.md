@@ -1,4 +1,20 @@
-## Examples
+### Flex
+
+Flex is applied by default to Block component.
+
+```js
+<Block itemSpacing="3">
+  <Block flex={false} padding="3" background="blue-light">
+    takes up minimum width for content
+  </Block>
+  <Block flex padding="3" background="blue-light">
+    takes up available width
+  </Block>
+  <Block flex={false} padding="3" background="blue-light">
+    takes up minimum width for content
+  </Block>
+</Block>
+```
 
 ### Direction
 
@@ -41,29 +57,7 @@ import Badge from '../Badge/Badge';
 </>;
 ```
 
-### Flex
-
-```js
-<Block itemSpacing="3">
-  <Block flex={false} padding="3" background="blue-light">
-    1
-  </Block>
-  <Block
-    className="db"
-    width="100px"
-    flex={true}
-    padding="3"
-    background="blue-light"
-  >
-    1
-  </Block>
-  <Block flex={false} padding="3" background="blue-light">
-    1
-  </Block>
-</Block>
-```
-
-### Basis
+#### Basis
 
 Basis defines the default size of an element before the remaining space is distributed.
 
@@ -196,111 +190,42 @@ import Text from '../Text/Text';
 Apply padding to all four sides.
 
 ```js hide
-<Block itemSpacing="1" direction="column">
-  <Block background="blue-light" padding="8">
-    Padding of 8
-  </Block>
-  <Block background="blue-light" padding="7">
-    Padding of 7
-  </Block>
-  <Block background="blue-light" padding="6">
-    Padding of 6
-  </Block>
-  <Block background="blue-light" padding="5">
-    Padding of 5
-  </Block>
-  <Block background="blue-light" padding="4">
-    Padding of 4
-  </Block>
-  <Block background="blue-light" padding="3">
-    Padding of 3
-  </Block>
-  <Block background="blue-light" padding="2">
-    Padding of 2
-  </Block>
-  <Block background="blue-light" padding="1">
-    Padding of 1
-  </Block>
-  <Block background="blue-light" padding="0">
-    No padding
+<Block
+  background="blue-light"
+  paddingHorizontal="8"
+  padding="4"
+  displayBlock
+>
+  <Block displayBlock background="white">
+    Padding 4
   </Block>
 </Block>
 ```
 
-#### Horizontal Padding
+#### Horizontal and Vertical Padding
 
-`Block` can have separate horizontal and vertical padding
+Set the vertical and horizontal padding to independent values.
 
 ```js
-<Block itemSpacing="1" direction="column">
-  <Block background="blue-light" paddingHorizontal="8">
-    Horizontal padding of 8
+<Block
+  background="blue-light"
+  paddingHorizontal="8"
+  paddingVertical="4"
+  displayBlock
+>
+  <Block displayBlock background="white">
+    Horizontal 8, Vertical 4
   </Block>
-  <Block background="blue-light" paddingHorizontal="7">
-    Horizontal padding of 7
-  </Block>
-  <Block background="blue-light" paddingHorizontal="6">
-    Horizontal padding of 6
-  </Block>
-  <Block background="blue-light" paddingHorizontal="5">
-    Horizontal padding of 5
-  </Block>
-  <Block background="blue-light" paddingHorizontal="4">
-    Horizontal padding of 4
-  </Block>
-  <Block background="blue-light" paddingHorizontal="3">
-    Horizontal padding of 3
-  </Block>
-  <Block background="blue-light" paddingHorizontal="2">
-    Horizontal padding of 2
-  </Block>
-  <Block background="blue-light" paddingHorizontal="1">
-    Horizontal padding of 1
-  </Block>
-  <Block background="blue-light">No padding</Block>
 </Block>
 ```
 
-#### Vertical Padding
+#### Individual Padding Values
 
-```js
-<Block itemSpacing="1" direction="column">
-  <Block background="blue-light" paddingVertical="8">
-    Vertical padding of 8
-  </Block>
-  <Block background="blue-light" paddingVertical="7">
-    Vertical padding of 7
-  </Block>
-  <Block background="blue-light" paddingVertical="6">
-    Vertical padding of 6
-  </Block>
-  <Block background="blue-light" paddingVertical="5">
-    Vertical padding of 5
-  </Block>
-  <Block background="blue-light" paddingVertical="4">
-    Vertical padding of 4
-  </Block>
-  <Block background="blue-light" paddingVertical="3">
-    Vertical padding of 3
-  </Block>
-  <Block background="blue-light" paddingVertical="2">
-    Vertical padding of 2
-  </Block>
-  <Block background="blue-light" paddingVertical="1">
-    Vertical padding of 1
-  </Block>
-  <Block background="blue-light">No padding</Block>
-</Block>
-```
+Set the padding for individual sides or planes by passing an object.
 
-#### Control padding for each side
-
-Control the padding for each side by passing an object specifying the padding for vertical, horizontal, or individual side(s).
-
-```js
+```js hide
 <Block displayBlock itemSpacing="3">
   <Block
-    border={{ side: 'all', color: 'blue' }}
     background="blue-light"
     padding={{
       vertical: 3,
@@ -313,54 +238,150 @@ Control the padding for each side by passing an object specifying the padding fo
   </Block>
 
   <Block
-    border={{ side: 'all', color: 'blue' }}
     background="blue-light"
     padding={{
       top: 3,
       right: 8,
+      bottom: 1,
+      left: 4,
     }}
   >
     <Block flex background="white">
-      top 3, right 8
+      top 3, right 8, bottom 1, left 4
     </Block>
   </Block>
+
   <Block
-    border={{ side: 'all', color: 'blue' }}
     background="blue-light"
     padding={{
-      bottom: 3,
-      horizontal: 8,
+      vertical: 4,
+      left: 4,
+      right: 8,
     }}
   >
     <Block flex background="white">
-      bottom 3, horizontal 8
-    </Block>
-  </Block>
-  <Block
-    border={{ side: 'all', color: 'blue' }}
-    background="blue-light"
-    padding={{
-      top: 3,
-      right: 3,
-      bottom: 0,
-      left: 8,
-    }}
-  >
-    <Block flex background="white">
-      top 3, right 3, bottom 0, left 8
+      vertical 4, left 4, right 8
     </Block>
   </Block>
 </Block>
 ```
 
-Responsive padding with array of objects
+#### Responsive Padding
+
+Apply different padding values that correspond to mobile first [breakpoints](/#/Styles/Media%20Query) by passing an array with length up to four.
 
 ```js
+<Block
+  background="blue-light"
+  padding={[
+    {
+      vertical: 3,
+      horizontal: 4,
+    },
+    {
+      vertical: 4,
+      horizontal: 5,
+    },
+    {
+      vertical: 5,
+      horizontal: 6,
+    },
+    {
+      vertical: 6,
+      horizontal: 7,
+    },
+  ]}
+>
+  <Block flex background="white">
+    vertical 3,4,5,6, horizontal 4,5,6,7
+  </Block>
+</Block>
+```
+
+### Margin
+
+Apply margin to all four sides.
+
+```js hide
+<Block background="blue-light">
+  <Block flex margin="4" background="white">
+    Margin 4
+  </Block>
+</Block>
+```
+
+#### Top and Bottom Margin
+
+Set the top and bottom margin to independent values.
+
+```js
+<Block background="blue-light">
+  <Block flex marginTop="4" marginBottom="8" background="white">
+    marginTop 4, marginBottom 8
+  </Block>
+</Block>
+```
+
+#### Individual Margin Values
+
+Set the margin for individual sides or planes by passing an object.
+
+```js hide
 <Block displayBlock itemSpacing="3">
+  <Block background="blue-light">
+    <Block
+      flex
+      margin={{
+        vertical: 3,
+        horizontal: 8,
+      }}
+      background="white"
+    >
+      vertical 3, horizontal 8
+    </Block>
+  </Block>
+
+  <Block background="blue-light">
+    <Block
+      flex
+      margin={{
+        top: 3,
+        right: 8,
+        bottom: 1,
+        left: 4,
+      }}
+      background="white"
+    >
+      top 3, right 8, bottom 1, left 4
+    </Block>
+  </Block>
+
+  <Block background="blue-light">
+    <Block
+      flex
+      margin={{
+        vertical: 4,
+        left: 4,
+        right: 8,
+      }}
+      background="white"
+    >
+      vertical 4, left 4, right 8
+    </Block>
+  </Block>
+</Block>
+```
+
+#### Responsive Margins
+
+Apply different margin values that correspond to mobile first [breakpoints](/#/Styles/Media%20Query) by passing an array with length up to four.
+
+```js
+<Block background="blue-light">
   <Block
-    border={{ side: 'all', color: 'blue' }}
-    background="blue-light"
-    padding={[
+    flex
+    background="white"
+    margin={[
       {
         vertical: 3,
         horizontal: 4,
@@ -379,39 +400,9 @@ Responsive padding with array of objects
       },
     ]}
   >
-    <Block flex background="white">
-      vertical 3,4,5,6, horizontal 4,5,6,7
-    </Block>
+    vertical 3,4,5,6, horizontal 4,5,6,7
   </Block>
 </Block>
-```
-
-### Margin Top
-
-```js
-<Block background="blue-light" marginTop="8">Margin top of 8</Block>
-<Block background="blue-light" marginTop="7">Margin top of 7</Block>
-<Block background="blue-light" marginTop="6">Margin top of 6</Block>
-<Block background="blue-light" marginTop="5">Margin top of 5</Block>
-<Block background="blue-light" marginTop="4">Margin top of 4</Block>
-<Block background="blue-light" marginTop="3">Margin top of 3</Block>
-<Block background="blue-light" marginTop="2">Margin top of 2</Block>
-<Block background="blue-light" marginTop="1">Margin top of 1</Block>
-<Block background="blue-light">No margin</Block>
-```
-
-### Margin Bottom
-
-```js
-<Block background="blue-light" marginBottom="8">Margin bottom of 8</Block>
-<Block background="blue-light" marginBottom="7">Margin bottom of 7</Block>
-<Block background="blue-light" marginBottom="6">Margin bottom of 6</Block>
-<Block background="blue-light" marginBottom="5">Margin bottom of 5</Block>
-<Block background="blue-light" marginBottom="4">Margin bottom of 4</Block>
-<Block background="blue-light" marginBottom="3">Margin bottom of 3</Block>
-<Block background="blue-light" marginBottom="2">Margin bottom of 2</Block>
-<Block background="blue-light" marginBottom="1">Margin bottom of 1</Block>
-<Block background="blue-light">No margin</Block>
 ```
 
 ### Borders
@@ -449,58 +440,12 @@ Setting the `border` prop to a string will apply teh default border style of `1p
 </Block>
 ```
 
-### Responsive Spacing
-
-Margin and padding props can be passed arrays as values for mobile-first responsive styles.
-
-```js
-<Block
-  background="blue-light"
-  padding={[
-    2, // spacing-2 by default
-    4, // spacing-4 30rem and up
-    6, // spacing-6 60rem and up
-    8, // spacing-8 90rem and up
-  ]}
->
-  Padding of 2 and 8
-</Block>
-```
-
 ### Radius Corners
+
+Control the corner radius of a Block by setting the radius to a value `1-5`, `pill` or `circle`.
 
 ```js
 <Block itemSpacing="3" wrap>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="0"
-    width="75px"
-    height="75px"
-  >
-    radius 0
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="1"
-    width="75px"
-    height="75px"
-  >
-    radius 1
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="2"
-    width="75px"
-    height="75px"
-  >
-    radius 2
-  </Block>
   <Block
     alignItems="center"
     justify="center"
@@ -510,26 +455,6 @@ Margin and padding props can be passed arrays as values for mobile-first respons
     height="75px"
   >
     radius 3
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="4"
-    width="75px"
-    height="75px"
-  >
-    radius 4
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="5"
-    width="75px"
-    height="75px"
-  >
-    radius 5
   </Block>
   <Block
     alignItems="center"
