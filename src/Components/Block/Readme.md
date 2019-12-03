@@ -88,16 +88,8 @@ Width can be set to a valid css width value.
 For responsive widths, pass an array of percentages for each element.
 
 ```js
-<Block itemSpacing="3">
-  <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">
-    10%, 33%, 25%, 10%
-  </Block>
-  <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">
-    80%, 33%, 50%, 10%
-  </Block>
-  <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">
-    10%, 34%, 25%, 80%
-  </Block>
+<Block width={[10, 33, 25, 10]} padding="3" background="blue-light">
+  10%, 33%, 25%, 10%
 </Block>
 ```
 
@@ -122,28 +114,8 @@ Height can be set to a valid css height value.
 For responsive height, pass an array of percentages for each element.
 
 ```js
-<Block direction="column" itemSpacing="3" height="300px">
-  <Block
-    height={[10, 33, 25, 10]}
-    padding="3"
-    background="blue-light"
-  >
-    10%, 33%, 25%, 10%
-  </Block>
-  <Block
-    height={[80, 33, 50, 10]}
-    padding="3"
-    background="blue-light"
-  >
-    80%, 33%, 50%, 10%
-  </Block>
-  <Block
-    height={[10, 34, 25, 80]}
-    padding="3"
-    background="blue-light"
-  >
-    10%, 34%, 25%, 80%
-  </Block>
+<Block height={[10, 33, 25, 10]} padding="3" background="blue-light">
+  10%, 33%, 25%, 10%
 </Block>
 ```
 
@@ -402,6 +374,24 @@ Apply different margin values that correspond to mobile first [breakpoints](/#/S
   >
     vertical 3,4,5,6, horizontal 4,5,6,7
   </Block>
+</Block>
+```
+
+### Item Spacing
+
+Control the amount of spacing (or the gap) between a Block's children with with the `itemSpacing` prop. Pass an array up to length 4 to set responsive item spacing values. Based on the direction of the Block, right or bottom margin are applied the children.
+
+```jsx
+<Block border="all" itemSpacing={[1, 2, 3, 4]} marginBottom="4">
+  <Block flex height="50px" background="blue-light" />
+  <Block flex height="50px" background="blue-light" />
+  <Block flex height="50px" background="blue-light" />
+</Block>
+
+<Block direction="column" border="all" itemSpacing="6">
+  <Block width="100%" height="50px" background="blue-light" />
+  <Block width="100%" height="50px" background="blue-light" />
+  <Block width="100%" height="50px" background="blue-light" />
 </Block>
 ```
 
