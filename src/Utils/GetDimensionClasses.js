@@ -1,7 +1,14 @@
 export default (dimension, value) => {
+  if (value === undefined) {
+    return {
+      styles: null,
+      classes: [],
+    };
+  }
+
   let classes = [];
 
-  let classPrefix = getPrefix(dimension, value);
+  let classPrefix = getPrefix(dimension, value, dimension);
 
   const dimensionCss = {
     styles: null,
@@ -26,14 +33,14 @@ export default (dimension, value) => {
 
     if (
       typeof value[0] === 'object' &&
-      (dimension === 'padding' || dimension === 'margin')
+      (dimension === 'p' || dimension === 'm')
     ) {
-      Object.keys(value[0]).forEach(dimension => {
-        classPrefix = getPrefix(dimension, value[0][dimension]);
-        classes.push(`${classPrefix}${value[0][dimension]}`);
+      Object.keys(value[0]).forEach(side => {
+        classPrefix = getPrefix(side, value[0][side], dimension);
+        classes.push(`${classPrefix}${value[0][side]}`);
       });
     } else {
-      classPrefix = getPrefix(dimension, value[0]);
+      classPrefix = getPrefix(dimension, value[0], dimension);
       classes.push(`${classPrefix}${value[0]}`);
     }
 
@@ -42,12 +49,12 @@ export default (dimension, value) => {
         typeof value[1] === 'object' &&
         (dimension === 'p' || dimension === 'm')
       ) {
-        Object.keys(value[1]).forEach(dimension => {
-          classPrefix = getPrefix(dimension, value[1][dimension]);
-          classes.push(`${classPrefix}${value[1][dimension]}-ns`);
+        Object.keys(value[1]).forEach(side => {
+          classPrefix = getPrefix(side, value[1][side], dimension);
+          classes.push(`${classPrefix}${value[1][side]}-ns`);
         });
       } else {
-        classPrefix = getPrefix(dimension, value[1]);
+        classPrefix = getPrefix(dimension, value[1], dimension);
         classes.push(`${classPrefix}${value[1]}-ns`);
       }
     }
@@ -55,14 +62,14 @@ export default (dimension, value) => {
     if (value[2] !== undefined) {
       if (
         typeof value[2] === 'object' &&
-        (dimension === 'p' || dimension === 'p')
+        (dimension === 'p' || dimension === 'm')
       ) {
-        Object.keys(value[2]).forEach(dimension => {
-          classPrefix = getPrefix(dimension, value[2][dimension]);
-          classes.push(`${classPrefix}${value[2][dimension]}-m`);
+        Object.keys(value[2]).forEach(side => {
+          classPrefix = getPrefix(side, value[2][side], dimension);
+          classes.push(`${classPrefix}${value[2][side]}-m`);
         });
       } else {
-        classPrefix = getPrefix(dimension, value[2]);
+        classPrefix = getPrefix(dimension, value[2], dimension);
         classes.push(`${classPrefix}${value[2]}-m`);
       }
     }
@@ -72,12 +79,12 @@ export default (dimension, value) => {
         typeof value[3] === 'object' &&
         (dimension === 'p' || dimension === 'm')
       ) {
-        Object.keys(value[3]).forEach(dimension => {
-          classPrefix = getPrefix(dimension, value[3][dimension]);
-          classes.push(`${classPrefix}${value[3][dimension]}-l`);
+        Object.keys(value[3]).forEach(side => {
+          classPrefix = getPrefix(side, value[3][side], dimension);
+          classes.push(`${classPrefix}${value[3][side]}-l`);
         });
       } else {
-        classPrefix = getPrefix(dimension, value[3]);
+        classPrefix = getPrefix(dimension, value[3], dimension);
         classes.push(`${classPrefix}${value[3]}-l`);
       }
     }
@@ -87,9 +94,9 @@ export default (dimension, value) => {
     (dimension === 'p' || dimension === 'm')
   ) {
     classes = [];
-    Object.keys(value).forEach(dimension => {
-      classPrefix = getPrefix(dimension, value[dimension]);
-      classes.push(`${classPrefix}${value[dimension]}`);
+    Object.keys(value).forEach(side => {
+      classPrefix = getPrefix(side, value[side], dimension);
+      classes.push(`${classPrefix}${value[side]}`);
     });
   }
 
@@ -98,10 +105,9 @@ export default (dimension, value) => {
   return dimensionCss;
 };
 
-function getPrefix(dimension, value) {
-  let prefix = dimension === 'width' ? 'w' : 'h';
-
-  switch (dimension) {
+function getPrefix(side, value, dimension) {
+  let prefix;
+  switch (side) {
     case 'width':
       prefix = 'w';
       if (value > 9) {
@@ -114,38 +120,44 @@ function getPrefix(dimension, value) {
         prefix = `${prefix}-`;
       }
       break;
+    case 'm':
+      prefix = 'm-';
+      break;
+    case 'p':
+      prefix = 'p-';
+      break;
     case 'vertical':
-      prefix = 'pv';
+      prefix = dimension === 'p' ? 'pv' : 'mv';
       if (value < 9) {
         prefix = `${prefix}-`;
       }
       break;
     case 'horizontal':
-      prefix = 'ph';
+      prefix = dimension === 'p' ? 'ph' : 'mh';
       if (value < 9) {
         prefix = `${prefix}-`;
       }
       break;
     case 'top':
-      prefix = 'pt';
+      prefix = dimension === 'p' ? 'pt' : 'mt';
       if (value < 9) {
         prefix = `${prefix}-`;
       }
       break;
     case 'right':
-      prefix = 'pr';
+      prefix = dimension === 'p' ? 'pr' : 'mr';
       if (value < 9) {
         prefix = `${prefix}-`;
       }
       break;
     case 'bottom':
-      prefix = 'pb';
+      prefix = dimension === 'p' ? 'pb' : 'mb';
       if (value < 9) {
         prefix = `${prefix}-`;
       }
       break;
     case 'left':
-      prefix = 'pl';
+      prefix = dimension === 'p' ? 'pl' : 'ml';
       if (value < 9) {
         prefix = `${prefix}-`;
       }
@@ -153,6 +165,5 @@ function getPrefix(dimension, value) {
     default:
       prefix = `${dimension}-`;
   }
-
   return prefix;
 }

@@ -11,13 +11,13 @@ function getDirectionSpacing(direction, spacing, breakpoint) {
   let cssObj;
 
   if (direction === 'column') {
-    cssObj = getDimensionClasses('mb', spacing);
+    cssObj = getDimensionClasses('bottom', spacing, 'm');
     if (breakpoint > 0) {
       cssObj.classes.push('mr-0');
     }
   } else {
     // direction default is 'row'
-    cssObj = getDimensionClasses('mr', spacing);
+    cssObj = getDimensionClasses('right', spacing, 'm');
     if (breakpoint > 0) {
       cssObj.classes.push('mb-0');
     }

@@ -11,7 +11,7 @@ const borderWidth = '8px';
 
 storiesOf('Block', module)
   .addParameters({
-    chromatic: { viewports: [479, 959, 1439] },
+    chromatic: { viewports: [479, 959, 1439, 1440] },
   })
   .add('background color', () => (
     <Block itemSpacing="3">
@@ -839,7 +839,344 @@ storiesOf('Block', module)
       </Block>
     </Block>
   ))
-  .add('responsive padding object', () => (
+  .add('margin', () => (
+    <Block displayBlock itemSpacing="5">
+      <Block
+        direction="column"
+        border={{ side: 'all', color: 'blue' }}
+      >
+        <Block background="blue-light" margin="8">
+          Margin of 8
+        </Block>
+        <Block background="blue-light" margin="7">
+          Margin of 7
+        </Block>
+        <Block background="blue-light" margin="6">
+          Margin of 6
+        </Block>
+        <Block background="blue-light" margin="5">
+          Margin of 5
+        </Block>
+        <Block background="blue-light" margin="4">
+          Margin of 4
+        </Block>
+        <Block background="blue-light" margin="3">
+          Margin of 3
+        </Block>
+        <Block background="blue-light" margin="2">
+          Margin of 2
+        </Block>
+        <Block background="blue-light" margin="1">
+          Margin of 1
+        </Block>
+        <Block background="blue-light" margin="0">
+          No margin
+        </Block>
+      </Block>
+
+      <Block
+        direction="column"
+        border={{ side: 'all', color: 'blue' }}
+      >
+        <Block background="blue-light" marginTop="8">
+          Top margin of 8
+        </Block>
+        <Block background="blue-light" marginTop="7">
+          Top margin of 7
+        </Block>
+        <Block background="blue-light" marginTop="6">
+          Top margin of 6
+        </Block>
+        <Block background="blue-light" marginTop="5">
+          Top margin of 5
+        </Block>
+        <Block background="blue-light" marginTop="4">
+          Top margin of 4
+        </Block>
+        <Block background="blue-light" marginTop="3">
+          Top margin of 3
+        </Block>
+        <Block background="blue-light" marginTop="2">
+          Top margin of 2
+        </Block>
+        <Block background="blue-light" marginTop="1">
+          Top margin of 1
+        </Block>
+        <Block background="blue-light">No margin</Block>
+      </Block>
+
+      <Block
+        direction="column"
+        border={{ side: 'all', color: 'blue' }}
+      >
+        <Block background="blue-light" marginBottom="8">
+          Bottom margin of 8
+        </Block>
+        <Block background="blue-light" marginBottom="7">
+          Bottom margin of 7
+        </Block>
+        <Block background="blue-light" marginBottom="6">
+          Bottom margin of 6
+        </Block>
+        <Block background="blue-light" marginBottom="5">
+          Bottom margin of 5
+        </Block>
+        <Block background="blue-light" marginBottom="4">
+          Bottom margin of 4
+        </Block>
+        <Block background="blue-light" marginBottom="3">
+          Bottom margin of 3
+        </Block>
+        <Block background="blue-light" marginBottom="2">
+          Bottom margin of 2
+        </Block>
+        <Block background="blue-light" marginBottom="1">
+          Bottom margin of 1
+        </Block>
+        <Block background="blue-light">No margin</Block>
+      </Block>
+    </Block>
+  ))
+  .add('margin responsive', () => (
+    <Block displayBlock itemSpacing="3">
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+      >
+        <Block margin={[2, 4, 6, 8]} flex background="white">
+          margin 2,4,6,8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+      >
+        <Block margin={[1, 4, 0, 8]} flex background="white">
+          margin 1,4,0,8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+      >
+        <Block marginTop={[1, 4, 0, 8]} flex background="white">
+          marginTop 1,4,0,8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+      >
+        <Block marginBottom={[1, 4, 0, 8]} flex background="white">
+          marginBottom 1,4,0,8
+        </Block>
+      </Block>
+    </Block>
+  ))
+  .add('margin responsive object', () => (
+    <>
+      <Block background="blue-light" marginBottom="5">
+        <Block
+          border={{ side: 'all', color: 'blue' }}
+          flex
+          background="white"
+          margin={[
+            {
+              vertical: 3,
+              horizontal: 8,
+            },
+            {
+              vertical: 4,
+              horizontal: 5,
+            },
+            {
+              vertical: 0,
+              horizontal: 0,
+            },
+            {
+              vertical: 8,
+              horizontal: 8,
+            },
+          ]}
+        >
+          <Block flex direction="column" background="white">
+            <div>margin vertical 3,4,0,8</div>
+            <div>margin horizontal 8,5,0,8</div>
+          </Block>
+        </Block>
+      </Block>
+      <Block background="blue-light" marginBottom="5">
+        <Block
+          border={{ side: 'all', color: 'blue' }}
+          flex
+          background="white"
+          margin={[
+            {
+              top: 3,
+              right: 3,
+              bottom: 3,
+              left: 3,
+            },
+
+            {
+              top: 4,
+              right: 4,
+              bottom: 4,
+              left: 4,
+            },
+            {
+              top: 5,
+              right: 5,
+              bottom: 5,
+              left: 5,
+            },
+            {
+              top: 8,
+              right: 8,
+              bottom: 8,
+              left: 8,
+            },
+          ]}
+        >
+          <Block flex direction="column" background="white">
+            <div>
+              top 3,4,5,8, right 3,4,5,8, bottom 3,4,5,8, left 3,4,5,8
+            </div>
+          </Block>
+        </Block>
+      </Block>
+    </>
+  ))
+  .add('padding', () => (
+    <>
+      <Block itemSpacing="1" direction="column">
+        <Block background="blue-light" padding="8">
+          Padding of 8
+        </Block>
+        <Block background="blue-light" padding="7">
+          Padding of 7
+        </Block>
+        <Block background="blue-light" padding="6">
+          Padding of 6
+        </Block>
+        <Block background="blue-light" padding="5">
+          Padding of 5
+        </Block>
+        <Block background="blue-light" padding="4">
+          Padding of 4
+        </Block>
+        <Block background="blue-light" padding="3">
+          Padding of 3
+        </Block>
+        <Block background="blue-light" padding="2">
+          Padding of 2
+        </Block>
+        <Block background="blue-light" padding="1">
+          Padding of 1
+        </Block>
+        <Block background="blue-light" padding="0">
+          No padding
+        </Block>
+      </Block>
+
+      <Block itemSpacing="1" direction="column">
+        <Block background="blue-light" paddingHorizontal="8">
+          Horizontal padding of 8
+        </Block>
+        <Block background="blue-light" paddingHorizontal="7">
+          Horizontal padding of 7
+        </Block>
+        <Block background="blue-light" paddingHorizontal="6">
+          Horizontal padding of 6
+        </Block>
+        <Block background="blue-light" paddingHorizontal="5">
+          Horizontal padding of 5
+        </Block>
+        <Block background="blue-light" paddingHorizontal="4">
+          Horizontal padding of 4
+        </Block>
+        <Block background="blue-light" paddingHorizontal="3">
+          Horizontal padding of 3
+        </Block>
+        <Block background="blue-light" paddingHorizontal="2">
+          Horizontal padding of 2
+        </Block>
+        <Block background="blue-light" paddingHorizontal="1">
+          Horizontal padding of 1
+        </Block>
+        <Block background="blue-light">No padding</Block>
+      </Block>
+
+      <Block itemSpacing="1" direction="column">
+        <Block background="blue-light" paddingVertical="8">
+          Vertical padding of 8
+        </Block>
+        <Block background="blue-light" paddingVertical="7">
+          Vertical padding of 7
+        </Block>
+        <Block background="blue-light" paddingVertical="6">
+          Vertical padding of 6
+        </Block>
+        <Block background="blue-light" paddingVertical="5">
+          Vertical padding of 5
+        </Block>
+        <Block background="blue-light" paddingVertical="4">
+          Vertical padding of 4
+        </Block>
+        <Block background="blue-light" paddingVertical="3">
+          Vertical padding of 3
+        </Block>
+        <Block background="blue-light" paddingVertical="2">
+          Vertical padding of 2
+        </Block>
+        <Block background="blue-light" paddingVertical="1">
+          Vertical padding of 1
+        </Block>
+        <Block background="blue-light">No padding</Block>
+      </Block>
+    </>
+  ))
+  .add('padding responsive', () => (
+    <Block displayBlock itemSpacing="3">
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={[2, 4, 6, 8]}
+      >
+        <Block flex background="white">
+          padding 2,4,6,8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        padding={[1, 4, 0, 8]}
+      >
+        <Block flex background="white">
+          padding 1,4,0,8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        paddingHorizontal={[1, 4, 0, 8]}
+      >
+        <Block flex background="white">
+          paddingHorizontal 1,4,0,8
+        </Block>
+      </Block>
+      <Block
+        border={{ side: 'all', color: 'blue' }}
+        background="blue-light"
+        paddingVertical={[1, 4, 0, 8]}
+      >
+        <Block flex background="white">
+          paddingVertical 1,4,0,8
+        </Block>
+      </Block>
+    </Block>
+  ))
+  .add('padding responsive object', () => (
     <Block displayBlock itemSpacing="3">
       <Block
         border={{ side: 'all', color: 'blue' }}
@@ -870,13 +1207,19 @@ storiesOf('Block', module)
       <Block
         border={{ side: 'all', color: 'blue' }}
         background="blue-light"
-        padding={{
-          vertical: 3,
-          horizontal: 8,
-        }}
+        padding={[
+          {
+            vertical: 3,
+            horizontal: 8,
+          },
+          {
+            vertical: 8,
+            horizontal: 3,
+          },
+        ]}
       >
         <Block flex background="white">
-          vertical 3, horizontal 8
+          vertical 3,8 , horizontal 8,3
         </Block>
       </Block>
 
@@ -1070,92 +1413,6 @@ storiesOf('Block', module)
         >
           50px height
         </Block>
-      </Block>
-
-      <Block itemSpacing="1" direction="column">
-        <Block background="blue-light" padding="8">
-          Padding of 8
-        </Block>
-        <Block background="blue-light" padding="7">
-          Padding of 7
-        </Block>
-        <Block background="blue-light" padding="6">
-          Padding of 6
-        </Block>
-        <Block background="blue-light" padding="5">
-          Padding of 5
-        </Block>
-        <Block background="blue-light" padding="4">
-          Padding of 4
-        </Block>
-        <Block background="blue-light" padding="3">
-          Padding of 3
-        </Block>
-        <Block background="blue-light" padding="2">
-          Padding of 2
-        </Block>
-        <Block background="blue-light" padding="1">
-          Padding of 1
-        </Block>
-        <Block background="blue-light" padding="0">
-          No padding
-        </Block>
-      </Block>
-
-      <Block itemSpacing="1" direction="column">
-        <Block background="blue-light" paddingHorizontal="8">
-          Horizontal padding of 8
-        </Block>
-        <Block background="blue-light" paddingHorizontal="7">
-          Horizontal padding of 7
-        </Block>
-        <Block background="blue-light" paddingHorizontal="6">
-          Horizontal padding of 6
-        </Block>
-        <Block background="blue-light" paddingHorizontal="5">
-          Horizontal padding of 5
-        </Block>
-        <Block background="blue-light" paddingHorizontal="4">
-          Horizontal padding of 4
-        </Block>
-        <Block background="blue-light" paddingHorizontal="3">
-          Horizontal padding of 3
-        </Block>
-        <Block background="blue-light" paddingHorizontal="2">
-          Horizontal padding of 2
-        </Block>
-        <Block background="blue-light" paddingHorizontal="1">
-          Horizontal padding of 1
-        </Block>
-        <Block background="blue-light">No padding</Block>
-      </Block>
-
-      <Block itemSpacing="1" direction="column">
-        <Block background="blue-light" paddingVertical="8">
-          Vertical padding of 8
-        </Block>
-        <Block background="blue-light" paddingVertical="7">
-          Vertical padding of 7
-        </Block>
-        <Block background="blue-light" paddingVertical="6">
-          Vertical padding of 6
-        </Block>
-        <Block background="blue-light" paddingVertical="5">
-          Vertical padding of 5
-        </Block>
-        <Block background="blue-light" paddingVertical="4">
-          Vertical padding of 4
-        </Block>
-        <Block background="blue-light" paddingVertical="3">
-          Vertical padding of 3
-        </Block>
-        <Block background="blue-light" paddingVertical="2">
-          Vertical padding of 2
-        </Block>
-        <Block background="blue-light" paddingVertical="1">
-          Vertical padding of 1
-        </Block>
-        <Block background="blue-light">No padding</Block>
       </Block>
 
       <Block background="blue-light" marginTop="8">

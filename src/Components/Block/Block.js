@@ -509,7 +509,6 @@ class Block extends React.PureComponent {
       className,
     );
     const calcDirection = displayBlock ? 'column' : direction;
-
     const spacingClasses =
       itemSpacing !== undefined
         ? getItemSpacingClasses(calcDirection, itemSpacing)

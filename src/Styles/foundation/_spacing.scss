@@ -24,6 +24,26 @@
 .m-7 { margin: $spacing-7 }
 .m-8 { margin: $spacing-8 }
 
+.mh-0 { margin-left: 0; margin-right: 0; }
+.mh-1 { margin-left: $spacing-1; margin-right: $spacing-1; }
+.mh-2 { margin-left: $spacing-2; margin-right: $spacing-2; }
+.mh-3 { margin-left: $spacing-3; margin-right: $spacing-3; }
+.mh-4 { margin-left: $spacing-4; margin-right: $spacing-4; }
+.mh-5 { margin-left: $spacing-5; margin-right: $spacing-5; }
+.mh-6 { margin-left: $spacing-6; margin-right: $spacing-6; }
+.mh-7 { margin-left: $spacing-7; margin-right: $spacing-7; }
+.mh-8 { margin-left: $spacing-8; margin-right: $spacing-8; }
+
+.mv-0 { margin-top: 0; margin-bottom: 0 }
+.mv-1 { margin-top: $spacing-1; margin-bottom: $spacing-1 }
+.mv-2 { margin-top: $spacing-2; margin-bottom: $spacing-2 }
+.mv-3 { margin-top: $spacing-3; margin-bottom: $spacing-3 }
+.mv-4 { margin-top: $spacing-4; margin-bottom: $spacing-4 }
+.mv-5 { margin-top: $spacing-5; margin-bottom: $spacing-5 }
+.mv-6 { margin-top: $spacing-6; margin-bottom: $spacing-6 }
+.mv-7 { margin-top: $spacing-7; margin-bottom: $spacing-7 }
+.mv-8 { margin-top: $spacing-8; margin-bottom: $spacing-8 }
+
 .mt-0 { margin-top: 0 }
 .mt-1 { margin-top: $spacing-1 }
 .mt-2 { margin-top: $spacing-2 }
@@ -144,6 +164,26 @@
   .m-6-ns { margin: $spacing-6 }
   .m-7-ns { margin: $spacing-7 }
   .m-8-ns { margin: $spacing-8 }
+-ns
+  .mh-0-ns { margin-left: 0; margin-right: 0; }
+  .mh-1-ns { margin-left: $spacing-1; margin-right: $spacing-1; }
+  .mh-2-ns { margin-left: $spacing-2; margin-right: $spacing-2; }
+  .mh-3-ns { margin-left: $spacing-3; margin-right: $spacing-3; }
+  .mh-4-ns { margin-left: $spacing-4; margin-right: $spacing-4; }
+  .mh-5-ns { margin-left: $spacing-5; margin-right: $spacing-5; }
+  .mh-6-ns { margin-left: $spacing-6; margin-right: $spacing-6; }
+  .mh-7-ns { margin-left: $spacing-7; margin-right: $spacing-7; }
+  .mh-8-ns { margin-left: $spacing-8; margin-right: $spacing-8; }
+
+  .mv-0-ns { margin-top: 0; margin-bottom: 0 }
+  .mv-1-ns { margin-top: $spacing-1; margin-bottom: $spacing-1 }
+  .mv-2-ns { margin-top: $spacing-2; margin-bottom: $spacing-2 }
+  .mv-3-ns { margin-top: $spacing-3; margin-bottom: $spacing-3 }
+  .mv-4-ns { margin-top: $spacing-4; margin-bottom: $spacing-4 }
+  .mv-5-ns { margin-top: $spacing-5; margin-bottom: $spacing-5 }
+  .mv-6-ns { margin-top: $spacing-6; margin-bottom: $spacing-6 }
+  .mv-7-ns { margin-top: $spacing-7; margin-bottom: $spacing-7 }
+  .mv-8-ns { margin-top: $spacing-8; margin-bottom: $spacing-8 }
 
   .mt-0-ns { margin-top: 0 }
   .mt-1-ns { margin-top: $spacing-1 }
@@ -267,6 +307,26 @@
   .m-7-m { margin: $spacing-7 }
   .m-8-m { margin: $spacing-8 }
 
+  .mh-0-m { margin-left: 0; margin-right: 0; }
+  .mh-1-m { margin-left: $spacing-1; margin-right: $spacing-1; }
+  .mh-2-m { margin-left: $spacing-2; margin-right: $spacing-2; }
+  .mh-3-m { margin-left: $spacing-3; margin-right: $spacing-3; }
+  .mh-4-m { margin-left: $spacing-4; margin-right: $spacing-4; }
+  .mh-5-m { margin-left: $spacing-5; margin-right: $spacing-5; }
+  .mh-6-m { margin-left: $spacing-6; margin-right: $spacing-6; }
+  .mh-7-m { margin-left: $spacing-7; margin-right: $spacing-7; }
+  .mh-8-m { margin-left: $spacing-8; margin-right: $spacing-8; }
+
+  .mv-0-m { margin-top: 0; margin-bottom: 0 }
+  .mv-1-m { margin-top: $spacing-1; margin-bottom: $spacing-1 }
+  .mv-2-m { margin-top: $spacing-2; margin-bottom: $spacing-2 }
+  .mv-3-m { margin-top: $spacing-3; margin-bottom: $spacing-3 }
+  .mv-4-m { margin-top: $spacing-4; margin-bottom: $spacing-4 }
+  .mv-5-m { margin-top: $spacing-5; margin-bottom: $spacing-5 }
+  .mv-6-m { margin-top: $spacing-6; margin-bottom: $spacing-6 }
+  .mv-7-m { margin-top: $spacing-7; margin-bottom: $spacing-7 }
+  .mv-8-m { margin-top: $spacing-8; margin-bottom: $spacing-8 }
+
   .mt-0-m { margin-top: 0 }
   .mt-1-m { margin-top: $spacing-1 }
   .mt-2-m { margin-top: $spacing-2 }
@@ -388,6 +448,26 @@
   .m-6-l { margin: $spacing-6 }
   .m-7-l { margin: $spacing-7 }
   .m-8-l { margin: $spacing-8 }
+
+  .mh-0-l { margin-left: 0; margin-right: 0; }
+  .mh-1-l { margin-left: $spacing-1; margin-right: $spacing-1; }
+  .mh-2-l { margin-left: $spacing-2; margin-right: $spacing-2; }
+  .mh-3-l { margin-left: $spacing-3; margin-right: $spacing-3; }
+  .mh-4-l { margin-left: $spacing-4; margin-right: $spacing-4; }
+  .mh-5-l { margin-left: $spacing-5; margin-right: $spacing-5; }
+  .mh-6-l { margin-left: $spacing-6; margin-right: $spacing-6; }
+  .mh-7-l { margin-left: $spacing-7; margin-right: $spacing-7; }
+  .mh-8-l { margin-left: $spacing-8; margin-right: $spacing-8; }
+
+  .mv-0-l { margin-top: 0; margin-bottom: 0 }
+  .mv-1-l { margin-top: $spacing-1; margin-bottom: $spacing-1 }
+  .mv-2-l { margin-top: $spacing-2; margin-bottom: $spacing-2 }
+  .mv-3-l { margin-top: $spacing-3; margin-bottom: $spacing-3 }
+  .mv-4-l { margin-top: $spacing-4; margin-bottom: $spacing-4 }
+  .mv-5-l { margin-top: $spacing-5; margin-bottom: $spacing-5 }
+  .mv-6-l { margin-top: $spacing-6; margin-bottom: $spacing-6 }
+  .mv-7-l { margin-top: $spacing-7; margin-bottom: $spacing-7 }
+  .mv-8-l { margin-top: $spacing-8; margin-bottom: $spacing-8 }
 
   .mt-0-l { margin-top: 0 }
   .mt-1-l { margin-top: $spacing-1 }
