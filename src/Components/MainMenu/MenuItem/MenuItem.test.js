@@ -1,10 +1,9 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-
-import MenuItem from './MenuItem';
 import Block from '../../Block/Block';
 import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
+import MenuItem from './MenuItem';
+import React from 'react';
+import { shallow } from 'enzyme';
 
 const mockData = {
   label: 'Content',
@@ -166,6 +165,33 @@ describe('MenuItem', () => {
         .at(0)
         .prop('exact'),
     ).toBeUndefined;
+  });
+
+  it('add className to top level if defined', () => {
+    const menu = {
+      label: 'Content',
+      href: '/test',
+      className: 'fs-block'
+    };
+    const item = shallow(<MenuItem item={menu} />);
+    expect(item.find('.fs-block').length).toBe(1);
+  });
+
+  it('add className to sub items if defined', () => {
+    const menu = {
+      label: 'Content',
+      href: '/test',
+      className: 'fs-block',
+      items: [
+        {
+          label: 'Content2',
+          href: '/test2',
+          className: 'fs-block',
+        }
+      ]
+    };
+    const item = shallow(<MenuItem item={menu} />);
+    expect(item.find('.fs-block').length).toBe(2);
   });
 
   it('sets isOpen to false when there are no sub-items', () => {

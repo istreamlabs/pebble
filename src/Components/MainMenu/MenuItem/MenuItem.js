@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import './MenuItem.scss';
+
 import { NavLink, matchPath } from 'react-router-dom';
 
-import Button from '../../Button/Button';
 import Block from '../../Block/Block';
+import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
-
-import './MenuItem.scss';
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
   /**
@@ -21,6 +21,7 @@ const propTypes = {
     label: PropTypes.string.isRequired,
     href: PropTypes.string,
     icon: PropTypes.string,
+    className: PropTypes.string,
     aliases: PropTypes.arrayOf(PropTypes.string),
     exact: PropTypes.bool,
     activeHandler: PropTypes.func,
@@ -31,6 +32,7 @@ const propTypes = {
         aliases: PropTypes.arrayOf(PropTypes.string),
         exact: PropTypes.bool,
         activeHandler: PropTypes.func,
+        className: PropTypes.string,
       }),
     ),
   }).isRequired,
@@ -135,7 +137,7 @@ class MenuItem extends React.Component {
 
   renderSubItems = items => {
     const subItems = items.map((subItem, i) => (
-      <li key={i}>
+      <li key={i} className={subItem.className}>
         <NavLink
           to={subItem.href}
           className={classNames('sub-menu-item')}
@@ -160,7 +162,7 @@ class MenuItem extends React.Component {
 
     return (
       <li className="menu-item-container">
-        <div className="menu-item-content">
+        <div className={classNames('menu-item-content', item.className)}>
           {item.href ? (
             <NavLink
               id={`MenuItem-${item.label}`}
