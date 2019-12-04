@@ -1,6 +1,6 @@
 ### Flex
 
-Flex is applied by default to Block component.
+Flex is applied by default to Block components.
 
 ```js
 <Block itemSpacing="3">
