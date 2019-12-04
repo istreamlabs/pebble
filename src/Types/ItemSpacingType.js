@@ -12,7 +12,28 @@ export default (props, propName, componentName) => {
     if (
       spacingType.length > 4 ||
       spacingType.length < 1 ||
-      !spacingType.every(item => isValidToken(item))
+      !spacingType.every(item =>
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          '0',
+          '1',
+          '2',
+          '3',
+          '4',
+          '5',
+          '6',
+          '7',
+          '8',
+        ].some(v => item === v),
+      )
     ) {
       return new Error(
         `Invalid prop '${propName}' requires an array length up to 4, and a value of 0-8 in each element <${componentName}>`,
@@ -31,30 +52,4 @@ export default (props, propName, componentName) => {
     );
   }
   return null;
-};
-
-const isValidToken = token => {
-  if (token.split && token.split(' ').length > 1) {
-    return token.split(' ').every(t => isValidToken(t));
-  }
-  return [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    '0',
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-  ].some(v => token === v);
 };

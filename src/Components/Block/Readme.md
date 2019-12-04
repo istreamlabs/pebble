@@ -162,12 +162,7 @@ import Text from '../Text/Text';
 Apply padding to all four sides.
 
 ```js hide
-<Block
-  background="blue-light"
-  paddingHorizontal="8"
-  padding="4"
-  displayBlock
->
+<Block background="blue-light" padding="4" displayBlock>
   <Block displayBlock background="white">
     Padding 4
   </Block>
@@ -193,46 +188,19 @@ Set the vertical and horizontal padding to independent values.
 
 #### Individual Padding Values
 
-Set the padding for individual sides or planes by passing an object.
+Set the padding for individual sides or planes by passing css style value (top, right, bottom, left).
 
 ```js hide
 <Block displayBlock itemSpacing="3">
-  <Block
-    background="blue-light"
-    padding={{
-      vertical: 3,
-      horizontal: 8,
-    }}
-  >
+  <Block background="blue-light" padding="2 5">
     <Block flex background="white">
-      vertical 3, horizontal 8
+      top 2, right 5, bottom 2, left 5
     </Block>
   </Block>
 
-  <Block
-    background="blue-light"
-    padding={{
-      top: 3,
-      right: 8,
-      bottom: 1,
-      left: 4,
-    }}
-  >
+  <Block background="blue-light" padding="3 8 1 4">
     <Block flex background="white">
       top 3, right 8, bottom 1, left 4
-    </Block>
-  </Block>
-
-  <Block
-    background="blue-light"
-    padding={{
-      vertical: 4,
-      left: 4,
-      right: 8,
-    }}
-  >
-    <Block flex background="white">
-      vertical 4, left 4, right 8
     </Block>
   </Block>
 </Block>
@@ -243,27 +211,7 @@ Set the padding for individual sides or planes by passing an object.
 Apply different padding values that correspond to mobile first [breakpoints](/#/Styles/Media%20Query) by passing an array with length up to four.
 
 ```js
-<Block
-  background="blue-light"
-  padding={[
-    {
-      vertical: 3,
-      horizontal: 4,
-    },
-    {
-      vertical: 4,
-      horizontal: 5,
-    },
-    {
-      vertical: 5,
-      horizontal: 6,
-    },
-    {
-      vertical: 6,
-      horizontal: 7,
-    },
-  ]}
->
+<Block background="blue-light" padding={['3 4', '4 5', '5 6', '6 7']}>
   <Block flex background="white">
     vertical 3,4,5,6, horizontal 4,5,6,7
   </Block>
@@ -301,44 +249,14 @@ Set the margin for individual sides or planes by passing an object.
 ```js hide
 <Block displayBlock itemSpacing="3">
   <Block background="blue-light">
-    <Block
-      flex
-      margin={{
-        vertical: 3,
-        horizontal: 8,
-      }}
-      background="white"
-    >
+    <Block flex margin="3 8" background="white">
       vertical 3, horizontal 8
     </Block>
   </Block>
 
   <Block background="blue-light">
-    <Block
-      flex
-      margin={{
-        top: 3,
-        right: 8,
-        bottom: 1,
-        left: 4,
-      }}
-      background="white"
-    >
+    <Block flex margin="3 8 1 4" background="white">
       top 3, right 8, bottom 1, left 4
-    </Block>
-  </Block>
-
-  <Block background="blue-light">
-    <Block
-      flex
-      margin={{
-        vertical: 4,
-        left: 4,
-        right: 8,
-      }}
-      background="white"
-    >
-      vertical 4, left 4, right 8
     </Block>
   </Block>
 </Block>
@@ -353,24 +271,7 @@ Apply different margin values that correspond to mobile first [breakpoints](/#/S
   <Block
     flex
     background="white"
-    margin={[
-      {
-        vertical: 3,
-        horizontal: 4,
-      },
-      {
-        vertical: 4,
-        horizontal: 5,
-      },
-      {
-        vertical: 5,
-        horizontal: 6,
-      },
-      {
-        vertical: 6,
-        horizontal: 7,
-      },
-    ]}
+    margin={['3 4', '4 5', '5 6', '6 7']}
   >
     vertical 3,4,5,6, horizontal 4,5,6,7
   </Block>

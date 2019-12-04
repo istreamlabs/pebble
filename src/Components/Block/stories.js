@@ -1049,7 +1049,10 @@ storiesOf('Block', module)
   ))
   .add('padding', () => (
     <>
-      <Block itemSpacing="1" direction="column">
+      <Block background="blue-light" padding={['1', '2', '3', '5']}>
+        Padding of 8
+      </Block>
+      {/* <Block itemSpacing="1" direction="column">
         <Block background="blue-light" padding="8">
           Padding of 8
         </Block>
@@ -1133,7 +1136,7 @@ storiesOf('Block', module)
           Vertical padding of 1
         </Block>
         <Block background="blue-light">No padding</Block>
-      </Block>
+      </Block> */}
     </>
   ))
   .add('padding responsive', () => (

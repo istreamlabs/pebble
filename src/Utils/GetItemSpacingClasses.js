@@ -1,4 +1,4 @@
-import getDimensionClasses from './GetDimensionClasses';
+import getSpacingCss from './GetSpacingCss';
 
 const BREAKPOINT_MAP = {
   0: '',
@@ -11,13 +11,13 @@ function getDirectionSpacing(direction, spacing, breakpoint) {
   let cssObj;
 
   if (direction === 'column') {
-    cssObj = getDimensionClasses('bottom', spacing, 'm');
+    cssObj = getSpacingCss('bottom', spacing);
     if (breakpoint > 0) {
       cssObj.classes.push('mr-0');
     }
   } else {
     // direction default is 'row'
-    cssObj = getDimensionClasses('right', spacing, 'm');
+    cssObj = getSpacingCss('right', spacing);
     if (breakpoint > 0) {
       cssObj.classes.push('mb-0');
     }
