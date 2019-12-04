@@ -159,31 +159,31 @@ import Text from '../Text/Text';
 
 ### Padding
 
-Apply padding to all four sides.
+The `padding` prop accepts values similar to css-shorthand padding.
 
-```js hide
-<Block background="blue-light" padding="4" displayBlock>
-  <Block displayBlock background="white">
-    Padding 4
-  </Block>
-</Block>
-```
-
-#### Individual Padding Values
-
-Set the padding for individual sides or planes by passing css style value (top, right, bottom, left).
-
-```js hide
+```js
 <Block displayBlock itemSpacing="3">
-  <Block background="blue-light" padding="2 5">
-    <Block flex background="white">
-      top 2, right 5, bottom 2, left 5
+  <Block background="blue-light" padding="4" displayBlock>
+    <Block displayBlock background="white">
+      4 on all sides
     </Block>
   </Block>
 
-  <Block background="blue-light" padding="3 8 1 4">
-    <Block flex background="white">
-      top 3, right 8, bottom 1, left 4
+  <Block background="blue-light" padding="4 5" displayBlock>
+    <Block displayBlock background="white">
+      4 on top/bottom, 5 on left/right
+    </Block>
+  </Block>
+
+  <Block background="blue-light" padding="4 5 3" displayBlock>
+    <Block displayBlock background="white">
+      4 on top, 5 on left/right, 3 on bottom
+    </Block>
+  </Block>
+
+  <Block background="blue-light" padding="1 2 3 4" displayBlock>
+    <Block displayBlock background="white">
+      1 on top, 2 on right, 3 on bottom, 4 on left
     </Block>
   </Block>
 </Block>
@@ -203,31 +203,31 @@ Apply different padding values that correspond to mobile first [breakpoints](/#/
 
 ### Margin
 
-Apply margin to all four sides.
-
-```js hide
-<Block background="blue-light">
-  <Block flex margin="4" background="white">
-    Margin 4
-  </Block>
-</Block>
-```
-
-#### Individual Margin Values
-
-Set the margin for individual sides or planes by passing css style value (top, right, bottom, left).
+The `margin` prop accepts values similar to css-shorthand margin.
 
 ```js hide
 <Block displayBlock itemSpacing="3">
   <Block background="blue-light">
-    <Block flex margin="3 8" background="white">
-      vertical 3, horizontal 8
+    <Block flex background="white" margin="4">
+      4 on all sides
     </Block>
   </Block>
 
   <Block background="blue-light">
-    <Block flex margin="3 8 1 4" background="white">
-      top 3, right 8, bottom 1, left 4
+    <Block flex background="white" margin="4 5">
+      4 on top/bottom, 5 on right/left
+    </Block>
+  </Block>
+
+  <Block background="blue-light">
+    <Block flex background="white" margin="4 5 3">
+      4 on top, 5 on right/left, 3 on bottom
+    </Block>
+  </Block>
+
+  <Block background="blue-light">
+    <Block flex background="white" margin="1 2 3 4">
+      1 on top, 2 on right, 3 on bottom, 4 on left
     </Block>
   </Block>
 </Block>

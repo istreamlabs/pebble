@@ -228,7 +228,7 @@ const propTypes = {
    */
   margin: spacingType,
   /**
-   * _**Use the margin prop instead. To be deprecated in a future release.**_
+   * _**Use the margin prop instead. Support for this prop will end in a future release.**_
    *
    * Margin [space](/#/Styles/Spacing) to be added above this block.
    *
@@ -239,7 +239,7 @@ const propTypes = {
    */
   marginTop: spacingType,
   /**
-   * _**Use the margin prop instead. To be deprecated in a future release.**_
+   * _**Use the margin prop instead. Support for this prop will end in a future release.**_
    *
    * Margin [space](/#/Styles/Spacing) to be added below this block.
    *
@@ -280,7 +280,7 @@ const propTypes = {
    */
   padding: spacingType,
   /**
-   * _**Use the padding prop instead. To be deprecated in a future release.**_
+   * _**Use the padding prop instead. Support for this prop will end in a future release.**_
    *
    * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
    *
@@ -291,7 +291,7 @@ const propTypes = {
    */
   paddingHorizontal: spacingType,
   /**
-   * _**Use the padding prop instead. To be deprecated in a future release.**_
+   * _**Use the padding prop instead. Support for this prop will end in a future release.**_
    *
    * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
    *
@@ -303,7 +303,7 @@ const propTypes = {
   paddingVertical: spacingType,
   /**
    *
-   * _**Use the padding prop instead. To be deprecated in a future release.**_
+   * _**Use the padding prop instead. Support for this prop will end in a future release.**_
    *
    * Amount of [space](/#/Styles/Spacing) between each block item
    *

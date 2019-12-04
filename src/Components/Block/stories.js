@@ -873,7 +873,31 @@ storiesOf('Block', module)
           No margin
         </Block>
       </Block>
+      <Block displayBlock itemSpacing="3">
+        <Block background="blue-light">
+          <Block flex background="white" margin="4">
+            4 on all sides
+          </Block>
+        </Block>
 
+        <Block background="blue-light">
+          <Block flex background="white" margin="4 5">
+            4 on top/bottom, 5 on right/left
+          </Block>
+        </Block>
+
+        <Block background="blue-light">
+          <Block flex background="white" margin="4 5 3">
+            4 on top, 5 on right/left, 3 on bottom
+          </Block>
+        </Block>
+
+        <Block background="blue-light">
+          <Block flex background="white" margin="1 2 3 4">
+            1 on top, 2 on right, 3 on bottom, 4 on left
+          </Block>
+        </Block>
+      </Block>
       <Block
         direction="column"
         border={{ side: 'all', color: 'blue' }}
@@ -904,7 +928,6 @@ storiesOf('Block', module)
         </Block>
         <Block background="blue-light">No margin</Block>
       </Block>
-
       <Block
         direction="column"
         border={{ side: 'all', color: 'blue' }}
@@ -971,14 +994,20 @@ storiesOf('Block', module)
           marginBottom 1,4,0,8
         </Block>
       </Block>
+      <Block background="blue-light">
+        <Block
+          flex
+          background="white"
+          margin={['3 4', '4 5', '5 6', '6 7']}
+        >
+          vertical 3,4,5,6, horizontal 4,5,6,7
+        </Block>
+      </Block>
     </Block>
   ))
   .add('padding', () => (
     <>
-      <Block background="blue-light" padding={['1', '2', '3', '5']}>
-        Padding of 8
-      </Block>
-      {/* <Block itemSpacing="1" direction="column">
+      <Block itemSpacing="1" direction="column" margin="0 0 4">
         <Block background="blue-light" padding="8">
           Padding of 8
         </Block>
@@ -1008,7 +1037,33 @@ storiesOf('Block', module)
         </Block>
       </Block>
 
-      <Block itemSpacing="1" direction="column">
+      <Block displayBlock itemSpacing="3" margin="0 0 4">
+        <Block background="blue-light" padding="4" displayBlock>
+          <Block displayBlock background="white">
+            4 on all sides
+          </Block>
+        </Block>
+
+        <Block background="blue-light" padding="4 5" displayBlock>
+          <Block displayBlock background="white">
+            4 on top/bottom, 5 on left/right
+          </Block>
+        </Block>
+
+        <Block background="blue-light" padding="4 5 3" displayBlock>
+          <Block displayBlock background="white">
+            4 on top, 5 on left/right, 3 on bottom
+          </Block>
+        </Block>
+
+        <Block background="blue-light" padding="1 2 3 4" displayBlock>
+          <Block displayBlock background="white">
+            1 on top, 2 on right, 3 on bottom, 4 on left
+          </Block>
+        </Block>
+      </Block>
+
+      <Block itemSpacing="1" direction="column" margin="0 0 4">
         <Block background="blue-light" paddingHorizontal="8">
           Horizontal padding of 8
         </Block>
@@ -1062,7 +1117,7 @@ storiesOf('Block', module)
           Vertical padding of 1
         </Block>
         <Block background="blue-light">No padding</Block>
-      </Block> */}
+      </Block>
     </>
   ))
   .add('padding responsive', () => (
@@ -1101,6 +1156,14 @@ storiesOf('Block', module)
       >
         <Block flex background="white">
           paddingVertical 1,4,0,8
+        </Block>
+      </Block>
+      <Block
+        background="blue-light"
+        padding={['3 4', '4 5', '5 6', '6 7']}
+      >
+        <Block flex background="white">
+          vertical 3,4,5,6, horizontal 4,5,6,7
         </Block>
       </Block>
     </Block>
