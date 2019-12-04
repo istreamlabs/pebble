@@ -26,8 +26,7 @@ function Section({ children, className }) {
   return (
     <Block
       displayBlock
-      paddingHorizontal={[3, 4, 5]}
-      paddingVertical={[3, 4]}
+      padding={['3', '4', '4 5']}
       className={classes}
     >
       {children}

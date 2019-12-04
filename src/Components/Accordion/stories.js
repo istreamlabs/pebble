@@ -291,8 +291,7 @@ function ServiceID(props) {
     <Block
       textSize="5"
       color="neutral-600"
-      paddingHorizontal="4"
-      paddingVertical="3"
+      padding="3 4"
       border="bottom"
       justify="between"
       background="white"
@@ -315,8 +314,7 @@ function SidVideoDetail({ specs }) {
     <Block
       key={keyName}
       border="bottom"
-      paddingHorizontal="3"
-      paddingVertical="2"
+      padding="2 3"
       justify="between"
       textSize="6"
     >

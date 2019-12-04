@@ -133,12 +133,7 @@ storiesOf('Popover', module)
               Done
             </Button>
           </Block>
-          <Block
-            displayBlock
-            itemSpacing="3"
-            paddingVertical="5"
-            paddingHorizontal="3"
-          >
+          <Block displayBlock itemSpacing="3" padding="5 3">
             <FieldText
               id="q"
               placeholder="search by name, email"

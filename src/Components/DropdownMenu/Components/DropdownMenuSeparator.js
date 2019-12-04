@@ -20,8 +20,7 @@ function DropdownMenuSeparator({ className }) {
   return (
     <Block
       className={className}
-      marginTop="2"
-      marginBottom="2"
+      margin="2 0"
       background="neutral-200"
       height="2px"
       width="100%"

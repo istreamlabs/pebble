@@ -34,8 +34,8 @@ function Header({ actions, children, className }) {
       flex
       justify="between"
       alignItems="baseline"
+      padding={['0 3', '0 4', '0 5']}
       className={classes}
-      paddingHorizontal={[3, 4, 5]}
     >
       {children && (
         <Heading element={2} size="4">

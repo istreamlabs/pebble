@@ -34,7 +34,7 @@ function DropdownItemGroup({ children, className, title }) {
   const classes = classNames('dropdown-item-group', className);
   return (
     <Block
-      marginBottom="4"
+      margin="0 0 4"
       direction="column"
       className={classes}
       role="menu"

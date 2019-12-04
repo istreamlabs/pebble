@@ -75,8 +75,7 @@ function TenantMenu(props) {
       <Block
         color="neutral-100"
         background="black-30"
-        paddingVertical={[2, 3]}
-        paddingHorizontal="5"
+        padding={['2 5', '3 5']}
         alignItems="center"
         className="relative"
         itemSpacing="3"
@@ -151,8 +150,7 @@ function TenantMenu(props) {
               <Block
                 alignItems="center"
                 itemSpacing="2"
-                paddingVertical={[3]}
-                paddingHorizontal={5}
+                padding="3 5"
               >
                 <Block direction="column" flex>
                   <Text bold>{name}</Text>

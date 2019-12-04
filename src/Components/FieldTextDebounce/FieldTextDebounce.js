@@ -242,13 +242,12 @@ const FieldTextDebounce = ({
     <div className="w-100 relative">
       {showMinimumMsg && (
         <Block
-          paddingHorizontal="2"
-          paddingVertical="1"
+          padding="1 2"
           background="neutral-700"
           color="neutral-200"
           textSize={size === 'small' ? '7' : '6'}
           radius="2"
-          marginBottom="1"
+          margin="0 0 1"
           className="animate fadeIn absolute shadow-1"
           style={{
             zIndex: 2,

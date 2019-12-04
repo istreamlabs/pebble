@@ -162,7 +162,9 @@ class MenuItem extends React.Component {
 
     return (
       <li className="menu-item-container">
-        <div className={classNames('menu-item-content', item.className)}>
+        <div
+          className={classNames('menu-item-content', item.className)}
+        >
           {item.href ? (
             <NavLink
               id={`MenuItem-${item.label}`}
@@ -202,8 +204,7 @@ class MenuItem extends React.Component {
           ) : (
             <Block
               flex
-              paddingVertical="3"
-              paddingHorizontal="6"
+              padding="3 6"
               textSize="6"
               className="neutral-500"
             >

@@ -22,6 +22,13 @@ describe('Util > GetSpacingCss', () => {
     });
   });
 
+  it('returns correct array of classes if passed an array of numbers', () => {
+    expect(getSpacingCss('p', [5, 6, 7, 8])).toMatchObject({
+      styles: null,
+      classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
+    });
+  });
+
   it('returns correct array of classes if passed an array of strings', () => {
     expect(getSpacingCss('p', [5, 6, 7, 8])).toMatchObject({
       styles: null,
@@ -125,6 +132,7 @@ describe('Util > GetSpacingCss', () => {
       classes: [],
     });
   });
+
   it('returns correct style if passed css unit', () => {
     expect(getSpacingCss('p', '5px 10px')).toMatchObject({
       styles: '5px 10px',

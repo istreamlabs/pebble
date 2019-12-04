@@ -71,7 +71,7 @@ Control how the date and/or time is formatted with `dateFormat`.
 ```jsx
 import Block from '../Block/Block';
 
-<Block itemSpacing="5" marginBottom="5" direction="column">
+<Block itemSpacing="5" direction="column">
   <DateTime size="small" value="2019-06-26T12:00:00.000Z" />
   <DateTime size="medium" value="2019-06-26T12:00:00.000Z" />
   <DateTime size="large" value="2019-06-26T12:00:00.000Z" />
@@ -83,7 +83,7 @@ With `showAlternativeTimeZone`
 ```jsx
 import Block from '../Block/Block';
 
-<Block itemSpacing="5" marginBottom="5" direction="column">
+<Block itemSpacing="5" direction="column">
   <DateTime
     size="small"
     showAlternativeTimeZone

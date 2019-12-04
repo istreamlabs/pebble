@@ -217,24 +217,19 @@ const propTypes = {
   textSize: fontSizeType,
   /**
    * Margin [space](/#/Styles/Spacing) to be added around this block.
+   * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/margin),
+   * where you can set the margin area on all four sides of an element.
+   * It is shorthand for top, right, bottom, left.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
-   *
-   * or:
-   * {
-   *      "vertical": "...",
-   *      "horizontal": "...",
-   *      "top": "...",
-   *      "bottom": "...",
-   *      "left": "...",
-   *      "right": "..."
-   *    }
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   margin: spacingType,
   /**
+   * _**Use the margin prop instead. To be deprecated in a future release.**_
+   *
    * Margin [space](/#/Styles/Spacing) to be added above this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -244,6 +239,8 @@ const propTypes = {
    */
   marginTop: spacingType,
   /**
+   * _**Use the margin prop instead. To be deprecated in a future release.**_
+   *
    * Margin [space](/#/Styles/Spacing) to be added below this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -271,25 +268,20 @@ const propTypes = {
    */
   overflow: overflowType,
   /**
-   * Padding [space](/#/Styles/Spacing) to be added  within this block.
+   * Padding [space](/#/Styles/Spacing) to be added within this block.
+   * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/padding),
+   * where you can set the padding area on all four sides of an element.
+   * It is shorthand for top, right, bottom, left.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
-   *
-   * or:
-   * {
-   *      "vertical": "...",
-   *      "horizontal": "...",
-   *      "top": "...",
-   *      "bottom": "...",
-   *      "left": "...",
-   *      "right": "..."
-   *    }
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
   padding: spacingType,
   /**
+   * _**Use the padding prop instead. To be deprecated in a future release.**_
+   *
    * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -299,15 +291,8 @@ const propTypes = {
    */
   paddingHorizontal: spacingType,
   /**
-   * Set the [radius](/#/Styles/Border) of all corners
+   * _**Use the padding prop instead. To be deprecated in a future release.**_
    *
-   * One of: 1, 2, 3, 4, 5, circle, pill
-   *
-   * For responsive behavior, pass an array with length up to 4, with one of the above values.
-   * @type {PropTypes.Requireable<Radius>}
-   */
-  radius: radiusType,
-  /**
    * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -317,6 +302,9 @@ const propTypes = {
    */
   paddingVertical: spacingType,
   /**
+   *
+   * _**Use the padding prop instead. To be deprecated in a future release.**_
+   *
    * Amount of [space](/#/Styles/Spacing) between each block item
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -324,6 +312,15 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
   itemSpacing: itemSpacingType,
+  /**
+   * Set the [radius](/#/Styles/Border) of all corners
+   *
+   * One of: 1, 2, 3, 4, 5, circle, pill
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Radius>}
+   */
+  radius: radiusType,
   /**
    * react css style object
    */

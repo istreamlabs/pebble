@@ -62,7 +62,7 @@ import Badge from '../Badge/Badge';
 Basis defines the default size of an element before the remaining space is distributed.
 
 ```js
-<Block justify="start" itemSpacing="3" marginBottom="4">
+<Block justify="start" itemSpacing="3">
   <Block basis="1/3" padding="3" background="blue-light">
     1/3
   </Block>
@@ -80,9 +80,9 @@ Basis defines the default size of an element before the remaining space is distr
 Width can be set to a valid css width value.
 
 ```js
-<Block width="243px" padding="3" background="blue-light" marginBottom="4">243px</Block>
-<Block width="10rem" padding="3" background="blue-light" marginBottom="4">10rem (160px)</Block>
-<Block width="25%" padding="3" background="blue-light" marginBottom="4">25%</Block>
+<Block width="243px" padding="3" background="blue-light" margin="0 0 4">243px</Block>
+<Block width="10rem" padding="3" background="blue-light" margin="0 0 4">10rem (160px)</Block>
+<Block width="25%" padding="3" background="blue-light">25%</Block>
 ```
 
 For responsive widths, pass an array of percentages for each element.
@@ -169,23 +169,6 @@ Apply padding to all four sides.
 </Block>
 ```
 
-#### Horizontal and Vertical Padding
-
-Set the vertical and horizontal padding to independent values.
-
-```js
-<Block
-  background="blue-light"
-  paddingHorizontal="8"
-  paddingVertical="4"
-  displayBlock
->
-  <Block displayBlock background="white">
-    Horizontal 8, Vertical 4
-  </Block>
-</Block>
-```
-
 #### Individual Padding Values
 
 Set the padding for individual sides or planes by passing css style value (top, right, bottom, left).
@@ -230,21 +213,9 @@ Apply margin to all four sides.
 </Block>
 ```
 
-#### Top and Bottom Margin
-
-Set the top and bottom margin to independent values.
-
-```js
-<Block background="blue-light">
-  <Block flex marginTop="4" marginBottom="8" background="white">
-    marginTop 4, marginBottom 8
-  </Block>
-</Block>
-```
-
 #### Individual Margin Values
 
-Set the margin for individual sides or planes by passing an object.
+Set the margin for individual sides or planes by passing css style value (top, right, bottom, left).
 
 ```js hide
 <Block displayBlock itemSpacing="3">

@@ -46,69 +46,57 @@ export default function getDimensionCss(
       classes.push(...largeValue.classes);
     }
   } else if (value.split && value.split(' ').length > 1) {
-    const monkey = value.split(' ');
-    if (monkey.length === 2) {
+    const side = value.split(' ');
+    if (side.length === 2) {
       classes.push(
-        `${getPrefix('top', monkey[0], dimension)}${
-          monkey[0]
+        `${getPrefix('top', side[0], dimension)}${side[0]}${suffix}`,
+      );
+      classes.push(
+        `${getPrefix('right', side[1], dimension)}${
+          side[1]
         }${suffix}`,
       );
       classes.push(
-        `${getPrefix('right', monkey[1], dimension)}${
-          monkey[1]
+        `${getPrefix('bottom', side[0], dimension)}${
+          side[0]
         }${suffix}`,
       );
       classes.push(
-        `${getPrefix('bottom', monkey[0], dimension)}${
-          monkey[0]
+        `${getPrefix('left', side[1], dimension)}${side[1]}${suffix}`,
+      );
+    } else if (side.length === 3) {
+      classes.push(
+        `${getPrefix('top', side[0], dimension)}${side[0]}${suffix}`,
+      );
+      classes.push(
+        `${getPrefix('right', side[1], dimension)}${
+          side[1]
         }${suffix}`,
       );
       classes.push(
-        `${getPrefix('left', monkey[1], dimension)}${
-          monkey[1]
-        }${suffix}`,
-      );
-    } else if (monkey.length === 3) {
-      classes.push(
-        `${getPrefix('top', monkey[0], dimension)}${
-          monkey[0]
+        `${getPrefix('bottom', side[2], dimension)}${
+          side[2]
         }${suffix}`,
       );
       classes.push(
-        `${getPrefix('right', monkey[1], dimension)}${
-          monkey[1]
+        `${getPrefix('left', side[1], dimension)}${side[1]}${suffix}`,
+      );
+    } else if (side.length > 3) {
+      classes.push(
+        `${getPrefix('top', side[0], dimension)}${side[0]}${suffix}`,
+      );
+      classes.push(
+        `${getPrefix('right', side[1], dimension)}${
+          side[1]
         }${suffix}`,
       );
       classes.push(
-        `${getPrefix('bottom', monkey[2], dimension)}${
-          monkey[2]
+        `${getPrefix('bottom', side[2], dimension)}${
+          side[2]
         }${suffix}`,
       );
       classes.push(
-        `${getPrefix('left', monkey[1], dimension)}${
-          monkey[1]
-        }${suffix}`,
-      );
-    } else if (monkey.length > 3) {
-      classes.push(
-        `${getPrefix('top', monkey[0], dimension)}${
-          monkey[0]
-        }${suffix}`,
-      );
-      classes.push(
-        `${getPrefix('right', monkey[1], dimension)}${
-          monkey[1]
-        }${suffix}`,
-      );
-      classes.push(
-        `${getPrefix('bottom', monkey[2], dimension)}${
-          monkey[2]
-        }${suffix}`,
-      );
-      classes.push(
-        `${getPrefix('left', monkey[3], dimension)}${
-          monkey[3]
-        }${suffix}`,
+        `${getPrefix('left', side[3], dimension)}${side[3]}${suffix}`,
       );
     }
   } else if (typeof value === 'string' || typeof value === 'number') {
