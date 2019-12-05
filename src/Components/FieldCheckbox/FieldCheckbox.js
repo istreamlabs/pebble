@@ -19,6 +19,10 @@ const propTypes = {
    */
   helpText: PropTypes.node,
   /**
+   * Visually hide the label
+   */
+  hideLabel: PropTypes.bool,
+  /**
    * The id attribute of the checkbox
    */
   id: PropTypes.string.isRequired,
@@ -59,6 +63,7 @@ const defaultProps = {
   isSelected: false,
   onChange: undefined,
   toggle: false,
+  hideLabel: false,
 };
 
 /**
@@ -74,6 +79,7 @@ function FieldCheckbox({
   isInvalid,
   className,
   helpText,
+  hideLabel,
   value,
   onChange,
   disabled,
@@ -81,20 +87,25 @@ function FieldCheckbox({
   validationText,
   ...rest
 }) {
-  const checkboxMarkup = () => (
-    <Checkbox
-      toggle={toggle}
-      key={id}
-      id={id}
-      isSelected={isSelected}
-      isInvalid={isInvalid}
-      onChange={onChange}
-      value={value}
-      disabled={disabled}
-      className={toggle ? 'toggle-input' : null}
-      {...rest}
-    />
-  );
+  const checkboxMarkup = () => {
+    const ariaLabelValue = hideLabel ? label : '';
+
+    return (
+      <Checkbox
+        aria-label={ariaLabelValue}
+        toggle={toggle}
+        key={id}
+        id={id}
+        isSelected={isSelected}
+        isInvalid={isInvalid}
+        onChange={onChange}
+        value={value}
+        disabled={disabled}
+        className={toggle ? 'toggle-input' : null}
+        {...rest}
+      />
+    );
+  };
 
   const labelMarkup = () => {
     if (toggle) {
@@ -131,20 +142,21 @@ function FieldCheckbox({
       );
     }
 
-    // normal checkbox
-    const labelClasses = classNames('db', {
-      red: isInvalid,
-    });
-
-    return (
-      <Block direction="column" className="ml-2">
-        <label htmlFor={id} className={labelClasses}>
-          {label}
-          {helpTextMarkup()}
-          {getValidationTextMarkup()}
-        </label>
-      </Block>
-    );
+    if (!hideLabel) {
+      // normal checkbox
+      const labelClasses = classNames('db', {
+        red: isInvalid,
+      });
+      return (
+        <Block direction="column" className="ml-2">
+          <label htmlFor={id} className={labelClasses}>
+            {label}
+            {helpTextMarkup()}
+            {getValidationTextMarkup()}
+          </label>
+        </Block>
+      );
+    }
   };
 
   const helpTextMarkup = () => {

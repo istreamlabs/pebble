@@ -6,6 +6,7 @@ import { useState } from 'react';
 function FieldCheckboxExample() {
   const [checkbox1, setCheckBox1] = useState(true);
   const [checkbox2, setCheckBox2] = useState(false);
+  const [hiddenLabel, setHiddenLabel] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const [toggle, setToggle] = useState(true);
   const [toggleHelp, setToggleHelp] = useState(false);
@@ -41,6 +42,16 @@ function FieldCheckboxExample() {
         value="second"
         onChange={setCheckBox2}
         className="mb-5"
+      />
+
+      <FieldCheckbox
+        id="hiddenLabel"
+        label="hidden label"
+        isSelected={hiddenLabel}
+        value="first"
+        onChange={setHiddenLabel}
+        className="mb-5"
+        hideLabel
       />
 
       <FieldCheckbox
