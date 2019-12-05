@@ -25,7 +25,7 @@ $ yarn test
 Although not strictly enforced, we aim for 100% unit test coverage for each component.
 
 ```shell
-$ yarn cover
+$ yarn test --coverage --watchAll
 ```
 
 #### Visual Regression Testing
