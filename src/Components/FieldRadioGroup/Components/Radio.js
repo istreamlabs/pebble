@@ -144,7 +144,7 @@ function Radio({
   const classes = classNames('relative', className);
 
   return (
-    <Block marginBottom="3" className={classes} alignItems="start">
+    <Block margin="0 0 3" className={classes} alignItems="start">
       <input
         id={id}
         checked={isSelected || false}

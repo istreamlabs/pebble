@@ -142,8 +142,7 @@ function Modal({
         as="header"
         justify="between"
         alignItems="start"
-        paddingHorizontal={[4, 5]}
-        paddingVertical="4"
+        padding={['4', '4 5']}
         className={headerClasses}
       >
         <Block className="mr-3">
@@ -179,8 +178,7 @@ function Modal({
           as="footer"
           background="neutral-200"
           justify="end"
-          paddingHorizontal={[4, 5]}
-          paddingVertical="4"
+          padding={['4', '4 5']}
         >
           <ButtonGroup fullWidth={windowSize.innerWidth <= 480}>
             {footerContent}

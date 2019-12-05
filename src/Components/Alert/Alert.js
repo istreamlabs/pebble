@@ -105,8 +105,7 @@ function Alert({
 
   return (
     <Block
-      paddingHorizontal="4"
-      paddingVertical="4"
+      padding="4"
       className={classes}
       role={
         type === 'danger' || type === 'warn' ? 'alert' : undefined

@@ -133,8 +133,7 @@ function TabExample() {
         background="white"
         label="Panel 1"
         tabId="panel-1-tab"
-        paddingVertical="4"
-        paddingHorizontal={[3, 4, 5]}
+        padding={['4 3', '4', '4 5']}
       >
         Panel 1 Content
       </TabPanel>
@@ -147,8 +146,7 @@ function TabExample() {
           </>
         }
         tabId="panel-2-tab"
-        paddingVertical="4"
-        paddingHorizontal={[3, 4, 5]}
+        padding={['4 3', '4', '4 5']}
       >
         Panel 2 Content
       </TabPanel>
@@ -157,8 +155,7 @@ function TabExample() {
         background="white"
         label="Panel 3"
         tabId="panel-3-tab"
-        paddingVertical="4"
-        paddingHorizontal={[3, 4, 5]}
+        padding={['4 3', '4', '4 5']}
       >
         Panel 3 Content
       </TabPanel>

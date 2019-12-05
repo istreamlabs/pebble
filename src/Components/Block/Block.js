@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import {
   getBorderStyle,
   getFlexPropertyClasses,
-  getDimensionClasses,
+  getDimensionCss,
   getItemSpacingClasses,
   getOverflowClasses,
   getBorderRadiusClasses,
+  getSpacingCss,
   parseTextSize,
 } from '../../Utils';
 import {
@@ -15,6 +16,7 @@ import {
   colorType,
   dimensionType,
   fontSizeType,
+  itemSpacingType,
   orderType,
   overflowType,
   radiusType,
@@ -214,6 +216,20 @@ const propTypes = {
    */
   textSize: fontSizeType,
   /**
+   * Margin [space](/#/Styles/Spacing) to be added around this block.
+   * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/margin),
+   * where you can set the margin area on all four sides of an element.
+   * It is shorthand for top, right, bottom, left.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Spacing>}
+   */
+  margin: spacingType,
+  /**
+   * _**Use the margin prop instead. Support for this prop will end in a future release.**_
+   *
    * Margin [space](/#/Styles/Spacing) to be added above this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -223,6 +239,8 @@ const propTypes = {
    */
   marginTop: spacingType,
   /**
+   * _**Use the margin prop instead. Support for this prop will end in a future release.**_
+   *
    * Margin [space](/#/Styles/Spacing) to be added below this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -250,7 +268,10 @@ const propTypes = {
    */
   overflow: overflowType,
   /**
-   * Padding [space](/#/Styles/Spacing) to be added uniformly within this block.
+   * Padding [space](/#/Styles/Spacing) to be added within this block.
+   * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/padding),
+   * where you can set the padding area on all four sides of an element.
+   * It is shorthand for top, right, bottom, left.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
@@ -259,6 +280,8 @@ const propTypes = {
    */
   padding: spacingType,
   /**
+   * _**Use the padding prop instead. Support for this prop will end in a future release.**_
+   *
    * Padding [space](/#/Styles/Spacing) to be added to the left and right. Will override a `padding` value.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -268,15 +291,8 @@ const propTypes = {
    */
   paddingHorizontal: spacingType,
   /**
-   * Set the [radius](/#/Styles/Border) of all corners
+   * _**Use the padding prop instead. Support for this prop will end in a future release.**_
    *
-   * One of: 1, 2, 3, 4, 5, circle, pill
-   *
-   * For responsive behavior, pass an array with length up to 4, with one of the above values.
-   * @type {PropTypes.Requireable<Radius>}
-   */
-  radius: radiusType,
-  /**
    * Padding [space](/#/Styles/Spacing) to be added to the top and bottom. Will override a `padding` value.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -286,14 +302,25 @@ const propTypes = {
    */
   paddingVertical: spacingType,
   /**
+   *
+   * _**Use the padding prop instead. Support for this prop will end in a future release.**_
+   *
    * Amount of [space](/#/Styles/Spacing) between each block item
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
-   * @type {PropTypes.Requireable<Spacing>}
    */
-  itemSpacing: spacingType,
+  itemSpacing: itemSpacingType,
+  /**
+   * Set the [radius](/#/Styles/Border) of all corners
+   *
+   * One of: 1, 2, 3, 4, 5, circle, pill
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Radius>}
+   */
+  radius: radiusType,
   /**
    * react css style object
    */
@@ -356,6 +383,7 @@ class Block extends React.PureComponent {
       height,
       itemSpacing,
       justify,
+      margin,
       marginTop,
       marginBottom,
       order,
@@ -373,11 +401,12 @@ class Block extends React.PureComponent {
       ...props
     } = this.props;
 
-    const mtClasses = getDimensionClasses('mt', marginTop);
-    const mbClasses = getDimensionClasses('mb', marginBottom);
-    const pClasses = getDimensionClasses('p', padding);
-    const phClasses = getDimensionClasses('ph', paddingHorizontal);
-    const pvClasses = getDimensionClasses('pv', paddingVertical);
+    const mClasses = getSpacingCss('m', margin);
+    const mtClasses = getSpacingCss('mt', marginTop);
+    const mbClasses = getSpacingCss('mb', marginBottom);
+    const pClasses = getSpacingCss('p', padding);
+    const phClasses = getSpacingCss('ph', paddingHorizontal);
+    const pvClasses = getSpacingCss('pv', paddingVertical);
     const radiusClass =
       radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses =
@@ -386,8 +415,8 @@ class Block extends React.PureComponent {
     const directionClasses = !displayBlock
       ? getFlexPropertyClasses('flex', direction)
       : null;
-    const widthStyles = getDimensionClasses('width', width);
-    const heightStyles = getDimensionClasses('height', height);
+    const widthStyles = getDimensionCss('width', width);
+    const heightStyles = getDimensionCss('height', height);
     const justifyClasses = getFlexPropertyClasses('justify', justify);
     const alignContentClasses = getFlexPropertyClasses(
       'content',
@@ -410,6 +439,8 @@ class Block extends React.PureComponent {
       : null;
 
     const flexGrowShrinkProp = flex => {
+      if (displayBlock) return;
+
       if (typeof flex === 'boolean' || typeof flex === 'string') {
         return FLEX_MAP[flex];
       }
@@ -441,6 +472,8 @@ class Block extends React.PureComponent {
 
     Object.assign(mergedStyle, { width: widthStyles.styles });
     Object.assign(mergedStyle, { height: heightStyles.styles });
+    Object.assign(mergedStyle, { padding: pClasses.styles });
+    Object.assign(mergedStyle, { margin: mClasses.styles });
 
     const isDisplayBlock =
       displayBlock || (className ? className.includes('db') : false);
@@ -448,6 +481,7 @@ class Block extends React.PureComponent {
     const classes = classNames(
       directionClasses,
       overflowClasses,
+      mClasses.classes,
       mbClasses.classes,
       mtClasses.classes,
       pClasses.classes,
@@ -475,7 +509,6 @@ class Block extends React.PureComponent {
       className,
     );
     const calcDirection = displayBlock ? 'column' : direction;
-
     const spacingClasses =
       itemSpacing !== undefined
         ? getItemSpacingClasses(calcDirection, itemSpacing)

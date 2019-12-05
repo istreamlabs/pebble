@@ -293,7 +293,7 @@ function PaginationTableSample() {
     const end = start + pageSize - 1;
 
     return (
-      <Block marginBottom="4">
+      <Block margin="0 0 4">
         showing {start} - {end} of {DATA.length}
       </Block>
     );

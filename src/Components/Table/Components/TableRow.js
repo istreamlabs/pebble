@@ -68,7 +68,6 @@ function TableRow({
     'flex w-100',
     {
       'bg-hover bg-blue-lighter-hover': hoverHighlight,
-      'pb-4 ph-4': isMobileLayout,
     },
     className,
   );
@@ -89,9 +88,10 @@ function TableRow({
       role="row"
       className={classes}
       direction={isMobileLayout ? 'column' : 'row'}
-      marginTop={isMobileLayout ? '4' : null}
+      margin={['4 0 0 0', '0']}
       width="100%"
       style={{ flexShrink: 0 }}
+      padding={['0 4 4 4', '4', '0']}
       {...rest}
     >
       {childrenMarkup()}

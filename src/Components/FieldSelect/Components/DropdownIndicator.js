@@ -5,7 +5,7 @@ import Icon from '../../Icon/Icon';
 
 function DropdownIndicator() {
   return (
-    <Block paddingHorizontal="3">
+    <Block padding="0 3">
       <Icon name="arrow-small-down" />
     </Block>
   );

@@ -1,4 +1,20 @@
-## Examples
+### Flex
+
+Flex is applied by default to Block components.
+
+```js
+<Block itemSpacing="3">
+  <Block flex={false} padding="3" background="blue-light">
+    takes up minimum width for content
+  </Block>
+  <Block flex padding="3" background="blue-light">
+    takes up available width
+  </Block>
+  <Block flex={false} padding="3" background="blue-light">
+    takes up minimum width for content
+  </Block>
+</Block>
+```
 
 ### Direction
 
@@ -41,34 +57,12 @@ import Badge from '../Badge/Badge';
 </>;
 ```
 
-### Flex
-
-```js
-<Block itemSpacing="3">
-  <Block flex={false} padding="3" background="blue-light">
-    1
-  </Block>
-  <Block
-    className="db"
-    width="100px"
-    flex={true}
-    padding="3"
-    background="blue-light"
-  >
-    1
-  </Block>
-  <Block flex={false} padding="3" background="blue-light">
-    1
-  </Block>
-</Block>
-```
-
-### Basis
+#### Basis
 
 Basis defines the default size of an element before the remaining space is distributed.
 
 ```js
-<Block justify="start" itemSpacing="3" marginBottom="4">
+<Block justify="start" itemSpacing="3">
   <Block basis="1/3" padding="3" background="blue-light">
     1/3
   </Block>
@@ -86,24 +80,16 @@ Basis defines the default size of an element before the remaining space is distr
 Width can be set to a valid css width value.
 
 ```js
-<Block width="243px" padding="3" background="blue-light" marginBottom="4">243px</Block>
-<Block width="10rem" padding="3" background="blue-light" marginBottom="4">10rem (160px)</Block>
-<Block width="25%" padding="3" background="blue-light" marginBottom="4">25%</Block>
+<Block width="243px" padding="3" background="blue-light" margin="0 0 4">243px</Block>
+<Block width="10rem" padding="3" background="blue-light" margin="0 0 4">10rem (160px)</Block>
+<Block width="25%" padding="3" background="blue-light">25%</Block>
 ```
 
 For responsive widths, pass an array of percentages for each element.
 
 ```js
-<Block itemSpacing="3">
-  <Block width={[10, 33, 25, 10]} padding="3" background="blue-light">
-    10%, 33%, 25%, 10%
-  </Block>
-  <Block width={[80, 33, 50, 10]} padding="3" background="blue-light">
-    80%, 33%, 50%, 10%
-  </Block>
-  <Block width={[10, 34, 25, 80]} padding="3" background="blue-light">
-    10%, 34%, 25%, 80%
-  </Block>
+<Block width={[10, 33, 25, 10]} padding="3" background="blue-light">
+  10%, 33%, 25%, 10%
 </Block>
 ```
 
@@ -128,28 +114,8 @@ Height can be set to a valid css height value.
 For responsive height, pass an array of percentages for each element.
 
 ```js
-<Block direction="column" itemSpacing="3" height="300px">
-  <Block
-    height={[10, 33, 25, 10]}
-    padding="3"
-    background="blue-light"
-  >
-    10%, 33%, 25%, 10%
-  </Block>
-  <Block
-    height={[80, 33, 50, 10]}
-    padding="3"
-    background="blue-light"
-  >
-    80%, 33%, 50%, 10%
-  </Block>
-  <Block
-    height={[10, 34, 25, 80]}
-    padding="3"
-    background="blue-light"
-  >
-    10%, 34%, 25%, 80%
-  </Block>
+<Block height={[10, 33, 25, 10]} padding="3" background="blue-light">
+  10%, 33%, 25%, 10%
 </Block>
 ```
 
@@ -193,132 +159,112 @@ import Text from '../Text/Text';
 
 ### Padding
 
-Apply padding to all four sides.
+The `padding` prop accepts values similar to css-shorthand padding.
+
+```js
+<Block displayBlock itemSpacing="3">
+  <Block background="blue-light" padding="4" displayBlock>
+    <Block displayBlock background="white">
+      4 on all sides
+    </Block>
+  </Block>
+
+  <Block background="blue-light" padding="4 5" displayBlock>
+    <Block displayBlock background="white">
+      4 on top/bottom, 5 on left/right
+    </Block>
+  </Block>
+
+  <Block background="blue-light" padding="4 5 3" displayBlock>
+    <Block displayBlock background="white">
+      4 on top, 5 on left/right, 3 on bottom
+    </Block>
+  </Block>
+
+  <Block background="blue-light" padding="1 2 3 4" displayBlock>
+    <Block displayBlock background="white">
+      1 on top, 2 on right, 3 on bottom, 4 on left
+    </Block>
+  </Block>
+</Block>
+```
+
+#### Responsive Padding
+
+Apply different padding values that correspond to mobile first [breakpoints](/#/Styles/Media%20Query) by passing an array with length up to four.
+
+```js
+<Block background="blue-light" padding={['3 4', '4 5', '5 6', '6 7']}>
+  <Block flex background="white">
+    vertical 3,4,5,6, horizontal 4,5,6,7
+  </Block>
+</Block>
+```
+
+### Margin
+
+The `margin` prop accepts values similar to css-shorthand margin.
 
 ```js hide
-<Block itemSpacing="1" direction="column">
-  <Block background="blue-light" padding="8">
-    Padding of 8
+<Block displayBlock itemSpacing="3">
+  <Block background="blue-light">
+    <Block flex background="white" margin="4">
+      4 on all sides
+    </Block>
   </Block>
-  <Block background="blue-light" padding="7">
-    Padding of 7
+
+  <Block background="blue-light">
+    <Block flex background="white" margin="4 5">
+      4 on top/bottom, 5 on right/left
+    </Block>
   </Block>
-  <Block background="blue-light" padding="6">
-    Padding of 6
+
+  <Block background="blue-light">
+    <Block flex background="white" margin="4 5 3">
+      4 on top, 5 on right/left, 3 on bottom
+    </Block>
   </Block>
-  <Block background="blue-light" padding="5">
-    Padding of 5
-  </Block>
-  <Block background="blue-light" padding="4">
-    Padding of 4
-  </Block>
-  <Block background="blue-light" padding="3">
-    Padding of 3
-  </Block>
-  <Block background="blue-light" padding="2">
-    Padding of 2
-  </Block>
-  <Block background="blue-light" padding="1">
-    Padding of 1
-  </Block>
-  <Block background="blue-light" padding="0">
-    No padding
+
+  <Block background="blue-light">
+    <Block flex background="white" margin="1 2 3 4">
+      1 on top, 2 on right, 3 on bottom, 4 on left
+    </Block>
   </Block>
 </Block>
 ```
 
-#### Horizontal Padding
+#### Responsive Margins
 
-`Block` can have separate horizontal and vertical padding
+Apply different margin values that correspond to mobile first [breakpoints](/#/Styles/Media%20Query) by passing an array with length up to four.
 
 ```js
-<Block itemSpacing="1" direction="column">
-  <Block background="blue-light" paddingHorizontal="8">
-    Horizontal padding of 8
+<Block background="blue-light">
+  <Block
+    flex
+    background="white"
+    margin={['3 4', '4 5', '5 6', '6 7']}
+  >
+    vertical 3,4,5,6, horizontal 4,5,6,7
   </Block>
-  <Block background="blue-light" paddingHorizontal="7">
-    Horizontal padding of 7
-  </Block>
-  <Block background="blue-light" paddingHorizontal="6">
-    Horizontal padding of 6
-  </Block>
-  <Block background="blue-light" paddingHorizontal="5">
-    Horizontal padding of 5
-  </Block>
-  <Block background="blue-light" paddingHorizontal="4">
-    Horizontal padding of 4
-  </Block>
-  <Block background="blue-light" paddingHorizontal="3">
-    Horizontal padding of 3
-  </Block>
-  <Block background="blue-light" paddingHorizontal="2">
-    Horizontal padding of 2
-  </Block>
-  <Block background="blue-light" paddingHorizontal="1">
-    Horizontal padding of 1
-  </Block>
-  <Block background="blue-light">No padding</Block>
 </Block>
 ```
 
-#### Vertical Padding
+### Item Spacing
 
-```js
-<Block itemSpacing="1" direction="column">
-  <Block background="blue-light" paddingVertical="8">
-    Vertical padding of 8
-  </Block>
-  <Block background="blue-light" paddingVertical="7">
-    Vertical padding of 7
-  </Block>
-  <Block background="blue-light" paddingVertical="6">
-    Vertical padding of 6
-  </Block>
-  <Block background="blue-light" paddingVertical="5">
-    Vertical padding of 5
-  </Block>
-  <Block background="blue-light" paddingVertical="4">
-    Vertical padding of 4
-  </Block>
-  <Block background="blue-light" paddingVertical="3">
-    Vertical padding of 3
-  </Block>
-  <Block background="blue-light" paddingVertical="2">
-    Vertical padding of 2
-  </Block>
-  <Block background="blue-light" paddingVertical="1">
-    Vertical padding of 1
-  </Block>
-  <Block background="blue-light">No padding</Block>
+Control the amount of spacing (or the gap) between a Block's children with with the `itemSpacing` prop. Pass an array up to length 4 to set responsive item spacing values. Based on the direction of the Block, right or bottom margin are applied the children.
+
+```jsx
+<Block border="all" itemSpacing={[1, 2, 3, 4]} marginBottom="4">
+  <Block flex height="50px" background="blue-light" />
+  <Block flex height="50px" background="blue-light" />
+  <Block flex height="50px" background="blue-light" />
 </Block>
-```
 
-### Margin Top
-
-```js
-<Block background="blue-light" marginTop="8">Margin top of 8</Block>
-<Block background="blue-light" marginTop="7">Margin top of 7</Block>
-<Block background="blue-light" marginTop="6">Margin top of 6</Block>
-<Block background="blue-light" marginTop="5">Margin top of 5</Block>
-<Block background="blue-light" marginTop="4">Margin top of 4</Block>
-<Block background="blue-light" marginTop="3">Margin top of 3</Block>
-<Block background="blue-light" marginTop="2">Margin top of 2</Block>
-<Block background="blue-light" marginTop="1">Margin top of 1</Block>
-<Block background="blue-light">No margin</Block>
-```
-
-### Margin Bottom
-
-```js
-<Block background="blue-light" marginBottom="8">Margin bottom of 8</Block>
-<Block background="blue-light" marginBottom="7">Margin bottom of 7</Block>
-<Block background="blue-light" marginBottom="6">Margin bottom of 6</Block>
-<Block background="blue-light" marginBottom="5">Margin bottom of 5</Block>
-<Block background="blue-light" marginBottom="4">Margin bottom of 4</Block>
-<Block background="blue-light" marginBottom="3">Margin bottom of 3</Block>
-<Block background="blue-light" marginBottom="2">Margin bottom of 2</Block>
-<Block background="blue-light" marginBottom="1">Margin bottom of 1</Block>
-<Block background="blue-light">No margin</Block>
+<Block direction="column" border="all" itemSpacing="6">
+  <Block width="100%" height="50px" background="blue-light" />
+  <Block width="100%" height="50px" background="blue-light" />
+  <Block width="100%" height="50px" background="blue-light" />
+</Block>
 ```
 
 ### Borders
@@ -356,58 +302,12 @@ Setting the `border` prop to a string will apply teh default border style of `1p
 </Block>
 ```
 
-### Responsive Spacing
-
-Margin and padding props can be passed arrays as values for mobile-first responsive styles.
-
-```js
-<Block
-  background="blue-light"
-  padding={[
-    2, // spacing-2 by default
-    4, // spacing-4 30rem and up
-    6, // spacing-6 60rem and up
-    8, // spacing-8 90rem and up
-  ]}
->
-  Padding of 2 and 8
-</Block>
-```
-
 ### Radius Corners
+
+Control the corner radius of a Block by setting the radius to a value `1-5`, `pill` or `circle`.
 
 ```js
 <Block itemSpacing="3" wrap>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="0"
-    width="75px"
-    height="75px"
-  >
-    radius 0
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="1"
-    width="75px"
-    height="75px"
-  >
-    radius 1
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="2"
-    width="75px"
-    height="75px"
-  >
-    radius 2
-  </Block>
   <Block
     alignItems="center"
     justify="center"
@@ -417,26 +317,6 @@ Margin and padding props can be passed arrays as values for mobile-first respons
     height="75px"
   >
     radius 3
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="4"
-    width="75px"
-    height="75px"
-  >
-    radius 4
-  </Block>
-  <Block
-    alignItems="center"
-    justify="center"
-    background="blue-light"
-    radius="5"
-    width="75px"
-    height="75px"
-  >
-    radius 5
   </Block>
   <Block
     alignItems="center"

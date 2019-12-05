@@ -32,13 +32,6 @@ describe('TableRow', () => {
   it('sets the direction to row when not mobile', () => {
     const wrapper = shallow(<TableRow />);
     expect(wrapper.prop('direction')).toBe('row');
-    expect(wrapper.prop('marginTop')).toBe(null);
-  });
-
-  it('sets the direction and top margin if viewed in mobile sized viewport', () => {
-    useMobileLayout.mockImplementation(() => true);
-    const wrapper = shallow(<TableRow />);
-    expect(wrapper.prop('direction')).toBe('column');
-    expect(wrapper.prop('marginTop')).toBe('4');
+    expect(wrapper.prop('margin')).toStrictEqual(['4 0 0 0', '0']);
   });
 });

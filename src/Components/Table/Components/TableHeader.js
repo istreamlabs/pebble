@@ -62,7 +62,7 @@ function TableHeader({ border, children, mobileLabel }) {
     return children;
   };
 
-  if (isMobileLayout && mobileLabel === undefined) {
+  if (mobileLabel === undefined) {
     return null;
   }
 
@@ -72,10 +72,10 @@ function TableHeader({ border, children, mobileLabel }) {
       width="100%"
       background="white"
       border={border}
-      direction={isMobileLayout ? 'column' : 'row'}
+      direction={['column', 'column', 'row']}
       style={{ flexShrink: 0, minHeight: '50px' }}
-      justify={isMobileLayout ? 'center' : 'start'}
-      padding={isMobileLayout ? '4' : null}
+      justify={['center', 'center', 'start']}
+      padding={[4, 4, 0]}
     >
       {childrenMarkup()}
     </Block>
