@@ -38,7 +38,7 @@ jobs:
           yarn cover
           curl -s https://codecov.io/bash | bash -s
   visual-tests:
-    name: visual regression tests
+    name: visual regression test
     runs-on: ubuntu-latest
     env:
       CI: true
