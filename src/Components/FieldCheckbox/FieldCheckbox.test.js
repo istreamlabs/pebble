@@ -29,6 +29,14 @@ describe('FieldCheckbox', () => {
           .prop('className'),
       ).toContain('toggle');
     });
+
+    it('applies label as aria-label if hideLabel is true', () => {
+      const text = 'I am title text';
+      const wrapper = shallow(
+        <FieldCheckbox hideLabel id="1" label={text} />,
+      );
+      expect(wrapper.find('Checkbox').prop('aria-label')).toBe(text);
+    });
   });
 
   describe('helpTextMarkup', () => {
