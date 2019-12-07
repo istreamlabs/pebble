@@ -69,7 +69,7 @@ function CollapsiblePanel(props) {
       ) : (
         <summary onClick={handleClick}>{label(props)}</summary>
       )}
-      <Block {...rest}>{children}</Block>
+      <Block>{children}</Block>
     </Block>
   );
 }
