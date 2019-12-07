@@ -42,7 +42,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      CHROMATIC_APP_CODE: ${{ secrets.CHROMATIC_APP_CODE }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/cache@v1
@@ -53,8 +52,10 @@ jobs:
             ${{ runner.os }}-yarn-
       - name: install dependencies
         run: yarn install
-      - name: run visual regression tests
-        run: yarn chromatic --exit-zero-on-changes
+      - uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          appCode: ${{ secrets.CHROMATIC_APP_CODE }}
   deploy:
     name: deploy test documentation site
     runs-on: ubuntu-latest
