@@ -49,6 +49,7 @@ function CollapsiblePanel(props) {
       open={open}
       id={id}
       data-testid={id}
+      {...rest}
     >
       {typeof label === 'string' ? (
         <Block
