@@ -70,7 +70,7 @@ describe('Types > textSizeType', () => {
     );
   });
 
-  it('returns error for string not 0-8', () => {
+  it('returns error for string not 1-7', () => {
     let error = textSizeType(
       { textSize: '-1' },
       'textSize',
