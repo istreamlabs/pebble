@@ -1,4 +1,11 @@
 export default (dimension, value) => {
+  if (value === undefined) {
+    return {
+      styles: null,
+      classes: [],
+    };
+  }
+
   let classes = [];
 
   let classPrefix = getPrefix(dimension, value);
@@ -8,7 +15,7 @@ export default (dimension, value) => {
     classes: [],
   };
 
-  // set to a specific width
+  // set to a specific css unit
   if (
     typeof value === 'string' &&
     (value.includes('px') ||
