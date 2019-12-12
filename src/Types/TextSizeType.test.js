@@ -1,4 +1,4 @@
-import textSizeType from './textSizeType';
+import textSizeType from './TextSizeType';
 
 describe('Types > textSizeType', () => {
   it('returns null if there is no prop value', () => {
