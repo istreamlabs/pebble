@@ -9,19 +9,18 @@ import {
   getOverflowClasses,
   getBorderRadiusClasses,
   getSpacingCss,
-  parseTextSize,
 } from '../../Utils';
 import {
   borderType,
   colorType,
   dimensionType,
-  fontSizeType,
   itemSpacingType,
   orderType,
   overflowType,
   radiusType,
   spacingType,
   textAlignType,
+  textSizeType,
 } from '../../Types';
 
 import './Block.scss';
@@ -211,10 +210,14 @@ const propTypes = {
     PropTypes.array,
   ]),
   /**
-   * font size to apply to apply to all child text elements without explicitly set sizes, based on the [typography scale](/#/Styles/Typography)
-   * @type {PropTypes.Requireable<FontSizeLike>}
+   * font size to apply to apply to all child text elements without explicitly set sizes,
+   * based on the [typography scale](/#/Styles/Typography)
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
-  textSize: fontSizeType,
+  textSize: textSizeType,
   /**
    * Margin [space](/#/Styles/Spacing) to be added around this block.
    * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/margin),
@@ -360,7 +363,7 @@ const defaultProps = {
  *
  * By using a `<Block>` component instead of a `div` for layouts,
  * you'll be able to maintain consistent component spacing by
- * using the padding and bottomSpacing props instead
+ * using the padding and margin props instead
  * of custom CSS.
  */
 
@@ -407,6 +410,8 @@ class Block extends React.PureComponent {
     const pClasses = getSpacingCss('p', padding);
     const phClasses = getSpacingCss('ph', paddingHorizontal);
     const pvClasses = getSpacingCss('pv', paddingVertical);
+    const fsClasses = getDimensionCss('fs', textSize);
+
     const radiusClass =
       radius !== undefined ? getBorderRadiusClasses(radius) : null;
     const overflowClasses =
@@ -431,8 +436,6 @@ class Block extends React.PureComponent {
       alignSelf,
     );
     const orderClasses = getFlexPropertyClasses('order', order);
-
-    const parsedTextSize = textSize ? parseTextSize(textSize) : null;
 
     const basisStyle = basis
       ? { flexBasis: BASIS_MAP[basis] || basis }
@@ -487,6 +490,7 @@ class Block extends React.PureComponent {
       pClasses.classes,
       phClasses.classes,
       pvClasses.classes,
+      fsClasses.classes,
       radiusClass,
       justifyClasses,
       alignContentClasses,
@@ -501,7 +505,6 @@ class Block extends React.PureComponent {
         flex: !isDisplayBlock && !truncate,
         [`bg-${background}`]: background,
         'flex-wrap': wrap,
-        [`fs-${parsedTextSize}`]: parsedTextSize,
         [`text-${textAlign}`]: textAlign,
         'truncate db': truncate,
         [`b-${borderColor}`]: border,

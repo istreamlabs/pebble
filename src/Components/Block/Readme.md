@@ -373,6 +373,16 @@ Pass an array of radius values to apply responsive border radii.
 </Block>
 ```
 
+#### Responsive Text Size
+
+Pass an array of textSize values to apply different sizes at each breakpoint.
+
+```js
+<Block textSize={[7, 5, 3, 1]}>
+  Resize the browser window width to watch this text change size
+</Block>
+```
+
 ### Responsive Overflow
 
 Pass an array of overflow values to apply responsive overflow
