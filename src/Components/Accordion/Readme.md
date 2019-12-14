@@ -9,71 +9,81 @@ Pebble exports 1 additional related component:
 By default, only a single panel may be open at one time. Each `<CollapsiblePanel />` requires an `id` and `label`.
 
 ```js
+import Block from '../Block/Block';
 import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
-<Accordion
-  border="all"
-  background="neutral-200"
-  onChange={id => console.log(id)}
->
-  <CollapsiblePanel id="panel1" padding={[3, 4, 5]} label="panel 1">
-    panel 1 content
+<Accordion border="all" defaultOpen="panel2" background="white">
+  <CollapsiblePanel
+    id="panel1"
+    background="neutral-200"
+    label="panel 1"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 1 content
+    </Block>
   </CollapsiblePanel>
-  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
-    panel 2 content
+  <CollapsiblePanel
+    id="panel2"
+    background="neutral-200"
+    label="panel 2"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 2 content
+    </Block>
   </CollapsiblePanel>
-  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
-    panel 3 content
+  <CollapsiblePanel
+    id="panel3"
+    background="neutral-200"
+    label="panel 3"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 3 content
+    </Block>
   </CollapsiblePanel>
 </Accordion>;
 ```
 
-### Multiple
+### Multiple and Start with Panels Open
 
-To allow multiple panels to be open at one time, use `allowMultiple`.
+To allow multiple panels to be open at one time, use `allowMultiple`. Set the `defaultOpen` prop to the id of the panel that should start open, or an array of ids of the panels that should be open
 
 ```js
+import Block from '../Block/Block';
 import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
 <Accordion
+  id="panel1"
   allowMultiple
   border="all"
-  background="neutral-200"
-  onChange={id => console.log(id)}
->
-  <CollapsiblePanel id="panel1" padding={[3, 4, 5]} label="panel 1">
-    panel 1 content
-  </CollapsiblePanel>
-  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
-    panel 2 content
-  </CollapsiblePanel>
-  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
-    panel 3 content
-  </CollapsiblePanel>
-</Accordion>;
-```
-
-### Start with Panels Open
-
-Set the `defaultOpen` prop the single string id, or an array of string ids of the panel(s) that should be open
-
-```js
-import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
-
-<Accordion
+  background="white"
   defaultOpen={['panel2', 'panel3']}
-  border="all"
-  background="neutral-200"
-  allowMultiple
 >
-  <CollapsiblePanel id="panel1" padding={[3, 4, 5]} label="panel 1">
-    content
+  <CollapsiblePanel
+    id="panel1"
+    background="neutral-200"
+    label="panel 1"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 1 content
+    </Block>
   </CollapsiblePanel>
-  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
-    starts open
+  <CollapsiblePanel
+    id="panel2"
+    background="neutral-200"
+    label="panel 2"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 2 content
+    </Block>
   </CollapsiblePanel>
-  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
-    starts open
+  <CollapsiblePanel
+    id="panel3"
+    background="neutral-200"
+    label="panel 3"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 3 content
+    </Block>
   </CollapsiblePanel>
 </Accordion>;
 ```
@@ -83,77 +93,63 @@ import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 Accordions can be nested to display complex tree structures.
 
 ```js
+import Block from '../Block/Block';
 import CollapsiblePanel from '../CollapsiblePanel/CollapsiblePanel';
 
-<Accordion defaultOpen={['panel1']} border="all">
+<Accordion defaultOpen="panel1" border="all">
   <CollapsiblePanel
     id="panel1"
     displayBlock
     background="neutral-200"
     label="panel 1"
-    textSize="7"
-    className="pl-5"
   >
-    <Accordion allowMultiple>
+    <Accordion className="pl-5" allowMultiple>
       <CollapsiblePanel
         id="nestedPanel1"
         background="neutral-200"
-        label="level 1 panel 1"
-        displayBlock
-        className="pl-5"
+        label="nested panel 1"
       >
-        <Accordion allowMultiple>
-          <CollapsiblePanel
-            id="nested2Panel1"
-            background="neutral-200"
-            padding={[3, 4, 5]}
-            label="level 2 panel 1"
-          >
-            nested 2 panel 1 content
-          </CollapsiblePanel>
-          <CollapsiblePanel
-            id="nested2Panel2"
-            background="neutral-200"
-            padding={[3, 4, 5]}
-            label="level 2 panel 2"
-          >
-            nested 2 panel 2 content
-          </CollapsiblePanel>
-          <CollapsiblePanel
-            id="nested2Panel3"
-            background="neutral-200"
-            padding={[3, 4, 5]}
-            label="level 2 panel 3"
-          >
-            nested 2 panel 3 content
-          </CollapsiblePanel>
-        </Accordion>
+        <Block flex padding={[3, 4, 5]}>
+          nested panel 1 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="nestedPanel2"
         background="neutral-200"
-        padding={[3, 4, 5]}
-        label="level 1 panel 2"
+        label="nested panel 2"
       >
-        nested panel 2 content
+        <Block flex padding={[3, 4, 5]}>
+          nested panel 2 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="nestedPanel3"
         background="neutral-200"
-        padding={[3, 4, 5]}
-        label="level 1 panel 3"
+        label="nested panel 3"
       >
-        nested panel 3 content
+        <Block flex padding={[3, 4, 5]}>
+          nested panel 3 content
+        </Block>
       </CollapsiblePanel>
     </Accordion>
   </CollapsiblePanel>
   <CollapsiblePanel
     id="panel2"
     background="neutral-200"
-    padding={[3, 4, 5]}
     label="panel 2"
   >
-    panel 2 content
+    <Block flex padding={[3, 4, 5]}>
+      panel 2 content
+    </Block>
+  </CollapsiblePanel>
+  <CollapsiblePanel
+    id="panel3"
+    background="neutral-200"
+    label="panel 3"
+  >
+    <Block flex padding={[3, 4, 5]}>
+      panel 3 content
+    </Block>
   </CollapsiblePanel>
 </Accordion>;
 ```
@@ -189,20 +185,19 @@ function ExampleLabel({ open, label }) {
   );
 }
 
-<Accordion border="all" background="neutral-200" allowMultiple>
+<Accordion border="all" background="neutral-200">
   <CollapsiblePanel
     id="panel1"
-    padding={[3, 4, 5]}
     label={props => (
       <ExampleLabel label="Custom Label" open={props.open} />
     )}
   >
     content
   </CollapsiblePanel>
-  <CollapsiblePanel id="panel2" padding={[3, 4, 5]} label="panel 2">
+  <CollapsiblePanel id="panel2" label="panel 2">
     content
   </CollapsiblePanel>
-  <CollapsiblePanel id="panel3" padding={[3, 4, 5]} label="panel 3">
+  <CollapsiblePanel id="panel3" label="panel 3">
     content
   </CollapsiblePanel>
 </Accordion>;

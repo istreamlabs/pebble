@@ -123,71 +123,34 @@ storiesOf('Accordion', module)
   .addParameters({
     chromatic: { viewports: [479, 959, 1439] },
   })
-  .add('Nested with label renderProp', () => {
-    const items = VDCM.map(program => (
-      <CollapsiblePanel
-        id={`${program.id}`}
-        background="neutral-200"
-        label={program.name}
-        key={program.id}
-        displayBlock
-      >
-        <Accordion allowMultiple defaultOpen="411" className="ml-5">
-          {program.pids.map((pid, i) => {
-            return (
-              <CollapsiblePanel
-                background="neutral-300"
-                label={props => (
-                  <ServiceID
-                    onToggle={props.onToggle}
-                    open={props.open}
-                    label={`${pid.id} - ${pid.type}`}
-                    type={pid.type}
-                  />
-                )}
-                id={`${pid.id}`}
-                key={`${pid.id}${i}`}
-                padding={[3, 4]}
-                displayBlock
-              >
-                <SidVideoDetail specs={pid.specs} />
-              </CollapsiblePanel>
-            );
-          })}
-        </Accordion>
-      </CollapsiblePanel>
-    ));
-    return (
-      <Accordion defaultOpen="451" border="all" background="white">
-        {items}
-      </Accordion>
-    );
-  })
   .add('Single', () => (
     <Accordion border="all" defaultOpen="panel2" background="white">
       <CollapsiblePanel
         id="panel1"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 1"
       >
-        panel 1 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 1 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="panel2"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 2"
       >
-        panel 2 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 2 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="panel3"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 3"
       >
-        panel 3 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 3 content
+        </Block>
       </CollapsiblePanel>
     </Accordion>
   ))
@@ -202,26 +165,29 @@ storiesOf('Accordion', module)
       <CollapsiblePanel
         id="panel1"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 1"
       >
-        panel 1 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 1 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="panel2"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 2"
       >
-        panel 2 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 2 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="panel3"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 3"
       >
-        panel 3 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 3 content
+        </Block>
       </CollapsiblePanel>
     </Accordion>
   ))
@@ -232,54 +198,101 @@ storiesOf('Accordion', module)
         displayBlock
         background="neutral-200"
         label="panel 1"
-        textSize="7"
-        className="pl-5"
       >
-        <Accordion allowMultiple>
+        <Accordion width="100%" className="pl-5" allowMultiple>
           <CollapsiblePanel
             id="nestedPanel1"
             background="neutral-200"
-            padding={[3, 4, 5]}
             label="nested panel 1"
           >
-            nested panel 1 content
+            <Block flex padding={[3, 4, 5]}>
+              nested panel 1 content
+            </Block>
           </CollapsiblePanel>
           <CollapsiblePanel
             id="nestedPanel2"
             background="neutral-200"
-            padding={[3, 4, 5]}
             label="nested panel 2"
           >
-            nested panel 2 content
+            <Block flex padding={[3, 4, 5]}>
+              nested panel 2 content
+            </Block>
           </CollapsiblePanel>
           <CollapsiblePanel
             id="nestedPanel3"
             background="neutral-200"
-            padding={[3, 4, 5]}
             label="nested panel 3"
           >
-            nested panel 3 content
+            <Block flex padding={[3, 4, 5]}>
+              nested panel 3 content
+            </Block>
           </CollapsiblePanel>
         </Accordion>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="panel2"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 2"
       >
-        panel 2 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 2 content
+        </Block>
       </CollapsiblePanel>
       <CollapsiblePanel
         id="panel3"
         background="neutral-200"
-        padding={[3, 4, 5]}
         label="panel 3"
       >
-        panel 3 content
+        <Block flex padding={[3, 4, 5]}>
+          panel 3 content
+        </Block>
       </CollapsiblePanel>
     </Accordion>
-  ));
+  ))
+  .add('Nested with label renderProp', () => {
+    const items = VDCM.map(program => (
+      <CollapsiblePanel
+        id={`${program.id}`}
+        background="neutral-200"
+        label={program.name}
+        key={program.id}
+        displayBlock
+      >
+        <Accordion
+          width="100%"
+          allowMultiple
+          defaultOpen="411"
+          className="ml-5"
+        >
+          {program.pids.map((pid, i) => {
+            return (
+              <CollapsiblePanel
+                background="neutral-300"
+                label={props => (
+                  <ServiceID
+                    onToggle={props.onToggle}
+                    open={props.open}
+                    label={`${pid.id} - ${pid.type}`}
+                    type={pid.type}
+                  />
+                )}
+                id={`${pid.id}`}
+                key={`${pid.id}${i}`}
+                displayBlock
+              >
+                <SidVideoDetail specs={pid.specs} />
+              </CollapsiblePanel>
+            );
+          })}
+        </Accordion>
+      </CollapsiblePanel>
+    ));
+    return (
+      <Accordion defaultOpen="451" border="all" background="white">
+        {items}
+      </Accordion>
+    );
+  });
 
 function ServiceID(props) {
   // eslint-disable-next-line react/prop-types
@@ -317,6 +330,8 @@ function SidVideoDetail({ specs }) {
       padding="2 3"
       justify="between"
       textSize="6"
+      background="white"
+      flex
     >
       <div>{keyName}</div>
       <div className="fw-700">{specs[keyName]}</div>
@@ -324,7 +339,7 @@ function SidVideoDetail({ specs }) {
   ));
 
   return (
-    <Block displayBlock background="white" radius="2">
+    <Block flex padding="4" direction="column">
       {displaySpecs}
     </Block>
   );
