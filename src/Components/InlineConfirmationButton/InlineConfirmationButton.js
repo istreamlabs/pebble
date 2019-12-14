@@ -48,6 +48,10 @@ const propTypes = {
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
+   * Make the button have more visual weight to identify the primary call to action
+   */
+  primary: PropTypes.bool,
+  /**
    * Indicate that the button will perform a destructive action
    */
   danger: PropTypes.bool,
@@ -65,7 +69,7 @@ const defaultProps = {
 };
 
 const variants = {
-  popUp: custom => {
+  popUp: () => {
     return {
       opacity: [0, 1],
       x: [24, 0],
@@ -104,6 +108,7 @@ const InlineConfirmationButton = React.forwardRef((props, ref) => {
         iconAfterText={iconAfterText}
         onClick={() => setInitiated(true)}
         className={className}
+        ref={ref}
       >
         {children}
       </Button>
