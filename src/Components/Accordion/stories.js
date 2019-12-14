@@ -334,7 +334,7 @@ function SidVideoDetail({ specs }) {
   ));
 
   return (
-    <Block flex padding="0 0 0 5" direction="column">
+    <Block flex padding="4" direction="column">
       {displaySpecs}
     </Block>
   );
