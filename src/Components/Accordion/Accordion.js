@@ -93,7 +93,7 @@ function Accordion(props) {
   });
 
   return (
-    <Block width="100%" className={classes} {...rest} displayBlock>
+    <Block className={classes} {...rest} displayBlock>
       {clones}
     </Block>
   );

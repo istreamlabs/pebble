@@ -199,7 +199,7 @@ storiesOf('Accordion', module)
         background="neutral-200"
         label="panel 1"
       >
-        <Accordion className="pl-5" allowMultiple>
+        <Accordion width="100%" className="pl-5" allowMultiple>
           <CollapsiblePanel
             id="nestedPanel1"
             background="neutral-200"
@@ -258,7 +258,12 @@ storiesOf('Accordion', module)
         key={program.id}
         displayBlock
       >
-        <Accordion allowMultiple defaultOpen="411" className="ml-5">
+        <Accordion
+          width="100%"
+          allowMultiple
+          defaultOpen="411"
+          className="ml-5"
+        >
           {program.pids.map((pid, i) => {
             return (
               <CollapsiblePanel
