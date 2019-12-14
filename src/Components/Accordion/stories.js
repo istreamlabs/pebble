@@ -123,6 +123,132 @@ storiesOf('Accordion', module)
   .addParameters({
     chromatic: { viewports: [479, 959, 1439] },
   })
+  .add('Single', () => (
+    <Accordion border="all" defaultOpen="panel2" background="white">
+      <CollapsiblePanel
+        id="panel1"
+        background="neutral-200"
+        label="panel 1"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 1 content
+        </Block>
+      </CollapsiblePanel>
+      <CollapsiblePanel
+        id="panel2"
+        background="neutral-200"
+        label="panel 2"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 2 content
+        </Block>
+      </CollapsiblePanel>
+      <CollapsiblePanel
+        id="panel3"
+        background="neutral-200"
+        label="panel 3"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 3 content
+        </Block>
+      </CollapsiblePanel>
+    </Accordion>
+  ))
+  .add('Multiple', () => (
+    <Accordion
+      id="panel1"
+      allowMultiple
+      border="all"
+      background="white"
+      defaultOpen={['panel2', 'panel3']}
+    >
+      <CollapsiblePanel
+        id="panel1"
+        background="neutral-200"
+        label="panel 1"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 1 content
+        </Block>
+      </CollapsiblePanel>
+      <CollapsiblePanel
+        id="panel2"
+        background="neutral-200"
+        label="panel 2"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 2 content
+        </Block>
+      </CollapsiblePanel>
+      <CollapsiblePanel
+        id="panel3"
+        background="neutral-200"
+        label="panel 3"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 3 content
+        </Block>
+      </CollapsiblePanel>
+    </Accordion>
+  ))
+  .add('Nested', () => (
+    <Accordion defaultOpen="panel1" border="all">
+      <CollapsiblePanel
+        id="panel1"
+        displayBlock
+        background="neutral-200"
+        label="panel 1"
+      >
+        <Accordion className="pl-5" allowMultiple>
+          <CollapsiblePanel
+            id="nestedPanel1"
+            background="neutral-200"
+            label="nested panel 1"
+          >
+            <Block flex padding={[3, 4, 5]}>
+              nested panel 1 content
+            </Block>
+          </CollapsiblePanel>
+          <CollapsiblePanel
+            id="nestedPanel2"
+            background="neutral-200"
+            label="nested panel 2"
+          >
+            <Block flex padding={[3, 4, 5]}>
+              nested panel 2 content
+            </Block>
+          </CollapsiblePanel>
+          <CollapsiblePanel
+            id="nestedPanel3"
+            background="neutral-200"
+            label="nested panel 3"
+          >
+            <Block flex padding={[3, 4, 5]}>
+              nested panel 3 content
+            </Block>
+          </CollapsiblePanel>
+        </Accordion>
+      </CollapsiblePanel>
+      <CollapsiblePanel
+        id="panel2"
+        background="neutral-200"
+        label="panel 2"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 2 content
+        </Block>
+      </CollapsiblePanel>
+      <CollapsiblePanel
+        id="panel3"
+        background="neutral-200"
+        label="panel 3"
+      >
+        <Block flex padding={[3, 4, 5]}>
+          panel 3 content
+        </Block>
+      </CollapsiblePanel>
+    </Accordion>
+  ))
   .add('Nested with label renderProp', () => {
     const items = VDCM.map(program => (
       <CollapsiblePanel
@@ -147,7 +273,6 @@ storiesOf('Accordion', module)
                 )}
                 id={`${pid.id}`}
                 key={`${pid.id}${i}`}
-                padding={[3, 4]}
                 displayBlock
               >
                 <SidVideoDetail specs={pid.specs} />
@@ -162,124 +287,7 @@ storiesOf('Accordion', module)
         {items}
       </Accordion>
     );
-  })
-  .add('Single', () => (
-    <Accordion border="all" defaultOpen="panel2" background="white">
-      <CollapsiblePanel
-        id="panel1"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 1"
-      >
-        panel 1 content
-      </CollapsiblePanel>
-      <CollapsiblePanel
-        id="panel2"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 2"
-      >
-        panel 2 content
-      </CollapsiblePanel>
-      <CollapsiblePanel
-        id="panel3"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 3"
-      >
-        panel 3 content
-      </CollapsiblePanel>
-    </Accordion>
-  ))
-  .add('Multiple', () => (
-    <Accordion
-      id="panel1"
-      allowMultiple
-      border="all"
-      background="white"
-      defaultOpen={['panel2', 'panel3']}
-    >
-      <CollapsiblePanel
-        id="panel1"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 1"
-      >
-        panel 1 content
-      </CollapsiblePanel>
-      <CollapsiblePanel
-        id="panel2"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 2"
-      >
-        panel 2 content
-      </CollapsiblePanel>
-      <CollapsiblePanel
-        id="panel3"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 3"
-      >
-        panel 3 content
-      </CollapsiblePanel>
-    </Accordion>
-  ))
-  .add('Nested', () => (
-    <Accordion defaultOpen="panel1" border="all">
-      <CollapsiblePanel
-        id="panel1"
-        displayBlock
-        background="neutral-200"
-        label="panel 1"
-        textSize="7"
-        className="pl-5"
-      >
-        <Accordion allowMultiple>
-          <CollapsiblePanel
-            id="nestedPanel1"
-            background="neutral-200"
-            padding={[3, 4, 5]}
-            label="nested panel 1"
-          >
-            nested panel 1 content
-          </CollapsiblePanel>
-          <CollapsiblePanel
-            id="nestedPanel2"
-            background="neutral-200"
-            padding={[3, 4, 5]}
-            label="nested panel 2"
-          >
-            nested panel 2 content
-          </CollapsiblePanel>
-          <CollapsiblePanel
-            id="nestedPanel3"
-            background="neutral-200"
-            padding={[3, 4, 5]}
-            label="nested panel 3"
-          >
-            nested panel 3 content
-          </CollapsiblePanel>
-        </Accordion>
-      </CollapsiblePanel>
-      <CollapsiblePanel
-        id="panel2"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 2"
-      >
-        panel 2 content
-      </CollapsiblePanel>
-      <CollapsiblePanel
-        id="panel3"
-        background="neutral-200"
-        padding={[3, 4, 5]}
-        label="panel 3"
-      >
-        panel 3 content
-      </CollapsiblePanel>
-    </Accordion>
-  ));
+  });
 
 function ServiceID(props) {
   // eslint-disable-next-line react/prop-types
@@ -317,6 +325,8 @@ function SidVideoDetail({ specs }) {
       padding="2 3"
       justify="between"
       textSize="6"
+      background="white"
+      flex
     >
       <div>{keyName}</div>
       <div className="fw-700">{specs[keyName]}</div>
@@ -324,7 +334,7 @@ function SidVideoDetail({ specs }) {
   ));
 
   return (
-    <Block displayBlock background="white" radius="2">
+    <Block flex padding="0 0 0 5" direction="column">
       {displaySpecs}
     </Block>
   );
