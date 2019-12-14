@@ -577,6 +577,7 @@ storiesOf('Block', module)
       </Block>
     </Block>
   ))
+
   .add('itemSpacing', () => (
     <Block direction="column" itemSpacing="6">
       <Block direction="row" itemSpacing="5">
@@ -762,6 +763,28 @@ storiesOf('Block', module)
       <Block color="indigo-dark">indigo-dark</Block>
       <Block color="indigo-darker">indigo-darker</Block>
     </>
+  ))
+  .add('text size', () => (
+    <Block direction="column" itemSpacing="2">
+      <Block textSize="1">Size 1 string</Block>
+      <Block textSize={1}>Size 1 number</Block>
+      <Block textSize="2">Size 2 string</Block>
+      <Block textSize={2}>Size 2 number</Block>
+      <Block textSize="3">Size 3 string</Block>
+      <Block textSize={3}>Size 3 number</Block>
+      <Block textSize="4">Size 4 string</Block>
+      <Block textSize={4}>Size 4 number</Block>
+      <Block textSize="5">Size 5 string</Block>
+      <Block textSize={5}>Size 5 number</Block>
+      <Block textSize="6">Size 6 string</Block>
+      <Block textSize={6}>Size 6 number</Block>
+      <Block textSize="7">Size 7 string</Block>
+      <Block textSize={7}>Size 7 number</Block>
+      <Block textSize={[5, 3, 2, 1]}>
+        Responsive paragraph text iStreamPlanet creates leading-edge
+        technology to solve the core challenges of OTT media.
+      </Block>
+    </Block>
   ))
   .add('responsive justify', () => (
     <Block

@@ -4,32 +4,75 @@
   text-overflow: ellipsis;
 }
 
-.text-center  { text-align: center; }
-.text-left    { text-align: left; }
-.text-right   { text-align: right; }
-.text-justify { text-align: justify; }
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
 
-.text-transform-none        { text-transform: none; }
-.text-transform-capitalize  { text-transform: capitalize; }
-.text-transform-uppercase   { text-transform: uppercase; }
-.text-transform-lowercase   { text-transform: lowercase; }
+.text-transform-none {
+  text-transform: none;
+}
+.text-transform-capitalize {
+  text-transform: capitalize;
+}
+.text-transform-uppercase {
+  text-transform: uppercase;
+}
+.text-transform-lowercase {
+  text-transform: lowercase;
+}
 
-.fw-400 { font-weight: 400 }
-.fw-700 { font-weight: 700 }
+.fw-400 {
+  font-weight: 400;
+}
+.fw-700 {
+  font-weight: 700;
+}
 
-.fs-1 { font-size: $font-size-1; }
-.fs-2 { font-size: $font-size-2; }
-.fs-3 { font-size: $font-size-3; }
-.fs-4 { font-size: $font-size-4; }
-.fs-5 { font-size: $font-size-5; }
+.fs-1 {
+  font-size: $font-size-1;
+  letter-spacing: -0.025em;
+}
+.fs-2 {
+  font-size: $font-size-2;
+  letter-spacing: -0.025em;
+}
+.fs-3 {
+  font-size: $font-size-3;
+  letter-spacing: -0.025em;
+}
+.fs-4 {
+  font-size: $font-size-4;
+}
+.fs-5 {
+  font-size: $font-size-5;
+}
 .fs-6-responsive,
-.fs-6 { font-size: $font-size-6; }
+.fs-6 {
+  font-size: $font-size-6;
+}
 .fs-7-responsive,
-.fs-7 { font-size: $font-size-7; }
+.fs-7 {
+  font-size: $font-size-7;
+}
 
-.ws-normal { white-space: normal; }
-.nowrap { white-space: nowrap; }
-.pre { white-space: pre; }
+.ws-normal {
+  white-space: normal;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.pre {
+  white-space: pre;
+}
 
 .fs-1-responsive {
   font-size: $font-size-3;
@@ -87,3 +130,83 @@
   }
 }
 
+@include respond-above(sm) {
+  .fs-1-ns {
+    font-size: $font-size-1;
+    letter-spacing: -0.025em;
+  }
+  .fs-2-ns {
+    font-size: $font-size-2;
+    letter-spacing: -0.025em;
+  }
+  .fs-3-ns {
+    font-size: $font-size-3;
+    letter-spacing: -0.025em;
+  }
+  .fs-4-ns {
+    font-size: $font-size-4;
+  }
+  .fs-5-ns {
+    font-size: $font-size-5;
+  }
+  .fs-6-ns {
+    font-size: $font-size-6;
+  }
+  .fs-7-ns {
+    font-size: $font-size-7;
+  }
+}
+
+@include respond-above(md) {
+  .fs-1-m {
+    font-size: $font-size-1;
+    letter-spacing: -0.025em;
+  }
+  .fs-2-m {
+    font-size: $font-size-2;
+    letter-spacing: -0.025em;
+  }
+  .fs-3-m {
+    font-size: $font-size-3;
+    letter-spacing: -0.025em;
+  }
+  .fs-4-m {
+    font-size: $font-size-4;
+  }
+  .fs-5-m {
+    font-size: $font-size-5;
+  }
+  .fs-6-m {
+    font-size: $font-size-6;
+  }
+  .fs-7-m {
+    font-size: $font-size-7;
+  }
+}
+
+@include respond-above(lg) {
+  .fs-1-l {
+    font-size: $font-size-1;
+    letter-spacing: -0.025em;
+  }
+  .fs-2-l {
+    font-size: $font-size-2;
+    letter-spacing: -0.025em;
+  }
+  .fs-3-l {
+    font-size: $font-size-3;
+    letter-spacing: -0.025em;
+  }
+  .fs-4-l {
+    font-size: $font-size-4;
+  }
+  .fs-5-l {
+    font-size: $font-size-5;
+  }
+  .fs-6-l {
+    font-size: $font-size-6;
+  }
+  .fs-7-l {
+    font-size: $font-size-7;
+  }
+}
