@@ -123,6 +123,7 @@
       }
     },
     "rules": {
+      "react/jsx-props-no-spreading": 0,
       "react-hooks/rules-of-hooks": "error",
       "react/jsx-filename-extension": 0,
       "comma-dangle": 0,
