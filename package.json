@@ -85,7 +85,7 @@
     "clean": "rimraf dist",
     "build": "yarn clean && yarn build:types && yarn build:js",
     "build:types": "tsc",
-    "build:js": "cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/index.ts -d dist/ && babel src/Components -d dist/Components && babel src/Utils -d dist/Utils && babel src/Types -d dist/Types && babel src/Hooks -d dist/Hooks --extensions \".js,.jsx,.ts,.tsx\" --source-maps inline",
+    "build:js": "cpx 'src/Styles/**/*' dist/Styles && cpx 'src/Components/**/*.{sass,scss}' dist/Components && babel src/index.ts -d dist/ --extensions \".js,.jsx,.ts,.tsx\" --source-maps inline && babel src/Components -d dist/Components --extensions \".js,.jsx,.ts,.tsx\" --source-maps inline && babel src/Utils -d dist/Utils --extensions \".js,.jsx,.ts,.tsx\" --source-maps inline && babel src/Types -d dist/Types --extensions \".js,.jsx,.ts,.tsx\" --source-maps inline && babel src/Hooks -d dist/Hooks --extensions \".js,.jsx,.ts,.tsx\" --source-maps inline",
     "start": "yarn storybook",
     "type-check": "tsc --noEmit",
     "test": "react-scripts test",
