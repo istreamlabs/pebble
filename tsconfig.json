@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "declaration": true,
+    "noEmit": true,
     "diagnostics": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -20,10 +20,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react"
+    "jsx": "preserve"
   },
   "include": [
-    "src/**/*"
+    "src"
   ],
   "exclude": [
     "node_modules"
