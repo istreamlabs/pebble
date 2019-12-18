@@ -19,7 +19,7 @@ module.exports = {
     return webpackConfig;
   },
   getComponentPathLine(componentPath) {
-    const name = path.basename(componentPath, '.js');
+    const name = path.basename(componentPath, '.{js,ts,tsx}');
     return `import { ${name} } from '@istreamplanet/pebble';`;
   },
   template: {
@@ -128,7 +128,7 @@ module.exports = {
       'src/Styleguide/ToolbarButtonRenderer',
     ),
   },
-  components: ['src/components/**/[A-Z]*.js'],
+  components: 'src/components/**/[A-Z]*.{js,ts,tsx}',
   ignore: [
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
@@ -225,4 +225,9 @@ module.exports = {
     url: 'https://github.com/iStreamPlanet/pebble',
     text: 'GitHub Repo',
   },
+  resolver: require('react-docgen').resolver
+    .findAllComponentDefinitions,
+  propsParser: require('react-docgen-typescript').withDefaultConfig({
+    propFilter: { skipPropsWithoutDoc: true },
+  }).parse,
 };
