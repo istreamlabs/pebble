@@ -9,7 +9,7 @@ module.exports = {
     path.resolve(__dirname, 'src/Styleguide/Setup.js'),
     path.join(__dirname, 'src/Styleguide/styles.css'),
   ],
-  dangerouslyUpdateWebpackConfig(webpackConfig, env) {
+  dangerouslyUpdateWebpackConfig(webpackConfig) {
     webpackConfig.entry.push('./src/Styles/foundation.scss');
 
     webpackConfig.output = {
