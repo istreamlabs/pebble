@@ -19,7 +19,7 @@ module.exports = {
     return webpackConfig;
   },
   getComponentPathLine(componentPath) {
-    const name = path.basename(componentPath, '.{js,ts,tsx}');
+    const name = path.basename(componentPath, '.{js,tsx}');
     return `import { ${name} } from '@istreamplanet/pebble';`;
   },
   template: {
@@ -128,7 +128,7 @@ module.exports = {
       'src/Styleguide/ToolbarButtonRenderer',
     ),
   },
-  components: 'src/components/**/[A-Z]*.{js,ts,tsx}',
+  components: 'src/components/**/[A-Z]*.{js,tsx}',
   ignore: [
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
@@ -151,7 +151,7 @@ module.exports = {
     {
       name: 'Components',
       content: 'src/Styleguide/Docs/Components.md',
-      components: 'src/Components/*/*.js',
+      components: 'src/Components/*/*.{js,tsx}',
       exampleMode: 'expand',
       usageMode: 'expand',
       sectionDepth: 2,
@@ -227,7 +227,7 @@ module.exports = {
   },
   resolver: require('react-docgen').resolver
     .findAllComponentDefinitions,
-  propsParser: require('react-docgen-typescript').withDefaultConfig({
-    propFilter: { skipPropsWithoutDoc: true },
-  }).parse,
+  propsParser: require('react-docgen-typescript').withDefaultConfig(
+    './tsconfig.json',
+  ).parse,
 };
