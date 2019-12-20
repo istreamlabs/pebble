@@ -8,7 +8,7 @@ import 'storybook-chromatic';
 const req = require.context(
   '../src/Components/',
   true,
-  /.stories.js$/,
+  /.stories\.(js|tsx)$/
 );
 function loadStories() {
   req.keys().forEach(filename => req(filename));

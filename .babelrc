@@ -1,20 +1,22 @@
 {
   "presets": [
     [
-      "@babel/env",
+      "@babel/preset-env",
       {
         "modules": false
       }
     ],
-    "@babel/react",
-    "@babel/typescript"
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ],
   "plugins": [
-    "@babel/proposal-class-properties",
-    "@babel/transform-runtime"
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-runtime"
   ],
   "ignore": [
     "**/*.test.js",
-    "**/stories.js"
+    "**/stories.js",
+    "**/*.test.tsx",
+    "**/stories.tsx"
   ]
 }
