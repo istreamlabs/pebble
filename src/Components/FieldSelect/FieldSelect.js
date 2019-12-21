@@ -113,6 +113,11 @@ const propTypes = {
    */
   showCheckbox: PropTypes.bool,
   /**
+   * Changes the size of the input, giving it more or less padding and font size
+   * @type {PropTypes.Requireable<Size>}
+   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
    * Text to display if the input is invalid.
    * The text should explain why the input is invalid.
    */
@@ -149,6 +154,7 @@ const defaultProps = {
   onFocus: undefined,
   options: [],
   showCheckbox: false,
+  size: 'medium',
   width: '100%',
 };
 
@@ -173,12 +179,16 @@ function FieldSelect({
   value,
   disabled,
   showCheckbox,
+  size,
   validationText,
   width,
   ...rest
 }) {
   const selectClassNames = classNames('fieldSelect', {
     invalid: isInvalid,
+    'control-s': size === 'small',
+    'control-m': size === 'medium',
+    'control-l': size === 'large',
   });
 
   const components = {

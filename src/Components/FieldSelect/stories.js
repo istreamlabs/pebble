@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import '../../Styles/foundation.scss';
 
 import FieldSelect from './FieldSelect';
 
@@ -13,6 +12,13 @@ const options = [
   { value: 'lychee', label: 'Lychee' },
   { value: 'strawberry', label: 'Strawberry' },
   { value: 'vanilla', label: 'Vanilla' },
+];
+
+const multiSelectValue = [
+  { value: 'blueberry', label: 'Blueberry' },
+  { value: 'boysenberry', label: 'Boysenberry' },
+  { value: 'bubblegum', label: 'Bubblegum' },
+  { value: 'chocolate', label: 'Chocolate' },
 ];
 
 function FieldSelectExamples() {
@@ -91,6 +97,64 @@ function FieldSelectExamples() {
 
 storiesOf('FieldSelect', module)
   .add('all', () => <FieldSelectExamples />)
+  .add('sizes', () => (
+    <>
+      <FieldSelect
+        id="small"
+        options={options}
+        isSearchable
+        label="Small"
+        size="small"
+        className="mb-5"
+      />
+      <FieldSelect
+        id="medium"
+        options={options}
+        isSearchable
+        label="Medium"
+        size="medium"
+        className="mb-5"
+      />
+      <FieldSelect
+        id="large"
+        options={options}
+        isSearchable
+        label="Large"
+        size="large"
+        className="mb-5"
+      />
+
+      <FieldSelect
+        multiSelect
+        id="small"
+        options={options}
+        isSearchable
+        label="Multi-select Small"
+        size="small"
+        className="mb-5"
+        value={multiSelectValue}
+      />
+      <FieldSelect
+        multiSelect
+        id="medium"
+        options={options}
+        isSearchable
+        label="Multi-select Medium"
+        size="medium"
+        className="mb-5"
+        value={multiSelectValue}
+      />
+      <FieldSelect
+        multiSelect
+        id="large"
+        options={options}
+        isSearchable
+        label="Multi-select Large"
+        size="large"
+        value={multiSelectValue}
+      />
+    </>
+  ))
   .add('open single', () => (
     <FieldSelect
       id="openSingle"
@@ -100,6 +164,7 @@ storiesOf('FieldSelect', module)
       label="Checkbox Multi-Select"
       placeholder="choose one or many"
       menuIsOpen
+      value={{ value: 'bubblegum', label: 'Bubblegum' }}
     />
   ))
   .add('open multi', () => (
@@ -111,6 +176,7 @@ storiesOf('FieldSelect', module)
       label="Checkbox Multi-Select"
       placeholder="choose one or many"
       menuIsOpen
+      value={multiSelectValue}
     />
   ))
   .add('open multi with checkbox', () => (
@@ -123,5 +189,6 @@ storiesOf('FieldSelect', module)
       label="Checkbox Multi-Select"
       placeholder="choose one or many"
       menuIsOpen
+      value={multiSelectValue}
     />
   ));
