@@ -1,8 +1,7 @@
 ### FieldSelect Examples
 
-
 ```js
-import { useState } from "react";
+import { useState } from 'react';
 
 const options = [
   { value: 'blueberry', label: 'Blueberry' },
@@ -29,8 +28,8 @@ function FieldSelectExamples() {
         label="Single Select"
         helpText="this is help text"
         placeholder="choose one"
-        onChange={(object,action)=>{
-         setSingleValue(object.value)
+        onChange={(object, action) => {
+          setSingleValue(object.value);
         }}
       />
 
@@ -44,12 +43,11 @@ function FieldSelectExamples() {
         className="mb-2"
         label="Multi-Select"
         placeholder="choose one or many"
-        onChange={(object,action)=>{
-          setMultiValue(object.map(o => o.value).join(', '))
+        onChange={(object, action) => {
+          setMultiValue(object.map(o => o.value).join(', '));
         }}
       />
       <div className="mb-5">selected value(s): {multiValue}</div>
-
 
       <FieldSelect
         id="checkbox"
@@ -100,10 +98,35 @@ function FieldSelectExamples() {
         className="mb-5"
       />
     </>
-  )
+  );
 }
 
-<FieldSelectExamples />
+<FieldSelectExamples />;
+```
+
+### Sizes
+
+```jsx
+<FieldSelect
+  id="small"
+  options={[{ value: 'blueberry', label: 'Blueberry' }]}
+  label="Small"
+  size="small"
+  className="mb-5"
+/>
+<FieldSelect
+  id="medium"
+  options={[{ value: 'blueberry', label: 'Blueberry' }]}
+  label="Medium"
+  size="medium"
+  className="mb-5"
+/>
+<FieldSelect
+  id="large"
+  options={[{ value: 'blueberry', label: 'Blueberry' }]}
+  label="Large"
+  size="large"
+/>
 ```
 
 ### Portaling
@@ -144,13 +167,12 @@ const options = [
     helpText="this FieldSelect does not portal"
     placeholder="choose one"
   />
-</Card>
+</Card>;
 ```
 
 ## Best Practices
 
 FieldSelect should:
 
-* Work independently from other checkboxes. Selecting one checkbox in a collection of checkboxes, should not change the status of another checkbox in the collection. However, an exception is when a checkbox makes a bulk selection of multiple items in a list.
-* Have labels that are framed positively (e.g. `opt in` instead of `opt out`)
-* Should be applied when the user presses a form "submit" button
+- Have options sorted alphabetically or by another logical order
+- Be clearly labeled with what an individual option will do
