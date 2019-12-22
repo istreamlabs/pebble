@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 import Block from '../Block/Block';
@@ -39,6 +39,11 @@ const propTypes = {
    */
   confirmationText: PropTypes.string.isRequired,
   /**
+   * Time in milliseconds, the confirmation message should
+   * stay visible until it hides itself
+   */
+  confirmDelay: PropTypes.number.isRequired,
+  /**
    * The function to execute if the confirmation button is pressed.
    */
   handleConfirmation: PropTypes.func.isRequired,
@@ -56,14 +61,35 @@ const propTypes = {
    */
   danger: PropTypes.bool,
   /**
+   * Render the button as inline text without padding
+   */
+  plain: PropTypes.bool,
+  /**
+   * Button takes up the full width of its parent container
+   */
+  fullWidth: PropTypes.bool,
+  /**
    * Contents of the initial button
    */
   children: PropTypes.node.isRequired,
+  /**
+   * Callback when button is pressed
+   */
+  onClick: PropTypes.func,
+  /**
+   * Callback when button receives focus
+   */
+  onFocus: PropTypes.func,
+  /**
+   * Callback when focus leaves button
+   */
+  onBlur: PropTypes.func,
 };
 
 const defaultProps = {
   disabled: false,
   confirmBtnLabel: 'Yes',
+  confirmDelay: 5000,
   rejectBtnLabel: 'No',
   confirmationText: 'Are you sure?',
 };
@@ -81,22 +107,55 @@ const variants = {
   },
 };
 
+/**
+ * Inline confirmation buttons may be used when an additional
+ * response is required by the user to perform an action
+ * (deleting or changing the state). This is a less disruptive
+ * alternative to using a [Modal](/#/Components/Modal)
+ * to confirm an action, because the confirmation is displayed in
+ * the button's original on screen location.
+ */
+
 const InlineConfirmationButton = React.forwardRef((props, ref) => {
   const {
-    disabled,
+    children,
     className,
-    confirmBtnLabel,
-    rejectBtnLabel,
     confirmationText,
+    confirmBtnLabel,
+    confirmDelay,
+    danger,
+    disabled,
+    fullWidth,
     handleConfirmation,
     icon,
     iconAfterText,
-    size,
+    onClick,
+    onFocus,
+    onBlur,
+    plain,
     primary,
-    danger,
-    children,
+    rejectBtnLabel,
+    size,
   } = props;
   const [initiated, setInitiated] = useState(false);
+
+  const handleClick = () => {
+    setInitiated(true);
+
+    onClick && onClick();
+  };
+
+  useEffect(() => {
+    if (!initiated) return;
+
+    const cancelConfirm = setTimeout(() => {
+      setInitiated(false);
+    }, confirmDelay);
+    return () => {
+      clearTimeout(cancelConfirm);
+    };
+  }, [confirmDelay, initiated]);
+
   if (!initiated) {
     return (
       <Button
@@ -104,9 +163,13 @@ const InlineConfirmationButton = React.forwardRef((props, ref) => {
         primary={primary || danger}
         danger={danger}
         disabled={disabled}
+        fullWidth={fullWidth}
         icon={icon}
         iconAfterText={iconAfterText}
-        onClick={() => setInitiated(true)}
+        onClick={handleClick}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        plain={plain}
         className={className}
         ref={ref}
       >
@@ -120,6 +183,7 @@ const InlineConfirmationButton = React.forwardRef((props, ref) => {
       style={{ opacity: 0 }}
       animate="popUp"
       variants={variants}
+      className={className}
     >
       <Block alignItems="center" itemSpacing="2">
         <Text size={size === 'small' ? 6 : size === 'large' ? 4 : 5}>

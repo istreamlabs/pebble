@@ -4,18 +4,23 @@ import { render, fireEvent, wait } from '@testing-library/react';
 import InlineConfirmationButton from './InlineConfirmationButton';
 
 describe('InlineConfirmationButton', () => {
-  it('renders expected elements with default values and wires handleConfirmation function', async () => {
+  it('renders expected elements with default values and wires up onClick and handleConfirmation', async () => {
     const handlerFn = jest.fn();
+    const clickFn = jest.fn();
     const label = 'the button label';
 
     const { getByText } = render(
-      <InlineConfirmationButton handleConfirmation={handlerFn}>
+      <InlineConfirmationButton
+        onClick={clickFn}
+        handleConfirmation={handlerFn}
+      >
         {label}
       </InlineConfirmationButton>,
     );
 
     expect(getByText(label)).toBeDefined();
     fireEvent.click(getByText(label));
+    expect(clickFn).toHaveBeenCalled();
     await wait(() =>
       expect(getByText('Are you sure?')).toBeDefined(),
     );
@@ -107,5 +112,25 @@ describe('InlineConfirmationButton', () => {
     fireEvent.click(getByText(label));
     expect(document.getElementsByClassName('fs-4')).toHaveLength(1);
     expect(document.getElementsByClassName('btn-lg')).toHaveLength(2);
+  });
+
+  it('renders initial button after waiting for the confirmDelay', async () => {
+    const handlerFn = jest.fn();
+    const label = 'the button label';
+
+    const { getByText } = render(
+      <InlineConfirmationButton
+        handleConfirmation={handlerFn}
+        confirmDelay={1000}
+      >
+        {label}
+      </InlineConfirmationButton>,
+    );
+    fireEvent.click(getByText(label));
+    await wait(() =>
+      expect(getByText('Are you sure?')).toBeDefined(),
+    );
+    // wait for original button to appear
+    await wait(() => expect(getByText(label)).toBeDefined());
   });
 });
