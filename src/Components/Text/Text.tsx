@@ -1,7 +1,8 @@
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { forwardRef, Ref } from 'react';
+import PropTypes, { InferProps } from "prop-types";
 import classNames from 'classnames';
-import { parseTextSize } from '../../Utils';
+import parseTextSize from '../../Utils/ParseTextSize';
+import { PropsType } from '../../Utils/PropsType';
 import { colorType, fontSizeType } from '../../Types';
 
 import './Text.scss';
@@ -50,6 +51,7 @@ const propTypes = {
 
 const defaultProps = {
   bold: false,
+  size: 5,
 };
 
 /**
@@ -58,18 +60,18 @@ const defaultProps = {
  * and font-sizes. By default, it does not apply styling
  * so it can inherit styles of its parent.
  */
+type Props = PropsType<typeof propTypes, typeof defaultProps>;
 
-const Text = forwardRef((props, ref) => {
-  const {
-    appearance,
-    bold,
-    children,
-    className,
-    color,
-    size,
-    responsive,
-    ...rest
-  } = props;
+const Text = forwardRef(({
+  appearance,
+  bold,
+  children,
+  className,
+  color,
+  size,
+  responsive,
+  ...rest
+}: InferProps<Props>, ref: Ref<any>) => {
 
   const parsedSize = parseTextSize(size);
 
