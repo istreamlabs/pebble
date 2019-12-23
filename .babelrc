@@ -6,7 +6,8 @@
         "modules": false
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
@@ -14,6 +15,8 @@
   ],
   "ignore": [
     "**/*.test.js",
-    "**/stories.js"
+    "**/stories.js",
+    "**/*.test.tsx",
+    "**/stories.tsx"
   ]
 }
