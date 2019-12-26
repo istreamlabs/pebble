@@ -1,5 +1,5 @@
 import React, { forwardRef, Ref } from 'react';
-import PropTypes, { InferProps } from "prop-types";
+import PropTypes, { InferProps } from 'prop-types';
 import classNames from 'classnames';
 import parseTextSize from '../../Utils/ParseTextSize';
 import { PropsType } from '../../Utils/PropsType';
