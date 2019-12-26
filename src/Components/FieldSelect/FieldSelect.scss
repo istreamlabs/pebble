@@ -22,22 +22,48 @@
   }
 }
 
+.fieldSelect.control-s {
+  .pebble__value-container {
+    padding: 0 $spacing-2;
+    font-size: $INPUT_FONT_SIZE_S;
+    height: 25px;
+  }
+}
+
+.fieldSelect.control-m {
+  .pebble__value-container {
+    padding: 0 $spacing-3;
+    font-size: $INPUT_FONT_SIZE_M;
+    height: 32px;
+  }
+}
+
+.fieldSelect.control-l {
+  .pebble__value-container {
+    padding: 0 $spacing-3;
+    font-size: $INPUT_FONT_SIZE_L;
+    height: 48px;
+  }
+}
+
 .fieldSelect {
   .pebble-container {
     color: $INPUT_COLOR;
-    min-height: 34px;
   }
 
   .pebble__control {
-    min-height: 34px;
+    min-height: initial;
+  }
 
+  .pebble__control {
     background: $INPUT_BG;
     border-radius: $INPUT_BORDER_RADIUS;
     border: $INPUT_BORDER;
     color: $INPUT_COLOR;
     width: 100%;
     max-width: 100%;
-    transition: box-shadow .1s linear, background .1s linear, border .1s linear;
+    transition: box-shadow 0.1s linear, background 0.1s linear,
+      border 0.1s linear;
 
     &:hover {
       border: $INPUT_BORDER;
@@ -63,7 +89,7 @@
   }
 
   .pebble__value-container {
-    padding: 2px $spacing-3;
+    padding: 0;
   }
 
   .pebble__single-value {
