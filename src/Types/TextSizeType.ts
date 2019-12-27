@@ -1,4 +1,4 @@
-export default (props, propName, componentName) => {
+export default (props: { [propName: string]: string }, propName: string, componentName: string): null | Error => {
   componentName = componentName || 'ANONYMOUS';
 
   // eslint-disable-next-line react/destructuring-assignment
@@ -33,7 +33,7 @@ export default (props, propName, componentName) => {
   return null;
 };
 
-const isValidToken = token => {
+const isValidToken = (token: string | []): boolean => {
   if (token.split && token.split(' ').length > 1) {
     return token.split(' ').every(t => isValidToken(t));
   }
