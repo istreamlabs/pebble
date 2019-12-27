@@ -1,6 +1,6 @@
 ## Examples
 
-```js
+```tsx
 <Text>
   The Text component renders a span by default. It is a convenient way
   to enforce consistency of supported font sizes and text colors.
@@ -9,7 +9,7 @@
 
 ### Sizes
 
-```js
+```tsx
 <div><Text>Default Size</Text></div>
 <div><Text size="1">Size 1</Text></div>
 <div><Text size="2">Size 2</Text></div>
@@ -24,7 +24,7 @@
 
 Font weight is normal, or `400` by default.
 
-```js
+```tsx
 <Text bold>Bold</Text>
 ```
 
@@ -32,7 +32,7 @@ Font weight is normal, or `400` by default.
 
 Control the color of the text, or set the `appearance` prop to `code` to render an inline `<code>` element.
 
-```js
+```tsx
 <div><Text>Default</Text></div>
 <div><Text appearance="muted">Muted</Text></div>
 <div><Text appearance="info">Info</Text></div>

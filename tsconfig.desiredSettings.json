@@ -10,18 +10,6 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "esModuleInterop": true,
-    "module": "esnext",
-    "resolveJsonModule": true
-  },
-  "include": [
-    "src"
-  ]
+    "forceConsistentCasingInFileNames": true
+  }
 }

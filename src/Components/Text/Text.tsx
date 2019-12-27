@@ -59,7 +59,10 @@ const defaultProps = {
  * way to enforce consistency of supported text colors
  * and font-sizes. By default, it does not apply styling
  * so it can inherit styles of its parent.
+ *
+ * ---
  */
+
 type Props = PropsType<typeof propTypes, typeof defaultProps>;
 
 const Text = forwardRef(({
