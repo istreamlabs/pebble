@@ -55,11 +55,12 @@ describe('Types > textSizeType', () => {
   });
 
   it('returns error for number not 1-7', () => {
-    let error = textSizeType(
+    let error: boolean | { message: string } | null = textSizeType(
       { textSize: -1 },
       'textSize',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'textSize' requires a value of 1-7 in <myComponent>",
     );

@@ -67,11 +67,12 @@ describe('Types > SpacingType', () => {
   });
 
   it('returns error for number not 0-8', () => {
-    let error = SpacingType(
+    let error: { message: string } | null = SpacingType(
       { itemSpacing: -1 },
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires a value of 0-8 in <myComponent>",
     );
@@ -81,17 +82,19 @@ describe('Types > SpacingType', () => {
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires a value of 0-8 in <myComponent>",
     );
   });
 
   it('returns error for string not 0-8', () => {
-    let error = SpacingType(
+    let error: { message: string } | null = SpacingType(
       { itemSpacing: '-1' },
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires a value of 0-8 in <myComponent>",
     );
@@ -101,17 +104,19 @@ describe('Types > SpacingType', () => {
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires a value of 0-8 in <myComponent>",
     );
   });
 
   it('returns error for array larger than 4 or smaller than 1', () => {
-    let error = SpacingType(
+    let error: { message: string } | null = SpacingType(
       { itemSpacing: ['1', '1', '1', '1', '1'] },
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires an array length up to 4, and a value of 0-8 in each element <myComponent>",
     );
@@ -121,6 +126,7 @@ describe('Types > SpacingType', () => {
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires an array length up to 4, and a value of 0-8 in each element <myComponent>",
     );
@@ -137,11 +143,12 @@ describe('Types > SpacingType', () => {
   });
 
   it('returns error for array with invalid mix of string and numbers', () => {
-    const error = SpacingType(
+    const error: { message: string } | null = SpacingType(
       { itemSpacing: ['1', 2, 0, 'asdf'] },
       'itemSpacing',
       'myComponent',
     );
+    if (!error) return;
     expect(error.message).toEqual(
       "Invalid prop 'itemSpacing' requires an array length up to 4, and a value of 0-8 in each element <myComponent>",
     );

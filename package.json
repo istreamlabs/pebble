@@ -57,10 +57,12 @@
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
     "cpx": "^1.5.0",
     "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.15.1",
-    "eslint-config-airbnb": "^18.0.1",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint-config-airbnb-typescript": "^6.3.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.1.2",
@@ -95,7 +97,7 @@
     "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server --open",
     "styleguide:build": "styleguidist build",
-    "lint": "eslint src/Components/**/*.js",
+    "lint": "eslint src/Components/** --ext .js,.jsx,.ts,.tsx",
     "genIcons": "node ./src/Icons/generateIcons.js",
     "prepack": "yarn build",
     "preversion": "cross-env CI=1 yarn cover",
@@ -110,14 +112,19 @@
   ],
   "eslintConfig": {
     "extends": [
-      "airbnb",
-      "prettier",
-      "prettier/react"
+      "airbnb-typescript",
+      "airbnb/hooks",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
-    "parser": "babel-eslint",
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "tsconfigRootDir": "."
+    },
     "plugins": [
-      "react-hooks",
-      "prettier"
+      "@typescript-eslint"
     ],
     "env": {
       "es6": true,
@@ -126,6 +133,13 @@
       "jest": true
     },
     "settings": {
+      "import/extensions": [
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".mjs"
+      ],
       "import/resolver": {
         "node": {
           "moduleDirectory": [
@@ -194,9 +208,7 @@
       "import/no-dynamic-require": 0,
       "global-require": 0,
       "func-names": 0,
-      "prettier/prettier": [
-        "error"
-      ]
+      "@typescript-eslint/no-explicit-any": 0
     }
   },
   "browserslist": [
@@ -207,8 +219,8 @@
   ],
   "jest": {
     "collectCoverageFrom": [
-      "src/Components/**/*.{js,jsx,mjs}",
-      "!src/Components/**/stories.{js,jsx}",
+      "src/Components/**/*.{js,jsx,ts,tsx,mjs}",
+      "!src/Components/**/stories.{js,jsx,ts,tsx}",
       "!**/index.js"
     ],
     "coverageThreshold": {

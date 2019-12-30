@@ -1,7 +1,13 @@
-export default (props: { [propName: string]: string }, propName: string, componentName: string): null | Error => {
-  componentName = componentName || 'ANONYMOUS';
+interface Error {
+  name: string;
+  message: string;
+  stack?: string;
+}
 
-  // eslint-disable-next-line react/destructuring-assignment
+export default (props: { [propName: string]: string | number }, propName: string, componentName: string): null | boolean | Error => {
+  componentName = componentName || 'ANONYMOUS';
+  console.log('props[propName] -> ', props[propName]);
+
   const spacingType = props[propName];
 
   if (spacingType === undefined) {
@@ -33,9 +39,9 @@ export default (props: { [propName: string]: string }, propName: string, compone
   return null;
 };
 
-const isValidToken = (token: string | []): boolean => {
-  if (token.split && token.split(' ').length > 1) {
-    return token.split(' ').every(t => isValidToken(t));
+const isValidToken = (token: string | number): boolean => {
+  if ((token as string).split && (token as string).split(' ').length > 1) {
+    return (token as string).split(' ').every(t => isValidToken(t));
   }
   return [
     1,

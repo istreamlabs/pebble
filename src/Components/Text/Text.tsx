@@ -75,7 +75,6 @@ const Text = forwardRef(({
   responsive,
   ...rest
 }: InferProps<Props>, ref: Ref<any>) => {
-
   const parsedSize = parseTextSize(size);
 
   const Element = appearance === 'code' ? 'code' : 'span';
