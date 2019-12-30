@@ -171,7 +171,7 @@ describe('MenuItem', () => {
     const menu = {
       label: 'Content',
       href: '/test',
-      className: 'fs-block'
+      className: 'fs-block',
     };
     const item = shallow(<MenuItem item={menu} />);
     expect(item.find('.fs-block').length).toBe(1);
@@ -187,8 +187,8 @@ describe('MenuItem', () => {
           label: 'Content2',
           href: '/test2',
           className: 'fs-block',
-        }
-      ]
+        },
+      ],
     };
     const item = shallow(<MenuItem item={menu} />);
     expect(item.find('.fs-block').length).toBe(2);
