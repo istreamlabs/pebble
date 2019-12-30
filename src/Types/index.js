@@ -9,9 +9,7 @@ export { default as orderType } from './OrderType';
 export { default as radiusType } from './RadiusType';
 export { default as spacingType } from './SpacingType';
 export { default as textSizeType } from './TextSizeType';
-export {
-  default as boolRequiresOtherProp,
-} from './BoolRequiresOtherProp';
+export { default as boolRequiresOtherProp } from './BoolRequiresOtherProp';
 export { default as requiresOtherProp } from './RequiresOtherProp';
 
 export const colorType = PropTypes.oneOf([

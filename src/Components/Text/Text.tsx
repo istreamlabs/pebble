@@ -65,39 +65,43 @@ const defaultProps = {
 
 type Props = PropsType<typeof propTypes, typeof defaultProps>;
 
-const Text = forwardRef(({
-  appearance,
-  bold,
-  children,
-  className,
-  color,
-  size,
-  responsive,
-  ...rest
-}: InferProps<Props>, ref: Ref<any>) => {
-
-  const parsedSize = parseTextSize(size);
-
-  const Element = appearance === 'code' ? 'code' : 'span';
-
-  const classes = classNames(
-    'text',
-    color,
+const Text = forwardRef(
+  (
     {
-      [`fs-${parsedSize}`]: parsedSize && !responsive,
-      [`fs-${parsedSize}-responsive`]: parsedSize && responsive,
-      'fw-700': bold,
-      [`appearance-${appearance}`]: appearance,
-    },
-    className,
-  );
+      appearance,
+      bold,
+      children,
+      className,
+      color,
+      size,
+      responsive,
+      ...rest
+    }: InferProps<Props>,
+    ref: Ref<any>,
+  ) => {
+    const parsedSize = parseTextSize(size);
 
-  return (
-    <Element className={classes} ref={ref} {...rest}>
-      {children}
-    </Element>
-  );
-});
+    const Element = appearance === 'code' ? 'code' : 'span';
+
+    const classes = classNames(
+      'text',
+      color,
+      {
+        [`fs-${parsedSize}`]: parsedSize && !responsive,
+        [`fs-${parsedSize}-responsive`]: parsedSize && responsive,
+        'fw-700': bold,
+        [`appearance-${appearance}`]: appearance,
+      },
+      className,
+    );
+
+    return (
+      <Element className={classes} ref={ref} {...rest}>
+        {children}
+      </Element>
+    );
+  },
+);
 
 Text.propTypes = propTypes;
 Text.defaultProps = defaultProps;

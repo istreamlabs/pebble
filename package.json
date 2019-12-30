@@ -57,6 +57,8 @@
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
+    "@typescript-eslint/parser": "^2.13.0",
     "cpx": "^1.5.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.15.1",
@@ -95,7 +97,7 @@
     "cover": "react-scripts test --coverage",
     "styleguide": "styleguidist server --open",
     "styleguide:build": "styleguidist build",
-    "lint": "eslint src/Components/**/*.js",
+    "lint": "tsc --noEmit && eslint 'src/Components/**/*.{js,ts,tsx}' --quiet",
     "genIcons": "node ./src/Icons/generateIcons.js",
     "prepack": "yarn build",
     "preversion": "cross-env CI=1 yarn cover",
@@ -115,7 +117,12 @@
       "prettier/react"
     ],
     "parser": "babel-eslint",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "sourceType": "module"
+    },
     "plugins": [
+      "@typescript-eslint",
       "react-hooks",
       "prettier"
     ],
@@ -126,8 +133,17 @@
       "jest": true
     },
     "settings": {
+      "import/extensions": [".js",".ts",".tsx"],
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts",".tsx"]
+      },
       "import/resolver": {
         "node": {
+          "extensions": [
+            ".js",
+            ".ts",
+            ".tsx"
+          ],
           "moduleDirectory": [
             "node_modules",
             "src/"
@@ -135,6 +151,14 @@
         }
       }
     },
+    "overrides": [
+      {
+        "files": ["*.js"],
+        "rules": {
+          "@typescript-eslint/no-empty-function": "off"
+        }
+      }
+    ],
     "rules": {
       "react/jsx-props-no-spreading": 0,
       "react-hooks/rules-of-hooks": "error",
@@ -207,9 +231,9 @@
   ],
   "jest": {
     "collectCoverageFrom": [
-      "src/Components/**/*.{js,jsx,mjs}",
-      "!src/Components/**/stories.{js,jsx}",
-      "!**/index.js"
+      "src/Components/**/*.{js,jsx,ts,tsx,mjs}",
+      "!src/Components/**/stories.{js,jsx,ts,tsx}",
+      "!**/index.{js,ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {
