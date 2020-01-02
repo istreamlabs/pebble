@@ -21,7 +21,7 @@ type WithDefaultProps<P, DP> = Omit<P, keyof DP> &
   {
     [K in Extract<keyof DP, keyof P>]: DP[K] extends Defined<P[K]>
       ? Defined<P[K]>
-      : Defined<P[K]> | DP[K]
+      : Defined<P[K]> | DP[K];
   };
 
 /**
@@ -36,4 +36,7 @@ type WithDefaultProps<P, DP> = Omit<P, keyof DP> &
  * type Props = PropsType<typeof propTypes, typeof defaultProps>;
  * ```
  */
-export type PropsType<PT, DP = {}> = WithDefaultProps<PropTypes.InferProps<PT>, DP>;
+export type PropsType<PT, DP = {}> = WithDefaultProps<
+  PropTypes.InferProps<PT>,
+  DP
+>;
