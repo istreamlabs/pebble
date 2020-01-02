@@ -77,7 +77,7 @@ const Text = forwardRef(
       responsive,
       ...rest
     }: InferProps<Props>,
-    ref: Ref<any>,
+    ref: Ref<HTMLElement>,
   ) => {
     const parsedSize = parseTextSize(size);
 

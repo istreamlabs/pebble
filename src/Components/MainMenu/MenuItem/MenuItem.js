@@ -79,7 +79,7 @@ class MenuItem extends React.Component {
     );
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.containsActiveItem) {
       const { isOpen } = this.state;
       if (!isOpen) {
