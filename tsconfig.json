@@ -11,8 +11,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "module": "esnext",
+    "esModuleInterop": false,
+    "module": "ESNext",
     "resolveJsonModule": true,
     "target": "es5",
     "lib": [

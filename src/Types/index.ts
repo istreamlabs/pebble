@@ -2,7 +2,7 @@
  * When editing a type, be sure to update JSDoc type definitions at ../typedefs.js for VSCODE intellisense
  */
 
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 export { default as itemSpacingType } from './ItemSpacingType';
 export { default as orderType } from './OrderType';
