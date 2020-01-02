@@ -58,13 +58,14 @@
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
-    "@typescript-eslint/eslint-plugin": "^2.13.0",
-    "@typescript-eslint/parser": "^2.13.0",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
     "cpx": "^1.5.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.1.2",
@@ -73,7 +74,7 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "node-sass": "^4.13.0",
-    "prettier": "1.19.1",
+    "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.0.0",
@@ -112,12 +113,13 @@
     "dist/**/*.js"
   ],
   "eslintConfig": {
+    "parser": "babel-eslint",
     "extends": [
       "airbnb",
       "prettier",
-      "prettier/react"
+      "prettier/react",
+      "plugin:import/typescript"
     ],
-    "parser": "babel-eslint",
     "parserOptions": {
       "ecmaFeatures": {
         "jsx": true
@@ -136,9 +138,12 @@
       "jest": true
     },
     "settings": {
-      "react": { "version": "detect" }
+      "react": {
+        "version": "detect"
+      }
     },
     "rules": {
+      "import/extensions": 0,
       "react/jsx-props-no-spreading": 0,
       "react-hooks/rules-of-hooks": "error",
       "react/jsx-filename-extension": 0,
@@ -200,25 +205,50 @@
     },
     "overrides": [
       {
-        "files": ["src/**/*.ts", "src/**/*.tsx"],
-        "env": { "browser": true, "es6": true, "node": true },
-        "extends": [
-          "plugin:@typescript-eslint/eslint-recommended",
-          "plugin:@typescript-eslint/recommended",
-          "prettier/@typescript-eslint"
-        ],
-        "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
         "parser": "@typescript-eslint/parser",
+        "plugins": [
+          "@typescript-eslint"
+        ],
+        "extends": [
+          "plugin:@typescript-eslint/recommended",
+          "prettier/@typescript-eslint",
+          "plugin:prettier/recommended"
+        ],
         "parserOptions": {
-          "ecmaFeatures": { "jsx": true },
-          "ecmaVersion": 2018,
+          "ecmaVersion": 6,
+          "ecmaFeatures": {
+            "jsx": true
+          },
           "sourceType": "module",
           "project": "./tsconfig.json"
         },
-        "plugins": ["@typescript-eslint"],
+        "files": [
+          "src/**/*.ts",
+          "src/**/*.tsx"
+        ],
+        "env": {
+          "browser": true,
+          "es6": true
+        },
+        "globals": {
+          "Atomics": "readonly",
+          "SharedArrayBuffer": "readonly"
+        },
         "settings": {
-          "react": { "version": "detect" },
-          "import/resolver": {}
+          "react": {
+            "version": "detect"
+          },
+          "import/parsers": {
+            "@typescript-eslint/parser": [
+              ".ts",
+              ".tsx"
+            ]
+          },
+          "import/resolver": {
+            "typescript": {
+              "alwaysTryTypes": true
+            }
+          }
         }
       }
     ]
