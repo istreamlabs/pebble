@@ -109,6 +109,10 @@ const propTypes = {
    */
   options: PropTypes.arrayOf(PropTypes.object),
   /**
+   * A short hint that is displayed when there is no value
+   */
+  placeholder: PropTypes.string,
+  /**
    * Display a checkbox before each option
    */
   showCheckbox: PropTypes.bool,
