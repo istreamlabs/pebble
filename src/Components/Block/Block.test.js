@@ -38,9 +38,21 @@ describe('Block', () => {
   describe('style', () => {
     it('passes style through to style', () => {
       const wrapper = shallow(
-        <Block style={{ color: 'red' }}>test</Block>,
+        <Block
+          style={{
+            color: 'red',
+            marginBottom: '1rem',
+            paddingTop: '1rem',
+          }}
+        >
+          test
+        </Block>,
       );
-      expect(wrapper.prop('style')).toMatchObject({ color: 'red' });
+      expect(wrapper.prop('style')).toMatchObject({
+        color: 'red',
+        marginBottom: '1rem',
+        paddingTop: '1rem',
+      });
     });
   }),
     describe('Flex', () => {

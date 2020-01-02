@@ -3,35 +3,35 @@ import getSpacingCss from './GetSpacingCss';
 describe('Util > GetSpacingCss', () => {
   it('returns correct class if passed a prefix and string', () => {
     expect(getSpacingCss('p', '5')).toMatchObject({
-      styles: null,
+      styles: {},
       classes: ['p-5'],
     });
   });
 
   it('returns correct class if passed a margin and number ', () => {
     expect(getSpacingCss('m', 5)).toMatchObject({
-      styles: null,
+      styles: {},
       classes: ['m-5'],
     });
   });
 
   it('returns correct array of classes if passed an array of strings', () => {
     expect(getSpacingCss('p', ['5', '6', '7', '8'])).toMatchObject({
-      styles: null,
+      styles: {},
       classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
     });
   });
 
   it('returns correct array of classes if passed an array of numbers', () => {
     expect(getSpacingCss('p', [5, 6, 7, 8])).toMatchObject({
-      styles: null,
+      styles: {},
       classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
     });
   });
 
   it('returns correct array of classes if passed an array of strings', () => {
     expect(getSpacingCss('p', [5, 6, 7, 8])).toMatchObject({
-      styles: null,
+      styles: {},
       classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
     });
   });
@@ -40,7 +40,7 @@ describe('Util > GetSpacingCss', () => {
     expect(
       getSpacingCss('p', ['5 1', '6 1', '7 1', '8 1']),
     ).toMatchObject({
-      styles: null,
+      styles: {},
       classes: [
         'pt-5',
         'pr-1',
@@ -66,7 +66,7 @@ describe('Util > GetSpacingCss', () => {
     expect(
       getSpacingCss('p', ['5 1 2', '6 1 2', '7 1 2', '8 1 2']),
     ).toMatchObject({
-      styles: null,
+      styles: {},
       classes: [
         'pt-5',
         'pr-1',
@@ -97,7 +97,7 @@ describe('Util > GetSpacingCss', () => {
         '8 1 2 3',
       ]),
     ).toMatchObject({
-      styles: null,
+      styles: {},
       classes: [
         'pt-5',
         'pr-1',
@@ -121,14 +121,14 @@ describe('Util > GetSpacingCss', () => {
 
   it('returns undefined if not passed an array, string, or number', () => {
     expect(getSpacingCss('p', {})).toMatchObject({
-      styles: null,
+      styles: {},
       classes: [],
     });
   });
 
   it('returns undefined if passed an empty array', () => {
     expect(getSpacingCss('p', [])).toMatchObject({
-      styles: null,
+      styles: {},
       classes: [],
     });
   });
