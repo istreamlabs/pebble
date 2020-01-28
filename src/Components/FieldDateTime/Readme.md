@@ -4,6 +4,7 @@
 To correctly handle the experience of typing a UTC time, the
 dateFormat must include the UTC offset of 'Z'. If you are using the
 default dateFormat this is already included.
+
 </div>
 
 ```jsx
@@ -104,8 +105,9 @@ To show the clear button and show a no value message set `isClearable` and `plac
 import { useState } from 'react';
 
 function FieldDateTimeClear() {
-  const [selectedDate, setSelectedDate] = useState('2019-06-26T12:00:00.000Z');
-
+  const [selectedDate, setSelectedDate] = useState(
+    '2019-06-26T12:00:00.000Z',
+  );
 
   return (
     <FieldDateTime
@@ -120,7 +122,7 @@ function FieldDateTimeClear() {
   );
 }
 
-<FieldDateTimeClear />
+<FieldDateTimeClear />;
 ```
 
 ### Min/Max Dates
@@ -162,6 +164,48 @@ function FieldDateTimeExample() {
 }
 
 <FieldDateTimeExample />;
+```
+
+### Selected Time Range
+
+Set a minimum and maximum selectable time.
+
+```jsx
+import { useState } from 'react';
+import moment from 'moment';
+
+function FieldDateTimeTimeRange() {
+  const [startDate, setStartDate] = useState(
+    moment()
+      .utc()
+      .hours(17)
+      .minutes(30),
+  );
+
+  return (
+    <>
+      <FieldDateTime
+        id="minTime"
+        label="Exclude past days"
+        helpText="Set a minDate to allow selection of days going forward"
+        placeholderText="Select a date in the future"
+        value={startDate}
+        onChange={setStartDate}
+        showTimeSelect
+        minTime={moment()
+          .utc()
+          .hours(17)
+          .minutes(0)}
+        maxTime={moment()
+          .utc()
+          .hours(20)
+          .minutes(30)}
+      />
+    </>
+  );
+}
+
+<FieldDateTimeTimeRange />;
 ```
 
 ### Calendar Popup Placement

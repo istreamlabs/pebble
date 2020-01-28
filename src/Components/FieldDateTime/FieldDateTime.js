@@ -82,6 +82,15 @@ const propTypes = {
    */
   minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /**
+   * Latest time allowed to be selected
+   */
+  maxTime: PropTypes.object,
+  /**
+   * Earliest time allowed to be selected
+   */
+  minTime: PropTypes.object,
+  excludeTimes: PropTypes.array,
+  /**
    * Callback function when input is changed
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
@@ -189,8 +198,8 @@ class FieldDateTime extends React.PureComponent {
     return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
-      ? `YYYY-MM-DD ${timeFormat} Z`
-      : 'YYYY-MM-DD';
+        ? `YYYY-MM-DD ${timeFormat} Z`
+        : 'YYYY-MM-DD';
   }
 
   renderHelpTextMarkup() {
@@ -321,7 +330,9 @@ class FieldDateTime extends React.PureComponent {
       isClearable,
       isInvalid,
       maxDate,
+      maxTime,
       minDate,
+      minTime,
       placeholderText,
       popperPlacement,
       selectLocalDateTime,
@@ -392,6 +403,8 @@ class FieldDateTime extends React.PureComponent {
             isClearable={isClearable}
             minDate={momentMinDate}
             maxDate={momentMaxDate}
+            minTime={minTime}
+            maxTime={maxTime}
             onChange={this.onChange}
             popperPlacement={popperPlacement}
             selected={momentValue}
