@@ -368,8 +368,6 @@ class FieldDateTime extends React.PureComponent {
             .minutes(59)
         : null);
 
-    console.log('momentMaxTime', momentMaxTime);
-
     const classes = classNames('field-text', className);
 
     const inputClasses = classNames('FieldDateTime-input', {
