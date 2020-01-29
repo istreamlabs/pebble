@@ -125,7 +125,7 @@ function FieldDateTimeClear() {
 <FieldDateTimeClear />;
 ```
 
-### Min/Max Dates
+### Min/Max Selectable Dates
 
 Depending on the use case, there are a few ways to exclude dates and times from being selectable.
 
@@ -166,9 +166,9 @@ function FieldDateTimeExample() {
 <FieldDateTimeExample />;
 ```
 
-### Selected Time Range
+### Min/Max Selectable Time
 
-Set a minimum and maximum selectable time.
+Set a minimum and maximum selectable time. If a `minTime` is passed without a `maxTime`, the `maxTime` will be end of day. If a `maxTime` is passed without a `minTime`, the `minTime` will be start of day.
 
 ```jsx
 import { useState } from 'react';
@@ -182,13 +182,25 @@ function FieldDateTimeTimeRange() {
       .minutes(30),
   );
 
+  const [minTimeExample, setMinTimeExample] = useState(
+    moment()
+      .utc()
+      .hours(9)
+      .minutes(30),
+  );
+
+  const [maxTimeExample, setMaxTimeExample] = useState(
+    moment()
+      .utc()
+      .hours(11)
+      .minutes(30),
+  );
+
   return (
     <>
       <FieldDateTime
         id="minTime"
-        label="Exclude past days"
-        helpText="Set a minDate to allow selection of days going forward"
-        placeholderText="Select a date in the future"
+        label="17:00 - 19:30"
         value={startDate}
         onChange={setStartDate}
         showTimeSelect
@@ -198,8 +210,33 @@ function FieldDateTimeTimeRange() {
           .minutes(0)}
         maxTime={moment()
           .utc()
-          .hours(20)
+          .hours(19)
           .minutes(30)}
+        className="mb-5"
+      />
+
+      <FieldDateTime
+        id="afterMinTime"
+        label="After 8:00"
+        value={minTimeExample}
+        onChange={setMinTimeExample}
+        showTimeSelect
+        minTime={moment()
+          .utc()
+          .hours(8)
+          .minutes(0)}
+        className="mb-5"
+      />
+      <FieldDateTime
+        id="beforeMaxTime"
+        label="Before 12:00"
+        value={maxTimeExample}
+        onChange={setMaxTimeExample}
+        showTimeSelect
+        maxTime={moment()
+          .utc()
+          .hours(12)
+          .minutes(0)}
       />
     </>
   );
