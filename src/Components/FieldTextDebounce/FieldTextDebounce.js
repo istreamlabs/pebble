@@ -218,9 +218,9 @@ const FieldTextDebounce = ({
     if (onFocus) onFocus();
   };
 
-  const handleBlur = () => {
+  const handleBlur = event => {
     setShowMinimumMsg(false);
-    if (onBlur) onBlur();
+    if (onBlur) onBlur(event);
   };
 
   const handleChange = event => {
