@@ -13,6 +13,10 @@ import moment from 'moment';
 
 const propTypes = {
   /**
+   * Specifies whether or not an input field should have autocomplete enabled
+   */
+  autoComplete: PropTypes.oneOf(['on', 'off']),
+  /**
    * Automatically focus the input
    */
   autoFocus: PropTypes.bool,
@@ -159,6 +163,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autoComplete: 'off',
   autoFocus: false,
   disabled: false,
   excludeTime: false,
@@ -199,8 +204,8 @@ class FieldDateTime extends React.PureComponent {
     return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
-      ? `YYYY-MM-DD ${timeFormat} Z`
-      : 'YYYY-MM-DD';
+        ? `YYYY-MM-DD ${timeFormat} Z`
+        : 'YYYY-MM-DD';
   }
 
   renderHelpTextMarkup() {
@@ -323,6 +328,7 @@ class FieldDateTime extends React.PureComponent {
 
   render() {
     const {
+      autoComplete,
       autoFocus,
       className,
       disabled,
@@ -356,16 +362,16 @@ class FieldDateTime extends React.PureComponent {
       minTime ||
       (maxTime
         ? moment()
-            .hours(0)
-            .minutes(0)
+          .hours(0)
+          .minutes(0)
         : null);
 
     const momentMaxTime =
       maxTime ||
       (minTime
         ? moment()
-            .hours(23)
-            .minutes(59)
+          .hours(23)
+          .minutes(59)
         : null);
 
     const classes = classNames('field-text', className);
@@ -407,6 +413,7 @@ class FieldDateTime extends React.PureComponent {
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
           <DatePicker
+            autoComplete={autoComplete}
             adjustDateOnChange={false}
             allowSameDay={!excludeTime}
             autoFocus={autoFocus}
