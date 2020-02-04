@@ -11,6 +11,10 @@ import Text from '../Text/Text';
 
 const propTypes = {
   /**
+   * Specifies whether or not an input field should have autocomplete enabled
+   */
+  autoComplete: PropTypes.oneOf(['on', 'off']),
+  /**
    * Automatically focus the input
    */
   autoFocus: PropTypes.bool,
@@ -99,6 +103,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autoComplete: 'off',
   autoFocus: false,
   clearBtnFunc: undefined,
   disabled: false,

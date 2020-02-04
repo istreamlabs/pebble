@@ -13,6 +13,7 @@ describe('Input', () => {
   it('sets the correct default props', () => {
     const wrapper = shallow(<Input />);
     expect(wrapper.find('input').prop('autoFocus')).toBe(false);
+    expect(wrapper.find('input').prop('autoComplete')).toBe('off');
     expect(wrapper.find('input').prop('disabled')).toBe(false);
     expect(wrapper.find('input').prop('aria-invalid')).toBe(false);
     expect(wrapper.find('input').prop('required')).toBe(false);
