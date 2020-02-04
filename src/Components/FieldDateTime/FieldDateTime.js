@@ -204,8 +204,8 @@ class FieldDateTime extends React.PureComponent {
     return dateFormat !== undefined
       ? dateFormat
       : !excludeTime
-        ? `YYYY-MM-DD ${timeFormat} Z`
-        : 'YYYY-MM-DD';
+      ? `YYYY-MM-DD ${timeFormat} Z`
+      : 'YYYY-MM-DD';
   }
 
   renderHelpTextMarkup() {
@@ -362,16 +362,16 @@ class FieldDateTime extends React.PureComponent {
       minTime ||
       (maxTime
         ? moment()
-          .hours(0)
-          .minutes(0)
+            .hours(0)
+            .minutes(0)
         : null);
 
     const momentMaxTime =
       maxTime ||
       (minTime
         ? moment()
-          .hours(23)
-          .minutes(59)
+            .hours(23)
+            .minutes(59)
         : null);
 
     const classes = classNames('field-text', className);

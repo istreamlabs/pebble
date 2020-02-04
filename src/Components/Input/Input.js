@@ -126,7 +126,7 @@ const defaultProps = {
   disabled: false,
   isInvalid: false,
   // prevents React propType warning about read-only input
-  onChange: () => { },
+  onChange: () => {},
   required: false,
   size: 'medium',
   spellCheck: true,
