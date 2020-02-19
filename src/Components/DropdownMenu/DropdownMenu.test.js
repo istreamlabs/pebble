@@ -1,9 +1,8 @@
-import { shallow } from 'enzyme';
-
 import Button from '../Button/Button';
 import { DropdownMenuWithoutOnClickOutside as DropdownMenu } from './DropdownMenu';
 import FocusTrap from 'focus-trap-react';
 import React from 'react';
+import { shallow } from 'enzyme';
 
 describe('DropdownMenu', () => {
   it('renders without crashing', () => {
@@ -41,22 +40,26 @@ describe('DropdownMenu', () => {
       const onOpen = jest.fn();
       const onClose = jest.fn();
 
+      const event = {};
+
       const instance = new DropdownMenu({ onOpen, onClose });
       const spy = jest
         .spyOn(instance, 'setState')
         .mockImplementation((state, callback) => callback());
-      instance.onToggle();
+      instance.onToggle(event);
       expect(spy).toHaveBeenCalledWith(
         { isOverlayOpen: true },
         expect.any(Function),
       );
-      expect(onOpen).toHaveBeenCalled();
+      expect(onOpen).toHaveBeenCalledWith(event);
       expect(onClose).not.toHaveBeenCalled();
     });
 
     it('should toggle the dropdown closed and call onClose ', () => {
       const onOpen = jest.fn();
       const onClose = jest.fn();
+
+      const event = {};
 
       const instance = new DropdownMenu({
         onOpen,
@@ -66,7 +69,7 @@ describe('DropdownMenu', () => {
       const spy = jest
         .spyOn(instance, 'setState')
         .mockImplementation((state, callback) => callback());
-      instance.onToggle();
+      instance.onToggle(event);
       expect(spy).toHaveBeenCalledWith(
         { isOverlayOpen: false },
         expect.any(Function),
@@ -76,7 +79,7 @@ describe('DropdownMenu', () => {
     });
   });
 
-  describe('handleOverClick', () => {
+  describe('handleOverlayClick', () => {
     it('should do nothing if event is not a real event object', () => {
       const instance = new DropdownMenu({
         open: true,
@@ -89,6 +92,7 @@ describe('DropdownMenu', () => {
       instance.handleOverlayClick({});
       expect(instance.setState).not.toHaveBeenCalled();
     });
+
     it('should do nothing if closest does not return node', () => {
       const instance = new DropdownMenu({
         open: true,
@@ -103,21 +107,30 @@ describe('DropdownMenu', () => {
       });
       expect(instance.setState).not.toHaveBeenCalled();
     });
+
     it('should call set state if menuItem clicked', () => {
       const instance = new DropdownMenu({
         open: true,
         toggle: 'click me',
       });
-      jest.spyOn(instance, 'setState').mockImplementation(jest.fn());
 
-      instance.handleOverlayClick({
+      jest
+        .spyOn(instance, 'setState')
+        .mockImplementation((state, callback) => callback());
+      jest.spyOn(instance, 'handleClose');
+
+      const event = {
         target: {
           closest: () => <Button role="menuitem">item</Button>,
         },
-      });
+      };
+
+      instance.handleOverlayClick(event);
+
+      expect(instance.handleClose).toHaveBeenCalledWith(event);
       expect(instance.setState).toHaveBeenCalledWith(
         { isOverlayOpen: false },
-        instance.handleClose,
+        expect.any(Function),
       );
     });
   });
@@ -130,8 +143,11 @@ describe('DropdownMenu', () => {
           <div>overlay</div>
         </DropdownMenu>,
       );
-      wrapper.instance().handleClickOutside();
-      expect(onClose).toHaveBeenCalled();
+
+      const event = {};
+
+      wrapper.instance().handleClickOutside(event);
+      expect(onClose).toHaveBeenCalledWith(event);
     });
 
     it('should no op if the overlay is closed', () => {
@@ -148,18 +164,22 @@ describe('DropdownMenu', () => {
       const onClose = jest.fn();
       const instance = new DropdownMenu({ open: false, onClose });
 
-      instance.handleClose();
-      expect(onClose).toHaveBeenCalled();
+      const event = {};
+
+      instance.handleClose(event);
+      expect(onClose).toHaveBeenCalledWith(event);
     });
   });
 
   describe('handleOpen', () => {
-    it('should call onClose callback', () => {
+    it('should call onOpen callback', () => {
       const onOpen = jest.fn();
       const instance = new DropdownMenu({ open: false, onOpen });
 
-      instance.handleOpen();
-      expect(onOpen).toHaveBeenCalled();
+      const event = {};
+
+      instance.handleOpen(event);
+      expect(onOpen).toHaveBeenCalledWith(event);
     });
   });
 
@@ -175,8 +195,16 @@ describe('DropdownMenu', () => {
       instance.handleKeydown({ event: 'keydown', key: 'Enter' });
       expect(instance.setState).toHaveBeenCalledTimes(0);
 
-      instance.handleKeydown({ event: 'keydown', key: 'Escape' });
+      jest
+        .spyOn(instance, 'setState')
+        .mockImplementation((state, callback) => callback());
+      jest.spyOn(instance, 'handleClose');
+
+      const event = { event: 'keydown', key: 'Escape' };
+      instance.handleKeydown(event);
+
       expect(instance.setState).toHaveBeenCalledTimes(1);
+      expect(instance.handleClose).toHaveBeenCalledWith(event);
     });
   });
 
