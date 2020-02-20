@@ -113,10 +113,12 @@ class DropdownMenu extends React.PureComponent {
     );
   }
 
-  onToggle = () => {
+  onToggle = event => {
     const { isOverlayOpen } = this.state;
     this.setState({ isOverlayOpen: !isOverlayOpen }, () =>
-      isOverlayOpen ? this.handleClose() : this.handleOpen(),
+      isOverlayOpen
+        ? this.handleClose(event)
+        : this.handleOpen(event),
     );
   };
 
@@ -127,34 +129,40 @@ class DropdownMenu extends React.PureComponent {
       event.target.closest &&
       event.target.closest('[role=menuitem]');
     if (hasMenuItemInTree) {
-      this.setState({ isOverlayOpen: false }, this.handleClose);
+      this.setState({ isOverlayOpen: false }, () =>
+        this.handleClose(event),
+      );
     }
   };
 
   // used by onClickOutside HOC
-  handleClickOutside = () => {
+  handleClickOutside = event => {
     const { isOverlayOpen } = this.state;
 
     if (isOverlayOpen) {
-      this.setState({ isOverlayOpen: false }, this.handleClose);
+      this.setState({ isOverlayOpen: false }, () =>
+        this.handleClose(event),
+      );
     }
   };
 
-  handleClose = () => {
+  handleClose = event => {
     const { onClose } = this.props;
-    onClose && onClose();
+    onClose && onClose(event);
   };
 
-  handleOpen = () => {
+  handleOpen = event => {
     const { onOpen } = this.props;
-    onOpen && onOpen();
+    onOpen && onOpen(event);
   };
 
   handleKeydown = event => {
     const { isOverlayOpen } = this.state;
     const { key } = event;
     if (key === 'Escape' && isOverlayOpen) {
-      this.setState({ isOverlayOpen: false }, this.handleClose());
+      this.setState({ isOverlayOpen: false }, () =>
+        this.handleClose(event),
+      );
     }
   };
 
