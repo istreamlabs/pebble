@@ -33,7 +33,7 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Text to replace column headers
+   * Text to replace column headers at mobile viewports
    */
   mobileLabel: PropTypes.string,
 };
@@ -51,6 +51,10 @@ const defaultProps = {
 function TableHeader({ border, children, mobileLabel }) {
   const isMobileLayout = useMobileLayout();
 
+  if (isMobileLayout && mobileLabel === undefined) {
+    return null;
+  }
+
   const childrenMarkup = () => {
     if (isMobileLayout) {
       return (
@@ -61,10 +65,6 @@ function TableHeader({ border, children, mobileLabel }) {
     }
     return children;
   };
-
-  if (mobileLabel === undefined) {
-    return null;
-  }
 
   return (
     <Block
