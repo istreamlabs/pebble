@@ -96,6 +96,9 @@ function FieldSelectExamples() {
 }
 
 storiesOf('FieldSelect', module)
+  .addParameters({
+    chromatic: { viewports: [479, 959, 1439, 1440] },
+  })
   .add('all', () => <FieldSelectExamples />)
   .add('sizes', () => (
     <>
