@@ -52,18 +52,20 @@ function FieldToggleExample() {
   );
 }
 
-<FieldToggleExample />
+<FieldToggleExample />;
 ```
+
 <div className="styleguide__callout">
 ### Toggle vs Checkbox
 
 Toggles should not require users to press a button to apply the settings. When you require users to press a submit button with a toggle, you may confuse them because it’s not the expected next step. In those cases, use [checkboxes](/#/Components/FieldCheckbox) instead.
+
 </div>
 
 ## Best Practices
 
 FieldToggle should:
 
-* allow user to view and switch between enabled or disabled states.
-* be used when your intent is to turn something on or off **instantly**.
-* never require users to press a button to apply the settings. Use a [checkbox](/#/Components/FieldCheckbox) if the setting needs to be applied.
+- allow user to view and switch between enabled or disabled states.
+- be used when your intent is to turn something on or off **instantly**.
+- never require users to press a button to apply the settings. Use a [checkbox](/#/Components/FieldCheckbox) if the setting needs to be applied.
