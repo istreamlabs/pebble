@@ -70,5 +70,20 @@ describe('FieldCheckbox', () => {
       );
       expect(wrapper.contains(validationText)).toBe(true);
     });
+
+    it('renders validation text if isInvalid, hiddenLabel and toggle', () => {
+      const validationText = 'I am validation text';
+      const wrapper = shallow(
+        <FieldCheckbox
+          hiddenLabel
+          toggle
+          id="1"
+          label="test"
+          isInvalid
+          validationText={validationText}
+        />,
+      );
+      expect(wrapper.contains(validationText)).toBe(true);
+    });
   });
 });
