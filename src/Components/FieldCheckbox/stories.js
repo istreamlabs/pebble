@@ -109,7 +109,7 @@ function FieldCheckboxExample() {
 
       <FieldCheckbox
         isInvalid
-        validationText="This checkbox is required"
+        validationText="This toggle is required"
         toggle
         id="toggle-invalid"
         label="invalid toggle"
