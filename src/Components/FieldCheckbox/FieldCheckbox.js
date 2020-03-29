@@ -133,11 +133,13 @@ function FieldCheckbox({
               off
             </div>
           </div>
-          <div className="ml-2">
-            {label}
-            {helpTextMarkup()}
-            {getValidationTextMarkup()}
-          </div>
+          {!hideLabel && (
+            <div className="ml-2">
+              {label}
+              {helpTextMarkup()}
+              {getValidationTextMarkup()}
+            </div>
+          )}
         </label>
       );
     }
