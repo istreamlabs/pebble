@@ -77,7 +77,7 @@ function Checkbox({
         iconProps.name = 'checkbox-checked';
       }
       if (isInvalid) {
-        iconProps.classes = 'red';
+        iconProps.classes = 'red bg-white br1';
       }
       const checkboxIconClasses = classNames(
         iconProps.classes,
