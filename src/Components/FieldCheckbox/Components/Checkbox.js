@@ -65,7 +65,7 @@ function Checkbox({
   const checkboxIconMarkup = () => {
     if (!toggle) {
       const iconProps = {
-        classes: 'neutral-500 neutral-700-hover',
+        classes: 'neutral-500 neutral-700-hover bg-white br1',
         name: 'checkbox',
       };
       if (isSelected && disabled) {
@@ -116,7 +116,6 @@ function Checkbox({
 Checkbox.defaultPros = {
   disabled: false,
   isSelected: false,
-  onChange: () => {},
 };
 
 Checkbox.propTypes = propTypes;
