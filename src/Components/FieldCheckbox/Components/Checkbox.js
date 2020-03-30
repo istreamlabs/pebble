@@ -116,6 +116,7 @@ function Checkbox({
 Checkbox.defaultPros = {
   disabled: false,
   isSelected: false,
+  onChange: () => {},
 };
 
 Checkbox.propTypes = propTypes;
