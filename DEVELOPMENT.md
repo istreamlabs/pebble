@@ -68,6 +68,12 @@ $ yarn styleguide:build
 
 Package releases should be done through the following commands:
 
+release a patch update
+
+```shell
+$ npm version patch -m "release package %s because reasons"
+```
+
 release a minor update
 
 ```shell
