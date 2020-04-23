@@ -183,7 +183,7 @@ const propTypes = {
     }),
   ]),
   /**
-   * A valid css width (%, px, em, rem) or a value of 1-8 corresponding to [spacing tokens](/#/Styles/Spacing).
+   * A valid css width (%, px, em, rem) or a value of 1-9 corresponding to [height tokens](/#/Styles/Height).
    *
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
@@ -253,7 +253,7 @@ const propTypes = {
    */
   marginBottom: spacingType,
   /**
-   * A valid css width (%, px, em, rem), or a value of 1-8 corresponding to [spacing tokens](/#/Styles/Spacing), that sets the maximum width of the element.
+   * A valid css width (%, px, em, rem), or a value of 1-9 corresponding to [width tokens](/#/Styles/Width), that sets the maximum width of the element.
    *
    * Or one of: 'none', 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
@@ -346,7 +346,7 @@ const propTypes = {
    */
   truncate: PropTypes.bool,
   /**
-   * A valid css width (%, px, em, rem) or a value of 1-8 corresponding to [spacing tokens](/#/Styles/Spacing).
+   * A valid css width (%, px, em, rem) or a value of 1-9 corresponding to [width tokens](/#/Styles/Width).
    *
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
