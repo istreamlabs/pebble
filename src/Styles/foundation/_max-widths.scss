@@ -10,6 +10,21 @@
 .mw9      { max-width: $width-9; }
 .mw-none  { max-width: none; }
 
+.mw-10 {  max-width:  10%; }
+.mw-20 {  max-width:  20%; }
+.mw-25 {  max-width:  25%; }
+.mw-30 {  max-width:  30%; }
+.mw-33 {  max-width:  33%; }
+.mw-34 {  max-width:  34%; }
+.mw-40 {  max-width:  40%; }
+.mw-50 {  max-width:  50%; }
+.mw-60 {  max-width:  60%; }
+.mw-70 {  max-width:  70%; }
+.mw-75 {  max-width:  75%; }
+.mw-80 {  max-width:  80%; }
+.mw-90 {  max-width:  90%; }
+.mw-100 { max-width: 100%; }
+
 @include respond-above(sm) {
   .mw-100-ns   { max-width: 100%; }
   .mw1-ns      { max-width: $width-1; }
@@ -22,6 +37,21 @@
   .mw8-ns      { max-width: $width-8; }
   .mw9-ns      { max-width: $width-9; }
   .mw-none-ns  { max-width: none; }
+
+  .mw-10-ns {  max-width:  10%; }
+  .mw-20-ns {  max-width:  20%; }
+  .mw-25-ns {  max-width:  25%; }
+  .mw-30-ns {  max-width:  30%; }
+  .mw-33-ns {  max-width:  33%; }
+  .mw-34-ns {  max-width:  34%; }
+  .mw-40-ns {  max-width:  40%; }
+  .mw-50-ns {  max-width:  50%; }
+  .mw-60-ns {  max-width:  60%; }
+  .mw-70-ns {  max-width:  70%; }
+  .mw-75-ns {  max-width:  75%; }
+  .mw-80-ns {  max-width:  80%; }
+  .mw-90-ns {  max-width:  90%; }
+  .mw-100-ns { max-width: 100%; }
 }
 
 @include respond-above(md) {
@@ -36,6 +66,21 @@
   .mw8-m      { max-width: $width-8; }
   .mw9-m      { max-width: $width-9; }
   .mw-none-m  { max-width: none; }
+
+  .mw-10-m {  max-width:  10%; }
+  .mw-20-m {  max-width:  20%; }
+  .mw-25-m {  max-width:  25%; }
+  .mw-30-m {  max-width:  30%; }
+  .mw-33-m {  max-width:  33%; }
+  .mw-34-m {  max-width:  34%; }
+  .mw-40-m {  max-width:  40%; }
+  .mw-50-m {  max-width:  50%; }
+  .mw-60-m {  max-width:  60%; }
+  .mw-70-m {  max-width:  70%; }
+  .mw-75-m {  max-width:  75%; }
+  .mw-80-m {  max-width:  80%; }
+  .mw-90-m {  max-width:  90%; }
+  .mw-100-m { max-width: 100%; }
 }
 
 @include respond-above(lg) {
@@ -50,4 +95,19 @@
   .mw8-l      { max-width: $width-8; }
   .mw9-l      { max-width: $width-9; }
   .mw-none-l  { max-width: none; }
+
+  .mw-10-l {  max-width:  10%; }
+  .mw-20-l {  max-width:  20%; }
+  .mw-25-l {  max-width:  25%; }
+  .mw-30-l {  max-width:  30%; }
+  .mw-33-l {  max-width:  33%; }
+  .mw-34-l {  max-width:  34%; }
+  .mw-40-l {  max-width:  40%; }
+  .mw-50-l {  max-width:  50%; }
+  .mw-60-l {  max-width:  60%; }
+  .mw-70-l {  max-width:  70%; }
+  .mw-75-l {  max-width:  75%; }
+  .mw-80-l {  max-width:  80%; }
+  .mw-90-l {  max-width:  90%; }
+  .mw-100-l { max-width: 100%; }
 }
