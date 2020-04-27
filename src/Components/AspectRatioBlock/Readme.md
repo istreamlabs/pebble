@@ -14,7 +14,7 @@ The default aspect ratio is 4/3. Resize the browser viewport to see how the aspe
 </AspectRatioBlock>
 ```
 
-### Handling different media aspect ratios
+### Overflowing Content
 
 When embedding media with an aspect ratio that is different than `ratio`, use the `overflow` property (from [Block](/#/Components/Block)) to set the desired behavior.
 
