@@ -1,4 +1,4 @@
-Width tokens.
+Height tokens.
 
 <table>
   <thead>
@@ -10,47 +10,47 @@ Width tokens.
   </thead>
   <tbody>
     <tr>
-      <td>$width-1</td>
+      <td>$height-1</td>
       <td>1rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-2</td>
+      <td>$height-2</td>
       <td>2rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-3</td>
+      <td>$height-3</td>
       <td>4rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-4</td>
+      <td>$height-4</td>
       <td>8rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-5</td>
+      <td>$height-5</td>
       <td>16rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-6</td>
+      <td>$height-6</td>
       <td>32rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-7</td>
+      <td>$height-7</td>
       <td>48rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-8</td>
+      <td>$height-8</td>
       <td>64rem</td>
       <td>1.0.0</td>
     </tr>
     <tr>
-      <td>$width-9</td>
+      <td>$height-9</td>
       <td>96rem</td>
       <td>1.0.0</td>
     </tr>

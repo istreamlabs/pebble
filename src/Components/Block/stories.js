@@ -627,7 +627,133 @@ storiesOf('Block', module)
       </Block>
     </Block>
   ))
+  .add('max width', () => (
+    <Block color="white" itemSpacing="3" displayBlock>
+      <Block background="blue" displayBlock maxWidth="1">
+        1
+      </Block>
+      <Block background="blue" displayBlock maxWidth="2">
+        2
+      </Block>
+      <Block background="blue" displayBlock maxWidth="3">
+        3
+      </Block>
+      <Block background="blue" displayBlock maxWidth="4">
+        4
+      </Block>
+      <Block background="blue" displayBlock maxWidth="5">
+        5
+      </Block>
+      <Block background="blue" displayBlock maxWidth="6">
+        6
+      </Block>
+      <Block background="blue" displayBlock maxWidth="7">
+        7
+      </Block>
+      <Block background="blue" displayBlock maxWidth="8">
+        8
+      </Block>
+      <Block background="blue" displayBlock maxWidth="9">
+        9
+      </Block>
+      <Block background="blue" displayBlock maxWidth="none">
+        none
+      </Block>
 
+      <Block
+        margin="5 0 0 0"
+        background="blue"
+        displayBlock
+        maxWidth="0%"
+      >
+        0%
+      </Block>
+      <Block background="blue" displayBlock maxWidth="10">
+        10
+      </Block>
+      <Block background="blue" displayBlock maxWidth="20">
+        20
+      </Block>
+      <Block background="blue" displayBlock maxWidth="25">
+        25
+      </Block>
+      <Block background="blue" displayBlock maxWidth="30">
+        30
+      </Block>
+      <Block background="blue" displayBlock maxWidth="33">
+        33
+      </Block>
+      <Block background="blue" displayBlock maxWidth="34">
+        34
+      </Block>
+      <Block background="blue" displayBlock maxWidth="40">
+        40
+      </Block>
+      <Block background="blue" displayBlock maxWidth="50">
+        50
+      </Block>
+      <Block background="blue" displayBlock maxWidth="60">
+        60
+      </Block>
+      <Block background="blue" displayBlock maxWidth="70">
+        70
+      </Block>
+      <Block background="blue" displayBlock maxWidth="75">
+        75
+      </Block>
+      <Block background="blue" displayBlock maxWidth="80">
+        80
+      </Block>
+      <Block background="blue" displayBlock maxWidth="90">
+        90
+      </Block>
+      <Block background="blue" displayBlock maxWidth="100">
+        100
+      </Block>
+
+      <Block
+        margin="5 0 0 0"
+        background="blue"
+        displayBlock
+        maxWidth="100px"
+      >
+        100px
+      </Block>
+      <Block background="blue" displayBlock maxWidth="10em">
+        10em
+      </Block>
+      <Block background="blue" displayBlock maxWidth="10rem">
+        10rem
+      </Block>
+      <Block background="blue" displayBlock maxWidth="5%">
+        5%
+      </Block>
+    </Block>
+  ))
+  .add('maxWidth responsive', () => (
+    <Block color="white" itemSpacing="3" displayBlock>
+      <Block background="blue" displayBlock maxWidth={[2, 4, 6, 8]}>
+        2, 4, 6, 8
+      </Block>
+      <Block
+        background="blue"
+        displayBlock
+        maxWidth={[3, 'none', 5, 6]}
+      >
+        3, none, 5, 6
+      </Block>
+      <Block
+        background="blue"
+        displayBlock
+        maxWidth={[10, 25, 33, 50]}
+      >
+        10, 25, 33, 50
+      </Block>
+      <Block background="blue" displayBlock maxWidth={[10, 6, 33, 8]}>
+        10, 6, 33, 8
+      </Block>
+    </Block>
+  ))
   .add('order', () => (
     <Block color="neutral-700" direction="column" itemSpacing="5">
       <Block>

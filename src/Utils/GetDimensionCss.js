@@ -53,8 +53,8 @@ export default (dimension, value) => {
   return dimensionCss;
 };
 
-function getPrefix(dimension, value) {
-  let prefix = dimension === 'width' ? 'w' : 'h';
+export function getPrefix(dimension, value) {
+  let prefix;
 
   switch (dimension) {
     case 'width':
@@ -69,6 +69,10 @@ function getPrefix(dimension, value) {
         prefix = `${prefix}-`;
       }
       break;
+    case 'maxWidth':
+      prefix = value <= 9 ? 'mw' : 'mw-';
+      break;
+    // fontSize
     default:
       prefix = `${dimension}-`;
   }
