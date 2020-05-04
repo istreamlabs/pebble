@@ -9,9 +9,7 @@ export { default as orderType } from './OrderType';
 export { default as radiusType } from './RadiusType';
 export { default as spacingType } from './SpacingType';
 export { default as textSizeType } from './TextSizeType';
-export {
-  default as boolRequiresOtherProp,
-} from './BoolRequiresOtherProp';
+export { default as boolRequiresOtherProp } from './BoolRequiresOtherProp';
 export { default as requiresOtherProp } from './RequiresOtherProp';
 
 export const colorType = PropTypes.oneOf([
@@ -150,10 +148,66 @@ const validDimensions = [
   '100',
 ];
 
+const validMaxDimensions = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  10,
+  20,
+  25,
+  30,
+  33,
+  34,
+  40,
+  50,
+  60,
+  70,
+  75,
+  80,
+  90,
+  100,
+  '10',
+  '20',
+  '25',
+  '30',
+  '33',
+  '34',
+  '40',
+  '50',
+  '60',
+  '70',
+  '75',
+  '80',
+  '90',
+  '100',
+  'none',
+];
+
 export const dimensionType = PropTypes.oneOfType([
   PropTypes.oneOf(validDimensions),
   PropTypes.string,
   PropTypes.arrayOf(PropTypes.oneOf(validDimensions)),
+]);
+
+export const maxDimensionType = PropTypes.oneOfType([
+  PropTypes.oneOf(validMaxDimensions),
+  PropTypes.string,
+  PropTypes.arrayOf(PropTypes.oneOf(validMaxDimensions)),
 ]);
 
 export const placementType = PropTypes.oneOf([
