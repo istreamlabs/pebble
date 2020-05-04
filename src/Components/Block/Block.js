@@ -15,6 +15,7 @@ import {
   colorType,
   dimensionType,
   itemSpacingType,
+  maxDimensionType,
   orderType,
   overflowType,
   radiusType,
@@ -259,7 +260,7 @@ const propTypes = {
    *
    * For responsive behavior, pass an array with length up to 4, with a valid value for each element.
    */
-  maxWidth: dimensionType,
+  maxWidth: maxDimensionType,
   /**
    *  Controls the order in which the item appears in a flex container
    *
