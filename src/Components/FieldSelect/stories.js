@@ -91,6 +91,14 @@ function FieldSelectExamples() {
         label="Disabled"
         placeholder="can not edit this"
       />
+
+      <FieldSelect
+        creatable
+        id="creatable"
+        options={options}
+        label="Creatable"
+        placeholder="Can type new option"
+      />
     </>
   );
 }

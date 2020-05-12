@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 
 import { dimensionType } from '../../Types';
 
@@ -38,6 +39,10 @@ const propTypes = {
    * Close the menu when a user selects an option
    */
   closeMenuOnSelect: PropTypes.bool,
+  /**
+   * Allow creating new options along with choosing existing options
+   */
+  creatable: PropTypes.bool,
   /**
    * If the select should be disabled and not focusable
    */
@@ -146,6 +151,7 @@ const propTypes = {
 const defaultProps = {
   autoFocus: false,
   closeMenuOnSelect: true,
+  creatable: false,
   disabled: false,
   hideLabel: false,
   isInvalid: false,
@@ -172,6 +178,7 @@ const defaultProps = {
 function FieldSelect({
   className,
   closeMenuOnSelect,
+  creatable,
   id,
   label,
   isInvalid,
@@ -202,25 +209,28 @@ function FieldSelect({
     MultiValueRemove,
   };
 
-  const selectMarkup = () => (
-    <Select
-      inputId={id}
-      name={id}
-      className={selectClassNames}
-      classNamePrefix="pebble"
-      isMulti={multiSelect}
-      isDisabled={disabled}
-      closeMenuOnSelect={
-        !multiSelect ? closeMenuOnSelect : !multiSelect
-      }
-      hideSelectedOptions={false}
-      menuPortalTarget={menuPortalTarget}
-      menuPlacement={menuPlacement}
-      components={components}
-      value={value}
-      {...rest}
-    />
-  );
+  const selectMarkup = () => {
+    const SelectComponent = creatable ? CreatableSelect : Select;
+    return (
+      <SelectComponent
+        inputId={id}
+        name={id}
+        className={selectClassNames}
+        classNamePrefix="pebble"
+        isMulti={multiSelect}
+        isDisabled={disabled}
+        closeMenuOnSelect={
+          !multiSelect ? closeMenuOnSelect : !multiSelect
+        }
+        hideSelectedOptions={false}
+        menuPortalTarget={menuPortalTarget}
+        menuPlacement={menuPlacement}
+        components={components}
+        value={value}
+        {...rest}
+      />
+    );
+  };
 
   const getLabel = () => (
     <Label

@@ -35,7 +35,7 @@ Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://sto
 To run Chromatic on a local build, get Pebble's [Chromatic app code](https://www.chromaticqa.com/manage) and run the following command.
 
 ```shell
-$ ./node_modules/.bin/chromatic test --app-code=<your-app-code>
+$ yarn chromatic --app-code=<your-app-code>
 ```
 
 For more information, see the [Chromatic Documentation](http://docs.chromaticqa.com/test).

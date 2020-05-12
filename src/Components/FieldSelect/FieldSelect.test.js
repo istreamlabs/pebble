@@ -23,6 +23,19 @@ describe('FieldSelect', () => {
     }).not.toThrow();
   });
 
+  it('renders without crashing when is creatable', () => {
+    expect(() => {
+      shallow(
+        <FieldSelect
+          id="1"
+          label="test"
+          creatable
+          options={options}
+        />,
+      );
+    }).not.toThrow();
+  });
+
   it('renders without crashing when the options are empty', () => {
     expect(() => {
       shallow(<FieldSelect id="1" label="test" options={[]} />);
