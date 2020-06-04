@@ -130,11 +130,11 @@ const LinkButton = forwardRef((props, ref) => {
   );
 
   const content = (
-    <div className={contentClasses}>
+    <span className={contentClasses}>
       {leftIcon}
       {children && <span className="btn-label">{children}</span>}
       {rightIcon}
-    </div>
+    </span>
   );
 
   return disabled ? (
