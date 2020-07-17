@@ -110,7 +110,7 @@ describe('MainMenu', () => {
     });
   });
 
-  it('renders a show tenant menu button when onShowTenantMenu is set', () => {
+  it('renders a menu button when onShowTenantMenu is set', () => {
     const mock = jest.fn();
     const menu = mount(
       <BrowserRouter>
@@ -118,7 +118,7 @@ describe('MainMenu', () => {
       </BrowserRouter>,
     );
     expect(
-      menu.find({ accessibilityLabel: 'show tenant menu' }),
+      menu.find({ accessibilityLabel: 'show organization menu' }),
     ).toHaveLength(1);
   });
 

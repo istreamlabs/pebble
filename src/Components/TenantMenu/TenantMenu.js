@@ -15,7 +15,7 @@ import { useMobileLayout } from '../../Hooks';
 
 const propTypes = {
   /**
-   * Highlight the currently selected tenant
+   * Highlight the currently selected organization
    */
   currentTenantId: PropTypes.string,
   /**
@@ -41,7 +41,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  emptyMessage: 'There are no tenants',
+  emptyMessage: 'There are no organizations',
 };
 
 const variants = {
@@ -88,14 +88,14 @@ function TenantMenu(props) {
             size="5"
             responsive={false}
           >
-            Tenants
+            Organizations
           </Heading>
           {onAddTenant && (
             <Button
               onClick={onAddTenant}
               size="small"
               icon="add-bold"
-              accessibilityLabel="add tenant"
+              accessibilityLabel="add organization"
               plain
               className="brand-orange neutral-100-hover"
             />
@@ -106,7 +106,7 @@ function TenantMenu(props) {
             onClick={onCloseTenantMenu}
             icon={isMobile ? 'close' : 'nav-left'}
             plain
-            accessibilityLabel="close tenant menu"
+            accessibilityLabel="close organization menu"
             className="neutral-300 neutral-100-hover p-2"
           />
         )}
@@ -170,7 +170,7 @@ function TenantMenu(props) {
                     <Icon
                       name="check-circle"
                       className="brand-orange absolute"
-                      accessibilityLabel="currently selected tenant"
+                      accessibilityLabel="currently selected organization"
                       size="24"
                     />
                   </Block>
