@@ -1,6 +1,6 @@
 Follow the steps below to set up the repository to be run locally.
 
-The `master` branch is automatically deployed via [CodeFresh](https://g.codefresh.io/) to [pebble.istreamplanet.net](https://pebble.istreamplanet.net).
+The `main` branch is automatically deployed via [CodeFresh](https://g.codefresh.io/) to [pebble.istreamplanet.net](https://pebble.istreamplanet.net).
 
 #### Install the Packages
 
