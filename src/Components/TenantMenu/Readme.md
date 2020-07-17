@@ -7,7 +7,7 @@ import { TENANTS } from '../../demo/data';
   currentTenantId="cyberdyne-prod"
   tenants={TENANTS}
   onTenantChange={() => alert('changing tenant')}
-  onAddTenant={() => alert('add tenant')}
+  onAddTenant={() => alert('add organization')}
   onCloseTenantMenu={() => alert('close menu')}
 />;
 ```

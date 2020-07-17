@@ -22,7 +22,7 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Highlight the currently selected tenant and set the title to current name and realm
+   * Highlight the currently selected organization and set the title to current name and realm
    * in the header on mobile viewports and top of the MainMenu on desktop
    */
   currentTenant: PropTypes.shape({
@@ -221,7 +221,7 @@ export class Frame extends React.PureComponent {
                 plain
                 size="large"
                 className="ml-3"
-                accessibilityLabel="show tenant menu"
+                accessibilityLabel="show organization menu"
                 icon="menu-dots"
                 onClick={this.handleTenantMenuToggle}
               />

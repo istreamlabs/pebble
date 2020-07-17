@@ -22,27 +22,29 @@ describe('TenantMenu', () => {
   });
 
   describe('renderHeader', () => {
-    it('adds Add Tenant button when onAddTenant is defined', () => {
+    it('adds add organization button when onAddTenant is defined', () => {
       const mock = jest.fn();
       const wrapper = mount(
         <TenantMenu tenants={TENANTS} onAddTenant={mock} />,
       );
       expect(
-        wrapper.find({ accessibilityLabel: 'add tenant' }),
+        wrapper.find({ accessibilityLabel: 'add organization' }),
       ).toHaveLength(1);
     });
 
-    it('adds Close Tenant Menu button when onCloseTenantMenu is defined', () => {
+    it('adds close organization menu button when onCloseTenantMenu is defined', () => {
       const mock = jest.fn();
       const wrapper = mount(
         <TenantMenu tenants={TENANTS} onCloseTenantMenu={mock} />,
       );
       expect(
-        wrapper.find({ accessibilityLabel: 'close tenant menu' }),
+        wrapper.find({
+          accessibilityLabel: 'close organization menu',
+        }),
       ).toHaveLength(1);
     });
 
-    it('sets the close tenant menu icon to close if viewed in mobile sized viewport', () => {
+    it('sets the close organization menu icon to close if viewed in mobile sized viewport', () => {
       const mock = jest.fn();
       useMobileLayout.mockImplementation(() => true);
       const wrapper = mount(
@@ -51,7 +53,7 @@ describe('TenantMenu', () => {
       expect(wrapper.find(Button).prop('icon')).toBe('close');
     });
 
-    it('sets the close tenant menu icon to nav-left if viewed in desktop sized viewport', () => {
+    it('sets the close organization menu icon to nav-left if viewed in desktop sized viewport', () => {
       const mock = jest.fn();
       const wrapper = mount(
         <TenantMenu tenants={TENANTS} onCloseTenantMenu={mock} />,
@@ -88,13 +90,13 @@ describe('TenantMenu', () => {
       const wrapper = mount(<TenantMenu tenants={TENANTS} />);
       expect(wrapper.find('li')).toHaveLength(13);
     });
-    it('adds the currently selected tenant Icon', () => {
+    it('adds the currently selected organization Icon', () => {
       const wrapper = mount(
         <TenantMenu currentTenantId="genco-prod" tenants={TENANTS} />,
       );
       expect(
         wrapper.find({
-          accessibilityLabel: 'currently selected tenant',
+          accessibilityLabel: 'currently selected organization',
         }),
       ).toHaveLength(1);
     });
