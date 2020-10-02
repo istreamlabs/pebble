@@ -1,5 +1,3 @@
-import '../../Styles/foundation.scss';
-
 import Block from '../Block/Block';
 import { BrowserRouter as DemoBrowserRouter } from 'react-router-dom';
 import MainMenu from './MainMenu';
@@ -57,6 +55,91 @@ const menu = [
     ],
   },
 ];
+const nested = [
+  {
+    label: 'ONE',
+    href: '#/monkey',
+    exact: true,
+    items: [
+      {
+        label: 'TWO',
+        href: '/#/Components/MainMenu',
+        aliases: ['/iframe.html'],
+        icon: 'ticket',
+        exact: true,
+      },
+    ],
+  },
+  {
+    label: 'ONE',
+    href: '/#/Components/MainMenu',
+    exact: true,
+    items: [
+      {
+        label: 'TWO',
+        href: '/#/Components/MainMenu',
+        icon: 'ticket',
+        exact: true,
+      },
+      {
+        label: 'TWO',
+        href: '/#/Components/MainMenu',
+        icon: 'ticket',
+        exact: true,
+        items: [
+          {
+            label: 'THREE',
+            href: '/#/Components/MainMenu',
+            exact: true,
+          },
+          {
+            label: 'THREE',
+            href: '/#/Components/MainMenu',
+            exact: true,
+            items: [
+              {
+                label: 'FOUR',
+                href: '/#/Components/MainMenu',
+                exact: true,
+              },
+              {
+                label: 'FOUR',
+                href: '/#/Components/MainMenu',
+                exact: true,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        label: 'TWO',
+        href: '/#/Components/MainMenu',
+        icon: 'ticket',
+        exact: true,
+        items: [
+          {
+            label: 'THREE',
+            href: '/#/Components/MainMenu',
+            exact: true,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'ONE',
+    exact: true,
+    items: [
+      {
+        label: 'TWO',
+        href: '/#/Components/MainMenu',
+        aliases: ['/iframe3.html'],
+        icon: 'ticket',
+        exact: true,
+      },
+    ],
+  },
+];
 const auxMenu = [
   {
     label: 'Support',
@@ -102,6 +185,19 @@ storiesOf('MainMenu', module)
       <div style={{ overflow: 'auto' }}>
         <Block height="400px">
           <MainMenu menu={menu} auxMenu={auxMenu} startMenuExpanded />
+        </Block>
+      </div>
+    </DemoBrowserRouter>
+  ))
+  .add('nested with titles', () => (
+    <DemoBrowserRouter>
+      <div style={{ overflow: 'auto' }}>
+        <Block height="1200px">
+          <MainMenu
+            menu={nested}
+            auxMenu={auxMenu}
+            startMenuExpanded
+          />
         </Block>
       </div>
     </DemoBrowserRouter>
