@@ -40,46 +40,17 @@ const propTypes = {
    * start with the item expanded
    */
   startExpanded: PropTypes.bool,
-  /**
-   * Current location, used for active item detection
-   */
-  location: PropTypes.exact({
-    hash: PropTypes.string,
-    pathname: PropTypes.string,
-    search: PropTypes.string,
-    state: PropTypes.string,
-  }),
-  className: PropTypes.object,
 };
 
 const defaultProps = {
   containsActiveItem: false,
   startExpanded: false,
-  location: {},
 };
 
 class MenuItem extends React.Component {
-  static shouldBeOpen(location, item) {
-    return (
-      (item &&
-        !!item.href &&
-        matchPath(location.pathname, {
-          path: item.href,
-          strict: true,
-        }) !== null) ||
-      ((item && item.aliases) || []).some(
-        path => matchPath(location.pathname, { path }) !== null,
-      ) ||
-      ((item && item.items) || []).some(i =>
-        MenuItem.shouldBeOpen(location, i),
-      )
-    );
-  }
-
   constructor(props) {
     super(props);
-    const { startExpanded, item, location } = this.props;
-    const containsActiveItem = MenuItem.shouldBeOpen(location, item);
+    const { containsActiveItem, startExpanded, item } = this.props;
 
     if (item) {
       MenuItem.generateAndAddIsActiveHandler(item);
@@ -165,18 +136,32 @@ class MenuItem extends React.Component {
   };
 
   renderSubItems = items => {
-    const { location } = this.props;
-    return items.map((subItem, i) => (
-      <MenuItem key={i} item={subItem} location={location} />
+    const subItems = items.map((subItem, i) => (
+      <li key={i} className={subItem.className}>
+        <NavLink
+          to={subItem.href}
+          className={classNames('sub-menu-item')}
+          role="menuitem"
+          activeClassName="active"
+          isActive={subItem.activeHandler}
+          exact={subItem.exact}
+        >
+          {subItem.label}
+        </NavLink>
+      </li>
     ));
+
+    return subItems;
   };
 
   render() {
-    const { item, className } = this.props;
+    const { item } = this.props;
     const { isOpen } = this.state;
+
     const hasSubItems = !!(item.items && item.items.length);
+
     return (
-      <li className={classNames('menu-item-container', className)}>
+      <li className="menu-item-container">
         <div
           className={classNames('menu-item-content', item.className)}
         >
