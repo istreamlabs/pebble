@@ -74,7 +74,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
-  padding: $spacing-3 $spacing-4 $spacing-3 $spacing-5;
+  padding: $spacing-3 $spacing-4 $spacing-3 $spacing-6;
   position: relative;
   text-decoration: none;
   text-align: left;
@@ -198,10 +198,6 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     // used for css transition. set this to height greater than what we expect it to ever be
     max-height: 800px;
   }
-  .menu-item {
-    @extend .sub-menu-item;
-    border-bottom: none;
-  }
 }
 
 .sub-menu-item {
@@ -210,7 +206,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   align-items: center;
   text-decoration: none;
   min-height: 2.25rem;
-  padding: $spacing-2 $spacing-4 $spacing-2 3.5rem;
+  padding: $spacing-2 $spacing-4 $spacing-2 $spacing-7;
   color: $neutral-700;
   font-size: $font-size-6;
   transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING,
@@ -235,52 +231,6 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     &:focus {
       color: $NAV_ITEM_COLOR_FOCUS;
       box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
-    }
-  }
-}
-
-// Deeply nested style changes
-.main-menu-items.nested {
-  .menu-item-container.nested > .menu-item-content {
-    font-weight: bold;
-    color: $neutral-800;
-    margin-top: 1rem;
-
-    button {
-      font-weight: bold;
-    }
-
-    .menu-item, .menu-item:focus, .menu-item:hover, .menu-item.active {
-      box-shadow: none;
-      background: none;
-      color: initial;
-      font-size: $font-size-6;
-    }
-  }
-
-  .menu-item-container {
-    .menu-item-container {
-      .menu-item {
-        padding-left: $spacing-5;
-        border-bottom: 1px solid $NAV_BORDER_COLOR;
-      }
-      .menu-item-container {
-        .menu-item-collapse-button {
-          border-bottom: 0;
-          border-left: 0;
-          box-shadow: none;
-        }
-        .menu-item {
-          @extend .sub-menu-item;
-          border-bottom: none;
-
-        }
-        .menu-item-container {
-          .menu-item {
-            padding-left: 4rem;
-          }
-        }
-      }
     }
   }
 }
