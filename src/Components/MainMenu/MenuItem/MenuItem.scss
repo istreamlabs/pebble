@@ -240,8 +240,8 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 }
 
 // Deeply nested style changes
-.main-menu-items.nested {
-  .menu-item-container.nested > .menu-item-content {
+.main-menu-items {
+  > .menu-item-container > .menu-item-content {
     font-weight: bold;
     color: $neutral-800;
     margin-top: 1rem;
