@@ -240,11 +240,9 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 }
 
 // Deeply nested style changes
-.main-menu-items.nested {
-  .menu-item-container.nested > .menu-item-content {
+.main-menu-items {
+  > .menu-item-container > .menu-item-content {
     font-weight: bold;
-    color: $neutral-800;
-    margin-top: 1rem;
 
     button {
       font-weight: bold;
@@ -253,8 +251,9 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     .menu-item, .menu-item:focus, .menu-item:hover, .menu-item.active {
       box-shadow: none;
       background: none;
-      color: initial;
-      font-size: $font-size-6;
+      color: $neutral-700;
+      margin-top: 1rem;
+      font-size: $font-size-7;
     }
   }
 

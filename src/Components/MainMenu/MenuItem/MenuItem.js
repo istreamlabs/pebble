@@ -49,7 +49,6 @@ const propTypes = {
     search: PropTypes.string,
     state: PropTypes.string,
   }),
-  className: PropTypes.object,
 };
 
 const defaultProps = {
@@ -172,11 +171,11 @@ class MenuItem extends React.Component {
   };
 
   render() {
-    const { item, className } = this.props;
+    const { item } = this.props;
     const { isOpen } = this.state;
     const hasSubItems = !!(item.items && item.items.length);
     return (
-      <li className={classNames('menu-item-container', className)}>
+      <li className="menu-item-container">
         <div
           className={classNames('menu-item-content', item.className)}
         >
