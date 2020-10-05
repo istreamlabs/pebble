@@ -164,19 +164,4 @@ describe('MainMenu', () => {
     );
     expect(menu.find('.testHeader')).toHaveLength(1);
   });
-
-  it('sets isNested correctly', () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <MainMenu menu={mockMenuData} />
-      </BrowserRouter>,
-    );
-    expect(wrapper.find('.nested')).toHaveLength(0);
-    const nested = mount(
-      <BrowserRouter>
-        <MainMenu menu={mockNestedData} />
-      </BrowserRouter>,
-    );
-    expect(nested.find('.nested')).toHaveLength(2);
-  });
 });

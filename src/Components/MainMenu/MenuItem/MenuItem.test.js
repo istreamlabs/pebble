@@ -410,16 +410,9 @@ describe('MenuItem', () => {
   });
 
   describe('renderSubItems', () => {
-    it('adds className to outer menu-item-container', () => {
+    it('renders correctly', () => {
       const wrapper = shallow(
-        <MenuItem
-          item={mockNestedData}
-          location={{}}
-          className="nested"
-        />,
-      );
-      expect(wrapper.find('li').prop('className')).toEqual(
-        'menu-item-container nested',
+        <MenuItem item={mockNestedData} location={{}} />,
       );
       expect(
         wrapper
