@@ -43,7 +43,7 @@ const propTypes = {
   /**
    * Current location, used for active item detection
    */
-  location: PropTypes.exact({
+  location: PropTypes.shape({
     hash: PropTypes.string,
     pathname: PropTypes.string,
     search: PropTypes.string,
