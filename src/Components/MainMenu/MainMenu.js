@@ -111,18 +111,6 @@ class MainMenu extends React.Component {
     );
   }
 
-  constructor(props) {
-    super(props);
-    const { menu } = this.props;
-    this.isNested = MainMenu.isDeeplyNested(menu);
-  }
-
-  static isDeeplyNested(menu) {
-    return menu.some(item =>
-      (item.items || []).some(obj => (obj.items || []).length),
-    );
-  }
-
   renderHeader = () => {
     const {
       mobileHeaderContent,
@@ -160,7 +148,6 @@ class MainMenu extends React.Component {
         key={i}
         startExpanded={startExpanded}
         location={location}
-        className={{ nested: this.isNested }}
       />
     ));
   }
@@ -181,11 +168,7 @@ class MainMenu extends React.Component {
       >
         <div className="main-menu-top">
           {this.renderHeader()}
-          <ul
-            className={classNames('main-menu-items', {
-              nested: this.isNested,
-            })}
-          >
+          <ul className="main-menu-items">
             {this.renderItem(menu, startMenuExpanded)}
           </ul>
         </div>
