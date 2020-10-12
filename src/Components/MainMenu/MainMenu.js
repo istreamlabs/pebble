@@ -126,7 +126,7 @@ class MainMenu extends React.Component {
               plain
               onClick={onShowTenantMenu}
               icon="menu-dots"
-              accessibilityLabel="show tenant menu"
+              accessibilityLabel="show organization menu"
               size="large"
             />
           )}

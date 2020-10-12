@@ -1,5 +1,6 @@
 export { default as Accordion } from './Accordion/Accordion';
 export { default as Alert } from './Alert/Alert';
+export { default as AspectRatioBlock } from './AspectRatioBlock/AspectRatioBlock';
 export { default as Badge } from './Badge/Badge';
 export { default as Block } from './Block/Block';
 export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';

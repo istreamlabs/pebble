@@ -9,9 +9,7 @@ export { default as orderType } from './OrderType';
 export { default as radiusType } from './RadiusType';
 export { default as spacingType } from './SpacingType';
 export { default as textSizeType } from './TextSizeType';
-export {
-  default as boolRequiresOtherProp,
-} from './BoolRequiresOtherProp';
+export { default as boolRequiresOtherProp } from './BoolRequiresOtherProp';
 export { default as requiresOtherProp } from './RequiresOtherProp';
 
 export const colorType = PropTypes.oneOf([
@@ -150,10 +148,18 @@ const validDimensions = [
   '100',
 ];
 
+const validMaxDimensions = ['none', ...validDimensions];
+
 export const dimensionType = PropTypes.oneOfType([
   PropTypes.oneOf(validDimensions),
   PropTypes.string,
   PropTypes.arrayOf(PropTypes.oneOf(validDimensions)),
+]);
+
+export const maxDimensionType = PropTypes.oneOfType([
+  PropTypes.oneOf(validMaxDimensions),
+  PropTypes.string,
+  PropTypes.arrayOf(PropTypes.oneOf(validMaxDimensions)),
 ]);
 
 export const placementType = PropTypes.oneOf([

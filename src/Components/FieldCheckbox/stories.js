@@ -12,6 +12,14 @@ function FieldCheckboxExample() {
   const [toggle, setToggle] = useState(true);
   const [toggleHelp, setToggleHelp] = useState(false);
   const [invalidToggle, setInvalidToggle] = useState(false);
+  const [hiddenLabelToggle, setHiddenLabelToggle] = useState(false);
+  const [
+    invalidHiddenLabelToggle,
+    setInvalidHiddenLabelToggle,
+  ] = useState(false);
+  const [hiddenLabelToggleHelp, setHiddenLabelToggleHelp] = useState(
+    false,
+  );
 
   return (
     <>
@@ -101,7 +109,7 @@ function FieldCheckboxExample() {
 
       <FieldCheckbox
         isInvalid
-        validationText="This checkbox is required"
+        validationText="This toggle is required"
         toggle
         id="toggle-invalid"
         label="invalid toggle"
@@ -110,6 +118,41 @@ function FieldCheckboxExample() {
         value="first"
         onChange={setInvalidToggle}
         className="mb-5"
+      />
+
+      <FieldCheckbox
+        toggle
+        id="hiddenLabelToggle"
+        label="hidden label toggle"
+        isSelected={hiddenLabelToggle}
+        value="first"
+        onChange={setHiddenLabelToggle}
+        className="mb-5"
+        hideLabel
+      />
+      <FieldCheckbox
+        isInvalid
+        validationText="This toggle with hidden label is required"
+        toggle
+        id="invalidHiddenLabelToggle"
+        label="invalid hidden label toggle"
+        isSelected={invalidHiddenLabelToggle}
+        value="first"
+        onChange={setInvalidHiddenLabelToggle}
+        className="mb-5"
+        hideLabel
+      />
+
+      <FieldCheckbox
+        helpText="hidden label toggle help text"
+        toggle
+        id="hiddenLabelToggleHelp"
+        label="invalid hidden label toggle"
+        isSelected={hiddenLabelToggleHelp}
+        value="first"
+        onChange={setHiddenLabelToggleHelp}
+        className="mb-5"
+        hideLabel
       />
     </>
   );

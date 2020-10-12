@@ -13,6 +13,10 @@ import moment from 'moment';
 
 const propTypes = {
   /**
+   * Specifies whether or not an input field should have autocomplete enabled
+   */
+  autoComplete: PropTypes.oneOf(['on', 'off']),
+  /**
    * Automatically focus the input
    */
   autoFocus: PropTypes.bool,
@@ -82,6 +86,16 @@ const propTypes = {
    */
   minDate: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   /**
+   * Latest time allowed to be selected.
+   * If a `maxTime` is passed without a `minTime`, the `minTime` will be start of day
+   */
+  maxTime: PropTypes.object,
+  /**
+   * Earliest time allowed to be selected.
+   * If a `minTime` is passed without a `maxTime`, the `maxTime` will be end of day.
+   */
+  minTime: PropTypes.object,
+  /**
    * Callback function when input is changed
    * @param {string} value a UTC ISO 8601 string (https://en.wikipedia.org/wiki/ISO_8601) of the selected date
    */
@@ -149,6 +163,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autoComplete: 'off',
   autoFocus: false,
   disabled: false,
   excludeTime: false,
@@ -313,6 +328,7 @@ class FieldDateTime extends React.PureComponent {
 
   render() {
     const {
+      autoComplete,
       autoFocus,
       className,
       disabled,
@@ -321,7 +337,9 @@ class FieldDateTime extends React.PureComponent {
       isClearable,
       isInvalid,
       maxDate,
+      maxTime,
       minDate,
+      minTime,
       placeholderText,
       popperPlacement,
       selectLocalDateTime,
@@ -339,6 +357,22 @@ class FieldDateTime extends React.PureComponent {
 
     const momentMinDate = minDate ? moment(minDate) : undefined;
     const momentMaxDate = maxDate ? moment(maxDate) : undefined;
+
+    const momentMinTime =
+      minTime ||
+      (maxTime
+        ? moment()
+            .hours(0)
+            .minutes(0)
+        : null);
+
+    const momentMaxTime =
+      maxTime ||
+      (minTime
+        ? moment()
+            .hours(23)
+            .minutes(59)
+        : null);
 
     const classes = classNames('field-text', className);
 
@@ -379,6 +413,7 @@ class FieldDateTime extends React.PureComponent {
             {`${selectLocalDateTime ? 'Local' : 'UTC'}`}
           </Block>
           <DatePicker
+            autoComplete={autoComplete}
             adjustDateOnChange={false}
             allowSameDay={!excludeTime}
             autoFocus={autoFocus}
@@ -392,6 +427,8 @@ class FieldDateTime extends React.PureComponent {
             isClearable={isClearable}
             minDate={momentMinDate}
             maxDate={momentMaxDate}
+            minTime={momentMinTime}
+            maxTime={momentMaxTime}
             onChange={this.onChange}
             popperPlacement={popperPlacement}
             selected={momentValue}

@@ -69,7 +69,7 @@ function Badge({ children, className, icon, size, type }) {
     'badge',
     {
       [`badge-${type}`]: type !== 'default',
-      [`badge-${size}`]: type !== 'medium',
+      [`badge-${size}`]: size !== 'medium',
       baseline: icon,
     },
     className,

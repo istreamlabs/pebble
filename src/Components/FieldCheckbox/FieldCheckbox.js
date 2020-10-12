@@ -134,7 +134,7 @@ function FieldCheckbox({
             </div>
           </div>
           <div className="ml-2">
-            {label}
+            {!hideLabel && label}
             {helpTextMarkup()}
             {getValidationTextMarkup()}
           </div>
@@ -162,7 +162,7 @@ function FieldCheckbox({
   const helpTextMarkup = () => {
     if (helpText === undefined || helpText === '') return;
     return (
-      <Text size="6" appearance="muted" className="db mt-1">
+      <Text size="6" className="db mt-1">
         {helpText}
       </Text>
     );

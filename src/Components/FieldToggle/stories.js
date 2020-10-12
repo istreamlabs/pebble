@@ -7,6 +7,7 @@ import FieldToggle from './FieldToggle';
 function FieldToggleExample() {
   const [toggle, setToggle] = useState(true);
   const [toggleHelp, setToggleHelp] = useState(false);
+  const [hiddenLabel, setHiddenLabel] = useState(false);
   const [invalidToggle, setInvalidToggle] = useState(false);
 
   return (
@@ -50,6 +51,16 @@ function FieldToggleExample() {
         value="first"
         onChange={setInvalidToggle}
         className="mb-5"
+      />
+
+      <FieldToggle
+        id="hiddenLabel"
+        label="hidden label"
+        isSelected={hiddenLabel}
+        value="first"
+        onChange={setHiddenLabel}
+        className="mb-5"
+        hideLabel
       />
     </>
   );

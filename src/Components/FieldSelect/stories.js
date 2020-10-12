@@ -91,11 +91,22 @@ function FieldSelectExamples() {
         label="Disabled"
         placeholder="can not edit this"
       />
+
+      <FieldSelect
+        creatable
+        id="creatable"
+        options={options}
+        label="Creatable"
+        placeholder="Can type new option"
+      />
     </>
   );
 }
 
 storiesOf('FieldSelect', module)
+  .addParameters({
+    chromatic: { viewports: [479, 959, 1439, 1440] },
+  })
   .add('all', () => <FieldSelectExamples />)
   .add('sizes', () => (
     <>

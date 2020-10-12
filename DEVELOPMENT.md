@@ -1,6 +1,6 @@
 Follow the steps below to set up the repository to be run locally.
 
-The `master` branch is automatically deployed via [CodeFresh](https://g.codefresh.io/) to [pebble.istreamplanet.net](https://pebble.istreamplanet.net).
+The `main` branch is automatically deployed via [CodeFresh](https://g.codefresh.io/) to [pebble.istreamplanet.net](https://pebble.istreamplanet.net).
 
 #### Install the Packages
 
@@ -35,7 +35,7 @@ Pebble uses [Chromatic](https://www.chromaticqa.com) and [Storybook](https://sto
 To run Chromatic on a local build, get Pebble's [Chromatic app code](https://www.chromaticqa.com/manage) and run the following command.
 
 ```shell
-$ ./node_modules/.bin/chromatic test --app-code=<your-app-code>
+$ yarn chromatic --app-code=<your-app-code>
 ```
 
 For more information, see the [Chromatic Documentation](http://docs.chromaticqa.com/test).
@@ -67,6 +67,12 @@ $ yarn styleguide:build
 ### Release an Update
 
 Package releases should be done through the following commands:
+
+release a patch update
+
+```shell
+$ npm version patch -m "release package %s because reasons"
+```
 
 release a minor update
 

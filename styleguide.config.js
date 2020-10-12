@@ -172,6 +172,11 @@ module.exports = {
           exampleMode: 'hide',
         },
         {
+          name: 'Height',
+          content: 'src/Styleguide/Docs/Height.md',
+          exampleMode: 'hide',
+        },
+        {
           name: 'Media Query',
           content: 'src/Styleguide/Docs/Mediaquery.md',
           exampleMode: 'hide',

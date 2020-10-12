@@ -22,6 +22,10 @@ const propTypes = {
    */
   ariaDescribedBy: PropTypes.string,
   /**
+   * Specifies whether or not an input field should have autocomplete enabled
+   */
+  autoComplete: PropTypes.oneOf(['on', 'off']),
+  /**
    * The autofocus attribute of the input
    */
   autoFocus: PropTypes.bool,
@@ -117,6 +121,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  autoComplete: 'off',
   autoFocus: false,
   disabled: false,
   isInvalid: false,
@@ -140,6 +145,7 @@ class Input extends React.PureComponent {
       ariaLabel,
       ariaLabelledby,
       ariaDescribedBy,
+      autoComplete,
       autoFocus,
       className,
       disabled,
@@ -176,6 +182,7 @@ class Input extends React.PureComponent {
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedBy,
       'aria-invalid': !!isInvalid,
+      autoComplete,
       autoFocus,
       className: classes,
       disabled,

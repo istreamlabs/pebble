@@ -26,7 +26,7 @@
   .pebble__value-container {
     padding: 0 $spacing-2;
     font-size: $INPUT_FONT_SIZE_S;
-    height: 25px;
+    min-height: 25px;
   }
 }
 
@@ -34,7 +34,7 @@
   .pebble__value-container {
     padding: 0 $spacing-3;
     font-size: $INPUT_FONT_SIZE_M;
-    height: 32px;
+    min-height: 32px;
   }
 }
 
@@ -42,7 +42,7 @@
   .pebble__value-container {
     padding: 0 $spacing-3;
     font-size: $INPUT_FONT_SIZE_L;
-    height: 48px;
+    min-height: 48px;
   }
 }
 

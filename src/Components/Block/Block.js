@@ -15,6 +15,7 @@ import {
   colorType,
   dimensionType,
   itemSpacingType,
+  maxDimensionType,
   orderType,
   overflowType,
   radiusType,
@@ -183,7 +184,7 @@ const propTypes = {
     }),
   ]),
   /**
-   * A valid css width (%, px, em, rem).
+   * A valid css width (%, px, em, rem) or a value of 1-9 corresponding to [height tokens](/#/Styles/Height).
    *
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
@@ -252,6 +253,14 @@ const propTypes = {
    * @type {PropTypes.Requireable<Spacing>}
    */
   marginBottom: spacingType,
+  /**
+   * A valid css width (%, px, em, rem), or a value of 1-9 corresponding to [width tokens](/#/Styles/Width), that sets the maximum width of the element.
+   *
+   * Or one of: 'none', 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
+   *
+   * For responsive behavior, pass an array with length up to 4, with a valid value for each element.
+   */
+  maxWidth: maxDimensionType,
   /**
    *  Controls the order in which the item appears in a flex container
    *
@@ -338,7 +347,7 @@ const propTypes = {
    */
   truncate: PropTypes.bool,
   /**
-   * A valid css width (%, px, em, rem).
+   * A valid css width (%, px, em, rem) or a value of 1-9 corresponding to [width tokens](/#/Styles/Width).
    *
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
@@ -389,6 +398,7 @@ class Block extends React.PureComponent {
       margin,
       marginTop,
       marginBottom,
+      maxWidth,
       order,
       overflow,
       padding,
@@ -422,6 +432,7 @@ class Block extends React.PureComponent {
       : null;
     const widthStyles = getDimensionCss('width', width);
     const heightStyles = getDimensionCss('height', height);
+    const maxWidthStyles = getDimensionCss('maxWidth', maxWidth);
     const justifyClasses = getFlexPropertyClasses('justify', justify);
     const alignContentClasses = getFlexPropertyClasses(
       'content',
@@ -474,6 +485,7 @@ class Block extends React.PureComponent {
     };
 
     Object.assign(mergedStyle, { width: widthStyles.styles });
+    Object.assign(mergedStyle, { maxWidth: maxWidthStyles.styles });
     Object.assign(mergedStyle, { height: heightStyles.styles });
     Object.assign(mergedStyle, { padding: pClasses.styles });
     Object.assign(mergedStyle, { margin: mClasses.styles });
@@ -498,6 +510,7 @@ class Block extends React.PureComponent {
       alignSelfClasses,
       orderClasses,
       widthStyles.classes,
+      maxWidthStyles.classes,
       heightStyles.classes,
       color,
       {

@@ -1,5 +1,7 @@
 ### Basic Table
 
+At mobile viewports, each rows column values will wrap and appear as a single cell. The TableHeader can be provided an optional label that can provide a label for what each row represents.
+
 ```js
 import TableBody from './Components/TableBody'; //import { TableBody } from '@istreamplanet/pebble';
 import TableHeader from './Components/TableHeader'; //import { TableHeader } from '@istreamplanet/pebble';
@@ -8,7 +10,7 @@ import TableRow from './Components/TableRow'; //import { TableRow } from '@istre
 import TableCell from './Components/TableCell'; //import { TableCell } from '@istreamplanet/pebble';
 
 <Table>
-  <TableHeader>
+  <TableHeader mobileLabel="contacts">
     <TableHeaderCell>Name</TableHeaderCell>
     <TableHeaderCell>Title</TableHeaderCell>
     <TableHeaderCell>Email</TableHeaderCell>
