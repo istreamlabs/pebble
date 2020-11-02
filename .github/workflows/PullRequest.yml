@@ -60,8 +60,8 @@ jobs:
     name: deploy test documentation site
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.DEVELOPMENT_AWS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.DEVELOPMENT_AWS_SECRET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET }}
     steps:
       - uses: actions/checkout@v1
       - uses: actions/cache@v1
@@ -75,21 +75,27 @@ jobs:
       - name: build documentation site
         run: yarn styleguide:build
       - name: deploy js files
-        run: aws s3 sync styleguide s3://pebble.istreamplanet.net/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
+        run: aws s3 sync styleguide s3://${{ secrets.AWS_BUCKET_NAME }}/${{ github.event.number }}/ --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
       - name: deploy service-worker.js
-        run: aws s3 cp styleguide/service-worker.js s3://pebble.istreamplanet.net/${{ github.event.number }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
+        run: aws s3 cp styleguide/service-worker.js s3://${{ secrets.AWS_BUCKET_NAME }}/${{ github.event.number }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
       - name: deploy index.html
-        run: aws s3 cp styleguide/index.html s3://pebble.istreamplanet.net/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
+        run: aws s3 cp styleguide/index.html s3://${{ secrets.AWS_BUCKET_NAME }}/${{ github.event.number }}/index.html --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type text/html
       - name: Add link to Pull Request
-        uses: thollander/actions-comment-pull-request@1.0.0
+        uses: actions/github-script@v3
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         with:
-          message: '### :eyes: [Test Deployment](https://pebble.istreamplanet.net/${{ github.event.number }}/index.html) :eyes:'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '### :eyes: [Test Deployment](https://pebble.istreamplanet.net/${{ github.event.number }}/index.html) :eyes:'
+            })
       - name: Notify Slack
         uses: pullreminders/slack-action@master
         if: github.event_name == 'pull_request' && github.event.action == 'opened'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         with:
-          args: '{\"channel\":\"CQ9AG10AC\",\"text\":\":rocket: Pull Request - <https://github.com/iStreamPlanet/pebble/pull/${{ github.event.number }}|${{ github.event.pull_request.title }}> has been opened and a <https://pebble.istreamplanet.net/${{ github.event.number }}/index.html|test deployment> has been created.\"}'
+          args: '{\"channel\":\"CQ9AG10AC\",\"text\":\":rocket: Pebble Pull Request - <https://github.com/iStreamPlanet/pebble/pull/${{ github.event.number }}|${{ github.event.pull_request.title }}> has been opened.\nA <https://pebble.istreamplanet.net/${{ github.event.number }}/index.html|test deployment> has been created.\"}'
