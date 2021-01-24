@@ -53,12 +53,12 @@ export default function getDimensionCss(
       );
       classes.push(
         `${getPrefix('right', side[1], dimension)}${
-          side[1]
+        side[1]
         }${suffix}`,
       );
       classes.push(
         `${getPrefix('bottom', side[0], dimension)}${
-          side[0]
+        side[0]
         }${suffix}`,
       );
       classes.push(
@@ -70,12 +70,12 @@ export default function getDimensionCss(
       );
       classes.push(
         `${getPrefix('right', side[1], dimension)}${
-          side[1]
+        side[1]
         }${suffix}`,
       );
       classes.push(
         `${getPrefix('bottom', side[2], dimension)}${
-          side[2]
+        side[2]
         }${suffix}`,
       );
       classes.push(
@@ -87,12 +87,12 @@ export default function getDimensionCss(
       );
       classes.push(
         `${getPrefix('right', side[1], dimension)}${
-          side[1]
+        side[1]
         }${suffix}`,
       );
       classes.push(
         `${getPrefix('bottom', side[2], dimension)}${
-          side[2]
+        side[2]
         }${suffix}`,
       );
       classes.push(

@@ -67,9 +67,9 @@ class MenuItem extends React.Component {
           strict: true,
         }) !== null) ||
       ((item && item.aliases) || []).some(
-        (path) => matchPath(location.pathname, { path }) !== null,
+        path => matchPath(location.pathname, { path }) !== null,
       ) ||
-      ((item && item.items) || []).some((i) =>
+      ((item && item.items) || []).some(i =>
         MenuItem.shouldBeOpen(location, i),
       )
     );
@@ -98,11 +98,11 @@ class MenuItem extends React.Component {
           return match;
         }
         return item.aliases.some(
-          (path) => matchPath(location.pathname, { path }) !== null,
+          path => matchPath(location.pathname, { path }) !== null,
         );
       };
     }
-    (item.items || []).forEach((sub) =>
+    (item.items || []).forEach(sub =>
       MenuItem.generateAndAddIsActiveHandler(sub),
     );
   }
@@ -163,7 +163,7 @@ class MenuItem extends React.Component {
     );
   };
 
-  renderSubItems = (items) => {
+  renderSubItems = items => {
     const { location } = this.props;
     return items.map((subItem, i) => (
       <MenuItem key={i} item={subItem} location={location} />

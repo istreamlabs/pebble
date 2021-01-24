@@ -116,10 +116,10 @@ const svgo = new SVGO({
 
 // Get the contents of the optimized SVG
 // by trimming leading and tailing <svg> tags
-const getSVGContent = (source) =>
+const getSVGContent = source =>
   source.slice(source.indexOf('>') + 1).slice(0, -6);
 
-const getName = (filepath) =>
+const getName = filepath =>
   path.basename(filepath, path.extname(filepath));
 
 async function main() {
@@ -128,7 +128,7 @@ async function main() {
     const iconExports = [];
     const examples = [];
 
-    const promises = originalIcons.map(async (iconFilePath) => {
+    const promises = originalIcons.map(async iconFilePath => {
       try {
         const data = await readFile(iconFilePath);
         const optimizeData = await svgo.optimize(data);

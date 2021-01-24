@@ -40,7 +40,12 @@ describe('FieldNumber', () => {
           helpText={helpText}
         />,
       );
-      expect(wrapper.find(Text).childAt(0).text()).toBe(helpText);
+      expect(
+        wrapper
+          .find(Text)
+          .childAt(0)
+          .text(),
+      ).toBe(helpText);
     });
 
     it('returns undefined if no helptext is set', () => {
@@ -60,9 +65,12 @@ describe('FieldNumber', () => {
           isInvalid
         />,
       );
-      expect(wrapper.find(Text).childAt(0).text()).toBe(
-        validationText,
-      );
+      expect(
+        wrapper
+          .find(Text)
+          .childAt(0)
+          .text(),
+      ).toBe(validationText);
     });
     it('returns undefined if isInvalid is false', () => {
       const instance = new FieldNumber({

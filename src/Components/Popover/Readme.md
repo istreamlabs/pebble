@@ -38,7 +38,7 @@ const contentHeaderColor = 'neutral-200';
 <Popover
   trapFocus
   arrowColor={contentHeaderColor}
-  content={(close) => (
+  content={close => (
     <Block
       background="white"
       displayBlock

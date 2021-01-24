@@ -78,7 +78,7 @@ You may also define your own custom function for determining the color of the va
 ```js
 import Block from '../Block/Block';
 
-const channelStatus = (value) => {
+const channelStatus = value => {
   switch (value) {
     case 'on':
       return 'success';

@@ -4,9 +4,7 @@ import ListItem from './ListItem';
 
 describe('ListItem', () => {
   it('renders without crashing', () => {
-    expect(() => {
-      shallow(<ListItem>item</ListItem>);
-    }).not.toThrow();
+    expect(() => { shallow(<ListItem>item</ListItem>); }).not.toThrow();
   });
 
   it('renders children', () => {
@@ -15,9 +13,7 @@ describe('ListItem', () => {
   });
 
   it('allows for custom classes', () => {
-    const wrapper = shallow(
-      <ListItem className="myClass">item</ListItem>,
-    );
+    const wrapper = shallow(<ListItem className="myClass">item</ListItem>);
     expect(wrapper.prop('className')).toContain('myClass');
   });
 });

@@ -12,7 +12,7 @@ export default (props, propName, componentName) => {
     if (
       spacingType.length > 4 ||
       spacingType.length < 1 ||
-      !spacingType.every((item) =>
+      !spacingType.every(item =>
         [
           0,
           1,
@@ -32,7 +32,7 @@ export default (props, propName, componentName) => {
           '6',
           '7',
           '8',
-        ].some((v) => item === v),
+        ].some(v => item === v),
       )
     ) {
       return new Error(

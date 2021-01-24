@@ -1,3 +1,4 @@
+
 ## Brand
 
 Brand colors are to be used sparingly.
@@ -28,7 +29,6 @@ Neutral colors are used for text, backgrounds, lines and borders.
 Used for for buttons, alert messages, form elements.
 
 #### Blue
-
 ```js noeditor
 <ColorSwatch name="$blue-lighter" value="#EEF5FF" />
 <ColorSwatch name="$blue-light" value="#B6D2F7" />
@@ -38,7 +38,6 @@ Used for for buttons, alert messages, form elements.
 ```
 
 #### Yellow
-
 ```js noeditor
 <ColorSwatch name="$yellow-lighter" value="#FEF9EB" />
 <ColorSwatch name="$yellow-light" value="#FFE39C" />
@@ -48,7 +47,6 @@ Used for for buttons, alert messages, form elements.
 ```
 
 #### Green
-
 ```js noeditor
 <ColorSwatch name="$green-lighter" value="#EBFEED" />
 <ColorSwatch name="$green-light" value="#C3F3C9" />
@@ -58,7 +56,6 @@ Used for for buttons, alert messages, form elements.
 ```
 
 #### Red
-
 ```js noeditor
 <ColorSwatch name="$red-lighter" value="#FDE9E8" />
 <ColorSwatch name="$red-light" value="#FED0CB" />
@@ -68,7 +65,6 @@ Used for for buttons, alert messages, form elements.
 ```
 
 #### Indigo
-
 ```js noeditor
 <ColorSwatch name="$indigo-lighter" value="#EEEAFD" />
 <ColorSwatch name="$indigo-light" value="#AD9BF8" />
@@ -80,7 +76,6 @@ Used for for buttons, alert messages, form elements.
 ## Accent Colors
 
 #### Transparent Blacks
-
 ```js noeditor
 <ColorSwatch name="$black-90" value="rgba(0,0,0,.9)" />
 <ColorSwatch name="$black-80" value="rgba(0,0,0,.8)" />
@@ -97,7 +92,6 @@ Used for for buttons, alert messages, form elements.
 ```
 
 #### Transparent Whites
-
 ```js noeditor
 <ColorSwatch name="$white-90" value="rgba(255,255,255,.9)" />
 <ColorSwatch name="$white-80" value="rgba(255,255,255,.8)" />

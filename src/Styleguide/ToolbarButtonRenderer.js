@@ -4,4 +4,4 @@ import React from 'react';
 // is the confusing open isolated button so we are
 // effectively doing a no-op to hide it. In the
 // future we may want to revisit this.
-export default () => <React.Fragment />;
+export default () => (<React.Fragment />);

@@ -7,37 +7,17 @@
   font-weight: 700;
 }
 
-.heading-1 {
-  @extend .fs-1;
-}
-.heading-2 {
-  @extend .fs-2;
-}
-.heading-3 {
-  @extend .fs-3;
-}
-.heading-4 {
-  @extend .fs-4;
-}
-.heading-5 {
-  @extend .fs-5;
-}
+.heading-1 { @extend .fs-1; }
+.heading-2 { @extend .fs-2; }
+.heading-3 { @extend .fs-3; }
+.heading-4 { @extend .fs-4; }
+.heading-5 { @extend .fs-5; }
 
-.heading-1-responsive {
-  @extend .fs-1-responsive;
-}
-.heading-2-responsive {
-  @extend .fs-2-responsive;
-}
-.heading-3-responsive {
-  @extend .fs-3-responsive;
-}
-.heading-4-responsive {
-  @extend .fs-4-responsive;
-}
-.heading-5-responsive {
-  @extend .fs-5-responsive;
-}
+.heading-1-responsive { @extend .fs-1-responsive; }
+.heading-2-responsive { @extend .fs-2-responsive; }
+.heading-3-responsive { @extend .fs-3-responsive; }
+.heading-4-responsive { @extend .fs-4-responsive; }
+.heading-5-responsive { @extend .fs-5-responsive; }
 
 .heading-6-responsive,
 .heading-6 {

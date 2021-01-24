@@ -1,4 +1,4 @@
-The pebble spacing scale is based on powers of two that starts at .25rem (4px).
+The pebble spacing scale is based on powers of two that starts at .25rem (4px). 
 
 Spacing tokens are used for margin, padding and positioning.
 

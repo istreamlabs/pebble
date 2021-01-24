@@ -21,21 +21,21 @@
 
     &.modal-large {
       max-width: calc(100% - #{$width-4});
-      max-height: calc(100% - #{$height-5});
+      max-height: calc(100% - #{$height-5})
     }
   }
 
   @include respond-above(md) {
     &.modal-large {
       max-width: calc(100% - #{$width-5});
-      max-height: calc(100% - #{$height-5});
+      max-height: calc(100% - #{$height-5})
     }
   }
 
   @include respond-above(lg) {
     &.modal-large {
       max-width: calc(100% - #{$width-6});
-      max-height: calc(100% - #{$height-5});
+      max-height: calc(100% - #{$height-5})
     }
   }
 
@@ -50,6 +50,7 @@
       position: relative;
     }
   }
+
 }
 
 .modal-close-btn {
@@ -66,3 +67,4 @@
   right: $spacing-5;
   top: $spacing-4;
 }
+

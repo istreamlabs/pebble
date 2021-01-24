@@ -1,4 +1,4 @@
-export default (radius) => {
+export default radius => {
   let borderRadiusClasses;
 
   if (typeof radius === 'string' || typeof radius === 'number') {

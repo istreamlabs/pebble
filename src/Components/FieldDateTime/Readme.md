@@ -4,7 +4,6 @@
 To correctly handle the experience of typing a UTC time, the
 dateFormat must include the UTC offset of 'Z'. If you are using the
 default dateFormat this is already included.
-
 </div>
 
 ```jsx
@@ -176,15 +175,24 @@ import moment from 'moment';
 
 function FieldDateTimeTimeRange() {
   const [startDate, setStartDate] = useState(
-    moment().utc().hours(17).minutes(30),
+    moment()
+      .utc()
+      .hours(17)
+      .minutes(30),
   );
 
   const [minTimeExample, setMinTimeExample] = useState(
-    moment().utc().hours(9).minutes(30),
+    moment()
+      .utc()
+      .hours(9)
+      .minutes(30),
   );
 
   const [maxTimeExample, setMaxTimeExample] = useState(
-    moment().utc().hours(11).minutes(30),
+    moment()
+      .utc()
+      .hours(11)
+      .minutes(30),
   );
 
   return (
@@ -195,8 +203,14 @@ function FieldDateTimeTimeRange() {
         value={startDate}
         onChange={setStartDate}
         showTimeSelect
-        minTime={moment().utc().hours(17).minutes(0)}
-        maxTime={moment().utc().hours(19).minutes(30)}
+        minTime={moment()
+          .utc()
+          .hours(17)
+          .minutes(0)}
+        maxTime={moment()
+          .utc()
+          .hours(19)
+          .minutes(30)}
         className="mb-5"
       />
 
@@ -206,7 +220,10 @@ function FieldDateTimeTimeRange() {
         value={minTimeExample}
         onChange={setMinTimeExample}
         showTimeSelect
-        minTime={moment().utc().hours(8).minutes(0)}
+        minTime={moment()
+          .utc()
+          .hours(8)
+          .minutes(0)}
         className="mb-5"
       />
       <FieldDateTime
@@ -215,7 +232,10 @@ function FieldDateTimeTimeRange() {
         value={maxTimeExample}
         onChange={setMaxTimeExample}
         showTimeSelect
-        maxTime={moment().utc().hours(12).minutes(0)}
+        maxTime={moment()
+          .utc()
+          .hours(12)
+          .minutes(0)}
       />
     </>
   );
@@ -261,7 +281,7 @@ function PortalExample() {
     '2019-06-26T12:00:00.000Z',
   );
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     setSelectedDate(value);
   };
 

@@ -9,7 +9,7 @@ export default {
     return value;
   },
   currency: (currencyCode = 'USD') => {
-    return (value) => {
+    return value => {
       const currencyFormat = new Intl.NumberFormat(undefined, {
         style: 'currency',
         currency: currencyCode,

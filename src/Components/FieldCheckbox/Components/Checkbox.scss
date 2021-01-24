@@ -1,5 +1,6 @@
 @import '../../../Styles/foundation/variables.scss';
 
+
 $TOGGLE_WIDTH: 68px;
 $TOGGLE_SWITCH_COLOR: white;
 $TOGGLE_BG_OFF: $neutral-400;
@@ -19,8 +20,8 @@ $TOGGLE_FONT_SIZE: $font-size-7;
 
   &.invalid {
     .toggle-switch {
-      border-color: $TOGGLE_BG_INVALID;
-      background: $TOGGLE_BG_INVALID;
+        border-color: $TOGGLE_BG_INVALID;
+        background: $TOGGLE_BG_INVALID;
     }
   }
 
@@ -28,8 +29,10 @@ $TOGGLE_FONT_SIZE: $font-size-7;
     &:focus ~ label {
       .toggle-switch {
         &::after {
-          box-shadow: inset 0 0 0 2px $TOGGLE_SWITCH_COLOR,
-            inset 0 0 0 5px $TOGGLE_BG_OFF, 0 3px 6px rgba(black, 0.3);
+          box-shadow:
+            inset 0 0 0 2px $TOGGLE_SWITCH_COLOR,
+            inset 0 0 0 5px $TOGGLE_BG_OFF,
+            0 3px 6px rgba(black, 0.3);
         }
       }
     }
@@ -43,7 +46,8 @@ $TOGGLE_FONT_SIZE: $font-size-7;
       &:focus ~ label {
         .toggle-switch {
           &::after {
-            box-shadow: inset 0 0 0 2px $TOGGLE_SWITCH_COLOR,
+            box-shadow:
+              inset 0 0 0 2px $TOGGLE_SWITCH_COLOR,
               inset 0 0 0 5px $TOGGLE_BG_ON,
               0 3px 6px rgba(black, 0.3);
           }
@@ -53,14 +57,12 @@ $TOGGLE_FONT_SIZE: $font-size-7;
   }
 
   .toggle-switch {
-    width: $TOGGLE_WIDTH;
-    height: $TOGGLE_WIDTH/2;
+    width: $TOGGLE_WIDTH; height: $TOGGLE_WIDTH/2;
     background: $TOGGLE_BG_OFF;
     border-radius: ($TOGGLE_WIDTH/4) + 2;
     &:after {
       background-color: $TOGGLE_SWITCH_COLOR;
-      width: ($TOGGLE_WIDTH/2) - 4;
-      height: ($TOGGLE_WIDTH/2) - 4;
+      width: ($TOGGLE_WIDTH/2) - 4; height: ($TOGGLE_WIDTH/2) - 4;
     }
   }
 
@@ -74,12 +76,12 @@ $TOGGLE_FONT_SIZE: $font-size-7;
     color: $TOGGLE_COLOR_RIGHT;
   }
 
-  [class^='toggle-text-'] {
+  [class^="toggle-text-"] {
     transition: opacity 0.2s, transform 0.2s;
     flex: 0 0 50%;
   }
 
-  [class^='toggle-option-'] {
+  [class^="toggle-option-"]{
     transition-delay: 0.1s;
   }
 
@@ -103,16 +105,14 @@ $TOGGLE_FONT_SIZE: $font-size-7;
   &:checked {
     ~ label {
       .toggle-switch {
-        &:after {
-          transform: translate3d(112%, 0, 0);
-        }
+        &:after { transform: translate3d(112%,0,0); }
       }
     }
   }
   &[disabled] {
     ~ label {
       .toggle-switch {
-        opacity: 0.5;
+        opacity: .5;
       }
     }
   }
@@ -127,12 +127,14 @@ $TOGGLE_FONT_SIZE: $font-size-7;
   background-clip: padding-box;
   &::after {
     transition: all 0.1s ease-in-out;
-    content: '';
+    content: "";
     position: absolute;
     top: 2px;
     left: 2px;
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0,0,0);
     border-radius: 100%;
     box-shadow: 0 3px 6px rgba(black, 0.3);
   }
 }
+
+

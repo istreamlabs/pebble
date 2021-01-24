@@ -9,18 +9,14 @@ jest.mock('react-toastify');
 
 describe('ToastAlert', () => {
   it('renders without crashing', () => {
-    expect(() => {
-      shallow(<ToastAlert title="Product updated" />);
-    }).not.toThrow();
+    expect(() => { shallow(<ToastAlert title="Product updated" />); }).not.toThrow();
   });
   it('defaults', () => {
     expect(ToastAlert.defaultProps.type).toBe('default');
     expect(ToastAlert.defaultProps.position).toBe('bottom');
   });
   it('calls alert component', () => {
-    const wrapper = shallow(
-      <ToastAlert type="warn" title="Product updated" />,
-    );
+    const wrapper = shallow(<ToastAlert type="warn" title="Product updated" />);
     // renders single element
     expect(wrapper.children().length).toEqual(0);
     const alert = wrapper.find(Alert);
@@ -37,16 +33,14 @@ describe('Hooks > UseToast', () => {
       title: 'New Features Added',
       type: 'info',
       autoClose: 1000,
-      onClose: jest.fn(),
+      onClose: jest.fn()
     };
     useToast()(options);
-    const param1 = (
-      <ToastAlert title="New Features Added" type="info" />
-    );
+    const param1 = <ToastAlert title="New Features Added" type="info" />;
     const param2 = {
       className: 'p-0 bg-transparent',
       autoClose: options.autoClose,
-      onClose: options.onClose,
+      onClose: options.onClose
     };
 
     expect(toast).toHaveBeenCalledWith(param1, param2);
@@ -58,9 +52,7 @@ describe('Hooks > UseToast', () => {
       type: 'info',
     };
     useToast()(options);
-    const param1 = (
-      <ToastAlert title="New Features Added" type="info" />
-    );
+    const param1 = <ToastAlert title="New Features Added" type="info" />;
     const param2 = {
       className: 'p-0 bg-transparent',
     };

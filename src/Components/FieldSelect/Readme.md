@@ -44,7 +44,7 @@ function FieldSelectExamples() {
         label="Multi-Select"
         placeholder="choose one or many"
         onChange={(object, action) => {
-          setMultiValue(object.map((o) => o.value).join(', '));
+          setMultiValue(object.map(o => o.value).join(', '));
         }}
       />
       <div className="mb-5">selected value(s): {multiValue}</div>

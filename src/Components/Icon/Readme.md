@@ -35,7 +35,6 @@ Pass a `className` containing custom css to apply in addition to the default sty
 <Icon name="add-circle" accessibilityLabel="Some Descriptive Text" />
 <Icon name="add-circle" ariaHidden={false} accessibilityLabel="Read by assistive tech" />
 ```
-
 ### Unknown Icon
 
 If you pass a the icon a name that is not recognized, a red bug will be displayed as a placeholder icon

@@ -12,5 +12,8 @@
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-transform-runtime"
   ],
-  "ignore": ["**/*.test.js", "**/stories.js"]
+  "ignore": [
+    "**/*.test.js",
+    "**/stories.js"
+  ]
 }

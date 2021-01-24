@@ -3,7 +3,7 @@ on:
   push:
     tags: 'v*'
 jobs:
-  deploy:
+   deploy:
     name: deploy documentation site
     runs-on: ubuntu-latest
     env:

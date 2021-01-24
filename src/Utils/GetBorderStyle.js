@@ -1,4 +1,4 @@
-export default (borderStyle) => {
+export default borderStyle => {
   let styles = {};
   const borderWidth = borderStyle.width || '1px';
   const style = borderStyle.style || 'solid';

@@ -336,9 +336,12 @@ describe('FieldDateTime', () => {
       const result = shallow(
         instance.renderAlternativeDateTimeDisplay(),
       );
-      expect(result.find(Block).at(1).prop('style')).toMatchObject({
-        borderLeft: 0,
-      });
+      expect(
+        result
+          .find(Block)
+          .at(1)
+          .prop('style'),
+      ).toMatchObject({ borderLeft: 0 });
     });
   });
 
