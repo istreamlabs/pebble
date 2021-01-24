@@ -34,7 +34,7 @@ const defaultProps = {
 };
 
 function FormLayoutRow({ className, children, direction, tight }) {
-  const itemMarkup = React.Children.map(children, child =>
+  const itemMarkup = React.Children.map(children, (child) =>
     React.cloneElement(child, {
       className: classNames(child.props.className, {
         'w-100':

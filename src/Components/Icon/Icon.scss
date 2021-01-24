@@ -1,8 +1,7 @@
 @import '../../Styles/foundation/variables.scss';
 
 .icon {
-
-  transition: color .2s linear;
+  transition: color 0.2s linear;
 
   &.not-found {
     color: $red;

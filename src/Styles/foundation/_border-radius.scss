@@ -1,41 +1,105 @@
-.br0 {        border-radius: $border-radius-none; }
-.br1 {        border-radius: $border-radius-1; }
-.br2 {        border-radius: $border-radius-2; }
-.br3 {        border-radius: $border-radius-3; }
-.br4 {        border-radius: $border-radius-4; }
-.br5 {        border-radius: $border-radius-5; }
-.br-circle {  border-radius: $border-radius-circle; }
-.br-pill {    border-radius: $border-radius-pill; }
+.br0 {
+  border-radius: $border-radius-none;
+}
+.br1 {
+  border-radius: $border-radius-1;
+}
+.br2 {
+  border-radius: $border-radius-2;
+}
+.br3 {
+  border-radius: $border-radius-3;
+}
+.br4 {
+  border-radius: $border-radius-4;
+}
+.br5 {
+  border-radius: $border-radius-5;
+}
+.br-circle {
+  border-radius: $border-radius-circle;
+}
+.br-pill {
+  border-radius: $border-radius-pill;
+}
 
 @include respond-above(sm) {
-  .br0-ns {        border-radius: $border-radius-none; }
-  .br1-ns {        border-radius: $border-radius-1; }
-  .br2-ns {        border-radius: $border-radius-2; }
-  .br3-ns {        border-radius: $border-radius-3; }
-  .br4-ns {        border-radius: $border-radius-4; }
-  .br5-ns {        border-radius: $border-radius-5; }
-  .br-circle-ns {  border-radius: $border-radius-circle; }
-  .br-pill-ns {    border-radius: $border-radius-pill; }
+  .br0-ns {
+    border-radius: $border-radius-none;
+  }
+  .br1-ns {
+    border-radius: $border-radius-1;
+  }
+  .br2-ns {
+    border-radius: $border-radius-2;
+  }
+  .br3-ns {
+    border-radius: $border-radius-3;
+  }
+  .br4-ns {
+    border-radius: $border-radius-4;
+  }
+  .br5-ns {
+    border-radius: $border-radius-5;
+  }
+  .br-circle-ns {
+    border-radius: $border-radius-circle;
+  }
+  .br-pill-ns {
+    border-radius: $border-radius-pill;
+  }
 }
 
 @include respond-above(md) {
-  .br0-m {        border-radius: $border-radius-none; }
-  .br1-m {        border-radius: $border-radius-1; }
-  .br2-m {        border-radius: $border-radius-2; }
-  .br3-m {        border-radius: $border-radius-3; }
-  .br4-m {        border-radius: $border-radius-4; }
-  .br5-m {        border-radius: $border-radius-5; }
-  .br-circle-m {  border-radius: $border-radius-circle; }
-  .br-pill-m {    border-radius: $border-radius-pill; }
+  .br0-m {
+    border-radius: $border-radius-none;
+  }
+  .br1-m {
+    border-radius: $border-radius-1;
+  }
+  .br2-m {
+    border-radius: $border-radius-2;
+  }
+  .br3-m {
+    border-radius: $border-radius-3;
+  }
+  .br4-m {
+    border-radius: $border-radius-4;
+  }
+  .br5-m {
+    border-radius: $border-radius-5;
+  }
+  .br-circle-m {
+    border-radius: $border-radius-circle;
+  }
+  .br-pill-m {
+    border-radius: $border-radius-pill;
+  }
 }
 
 @include respond-above(lg) {
-  .br0-l {        border-radius: $border-radius-none; }
-  .br1-l {        border-radius: $border-radius-1; }
-  .br2-l {        border-radius: $border-radius-2; }
-  .br3-l {        border-radius: $border-radius-3; }
-  .br4-l {        border-radius: $border-radius-4; }
-  .br5-l {        border-radius: $border-radius-5; }
-  .br-circle-l {  border-radius: $border-radius-circle; }
-  .br-pill-l {    border-radius: $border-radius-pill; }
+  .br0-l {
+    border-radius: $border-radius-none;
+  }
+  .br1-l {
+    border-radius: $border-radius-1;
+  }
+  .br2-l {
+    border-radius: $border-radius-2;
+  }
+  .br3-l {
+    border-radius: $border-radius-3;
+  }
+  .br4-l {
+    border-radius: $border-radius-4;
+  }
+  .br5-l {
+    border-radius: $border-radius-5;
+  }
+  .br-circle-l {
+    border-radius: $border-radius-circle;
+  }
+  .br-pill-l {
+    border-radius: $border-radius-pill;
+  }
 }

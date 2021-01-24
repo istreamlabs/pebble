@@ -1,4 +1,4 @@
-export default overflowProp => {
+export default (overflowProp) => {
   let overflowClasses;
 
   // setting 'overflow'

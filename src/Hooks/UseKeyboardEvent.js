@@ -5,13 +5,13 @@ import { useEffect } from 'react';
  * when the key(s) are pressed, it calls the callback
  */
 
-export default (function(key, callback) {
+export default (function (key, callback) {
   useEffect(
-    function() {
+    function () {
       const keys = key.split('+');
 
       const handler = function handler(event) {
-        const keyCommand = keys.every(k => {
+        const keyCommand = keys.every((k) => {
           switch (k.toLowerCase()) {
             case 'alt':
               return !!event.altKey;
@@ -33,7 +33,7 @@ export default (function(key, callback) {
       };
 
       window.addEventListener('keydown', handler);
-      return function() {
+      return function () {
         window.removeEventListener('keydown', handler);
       };
     },

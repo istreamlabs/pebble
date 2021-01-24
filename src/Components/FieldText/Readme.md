@@ -1,39 +1,45 @@
 ### FieldText Examples
 
 ```js
-import { useState } from "react";
+import { useState } from 'react';
 
 function FieldTextExample() {
-  const [eventResult, setEventResult] = useState("");
-  const [basic, setBasic] = useState("");
-  const [autoFocus, setAutoFocus] = useState("");
-  const [disabledInput, setDisabledInput] = useState("can not edit this");
-  const [placeholderInput, setPlaceholderInput] = useState("");
-  const [helpTextInput, setHelpTextInput] = useState("");
-  const [errorInput, setErrorInput] = useState("");
-  const [spellcheckInput, setSpellcheckInput] = useState("");
-  const [maxLengthInput, setMaxLengthInput] = useState("");
-  const [clearBtnInput, setClearBtnInput] = useState("clear me!");
-  const [readOnlyInput, setReadOnlyInput] = useState("I am read only");
+  const [eventResult, setEventResult] = useState('');
+  const [basic, setBasic] = useState('');
+  const [autoFocus, setAutoFocus] = useState('');
+  const [disabledInput, setDisabledInput] = useState(
+    'can not edit this',
+  );
+  const [placeholderInput, setPlaceholderInput] = useState('');
+  const [helpTextInput, setHelpTextInput] = useState('');
+  const [errorInput, setErrorInput] = useState('');
+  const [spellcheckInput, setSpellcheckInput] = useState('');
+  const [maxLengthInput, setMaxLengthInput] = useState('');
+  const [clearBtnInput, setClearBtnInput] = useState('clear me!');
+  const [readOnlyInput, setReadOnlyInput] = useState(
+    'I am read only',
+  );
 
-  const [characterCountInput, setCharacterCountInput] = useState("13 characters");
+  const [characterCountInput, setCharacterCountInput] = useState(
+    '13 characters',
+  );
 
   const handleChange = (e) => {
-    setEventResult(`handleChange called with '${e.target.value}'`)
+    setEventResult(`handleChange called with '${e.target.value}'`);
     setBasic(e.target.value);
-  }
+  };
 
   const handleFocus = () => {
-    setEventResult('handleFocus called')
-  }
+    setEventResult('handleFocus called');
+  };
 
   const handleBlur = () => {
-    setEventResult('handleBlur called')
-  }
+    setEventResult('handleBlur called');
+  };
 
   const handleClear = () => {
     setClearBtnInput('');
-  }
+  };
 
   return (
     <>
@@ -46,14 +52,17 @@ function FieldTextExample() {
         onFocus={handleFocus}
       />
 
-      <div className="fs-6 mt-3 mb-5">event handler result: <span className="fw-700">{eventResult}</span></div>
+      <div className="fs-6 mt-3 mb-5">
+        event handler result:{' '}
+        <span className="fw-700">{eventResult}</span>
+      </div>
 
       <FieldText
         autoFocus
         label="Autofocus"
         id="autofocus"
         value={autoFocus}
-        onChange={e => setAutoFocus(e.target.value)}
+        onChange={(e) => setAutoFocus(e.target.value)}
         className="mb-5"
       />
 
@@ -62,7 +71,7 @@ function FieldTextExample() {
         label="Disabled"
         id="disabled-input"
         value={disabledInput}
-        onChange={e => setDisabledInput(e.target.value)}
+        onChange={(e) => setDisabledInput(e.target.value)}
         className="mb-5"
       />
 
@@ -71,7 +80,7 @@ function FieldTextExample() {
         label="Read Only"
         id="readOnly-input"
         value={readOnlyInput}
-        onChange={e => setReadOnlyInput(e.target.value)}
+        onChange={(e) => setReadOnlyInput(e.target.value)}
         className="mb-5"
       />
 
@@ -80,7 +89,7 @@ function FieldTextExample() {
         label="With Placeholder"
         id="placeholder-input"
         value={placeholderInput}
-        onChange={e => setPlaceholderInput(e.target.value)}
+        onChange={(e) => setPlaceholderInput(e.target.value)}
         className="mb-5"
       />
 
@@ -88,7 +97,7 @@ function FieldTextExample() {
         label="With Help Text"
         id="helptext-input"
         value={helpTextInput}
-        onChange={e => setHelpTextInput(e.target.value)}
+        onChange={(e) => setHelpTextInput(e.target.value)}
         className="mb-5"
         helpText="I'm some helpful text"
       />
@@ -100,7 +109,7 @@ function FieldTextExample() {
         label="Is Invalid"
         id="error-input"
         value={errorInput}
-        onChange={e => setErrorInput(e.target.value)}
+        onChange={(e) => setErrorInput(e.target.value)}
         className="mb-5"
       />
 
@@ -109,7 +118,7 @@ function FieldTextExample() {
         label="Spellcheck Disabled"
         id="spellcheck-input"
         value={spellcheckInput}
-        onChange={e => setSpellcheckInput(e.target.value)}
+        onChange={(e) => setSpellcheckInput(e.target.value)}
         className="mb-5"
       />
 
@@ -118,7 +127,7 @@ function FieldTextExample() {
         label="Max Length of 3"
         id="maxLength-input"
         value={maxLengthInput}
-        onChange={e => setMaxLengthInput(e.target.value)}
+        onChange={(e) => setMaxLengthInput(e.target.value)}
         className="mb-5"
       />
 
@@ -128,7 +137,7 @@ function FieldTextExample() {
         label="Character Count with Max Length of 20"
         id="characterCount-input"
         value={characterCountInput}
-        onChange={e => setCharacterCountInput(e.target.value)}
+        onChange={(e) => setCharacterCountInput(e.target.value)}
         className="mb-5"
       />
 
@@ -137,7 +146,7 @@ function FieldTextExample() {
         label="With Clear Button"
         id="clearBtn-input"
         value={clearBtnInput}
-        onChange={e => setClearBtnInput(e.target.value)}
+        onChange={(e) => setClearBtnInput(e.target.value)}
         className="mb-5"
       />
 
@@ -228,13 +237,13 @@ Each browser treats the following types differently. If the `type` attribute is 
 Display `prefix` and/or `suffix` text or icons to the input. Note that the presence of a `prefix` or `suffix` does not impact the actual submitted value of the input.
 
 ```jsx
-import { useState } from "react";
+import { useState } from 'react';
 import Icon from '../Icon/Icon';
 
 function PrefixSuffixExample() {
-  const [prefixInput, setPrefixInput] = useState("");
-  const [suffixInput, setSuffixInput] = useState("");
-  const [prefixSuffixInput, setPrefixSuffixInput] = useState("");
+  const [prefixInput, setPrefixInput] = useState('');
+  const [suffixInput, setSuffixInput] = useState('');
+  const [prefixSuffixInput, setPrefixSuffixInput] = useState('');
 
   return (
     <>
@@ -243,7 +252,7 @@ function PrefixSuffixExample() {
         label="With a prefix"
         id="prefix-input"
         value={prefixInput}
-        onChange={e => setPrefixInput(e.target.value)}
+        onChange={(e) => setPrefixInput(e.target.value)}
         className="mb-5"
       />
 
@@ -252,7 +261,7 @@ function PrefixSuffixExample() {
         label="With a suffix"
         id="suffix-input"
         value={suffixInput}
-        onChange={e => setSuffixInput(e.target.value)}
+        onChange={(e) => setSuffixInput(e.target.value)}
         className="mb-5"
       />
 
@@ -263,21 +272,22 @@ function PrefixSuffixExample() {
         label="With Prefix and Suffix"
         id="prefix-suffix-input"
         value={prefixSuffixInput}
-        onChange={e => setPrefixSuffixInput(e.target.value)}
+        onChange={(e) => setPrefixSuffixInput(e.target.value)}
         className="mb-5"
       />
       <FieldText
-        prefix={<Icon name="calendar" accessibilityLabel="calendar" />}
+        prefix={
+          <Icon name="calendar" accessibilityLabel="calendar" />
+        }
         label="With an icon in prefix"
         id="prefix-icon-input"
         value={prefixInput}
-        onChange={e => setPrefixInput(e.target.value)}
+        onChange={(e) => setPrefixInput(e.target.value)}
         className="mb-5"
       />
     </>
   );
 }
 
-<PrefixSuffixExample />
-
+<PrefixSuffixExample />;
 ```

@@ -310,15 +310,12 @@ function ModalExample() {
 
   return (
     <>
-      {showModal && NonDismissableModal }
-      <Button
-        primary
-        onClick={() => setShowModal(!showModal)}
-      >
+      {showModal && NonDismissableModal}
+      <Button primary onClick={() => setShowModal(!showModal)}>
         Show Not Dismissable Modal
       </Button>
     </>
-  )
+  );
 }
 
 <ModalExample />;

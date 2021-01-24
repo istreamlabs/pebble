@@ -188,7 +188,7 @@ function ExampleLabel({ open, label }) {
 <Accordion border="all" background="neutral-200">
   <CollapsiblePanel
     id="panel1"
-    label={props => (
+    label={(props) => (
       <ExampleLabel label="Custom Label" open={props.open} />
     )}
   >

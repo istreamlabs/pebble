@@ -219,20 +219,12 @@ describe('MenuItem', () => {
     });
     expect(item.find('MenuItem').length).toBe(2);
     expect(
-      item
-        .find('MenuItem')
-        .at(1)
-        .dive()
-        .find('NavLink')
-        .props().exact,
+      item.find('MenuItem').at(1).dive().find('NavLink').props()
+        .exact,
     ).toBe(true);
     expect(
-      item
-        .find('MenuItem')
-        .at(0)
-        .dive()
-        .find('NavLink')
-        .props().exact,
+      item.find('MenuItem').at(0).dive().find('NavLink').props()
+        .exact,
     ).toBeUndefined;
   });
 
@@ -262,10 +254,7 @@ describe('MenuItem', () => {
     const item = shallow(<MenuItem item={menu} />);
     expect(item.find('.fs-block').length).toBe(1);
     expect(
-      item
-        .find('MenuItem')
-        .dive()
-        .find('.fs-block').length,
+      item.find('MenuItem').dive().find('.fs-block').length,
     ).toBe(1);
   });
 
@@ -372,40 +361,28 @@ describe('MenuItem', () => {
     it('sets the correct toggle button accessibility label', () => {
       const item = shallow(<MenuItem item={linkSubItems} />);
       expect(
-        item
-          .find(Icon)
-          .at(1)
-          .prop('accessibilityLabel'),
+        item.find(Icon).at(1).prop('accessibilityLabel'),
       ).toContain('show Content sub items');
     });
     it('sets the correct toggle button accessibility label', () => {
       const item = shallow(<MenuItem item={linkSubItems} />);
       item.setState({ isOpen: true });
-      expect(
-        item
-          .find(Icon)
-          .at(1)
-          .prop('accessibilityLabel'),
-      ).toBe('close Content sub items');
+      expect(item.find(Icon).at(1).prop('accessibilityLabel')).toBe(
+        'close Content sub items',
+      );
     });
     it('sets the correct button item accessibility label', () => {
       const item = shallow(<MenuItem item={mockData} />);
       expect(
-        item
-          .find(Icon)
-          .at(1)
-          .prop('accessibilityLabel'),
+        item.find(Icon).at(1).prop('accessibilityLabel'),
       ).toContain('closed');
     });
     it('sets the correct button item accessibility label', () => {
       const item = shallow(<MenuItem item={mockData} />);
       item.setState({ isOpen: true });
-      expect(
-        item
-          .find(Icon)
-          .at(1)
-          .prop('accessibilityLabel'),
-      ).toBe('opened');
+      expect(item.find(Icon).at(1).prop('accessibilityLabel')).toBe(
+        'opened',
+      );
     });
   });
 
@@ -415,11 +392,7 @@ describe('MenuItem', () => {
         <MenuItem item={mockNestedData} location={{}} />,
       );
       expect(
-        wrapper
-          .find('MenuItem')
-          .dive()
-          .find('li')
-          .prop('className'),
+        wrapper.find('MenuItem').dive().find('li').prop('className'),
       ).toEqual('menu-item-container');
       expect(
         wrapper

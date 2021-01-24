@@ -12,7 +12,7 @@ export default (props, propName, componentName) => {
     if (
       order.length > 4 ||
       order.length < 1 ||
-      !order.every(item =>
+      !order.every((item) =>
         [
           0,
           1,
@@ -33,7 +33,7 @@ export default (props, propName, componentName) => {
           '7',
           '8',
           'last',
-        ].some(v => item === v),
+        ].some((v) => item === v),
       )
     ) {
       return new Error(

@@ -246,7 +246,10 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
       font-weight: bold;
     }
 
-    .menu-item, .menu-item:focus, .menu-item:hover, .menu-item.active {
+    .menu-item,
+    .menu-item:focus,
+    .menu-item:hover,
+    .menu-item.active {
       box-shadow: none;
       background: none;
       color: $neutral-700;
@@ -286,10 +289,13 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   }
 }
 
-.main-menu-bottom  {
+.main-menu-bottom {
   .main-menu-items {
     > .menu-item-container > .menu-item-content {
-      .menu-item, .menu-item:focus, .menu-item:hover, .menu-item.active {
+      .menu-item,
+      .menu-item:focus,
+      .menu-item:hover,
+      .menu-item.active {
         margin-top: 0;
       }
     }

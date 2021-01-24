@@ -11,14 +11,14 @@ const req = require.context(
   /.stories.js$/,
 );
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  req.keys().forEach((filename) => req(filename));
 }
 
 const styles = {
   margin: '1rem',
   display: 'block',
 };
-const componentContainerDecorator = storyFn => (
+const componentContainerDecorator = (storyFn) => (
   <div className="storybook" style={styles}>
     {storyFn()}
   </div>

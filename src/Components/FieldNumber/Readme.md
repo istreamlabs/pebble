@@ -9,7 +9,7 @@ function FieldNumberExample() {
   const [disabledInput, setDisabledInput] = useState('');
   const [errorInput, setErrorInput] = useState('');
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setEventResult(`handleChange called with '${e.target.value}'`);
     setBasic(e.target.value);
   };
@@ -50,7 +50,7 @@ function FieldNumberExample() {
         label="Disabled"
         id="disabled-input"
         value={disabledInput}
-        onChange={e => setDisabledInput(e.target.value)}
+        onChange={(e) => setDisabledInput(e.target.value)}
         className="mb-5"
       />
 
@@ -60,7 +60,7 @@ function FieldNumberExample() {
         label="Is Invalid"
         id="error-input"
         value={errorInput}
-        onChange={e => setErrorInput(e.target.value)}
+        onChange={(e) => setErrorInput(e.target.value)}
         className="mb-5"
       />
     </>

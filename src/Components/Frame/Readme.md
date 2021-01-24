@@ -57,7 +57,7 @@ function FrameExample() {
 
   const toast = useToast();
 
-  const mainNavigationToggled = isOpen => {
+  const mainNavigationToggled = (isOpen) => {
     console.log(
       `menu has been toggled to a ${
         isOpen ? 'Expanded' : 'Collapsed'
