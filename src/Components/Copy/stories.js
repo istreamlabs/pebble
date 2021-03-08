@@ -16,7 +16,7 @@ storiesOf('Copy', module)
     >
       <Copy value="this works!" />
     </Block>
-))
+  ))
   .add('Custom Success Message', () => (
     <Block
       alignItems="center"
