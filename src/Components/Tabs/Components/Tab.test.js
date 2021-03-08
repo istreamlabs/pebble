@@ -1,11 +1,13 @@
-import React from 'react';
 import { mount, shallow } from 'enzyme';
 
+import React from 'react';
 import Tab from './Tab';
 
 describe('Tab', () => {
   it('renders without crashing', () => {
-    expect(() => { shallow(<Tab>hello</Tab>); }).not.toThrow();
+    expect(() => {
+      shallow(<Tab>hello</Tab>);
+    }).not.toThrow();
   });
 
   describe('handleClick()', () => {

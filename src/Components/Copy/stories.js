@@ -28,7 +28,10 @@ storiesOf('Copy', module)
         height="400px"
         className="m-auto"
       >
-        <Copy value="this works!" successMessage="The value has been copied!" />
+        <Copy
+          value="this works!"
+          successMessage="The value has been copied!"
+        />
       </Block>
     </>
   ))
@@ -41,8 +44,19 @@ storiesOf('Copy', module)
         height="400px"
         className="m-auto"
       >
-        <Copy value="this works!" successMessage="The value has been copied!">Click Me</Copy>
-        <Copy value="this works!" successMessage="The value has been copied!" icon="" >Only Text</Copy>
+        <Copy
+          value="this works!"
+          successMessage="The value has been copied!"
+        >
+          Click Me
+        </Copy>
+        <Copy
+          value="this works!"
+          successMessage="The value has been copied!"
+          icon=""
+        >
+          Only Text
+        </Copy>
       </Block>
     </>
   ))
@@ -55,14 +69,14 @@ storiesOf('Copy', module)
         height="400px"
         className="m-auto"
       >
-          <Copy value="this works!" />
-          <Copy value="this works!" primary />
-          <Copy value="this works!" danger />
-          <Copy value="this works!" primary danger />
-          <Copy value="this works!" plain />
-          <Copy value="this works!" size="small"/>
-          <Copy value="this works!" size="medium" />
-          <Copy value="this works!" size="large" />
+        <Copy value="this works!" />
+        <Copy value="this works!" primary />
+        <Copy value="this works!" danger />
+        <Copy value="this works!" primary danger />
+        <Copy value="this works!" plain />
+        <Copy value="this works!" size="small" />
+        <Copy value="this works!" size="medium" />
+        <Copy value="this works!" size="large" />
       </Block>
     </>
   ))
@@ -75,7 +89,11 @@ storiesOf('Copy', module)
         height="400px"
         className="m-auto"
       >
-        <Copy value="this works!" popoverBackground="red" popoverColor="blue" />
+        <Copy
+          value="this works!"
+          popoverBackground="red"
+          popoverColor="blue"
+        />
         <Copy value="this works!" popoverClassName="shadow-5" />
       </Block>
     </>

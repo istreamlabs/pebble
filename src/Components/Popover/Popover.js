@@ -69,7 +69,7 @@ const defaultProps = {
   closeOnContentClick: false,
   hideArrow: false,
   isOpen: false,
-  placement: 'bottom'
+  placement: 'bottom',
 };
 
 /**
