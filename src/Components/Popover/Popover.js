@@ -140,9 +140,7 @@ const Popover = props => {
 
   React.useEffect(() => {
     if (showing && closeAfter) {
-      const timer = setTimeout(() => {
-        close();
-      }, closeAfter);
+      const timer = setTimeout(close, closeAfter);
       return () => {
         clearTimeout(timer);
       };
