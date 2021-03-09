@@ -1,10 +1,11 @@
-import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { mount } from 'enzyme';
-import FocusTrap from 'focus-trap-react';
 
 import Block from '../Block/Block';
+import FocusTrap from 'focus-trap-react';
 import Popover from './Popover';
+import React from 'react';
+import { act } from 'react-dom/test-utils';
+import { mount } from 'enzyme';
 
 jest.mock('popper.js', () => {
   const PopperJS = jest.requireActual('popper.js');
@@ -22,6 +23,8 @@ jest.mock('popper.js', () => {
 });
 
 describe('Popover', () => {
+  jest.useFakeTimers();
+
   it('renders the trigger and popover when clicked', () => {
     const { getByText } = render(
       <Popover content={<div>popover content</div>}>
@@ -115,6 +118,21 @@ describe('Popover', () => {
       </Popover>,
     );
     expect(instance.find(FocusTrap).exists()).toBe(true);
+  });
+
+  it('will close after a given amount of time', () => {
+    const { getByText, queryByText } = render(
+      <Popover closeAfter={3000} content={<div>popover content</div>}>
+        <button type="button">trigger</button>
+      </Popover>,
+    );
+    expect(getByText('trigger')).toBeDefined();
+    fireEvent.click(getByText('trigger'));
+    expect(getByText('popover content')).toBeDefined();
+    act(() => {
+      jest.runAllTimers();
+    });
+    expect(queryByText('popover content')).toBeNull();
   });
 
   describe('onBodyClick', () => {
