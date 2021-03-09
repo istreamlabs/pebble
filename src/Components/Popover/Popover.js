@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import './Popover.scss';
+
 import { Manager, Popper, Reference } from 'react-popper';
-import classNames from 'classnames';
-import mergeRefs from 'react-merge-refs';
-import FocusTrap from 'focus-trap-react';
+import React, { useState } from 'react';
+import { colorType, placementType } from '../../Types';
 
 import ConditionalWrapper from '../ConditionalWrapper/ConditionalWrapper';
-import { colorType, placementType } from '../../Types';
+import FocusTrap from 'focus-trap-react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import mergeRefs from 'react-merge-refs';
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
-
-import './Popover.scss';
 
 const propTypes = {
   /**
@@ -20,6 +20,10 @@ const propTypes = {
    * Additional classes to add
    */
   className: PropTypes.string,
+  /**
+   * Automatically close after the given amount of milliseconds
+   */
+  closeAfter: PropTypes.number,
   /**
    * Whether the popover is initially open
    */
@@ -80,6 +84,7 @@ const Popover = props => {
     arrowColor,
     children,
     className,
+    closeAfter,
     closeOnContentClick,
     content,
     hideArrow,
@@ -132,6 +137,15 @@ const Popover = props => {
 
     close();
   };
+
+  React.useEffect(() => {
+    if (showing && closeAfter) {
+      const timer = setTimeout(close, closeAfter);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [showing]);
 
   React.useEffect(() => {
     setShowing(isOpen);

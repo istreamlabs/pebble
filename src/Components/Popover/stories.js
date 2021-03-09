@@ -1,11 +1,10 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { select } from '@storybook/addon-knobs';
-
-import Popover from './Popover';
 import Block from '../Block/Block';
 import Button from '../Button/Button';
 import FieldText from '../FieldText/FieldText';
+import Popover from './Popover';
+import React from 'react';
+import { select } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/react';
 
 storiesOf('Popover', module)
   .add('basic', () => {
@@ -107,6 +106,22 @@ storiesOf('Popover', module)
       }
     >
       <Button>popover trigger</Button>
+    </Popover>
+  ))
+  .add('auto close', () => (
+    <Popover
+      closeAfter={2000}
+      content={
+        <Block
+          color="neutral-100"
+          padding="3"
+          background="neutral-800"
+        >
+          This is go away after 2 seconds
+        </Block>
+      }
+    >
+      <Button>Show for 2 seconds</Button>
     </Popover>
   ))
   .add('content render prop with trapFocus', () => (
