@@ -1,12 +1,14 @@
-import React from 'react';
+import 'storybook-chromatic';
+
 import { addDecorator, configure } from '@storybook/react';
+
+import React from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { withKnobs } from '@storybook/addon-knobs';
-import 'storybook-chromatic';
 
 // automatically import all files ending in *.stories.js
 const req = require.context(
-  '../src/Components/',
+  '../src/',
   true,
   /.stories.js$/,
 );
