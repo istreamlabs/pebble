@@ -22,6 +22,8 @@ describe('Card', () => {
   it('wraps children in Section if sectioned', () => {
     const wrapper = mount(
       <Card sectioned>
+        {null}
+        {false}
         <p>child 1</p>
         <p>child 2</p>
       </Card>,
