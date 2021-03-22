@@ -6,6 +6,7 @@ import React, {
 } from 'react';
 
 import PropTypes from 'prop-types';
+import developerWarning from '../Utils/DeveloperWarning';
 
 const responsiveContext = createContext({ isConfigured: false });
 
@@ -50,8 +51,7 @@ export default () => {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.warn(WARNING_MESSAGE);
+    developerWarning(WARNING_MESSAGE);
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
