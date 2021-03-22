@@ -96,6 +96,9 @@ storiesOf('FieldDateTime', module)
       validationText="validation message text"
     />
   ))
+  .add('required', () => (
+    <FieldDateTimeExample required label="Required" />
+  ))
   .add('am/pm time', () => (
     <FieldDateTimeExample timeFormat="h:mm a" />
   ))

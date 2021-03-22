@@ -23,13 +23,25 @@ function Example() {
         onDebounce handler result:{' '}
         <span className="fw-700">{value}</span>
       </div>
+
       <FieldTextDebounce
         label="Clearable"
         id="clear-input"
         value={value}
         clearBtnFunc={handleClear}
         onDebounce={setValue}
+        className="mb-5"
       />
+
+      <FieldTextDebounce
+        label="Required"
+        id="required-input"
+        value={value}
+        onDebounce={setValue}
+        required
+        className="mb-5"
+      />
+
       <FieldTextDebounce
         disabled
         label="Disabled"

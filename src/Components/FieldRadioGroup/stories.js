@@ -11,6 +11,7 @@ const group1 = [
     value: 'text',
     label: 'Text',
     helpText: '1 hour turn around',
+    required: true,
   },
   {
     id: 'email',

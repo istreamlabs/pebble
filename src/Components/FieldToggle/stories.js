@@ -21,6 +21,15 @@ function FieldToggleExample() {
         className="mb-5"
       />
       <FieldToggle
+        required
+        id="toggleRequired"
+        label="required"
+        isSelected={toggle}
+        value="first"
+        onChange={setToggle}
+        className="mb-5"
+      />
+      <FieldToggle
         id="toggleHelp"
         label="toggle with helpText"
         helpText="Secure the delivery of streaming media on iOS, tvOS, and Safari on iOS and macOS through the HTTP Live Streaming protocol"

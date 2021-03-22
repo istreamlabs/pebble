@@ -72,6 +72,13 @@ describe('Checkbox', () => {
       expect(wrapper.find('svg').prop('className')).toContain('red');
       expect(wrapper.find(Icon).prop('name')).toBe('checkbox');
     });
+
+    it('required should be reflected in the input', () => {
+      const wrapper = mount(
+        <Checkbox id="test" onChange={() => {}} required />,
+      );
+      expect(wrapper.find('input').prop('required')).toBe(true);
+    });
   });
 
   describe('className', () => {

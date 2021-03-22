@@ -63,6 +63,14 @@ function FieldNumberExample() {
         onChange={e => setErrorInput(e.target.value)}
         className="mb-5"
       />
+
+      <FieldNumber
+        validationText="i am required"
+        label="Is Required"
+        id="required-input"
+        className="mb-5"
+        required
+      />
     </>
   );
 }
