@@ -73,7 +73,7 @@ export class Frame extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const [isPhone, isTablet] = getBreakpointLayout();
+    const [isPhone, isTablet] = getBreakpointLayout(window);
 
     this.state = {
       isSkipFocused: false,
@@ -141,7 +141,7 @@ export class Frame extends React.PureComponent {
 
   handleResize = () => {
     const { isMobile } = this.state;
-    const [isPhone, isTablet] = getBreakpointLayout();
+    const [isPhone, isTablet] = getBreakpointLayout(window);
     const newBreakpoint = isPhone || isTablet;
     if (newBreakpoint !== isMobile) {
       this.setState({ isMobile: newBreakpoint });

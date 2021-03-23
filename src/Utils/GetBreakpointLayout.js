@@ -1,4 +1,4 @@
-export default () => {
+export default window => {
   if (!window) return [false, false, false, false];
 
   if (window.innerWidth <= 480) {
