@@ -23,10 +23,6 @@ const propTypes = {
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
     .isRequired,
   /**
-   * Applies styling to indicate the panel content has error
-   */
-  isError: PropTypes.bool,
-  /**
    * Are the panel contents visible
    */
   open: PropTypes.bool,
@@ -44,8 +40,8 @@ const propTypes = {
 function CollapsiblePanel(props) {
   const {
     children,
+    className,
     id,
-    isError = false,
     label,
     open,
     onToggle,
@@ -53,11 +49,9 @@ function CollapsiblePanel(props) {
   } = props;
 
   const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
-  const classname = classNames(
+  const classes = classNames(
     'fw-700 w-100 p-0 bn bg-white bg-blue-lighter-hover',
-    {
-      'input-error red': isError,
-    },
+    className,
   );
 
   const handleClick = event => {
@@ -78,7 +72,7 @@ function CollapsiblePanel(props) {
         <Block
           as="summary"
           border="bottom"
-          className={classname}
+          className={classes}
           color="neutral-600"
           flex
           itemSpacing="2"

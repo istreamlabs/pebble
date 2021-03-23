@@ -29,5 +29,5 @@ storiesOf('CollapsiblePanel', module).add('single', () => (
 ));
 
 storiesOf('CollapsiblePanel', module).add('error', () => (
-  <Example isError />
+  <Example className="input-error red" />
 ));
