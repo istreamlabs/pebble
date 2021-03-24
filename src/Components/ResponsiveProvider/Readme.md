@@ -3,7 +3,7 @@ This is a [React Context](https://reactjs.org/docs/context.html) Provider compon
 <div className="styleguide__callout">
 #### Will be required in 3.x.x of pebble
 
-In order to support backwards compatibility version 2.x.x of pebble will fall back to using multiple resize handlers for it's responsive behavior. This is has significant performance implications and it is recommended that you add `responsiveProvider` as a parent component in your application.
+In order to support backwards compatibility version 2.x.x of pebble will fall back to using multiple resize handlers for it's responsive behavior. This has significant performance implications and it is recommended that you add `responsiveProvider` as a parent component in your application.
 
 </div>
 
@@ -15,7 +15,7 @@ Basic `Create-React-App` application using pebble
 
 ```shell
 <BrowserRouter>
-  <ResponsiveProvider >
+  <ResponsiveProvider>
     <Frame navigation={nav} title="My Pebble Application">
       <ErrorBoundary>
         <Switch>
