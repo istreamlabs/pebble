@@ -11,7 +11,7 @@ import developerWarning from '../Utils/DeveloperWarning';
 const responsiveContext = createContext({ isConfigured: false });
 
 const WARNING_MESSAGE =
-  'Please consider wrapping your application in a `responsiveProvider` this will drastically improve performance and will be require in v3.X.X';
+  'Please consider wrapping your application in a `responsiveProvider` this will drastically improve performance and will be require in v3.X.X. see: https://pebble.istreamplanet.net/#/Components/ResponsiveProvider';
 
 function getSize() {
   if (typeof window === 'undefined') {

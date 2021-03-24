@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { getBreakpointLayout } from '../Utils';
 import useWindowSize from './UseWindowSize';
 
@@ -12,5 +10,4 @@ export default () => {
   const windowSize = useWindowSize();
 
   return getBreakpointLayout(windowSize);
-
 };
