@@ -91,9 +91,10 @@ function Card({
     ) : null;
 
   const content = sectioned
-    ? React.Children.map(children, child => (
-        <Section>{child}</Section>
-      ))
+    ? React.Children.map(
+        children,
+        child => child && <Section>{child}</Section>,
+      )
     : children;
 
   return (
