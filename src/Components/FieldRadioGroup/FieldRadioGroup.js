@@ -31,9 +31,12 @@ const propTypes = {
       helpText: PropTypes.node,
       value: PropTypes.string.isRequired,
       disabled: PropTypes.bool,
-      required: PropTypes.bool,
     }),
   ).isRequired,
+  /**
+   * If at least one option must be selected
+   */
+  required: PropTypes.bool,
   /**
    * The label for the group of radios
    */
@@ -46,6 +49,7 @@ const propTypes = {
 
 const defaultProps = {
   onChange: undefined,
+  required: false,
 };
 
 /**
@@ -61,9 +65,9 @@ function FieldRadioGroup({
   title,
   value,
   onChange,
+  required,
   name,
 }) {
-  const required = !!radios.find(r => r.required);
   // set the selected radio button or the first one
   const getRadioItems = () => {
     if (radios && radios.length > 0) {
@@ -85,7 +89,7 @@ function FieldRadioGroup({
     if (radios && radios.length > 0) {
       return radios.map(radio => (
         <Radio
-          required={radio.required}
+          required={required}
           disabled={radio.disabled}
           key={radio.id}
           id={radio.id}

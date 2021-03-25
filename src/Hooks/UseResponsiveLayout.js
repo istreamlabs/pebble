@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import { getBreakpointLayout } from '../Utils';
+import useWindowSize from './UseWindowSize';
 
 /*
  * Returns array where elements of the array correspond
@@ -7,18 +7,7 @@ import { getBreakpointLayout } from '../Utils';
  */
 
 export default () => {
-  const [layout, setLayout] = useState(getBreakpointLayout());
+  const windowSize = useWindowSize();
 
-  function handleResize() {
-    setLayout(getBreakpointLayout());
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  return layout;
+  return getBreakpointLayout(windowSize);
 };

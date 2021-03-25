@@ -11,7 +11,6 @@ const group1 = [
     value: 'text',
     label: 'Text',
     helpText: '1 hour turn around',
-    required: true,
   },
   {
     id: 'email',
@@ -72,6 +71,7 @@ function FieldRadioGroupExample() {
         onChange={setContactMethod}
         name="group1"
         className="mb-5"
+        required
       />
 
       <FieldRadioGroup
