@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import CollapsiblePanel from './CollapsiblePanel';
 
-function Example() {
+const Example = props => {
   const [isOpen, setIsOpen] = useState(true);
 
   const togglePanel = () => {
@@ -12,17 +12,22 @@ function Example() {
 
   return (
     <CollapsiblePanel
+      id="panel1"
+      label="panel 1"
       onToggle={togglePanel}
       open={isOpen}
-      id="panel1"
       padding={[3, 4, 5]}
-      label="panel 1"
+      {...props}
     >
       panel 1 content
     </CollapsiblePanel>
   );
-}
+};
 
 storiesOf('CollapsiblePanel', module).add('single', () => (
   <Example />
+));
+
+storiesOf('CollapsiblePanel', module).add('error', () => (
+  <Example className="input-error red" />
 ));
