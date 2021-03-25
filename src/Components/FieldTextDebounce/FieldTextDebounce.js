@@ -115,6 +115,10 @@ const propTypes = {
    */
   prefix: PropTypes.node,
   /**
+   * If the input should be required.
+   */
+  required: PropTypes.bool,
+  /**
    * Text or node to display after the value
    */
   suffix: PropTypes.node,
@@ -151,6 +155,7 @@ const defaultProps = {
   onBlur: undefined,
   onChange: undefined,
   onFocus: undefined,
+  required: false,
   size: 'medium',
   type: 'text',
   width: '100',
@@ -170,6 +175,7 @@ const FieldTextDebounce = ({
   onChange,
   onBlur,
   onFocus,
+  required,
   size,
   value,
   minimumCharacters,
@@ -272,6 +278,7 @@ const FieldTextDebounce = ({
         size={size}
         clearBtnFunc={internalClearBtnFunc}
         hideLabel={hideLabel}
+        required={required}
       />
     </div>
   );

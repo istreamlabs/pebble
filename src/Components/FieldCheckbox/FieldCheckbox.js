@@ -43,6 +43,10 @@ const propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * If the selection is required.
+   */
+  required: PropTypes.bool,
+  /**
    * Make the checkbox look like a toggle switch
    */
   toggle: PropTypes.bool,
@@ -59,11 +63,12 @@ const propTypes = {
 
 const defaultProps = {
   disabled: false,
+  hideLabel: false,
   isInvalid: false,
   isSelected: false,
   onChange: undefined,
+  required: false,
   toggle: false,
-  hideLabel: false,
 };
 
 /**
@@ -73,35 +78,42 @@ const defaultProps = {
  */
 
 function FieldCheckbox({
-  id,
-  label,
-  isSelected,
-  isInvalid,
   className,
+  disabled,
   helpText,
   hideLabel,
-  value,
+  id,
+  isInvalid,
+  isSelected,
+  label,
   onChange,
-  disabled,
+  required,
   toggle,
   validationText,
+  value,
   ...rest
 }) {
+  const labelSpan = (
+    <span className={classNames({ 'required-input': required })}>
+      {label}
+    </span>
+  );
   const checkboxMarkup = () => {
     const ariaLabelValue = hideLabel ? label : '';
-
     return (
       <Checkbox
         aria-label={ariaLabelValue}
-        toggle={toggle}
-        key={id}
-        id={id}
-        isSelected={isSelected}
-        isInvalid={isInvalid}
-        onChange={onChange}
-        value={value}
-        disabled={disabled}
+        aria-required={required}
         className={toggle ? 'toggle-input' : null}
+        disabled={disabled}
+        id={id}
+        isInvalid={isInvalid}
+        isSelected={isSelected}
+        key={id}
+        onChange={onChange}
+        required={required}
+        toggle={toggle}
+        value={value}
         {...rest}
       />
     );
@@ -134,7 +146,7 @@ function FieldCheckbox({
             </div>
           </div>
           <div className="ml-2">
-            {!hideLabel && label}
+            {!hideLabel && labelSpan}
             {helpTextMarkup()}
             {getValidationTextMarkup()}
           </div>
@@ -150,7 +162,7 @@ function FieldCheckbox({
       return (
         <Block direction="column" className="ml-2">
           <label htmlFor={id} className={labelClasses}>
-            {label}
+            {labelSpan}
             {helpTextMarkup()}
             {getValidationTextMarkup()}
           </label>

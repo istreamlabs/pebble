@@ -2,6 +2,7 @@
 .strike           { text-decoration: line-through; }
 .underline        { text-decoration: underline; }
 .underline-dotted { text-decoration: underline; text-decoration-style: dotted }
+.required-input::after { content:" *"; color: red; }
 
 @include respond-above(sm) {
   .no-underline-ns { text-decoration: none; }

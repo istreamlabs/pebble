@@ -105,6 +105,13 @@ function FieldTextExample() {
       />
 
       <FieldText
+        required
+        label="Is Required"
+        id="required-input"
+        className="mb-5"
+      />
+
+      <FieldText
         spellCheck={false}
         label="Spellcheck Disabled"
         id="spellcheck-input"

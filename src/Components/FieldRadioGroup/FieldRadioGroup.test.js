@@ -55,6 +55,30 @@ describe('FieldRadioGroup', () => {
     });
   });
 
+  describe('required', () => {
+    it('sets required correctly', () => {
+      const text = 'I am title text';
+
+      const wrapper = shallow(
+        <FieldRadioGroup
+          name="test"
+          radios={testRadios}
+          title={text}
+          required
+        />,
+      );
+      expect(wrapper.find('fieldset').props()['aria-required']).toBe(
+        true,
+      );
+      expect(wrapper.find('legend').props().className).toBe(
+        'required-input fw-700 db mb-2',
+      );
+      expect(wrapper.find('Radio[required]').length).toEqual(
+        testRadios.length,
+      );
+    });
+  });
+
   describe('helpTextMarkup', () => {
     it('renders helpText if set', () => {
       const text = 'I am help text';

@@ -59,6 +59,10 @@ const propTypes = {
    */
   onFocus: PropTypes.func,
   /**
+   * If the selection is required.
+   */
+  required: PropTypes.bool,
+  /**
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
    */
@@ -73,6 +77,7 @@ const defaultProps = {
   disabled: false,
   isSelected: false,
   onChange: undefined,
+  required: false,
 };
 
 function Radio({
@@ -86,6 +91,7 @@ function Radio({
   onChange,
   onFocus,
   onBlur,
+  required,
   value,
 }) {
   const handleChange = () => {
@@ -147,6 +153,7 @@ function Radio({
     <Block margin="0 0 3" className={classes} alignItems="start">
       <input
         id={id}
+        required={required}
         checked={isSelected || false}
         disabled={disabled}
         name={name}

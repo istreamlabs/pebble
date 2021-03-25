@@ -41,6 +41,14 @@ function Example() {
         className="mb-5"
       />
       <FieldTextDebounce
+        label="Required"
+        id="required-input"
+        value={value}
+        onDebounce={setValue}
+        required
+        className="mb-5"
+      />
+      <FieldTextDebounce
         label="Waits 3 seconds"
         id="long-input"
         delay={3000}
