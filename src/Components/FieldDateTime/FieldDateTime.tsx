@@ -1,14 +1,23 @@
 import './FieldDateTime.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Icon from '../Icon/Icon';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-datepicker' or its corre... Remove this comment to see the full error message
 import DatePicker from 'react-datepicker';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Label/Label' was resolved to '/Users/es... Remove this comment to see the full error message
 import Label from '../Label/Label';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Text from '../Text/Text';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import classNames from 'classnames';
 import { dimensionType } from '../../Types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'moment' or its corresponding t... Remove this comment to see the full error message
 import moment from 'moment';
 
 const propTypes = {
@@ -215,8 +224,10 @@ class FieldDateTime extends React.PureComponent {
   getDateFormat() {
     const { dateFormat, excludeTime, timeFormat } = this.props;
     return dateFormat !== undefined
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
       ? dateFormat
-      : !excludeTime
+      : // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+        !excludeTime
       ? `YYYY-MM-DD ${timeFormat} Z`
       : 'YYYY-MM-DD';
   }
@@ -225,6 +236,7 @@ class FieldDateTime extends React.PureComponent {
     const { helpText } = this.props;
     if (helpText) {
       return (
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
         <Text size="6" className="db mt-2">
           {helpText}
         </Text>
@@ -237,7 +249,9 @@ class FieldDateTime extends React.PureComponent {
     if (!isInvalid || validationText === undefined) return;
 
     return (
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
       <Text appearance="danger" className="db pt-2" size="6">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         {validationText}
       </Text>
     );
@@ -250,16 +264,19 @@ class FieldDateTime extends React.PureComponent {
       selectLocalDateTime,
       size,
       value,
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
     } = this.props;
     if (excludeTime) return;
 
     let formattedDate;
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const momentValue = this.convertIsoStringToMoment(value);
     if (momentValue) {
       selectLocalDateTime ? momentValue.utc() : momentValue.local();
       formattedDate = momentValue.format(this.getDateFormat());
     }
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
     const alternativeDateTimeClasses = classNames(
       'FieldDateTime-alternativeDateTime',
       {
@@ -292,6 +309,7 @@ class FieldDateTime extends React.PureComponent {
           {`${selectLocalDateTime ? 'UTC' : 'Local'}`}
         </Block>
         <Block
+          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           background={disabled ? 'neutral-300' : 'neutral-200'}
           className={alternativeDateTimeClasses}
           flex
@@ -303,6 +321,7 @@ class FieldDateTime extends React.PureComponent {
     );
   }
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   convertIsoStringToMoment(value) {
     let momentValue;
     if (value !== undefined && value !== null && value !== '') {
@@ -311,6 +330,7 @@ class FieldDateTime extends React.PureComponent {
         if (!momentValue.isValid()) {
           throw new Error('invalid isoString');
         }
+      // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
       } catch {
         throw new Error('invalid isoString');
       }
@@ -326,8 +346,10 @@ class FieldDateTime extends React.PureComponent {
       if (excludeTime) {
         value.startOf('day');
       } else {
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
         value.startOf('minute');
       }
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
       onChange(value.toISOString());
     } else {
       onChange('');
@@ -357,10 +379,12 @@ class FieldDateTime extends React.PureComponent {
       popperPlacement,
       required,
       selectLocalDateTime,
+      // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'value' implicitly has an 'any' type.
       size,
       timeFormat,
       value,
       width,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
       withPortal,
     } = this.props;
 
@@ -372,6 +396,7 @@ class FieldDateTime extends React.PureComponent {
     const momentMinDate = minDate ? moment(minDate) : undefined;
     const momentMaxDate = maxDate ? moment(maxDate) : undefined;
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldDate... Remove this comment to see the full error message
     const momentMinTime =
       minTime ||
       (maxTime
@@ -432,13 +457,17 @@ class FieldDateTime extends React.PureComponent {
             allowSameDay={!excludeTime}
             autoFocus={autoFocus}
             className={inputClasses}
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             calendarClassName="FieldDatePickerCalendar"
             dateFormat={this.getDateFormat()}
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             disabledKeyboardNavigation
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             disabled={disabled}
             filterDate={this.filterDate}
             id={id}
             isClearable={isClearable}
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             minDate={momentMinDate}
             maxDate={momentMaxDate}
             minTime={momentMinTime}
@@ -458,11 +487,14 @@ class FieldDateTime extends React.PureComponent {
               accessibilityLabel="open picker"
               className={iconClasses}
               name={excludeTime ? 'calendar' : 'date-time'}
+            // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             />
           </label>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         </Block>
         {this.renderAlternativeDateTimeDisplay()}
         {this.renderHelpTextMarkup()}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         {this.renderValidationTextMarkup()}
       </Block>
     );
@@ -473,4 +505,6 @@ FieldDateTime.propTypes = propTypes;
 FieldDateTime.defaultProps = defaultProps;
 FieldDateTime.displayName = 'FieldDateTime';
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'typeo... Remove this comment to see the full error message
 export default FieldDateTime;
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultProps' does not exist on type 'ty... Remove this comment to see the full error message

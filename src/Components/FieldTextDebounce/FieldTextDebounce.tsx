@@ -1,6 +1,9 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { useEffect, useState } from 'react';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../FieldText/FieldText' was resolved to '/... Remove this comment to see the full error message
 import FieldText from '../FieldText/FieldText';
 import PropTypes from 'prop-types';
 import { dimensionType } from '../../Types';
@@ -49,6 +52,7 @@ const propTypes = {
    */
   onChange: (props, propName, componentName) => {
     if (props[propName]) {
+      // @ts-expect-error ts-migrate(2749) FIXME: 'dimensionType' refers to a value, but is being us... Remove this comment to see the full error message
       return new Error(
         `Invalid prop \`onChange\` supplied to \`${componentName}\`. Instead use onDebounce.`,
       );
@@ -96,6 +100,7 @@ const propTypes = {
   ignoreSpellCheck: PropTypes.bool,
   /**
    * Changes the size of the input, giving it more or less padding and font size
+   // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
    * @type {PropTypes.Requireable<Size>}
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
@@ -121,9 +126,11 @@ const propTypes = {
   /**
    * Text or node to display after the value
    */
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
   suffix: PropTypes.node,
   /**
    * Text to display if the input is invalid.
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
    * The text should explain why the input is invalid.
    */
   validationText: PropTypes.string,
@@ -134,6 +141,7 @@ const propTypes = {
   /**
    * A valid css width (%, px, em, rem).
    *
+   // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
@@ -153,6 +161,7 @@ const defaultProps = {
   isReadOnly: false,
   minimumCharacters: 2,
   onBlur: undefined,
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   onChange: undefined,
   onFocus: undefined,
   required: false,
@@ -168,6 +177,7 @@ const defaultProps = {
  */
 
 const FieldTextDebounce = ({
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   clearBtnFunc,
   delay,
   hideLabel,

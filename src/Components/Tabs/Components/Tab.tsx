@@ -1,5 +1,8 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../../Button/Button' was resolved to '/Use... Remove this comment to see the full error message
 import classNames from 'classnames';
 
 import Button from '../../Button/Button';
@@ -30,6 +33,7 @@ const propTypes = {
   /**
    * Id of the element the button controls
    */
+  // @ts-expect-error ts-migrate(2722) FIXME: Cannot invoke an object which is possibly 'undefin... Remove this comment to see the full error message
   ariaControls: PropTypes.string,
   /**
    * Callback function when a tab is pressed
@@ -43,10 +47,12 @@ const propTypes = {
    * Changes the size of the tabs, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
    */
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
 const defaultProps = {
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   size: 'medium',
 };
 
@@ -73,6 +79,7 @@ const Tab = ({
 
   const classes = classNames(
     'tab',
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     {
       'tab-selected': isSelected,
       'w-100': fullWidth,

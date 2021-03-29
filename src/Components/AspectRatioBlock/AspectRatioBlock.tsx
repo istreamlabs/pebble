@@ -1,4 +1,6 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import Block from '../Block/Block';
 
@@ -18,9 +20,12 @@ const defaultProps = {
 };
 
 /**
+ // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
  * Used to embed responsive video, images, maps, etc. while maintaining a given aspect ratio.
+ // @ts-expect-error ts-migrate(2532) FIXME: Object is possibly 'undefined'.
  * Relies on the [css padding trick](https://css-tricks.com/aspect-ratio-boxes/)
  *
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * ---
  */
 
@@ -31,6 +36,7 @@ function AspectRatioBlock({ children, ratio, ...props }) {
       {...props}
       style={{
         position: 'relative',
+        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         paddingTop: `${(1 / ratio) * 100}%`,
         height: '0px',
       }}

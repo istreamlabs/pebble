@@ -1,14 +1,24 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'focus-trap-react' or its corre... Remove this comment to see the full error message
 import classNames from 'classnames';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import FocusTrap from 'focus-trap-react';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Button/Button' was resolved to '/Users/... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../ButtonGroup/ButtonGroup' was resolved t... Remove this comment to see the full error message
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Heading/Heading' was resolved to '/User... Remove this comment to see the full error message
 import ConditionalWrapper from '../ConditionalWrapper/ConditionalWrapper';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Heading from '../Heading/Heading';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Overlay/Overlay' was resolved to '/User... Remove this comment to see the full error message
 import Icon from '../Icon/Icon';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../TextContainer/TextContainer' was resolv... Remove this comment to see the full error message
 import Overlay from '../Overlay/Overlay';
 import TextContainer from '../TextContainer/TextContainer';
 
@@ -68,6 +78,7 @@ const propTypes = {
   mobileFullScreen: PropTypes.bool,
   /**
    * callback function when modal is closed
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * the `escape` key is also automatically assigned this callback when the modal is showing
    */
   onRequestClose: PropTypes.func,
@@ -79,13 +90,16 @@ const propTypes = {
    * Type of message to be displayed
    * @type {PropTypes.Requireable<AppearanceType>}
    */
+  // @ts-expect-error ts-migrate(2538) FIXME: Type 'undefined' cannot be used as an index type.
   type: PropTypes.oneOf(['default', 'warn', 'danger']),
   /**
+   // @ts-expect-error ts-migrate(2538) FIXME: Type 'undefined' cannot be used as an index type.
    * Boolean flag used to make the modal not dismissable by the user when true
    */
   notDismissable: PropTypes.bool.isRequired,
 };
 
+// @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
 const defaultProps = {
   mobileFullScreen: false,
   onRequestClose: () => {},
@@ -94,6 +108,7 @@ const defaultProps = {
 };
 
 /**
+ // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
  * A modal, sometimes referred to as a "dialog", is used to display information that requires the user's immediate attention or response.
  *
  * ---
@@ -101,6 +116,7 @@ const defaultProps = {
 
 function Modal({
   children,
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   className,
   footer,
   icon,
@@ -128,11 +144,13 @@ function Modal({
     />
   ) : null;
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   const headerMarkup = () => {
     const headerClass = HEADER_STYLES_MAP[type];
 
     const headerClasses = classNames({}, headerClass);
 
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const iconClass = ICON_COLOR_MAP[type];
 
     const iconClasses = classNames('mr-3', iconClass);
@@ -150,16 +168,20 @@ function Modal({
             <Icon name={icon} size="24" className={iconClasses} />
           )}
           {title && (
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <Heading element="4" responsive={false}>
               {title}
             </Heading>
+          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           )}
         </Block>
         {closeBtn}
       </Block>
-    ) : (
+    ) : // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'children' implicitly has an 'any' type.
+      (
       closeBtn
     );
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   };
 
   const windowSize = useWindowSize();
@@ -169,7 +191,8 @@ function Modal({
     const hasFooter = footer !== undefined;
 
     const footerContent = Array.isArray(footer)
-      ? footer.map((item, i) => React.cloneElement(item, { key: i }))
+      ? // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
+        footer.map((item, i) => React.cloneElement(item, { key: i }))
       : footer;
 
     if (hasFooter) {
@@ -179,6 +202,7 @@ function Modal({
           background="neutral-200"
           justify="end"
           padding={['4', '4 5']}
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         >
           <ButtonGroup fullWidth={windowSize.innerWidth <= 480}>
             {footerContent}
@@ -189,6 +213,7 @@ function Modal({
     return footerMarkup;
   };
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   const classes = classNames(
     'modal',
     'shadow-1',

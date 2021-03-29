@@ -1,4 +1,4 @@
-export default (props, propName, componentName) => {
+export default (props: any, propName: any, componentName: any) => {
   componentName = componentName || 'ANONYMOUS';
 
   // eslint-disable-next-line react/destructuring-assignment
@@ -33,9 +33,9 @@ export default (props, propName, componentName) => {
   return null;
 };
 
-const isValidToken = token => {
+const isValidToken = (token: any) => {
   if (token.split && token.split(' ').length > 1) {
-    return token.split(' ').every(t => isValidToken(t));
+    return token.split(' ').every((t: any) => isValidToken(t));
   }
   return [
     1,

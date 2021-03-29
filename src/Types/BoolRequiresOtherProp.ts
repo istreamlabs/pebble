@@ -1,4 +1,4 @@
-export default boolRequiresOtherProp => (props, propName, componentName) => {
+export default (boolRequiresOtherProp: any) => (props: any, propName: any, componentName: any) => {
   componentName = componentName || 'ANONYMOUS';
 
   if ((props[propName]) !== undefined && typeof props[propName] === 'boolean') {

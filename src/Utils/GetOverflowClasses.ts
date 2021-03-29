@@ -15,6 +15,7 @@ export default overflowProp => {
     // responsive overflow
   } else if (Array.isArray(overflowProp) && overflowProp.length) {
     overflowClasses = [];
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     overflowClasses.push(getOverflowClass(overflowProp[0]));
 
     if (overflowProp[1] !== undefined) {
@@ -34,6 +35,7 @@ export default overflowProp => {
     typeof overflowProp === 'object' &&
     overflowProp.constructor === Object
   ) {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 2 arguments, but got 1.
     overflowClasses = getOverflowClass(overflowProp);
   } else {
     return undefined;

@@ -1,7 +1,10 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { useState } from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '@storybook/react' or its corre... Remove this comment to see the full error message
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './FieldCheckbox' was resolved to '/Users/e... Remove this comment to see the full error message
 import FieldCheckbox from './FieldCheckbox';
 
 function FieldCheckboxExample() {
@@ -24,7 +27,9 @@ function FieldCheckboxExample() {
   );
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         id="1"
         label="Checkbox"
@@ -34,6 +39,7 @@ function FieldCheckboxExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         id="3"
         label="Checkbox with helpText"
@@ -44,6 +50,7 @@ function FieldCheckboxExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         disabled
         id="checkbox-disabled"
@@ -55,6 +62,7 @@ function FieldCheckboxExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         id="hiddenLabel"
         label="hidden label"
@@ -65,6 +73,7 @@ function FieldCheckboxExample() {
         hideLabel
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         isInvalid
         validationText="This checkbox is required"
@@ -78,6 +87,7 @@ function FieldCheckboxExample() {
         required
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         toggle
         id="toggle"
@@ -88,6 +98,7 @@ function FieldCheckboxExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         toggle
         id="toggle2"
@@ -99,6 +110,7 @@ function FieldCheckboxExample() {
         required
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         toggle
         id="toggleHelp"
@@ -109,6 +121,7 @@ function FieldCheckboxExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         disabled
         toggle
@@ -121,6 +134,7 @@ function FieldCheckboxExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         isInvalid
         validationText="This toggle is required"
@@ -135,6 +149,7 @@ function FieldCheckboxExample() {
         required
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         toggle
         id="hiddenLabelToggle"
@@ -145,6 +160,7 @@ function FieldCheckboxExample() {
         className="mb-5"
         hideLabel
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         isInvalid
         validationText="This toggle with hidden label is required"
@@ -159,6 +175,7 @@ function FieldCheckboxExample() {
         required
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldCheckbox
         helpText="hidden label toggle help text"
         toggle
@@ -174,8 +191,11 @@ function FieldCheckboxExample() {
   );
 }
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 storiesOf('FieldCheckbox', module).add('all', () => (
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   <>
+    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <FieldCheckboxExample />
   </>
 ));

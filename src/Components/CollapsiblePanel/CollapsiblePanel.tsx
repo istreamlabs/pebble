@@ -1,6 +1,10 @@
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Icon from '../Icon/Icon';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import React from 'react';
 import classNames from 'classnames';
 
@@ -33,6 +37,7 @@ const propTypes = {
 };
 
 /**
+ // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
  * A detail/summary element that provides a way to display information when the component is in an "open" state
  *
  */
@@ -48,6 +53,7 @@ function CollapsiblePanel(props) {
     ...rest
   } = props;
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
   const classes = classNames(
     'fw-700 w-100 p-0 bn bg-white bg-blue-lighter-hover',
@@ -60,15 +66,21 @@ function CollapsiblePanel(props) {
   };
 
   return (
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     <Block
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       as="details"
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       displayBlock
       open={open}
       id={id}
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       data-testid={id}
       {...rest}
     >
+      {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
       {typeof label === 'string' ? (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Block
           as="summary"
           border="bottom"

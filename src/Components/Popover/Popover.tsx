@@ -1,14 +1,20 @@
 import './Popover.scss';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-popper' or its correspon... Remove this comment to see the full error message
 import { Manager, Popper, Reference } from 'react-popper';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { useState } from 'react';
 import { colorType, placementType } from '../../Types';
 
 import ConditionalWrapper from '../ConditionalWrapper/ConditionalWrapper';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'focus-trap-react' or its corre... Remove this comment to see the full error message
 import FocusTrap from 'focus-trap-react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-merge-refs' or its corre... Remove this comment to see the full error message
 import classNames from 'classnames';
 import mergeRefs from 'react-merge-refs';
+// @ts-expect-error ts-migrate(2749) FIXME: 'colorType' refers to a value, but is being used a... Remove this comment to see the full error message
 import useKeyboardEvent from '../../Hooks/UseKeyboardEvent';
 
 const propTypes = {
@@ -21,6 +27,7 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'placementType' refers to a value, but is being us... Remove this comment to see the full error message
    * Automatically close after the given amount of milliseconds
    */
   closeAfter: PropTypes.number,
@@ -55,6 +62,7 @@ const propTypes = {
    * to properly display the popover in the specified placement
    *
    * One of: `auto`, `auto-start`, `auto-end`, `top`, `top-start`, `top-end`, `right`, `right-start`, `right-end`, `bottom`, `bottom-start`, `bottom-end`, `left`, `left-start`, `left-end`,
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
    * @type {PropTypes.Requireable<PlacementType>}
    */
   placement: placementType,
@@ -87,12 +95,15 @@ const Popover = props => {
     closeAfter,
     closeOnContentClick,
     content,
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'ref' implicitly has an 'any' type.
     hideArrow,
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'className' implicitly has an 'any' type... Remove this comment to see the full error message
     isOpen,
     onToggle,
     placement,
     trapFocus,
   } = props;
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'e' implicitly has an 'any' type.
   const [showing, setShowing] = useState(isOpen);
 
   const popoverRef = React.useRef();
@@ -128,11 +139,14 @@ const Popover = props => {
       return;
     }
 
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     if (e.target === popover || popover.contains(e.target)) {
       if (closeOnContentClick) {
         close();
+      // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'children' implicitly has an 'any' type.
       }
       return;
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     }
 
     close();
@@ -144,18 +158,26 @@ const Popover = props => {
       return () => {
         clearTimeout(timer);
       };
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     }
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   }, [showing]);
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   React.useEffect(() => {
+    // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'ref' implicitly has an 'any' type... Remove this comment to see the full error message
     setShowing(isOpen);
   }, [isOpen]);
 
   const renderTrigger = (ref, className) => {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     return React.cloneElement(children, {
       onClick: e => {
+        // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'ref' implicitly has an 'any' type... Remove this comment to see the full error message
         onTriggerClicked();
+        // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'arrowProps' implicitly has an 'an... Remove this comment to see the full error message
         if (children.props.onClick) {
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           children.props.onClick(e);
         }
       },
@@ -171,6 +193,7 @@ const Popover = props => {
     return showing ? close() : open();
   };
 
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   let backgroundColor = 'white';
 
   if (content.props && content.props.background) {
@@ -192,9 +215,11 @@ const Popover = props => {
   return (
     <ConditionalWrapper
       condition={trapFocus}
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       wrapper={children => (
         <FocusTrap
           active={showing}
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           focusTrapOptions={{
             clickOutsideDeactivates: true,
           }}

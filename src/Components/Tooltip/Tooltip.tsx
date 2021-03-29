@@ -1,6 +1,10 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import classNames from 'classnames';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-popper' or its correspon... Remove this comment to see the full error message
 import { Manager, Popper, Reference } from 'react-popper';
 import { placementType } from '../../Types';
 
@@ -47,13 +51,16 @@ export class Tooltip extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'props' implicitly has an 'any' type.
     const { active } = this.props;
 
     this.state = {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Tooltip'.
       tooltipVisible: active,
     };
   }
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Tooltip'.
   handleMouseEnter = () => {
     this.setState({ tooltipVisible: true });
   };
@@ -76,9 +83,12 @@ export class Tooltip extends React.PureComponent {
     if (typeof children === 'string') {
       return (
         <span
+          // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'ref' implicitly has an 'any' type... Remove this comment to see the full error message
           ref={ref}
+          // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Tooltip'.
           onMouseEnter={this.handleMouseEnter}
           onFocus={this.handleFocus}
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           onMouseLeave={this.handleMouseLeave}
           onBlur={this.handleBlur}
           // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
@@ -91,6 +101,7 @@ export class Tooltip extends React.PureComponent {
 
     return React.cloneElement(children, {
       ref,
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       onMouseEnter: this.handleMouseEnter,
       onFocus: this.handleFocus,
       onMouseLeave: this.handleMouseLeave,
@@ -101,14 +112,18 @@ export class Tooltip extends React.PureComponent {
 
   renderTooltip = ({ ref, placement, style }) => {
     const { className, content } = this.props;
+    // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'ref' implicitly has an 'any' type... Remove this comment to see the full error message
     const classes = classNames('tooltip', className);
 
+    // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'placement' implicitly has an 'any... Remove this comment to see the full error message
     return (
       <div
         className={classes}
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Tooltip'.
         data-tooltip-placement={placement}
         ref={ref}
         role="tooltip"
+        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         style={style}
       >
         {content}
@@ -118,15 +133,20 @@ export class Tooltip extends React.PureComponent {
 
   render() {
     const { placement } = this.props;
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     const { tooltipVisible } = this.state;
 
     return (
       <Manager>
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Tooltip'. */}
         <Reference>{this.renderTrigger}</Reference>
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Tooltip'. */}
         {tooltipVisible && (
+          // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
           <Popper
             placement={placement}
             modifiers={{
+              // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
               preventOverflow: {
                 enabled: true,
               },

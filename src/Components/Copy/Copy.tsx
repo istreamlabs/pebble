@@ -1,7 +1,12 @@
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Button/Button' was resolved to '/Users/... Remove this comment to see the full error message
 import Button from '../Button/Button';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Popover/Popover' was resolved to '/User... Remove this comment to see the full error message
 import Popover from '../Popover/Popover';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import React from 'react';
 import classNames from 'classnames';
 import { colorType } from '../../Types';
@@ -16,6 +21,7 @@ const propTypes = {
    */
   value: PropTypes.string,
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'colorType' refers to a value, but is being used a... Remove this comment to see the full error message
    * Name of the [icon](/#/Components/Icon) to place before the button label text
    */
   icon: PropTypes.string,
@@ -41,6 +47,7 @@ const propTypes = {
    */
   popoverBackground: colorType,
   /**
+   // @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
    * [Color identifier](/#/Styles/Color) of the text color
    * @type {PropTypes.Requireable<Color>}
    */
@@ -50,9 +57,12 @@ const propTypes = {
    */
   popoverClassName: PropTypes.string,
   /**
+   // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string | undefined' is not assig... Remove this comment to see the full error message
    * Changes the size of the button, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    */
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Additional classNames to add to button
@@ -65,6 +75,7 @@ const propTypes = {
   /**
    * Visually hidden text for screen readers
    */
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   accessibilityLabel: PropTypes.string,
 };
 

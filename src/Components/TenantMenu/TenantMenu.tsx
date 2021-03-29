@@ -1,13 +1,21 @@
 import './TenantMenu.scss';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import * as React from 'react';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Button/Button' was resolved to '/Users/... Remove this comment to see the full error message
 import Button from '../Button/Button';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Heading/Heading' was resolved to '/User... Remove this comment to see the full error message
 import Heading from '../Heading/Heading';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Icon from '../Icon/Icon';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Link/Link' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Link from '../Link/Link';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'framer-motion' or its correspo... Remove this comment to see the full error message
 import Text from '../Text/Text';
 import { motion } from 'framer-motion';
 import { tenantType } from '../../Types';
@@ -25,6 +33,7 @@ const propTypes = {
   /**
    * Callback function when defined, display a button to create a new tenant
    */
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'custom' implicitly has an 'any' type.
   onAddTenant: PropTypes.func,
   /**
    * Function to call when a tenant is clicked
@@ -46,6 +55,7 @@ const defaultProps = {
 
 const variants = {
   popUp: custom => {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     return {
       opacity: [0, 1],
       y: [24, 0],
@@ -60,9 +70,11 @@ const variants = {
 
 function TenantMenu(props) {
   const {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     currentTenantId,
     emptyMessage,
     onTenantChange,
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     onAddTenant,
     tenants,
     onCloseTenantMenu,
@@ -75,6 +87,7 @@ function TenantMenu(props) {
       <Block
         color="neutral-100"
         background="black-30"
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         padding={['2 5', '3 5']}
         alignItems="center"
         className="relative"
@@ -86,6 +99,7 @@ function TenantMenu(props) {
             element="4"
             color="neutral-100"
             size="5"
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             responsive={false}
           >
             Organizations
@@ -101,8 +115,10 @@ function TenantMenu(props) {
             />
           )}
         </Block>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         {onCloseTenantMenu && (
           <Button
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             onClick={onCloseTenantMenu}
             icon={isMobile ? 'close' : 'nav-left'}
             plain
@@ -114,9 +130,11 @@ function TenantMenu(props) {
     );
   };
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   const renderTenants = () => {
     if (!tenants || (tenants && tenants.length === 0)) {
       return (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <Block direction="column" padding="5" color="neutral-300">
           <Block
             border={{ side: 'all', color: 'neutral-600' }}
@@ -124,6 +142,7 @@ function TenantMenu(props) {
             padding="5"
             justify="center"
           >
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             {emptyMessage}
           </Block>
         </Block>
@@ -132,13 +151,17 @@ function TenantMenu(props) {
 
     const tenantMarkup = (
       <motion.ul className="tenant-menu">
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         {tenants.map(({ name, realm, id, url }, i) => (
           <motion.li
             className="bg-hover bg-neutral-800-hover"
             key={i}
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             custom={i}
             animate="popUp"
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             variants={variants}
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             whileHover={{ paddingLeft: 8 }}
           >
             <Link
@@ -146,6 +169,7 @@ function TenantMenu(props) {
               href={url}
               onClick={onTenantChange}
               className="tenant-link"
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             >
               <Block
                 alignItems="center"
@@ -154,6 +178,7 @@ function TenantMenu(props) {
               >
                 <Block direction="column" flex>
                   <Text bold>{name}</Text>
+                  {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
                   <Text color="neutral-400" size="6">
                     {realm}
                   </Text>
@@ -166,10 +191,12 @@ function TenantMenu(props) {
                     height="16px"
                     background="white"
                     className="relative"
+                  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                   >
                     <Icon
                       name="check-circle"
                       className="brand-orange absolute"
+                      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                       accessibilityLabel="currently selected organization"
                       size="24"
                     />

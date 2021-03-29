@@ -1,4 +1,6 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {
@@ -24,8 +26,10 @@ import {
   textSizeType,
 } from '../../Types';
 
+// @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
 import './Block.scss';
 
+// @ts-expect-error ts-migrate(2464) FIXME: A computed property name must be of type 'string',... Remove this comment to see the full error message
 const FLEX_MAP = {
   [true]: '1 1',
   [false]: '0 0',
@@ -51,9 +55,12 @@ const propTypes = {
   /**
    * Alignment of the contents along the cross axis when there is extra space. This property has no effect when there is only one line of flex items.
    *
+   // @ts-expect-error ts-migrate(2749) FIXME: 'colorType' refers to a value, but is being used a... Remove this comment to see the full error message
    * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
    *
+   // @ts-expect-error ts-migrate(2749) FIXME: 'borderType' refers to a value, but is being used ... Remove this comment to see the full error message
    * One of: `start`, `center`, `end`, `between`, `around`, `stretch`
+   // @ts-expect-error ts-migrate(2749) FIXME: 'colorType' refers to a value, but is being used a... Remove this comment to see the full error message
    *
    * @type {PropTypes.Requireable<AlignContent>}
    */
@@ -62,6 +69,7 @@ const propTypes = {
       'start',
       'center',
       'end',
+      // @ts-expect-error ts-migrate(2749) FIXME: 'dimensionType' refers to a value, but is being us... Remove this comment to see the full error message
       'between',
       'around',
       'stretch',
@@ -69,21 +77,29 @@ const propTypes = {
     PropTypes.array,
   ]),
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'textSizeType' refers to a value, but is being use... Remove this comment to see the full error message
    * Alignment of flex items laid out along the cross axis on the current line
    *
+   // @ts-expect-error ts-migrate(2749) FIXME: 'spacingType' refers to a value, but is being used... Remove this comment to see the full error message
    * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
    *
+   // @ts-expect-error ts-migrate(2749) FIXME: 'overflowType' refers to a value, but is being use... Remove this comment to see the full error message
    * One of: `start`, `center`, `end`, `stretch`, `baseline`
+   // @ts-expect-error ts-migrate(2749) FIXME: 'spacingType' refers to a value, but is being used... Remove this comment to see the full error message
    * @type {PropTypes.Requireable<AlignItems>}
    */
+  // @ts-expect-error ts-migrate(2749) FIXME: 'itemSpacingType' refers to a value, but is being ... Remove this comment to see the full error message
   alignItems: PropTypes.oneOfType([
+    // @ts-expect-error ts-migrate(2749) FIXME: 'radiusType' refers to a value, but is being used ... Remove this comment to see the full error message
     PropTypes.oneOf([
       'start',
       'center',
+      // @ts-expect-error ts-migrate(2749) FIXME: 'textAlignType' refers to a value, but is being us... Remove this comment to see the full error message
       'end',
       'stretch',
       'baseline',
     ]),
+    // @ts-expect-error ts-migrate(2749) FIXME: 'dimensionType' refers to a value, but is being us... Remove this comment to see the full error message
     PropTypes.array,
   ]),
   /**
@@ -127,6 +143,7 @@ const propTypes = {
   ]),
   /**
    * By default, Blocks are `display:flex`. This sets the block element to be a block element instead.
+   // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Block'.
    * When this is true, flex properties will be ignored
    */
   displayBlock: PropTypes.bool,
@@ -178,14 +195,17 @@ const propTypes = {
   flex: PropTypes.oneOfType([
     PropTypes.bool,
     PropTypes.oneOf(['grow', 'shrink']),
+    // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     PropTypes.shape({
       grow: PropTypes.number,
       shrink: PropTypes.number,
     }),
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'flex' implicitly has an 'any' type.
   ]),
   /**
    * A valid css width (%, px, em, rem) or a value of 1-9 corresponding to [height tokens](/#/Styles/Height).
    *
+   // @ts-expect-error ts-migrate(7053) FIXME: Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
@@ -197,20 +217,25 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, where each element is one of the following.
    *
    * One of: `around`, `between`, `center`, `evenly`, `start`, `end`
+   // @ts-expect-error ts-migrate(2550) FIXME: Property 'assign' does not exist on type 'ObjectCo... Remove this comment to see the full error message
    * @type {PropTypes.Requireable<Justify>}
    */
+  // @ts-expect-error ts-migrate(2550) FIXME: Property 'assign' does not exist on type 'ObjectCo... Remove this comment to see the full error message
   justify: PropTypes.oneOfType([
     PropTypes.oneOf([
       'around',
       'between',
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'assign' does not exist on type 'ObjectCo... Remove this comment to see the full error message
       'center',
       'evenly',
       'start',
       'end',
     ]),
+    // @ts-expect-error ts-migrate(2550) FIXME: Property 'assign' does not exist on type 'ObjectCo... Remove this comment to see the full error message
     PropTypes.array,
   ]),
   /**
+   // @ts-expect-error ts-migrate(2550) FIXME: Property 'assign' does not exist on type 'ObjectCo... Remove this comment to see the full error message
    * font size to apply to apply to all child text elements without explicitly set sizes,
    * based on the [typography scale](/#/Styles/Typography)
    *
@@ -245,6 +270,7 @@ const propTypes = {
   /**
    * _**Use the margin prop instead. Support for this prop will end in a future release.**_
    *
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'child' implicitly has an 'any' type.
    * Margin [space](/#/Styles/Spacing) to be added below this block.
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
@@ -254,8 +280,10 @@ const propTypes = {
    */
   marginBottom: spacingType,
   /**
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * A valid css width (%, px, em, rem), or a value of 1-9 corresponding to [width tokens](/#/Styles/Width), that sets the maximum width of the element.
    *
+   // @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultProps' does not exist on type 'ty... Remove this comment to see the full error message
    * Or one of: 'none', 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
    * For responsive behavior, pass an array with length up to 4, with a valid value for each element.

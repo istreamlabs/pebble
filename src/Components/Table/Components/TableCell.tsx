@@ -1,15 +1,19 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useMobileLayout } from '../../../Hooks';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../../Block/Block' was resolved to '/Users... Remove this comment to see the full error message
 import { dimensionType, spacingType } from '../../../Types';
 
 import Block from '../../Block/Block';
 
 const propTypes = {
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'spacingType' refers to a value, but is being used... Remove this comment to see the full error message
    * Contents of the TableCell
    */
+  // @ts-expect-error ts-migrate(2749) FIXME: 'dimensionType' refers to a value, but is being us... Remove this comment to see the full error message
   children: PropTypes.node,
   /**
    * Additional classes to apply
@@ -20,6 +24,7 @@ const propTypes = {
    *
    * One of: 1, 2, 3, 4, 5, 6, 7 , 8
    *
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */

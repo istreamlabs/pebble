@@ -1,11 +1,17 @@
 import './MainMenu.scss';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-router' or its correspon... Remove this comment to see the full error message
 import { matchPath, withRouter } from 'react-router';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Button/Button' was resolved to '/Users/... Remove this comment to see the full error message
 import Button from '../Button/Button';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './MenuItem/MenuItem' was resolved to '/Use... Remove this comment to see the full error message
 import MenuItem from './MenuItem/MenuItem';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import classNames from 'classnames';
 
 const propTypes = {
@@ -100,6 +106,7 @@ class MainMenu extends React.Component {
   static shouldBeOpen(location, item) {
     return (
       (!!item.href &&
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'location' implicitly has an 'any' type.
         matchPath(location.pathname, {
           path: item.href,
           strict: true,
@@ -107,11 +114,13 @@ class MainMenu extends React.Component {
       (item.aliases || []).some(
         path => matchPath(location.pathname, { path }) !== null,
       ) ||
+      // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'path' implicitly has an 'any' type.
       (item.items || []).some(i => MainMenu.shouldBeOpen(location, i))
     );
   }
 
   renderHeader = () => {
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'i' implicitly has an 'any' type.
     const {
       mobileHeaderContent,
       onShowTenantMenu,
@@ -119,28 +128,37 @@ class MainMenu extends React.Component {
     } = this.props;
     return (
       <div className="main-menu-title">
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'MainMenu'... Remove this comment to see the full error message */}
         <div className="dn bb b-neutral-300 w-100 flex-m pv-3 ph-5 justify-between-m">
           {title}
           {onShowTenantMenu && (
             <Button
               plain
+              // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
               onClick={onShowTenantMenu}
               icon="menu-dots"
               accessibilityLabel="show organization menu"
+              // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
               size="large"
             />
           )}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         </div>
         {mobileHeaderContent && (
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           <div className="bg-neutral-100 b-neutral-300 bb dn-m text-right pv-3 ph-4 ph-5-ns">
+            {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
             {mobileHeaderContent}
+          {/* @ts-expect-error ts-migrate(7006) FIXME: Parameter 'startExpanded' implicitly has an 'any' ... Remove this comment to see the full error message */}
           </div>
         )}
       </div>
     );
   };
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'MainMenu'... Remove this comment to see the full error message
   renderItem(menu, startExpanded) {
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'i' implicitly has an 'any' type.
     const { location } = this.props;
     return menu.map((item, i) => (
       <MenuItem
@@ -150,31 +168,42 @@ class MainMenu extends React.Component {
         location={location}
       />
     ));
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'MainMenu'... Remove this comment to see the full error message
   }
 
   render() {
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     const {
       className,
       menu,
       startMenuExpanded,
       auxMenu,
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       startAuxMenuExpanded,
     } = this.props;
 
     return (
       <nav
+        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         className={classNames('main-menu', className)}
         aria-label="Main navigation"
       >
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <div className="main-menu-top">
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
           {this.renderHeader()}
+          {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
           <ul className="main-menu-items">
             {this.renderItem(menu, startMenuExpanded)}
           </ul>
         </div>
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         {auxMenu && (
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           <div className="main-menu-bottom">
+            {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'typeo... Remove this comment to see the full error message */}
             <ul className="main-menu-items">
+              {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'displayName' does not exist on type 'typ... Remove this comment to see the full error message */}
               {this.renderItem(auxMenu, startAuxMenuExpanded)}
             </ul>
           </div>

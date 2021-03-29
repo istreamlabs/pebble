@@ -2,9 +2,12 @@ import './Card.scss';
 
 import { Header, Section } from './Components';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import React from 'react';
 import classNames from 'classnames';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import { overflowType } from '../../Types';
 
 import Block from '../Block/Block';
@@ -15,6 +18,7 @@ const propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'overflowType' refers to a value, but is being use... Remove this comment to see the full error message
    * Additional ClassNames to add to card
    */
   className: PropTypes.string,
@@ -39,6 +43,7 @@ const propTypes = {
    * or {"vertical": "...", "horizontal": "..."}
    *
    * For responsive behavior, pass an array with length up to 4, with a valid value for each element.
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * @type {PropTypes.Requireable<Overflow>}
    */
   overflow: overflowType,
@@ -47,12 +52,15 @@ const propTypes = {
    */
   sectioned: PropTypes.bool,
   /**
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'child' implicitly has an 'any' type.
    * Title content of the card
    */
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   title: PropTypes.node,
 };
 
 const defaultProps = {
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   children: null,
   sectioned: false,
   muted: false,

@@ -1,7 +1,10 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { useState } from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '@storybook/react' or its corre... Remove this comment to see the full error message
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './FieldToggle' was resolved to '/Users/esj... Remove this comment to see the full error message
 import FieldToggle from './FieldToggle';
 
 function FieldToggleExample() {
@@ -11,7 +14,9 @@ function FieldToggleExample() {
   const [invalidToggle, setInvalidToggle] = useState(false);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldToggle
         id="demo-toggle"
         label="toggle"
@@ -20,6 +25,7 @@ function FieldToggleExample() {
         onChange={setToggle}
         className="mb-5"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldToggle
         required
         id="toggleRequired"
@@ -29,6 +35,7 @@ function FieldToggleExample() {
         onChange={setToggle}
         className="mb-5"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldToggle
         id="toggleHelp"
         label="toggle with helpText"
@@ -39,6 +46,7 @@ function FieldToggleExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldToggle
         disabled
         id="disabledToggle"
@@ -50,6 +58,7 @@ function FieldToggleExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldToggle
         isInvalid
         validationText="Please acknowledge the terms of service."
@@ -62,6 +71,7 @@ function FieldToggleExample() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldToggle
         id="hiddenLabel"
         label="hidden label"
@@ -75,8 +85,11 @@ function FieldToggleExample() {
   );
 }
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 storiesOf('FieldToggle', module).add('all', () => (
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   <>
+    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <FieldToggleExample />
   </>
 ));

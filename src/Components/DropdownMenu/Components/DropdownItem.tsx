@@ -1,6 +1,10 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../../Button/Button' was resolved to '/Use... Remove this comment to see the full error message
 import classNames from 'classnames';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../../LinkButton/LinkButton' was resolved ... Remove this comment to see the full error message
 import Button from '../../Button/Button';
 import LinkButton from '../../LinkButton/LinkButton';
 
@@ -30,6 +34,7 @@ const defaultProps = {
  * ---
  */
 
+// @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
 function DropdownItem({ children, className, href, ...props }) {
   const classes = classNames(
     'dropdown-item',
@@ -39,6 +44,7 @@ function DropdownItem({ children, className, href, ...props }) {
   );
 
   if (href) {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     return (
       <LinkButton
         {...props}

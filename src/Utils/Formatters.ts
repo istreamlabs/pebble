@@ -1,5 +1,7 @@
 export default {
-  number: (value, { precision }) => {
+  number: (value: any, {
+    precision
+  }: any) => {
     if (typeof value === 'number') {
       return Intl.NumberFormat(navigator.language, {
         minimumFractionDigits: precision || null,
@@ -9,7 +11,7 @@ export default {
     return value;
   },
   currency: (currencyCode = 'USD') => {
-    return value => {
+    return (value: any) => {
       const currencyFormat = new Intl.NumberFormat(undefined, {
         style: 'currency',
         currency: currencyCode,
@@ -17,7 +19,9 @@ export default {
       return currencyFormat.format(value);
     };
   },
-  percentage: (value, { precision }) => {
+  percentage: (value: any, {
+    precision
+  }: any) => {
     if (typeof value === 'number') {
       return Intl.NumberFormat(undefined, {
         style: 'percent',

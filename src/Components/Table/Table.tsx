@@ -1,14 +1,19 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import { borderType, dimensionType } from '../../Types';
 
+// @ts-expect-error ts-migrate(2749) FIXME: 'borderType' refers to a value, but is being used ... Remove this comment to see the full error message
 import Block from '../Block/Block';
 
 const propTypes = {
   /**
    *
+   // @ts-expect-error ts-migrate(2749) FIXME: 'dimensionType' refers to a value, but is being us... Remove this comment to see the full error message
    * Apply a `solid 1px neutral-300` border to a specific side by passing one of the following strings:
    *
    * 'all', 'vertical', 'horizontal', 'top', 'right', 'bottom', 'left'
@@ -19,6 +24,7 @@ const propTypes = {
    *   color: "neutral-300",
    *   side: "all",
    *   size: "1px",
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    *   style: "solid",
    * }
    * ```

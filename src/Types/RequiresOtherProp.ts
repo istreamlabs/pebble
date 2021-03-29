@@ -1,4 +1,4 @@
-export default requiresOtherProp => (props, propName, componentName) => {
+export default (requiresOtherProp: any) => (props: any, propName: any, componentName: any) => {
   componentName = componentName || 'ANONYMOUS';
 
   if (props[propName] !== undefined) {

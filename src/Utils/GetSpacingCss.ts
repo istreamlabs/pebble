@@ -21,9 +21,13 @@ export default function getDimensionCss(
 
   if (
     typeof value === 'string' &&
+    // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
     (value.includes('px') ||
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
       value.includes('em') ||
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
       value.includes('rem') ||
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
       value.includes('%'))
   ) {
     dimensionCss.styles = value;
@@ -103,6 +107,7 @@ export default function getDimensionCss(
     classes.push(`${classPrefix}${value}${suffix}`);
   }
 
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'never[]... Remove this comment to see the full error message
   dimensionCss.classes = classes;
 
   return dimensionCss;

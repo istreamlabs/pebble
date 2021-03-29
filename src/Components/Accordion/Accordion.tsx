@@ -3,9 +3,12 @@ import React, {
   cloneElement,
   isValidElement,
   useState,
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 } from 'react';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -42,6 +45,7 @@ const defaultProps = {
 /**
  * Display a list of panels that expand/collapse to reveal more information.
  *
+ // @ts-expect-error ts-migrate(2550) FIXME: Property 'assign' does not exist on type 'ObjectCo... Remove this comment to see the full error message
  * ---
  */
 
@@ -54,6 +58,7 @@ function Accordion(props) {
     onChange,
     ...rest
   } = props;
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'selectedId' implicitly has an 'any' typ... Remove this comment to see the full error message
   const classes = classNames('accordion', className);
 
   const startOpen =
@@ -64,6 +69,7 @@ function Accordion(props) {
           return Object.assign(result, {
             [panelId]: true,
           });
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'child' implicitly has an 'any' type.
         }, {})
       : {};
 
@@ -73,6 +79,7 @@ function Accordion(props) {
     const isOpen = !!active[selectedId];
     if (allowMultiple) {
       setActive({
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         ...active,
         [selectedId]: !isOpen,
       });

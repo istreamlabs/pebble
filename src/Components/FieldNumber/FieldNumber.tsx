@@ -1,12 +1,19 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import classNames from 'classnames';
 
 import { dimensionType } from '../../Types';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Label/Label' was resolved to '/Users/es... Remove this comment to see the full error message
 import Label from '../Label/Label';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Input/Input' was resolved to '/Users/es... Remove this comment to see the full error message
 import Input from '../Input/Input';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Text from '../Text/Text';
 
 const propTypes = {
@@ -148,10 +155,12 @@ class FieldNumber extends React.PureComponent {
         required={required}
       >
         {label}
+      {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldNumb... Remove this comment to see the full error message */}
       </Label>
     );
   }
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   getValidationTextMarkup() {
     const { isInvalid, validationText } = this.props;
 
@@ -161,11 +170,13 @@ class FieldNumber extends React.PureComponent {
       <Text
         appearance="danger"
         size="6"
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldNumb... Remove this comment to see the full error message
         className="field-text-validation pt-2"
       >
         {validationText}
       </Text>
     );
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   }
 
   getHelpTextMarkup() {
@@ -176,11 +187,13 @@ class FieldNumber extends React.PureComponent {
         <Text size="6" className="db mt-2">
           {helpText}
         </Text>
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldNumb... Remove this comment to see the full error message
       );
     }
     return null;
   }
 
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   renderChildren() {
     const {
       className,
@@ -194,9 +207,11 @@ class FieldNumber extends React.PureComponent {
 
     return (
       <Input
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldNumb... Remove this comment to see the full error message
         ariaLabel={ariaLabelValue}
         required={required}
         type="number"
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         {...rest}
       />
     );
@@ -205,9 +220,11 @@ class FieldNumber extends React.PureComponent {
   render() {
     const { className, width } = this.props;
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'FieldNumb... Remove this comment to see the full error message
     const classes = classNames('field-text', className);
 
     return (
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Block direction="column" className={classes} width={width}>
         {this.getLabel()}
         {this.renderChildren()}
@@ -219,7 +236,10 @@ class FieldNumber extends React.PureComponent {
 }
 
 FieldNumber.defaultProps = defaultProps;
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'defaultProps' does not exist on type 'ty... Remove this comment to see the full error message
 FieldNumber.propTypes = propTypes;
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'propTypes' does not exist on type 'typeo... Remove this comment to see the full error message
 FieldNumber.displayName = 'FieldNumber';
 
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'displayName' does not exist on type 'typ... Remove this comment to see the full error message
 export default FieldNumber;

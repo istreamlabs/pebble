@@ -2,6 +2,7 @@
  * When editing a type, be sure to update JSDoc type definitions at ../typedefs.js for VSCODE intellisense
  */
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import { PropTypes } from 'prop-types';
 
 export { default as itemSpacingType } from './ItemSpacingType';

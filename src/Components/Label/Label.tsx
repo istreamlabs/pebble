@@ -1,5 +1,8 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import classNames from 'classnames';
 
 import Block from '../Block/Block';
@@ -23,10 +26,13 @@ const propTypes = {
    */
   hide: PropTypes.bool,
   /**
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * The unique identifier for field this label is for
    */
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   id: PropTypes.string.isRequired,
   /**
+   // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
    * Applies styling to indicate the input is invalid
    */
   invalid: PropTypes.bool,
@@ -40,10 +46,12 @@ const defaultProps = {
   disabled: false,
   hide: false,
   isInvalid: false,
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   required: false,
 };
 
 /**
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * Renders an html label element
  *
  * ---
@@ -52,6 +60,7 @@ const defaultProps = {
 function Label({
   children,
   className,
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   disabled,
   hide,
   id,
@@ -60,7 +69,9 @@ function Label({
 }) {
   if (hide) {
     return (
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       <VisuallyHidden>
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <label id={`${id}Label`} htmlFor={id}>
           {children}
         </label>

@@ -7,7 +7,7 @@
  * @return {string} parsed string
  *
  */
-export default (size, element = 5) => {
+export default (size: any, element = 5) => {
   if (typeof size !== 'number') {
     size = parseInt(size, 10);
   }

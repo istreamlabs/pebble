@@ -15,12 +15,14 @@ function getDirectionSpacing(direction, spacing, breakpoint) {
     if (breakpoint > 0) {
       cssObj.classes.push('mr-0');
     }
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   } else {
     // direction default is 'row'
     cssObj = getSpacingCss('right', spacing);
     if (breakpoint > 0) {
       cssObj.classes.push('mb-0');
     }
+  // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'string' is not assignable to par... Remove this comment to see the full error message
   }
   return cssObj;
 }
@@ -29,6 +31,7 @@ export default (direction, spacing) => {
   let itemSpacing;
   let spacingUnit;
   if (typeof direction === 'string') {
+    // @ts-expect-error ts-migrate(2554) FIXME: Expected 3 arguments, but got 2.
     itemSpacing = getDirectionSpacing(direction, spacing);
   } else if (Array.isArray(direction) && direction.length) {
     spacingUnit = Array.isArray(spacing) ? spacing[0] : spacing;
@@ -48,6 +51,7 @@ export default (direction, spacing) => {
       );
 
       breakPointSpacing.classes.forEach((breakpoint, i) => {
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'breakpoint' implicitly has an 'any' typ... Remove this comment to see the full error message
         itemSpacing.classes.push(
           `${breakPointSpacing.classes[i]}${BREAKPOINT_MAP[1]}`,
         );
@@ -64,6 +68,7 @@ export default (direction, spacing) => {
         2,
       );
       breakPointSpacing.classes.forEach((breakpoint, i) => {
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'breakpoint' implicitly has an 'any' typ... Remove this comment to see the full error message
         itemSpacing.classes.push(
           `${breakPointSpacing.classes[i]}${BREAKPOINT_MAP[2]}`,
         );
@@ -84,6 +89,7 @@ export default (direction, spacing) => {
         3,
       );
       breakPointSpacing.classes.forEach((breakpoint, i) => {
+        // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'breakpoint' implicitly has an 'any' typ... Remove this comment to see the full error message
         itemSpacing.classes.push(
           `${breakPointSpacing.classes[i]}${BREAKPOINT_MAP[3]}`,
         );

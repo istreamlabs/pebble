@@ -1,6 +1,9 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import { caseInsensitiveStringCompare } from '../../Utils';
 
 import Icon from '../Icon/Icon';
@@ -48,6 +51,7 @@ const propTypes = {
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'props' implicitly has an 'any' type.
    * Make the button have more visual weight to identify the primary call to action
    */
   primary: PropTypes.bool,
@@ -79,15 +83,18 @@ const propTypes = {
    * Tells screen reader the controlled element is expanded
    */
   ariaExpanded: PropTypes.bool,
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   /**
    * Tells screen reader the element is pressed
    */
   ariaPressed: PropTypes.bool,
   /**
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'name' implicitly has an 'any' type.
    * Callback when button is pressed
    */
   onClick: PropTypes.func,
   /**
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * Callback when button receives focus
    */
   onFocus: PropTypes.func,
@@ -107,6 +114,7 @@ const defaultProps = {
   loading: false,
   onClick: undefined,
   onBlur: undefined,
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   onFocus: undefined,
   plain: false,
   primary: false,
@@ -115,8 +123,11 @@ const defaultProps = {
 };
 
 /**
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * Buttons are used as triggers for actions. They are used in forms,
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * toolbars, modal dialogs and as stand-alone action triggers. Actions
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * almost always occur on the same page.
  *
  * ---
@@ -143,6 +154,7 @@ const Button = React.forwardRef((props, ref) => {
     size,
     tabIndex,
     type,
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     accessibilityLabel,
     ariaControls,
     ariaExpanded,

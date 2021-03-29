@@ -3,6 +3,7 @@ import React, {
   useContext,
   useEffect,
   useState,
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 } from 'react';
 
 import PropTypes from 'prop-types';
@@ -81,6 +82,7 @@ export const ResponsiveProvider = ({ children }) => {
   }, []);
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <responsiveContext.Provider
       value={{
         innerWidth,

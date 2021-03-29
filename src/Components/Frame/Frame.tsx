@@ -1,16 +1,27 @@
 import './Frame.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Button/Button' was resolved to '/Users/... Remove this comment to see the full error message
 import Button from '../Button/Button';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'focus-trap-react' or its corre... Remove this comment to see the full error message
 import FocusTrap from 'focus-trap-react';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Overlay/Overlay' was resolved to '/User... Remove this comment to see the full error message
 import Overlay from '../Overlay/Overlay';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../TenantMenu/TenantMenu' was resolved to ... Remove this comment to see the full error message
 import TenantMenu from '../TenantMenu/TenantMenu';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Text from '../Text/Text';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../ToastContainer/ToastContainer' was reso... Remove this comment to see the full error message
 import ToastContainer from '../ToastContainer/ToastContainer';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import classNames from 'classnames';
 import { getBreakpointLayout } from '../../Utils';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'framer-motion' or its correspo... Remove this comment to see the full error message
 import { motion } from 'framer-motion';
 
 export const APP_FRAME_MAIN = 'AppFrameMain';
@@ -73,11 +84,14 @@ export class Frame extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'props' implicitly has an 'any' type.
     const [isPhone, isTablet] = getBreakpointLayout(window);
 
     this.state = {
+      // @ts-expect-error ts-migrate(2461) FIXME: Type 'boolean[] | undefined' is not an array type.
       isSkipFocused: false,
       isShowingMobileNav: false,
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
       showTenantMenu: false,
       isMobile: isPhone || isTablet,
     };
@@ -109,10 +123,14 @@ export class Frame extends React.PureComponent {
     if (currentTenant) {
       return (
         <Block direction="column">
+          {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'. */}
           <Text bold>{currentTenant.name}</Text>
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Text color="neutral-500" size="6">
+            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             {currentTenant.realm}
           </Text>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         </Block>
       );
     }
@@ -144,8 +162,10 @@ export class Frame extends React.PureComponent {
     const [isPhone, isTablet] = getBreakpointLayout(window);
     const newBreakpoint = isPhone || isTablet;
     if (newBreakpoint !== isMobile) {
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
       this.setState({ isMobile: newBreakpoint });
     }
+  // @ts-expect-error ts-migrate(2461) FIXME: Type 'boolean[] | undefined' is not an array type.
   };
 
   handleNavigationToggle = () => {
@@ -156,9 +176,11 @@ export class Frame extends React.PureComponent {
         onNavigationToggle(!isShowingMobileNav);
       }
     });
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'.
   };
 
   handleNavigationDismiss = () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
     const { onNavigationToggle } = this.props;
     const { isShowingMobileNav, showTenantMenu } = this.state;
     if (isShowingMobileNav) {
@@ -168,10 +190,12 @@ export class Frame extends React.PureComponent {
         }
       });
     }
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'.
     if (showTenantMenu) {
       this.setState({ showTenantMenu: false });
     }
   };
+// @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
 
   handleTenantMenuToggle = () => {
     const { showTenantMenu } = this.state;
@@ -190,12 +214,14 @@ export class Frame extends React.PureComponent {
 
     const skipClassName = classNames(
       'skip',
+      // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
       isSkipFocused && 'focused',
     );
 
     return (
       <div className={skipClassName}>
         <Button
+          // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
           onClick={this.handleSkipToMain}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
@@ -207,27 +233,36 @@ export class Frame extends React.PureComponent {
     );
   };
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
   renderHeader = () => {
     const { tenants } = this.props;
     const { isMobile } = this.state;
 
     if (isMobile) {
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       return (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <header className="frame-header ph-4 ph-5-ns ph-6-m ph-7-l">
           <Block alignItems="center">
             {this.getFrameTitle()}
             {tenants && (
+              // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
               <Button
                 plain
                 size="large"
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'.
                 className="ml-3"
+                // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
                 accessibilityLabel="show organization menu"
+                // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
                 icon="menu-dots"
+                // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                 onClick={this.handleTenantMenuToggle}
               />
             )}
           </Block>
           <Button
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             icon="menu"
             accessibilityLabel="toggle main menu"
             onClick={this.handleNavigationToggle}
@@ -235,6 +270,7 @@ export class Frame extends React.PureComponent {
 
           {this.renderTenantMenu()}
         </header>
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       );
     }
   };
@@ -243,14 +279,17 @@ export class Frame extends React.PureComponent {
     const { navigation, tenants } = this.props;
     const {
       isShowingMobileNav,
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       isMobile,
       showTenantMenu,
     } = this.state;
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'.
     const navigationClasses = classNames('navigation', {
       open: isShowingMobileNav,
     });
 
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
     const mobileCloseMainMenuBtn = (
       <Button
         icon="remove"
@@ -259,6 +298,7 @@ export class Frame extends React.PureComponent {
       />
     );
 
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const menu = React.cloneElement(navigation, {
       onShowTenantMenu: tenants ? this.handleTenantMenuToggle : null,
       title: this.getFrameTitle(),
@@ -270,12 +310,14 @@ export class Frame extends React.PureComponent {
         <FocusTrap
           active={isShowingMobileNav && !showTenantMenu}
           focusTrapOptions={{
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             clickOutsideDeactivates: true,
           }}
         >
           <div
             className={navigationClasses}
             onKeyDown={this.handleNavKeydown}
+            // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
             onClick={this.handleOnClick}
             id={APP_FRAME_NAV}
             key="NavContent"
@@ -286,8 +328,10 @@ export class Frame extends React.PureComponent {
       );
     }
 
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     return (
       <motion.div
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         className={navigationClasses}
         onKeyDown={this.handleNavKeydown}
         onClick={this.handleOnClick}
@@ -301,15 +345,19 @@ export class Frame extends React.PureComponent {
   };
 
   renderTenantMenu = () => {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'.
     const { tenants, currentTenant } = this.props;
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'.
     const { showTenantMenu } = this.state;
 
     if (showTenantMenu) {
       return (
+        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         <FocusTrap
           active={showTenantMenu}
           focusTrapOptions={{
             clickOutsideDeactivates: true,
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           }}
         >
           <div
@@ -317,6 +365,7 @@ export class Frame extends React.PureComponent {
               position: 'absolute',
               top: 0,
               left: 0,
+              // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
               bottom: 0,
             }}
           >
@@ -326,15 +375,18 @@ export class Frame extends React.PureComponent {
               }}
               transition={{
                 duration: 0.25,
+                // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
                 ease: 'easeOut',
               }}
               className="frame-tenant-menu-container"
             >
               <TenantMenu
                 tenants={tenants}
+                // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
                 onCloseTenantMenu={this.handleTenantMenuToggle}
                 currentTenantId={(currentTenant || {}).id}
               />
+            {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'state' does not exist on type 'Frame'. */}
             </motion.nav>
           </div>
         </FocusTrap>
@@ -343,12 +395,14 @@ export class Frame extends React.PureComponent {
   };
 
   renderOverlay = () => {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const {
       isShowingMobileNav,
       showTenantMenu,
       isMobile,
     } = this.state;
 
+    // @ts-expect-error ts-migrate(7031) FIXME: Binding element 'target' implicitly has an 'any' t... Remove this comment to see the full error message
     if (showTenantMenu || (isMobile && isShowingMobileNav)) {
       return (
         <Overlay
@@ -359,6 +413,7 @@ export class Frame extends React.PureComponent {
     }
   };
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Frame'.
   handleOnClick = ({ target }) => {
     if (target.tagName.toLowerCase() === 'a' && target.href) {
       this.handleNavigationDismiss();
@@ -366,13 +421,17 @@ export class Frame extends React.PureComponent {
   };
 
   render() {
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     const { children } = this.props;
     return (
       <div className="frame">
         {this.renderSkipToContent()}
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         {this.renderHeader()}
         {this.renderMainMenu()}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         {this.renderOverlay()}
+        {/* @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message */}
         <main
           className="main"
           id={APP_FRAME_MAIN}

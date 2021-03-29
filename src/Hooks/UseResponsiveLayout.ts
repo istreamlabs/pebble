@@ -1,4 +1,5 @@
 import { getBreakpointLayout } from '../Utils';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './UseWindowSize' was resolved to '/Users/e... Remove this comment to see the full error message
 import useWindowSize from './UseWindowSize';
 
 /*

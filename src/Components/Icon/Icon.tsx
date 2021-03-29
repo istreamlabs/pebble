@@ -1,13 +1,18 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { forwardRef } from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Icons' was resolved to '/Users/esjaastad... Remove this comment to see the full error message
 import classNames from 'classnames';
 import icons from './Icons';
 
+// @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
 import './Icon.scss';
 
 const notFoundIcon = (
   <path
     fill="currentColor"
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'size' implicitly has an 'any' type.
     d="M16 10V8h-2c-.1-.8-.3-1.5-.6-2.2l2-1.7-1.3-1.5-1.8 1.5-.9-.9C11.5 1.7 9.8 0 8 0S4.5 1.7 4.5 3.2c-.3.3-.6.5-.9.9L1.9 2.6.6 4.1l2 1.7c-.3.7-.5 1.4-.6 2.2H0v2h2c.1 1 .5 2 .9 2.9l-1.6 1.4 1.3 1.5 1.5-1.3c1 1 2.4 1.6 3.8 1.6s2.8-.6 3.8-1.6l1.5 1.3 1.3-1.5-1.6-1.4c.7-.9 1-1.9 1.1-2.9h2z"
   />
 );
@@ -45,6 +50,7 @@ const propTypes = {
   name: PropTypes.string.isRequired,
   /**
    * Changes the size of the icon, passed as a string or int
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'props' implicitly has an 'any' type.
    * @type {PropTypes.Requireable<16|20|24|32|48|56|64|'16'|'20'|'24'|'32'|'48'|'56'|'64'>}
    */
   size: PropTypes.oneOf([
@@ -77,6 +83,7 @@ const defaultProps = {
 /**
  * Icons provide visual context and enhance usability.
  * Be mindful that not everyone is able to see icons.
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * When necessary, use alt text (`accessibilityLabel` prop or `aria-label` attribute)
  * to communicate icon meaning for assistive technologies
  *
@@ -101,9 +108,12 @@ const Icon = forwardRef((props, ref) => {
     : ''
   ).toLowerCase();
 
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   const parsedSize = parseSize(size);
 
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   let iconElements = icons[iconName];
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   let iconFound = true;
 
   if (!iconElements) {

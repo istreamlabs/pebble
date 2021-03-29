@@ -1,10 +1,15 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import classNames from 'classnames';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Icon from '../Icon/Icon';
 import Text from '../Text/Text';
 
+// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'size' implicitly has an 'any' type.
 import './Badge.scss';
 
 function getSize(size) {
@@ -40,8 +45,10 @@ const propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Type of message to be displayed
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * @type {PropTypes.Requireable<AppearanceType>}
    */
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   type: PropTypes.oneOf([
     'default',
     'info',

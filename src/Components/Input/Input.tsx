@@ -1,9 +1,15 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'prop-types' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import classNames from 'classnames';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Button/Button' was resolved to '/Users/... Remove this comment to see the full error message
 import Button from '../Button/Button';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Text from '../Text/Text';
 
 import './Input.scss';
@@ -169,6 +175,7 @@ class Input extends React.PureComponent {
       'input',
       {
         'input-error': isInvalid,
+        // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Input'.
         'input-s': size === 'small',
         'input-m': size === 'medium',
         'input-l': size === 'large',
@@ -216,6 +223,7 @@ class Input extends React.PureComponent {
     }
   }
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Input'.
   getSuffixMarkup() {
     const { suffix, size } = this.props;
 
@@ -226,11 +234,13 @@ class Input extends React.PureComponent {
     });
 
     if (suffix) {
+      // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
       return <div className={classes}>{suffix}</div>;
     }
   }
 
   getClearBtnMarkup() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Input'.
     const { clearBtnFunc, value } = this.props;
 
     if (clearBtnFunc !== undefined && value !== '') {
@@ -240,17 +250,21 @@ class Input extends React.PureComponent {
           icon="remove-circle"
           onClick={clearBtnFunc}
           accessibilityLabel="clear input value"
+          // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
           className="input-clear-btn"
+        // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
         />
       );
     }
   }
 
   getCharacterCountMarkup() {
+    // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Input'.
     const { maxLength, showCharacterCount, value } = this.props;
 
     if (!showCharacterCount) return;
 
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const charValue = value !== '' ? value : '';
     const characterCount = charValue.length;
 
@@ -260,6 +274,7 @@ class Input extends React.PureComponent {
 
     return (
       <Text size="6" className="pt-2">
+        {/* @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Input'. */}
         {characterCountText}
       </Text>
     );
@@ -272,6 +287,7 @@ class Input extends React.PureComponent {
           {this.getPrefixMarkup()}
           <input {...this.getInputProps()} />
           {this.getSuffixMarkup()}
+          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           {this.getClearBtnMarkup()}
         </Block>
         {this.getCharacterCountMarkup()}
@@ -280,8 +296,11 @@ class Input extends React.PureComponent {
   }
 }
 
+// @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
 Input.propTypes = propTypes;
+// @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
 Input.defaultProps = defaultProps;
 Input.displayName = 'Input';
 
 export default Input;
+// @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message

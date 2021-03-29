@@ -1,12 +1,17 @@
+// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'path'.
 const path = require('path');
 
 const spaceFactor = 16;
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 module.exports = {
   title: 'Pebble',
+  // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
   webpackConfig: require('react-scripts/config/webpack.config.js'),
   require: [
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
     path.resolve(__dirname, 'src/Styleguide/Setup.js'),
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
     path.join(__dirname, 'src/Styleguide/styles.css'),
   ],
   dangerouslyUpdateWebpackConfig(webpackConfig, env) {
@@ -14,6 +19,7 @@ module.exports = {
 
     webpackConfig.output = {
       ...webpackConfig.output,
+      // @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'process'. Do you need to install... Remove this comment to see the full error message
       publicPath: process.env.PUBLIC_URL || '',
     };
     return webpackConfig;
@@ -125,6 +131,7 @@ module.exports = {
   styleguideComponents: {
     ToolbarButtonRenderer: path.join(
       __dirname,
+      // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name '__dirname'.
       'src/Styleguide/ToolbarButtonRenderer',
     ),
   },

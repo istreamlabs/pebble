@@ -1,8 +1,14 @@
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const fs = require('fs-extra');
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const Glob = require('glob');
+// @ts-expect-error ts-migrate(2451) FIXME: Cannot redeclare block-scoped variable 'path'.
 const path = require('path');
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const { promisify } = require('util');
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const SVGO = require('svgo');
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const svgtojsx = require('svg-to-jsx');
 
 const readFile = promisify(fs.readFile);
@@ -123,11 +129,13 @@ const getName = filepath =>
   path.basename(filepath, path.extname(filepath));
 
 async function main() {
+  // @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
   try {
     const originalIcons = await glob('./src/Icons/*.svg');
     const iconExports = [];
     const examples = [];
 
+    // @ts-expect-error ts-migrate(2705) FIXME: An async function or method in ES5/ES3 requires th... Remove this comment to see the full error message
     const promises = originalIcons.map(async iconFilePath => {
       try {
         const data = await readFile(iconFilePath);
@@ -148,6 +156,7 @@ async function main() {
     });
     await Promise.all(promises);
 
+    // @ts-expect-error ts-migrate(2585) FIXME: 'Promise' only refers to a type, but is being used... Remove this comment to see the full error message
     const storiesFileToWrite = `// THIS FILE IS AUTO GENERATED
 /* eslint-disable */
 import React from 'react';

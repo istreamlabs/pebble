@@ -1,6 +1,9 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '@storybook/react' or its corre... Remove this comment to see the full error message
 import { storiesOf } from '@storybook/react';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './FieldSelect' was resolved to '/Users/esj... Remove this comment to see the full error message
 import FieldSelect from './FieldSelect';
 
 const options = [
@@ -23,7 +26,9 @@ const multiSelectValue = [
 
 function FieldSelectExamples() {
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="single"
         options={options}
@@ -34,6 +39,7 @@ function FieldSelectExamples() {
         placeholder="choose one"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="multi"
         options={options}
@@ -44,6 +50,7 @@ function FieldSelectExamples() {
         placeholder="choose one or many"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="checkbox"
         options={options}
@@ -55,6 +62,7 @@ function FieldSelectExamples() {
         placeholder="choose one or many"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         autoFocus
         id="autofocus"
@@ -64,6 +72,7 @@ function FieldSelectExamples() {
         loading
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="error"
         options={options}
@@ -75,6 +84,7 @@ function FieldSelectExamples() {
         placeholder="choose one"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         hideLabel
         id="hiddenLabel"
@@ -85,6 +95,7 @@ function FieldSelectExamples() {
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         disabled
         id="disabled"
@@ -93,6 +104,7 @@ function FieldSelectExamples() {
         placeholder="can not edit this"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         creatable
         id="creatable"
@@ -104,13 +116,17 @@ function FieldSelectExamples() {
   );
 }
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 storiesOf('FieldSelect', module)
   .addParameters({
     chromatic: { viewports: [479, 959, 1439, 1440] },
   })
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   .add('all', () => <FieldSelectExamples />)
   .add('sizes', () => (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="small"
         options={options}
@@ -119,6 +135,7 @@ storiesOf('FieldSelect', module)
         size="small"
         className="mb-5"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="medium"
         options={options}
@@ -127,6 +144,7 @@ storiesOf('FieldSelect', module)
         size="medium"
         className="mb-5"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         id="large"
         options={options}
@@ -136,6 +154,7 @@ storiesOf('FieldSelect', module)
         className="mb-5"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         multiSelect
         id="small"
@@ -146,6 +165,7 @@ storiesOf('FieldSelect', module)
         className="mb-5"
         value={multiSelectValue}
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         multiSelect
         id="medium"
@@ -156,6 +176,7 @@ storiesOf('FieldSelect', module)
         className="mb-5"
         value={multiSelectValue}
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldSelect
         multiSelect
         id="large"
@@ -168,6 +189,7 @@ storiesOf('FieldSelect', module)
     </>
   ))
   .add('open single', () => (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <FieldSelect
       id="openSingle"
       options={options}
@@ -180,6 +202,7 @@ storiesOf('FieldSelect', module)
     />
   ))
   .add('open multi', () => (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <FieldSelect
       id="openMulti"
       options={options}
@@ -192,6 +215,7 @@ storiesOf('FieldSelect', module)
     />
   ))
   .add('open multi with checkbox', () => (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <FieldSelect
       id="openMultiCheckbox"
       options={options}

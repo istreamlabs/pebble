@@ -1,4 +1,4 @@
-export default (flexProperty, value) => {
+export default (flexProperty: any, value: any) => {
   let flexPropertyClasses;
   if (typeof value === 'string') {
     flexPropertyClasses = `${flexProperty}-${value}`;

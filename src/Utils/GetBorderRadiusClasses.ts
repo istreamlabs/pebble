@@ -1,4 +1,4 @@
-export default radius => {
+export default (radius: any) => {
   let borderRadiusClasses;
 
   if (typeof radius === 'string' || typeof radius === 'number') {
@@ -24,7 +24,7 @@ export default radius => {
   return borderRadiusClasses;
 };
 
-function getRadiusModifier(modifier) {
+function getRadiusModifier(modifier: any) {
   switch (modifier) {
     case 'pill':
       return '-pill';

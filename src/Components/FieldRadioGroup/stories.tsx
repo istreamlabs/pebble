@@ -1,8 +1,12 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { useState } from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '@storybook/react' or its corre... Remove this comment to see the full error message
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Radio' was resolved to '/User... Remove this comment to see the full error message
 import Radio from './Components/Radio';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './FieldRadioGroup' was resolved to '/Users... Remove this comment to see the full error message
 import FieldRadioGroup from './FieldRadioGroup';
 
 const group1 = [
@@ -62,7 +66,9 @@ function FieldRadioGroupExample() {
   const [size, setSize] = useState('');
 
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldRadioGroup
         title="Select a contact method"
         helpText="This is how we will contact you with important information."
@@ -74,6 +80,7 @@ function FieldRadioGroupExample() {
         required
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FieldRadioGroup
         title="T-Shirt Size"
         helpText="Choose a t-shirt size"
@@ -83,6 +90,7 @@ function FieldRadioGroupExample() {
         name="group2"
         className="mb-5"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Radio
         label="yes"
         isSelected
@@ -91,6 +99,7 @@ function FieldRadioGroupExample() {
         id="group3-yes"
         value="yes"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Radio
         label="no"
         isSelected={false}
@@ -99,6 +108,7 @@ function FieldRadioGroupExample() {
         id="group3-no"
         value="no"
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Radio
         label="disabled"
         isSelected={false}
@@ -108,6 +118,7 @@ function FieldRadioGroupExample() {
         value="no"
         disabled
       />
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Radio
         label="selected and disabled"
         isSelected
@@ -121,8 +132,11 @@ function FieldRadioGroupExample() {
   );
 }
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 storiesOf('FieldRadioGroup', module).add('all', () => (
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   <>
+    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <FieldRadioGroupExample />
   </>
 ));

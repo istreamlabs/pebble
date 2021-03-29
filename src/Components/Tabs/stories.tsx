@@ -1,9 +1,14 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { useState } from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module '@storybook/react' or its corre... Remove this comment to see the full error message
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Tabs' was resolved to '/Users/esjaastad/... Remove this comment to see the full error message
 import Tabs from './Tabs';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/TabPanel' was resolved to '/U... Remove this comment to see the full error message
 import TabPanel from './Components/TabPanel';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Badge/Badge' was resolved to '/Users/es... Remove this comment to see the full error message
 import Badge from '../Badge/Badge';
 
 const tabData = [
@@ -67,7 +72,9 @@ function TabsExample() {
     'panel-1-tab',
   );
   return (
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     <>
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Tabs
         size="small"
         tabs={tabData}
@@ -76,6 +83,7 @@ function TabsExample() {
         className="mb-6"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Tabs
         tabs={tabData}
         selectedId={selectedTab}
@@ -83,6 +91,7 @@ function TabsExample() {
         className="mb-6"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Tabs
         size="large"
         tabs={tabData}
@@ -91,6 +100,7 @@ function TabsExample() {
         className="mb-6"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Tabs
         tabs={tabData}
         selectedId={selectedFWTab}
@@ -99,11 +109,13 @@ function TabsExample() {
         className="mb-6"
       />
 
+      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <Tabs
         selectedId={selectedPanelTab}
         onSelect={setSelectedPanelTab}
         paddingHorizontal={[0, 4, 5]}
       >
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <TabPanel
           id="panel-1"
           background="white"
@@ -113,11 +125,14 @@ function TabsExample() {
         >
           Panel 1 Content
         </TabPanel>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <TabPanel
           id="panel-2"
           background="white"
           label={
+            // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
             <>
+              {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
               Alerts <Badge type="danger">3</Badge>
             </>
           }
@@ -126,6 +141,7 @@ function TabsExample() {
         >
           Panel 2 Content
         </TabPanel>
+        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <TabPanel
           id="panel-3"
           background="white"
@@ -140,8 +156,11 @@ function TabsExample() {
   );
 }
 
+// @ts-expect-error ts-migrate(2580) FIXME: Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 storiesOf('Tabs', module).add('all', () => (
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   <>
+    {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
     <TabsExample />
   </>
 ));

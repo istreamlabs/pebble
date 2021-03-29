@@ -1,4 +1,6 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -35,7 +37,9 @@ const defaultProps = {
 };
 
 /**
+ // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
  * Display related [Buttons](/#/Components/Button) or
+ // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'child' implicitly has an 'any' type.
  * [LinkButtons](/#/Components/LinkButton) in a horizontal
  * row to help with spacing between buttons.
  *
@@ -45,6 +49,7 @@ const defaultProps = {
 function ButtonGroup(props) {
   const { children, className, toolbar, ...otherProps } = props;
 
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   const classes = classNames('br2', className, {
     'btn-group': !toolbar,
     'btn-toolbar': toolbar,

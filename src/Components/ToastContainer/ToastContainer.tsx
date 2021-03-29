@@ -1,6 +1,8 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-toastify' or its corresp... Remove this comment to see the full error message
 import { ToastContainer as ToastifyContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -28,6 +30,7 @@ const propTypes = {
   pauseOnHover: PropTypes.bool,
   /**
    * Allow for multiple containers per page. e.g. top-left and
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * top-middle for different types of toast messages. The
    * toast message `containerId` will be used to place it in
    * the appropriate container.

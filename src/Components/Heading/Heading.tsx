@@ -1,9 +1,12 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { colorType, textAlignType } from '../../Types';
 
+// @ts-expect-error ts-migrate(7006) FIXME: Parameter 'size' implicitly has an 'any' type.
 import './Heading.scss';
 
 export const parseSize = (size, element) => {
@@ -14,6 +17,7 @@ export const parseSize = (size, element) => {
     const defaultSize = element;
     size = defaultSize;
   }
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'element' implicitly has an 'any' type.
   return size;
 };
 
@@ -30,6 +34,7 @@ export const parseElement = element => {
 
 const propTypes = {
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'colorType' refers to a value, but is being used a... Remove this comment to see the full error message
    * Contents of the heading
    */
   children: PropTypes.node.isRequired,
@@ -39,6 +44,7 @@ const propTypes = {
   className: PropTypes.string,
   /**
    * [Color identifier](/#/Styles/Color) of the text color
+   // @ts-expect-error ts-migrate(2749) FIXME: 'textAlignType' refers to a value, but is being us... Remove this comment to see the full error message
    * @type {PropTypes.Requireable<Color>}
    */
   color: colorType,
@@ -104,6 +110,7 @@ const defaultProps = {
  * Headings are labels for sections or areas that make up an interface.
  * They can label an entire page, or sections of related content.
  * Our `Heading` component allows you to select an appropriate semantic
+ // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
  * element (h1-h6) and independently set its size so that it is
  * appropriate for the surrounding content.
 

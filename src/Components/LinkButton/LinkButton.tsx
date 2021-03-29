@@ -1,8 +1,12 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React, { forwardRef } from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Icon/Icon' was resolved to '/Users/esja... Remove this comment to see the full error message
 import { caseInsensitiveStringCompare } from '../../Utils';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Link/Link' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Icon from '../Icon/Icon';
 import Link from '../Link/Link';
 
@@ -39,7 +43,9 @@ const propTypes = {
   fullWidth: PropTypes.bool,
   /**
    * Partial or full url the Link goes to
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'props' implicitly has an 'any' type.
    */
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'ref' implicitly has an 'any' type.
   href: PropTypes.string,
   /**
    * Name of the [icon](/#/Components/Icon) to place before the button label text
@@ -56,10 +62,12 @@ const propTypes = {
   /**
    * Changes the size of the button, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'name' implicitly has an 'any' type.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * Specify the tabIndex of the button
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    */
   tabIndex: PropTypes.number,
 };
@@ -81,16 +89,20 @@ const defaultProps = {
  * ---
  */
 
+// @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
 const LinkButton = forwardRef((props, ref) => {
   const {
     id,
     children,
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     className,
     disabled,
     href,
     size,
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     primary,
     danger,
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     fullWidth,
     icon,
     iconAfterText,
@@ -101,6 +113,7 @@ const LinkButton = forwardRef((props, ref) => {
 
   const classes = classNames('btn', className, {
     'btn-lg': caseInsensitiveStringCompare(size, 'large'),
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     'btn-sm': caseInsensitiveStringCompare(size, 'small'),
     'btn-primary': primary,
     'btn-danger': danger,
@@ -108,7 +121,9 @@ const LinkButton = forwardRef((props, ref) => {
     disabled,
   });
 
+  // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
   const iconElement = function(name) {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const iconSize = caseInsensitiveStringCompare(size, 'large')
       ? 20
       : 16;

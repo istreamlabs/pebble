@@ -1,69 +1,90 @@
 import OrderType from './OrderType';
 
+// @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('Types > OrderType', () => {
   it('returns null if there is no prop value', () => {
     const props = { order: 'bar' };
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType(props, 'baz', 'myComponent')).toEqual(null);
   });
 
   it('allows number 0-8', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 0 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 1 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 2 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 3 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 4 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 5 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 6 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 7 }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: 8 }, 'order', 'myComponent')).toEqual(
       null,
     );
   });
 
   it('allows string 0, 1, 2, 3, 4, 5, 6, 7, 8, or last', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '0' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '1' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '2' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '3' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '4' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '5' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '6' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '7' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(OrderType({ order: '8' }, 'order', 'myComponent')).toEqual(
       null,
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       OrderType({ order: 'last' }, 'order', 'myComponent'),
     ).toEqual(null);
@@ -71,11 +92,13 @@ describe('Types > OrderType', () => {
 
   it('returns error for number not 0-8', () => {
     let error = OrderType({ order: -1 }, 'order', 'myComponent');
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in <myComponent>",
     );
     error = null;
     error = OrderType({ order: 9 }, 'order', 'myComponent');
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in <myComponent>",
     );
@@ -83,11 +106,13 @@ describe('Types > OrderType', () => {
 
   it('returns error for string not 0-8 or last', () => {
     let error = OrderType({ order: '-1' }, 'order', 'myComponent');
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in <myComponent>",
     );
     error = null;
     error = OrderType({ order: '9' }, 'order', 'myComponent');
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in <myComponent>",
     );
@@ -99,17 +124,20 @@ describe('Types > OrderType', () => {
       'order',
       'myComponent',
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires an array length up to 4, and a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in each element <myComponent>",
     );
     error = null;
     error = OrderType({ order: [] }, 'order', 'myComponent');
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires an array length up to 4, and a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in each element <myComponent>",
     );
   });
 
   it('allows array with valid mix of string and numbers 0-8', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       OrderType({ order: ['1', 2, 0, '8'] }, 'order', 'myComponent'),
     ).toEqual(null);
@@ -121,6 +149,7 @@ describe('Types > OrderType', () => {
       'order',
       'myComponent',
     );
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(error.message).toEqual(
       "Invalid prop 'order' requires an array length up to 4, and a value of 0, 1, 2, 3, 4, 5, 6, 7, 8, or 'last' in each element <myComponent>",
     );

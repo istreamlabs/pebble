@@ -18,11 +18,16 @@ export default (dimension, value) => {
   // set to a specific css unit
   if (
     typeof value === 'string' &&
+    // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
     (value.includes('px') ||
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
       value.includes('em') ||
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
       value.includes('rem') ||
+      // @ts-expect-error ts-migrate(2550) FIXME: Property 'includes' does not exist on type 'string... Remove this comment to see the full error message
       value.includes('%'))
   ) {
+    // @ts-expect-error ts-migrate(2322) FIXME: Type 'string' is not assignable to type 'null'.
     dimensionCss.styles = value;
     // set to a css class
   } else if (typeof value === 'string' || typeof value === 'number') {
@@ -48,6 +53,7 @@ export default (dimension, value) => {
       classes.push(`${classPrefix}${value[3]}-l`);
     }
   }
+  // @ts-expect-error ts-migrate(2322) FIXME: Type 'string[]' is not assignable to type 'never[]... Remove this comment to see the full error message
   dimensionCss.classes = classes;
 
   return dimensionCss;

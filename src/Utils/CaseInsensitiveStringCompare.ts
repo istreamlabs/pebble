@@ -1,4 +1,4 @@
-export default (value, compare) => {
+export default (value: any, compare: any) => {
   if (typeof value !== 'string' || typeof compare !== 'string') {
     return false;
   }

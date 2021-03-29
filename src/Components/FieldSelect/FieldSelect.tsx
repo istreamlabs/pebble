@@ -1,20 +1,31 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-select' or its correspon... Remove this comment to see the full error message
 import classNames from 'classnames';
 
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react-select/creatable' or its... Remove this comment to see the full error message
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/ClearIndicator' was resolved ... Remove this comment to see the full error message
 import { dimensionType } from '../../Types';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/DropdownIndicator' was resolv... Remove this comment to see the full error message
 import ClearIndicator from './Components/ClearIndicator';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/MultiValueRemove' was resolve... Remove this comment to see the full error message
 import DropdownIndicator from './Components/DropdownIndicator';
+// @ts-expect-error ts-migrate(6142) FIXME: Module './Components/Option' was resolved to '/Use... Remove this comment to see the full error message
 import MultiValueRemove from './Components/MultiValueRemove';
 import Option from './Components/Option';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Block/Block' was resolved to '/Users/es... Remove this comment to see the full error message
 import './FieldSelect.scss';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Label/Label' was resolved to '/Users/es... Remove this comment to see the full error message
 import Block from '../Block/Block';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../Text/Text' was resolved to '/Users/esja... Remove this comment to see the full error message
 import Label from '../Label/Label';
 import Text from '../Text/Text';
 
@@ -56,6 +67,7 @@ const propTypes = {
    */
   hideLabel: PropTypes.bool,
   /**
+   // @ts-expect-error ts-migrate(2749) FIXME: 'dimensionType' refers to a value, but is being us... Remove this comment to see the full error message
    * Applies styling to indicate the input is invalid
    */
   isInvalid: PropTypes.bool,
@@ -106,6 +118,7 @@ const propTypes = {
    */
   onFocus: PropTypes.func,
   /**
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * Callback function when select is changed
    */
   onChange: PropTypes.func,
@@ -126,6 +139,7 @@ const propTypes = {
    */
   showCheckbox: PropTypes.bool,
   /**
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * Changes the size of the input, giving it more or less padding and font size
    * @type {PropTypes.Requireable<Size>}
    */
@@ -134,6 +148,7 @@ const propTypes = {
    * Text to display if the input is invalid.
    * The text should explain why the input is invalid.
    */
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   validationText: PropTypes.string,
   /**
    * The value(s) of select
@@ -145,8 +160,10 @@ const propTypes = {
   /**
    * A valid css width (%, px, em, rem).
    *
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * Or one of: 1, 2, 3, 4, 5, 6, 7, 8, 9, '1', '2', '3', '4', '5', '6', '7', '8', '9', 10, 20, 25, 30, 33, 34, 40, 50, 60, 70, 75, 80, 90, 100, '10', '20', '25', '30', '33', '34', '40', '50', '60', '70', '75', '80', '90', '100'
    *
+   // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    */
   width: dimensionType,

@@ -1,7 +1,9 @@
 import getSpacingCss from './GetSpacingCss';
 
+// @ts-expect-error ts-migrate(2582) FIXME: Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('Util > GetSpacingCss', () => {
   it('returns correct class if passed a prefix and string', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', '5')).toMatchObject({
       styles: {},
       classes: ['p-5'],
@@ -9,6 +11,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct class if passed a margin and number ', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('m', 5)).toMatchObject({
       styles: {},
       classes: ['m-5'],
@@ -16,6 +19,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct array of classes if passed an array of strings', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', ['5', '6', '7', '8'])).toMatchObject({
       styles: {},
       classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
@@ -23,6 +27,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct array of classes if passed an array of numbers', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', [5, 6, 7, 8])).toMatchObject({
       styles: {},
       classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
@@ -30,6 +35,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct array of classes if passed an array of strings', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', [5, 6, 7, 8])).toMatchObject({
       styles: {},
       classes: ['p-5', 'p-6-ns', 'p-7-m', 'p-8-l'],
@@ -37,6 +43,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct array of classes if passed an array of css strings with 2 values', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getSpacingCss('p', ['5 1', '6 1', '7 1', '8 1']),
     ).toMatchObject({
@@ -63,6 +70,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct array of classes if passed an array of css strings with 3 values', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getSpacingCss('p', ['5 1 2', '6 1 2', '7 1 2', '8 1 2']),
     ).toMatchObject({
@@ -89,6 +97,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct array of classes if passed an array of css strings with 4 values', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(
       getSpacingCss('p', [
         '5 1 2 3',
@@ -120,6 +129,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns undefined if not passed an array, string, or number', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', {})).toMatchObject({
       styles: {},
       classes: [],
@@ -127,6 +137,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns undefined if passed an empty array', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', [])).toMatchObject({
       styles: {},
       classes: [],
@@ -134,6 +145,7 @@ describe('Util > GetSpacingCss', () => {
   });
 
   it('returns correct style if passed css unit', () => {
+    // @ts-expect-error ts-migrate(2304) FIXME: Cannot find name 'expect'.
     expect(getSpacingCss('p', '5px 10px')).toMatchObject({
       styles: '5px 10px',
       classes: [],

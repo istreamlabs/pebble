@@ -1,5 +1,8 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../FormLayout/FormLayout' was resolved to ... Remove this comment to see the full error message
 import classNames from 'classnames';
 
 import FormLayout from '../FormLayout/FormLayout';
@@ -24,14 +27,18 @@ const propTypes = {
   /**
    * Callback function when the Form is changed
    */
+  // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
   onChange: PropTypes.func,
   /**
+   // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Form'.
    * Callback function when the Form is reset
    */
   onReset: PropTypes.func,
   /**
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'event' implicitly has an 'any' type.
    * Callback function when the Form is submitted
    */
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Form'.
   onSubmit: PropTypes.func,
   /**
    * Decrease the vertical and horizontal spacing between inputs
@@ -41,6 +48,7 @@ const propTypes = {
 
 /**
  * A wrapper component that handles submission of a form
+ // @ts-expect-error ts-migrate(2339) FIXME: Property 'props' does not exist on type 'Form'.
  * and automatically wraps its children in [FormLayout](/#/Components/FormLayout).
  *
  * ---
@@ -55,11 +63,14 @@ class Form extends React.PureComponent {
   };
 
   handleReset = event => {
+    // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
     const { onReset } = this.props;
     event.preventDefault();
+    // @ts-expect-error ts-migrate(7026) FIXME: JSX element implicitly has type 'any' because no i... Remove this comment to see the full error message
     onReset(event);
   };
 
+  // @ts-expect-error ts-migrate(2339) FIXME: Property 'displayName' does not exist on type 'typ... Remove this comment to see the full error message
   render() {
     const {
       children,

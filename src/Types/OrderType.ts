@@ -1,4 +1,4 @@
-export default (props, propName, componentName) => {
+export default (props: any, propName: any, componentName: any) => {
   componentName = componentName || 'ANONYMOUS';
 
   // eslint-disable-next-line react/destructuring-assignment

@@ -1,4 +1,6 @@
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'react' or its corresponding ty... Remove this comment to see the full error message
 import React from 'react';
+// @ts-expect-error ts-migrate(2307) FIXME: Cannot find module 'classnames' or its correspondi... Remove this comment to see the full error message
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -6,8 +8,10 @@ import { useMobileLayout } from '../../../Hooks';
 
 import { borderType } from '../../../Types';
 
+// @ts-expect-error ts-migrate(6142) FIXME: Module '../../Block/Block' was resolved to '/Users... Remove this comment to see the full error message
 import './TableRow.scss';
 
+// @ts-expect-error ts-migrate(2749) FIXME: 'borderType' refers to a value, but is being used ... Remove this comment to see the full error message
 import Block from '../../Block/Block';
 
 const propTypes = {
@@ -35,12 +39,14 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'child' implicitly has an 'any' type.
    * Additional css classes to add
    */
   className: PropTypes.string,
   /**
    * Change the background of the row on hover
    */
+  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   hoverHighlight: PropTypes.bool,
 };
 
