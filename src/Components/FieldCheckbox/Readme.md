@@ -56,6 +56,7 @@ function FieldCheckboxExample() {
 
       <FieldCheckbox
         isInvalid
+        required
         validationText="This checkbox is required"
         id="invalid-checkbox"
         label="Invalid"

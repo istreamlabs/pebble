@@ -142,13 +142,12 @@ class MainMenu extends React.Component {
 
   renderItem(menu, startExpanded) {
     const { location } = this.props;
-
     return menu.map((item, i) => (
       <MenuItem
-        containsActiveItem={MainMenu.shouldBeOpen(location, item)}
         item={item}
         key={i}
         startExpanded={startExpanded}
+        location={location}
       />
     ));
   }

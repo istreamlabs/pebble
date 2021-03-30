@@ -10,6 +10,21 @@ describe('Label', () => {
       shallow(<Label id="input">label</Label>);
     }).not.toThrow();
   });
+  it('adds classes', () => {
+    const wrapper = shallow(
+      <Label id="input" disabled invalid required>
+        label
+      </Label>,
+    );
+    expect(
+      ['neutral-500', 'red'].every(c =>
+        wrapper.find('label').hasClass(c),
+      ),
+    ).toEqual(true);
+    expect(wrapper.find('span').props().className).toBe(
+      'required-input',
+    );
+  });
   it('renders a Visually Hidden label', () => {
     const wrapper = shallow(
       <Label id="input" hide>

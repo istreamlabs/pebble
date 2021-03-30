@@ -101,6 +101,10 @@ const propTypes = {
    */
   prefix: PropTypes.node,
   /**
+   * If the input should be required.
+   */
+  required: PropTypes.bool,
+  /**
    * Text or node to display after the value
    */
   suffix: PropTypes.node,
@@ -131,6 +135,7 @@ const defaultProps = {
   onBlur: undefined,
   onChange: undefined,
   onFocus: undefined,
+  required: false,
   size: 'medium',
   type: 'text',
   width: '100',
@@ -144,7 +149,14 @@ const defaultProps = {
 
 class FieldText extends React.PureComponent {
   getLabel() {
-    const { isInvalid, disabled, id, hideLabel, label } = this.props;
+    const {
+      isInvalid,
+      disabled,
+      id,
+      hideLabel,
+      label,
+      required,
+    } = this.props;
 
     return (
       <Label
@@ -152,6 +164,7 @@ class FieldText extends React.PureComponent {
         invalid={isInvalid}
         disabled={disabled}
         hide={hideLabel}
+        required={required}
       >
         {label}
       </Label>
@@ -193,6 +206,7 @@ class FieldText extends React.PureComponent {
       hideLabel,
       label,
       ignoreSpellCheck,
+      required,
       ...rest
     } = this.props;
 
@@ -203,6 +217,7 @@ class FieldText extends React.PureComponent {
     return (
       <Input
         ariaLabel={ariaLabelValue}
+        required={required}
         spellCheck={shouldSpellCheck}
         {...rest}
       />

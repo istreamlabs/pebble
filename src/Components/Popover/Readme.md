@@ -96,3 +96,30 @@ import Button from '../Button/Button';
   <Button>trigger</Button>
 </Popover>;
 ```
+
+
+### Automatically close popover
+
+Automatically close the popover after a given number of milliseconds
+
+```js
+import Block from '../Block/Block';
+import Button from '../Button/Button';
+
+<Popover
+  closeAfter={2000}
+  content={
+    <Block
+      background="white"
+      displayBlock
+      padding="3"
+      radius="2"
+      className="shadow-1"
+    >
+      I will close after 2 seconds
+    </Block>
+  }
+>
+  <Button>trigger</Button>
+</Popover>;
+```

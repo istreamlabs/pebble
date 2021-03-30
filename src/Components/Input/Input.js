@@ -182,6 +182,7 @@ class Input extends React.PureComponent {
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedBy,
       'aria-invalid': !!isInvalid,
+      'aria-required': required,
       autoComplete,
       autoFocus,
       className: classes,
