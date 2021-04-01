@@ -40,7 +40,7 @@ const propTypes = {
 function CollapsiblePanel(props) {
   const {
     children,
-    className,
+    className = 'neutral-600 bg-white bg-blue-lighter-hover bb b-neutral-300',
     id,
     label,
     open,
@@ -49,10 +49,7 @@ function CollapsiblePanel(props) {
   } = props;
 
   const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
-  const classes = classNames(
-    'fw-700 w-100 p-0 bn bg-white bg-blue-lighter-hover',
-    className,
-  );
+  const classes = classNames('fw-700 w-100 p-0', className);
 
   const handleClick = event => {
     event.preventDefault();
@@ -71,9 +68,7 @@ function CollapsiblePanel(props) {
       {typeof label === 'string' ? (
         <Block
           as="summary"
-          border="bottom"
           className={classes}
-          color="neutral-600"
           flex
           itemSpacing="2"
           justify="between"
