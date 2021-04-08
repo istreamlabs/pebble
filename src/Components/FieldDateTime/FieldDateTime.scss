@@ -36,6 +36,8 @@ $TIME_CONTAINER_WIDTH: 7rem;
   border-left: $INPUT_BORDER;
   border-bottom: $INPUT_BORDER;
   border-bottom-right-radius: $border-radius-1;
+  white-space: nowrap;
+  overflow: hidden;
 
   &.disabled {
     border: none;
