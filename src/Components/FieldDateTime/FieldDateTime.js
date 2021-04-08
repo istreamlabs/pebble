@@ -295,7 +295,6 @@ class FieldDateTime extends React.PureComponent {
           background={disabled ? 'neutral-300' : 'neutral-200'}
           className={alternativeDateTimeClasses}
           flex
-          style={disabled ? { borderLeft: 0 } : null}
         >
           {formattedDate}
         </Block>
