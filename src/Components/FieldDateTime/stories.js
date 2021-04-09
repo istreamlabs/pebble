@@ -45,6 +45,7 @@ const filterDate = value => {
 
 storiesOf('FieldDateTime', module)
   .add('date and time', () => <FieldDateTimeExample />)
+  .add('hide label', () => <FieldDateTimeExample hideLabel />)
   .add('date and time select local', () => (
     <FieldDateTimeExample selectLocalDateTime />
   ))

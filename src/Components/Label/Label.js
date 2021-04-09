@@ -60,11 +60,13 @@ function Label({
 }) {
   if (hide) {
     return (
-      <VisuallyHidden>
-        <label id={`${id}Label`} htmlFor={id}>
-          {children}
-        </label>
-      </VisuallyHidden>
+      <label
+        id={`${id}Label`}
+        htmlFor={id}
+        style={{ position: 'relative' }}
+      >
+        <VisuallyHidden>{children}</VisuallyHidden>
+      </label>
     );
   }
 
