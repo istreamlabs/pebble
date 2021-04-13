@@ -125,6 +125,10 @@ const propTypes = {
     'left-start',
   ]),
   /**
+   * If the input should be required.
+   */
+  required: PropTypes.bool,
+  /**
    * select time in browser's local time zone instead of UTC
    */
   selectLocalDateTime: PropTypes.bool,
@@ -172,6 +176,7 @@ const defaultProps = {
   isInvalid: false,
   placeholderText: 'Not set',
   popperPlacement: 'bottom-start',
+  required: false,
   size: 'medium',
   selectLocalDateTime: false,
   timeFormat: 'HH:mm',
@@ -185,7 +190,14 @@ const defaultProps = {
  */
 class FieldDateTime extends React.PureComponent {
   renderLabel() {
-    const { disabled, hideLabel, id, isInvalid, label } = this.props;
+    const {
+      disabled,
+      hideLabel,
+      id,
+      isInvalid,
+      label,
+      required,
+    } = this.props;
 
     return (
       <Label
@@ -193,6 +205,7 @@ class FieldDateTime extends React.PureComponent {
         hide={hideLabel}
         id={id}
         invalid={isInvalid}
+        required={required}
       >
         {label}
       </Label>
@@ -240,11 +253,11 @@ class FieldDateTime extends React.PureComponent {
     } = this.props;
     if (excludeTime) return;
 
-    let formatedDate;
+    let formattedDate;
     const momentValue = this.convertIsoStringToMoment(value);
     if (momentValue) {
       selectLocalDateTime ? momentValue.utc() : momentValue.local();
-      formatedDate = momentValue.format(this.getDateFormat());
+      formattedDate = momentValue.format(this.getDateFormat());
     }
 
     const alternativeDateTimeClasses = classNames(
@@ -282,9 +295,8 @@ class FieldDateTime extends React.PureComponent {
           background={disabled ? 'neutral-300' : 'neutral-200'}
           className={alternativeDateTimeClasses}
           flex
-          style={disabled ? { borderLeft: 0 } : null}
         >
-          {formatedDate}
+          {formattedDate}
         </Block>
       </Block>
     );
@@ -342,6 +354,7 @@ class FieldDateTime extends React.PureComponent {
       minTime,
       placeholderText,
       popperPlacement,
+      required,
       selectLocalDateTime,
       size,
       timeFormat,
@@ -431,6 +444,7 @@ class FieldDateTime extends React.PureComponent {
             maxTime={momentMaxTime}
             onChange={this.onChange}
             popperPlacement={popperPlacement}
+            required={required}
             selected={momentValue}
             showTimeSelect={!excludeTime}
             timeFormat={timeFormat}

@@ -118,6 +118,10 @@ const propTypes = {
    */
   placeholder: PropTypes.string,
   /**
+   * If the input should be required.
+   */
+  required: PropTypes.bool,
+  /**
    * Display a checkbox before each option
    */
   showCheckbox: PropTypes.bool,
@@ -163,6 +167,7 @@ const defaultProps = {
   onChange: undefined,
   onFocus: undefined,
   options: [],
+  required: false,
   showCheckbox: false,
   size: 'medium',
   width: '100%',
@@ -179,19 +184,20 @@ function FieldSelect({
   className,
   closeMenuOnSelect,
   creatable,
-  id,
-  label,
-  isInvalid,
+  disabled,
   helpText,
   hideLabel,
+  id,
+  isInvalid,
+  label,
   menuPlacement,
   menuPortalTarget,
   multiSelect,
-  value,
-  disabled,
+  required,
   showCheckbox,
   size,
   validationText,
+  value,
   width,
   ...rest
 }) {
@@ -238,6 +244,7 @@ function FieldSelect({
       invalid={isInvalid}
       disabled={disabled}
       hide={hideLabel}
+      required={required}
     >
       {label}
     </Label>

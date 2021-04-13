@@ -13,6 +13,7 @@ const group1 = [
     value: 'email',
     label: 'Email',
     helpText: '24 hour turn around',
+    required: true,
   },
   {
     id: 'phone',

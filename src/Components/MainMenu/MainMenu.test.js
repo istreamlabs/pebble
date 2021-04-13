@@ -1,9 +1,9 @@
-import React from 'react';
 import { mount, shallow } from 'enzyme';
+
 import { BrowserRouter } from 'react-router-dom';
 import MainMenu from './MainMenu';
-
 import MenuItem from './MenuItem/MenuItem';
+import React from 'react';
 
 const mockMenuData = [
   {
@@ -30,6 +30,31 @@ const mockMenuData = [
       {
         label: 'VOD',
         href: '/content/vod',
+      },
+    ],
+  },
+];
+
+const mockNestedData = [
+  {
+    label: 'Level 1',
+    icon: 'player',
+    items: [
+      {
+        label: 'Level 2',
+        href: '/content/channels',
+        items: [
+          {
+            label: 'Level 3',
+            href: '/content/live',
+            items: [
+              {
+                label: 'Level 4',
+                href: '/content/live',
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -84,13 +109,19 @@ describe('MainMenu', () => {
     }).not.toThrow();
   });
 
-  it('renders the correct number of menuitems', () => {
+  it('renders the correct number of menu items', () => {
     const menu = mount(
       <BrowserRouter>
         <MainMenu menu={mockMenuData} />
       </BrowserRouter>,
     );
-    expect(menu.find(MenuItem)).toHaveLength(2);
+    expect(menu.find(MenuItem)).toHaveLength(6);
+    const nestedMenu = mount(
+      <BrowserRouter>
+        <MainMenu menu={mockNestedData} />
+      </BrowserRouter>,
+    );
+    expect(nestedMenu.find(MenuItem)).toHaveLength(4);
   });
 
   it('renders the auxMenu items', () => {
@@ -99,7 +130,7 @@ describe('MainMenu', () => {
         <MainMenu menu={mockMenuData} auxMenu={mockMenuData} />
       </BrowserRouter>,
     );
-    expect(menu.find(MenuItem)).toHaveLength(4);
+    expect(menu.find(MenuItem)).toHaveLength(12);
   });
 
   it('generates a unique key for each item from the item.id', () => {

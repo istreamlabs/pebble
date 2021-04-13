@@ -29,6 +29,10 @@ $TIME_CONTAINER_WIDTH: 7rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+
+  &[disabled] {
+    border: $INPUT_BORDER;
+  }
 }
 
 .FieldDateTime-alternativeDateTime {
@@ -36,9 +40,10 @@ $TIME_CONTAINER_WIDTH: 7rem;
   border-left: $INPUT_BORDER;
   border-bottom: $INPUT_BORDER;
   border-bottom-right-radius: $border-radius-1;
+  white-space: nowrap;
+  overflow: hidden;
 
   &.disabled {
-    border: none;
     color: $neutral-500;
   }
 }
@@ -507,7 +512,7 @@ $TIME_CONTAINER_WIDTH: 7rem;
   width: 100%;
 
   .input[disabled] {
-    border-color: $neutral-300;
+    border-color: $INPUT_BORDER;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }

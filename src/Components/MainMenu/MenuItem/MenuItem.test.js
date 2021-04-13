@@ -21,6 +21,29 @@ const mockData = {
   ],
 };
 
+const mockNestedData = {
+  label: 'Level 1',
+  icon: 'player',
+  items: [
+    {
+      label: 'Level 2',
+      href: '/content/channels',
+      items: [
+        {
+          label: 'Level 3',
+          href: '/content/live',
+          items: [
+            {
+              label: 'Level 4',
+              href: '/content/live',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 const textOnly = {
   id: 'version',
   label: 'v1234',
@@ -45,6 +68,48 @@ const linkSubItems = {
 };
 
 describe('MenuItem', () => {
+  describe('shouldBeOpen', () => {
+    it('defaults to false', () => {
+      const result = MenuItem.shouldBeOpen({}, {});
+      expect(result).toBeFalsy();
+    });
+    it('returns false if an item in the items array has href not equal to current path ', () => {
+      const result = MenuItem.shouldBeOpen(
+        { pathname: '/' },
+        { items: [{ href: '/different' }] },
+      );
+      expect(result).toBe(false);
+    });
+    it('returns true if an item has href equal to current path ', () => {
+      const result = MenuItem.shouldBeOpen(
+        { pathname: '/a' },
+        { href: '/a', items: [{ href: '/page' }] },
+      );
+      expect(result).toBe(true);
+    });
+    it('returns true if an item in the items array has href equal to current path ', () => {
+      const result = MenuItem.shouldBeOpen(
+        { pathname: '/page' },
+        { href: '', items: [{ href: '/page' }] },
+      );
+      expect(result).toBe(true);
+    });
+    it('returns true if an item has alias equal to current path ', () => {
+      const result = MenuItem.shouldBeOpen(
+        { pathname: '/a' },
+        { aliases: ['/a'], items: [{ href: '/page' }] },
+      );
+      expect(result).toBe(true);
+    });
+    it('returns true if an item in the items array has alias equal to current path ', () => {
+      const result = MenuItem.shouldBeOpen(
+        { pathname: '/page' },
+        { href: '', items: [{ aliases: ['/page'] }] },
+      );
+      expect(result).toBe(true);
+    });
+  });
+
   describe('ctor', () => {
     let spy;
 
@@ -152,18 +217,22 @@ describe('MenuItem', () => {
       const expectedKey = `${index}`;
       expect(item.key()).toBe(expectedKey);
     });
-    expect(item.find('.sub-menu-item').length).toBe(2);
+    expect(item.find('MenuItem').length).toBe(2);
     expect(
       item
-        .find('.sub-menu-item')
+        .find('MenuItem')
         .at(1)
-        .prop('exact'),
+        .dive()
+        .find('NavLink')
+        .props().exact,
     ).toBe(true);
     expect(
       item
-        .find('.sub-menu-item')
+        .find('MenuItem')
         .at(0)
-        .prop('exact'),
+        .dive()
+        .find('NavLink')
+        .props().exact,
     ).toBeUndefined;
   });
 
@@ -171,7 +240,7 @@ describe('MenuItem', () => {
     const menu = {
       label: 'Content',
       href: '/test',
-      className: 'fs-block'
+      className: 'fs-block',
     };
     const item = shallow(<MenuItem item={menu} />);
     expect(item.find('.fs-block').length).toBe(1);
@@ -187,11 +256,17 @@ describe('MenuItem', () => {
           label: 'Content2',
           href: '/test2',
           className: 'fs-block',
-        }
-      ]
+        },
+      ],
     };
     const item = shallow(<MenuItem item={menu} />);
-    expect(item.find('.fs-block').length).toBe(2);
+    expect(item.find('.fs-block').length).toBe(1);
+    expect(
+      item
+        .find('MenuItem')
+        .dive()
+        .find('.fs-block').length,
+    ).toBe(1);
   });
 
   it('sets isOpen to false when there are no sub-items', () => {
@@ -263,11 +338,13 @@ describe('MenuItem', () => {
       instance = new MenuItem({
         containsActiveItem: true,
       });
+      instance.state.isOpen = true;
       instance.componentWillReceiveProps({
         containsActiveItem: true,
         item,
       });
       expect(genSpy).toHaveBeenCalledWith(item);
+      expect(stateSpy).not.toHaveBeenCalled();
     });
   });
 
@@ -329,6 +406,41 @@ describe('MenuItem', () => {
           .at(1)
           .prop('accessibilityLabel'),
       ).toBe('opened');
+    });
+  });
+
+  describe('renderSubItems', () => {
+    it('renders correctly', () => {
+      const wrapper = shallow(
+        <MenuItem item={mockNestedData} location={{}} />,
+      );
+      expect(
+        wrapper
+          .find('MenuItem')
+          .dive()
+          .find('li')
+          .prop('className'),
+      ).toEqual('menu-item-container');
+      expect(
+        wrapper
+          .find('MenuItem')
+          .dive()
+          .find('MenuItem')
+          .dive()
+          .find('li')
+          .prop('className'),
+      ).toEqual('menu-item-container');
+      expect(
+        wrapper
+          .find('MenuItem')
+          .dive()
+          .find('MenuItem')
+          .dive()
+          .find('MenuItem')
+          .dive()
+          .find('li')
+          .prop('className'),
+      ).toEqual('menu-item-container');
     });
   });
 });

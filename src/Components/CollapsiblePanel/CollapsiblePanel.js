@@ -2,12 +2,17 @@ import Block from '../Block/Block';
 import Icon from '../Icon/Icon';
 import PropTypes from 'prop-types';
 import React from 'react';
+import classNames from 'classnames';
 
 const propTypes = {
   /**
    * contents of the panel
    */
   children: PropTypes.node,
+  /**
+   * Additional classNames to add
+   */
+  className: PropTypes.string,
   /**
    * This value can be used to open the panel in the Accordion
    */
@@ -33,9 +38,21 @@ const propTypes = {
  */
 
 function CollapsiblePanel(props) {
-  const { children, id, label, open, onToggle, ...rest } = props;
+  const {
+    children,
+    className,
+    id,
+    label,
+    open,
+    onToggle,
+    ...rest
+  } = props;
 
   const arrowIcon = open ? 'arrow-small-up' : 'arrow-small-down';
+  const classes = classNames(
+    'fw-700 w-100 p-0 bn bg-white bg-blue-lighter-hover',
+    className,
+  );
 
   const handleClick = event => {
     event.preventDefault();
@@ -54,14 +71,14 @@ function CollapsiblePanel(props) {
       {typeof label === 'string' ? (
         <Block
           as="summary"
-          color="neutral-600"
-          padding={[4]}
-          flex
           border="bottom"
-          onClick={handleClick}
-          className="fw-700 w-100 p-0 bn bg-white bg-blue-lighter-hover"
+          className={classes}
+          color="neutral-600"
+          flex
           itemSpacing="2"
           justify="between"
+          onClick={handleClick}
+          padding={[4]}
         >
           <div>{label}</div>
           <Icon name={arrowIcon} />

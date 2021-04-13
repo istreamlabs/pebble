@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import Radio from './Components/Radio';
 import Text from '../Text/Text';
@@ -33,6 +34,10 @@ const propTypes = {
     }),
   ).isRequired,
   /**
+   * If at least one option must be selected
+   */
+  required: PropTypes.bool,
+  /**
    * The label for the group of radios
    */
   title: PropTypes.string,
@@ -44,6 +49,7 @@ const propTypes = {
 
 const defaultProps = {
   onChange: undefined,
+  required: false,
 };
 
 /**
@@ -59,6 +65,7 @@ function FieldRadioGroup({
   title,
   value,
   onChange,
+  required,
   name,
 }) {
   // set the selected radio button or the first one
@@ -82,6 +89,7 @@ function FieldRadioGroup({
     if (radios && radios.length > 0) {
       return radios.map(radio => (
         <Radio
+          required={required}
           disabled={radio.disabled}
           key={radio.id}
           id={radio.id}
@@ -98,7 +106,16 @@ function FieldRadioGroup({
 
   const titleMarkup = () => {
     if (title) {
-      return <legend className="fw-700 db mb-2">{title}</legend>;
+      return (
+        <legend
+          className={classNames(
+            { 'required-input': required },
+            'fw-700 db mb-2',
+          )}
+        >
+          {title}
+        </legend>
+      );
     }
   };
 
@@ -113,7 +130,7 @@ function FieldRadioGroup({
 
   return (
     <div className={className}>
-      <fieldset>
+      <fieldset aria-required={required} required={required}>
         {titleMarkup()}
         {helpTextMarkup()}
         {radioMarkup(getRadioItems())}

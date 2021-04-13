@@ -74,7 +74,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
-  padding: $spacing-3 $spacing-4 $spacing-3 $spacing-6;
+  padding: $spacing-3 $spacing-4 $spacing-3 $spacing-5;
   position: relative;
   text-decoration: none;
   text-align: left;
@@ -156,7 +156,6 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   border-left: 1px solid $NAV_BORDER_COLOR;
   border-radius: 0;
   box-shadow: inset -2px 0 4px -2px rgba(0, 0, 0, 0.1);
-  padding: $spacing-3 $spacing-4;
 
   &:hover {
     border-bottom: 1px solid $NAV_BORDER_COLOR;
@@ -194,9 +193,12 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
 
   &.opened {
     display: block;
-    border-bottom: 1px solid $NAV_BORDER_COLOR;
     // used for css transition. set this to height greater than what we expect it to ever be
     max-height: 800px;
+  }
+
+  .menu-item {
+    @extend .sub-menu-item;
   }
 }
 
@@ -206,7 +208,7 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
   align-items: center;
   text-decoration: none;
   min-height: 2.25rem;
-  padding: $spacing-2 $spacing-4 $spacing-2 $spacing-7;
+  padding: $spacing-2 $spacing-4 $spacing-2 3.5rem;
   color: $neutral-700;
   font-size: $font-size-6;
   transition: background $NAV_TRANSITION_TIME $NAV_TRANSITION_EASING,
@@ -231,6 +233,65 @@ $NAV_ITEM_COLOR_FOCUS: $blue-darker;
     &:focus {
       color: $NAV_ITEM_COLOR_FOCUS;
       box-shadow: inset 6px 0 0 $NAV_ITEM_COLOR_FOCUS;
+    }
+  }
+}
+
+// Deeply nested style changes
+.main-menu-items {
+  > .menu-item-container > .menu-item-content {
+    font-weight: bold;
+
+    button {
+      font-weight: bold;
+    }
+
+    .menu-item, .menu-item:focus, .menu-item:hover, .menu-item.active {
+      box-shadow: none;
+      background: none;
+      color: $neutral-700;
+      margin-top: 1rem;
+      font-size: $font-size-7;
+    }
+  }
+
+  .menu-item-container {
+    .menu-item-container {
+      .menu-item {
+        padding-left: $spacing-5;
+      }
+      .sub-menu-items {
+        border-bottom: 1px solid $NAV_BORDER_COLOR;
+      }
+      .menu-item-container {
+        .menu-item-collapse-button {
+          border-bottom: 0;
+          border-left: 0;
+          box-shadow: none;
+        }
+        .menu-item {
+          @extend .sub-menu-item;
+          border-bottom: none;
+        }
+        .menu-item-container {
+          .menu-item {
+            padding-left: 4rem;
+          }
+        }
+        .sub-menu-items {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+.main-menu-bottom  {
+  .main-menu-items {
+    > .menu-item-container > .menu-item-content {
+      .menu-item, .menu-item:focus, .menu-item:hover, .menu-item.active {
+        margin-top: 0;
+      }
     }
   }
 }

@@ -71,6 +71,7 @@ function FieldRadioGroupExample() {
         onChange={setContactMethod}
         name="group1"
         className="mb-5"
+        required
       />
 
       <FieldRadioGroup

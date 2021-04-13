@@ -84,6 +84,10 @@ const propTypes = {
    */
   prefix: PropTypes.node,
   /**
+   * If the input should be required.
+   */
+  required: PropTypes.bool,
+  /**
    * Text or node to display after the value
    */
   suffix: PropTypes.node,
@@ -107,12 +111,13 @@ const defaultProps = {
   autoFocus: false,
   clearBtnFunc: undefined,
   disabled: false,
-  isInvalid: false,
   hideLabel: false,
+  isInvalid: false,
   isReadOnly: false,
   onBlur: undefined,
   onChange: undefined,
   onFocus: undefined,
+  required: false,
   size: 'medium',
   width: '100',
 };
@@ -125,7 +130,14 @@ const defaultProps = {
 
 class FieldNumber extends React.PureComponent {
   getLabel() {
-    const { isInvalid, disabled, id, hideLabel, label } = this.props;
+    const {
+      isInvalid,
+      disabled,
+      id,
+      hideLabel,
+      label,
+      required,
+    } = this.props;
 
     return (
       <Label
@@ -133,6 +145,7 @@ class FieldNumber extends React.PureComponent {
         invalid={isInvalid}
         disabled={disabled}
         hide={hideLabel}
+        required={required}
       >
         {label}
       </Label>
@@ -169,12 +182,23 @@ class FieldNumber extends React.PureComponent {
   }
 
   renderChildren() {
-    const { className, hideLabel, label, ...rest } = this.props;
+    const {
+      className,
+      hideLabel,
+      label,
+      required,
+      ...rest
+    } = this.props;
 
     const ariaLabelValue = hideLabel ? label : '';
 
     return (
-      <Input ariaLabel={ariaLabelValue} type="number" {...rest} />
+      <Input
+        ariaLabel={ariaLabelValue}
+        required={required}
+        type="number"
+        {...rest}
+      />
     );
   }
 

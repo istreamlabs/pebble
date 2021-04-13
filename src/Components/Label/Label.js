@@ -30,6 +30,17 @@ const propTypes = {
    * Applies styling to indicate the input is invalid
    */
   invalid: PropTypes.bool,
+  /**
+   * If the input should be required.
+   */
+  required: PropTypes.bool,
+};
+
+const defaultProps = {
+  disabled: false,
+  hide: false,
+  isInvalid: false,
+  required: false,
 };
 
 /**
@@ -38,14 +49,24 @@ const propTypes = {
  * ---
  */
 
-function Label({ className, children, disabled, hide, id, invalid }) {
+function Label({
+  children,
+  className,
+  disabled,
+  hide,
+  id,
+  invalid,
+  required,
+}) {
   if (hide) {
     return (
-      <VisuallyHidden>
-        <label id={`${id}Label`} htmlFor={id}>
-          {children}
-        </label>
-      </VisuallyHidden>
+      <label
+        id={`${id}Label`}
+        htmlFor={id}
+        style={{ position: 'relative' }}
+      >
+        <VisuallyHidden>{children}</VisuallyHidden>
+      </label>
     );
   }
 
@@ -64,12 +85,15 @@ function Label({ className, children, disabled, hide, id, invalid }) {
   return (
     <Block direction="column">
       <label id={`${id}Label`} htmlFor={id} className={labelClasses}>
-        {children}
+        <span className={classNames({ 'required-input': required })}>
+          {children}
+        </span>
       </label>
     </Block>
   );
 }
 
+Label.defaultProps = defaultProps;
 Label.propTypes = propTypes;
 Label.displayName = 'Label';
 

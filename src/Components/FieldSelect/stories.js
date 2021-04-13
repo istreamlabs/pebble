@@ -68,6 +68,7 @@ function FieldSelectExamples() {
         id="error"
         options={options}
         isInvalid
+        required
         className="mb-5"
         label="Invalid Select"
         validationText="this selection is required"

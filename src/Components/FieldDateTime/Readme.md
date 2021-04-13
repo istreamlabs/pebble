@@ -63,6 +63,14 @@ function FieldDateTimeExample() {
         isInvalid
         validationText="Select a date and time"
       />
+      <FieldDateTime
+        required
+        id="dateTimeRequired"
+        timeFormat="HH:mm"
+        label="Date and Time Required"
+        value={selectedDate}
+        onChange={setSelectedDate}
+      />
     </Block>
   );
 }

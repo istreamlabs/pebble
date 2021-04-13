@@ -18,6 +18,15 @@ describe('FieldCheckbox', () => {
       expect(wrapper.contains(text)).toBe(true);
     });
 
+    it('renders label when required', () => {
+      const wrapper = shallow(
+        <FieldCheckbox required id="1" label="I am required" />,
+      );
+      expect(wrapper.find('span').prop('className')).toBe(
+        'required-input',
+      );
+    });
+
     it('renders a toggle', () => {
       const wrapper = shallow(
         <FieldCheckbox id="test" toggle label="toggle" />,
@@ -44,6 +53,16 @@ describe('FieldCheckbox', () => {
         <FieldCheckbox toggle hideLabel id="1" label={text} />,
       );
       expect(wrapper.find('Checkbox').prop('aria-label')).toBe(text);
+    });
+
+    it('applies label as aria-required if hideLabel is true and required is true', () => {
+      const text = 'I am required';
+      const wrapper = shallow(
+        <FieldCheckbox required hideLabel id="1" label={text} />,
+      );
+      expect(wrapper.find('Checkbox').prop('aria-required')).toBe(
+        true,
+      );
     });
   });
 

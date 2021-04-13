@@ -5,11 +5,13 @@ import '../../Styles/foundation.scss';
 import FieldCheckbox from './FieldCheckbox';
 
 function FieldCheckboxExample() {
-  const [checkbox1, setCheckBox1] = useState(true);
+  const [checkbox0, setCheckBox0] = useState(true);
+  const [checkbox1, setCheckBox1] = useState(false);
   const [checkbox2, setCheckBox2] = useState(false);
   const [hiddenLabel, setHiddenLabel] = useState(false);
   const [invalid, setInvalid] = useState(false);
   const [toggle, setToggle] = useState(true);
+  const [toggle1, setToggle1] = useState(true);
   const [toggleHelp, setToggleHelp] = useState(false);
   const [invalidToggle, setInvalidToggle] = useState(false);
   const [hiddenLabelToggle, setHiddenLabelToggle] = useState(false);
@@ -26,19 +28,19 @@ function FieldCheckboxExample() {
       <FieldCheckbox
         id="1"
         label="Checkbox"
-        isSelected={checkbox1}
+        isSelected={checkbox0}
         value="first"
-        onChange={setCheckBox1}
+        onChange={setCheckBox0}
         className="mb-5"
       />
 
       <FieldCheckbox
-        id="2"
+        id="3"
         label="Checkbox with helpText"
         helpText="Help text for the checkbox"
-        isSelected={checkbox2}
-        value="second"
-        onChange={setCheckBox2}
+        isSelected={checkbox1}
+        value="third"
+        onChange={setCheckBox1}
         className="mb-5"
       />
 
@@ -70,9 +72,10 @@ function FieldCheckboxExample() {
         label="Invalid"
         helpText="For required acknowledgements (e.g. usage policy)"
         isSelected={invalid}
-        value="second"
+        value="first"
         onChange={setInvalid}
         className="mb-5"
+        required
       />
 
       <FieldCheckbox
@@ -83,6 +86,17 @@ function FieldCheckboxExample() {
         value="first"
         onChange={setToggle}
         className="mb-5"
+      />
+
+      <FieldCheckbox
+        toggle
+        id="toggle2"
+        label="checkbox as required toggle"
+        isSelected={toggle1}
+        value="first"
+        onChange={setToggle1}
+        className="mb-5"
+        required
       />
 
       <FieldCheckbox
@@ -111,13 +125,14 @@ function FieldCheckboxExample() {
         isInvalid
         validationText="This toggle is required"
         toggle
-        id="toggle-invalid"
-        label="invalid toggle"
+        id="toggle-required"
+        label="required toggle"
         helpText="this is an invalid toggle"
         isSelected={invalidToggle}
         value="first"
         onChange={setInvalidToggle}
         className="mb-5"
+        required
       />
 
       <FieldCheckbox
@@ -141,6 +156,7 @@ function FieldCheckboxExample() {
         onChange={setInvalidHiddenLabelToggle}
         className="mb-5"
         hideLabel
+        required
       />
 
       <FieldCheckbox

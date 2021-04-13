@@ -31,6 +31,10 @@ const propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * If the selection is required.
+   */
+  required: PropTypes.bool,
+  /**
    * Make the checkbox look like a toggle switch
    */
   toggle: PropTypes.bool,
@@ -44,6 +48,7 @@ const defaultProps = {
   isInvalid: false,
   isSelected: false,
   onChange: undefined,
+  required: false,
   toggle: false,
 };
 
@@ -54,8 +59,9 @@ function Checkbox({
   isSelected,
   isInvalid,
   onChange,
-  value,
+  required,
   toggle,
+  value,
   ...rest
 }) {
   const handleChange = () => {
@@ -106,6 +112,7 @@ function Checkbox({
         className={inputClasses}
         value={value}
         style={{ width: '24px', height: '24px' }}
+        required={required}
         {...rest}
       />
       {checkboxIconMarkup()}
