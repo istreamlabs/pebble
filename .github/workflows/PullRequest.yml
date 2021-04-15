@@ -34,9 +34,7 @@ jobs:
       - name: install dependencies
         run: yarn install
       - name: unit test with coverage
-        run: |
-          yarn cover
-          curl -s https://codecov.io/bash | bash -s
+        run: yarn cover
   visual-tests:
     name: visual regression tests
     runs-on: ubuntu-latest
