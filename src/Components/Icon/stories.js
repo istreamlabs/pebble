@@ -42,6 +42,7 @@ storiesOf('Icon', module).add('all', () => (
 <div className="__icon"><Icon name="date-time" accessibilityLabel="date-time" /><div>date-time</div></div>
 <div className="__icon"><Icon name="delete" accessibilityLabel="delete" /><div>delete</div></div>
 <div className="__icon"><Icon name="download" accessibilityLabel="download" /><div>download</div></div>
+<div className="__icon"><Icon name="dropper" accessibilityLabel="dropper" /><div>dropper</div></div>
 <div className="__icon"><Icon name="dish" accessibilityLabel="dish" /><div>dish</div></div>
 <div className="__icon"><Icon name="event" accessibilityLabel="event" /><div>event</div></div>
 <div className="__icon"><Icon name="filter" accessibilityLabel="filter" /><div>filter</div></div>
