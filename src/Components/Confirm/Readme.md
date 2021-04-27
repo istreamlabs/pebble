@@ -31,7 +31,6 @@ You can require a user to type in a value before they are allowed to confirm. Th
 </div>
 ```
 
-
 ### Full Customizations
 
 ```js
