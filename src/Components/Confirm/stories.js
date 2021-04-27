@@ -15,6 +15,8 @@ storiesOf('Confirm', module)
       <Confirm danger primary icon="delete">
         Destroy User
       </Confirm>
-      <Confirm danger iconAfterText="delete">Destroy</Confirm>
+      <Confirm danger iconAfterText="delete">
+        Destroy
+      </Confirm>
     </Block>
   ));
