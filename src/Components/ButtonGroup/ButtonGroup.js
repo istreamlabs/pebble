@@ -53,14 +53,20 @@ function ButtonGroup(props) {
 
   return (
     <div className={classes}>
-      {React.Children.map(children, child => (
-        <div
-          key={child.key}
-          className={toolbar ? 'btn-toolbar-item' : 'btn-group-item'}
-        >
-          {React.cloneElement(child, otherProps)}
-        </div>
-      ))}
+      {React.Children.map(
+        children,
+        child =>
+          React.isValidElement(child) && (
+            <div
+              key={child.key}
+              className={
+                toolbar ? 'btn-toolbar-item' : 'btn-group-item'
+              }
+            >
+              {React.cloneElement(child, otherProps)}
+            </div>
+          ),
+      )}
     </div>
   );
 }
