@@ -20,6 +20,16 @@ describe('ButtonGroup', () => {
       );
       expect(buttonGroup.find(Button)).toHaveLength(2);
     });
+    it('renders child elements if one is hidded', () => {
+      const x = false;
+      const buttonGroup = shallow(
+        <ButtonGroup>
+          {x && <Button>button</Button>}
+          <Button primary>save</Button>
+        </ButtonGroup>,
+      );
+      expect(buttonGroup.find(Button)).toHaveLength(1);
+    });
   });
 
   describe('className', () => {
