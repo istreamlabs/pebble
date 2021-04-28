@@ -53,7 +53,7 @@ jobs:
       - uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          appCode: ${{ secrets.CHROMATIC_APP_CODE }}
+          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
   deploy:
     name: deploy test documentation site
     runs-on: ubuntu-latest
