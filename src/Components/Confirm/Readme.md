@@ -11,19 +11,19 @@
 
 ### Icons
 
-If both `icon` and `iconAfterText` are provided `icon` will be used for the modal.
+If both `icon` and `iconAfterText` are provided, `icon` will be used for the modal.
 
 ```js
 <div className="styleguide__buttons">
   <Confirm onConfirm={() => {}} icon="add">Before</Confirm>
   <Confirm onConfirm={() => {}} iconAfterText="launch">After</Confirm>
-  <Confirm onConfirm={() => {}}icon="remove" iconAfterText="delete" >Both</Confirm>
+  <Confirm onConfirm={() => {}} icon="remove" iconAfterText="delete" >Both</Confirm>
 </div>
 ```
 
 ### Extra Confirmation
 
-You can require a user to type in a value before they are allowed to confirm. This should only be used when extremely caution should be taken. For example, when performing an unrecoverable act such as permanently deleting a resource.
+You can require a user to type in a value before they are allowed to confirm. This should only be used when extreme caution should be taken. For example, when performing an unrecoverable act such as permanently deleting a resource.
 
 ```js
 <div className="styleguide__buttons">

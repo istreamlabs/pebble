@@ -66,7 +66,7 @@ const propTypes = {
    */
   cancelButtonContent: PropTypes.node,
   /**
-   * If provide the user must type this before they can confirm.
+   * If provided, the user must type this before they can confirm.
    */
   confirmValue: PropTypes.string,
   /**
