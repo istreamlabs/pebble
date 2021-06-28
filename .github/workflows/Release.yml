@@ -29,7 +29,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET }}
           aws-region: us-west-2
       - name: deploy js files
-        run: aws s3 sync styleguide s3://${{ secrets.AWS_BUCKET_NAME }} --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
+        run: aws s3 cp --recursive styleguide s3://${{ secrets.AWS_BUCKET_NAME }} --cache-control max-age=2592000 --exclude service-worker.js --exclude index.html
       - name: deploy service-worker.js
         run: aws s3 cp styleguide/service-worker.js s3://${{ secrets.AWS_BUCKET_NAME }}/service-worker.js --metadata-directive REPLACE --cache-control max-age=0,must-revalidate --content-type application/javascript
       - name: deploy index.html
