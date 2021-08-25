@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import Button from '../Button/Button';
 import FieldText from '../FieldText/FieldText';
@@ -77,39 +78,45 @@ const propTypes = {
    * When comparing what a user types to the value should case be ignored.
    */
   ignoreCase: PropTypes.bool,
+  /**
+   * Whether the menu should use a portal, and where it should attach
+   *
+   * An example can be found https://react-select.com/advanced#portaling
+   */
+  portalTarget: PropTypes.any,
 };
 
 const defaultProps = {
-  title: 'Are you sure?',
-  confirmButtonContent: 'Confirm',
   cancelButtonContent: 'Cancel',
+  confirmButtonContent: 'Confirm',
   ignoreCase: false,
+  title: 'Are you sure?',
 };
 
 function Confirm({
-  disabled,
-  primary,
-  plain,
-  danger,
+  cancelButtonContent,
   children,
   className,
-  onConfirm,
-  onCancel,
+  confirmationContent,
+  confirmButtonContent,
+  confirmValue,
+  danger,
+  disabled,
   icon,
   iconAfterText,
-  title,
-  confirmButtonContent,
-  cancelButtonContent,
-  confirmValue,
-  confirmationContent,
   ignoreCase,
+  onCancel,
+  onConfirm,
+  plain,
+  portalTarget,
+  primary,
+  title,
   ...rest
 }) {
   const requiresTyping = confirmValue !== undefined;
 
   const [showModal, setShowModal] = useState(false);
-  const [confirmed, setConfirmed] = useState(!requiresTyping);
-  const [inputValue, setInputValue] = useState('');
+  const [confirmed, setConfirmed] = useState(false);
 
   if (!confirmationContent) {
     if (requiresTyping) {
@@ -127,84 +134,79 @@ function Confirm({
 
   const internalOnConfirm = () => {
     setShowModal(false);
-    setInputValue('');
-    if (onConfirm) {
-      onConfirm();
-    }
+    onConfirm();
   };
 
   const internalOnCancel = () => {
     setShowModal(false);
-    setInputValue('');
     if (onCancel) {
       onCancel();
     }
   };
 
-  const handleInputChange = e => {
-    setInputValue(e.target.value);
+  const handleInputChange = ({ target }) => {
+    const { value } = target;
+    setConfirmed(
+      ignoreCase
+        ? value.toLowerCase() === confirmValue.toLowerCase()
+        : value === confirmValue,
+    );
   };
 
-  useEffect(() => {
-    if (requiresTyping) {
-      if (ignoreCase) {
-        setConfirmed(
-          inputValue.toLowerCase() === confirmValue.toLowerCase(),
-        );
-      } else {
-        setConfirmed(inputValue === confirmValue);
-      }
-    }
-  }, [inputValue, confirmValue, ignoreCase]);
+  const modal = (
+    <Modal
+      footer={[
+        <Button
+          danger={danger}
+          primary
+          disabled={requiresTyping && !confirmed}
+          onClick={internalOnConfirm}
+        >
+          {confirmButtonContent}
+        </Button>,
+        <Button onClick={internalOnCancel}>
+          {cancelButtonContent}
+        </Button>,
+      ]}
+      icon={icon || iconAfterText}
+      notDismissable
+      onRequestClose={internalOnCancel}
+      showing={showModal}
+      title={title}
+      type={danger ? 'danger' : 'default'}
+    >
+      {confirmationContent}
+      {requiresTyping && (
+        <FieldText
+          autofocus
+          hideLabel
+          id="confirmInput"
+          label="Type the value to confirm your action"
+          onChange={handleInputChange}
+          placeholder={confirmValue}
+        />
+      )}
+    </Modal>
+  );
 
   return (
     <>
       <Button
-        primary={primary}
-        danger={danger}
-        plain={plain}
         className={className}
+        danger={danger}
         disabled={disabled}
-        onClick={() => setShowModal(true)}
         icon={icon}
         iconAfterText={iconAfterText}
+        onClick={() => setShowModal(true)}
+        plain={plain}
+        primary={primary}
         {...rest}
       >
         {children}
       </Button>
-      <Modal
-        type={danger ? 'danger' : 'default'}
-        title={title}
-        icon={icon || iconAfterText}
-        onRequestClose={internalOnCancel}
-        showing={showModal}
-        notDismissable
-        footer={[
-          <Button
-            danger={danger}
-            primary
-            disabled={!confirmed}
-            onClick={internalOnConfirm}
-          >
-            {confirmButtonContent}
-          </Button>,
-          <Button onClick={internalOnCancel}>
-            {cancelButtonContent}
-          </Button>,
-        ]}
-      >
-        {confirmationContent}
-        {requiresTyping && (
-          <FieldText
-            hideLabel
-            label="Type the value to confirm your action"
-            id="confirmInput"
-            value={inputValue}
-            onChange={handleInputChange}
-            placeholder={confirmValue}
-          />
-        )}
-      </Modal>
+      {portalTarget
+        ? ReactDOM.createPortal(modal, portalTarget)
+        : modal}
     </>
   );
 }
