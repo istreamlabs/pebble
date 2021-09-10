@@ -1,6 +1,6 @@
 {
   "name": "@istreamplanet/pebble",
-  "version": "2.9.0",
+  "version": "2.9.1",
   "description": "Pebble Design System",
   "private": false,
   "repository": {
@@ -18,7 +18,7 @@
     "@babel/runtime": "^7.6.0",
     "@reach/visually-hidden": "^0.14.0",
     "classnames": "^2.2.6",
-    "focus-trap-react": "^6.0.0",
+    "focus-trap-react": "^8.7.1",
     "framer-motion": "^1.6.7",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",

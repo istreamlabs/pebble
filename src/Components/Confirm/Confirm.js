@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import FocusTrap from 'focus-trap-react';
 
 import Button from '../Button/Button';
+import ConditionalWrapper from '../ConditionalWrapper/ConditionalWrapper';
 import FieldText from '../FieldText/FieldText';
 import Modal from '../Modal/Modal';
 import PropTypes from 'prop-types';
@@ -84,6 +86,10 @@ const propTypes = {
    * An example can be found https://react-select.com/advanced#portaling
    */
   portalTarget: PropTypes.any,
+  /**
+   * Boolean flag used to make the modal not dismissable by the user when true
+   */
+  notDismissable: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -105,6 +111,7 @@ function Confirm({
   icon,
   iconAfterText,
   ignoreCase,
+  notDismissable,
   onCancel,
   onConfirm,
   plain,
@@ -154,39 +161,53 @@ function Confirm({
   };
 
   const modal = (
-    <Modal
-      footer={[
-        <Button
-          danger={danger}
-          primary
-          disabled={requiresTyping && !confirmed}
-          onClick={internalOnConfirm}
+    <ConditionalWrapper
+      condition={!notDismissable}
+      wrapper={children => (
+        <FocusTrap
+          active={showModal}
+          FocusTrapOptions={{
+            clickOutsideDeactivates: false,
+          }}
         >
-          {confirmButtonContent}
-        </Button>,
-        <Button onClick={internalOnCancel}>
-          {cancelButtonContent}
-        </Button>,
-      ]}
-      icon={icon || iconAfterText}
-      notDismissable
-      onRequestClose={internalOnCancel}
-      showing={showModal}
-      title={title}
-      type={danger ? 'danger' : 'default'}
-    >
-      {confirmationContent}
-      {requiresTyping && (
-        <FieldText
-          autofocus
-          hideLabel
-          id="confirmInput"
-          label="Type the value to confirm your action"
-          onChange={handleInputChange}
-          placeholder={confirmValue}
-        />
+          {children}
+        </FocusTrap>
       )}
-    </Modal>
+    >
+      <Modal
+        footer={[
+          <Button
+            danger={danger}
+            primary
+            disabled={requiresTyping && !confirmed}
+            onClick={internalOnConfirm}
+          >
+            {confirmButtonContent}
+          </Button>,
+          <Button onClick={internalOnCancel}>
+            {cancelButtonContent}
+          </Button>,
+        ]}
+        icon={icon || iconAfterText}
+        notDismissable
+        onRequestClose={internalOnCancel}
+        showing={showModal}
+        title={title}
+        type={danger ? 'danger' : 'default'}
+      >
+        {confirmationContent}
+        {requiresTyping && (
+          <FieldText
+            autofocus
+            hideLabel
+            id="confirmInput"
+            label="Type the value to confirm your action"
+            onChange={handleInputChange}
+            placeholder={confirmValue}
+          />
+        )}
+      </Modal>
+    </ConditionalWrapper>
   );
 
   return (
