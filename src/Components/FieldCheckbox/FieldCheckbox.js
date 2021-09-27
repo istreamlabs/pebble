@@ -160,11 +160,11 @@ function FieldCheckbox({
         red: isInvalid,
       });
       return (
-        <Block direction="column" className="ml-2">
+        <Block direction="column" className="ml-2" width="100%">
           <label htmlFor={id} className={labelClasses}>
             {labelSpan}
-            {helpTextMarkup()}
-            {getValidationTextMarkup()}
+            <div>{helpTextMarkup()}</div>
+            <div>{getValidationTextMarkup()}</div>
           </label>
         </Block>
       );
