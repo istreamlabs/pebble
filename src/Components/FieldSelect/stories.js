@@ -21,6 +21,24 @@ const multiSelectValue = [
   { value: 'chocolate', label: 'Chocolate' },
 ];
 
+const filterSearch = inputValue => {
+  return options.filter(i =>
+    i.label.toLowerCase().includes(inputValue.toLowerCase()),
+  );
+};
+
+const promiseOptions = inputValue => {
+  if (!inputValue) {
+    return [];
+  }
+
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(filterSearch(inputValue));
+    }, 1000);
+  });
+};
+
 function FieldSelectExamples() {
   return (
     <>
@@ -42,6 +60,17 @@ function FieldSelectExamples() {
         isSearchable
         label="Multi-Select"
         placeholder="choose one or many"
+      />
+
+      <FieldSelect
+        asyncSearch
+        className="mb-5"
+        id="multiSelectSearch"
+        loadOptions={promiseOptions}
+        multiSelect
+        isSearchable
+        label="Multi-Select-Search"
+        placeholder="search"
       />
 
       <FieldSelect
@@ -91,6 +120,7 @@ function FieldSelectExamples() {
         options={options}
         label="Disabled"
         placeholder="can not edit this"
+        className="mb-5"
       />
 
       <FieldSelect
