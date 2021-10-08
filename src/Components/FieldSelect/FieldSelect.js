@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import AsyncSelect from 'react-select/async';
 
 import { dimensionType } from '../../Types';
 
@@ -20,17 +21,28 @@ import Text from '../Text/Text';
 
 const propTypes = {
   /**
+   * Support loading options search results from api.
+   */
+  asyncSearch: PropTypes.bool,
+  /**
    * Sets aria-label attribute.
    */
-  ariaLabel: PropTypes.string,
+  'aria-label': PropTypes.string,
   /**
    * Sets aria-labelledby attribute.
    */
-  ariaLabelledby: PropTypes.string,
+  'aria-labelledby': PropTypes.string,
   /**
    * Automatically focus the select box
    */
   autoFocus: PropTypes.bool,
+  /**
+   * If cacheOptions is truthy, then the loaded data will be cached.
+   * The cache will remain until cacheOptions changes value.
+   *
+   * Use with asyncSearch
+   */
+  cacheOptions: PropTypes.bool,
   /**
    * Additional classes to add
    */
@@ -43,6 +55,13 @@ const propTypes = {
    * Allow creating new options along with choosing existing options
    */
   creatable: PropTypes.bool,
+  /**
+   * The default set of options to show before the user starts searching.
+   * When set to true, the results for loadOptions('') will be auto loaded.
+   *
+   * Use with asyncSearch
+   */
+  defaultOptions: PropTypes.bool,
   /**
    * If the select should be disabled and not focusable
    */
@@ -79,6 +98,12 @@ const propTypes = {
    * Test to display when loading
    */
   loadingMessage: PropTypes.string,
+  /**
+   * Callback for array of options to populate the select menu.
+   *
+   * Use with asyncSearch.
+   */
+  loadOptions: PropTypes.func,
   /**
    * Set the menu to open
    */
@@ -153,14 +178,18 @@ const propTypes = {
 };
 
 const defaultProps = {
+  asyncSearch: false,
   autoFocus: false,
+  cacheOptions: false,
   closeMenuOnSelect: true,
   creatable: false,
+  defaultOptions: false,
   disabled: false,
   hideLabel: false,
   isInvalid: false,
   isReadOnly: false,
   loading: false,
+  loadOptions: undefined,
   menuPlacement: 'bottom',
   multiSelect: false,
   onBlur: undefined,
@@ -181,6 +210,7 @@ const defaultProps = {
  */
 
 function FieldSelect({
+  asyncSearch,
   className,
   closeMenuOnSelect,
   creatable,
@@ -216,7 +246,10 @@ function FieldSelect({
   };
 
   const selectMarkup = () => {
-    const SelectComponent = creatable ? CreatableSelect : Select;
+    const SelectComponent =
+      (creatable && CreatableSelect) ||
+      (asyncSearch && AsyncSelect) ||
+      Select;
     return (
       <SelectComponent
         inputId={id}
