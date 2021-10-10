@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -147,6 +147,10 @@ const propTypes = {
    */
   required: PropTypes.bool,
   /**
+   * If the input value should be reset upon selection.
+   */
+  selectResetsInput: PropTypes.bool,
+  /**
    * Display a checkbox before each option
    */
   showCheckbox: PropTypes.bool,
@@ -197,6 +201,7 @@ const defaultProps = {
   onFocus: undefined,
   options: [],
   required: false,
+  selectResetsInput: true,
   showCheckbox: false,
   size: 'medium',
   width: '100%',
@@ -224,6 +229,7 @@ function FieldSelect({
   menuPortalTarget,
   multiSelect,
   required,
+  selectResetsInput,
   showCheckbox,
   size,
   validationText,
@@ -231,6 +237,8 @@ function FieldSelect({
   width,
   ...rest
 }) {
+  const [inputValue, setInputValue] = useState('');
+
   const selectClassNames = classNames('fieldSelect', {
     invalid: isInvalid,
     'control-s': size === 'small',
@@ -253,6 +261,7 @@ function FieldSelect({
     return (
       <SelectComponent
         inputId={id}
+        inputValue={inputValue}
         name={id}
         className={selectClassNames}
         classNamePrefix="pebble"
@@ -266,6 +275,19 @@ function FieldSelect({
         menuPlacement={menuPlacement}
         components={components}
         value={value}
+        onInputChange={(inputValue, action) => {
+          if (selectResetsInput) {
+            setInputValue(inputValue);
+          } else {
+            switch (action.action) {
+              case 'input-change':
+              case 'clear':
+              case 'menu-close':
+                setInputValue(inputValue);
+                break;
+            }
+          }
+        }}
         {...rest}
       />
     );
