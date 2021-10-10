@@ -7,9 +7,16 @@ const options = [
   { value: 'blueberry', label: 'Blueberry' },
   { value: 'boysenberry', label: 'Boysenberry' },
   { value: 'bubblegum', label: 'Bubblegum' },
+  { value: 'cinnamon', label: 'Cinnamon' },
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'green-tea', label: 'Green Tea' },
   { value: 'lychee', label: 'Lychee' },
+  { value: 'peach', label: 'Peach' },
+  { value: 'peppermint-fudge', label: 'Peppermint Fudge' },
+  { value: 'peppermint-stick', label: 'Peppermint Stick' },
+  { value: 'pineapple', label: 'Pineapple' },
+  { value: 'pineapple-sherbet', label: 'Pineapple Sherbet' },
+  { value: 'pistachio-nut', label: 'Pistachio Nut' },
   { value: 'strawberry', label: 'Strawberry' },
   { value: 'vanilla', label: 'Vanilla' },
 ];
@@ -63,6 +70,17 @@ function FieldSelectExamples() {
       />
 
       <FieldSelect
+        id="multi"
+        options={options}
+        multiSelect
+        className="mb-5"
+        isSearchable
+        label="Multi-Select: Selection Does Not Reset Input"
+        placeholder="choose one or many"
+        selectResetsInput={false}
+      />
+
+      <FieldSelect
         asyncSearch
         className="mb-5"
         id="multiSelectSearch"
@@ -82,6 +100,18 @@ function FieldSelectExamples() {
         isSearchable
         label="Checkbox Multi-Select"
         placeholder="choose one or many"
+      />
+
+      <FieldSelect
+        id="checkbox"
+        options={options}
+        showCheckbox
+        className="mb-5"
+        multiSelect
+        isSearchable
+        label="Checkbox Multi-Select: Selection Does Not Reset Input"
+        placeholder="choose one or many"
+        selectResetsInput={false}
       />
 
       <FieldSelect
