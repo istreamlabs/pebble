@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+import { spacingType } from '../../Types';
+
 import '../../../stories/styles.css';
 
 import Modal from './Modal';
@@ -51,6 +53,7 @@ ModalExample.propTypes = {
   large: PropTypes.bool,
   noTitle: PropTypes.bool,
   noFooter: PropTypes.bool,
+  contentPadding: spacingType,
   type: PropTypes.oneOf(['default', 'warn', 'danger']),
 };
 
@@ -65,6 +68,9 @@ storiesOf('Modal', module)
   .add('danger', () => <ModalExample type="danger" />)
   .add('warn', () => <ModalExample type="warn" />)
   .add('without title', () => <ModalExample noTitle />)
+  .add('overridden content padding', () => (
+    <ModalExample noTitle contentPadding={[0, 0, 0, 0]} />
+  ))
   .add('without title and footer', () => (
     <ModalExample noTitle noFooter />
   ))

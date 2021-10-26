@@ -17,7 +17,7 @@ import {
   useWindowSize,
   useLockBodyScroll,
 } from '../../Hooks';
-import { requiresOtherProp } from '../../Types';
+import { requiresOtherProp, spacingType } from '../../Types';
 
 import './Modal.scss';
 
@@ -96,7 +96,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-  contentPadding: PropTypes.spacingType,
+  contentPadding: spacingType,
 };
 
 const defaultProps = {
