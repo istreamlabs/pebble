@@ -86,7 +86,7 @@ const propTypes = {
   notDismissable: PropTypes.bool.isRequired,
 
   /**
-   * Padding [space](/#/Styles/Spacing) to be added within this block.
+   * Padding [space](/#/Styles/Spacing) to be added around content in the modal.
    * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/padding),
    * where you can set the padding area on all four sides of an element.
    * It is shorthand for top, right, bottom, left.
@@ -96,7 +96,7 @@ const propTypes = {
    * For responsive behavior, pass an array with length up to 4, with one of the above values.
    * @type {PropTypes.Requireable<Spacing>}
    */
-   contentPadding: PropTypes.spacingType,
+  contentPadding: PropTypes.spacingType,
 };
 
 const defaultProps = {
