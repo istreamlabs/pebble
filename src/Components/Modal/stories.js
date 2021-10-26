@@ -13,13 +13,21 @@ import Button from '../Button/Button';
 function ModalExample(props) {
   const [showModal, setShowModal] = useState(true);
 
-  const { children, noTitle, noFooter, type, large } = props;
+  const {
+    children,
+    noTitle,
+    noFooter,
+    type,
+    large,
+    contentPadding,
+  } = props;
 
   return (
     <>
       {showModal && (
         <Modal
           large={large}
+          contentPadding={contentPadding}
           type={type}
           title={!noTitle ? `${type} modal` : undefined}
           icon="ticket"
@@ -69,7 +77,7 @@ storiesOf('Modal', module)
   .add('warn', () => <ModalExample type="warn" />)
   .add('without title', () => <ModalExample noTitle />)
   .add('overridden content padding', () => (
-    <ModalExample noTitle contentPadding={[0, 0, 0, 0]} />
+    <ModalExample noTitle contentPadding={['0', '0', '0', '0']} />
   ))
   .add('without title and footer', () => (
     <ModalExample noTitle noFooter />
