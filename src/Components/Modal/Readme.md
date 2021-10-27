@@ -344,7 +344,7 @@ function ModalExample() {
       title="Large Modal"
       onRequestClose={() => setShowModal(!showModal)}
       showing={showModal}
-      contentPadding={0, 5}
+      contentPadding={['0 5 5 5']}
       footer={[
         <Button primary onClick={() => setShowModal(!showModal)}>
           Save
