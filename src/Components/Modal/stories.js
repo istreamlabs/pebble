@@ -77,7 +77,7 @@ storiesOf('Modal', module)
   .add('warn', () => <ModalExample type="warn" />)
   .add('without title', () => <ModalExample noTitle />)
   .add('custom contentPadding (0 top)', () => (
-    <ModalExample noTitle contentPadding={['0 5 5 5']} />
+    <ModalExample noTitle contentPadding="0 5 5 5" />
   ))
   .add('without title and footer', () => (
     <ModalExample noTitle noFooter />
