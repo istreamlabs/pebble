@@ -17,7 +17,7 @@ import {
   useWindowSize,
   useLockBodyScroll,
 } from '../../Hooks';
-import { requiresOtherProp } from '../../Types';
+import { requiresOtherProp, spacingType } from '../../Types';
 
 import './Modal.scss';
 
@@ -84,6 +84,19 @@ const propTypes = {
    * Boolean flag used to make the modal not dismissable by the user when true
    */
   notDismissable: PropTypes.bool.isRequired,
+
+  /**
+   * Padding [space](/#/Styles/Spacing) to be added around content in the modal.
+   * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/padding),
+   * where you can set the padding area on all four sides of an element.
+   * It is shorthand for top, right, bottom, left.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Spacing>}
+   */
+  contentPadding: spacingType,
 };
 
 const defaultProps = {
@@ -91,6 +104,7 @@ const defaultProps = {
   onRequestClose: () => {},
   type: 'default',
   notDismissable: false,
+  contentPadding: [4, 5],
 };
 
 /**
@@ -111,6 +125,7 @@ function Modal({
   title,
   type,
   notDismissable,
+  contentPadding,
 }) {
   useLockBodyScroll(showing);
   useKeyBoardEvent('Escape', onRequestClose);
@@ -233,7 +248,7 @@ function Modal({
           <Block
             flex
             direction="column"
-            padding={[4, 5]}
+            padding={contentPadding}
             background="white"
             overflow={{ vertical: 'auto' }}
           >

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
 
+import { spacingType } from '../../Types';
+
 import '../../../stories/styles.css';
 
 import Modal from './Modal';
@@ -11,13 +13,21 @@ import Button from '../Button/Button';
 function ModalExample(props) {
   const [showModal, setShowModal] = useState(true);
 
-  const { children, noTitle, noFooter, type, large } = props;
+  const {
+    children,
+    noTitle,
+    noFooter,
+    type,
+    large,
+    contentPadding,
+  } = props;
 
   return (
     <>
       {showModal && (
         <Modal
           large={large}
+          contentPadding={contentPadding}
           type={type}
           title={!noTitle ? `${type} modal` : undefined}
           icon="ticket"
@@ -51,6 +61,7 @@ ModalExample.propTypes = {
   large: PropTypes.bool,
   noTitle: PropTypes.bool,
   noFooter: PropTypes.bool,
+  contentPadding: spacingType,
   type: PropTypes.oneOf(['default', 'warn', 'danger']),
 };
 
@@ -65,6 +76,9 @@ storiesOf('Modal', module)
   .add('danger', () => <ModalExample type="danger" />)
   .add('warn', () => <ModalExample type="warn" />)
   .add('without title', () => <ModalExample noTitle />)
+  .add('custom contentPadding (0 top)', () => (
+    <ModalExample noTitle contentPadding="0 5 5 5" />
+  ))
   .add('without title and footer', () => (
     <ModalExample noTitle noFooter />
   ))
