@@ -143,6 +143,60 @@ function ModalExample() {
 <ModalExample />;
 ```
 
+### Large
+
+When you need to show a modal with a custom header, provide a custom header. Title will be ignored.
+
+```js
+import { useState } from 'react';
+import Button from '../Button/Button';
+
+function ModalExample() {
+  const [showModal, setShowModal] = useState(false);
+
+  const LargeModal = (
+    <Modal
+      large
+      mobileFullScreen
+      header={
+        <Block direction="row">
+          <Button primary padding="2">
+            Custom Header Button
+          </Button>
+          <Heading textAlign="right" size="4" responsive={false}>
+            Custom Header Heading
+          </Heading>
+        </Block>
+      }
+      title="Large Modal"
+      onRequestClose={() => setShowModal(!showModal)}
+      showing={showModal}
+      footer={[
+        <Button primary onClick={() => setShowModal(!showModal)}>
+          Save
+        </Button>,
+        <Button onClick={() => setShowModal(!showModal)}>
+          Cancel
+        </Button>,
+      ]}
+    >
+      Use large modals for content such as tables or lists. The max
+      width and max height of large modals is increased.
+    </Modal>
+  );
+
+  return (
+    <>
+      {showModal && LargeModal}
+      <Button primary onClick={() => setShowModal(!showModal)}>
+        Show Large Modal
+      </Button>
+    </>
+  );
+}
+<ModalExample />;
+```
+
 ### Without a Title or Footer
 
 Modal's without a `title` or `footer` can be used to display smaller bits of information that require the users attention.

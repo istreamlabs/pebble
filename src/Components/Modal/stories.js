@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Block from '../Block/Block';
+import Heading from '../Heading/Heading';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import '../../Styles/foundation.scss';
@@ -20,6 +22,7 @@ function ModalExample(props) {
     type,
     large,
     contentPadding,
+    header,
   } = props;
 
   return (
@@ -33,6 +36,7 @@ function ModalExample(props) {
           icon="ticket"
           onRequestClose={() => setShowModal(!showModal)}
           showing={showModal}
+          header={header}
           footer={
             !noFooter
               ? [
@@ -62,6 +66,7 @@ ModalExample.propTypes = {
   noTitle: PropTypes.bool,
   noFooter: PropTypes.bool,
   contentPadding: spacingType,
+  header: PropTypes.node,
   type: PropTypes.oneOf(['default', 'warn', 'danger']),
 };
 
@@ -76,6 +81,21 @@ storiesOf('Modal', module)
   .add('danger', () => <ModalExample type="danger" />)
   .add('warn', () => <ModalExample type="warn" />)
   .add('without title', () => <ModalExample noTitle />)
+  .add('custom header', () => (
+    <ModalExample
+      type="default"
+      header={
+        <Block direction="row">
+          <Button primary padding="2">
+            Custom Header Button
+          </Button>
+          <Heading textAlign="right" size="4" responsive={false}>
+            Custom Header Heading
+          </Heading>
+        </Block>
+      }
+    />
+  ))
   .add('custom contentPadding (0 top)', () => (
     <ModalExample noTitle contentPadding="0 5 5 5" />
   ))

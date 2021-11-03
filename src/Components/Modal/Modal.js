@@ -44,12 +44,17 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
+   * A custom header node, likely a Block
+   */
+  header: PropTypes.node,
+  /**
    * A button, or an array of buttons. If an array, the nodes render right to left.
    */
   footer: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+
   /**
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
@@ -116,6 +121,7 @@ const defaultProps = {
 function Modal({
   children,
   className,
+  header,
   footer,
   icon,
   large,
@@ -152,29 +158,49 @@ function Modal({
 
     const iconClasses = classNames('mr-3', iconClass);
 
-    return title ? (
-      <Block
-        as="header"
-        justify="between"
-        alignItems="start"
-        padding={['4', '4 5']}
-        className={headerClasses}
-      >
-        <Block className="mr-3">
-          {icon && (
-            <Icon name={icon} size="24" className={iconClasses} />
-          )}
-          {title && (
-            <Heading element="4" responsive={false}>
-              {title}
-            </Heading>
-          )}
+    let headerMarkup = null;
+    const hasTitle = title !== undefined;
+    const hasHeader = header !== undefined;
+
+    if (hasHeader) {
+      headerMarkup = (
+        <Block
+          as="header"
+          justify="between"
+          alignItems="start"
+          padding={['4', '4 5']}
+          className={headerClasses}
+        >
+          <Block className="mr-3">{header}</Block>
+          {closeBtn}
         </Block>
-        {closeBtn}
-      </Block>
-    ) : (
-      closeBtn
-    );
+      );
+    } else if (hasTitle) {
+      headerMarkup = (
+        <Block
+          as="header"
+          justify="between"
+          alignItems="start"
+          padding={['4', '4 5']}
+          className={headerClasses}
+        >
+          <Block className="mr-3">
+            {icon && (
+              <Icon name={icon} size="24" className={iconClasses} />
+            )}
+            {title && (
+              <Heading element="4" responsive={false}>
+                {title}
+              </Heading>
+            )}
+          </Block>
+          {closeBtn}
+        </Block>
+      );
+    } else {
+      headerMarkup = closeBtn;
+    }
+    return headerMarkup;
   };
 
   const windowSize = useWindowSize();
