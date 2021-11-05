@@ -143,13 +143,15 @@ function ModalExample() {
 <ModalExample />;
 ```
 
-### Large
+### Custom Header
 
 When you need to show a modal with a custom header, provide a custom header. Title will be ignored.
 
 ```js
 import { useState } from 'react';
 import Button from '../Button/Button';
+import Block from '../Block/Block';
+import Heading from '../Heading/Heading';
 
 function ModalExample() {
   const [showModal, setShowModal] = useState(false);

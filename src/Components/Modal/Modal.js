@@ -160,9 +160,8 @@ function Modal({
 
     let headerMarkup = null;
     const hasTitle = title !== undefined;
-    const hasHeader = header !== undefined;
 
-    if (hasHeader) {
+    if (header !== undefined) {
       headerMarkup = (
         <Block
           as="header"
