@@ -44,10 +44,6 @@ const propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A custom header node, likely a Block
-   */
-  header: PropTypes.node,
-  /**
    * A button, or an array of buttons. If an array, the nodes render right to left.
    */
   footer: PropTypes.oneOfType([
@@ -77,9 +73,9 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * optional title of the modal. If set, a header will be added to the dialog
+   * optional simple string title or custom header node fir the modal. If set, a header will be added to the dialog
    */
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Type of message to be displayed
    * @type {PropTypes.Requireable<AppearanceType>}
@@ -121,7 +117,6 @@ const defaultProps = {
 function Modal({
   children,
   className,
-  header,
   footer,
   icon,
   large,
@@ -160,7 +155,7 @@ function Modal({
 
     let headerMarkup = null;
 
-    if (header) {
+    if (React.isValidElement(title)) {
       headerMarkup = (
         <Block
           as="header"
@@ -169,7 +164,7 @@ function Modal({
           padding={['4', '4 5']}
           className={headerClasses}
         >
-          <Block className="mr-3">{header}</Block>
+          <Block className="mr-3">{title}</Block>
           {closeBtn}
         </Block>
       );

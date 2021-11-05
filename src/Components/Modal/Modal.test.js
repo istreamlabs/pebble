@@ -46,14 +46,10 @@ describe('Modal', () => {
     });
   });
 
-  describe('header', () => {
+  describe('custom title', () => {
     it('renders a header if set', () => {
       const instance = shallow(
-        <Modal
-          showing
-          className="my-class"
-          header={<div>footer</div>}
-        >
+        <Modal showing className="my-class" title={<div>header</div>}>
           content
         </Modal>,
       );

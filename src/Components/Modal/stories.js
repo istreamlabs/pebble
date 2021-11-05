@@ -22,7 +22,6 @@ function ModalExample(props) {
     type,
     large,
     contentPadding,
-    header,
   } = props;
 
   return (
@@ -36,7 +35,6 @@ function ModalExample(props) {
           icon="ticket"
           onRequestClose={() => setShowModal(!showModal)}
           showing={showModal}
-          header={header}
           footer={
             !noFooter
               ? [
@@ -70,6 +68,62 @@ ModalExample.propTypes = {
   type: PropTypes.oneOf(['default', 'warn', 'danger']),
 };
 
+function ModalCustomTitleExample(props) {
+  const [showModal, setShowModal] = useState(true);
+
+  const {
+    children,
+    title,
+    noFooter,
+    type,
+    large,
+    contentPadding,
+  } = props;
+
+  return (
+    <>
+      {showModal && (
+        <Modal
+          large={large}
+          contentPadding={contentPadding}
+          type={type}
+          title={title}
+          icon="ticket"
+          onRequestClose={() => setShowModal(!showModal)}
+          showing={showModal}
+          footer={
+            !noFooter
+              ? [
+                  <Button
+                    primary
+                    onClick={() => setShowModal(!showModal)}
+                  >
+                    Save
+                  </Button>,
+                  <Button onClick={() => setShowModal(!showModal)}>
+                    Cancel
+                  </Button>,
+                ]
+              : undefined
+          }
+        >
+          {children || 'Modal content'}
+        </Modal>
+      )}
+    </>
+  );
+}
+
+ModalCustomTitleExample.propTypes = {
+  children: PropTypes.node,
+  large: PropTypes.bool,
+  title: PropTypes.string,
+  noFooter: PropTypes.bool,
+  contentPadding: spacingType,
+  header: PropTypes.node,
+  type: PropTypes.oneOf(['default', 'warn', 'danger']),
+};
+
 storiesOf('Modal', module)
   .addDecorator(storyFn => (
     <div style={{ width: '800px', height: '800px' }}>{storyFn()}</div>
@@ -82,9 +136,9 @@ storiesOf('Modal', module)
   .add('warn', () => <ModalExample type="warn" />)
   .add('without title', () => <ModalExample noTitle />)
   .add('custom header', () => (
-    <ModalExample
+    <ModalCustomTitleExample
       type="default"
-      header={
+      title={
         <Block direction="row">
           <Button primary padding="2">
             Custom Header Button
