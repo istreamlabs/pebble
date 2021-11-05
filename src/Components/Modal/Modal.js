@@ -159,7 +159,6 @@ function Modal({
     const iconClasses = classNames('mr-3', iconClass);
 
     let headerMarkup = null;
-    const hasTitle = title !== undefined;
 
     if (header) {
       headerMarkup = (
@@ -174,7 +173,7 @@ function Modal({
           {closeBtn}
         </Block>
       );
-    } else if (hasTitle) {
+    } else if (title) {
       headerMarkup = (
         <Block
           as="header"
