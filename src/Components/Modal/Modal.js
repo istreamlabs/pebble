@@ -161,7 +161,7 @@ function Modal({
     let headerMarkup = null;
     const hasTitle = title !== undefined;
 
-    if (header !== undefined) {
+    if (header) {
       headerMarkup = (
         <Block
           as="header"
@@ -271,6 +271,7 @@ function Modal({
         >
           {headerMarkup()}
           <Block
+            id="modalScroll"
             flex
             direction="column"
             padding={contentPadding}
