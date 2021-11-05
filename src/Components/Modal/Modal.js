@@ -73,7 +73,7 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * optional simple string title or custom header node fir the modal. If set, a header will be added to the dialog
+   * optional simple string title or custom header node for the modal. If set, a header will be added to the dialog
    */
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
