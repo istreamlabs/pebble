@@ -160,7 +160,7 @@ function ModalExample() {
     <Modal
       large
       mobileFullScreen
-      header={
+      title={
         <Block direction="row">
           <Button primary padding="2">
             Custom Header Button
@@ -170,7 +170,6 @@ function ModalExample() {
           </Heading>
         </Block>
       }
-      title="Large Modal"
       onRequestClose={() => setShowModal(!showModal)}
       showing={showModal}
       footer={[
