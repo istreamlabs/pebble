@@ -50,6 +50,7 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+
   /**
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
@@ -72,9 +73,9 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * optional title of the modal. If set, a header will be added to the dialog
+   * optional simple string title or custom header node for the modal. If set, a header will be added to the dialog
    */
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Type of message to be displayed
    * @type {PropTypes.Requireable<AppearanceType>}
@@ -152,29 +153,47 @@ function Modal({
 
     const iconClasses = classNames('mr-3', iconClass);
 
-    return title ? (
-      <Block
-        as="header"
-        justify="between"
-        alignItems="start"
-        padding={['4', '4 5']}
-        className={headerClasses}
-      >
-        <Block className="mr-3">
-          {icon && (
-            <Icon name={icon} size="24" className={iconClasses} />
-          )}
-          {title && (
-            <Heading element="4" responsive={false}>
-              {title}
-            </Heading>
-          )}
+    let headerMarkup = null;
+
+    if (React.isValidElement(title)) {
+      headerMarkup = (
+        <Block
+          as="header"
+          justify="between"
+          alignItems="start"
+          padding={['4', '4 5']}
+          className={headerClasses}
+        >
+          <Block className="mr-3">{title}</Block>
+          {closeBtn}
         </Block>
-        {closeBtn}
-      </Block>
-    ) : (
-      closeBtn
-    );
+      );
+    } else if (title) {
+      headerMarkup = (
+        <Block
+          as="header"
+          justify="between"
+          alignItems="start"
+          padding={['4', '4 5']}
+          className={headerClasses}
+        >
+          <Block className="mr-3">
+            {icon && (
+              <Icon name={icon} size="24" className={iconClasses} />
+            )}
+            {title && (
+              <Heading element="4" responsive={false}>
+                {title}
+              </Heading>
+            )}
+          </Block>
+          {closeBtn}
+        </Block>
+      );
+    } else {
+      headerMarkup = closeBtn;
+    }
+    return headerMarkup;
   };
 
   const windowSize = useWindowSize();
@@ -246,6 +265,7 @@ function Modal({
         >
           {headerMarkup()}
           <Block
+            id="modalScroll"
             flex
             direction="column"
             padding={contentPadding}

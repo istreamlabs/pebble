@@ -3,6 +3,7 @@ import { mount, shallow } from 'enzyme';
 import FocusTrap from 'focus-trap-react';
 
 import Modal from './Modal';
+import Block from '../Block/Block';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Icon from '../Icon/Icon';
 
@@ -34,14 +35,26 @@ describe('Modal', () => {
     });
   });
 
-  describe('header', () => {
-    it('renders a header if title is set', () => {
+  describe('title', () => {
+    it('renders a title if title is set', () => {
       const instance = shallow(
         <Modal showing title="Modal Title">
           content
         </Modal>,
       );
       expect(instance.find({ as: 'header' })).toHaveLength(1);
+    });
+  });
+
+  describe('custom title', () => {
+    it('renders a header if set', () => {
+      const instance = shallow(
+        <Modal showing className="my-class" title={<div>header</div>}>
+          content
+        </Modal>,
+      );
+      expect(instance.find({ as: 'header' })).toHaveLength(1);
+      expect(instance.find(Block).children()).toHaveLength(6);
     });
   });
 
