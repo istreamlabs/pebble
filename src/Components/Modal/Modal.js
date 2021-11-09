@@ -162,6 +162,7 @@ function Modal({
           justify="between"
           alignItems="start"
           padding={['4', '4 5']}
+          background="neutral-200"
           className={headerClasses}
         >
           <Block className="mr-3" width="100%">
