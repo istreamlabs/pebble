@@ -164,7 +164,9 @@ function Modal({
           padding={['4', '4 5']}
           className={headerClasses}
         >
-          <Block className="mr-3">{title}</Block>
+          <Block className="mr-3" width="100%">
+            {title}
+          </Block>
           {closeBtn}
         </Block>
       );
