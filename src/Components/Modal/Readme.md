@@ -143,6 +143,61 @@ function ModalExample() {
 <ModalExample />;
 ```
 
+### Custom Header
+
+When you need to show a modal with a custom header, provide a custom header. Title will be ignored.
+
+```js
+import { useState } from 'react';
+import Button from '../Button/Button';
+import Block from '../Block/Block';
+import Heading from '../Heading/Heading';
+
+function ModalExample() {
+  const [showModal, setShowModal] = useState(false);
+
+  const LargeModal = (
+    <Modal
+      large
+      mobileFullScreen
+      title={
+        <Block direction="row">
+          <Button primary padding="2">
+            Custom Header Button
+          </Button>
+          <Heading textAlign="right" size="4" responsive={false}>
+            Custom Header Heading
+          </Heading>
+        </Block>
+      }
+      onRequestClose={() => setShowModal(!showModal)}
+      showing={showModal}
+      footer={[
+        <Button primary onClick={() => setShowModal(!showModal)}>
+          Save
+        </Button>,
+        <Button onClick={() => setShowModal(!showModal)}>
+          Cancel
+        </Button>,
+      ]}
+    >
+      Use large modals for content such as tables or lists. The max
+      width and max height of large modals is increased.
+    </Modal>
+  );
+
+  return (
+    <>
+      {showModal && LargeModal}
+      <Button primary onClick={() => setShowModal(!showModal)}>
+        Show Large Modal
+      </Button>
+    </>
+  );
+}
+<ModalExample />;
+```
+
 ### Without a Title or Footer
 
 Modal's without a `title` or `footer` can be used to display smaller bits of information that require the users attention.
@@ -321,6 +376,53 @@ function ModalExample() {
   )
 }
 
+<ModalExample />;
+```
+
+### Overridden Content Padding
+
+By default, modal has a Block container with a padding of [4, 5].
+When you need to show a lot content, such as a table or grid you may wish to provide custom padding around that content.
+Modal has a contentPadding property that is applied to the Modals Block content container 'padding'
+
+```js
+import { useState } from 'react';
+import Button from '../Button/Button';
+
+function ModalExample() {
+  const [showModal, setShowModal] = useState(false);
+
+  const LargeModal = (
+    <Modal
+      large
+      mobileFullScreen
+      title="Large Modal"
+      onRequestClose={() => setShowModal(!showModal)}
+      showing={showModal}
+      contentPadding="0 5 5 5"
+      footer={[
+        <Button primary onClick={() => setShowModal(!showModal)}>
+          Save
+        </Button>,
+        <Button onClick={() => setShowModal(!showModal)}>
+          Cancel
+        </Button>,
+      ]}
+    >
+      Use large modals for content such as tables or lists. The max
+      width and max height of large modals is increased.
+    </Modal>
+  );
+
+  return (
+    <>
+      {showModal && LargeModal}
+      <Button primary onClick={() => setShowModal(!showModal)}>
+        Show Large Modal
+      </Button>
+    </>
+  );
+}
 <ModalExample />;
 ```
 

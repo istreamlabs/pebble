@@ -113,5 +113,6 @@ import Icon from './Icon';
 <div className="__icon"><Icon name="workflow" accessibilityLabel="workflow" /><div>workflow</div></div>
 <div className="__icon"><Icon name="world" accessibilityLabel="world" /><div>world</div></div>
 <div className="__icon"><Icon name="delete" accessibilityLabel="delete" /><div>delete</div></div>
+<div className="__icon"><Icon name="dropper" accessibilityLabel="dropper" /><div>dropper</div></div>
 </div>
 ```

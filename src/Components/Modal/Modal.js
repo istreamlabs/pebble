@@ -17,7 +17,7 @@ import {
   useWindowSize,
   useLockBodyScroll,
 } from '../../Hooks';
-import { requiresOtherProp } from '../../Types';
+import { requiresOtherProp, spacingType } from '../../Types';
 
 import './Modal.scss';
 
@@ -50,6 +50,7 @@ const propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]),
+
   /**
    * Specify an [icon](/#/Components/Icon) in the header of the modal before the title
    */
@@ -72,9 +73,9 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * optional title of the modal. If set, a header will be added to the dialog
+   * optional simple string title or custom header node for the modal. If set, a header will be added to the dialog
    */
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /**
    * Type of message to be displayed
    * @type {PropTypes.Requireable<AppearanceType>}
@@ -84,6 +85,19 @@ const propTypes = {
    * Boolean flag used to make the modal not dismissable by the user when true
    */
   notDismissable: PropTypes.bool.isRequired,
+
+  /**
+   * Padding [space](/#/Styles/Spacing) to be added around content in the modal.
+   * It models itself after the CSS [padding short property](https://developer.mozilla.org/en-US/docs/Web/CSS/padding),
+   * where you can set the padding area on all four sides of an element.
+   * It is shorthand for top, right, bottom, left.
+   *
+   * One of: 1, 2, 3, 4, 5, 6, 7 , 8
+   *
+   * For responsive behavior, pass an array with length up to 4, with one of the above values.
+   * @type {PropTypes.Requireable<Spacing>}
+   */
+  contentPadding: spacingType,
 };
 
 const defaultProps = {
@@ -91,6 +105,7 @@ const defaultProps = {
   onRequestClose: () => {},
   type: 'default',
   notDismissable: false,
+  contentPadding: [4, 5],
 };
 
 /**
@@ -111,6 +126,7 @@ function Modal({
   title,
   type,
   notDismissable,
+  contentPadding,
 }) {
   useLockBodyScroll(showing);
   useKeyBoardEvent('Escape', onRequestClose);
@@ -137,29 +153,49 @@ function Modal({
 
     const iconClasses = classNames('mr-3', iconClass);
 
-    return title ? (
-      <Block
-        as="header"
-        justify="between"
-        alignItems="start"
-        padding={['4', '4 5']}
-        className={headerClasses}
-      >
-        <Block className="mr-3">
-          {icon && (
-            <Icon name={icon} size="24" className={iconClasses} />
-          )}
-          {title && (
-            <Heading element="4" responsive={false}>
-              {title}
-            </Heading>
-          )}
+    let headerMarkup = null;
+
+    if (React.isValidElement(title)) {
+      headerMarkup = (
+        <Block
+          as="header"
+          justify="between"
+          alignItems="start"
+          padding={['4', '4 5']}
+          className={headerClasses}
+        >
+          <Block className="mr-3" width="100%">
+            {title}
+          </Block>
+          {closeBtn}
         </Block>
-        {closeBtn}
-      </Block>
-    ) : (
-      closeBtn
-    );
+      );
+    } else if (title) {
+      headerMarkup = (
+        <Block
+          as="header"
+          justify="between"
+          alignItems="start"
+          padding={['4', '4 5']}
+          className={headerClasses}
+        >
+          <Block className="mr-3">
+            {icon && (
+              <Icon name={icon} size="24" className={iconClasses} />
+            )}
+            {title && (
+              <Heading element="4" responsive={false}>
+                {title}
+              </Heading>
+            )}
+          </Block>
+          {closeBtn}
+        </Block>
+      );
+    } else {
+      headerMarkup = closeBtn;
+    }
+    return headerMarkup;
   };
 
   const windowSize = useWindowSize();
@@ -231,9 +267,10 @@ function Modal({
         >
           {headerMarkup()}
           <Block
+            id="modalScroll"
             flex
             direction="column"
-            padding={[4, 5]}
+            padding={contentPadding}
             background="white"
             overflow={{ vertical: 'auto' }}
           >

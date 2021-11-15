@@ -14,6 +14,18 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
+const filterSearch = (inputValue) => {
+  return options.filter((i) => i.label.toLowerCase().includes(inputValue.toLowerCase()));
+};
+
+const promiseOptions = (inputValue) => {
+  return new Promise ((resolve) => {
+    setTimeout(() => {
+      resolve(filterSearch(inputValue));
+    }, 1000);
+  });
+};
+
 function FieldSelectExamples() {
   const [singleValue, setSingleValue] = useState();
   const [multiValue, setMultiValue] = useState();
@@ -46,6 +58,20 @@ function FieldSelectExamples() {
         onChange={(object, action) => {
           setMultiValue(object.map(o => o.value).join(', '));
         }}
+      />
+      <div className="mb-5">selected value(s): {multiValue}</div>
+
+      <FieldSelect
+        asyncSearch
+        cacheOptions
+        defaultOptions
+        id="multiSelectAsync"
+        loadOptions={promiseOptions}
+        multiSelect
+        isSearchable
+        className="mb-2"
+        label="Multi-Select Async"
+        placeholder="search"
       />
       <div className="mb-5">selected value(s): {multiValue}</div>
 
