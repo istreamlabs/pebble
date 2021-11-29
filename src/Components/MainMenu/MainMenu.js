@@ -1,6 +1,6 @@
 import './MainMenu.scss';
 
-import { matchPath, withRouter } from 'react-router';
+import { matchPath, withRouter } from 'react-router-dom';
 
 import Button from '../Button/Button';
 import MenuItem from './MenuItem/MenuItem';
@@ -105,18 +105,17 @@ class MainMenu extends React.Component {
           strict: true,
         }) !== null) ||
       (item.aliases || []).some(
-        path => matchPath(location.pathname, { path }) !== null,
+        (path) => matchPath(location.pathname, { path }) !== null,
       ) ||
-      (item.items || []).some(i => MainMenu.shouldBeOpen(location, i))
+      (item.items || []).some((i) =>
+        MainMenu.shouldBeOpen(location, i),
+      )
     );
   }
 
   renderHeader = () => {
-    const {
-      mobileHeaderContent,
-      onShowTenantMenu,
-      title,
-    } = this.props;
+    const { mobileHeaderContent, onShowTenantMenu, title } =
+      this.props;
     return (
       <div className="main-menu-title">
         <div className="dn bb b-neutral-300 w-100 flex-m pv-3 ph-5 justify-between-m">
