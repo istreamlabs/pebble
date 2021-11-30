@@ -14,7 +14,7 @@ jobs:
       - name: install dependencies
         run: npm install
       - name: lint
-        run: npm lint
+        run: npm run lint
   unit-tests:
     name: unit tests
     runs-on: ubuntu-latest
@@ -28,7 +28,7 @@ jobs:
       - name: install dependencies
         run: npm install
       - name: unit test with coverage
-        run: npm cover
+        run: npm run cover
   visual-tests:
     name: visual regression tests
     runs-on: ubuntu-latest
@@ -59,7 +59,7 @@ jobs:
       - name: install dependencies
         run: npm install
       - name: build documentation site
-        run: npm styleguide:build
+        run: npm run styleguide:build
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
