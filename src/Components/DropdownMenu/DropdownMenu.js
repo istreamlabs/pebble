@@ -218,7 +218,6 @@ class DropdownMenu extends React.PureComponent {
         className={overlayClasses}
         role="menu"
         aria-hidden={!isOverlayOpen}
-        aria-expanded={isOverlayOpen}
         ref={ref}
         data-placement={placement}
         style={style}
