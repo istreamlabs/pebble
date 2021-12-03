@@ -1,6 +1,6 @@
 {
   "name": "@istreamplanet/pebble",
-  "version": "2.12.1",
+  "version": "2.13.0",
   "description": "Pebble Design System",
   "private": false,
   "repository": {
@@ -72,7 +72,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.3.0",
+    "react-scripts": "^4.0.3",
     "react-styleguidist": "^11.1.7",
     "react-test-renderer": "^16.14.0",
     "rimraf": "^3.0.0",
