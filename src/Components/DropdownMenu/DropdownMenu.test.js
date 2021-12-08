@@ -233,7 +233,6 @@ describe('DropdownMenu', () => {
         placement: 'bottom-end',
       });
       expect(result.props['aria-hidden']).toEqual(false);
-      expect(result.props['aria-expanded']).toEqual(true);
       expect(result.props['data-placement']).toEqual('bottom-end');
     });
   });

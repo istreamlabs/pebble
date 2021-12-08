@@ -279,7 +279,7 @@ describe('MenuItem', () => {
     expect(item.find(Block).prop('textSize')).toHaveLength(1);
   });
 
-  describe('componentWillReceiveProps', () => {
+  describe('UNSAFE_componentWillReceiveProps', () => {
     let instance;
     let stateSpy;
     let genSpy;
@@ -295,14 +295,14 @@ describe('MenuItem', () => {
     });
 
     it('does nothing when it does not contain an active item', () => {
-      instance.componentWillReceiveProps({
+      instance.UNSAFE_componentWillReceiveProps({
         containsActiveItem: false,
       });
       expect(stateSpy).not.toHaveBeenCalled();
     });
 
     it('sets it to open when it contains an active item', () => {
-      instance.componentWillReceiveProps({
+      instance.UNSAFE_componentWillReceiveProps({
         containsActiveItem: true,
       });
       expect(stateSpy).toHaveBeenCalledWith({ isOpen: true });
@@ -312,7 +312,7 @@ describe('MenuItem', () => {
       instance = new MenuItem({
         containsActiveItem: true,
       });
-      instance.componentWillReceiveProps({
+      instance.UNSAFE_componentWillReceiveProps({
         containsActiveItem: true,
       });
       expect(stateSpy).not.toHaveBeenCalled();
@@ -322,7 +322,7 @@ describe('MenuItem', () => {
       instance = new MenuItem({
         containsActiveItem: true,
       });
-      instance.componentWillReceiveProps({
+      instance.UNSAFE_componentWillReceiveProps({
         containsActiveItem: true,
       });
       expect(genSpy).not.toHaveBeenCalled();
@@ -339,7 +339,7 @@ describe('MenuItem', () => {
         containsActiveItem: true,
       });
       instance.state.isOpen = true;
-      instance.componentWillReceiveProps({
+      instance.UNSAFE_componentWillReceiveProps({
         containsActiveItem: true,
         item,
       });

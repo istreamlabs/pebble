@@ -1,6 +1,6 @@
 import './MainMenu.scss';
 
-import { matchPath, withRouter } from 'react-router';
+import { matchPath, withRouter } from 'react-router-dom';
 
 import Button from '../Button/Button';
 import MenuItem from './MenuItem/MenuItem';

@@ -6,7 +6,7 @@ import Alert from '../Components/Alert/Alert';
 
 const defaultProps = {
   type: 'default',
-  position: 'bottom'
+  position: 'bottom',
 };
 
 const propTypes = {
@@ -18,17 +18,17 @@ const propTypes = {
    * Type of message to be displayed
    * @type {PropTypes.Requireable<'default' | 'info' | 'warn' | 'danger' | 'success'>}
    */
-  type: PropTypes.oneOf(['default', 'info', 'warn', 'danger', 'success']),
+  type: PropTypes.oneOf([
+    'default',
+    'info',
+    'warn',
+    'danger',
+    'success',
+  ]),
 };
 
-export const ToastAlert = ({
-  title, type
-}) => (
-  <Alert
-    type={type}
-    className="mb-0"
-    title={title}
-  />
+export const ToastAlert = ({ title, type }) => (
+  <Alert type={type} className="mb-0" title={title} />
 );
 
 ToastAlert.propTypes = propTypes;
@@ -43,25 +43,13 @@ ToastAlert.defaultProps = defaultProps;
  */
 
 export default () => {
-  function notify({
-    title,
-    type,
-    autoClose,
-    onClose,
-    containerId,
-  }) {
-    toast(
-      <ToastAlert
-        title={title}
-        type={type}
-      />,
-      {
-        className: 'p-0 bg-transparent',
-        autoClose,
-        onClose,
-        containerId,
-      }
-    );
+  function notify({ title, type, autoClose, onClose, containerId }) {
+    toast(<ToastAlert title={title} type={type} />, {
+      className: 'p-0 bg-transparent',
+      autoClose,
+      onClose,
+      containerId,
+    });
   }
 
   return notify;

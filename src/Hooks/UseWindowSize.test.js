@@ -6,19 +6,22 @@ import developerWarning from '../Utils/DeveloperWarning';
 
 jest.mock('../Utils/DeveloperWarning');
 
-
 const TestComponent = () => {
   useWindowSize();
   return <div />;
-}
+};
 
 describe('useWindowSize', () => {
   let addSpy;
   let removeSpy;
 
   beforeAll(() => {
-    addSpy = jest.spyOn(global.window, 'addEventListener').mockImplementation();
-    removeSpy = jest.spyOn(global.window, 'removeEventListener').mockImplementation();
+    addSpy = jest
+      .spyOn(global.window, 'addEventListener')
+      .mockImplementation();
+    removeSpy = jest
+      .spyOn(global.window, 'removeEventListener')
+      .mockImplementation();
   });
 
   afterAll(() => {
@@ -40,11 +43,12 @@ describe('useWindowSize', () => {
         <TestComponent />
         <TestComponent />
         <TestComponent />
-      </>
+      </>,
     );
     // count up the amount of time resize is called
     // toHaveBeenCalledTimes does not have a filter
-    const count = addSpy.mock.calls.filter(c => c[0] == 'resize').length;
+    const count = addSpy.mock.calls.filter(c => c[0] === 'resize')
+      .length;
     expect(count).toEqual(5);
   });
 
@@ -52,7 +56,7 @@ describe('useWindowSize', () => {
     render(
       <>
         <TestComponent />
-      </>
+      </>,
     );
     expect(developerWarning).toHaveBeenCalled();
   });
@@ -61,7 +65,7 @@ describe('useWindowSize', () => {
     render(
       <ResponsiveProvider>
         <TestComponent />
-      </ResponsiveProvider>
+      </ResponsiveProvider>,
     );
     expect(developerWarning).not.toHaveBeenCalled();
   });
@@ -74,11 +78,12 @@ describe('useWindowSize', () => {
         <TestComponent />
         <TestComponent />
         <TestComponent />
-      </ResponsiveProvider>
+      </ResponsiveProvider>,
     );
     // count up the amount of time resize is called
     // toHaveBeenCalledTimes does not have a filter
-    const count = addSpy.mock.calls.filter(c => c[0] == 'resize').length;
+    const count = addSpy.mock.calls.filter(c => c[0] === 'resize')
+      .length;
     expect(count).toEqual(1);
   });
 });
@@ -88,8 +93,12 @@ describe('ResponsiveProvider', () => {
   let removeSpy;
 
   beforeAll(() => {
-    addSpy = jest.spyOn(global.window, 'addEventListener').mockImplementation();
-    removeSpy = jest.spyOn(global.window, 'removeEventListener').mockImplementation();
+    addSpy = jest
+      .spyOn(global.window, 'addEventListener')
+      .mockImplementation();
+    removeSpy = jest
+      .spyOn(global.window, 'removeEventListener')
+      .mockImplementation();
   });
 
   afterAll(() => {
@@ -103,15 +112,20 @@ describe('ResponsiveProvider', () => {
     jest.resetAllMocks();
   });
 
-
   it('registers an event handler for resize', () => {
     render(
       <ResponsiveProvider>
         <div>Hello World</div>
-      </ResponsiveProvider>
+      </ResponsiveProvider>,
     );
-    expect(addSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+    expect(addSpy).toHaveBeenCalledWith(
+      'resize',
+      expect.any(Function),
+    );
     cleanup();
-    expect(removeSpy).toHaveBeenCalledWith('resize', expect.any(Function));
+    expect(removeSpy).toHaveBeenCalledWith(
+      'resize',
+      expect.any(Function),
+    );
   });
 });
