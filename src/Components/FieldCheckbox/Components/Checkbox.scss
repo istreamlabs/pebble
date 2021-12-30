@@ -57,12 +57,12 @@ $TOGGLE_FONT_SIZE: $font-size-7;
   }
 
   .toggle-switch {
-    width: $TOGGLE_WIDTH; height: $TOGGLE_WIDTH/2;
+    width: $TOGGLE_WIDTH; height: math.div($TOGGLE_WIDTH, 2);
     background: $TOGGLE_BG_OFF;
-    border-radius: ($TOGGLE_WIDTH/4) + 2;
+    border-radius: math.div($TOGGLE_WIDTH, 4) + 2;
     &:after {
       background-color: $TOGGLE_SWITCH_COLOR;
-      width: ($TOGGLE_WIDTH/2) - 4; height: ($TOGGLE_WIDTH/2) - 4;
+      width: math.div($TOGGLE_WIDTH, 2) - 4; height: math.div($TOGGLE_WIDTH, 2) - 4;
     }
   }
 
