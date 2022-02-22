@@ -1,5 +1,11 @@
 [![CI GitHub Action](https://github.com/iStreamPlanet/pebble/workflows/CI/badge.svg)](https://github.com/iStreamPlanet/pebble/actions?query=workflow%3ACI)
 
+# Deprecation Notice
+
+This package has been deprecated and is no longer maintained
+
+---
+
 # Pebble
 
 A react-based design system built by iStreamPlanet
